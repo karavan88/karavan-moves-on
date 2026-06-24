@@ -3,6 +3,7 @@ title: Изнанка сентиментальной ценности
 year: 2026
 director: Кейн Парсонс
 country: США
+rating: 3.5
 poster: https://image.tmdb.org/t/p/w500/9aogyiv7s4U0nacrnQ9s4XEWJ15.jpg
 tags: хоррор, драма, психоанализ, «Закулисье реальности»
 ---

@@ -177,7 +177,11 @@
   .review-head h1{font-family:"Playfair Display",serif;font-size:clamp(28px,5vw,42px);
     font-weight:800;line-height:1.1}
   .review-head .sub{color:var(--muted);margin-top:10px;font-size:15px}
-  .stars{margin-top:18px;font-size:22px;letter-spacing:3px;color:var(--accent)}
+  .stars{margin-top:18px;font-size:22px;letter-spacing:3px}
+  .stars .st-full{color:var(--accent)}
+  .stars .st-empty{color:#3a3a46}
+  .stars .st-half{position:relative;color:#3a3a46}
+  .stars .st-half::before{content:"★";position:absolute;left:0;top:0;width:50%;overflow:hidden;color:var(--accent)}
   .stars .num{color:var(--muted);font-size:14px;letter-spacing:0;margin-left:10px}
   .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
   .pill{border:1px solid var(--border);color:var(--muted);font-size:12px;
@@ -274,8 +278,14 @@ function parseFrontMatter(text){
   return {meta, body:m[2]};
 }
 function stars(rating){
-  const r = Math.max(0,Math.min(5,Math.round(parseFloat(rating))));
-  return '★'.repeat(r)+'☆'.repeat(5-r);
+  const r = Math.max(0,Math.min(5,parseFloat(rating)||0));
+  let html='';
+  for(let i=1;i<=5;i++){
+    if(r>=i) html+='<span class="st-full">★</span>';
+    else if(r>=i-0.5) html+='<span class="st-half">★</span>';
+    else html+='<span class="st-empty">★</span>';
+  }
+  return html;
 }
 function esc(s){return (s||'').replace(/"/g,'&quot;')}
 async function getJSON(path){
