@@ -218,7 +218,7 @@
       <a onclick="location.hash='#/reviews'" data-nav="reviews">Рецензии</a>
       <a onclick="location.hash='#/festivals'" data-nav="festivals">Кинофестивали</a>
       <a onclick="location.hash='#/collections'" data-nav="collections">Подборки</a>
-      <a onclick="location.hash='#/press'" data-nav="press">Публикации</a>
+      <a onclick="location.hash='#/press'" data-nav="press">Публикации в СМИ</a>
       <a onclick="location.hash='#/about'" data-nav="about">Обо мне</a>
     </nav>
   </div>
@@ -434,26 +434,36 @@ async function renderCollection(slug){
   }
 }
 
-/* ---------- PRESS ---------- */
+/* ---------- PRESS (Публикации в СМИ) ---------- */
+const PRESS_RUBRICS = ['Тематические подборки','Рецензии','Эссе и колонки','Интервью'];
+function pressItemHTML(p){
+  return `<a class="press-item" href="${esc(p.url)}" target="_blank" rel="noopener">
+    <div class="press-outlet">${p.outlet||''}</div>
+    <div class="press-main">
+      <h3>${p.title||''}</h3>
+      <div class="press-meta">${[p.date,p.note].filter(Boolean).join(' · ')}</div>
+    </div>
+    <div class="press-arrow">↗</div>
+  </a>`;
+}
 async function renderPress(){
   setActive('press');
   app.innerHTML = `<main>
-    <div class="page-title">Публикации</div>
-    <div class="page-sub">Мои рецензии и тексты, опубликованные в других изданиях.</div>
-    <div class="press-list" id="press"><div class="state">Загрузка…</div></div></main>`;
+    <div class="page-title">Публикации в СМИ</div>
+    <div class="page-sub">Мои тексты, опубликованные в других изданиях — по рубрикам.</div>
+    <div id="press" style="max-width:820px;margin:0 auto"><div class="state">Загрузка…</div></div></main>`;
   try{
     const list = await getJSON('press.json');
     const el = document.getElementById('press');
     if(!list.length){ el.innerHTML=`<div class="state">Пока нет публикаций.</div>`; return; }
-    el.innerHTML = list.map(p=>`
-      <a class="press-item" href="${esc(p.url)}" target="_blank" rel="noopener">
-        <div class="press-outlet">${p.outlet||''}</div>
-        <div class="press-main">
-          <h3>${p.title||''}</h3>
-          <div class="press-meta">${[p.date,p.note].filter(Boolean).join(' · ')}</div>
-        </div>
-        <div class="press-arrow">↗</div>
-      </a>`).join('');
+    const groups = {};
+    list.forEach(p=>{ const r=p.rubric||'Прочее'; (groups[r]=groups[r]||[]).push(p); });
+    const rubrics = [...PRESS_RUBRICS.filter(r=>groups[r]),
+                     ...Object.keys(groups).filter(r=>!PRESS_RUBRICS.includes(r))];
+    el.innerHTML = rubrics.map(r=>`
+      <div class="section-label">${r}</div>
+      <div class="press-list" style="margin:0 0 30px">${groups[r].map(pressItemHTML).join('')}</div>
+    `).join('');
   }catch(e){ document.querySelector('main').innerHTML = loadError(); }
 }
 
