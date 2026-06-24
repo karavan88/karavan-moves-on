@@ -129,7 +129,7 @@
     padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px)}
   .card-body{padding:16px 16px 18px}
   .card-body h3{font-size:17px;font-weight:700;line-height:1.3}
-  .card-meta{color:var(--muted);font-size:13px;margin-top:6px}
+  .card-meta{color:#b3aea2;font-size:13px;margin-top:6px;letter-spacing:.01em}
   .card-excerpt{color:#b9b9c4;font-size:14px;margin-top:10px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .card-headline{font-family:"Playfair Display",Georgia,serif;font-style:italic;
@@ -197,7 +197,9 @@
   .review-head .info{flex:1;min-width:240px}
   .review-head h1{font-family:"Playfair Display",serif;font-size:clamp(28px,5vw,42px);
     font-weight:800;line-height:1.1}
-  .review-head .sub{color:var(--muted);margin-top:10px;font-size:15px}
+  .review-head .film-line{font-family:"Playfair Display",serif;color:var(--accent);
+    font-weight:700;font-size:19px;margin-top:14px;letter-spacing:.01em}
+  .review-head .sub{color:#b6b1a6;margin-top:7px;font-size:14px;letter-spacing:.02em}
   .stars{margin-top:18px;font-size:22px;letter-spacing:3px}
   .stars .st-full{color:var(--accent)}
   .stars .st-empty{color:#3a3a46}
@@ -239,7 +241,7 @@
   article.prose{font-size:17px;color:#dadae2}
   /* лид-абзац: изысканный курсив Playfair Display (как в цитатах) */
   article.prose > p:first-of-type{font-family:"Playfair Display",Georgia,serif;font-style:italic;
-    font-size:23px;line-height:1.5;color:#f4f0e8;margin:0 0 30px;letter-spacing:.004em}
+    font-size:19px;line-height:1.55;color:#ede9e0;margin:0 0 28px;letter-spacing:.003em}
   article.prose > p:first-of-type em{font-style:normal}
   article.prose h2{font-family:"Playfair Display",serif;font-size:26px;margin:36px 0 14px;color:#fff}
   article.prose h3{font-size:20px;margin:28px 0 12px}
@@ -249,9 +251,22 @@
   article.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
   article.prose ul,article.prose ol{margin:0 0 20px 22px}
   article.prose li{margin:6px 0}
-  article.prose img{border-radius:12px;margin:24px 0;border:1px solid var(--border)}
+  article.prose img{border-radius:12px;margin:24px auto;display:block;border:1px solid var(--border)}
   article.prose hr{border:none;border-top:1px solid var(--border);margin:36px 0}
   article.prose code{background:var(--bg-2);padding:2px 7px;border-radius:5px;font-size:15px}
+
+  /* COLLECTION entries (рендерятся внутри .prose) */
+  .coll-entry{display:flex;gap:22px;align-items:flex-start;padding:26px 0;border-bottom:1px solid var(--border)}
+  .coll-entry:last-child{border-bottom:none}
+  .coll-rank{font-family:"Playfair Display",serif;font-size:30px;font-weight:800;color:var(--accent);
+    opacity:.7;min-width:42px;line-height:1.05}
+  .coll-entry .coll-poster{width:124px;flex-shrink:0;border-radius:10px;border:1px solid var(--border);margin:0}
+  .coll-body{flex:1;min-width:0}
+  .coll-body h3{font-family:"Playfair Display",serif;font-size:21px;font-weight:700;line-height:1.2;color:#fff;margin:0}
+  .coll-meta{color:var(--muted);font-size:13px;margin:7px 0 11px}
+  .coll-meta b{color:var(--accent);font-weight:700}
+  .coll-body p{color:#cccdd6;font-size:15px;line-height:1.62;margin:0}
+  @media(max-width:560px){.coll-entry{gap:14px}.coll-entry .coll-poster{width:92px}.coll-rank{font-size:23px;min-width:30px}}
 
   .state{text-align:center;color:var(--muted);padding:80px 20px}
   .state h2{color:var(--text);font-family:"Playfair Display",serif;margin-bottom:10px}
@@ -525,7 +540,8 @@ async function renderReview(slug){
         <div class="poster">${poster}</div>
         <div class="info">
           <h1>${meta.title||film||'Без названия'}</h1>
-          <div class="sub">${[meta.film,meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).join(' · ')}</div>
+          ${meta.film?`<div class="film-line">${meta.film}</div>`:''}
+          <div class="sub">${[meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).join(' · ')}</div>
           ${meta.rating?`<div class="stars">${stars(meta.rating)}<span class="num">${meta.rating} / 5</span></div>`:''}
           ${meta.festival?`<div><a class="fest-badge" onclick="location.hash='#/festivals'">#${meta.festival}</a></div>`:''}
           ${tags.length?`<div class="pill-row">${tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div>`:''}
