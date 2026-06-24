@@ -5,6 +5,7 @@ original: The Hours
 year: 2002
 director: Стивен Долдри
 country: США, Великобритания
+rating: 4
 poster: https://image.tmdb.org/t/p/w500/4myDtowDJQPQnkEDB1IWGtJR1Fo.jpg
 tags: драма, экранизация, Николь Кидман
 ---

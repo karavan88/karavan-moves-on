@@ -5,6 +5,7 @@ original: 어쩔수가없다 / No Other Choice
 year: 2025
 director: Пак Чхан-ук
 country: Южная Корея
+rating: 3.5
 poster: https://image.tmdb.org/t/p/w500/sBpxTGLzKnvPSVtL5yQYpSxvKEb.jpg
 tags: триллер, драма, социальное кино
 ---

@@ -5,6 +5,7 @@ original: Father Mother Sister Brother
 year: 2025
 director: Джим Джармуш
 country: США, Ирландия, Франция
+rating: 3
 poster: https://image.tmdb.org/t/p/w500/96O3Ol3f2veMxAxYqsML8rOumB9.jpg
 tags: драма, авторское кино
 ---
