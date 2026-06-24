@@ -8,27 +8,83 @@
     "url": "https://www.kinoafisha.info/news/roditeli-i-deti-kak-kino-prozhilo-2025-god/"
   },
   {
-    "rubric": "Рецензии",
-    "outlet": "Искусство кино",
-    "title": "Пример: рецензия на фильм-открытие Каннского фестиваля",
-    "date": "Май 2026",
-    "note": "колонка",
-    "url": "https://example.com"
+    "rubric": "Тематические подборки",
+    "outlet": "Киноафиша",
+    "title": "Молодёжь на распутье: подборка фильмов о молодых людях",
+    "date": "26 марта 2026",
+    "note": "подборка",
+    "url": "https://www.kinoafisha.info/news/molodezh-na-raspute-podborka-filmov-o-molodyh-lyudyah/"
   },
   {
-    "rubric": "Эссе и колонки",
-    "outlet": "Сеанс",
-    "title": "Пример: эссе о социологии современного авторского кино",
-    "date": "Март 2026",
-    "note": "большой материал",
-    "url": "https://example.com"
+    "rubric": "Тематические подборки",
+    "outlet": "Киноафиша",
+    "title": "Против течения: пять культовых фильмов о героях-одиночках",
+    "date": "25 марта 2026",
+    "note": "подборка",
+    "url": "https://www.kinoafisha.info/news/protiv-techeniya-pyat-kultovyh-filmov-o-geroyah-odinochkah/"
+  },
+  {
+    "rubric": "Рецензии с фестивалей",
+    "outlet": "Мир фантастики",
+    "title": "Канны-2026: искусственный интеллект, пришельцы и зомби",
+    "date": "28 мая 2026",
+    "note": "обзор фестиваля",
+    "url": "https://www.mirf.ru/kino/kanny-2026-sci-fi"
+  },
+  {
+    "rubric": "Рецензии с фестивалей",
+    "outlet": "Киноафиша",
+    "title": "«Колония»: феминистический зомби-хоррор",
+    "date": "27 мая 2026",
+    "note": "Канны 2026 · Ён Сан-хо",
+    "url": "https://www.kinoafisha.info/reviews/8330043/"
+  },
+  {
+    "rubric": "Рецензии с фестивалей",
+    "outlet": "Искусство кино",
+    "title": "Надежда глохнет последней: «Надежда» На Хон-джина",
+    "date": "31 мая 2026",
+    "note": "Канны 2026",
+    "url": "https://kinoart.ru/reviews/nadezhda-glohnet-pervoy-nadezhda-na-hon-dzhina"
+  },
+  {
+    "rubric": "Рецензии с фестивалей",
+    "outlet": "Киноафиша",
+    "title": "«Горькое Рождество»: Альмодовар насмехается над творчеством",
+    "date": "21 мая 2026",
+    "note": "Канны 2026 · Педро Альмодовар",
+    "url": "https://www.kinoafisha.info/reviews/8330036/"
+  },
+  {
+    "rubric": "Рецензии с фестивалей",
+    "outlet": "Киноафиша",
+    "title": "«Её личный ад»: тюрьма сознания",
+    "date": "Май 2026",
+    "note": "Канны 2026 · Николас Виндинг Рефн",
+    "url": "https://www.kinoafisha.info/reviews/8330035/"
+  },
+  {
+    "rubric": "Рецензии с фестивалей",
+    "outlet": "Киноафиша",
+    "title": "«Бумажный тигр»: криминальная драма об американской мечте",
+    "date": "18 мая 2026",
+    "note": "Канны 2026 · Джеймс Грэй",
+    "url": "https://www.kinoafisha.info/reviews/8330031/"
+  },
+  {
+    "rubric": "Рецензии",
+    "outlet": "Мир фантастики",
+    "title": "«День разоблачения»: как Спилберг сказал что-то новое о контакте",
+    "date": "12 июня 2026",
+    "note": "Стивен Спилберг",
+    "url": "https://www.mirf.ru/kino/den-razoblacheniya-obzor"
   },
   {
     "rubric": "Интервью",
-    "outlet": "Кинопоиск",
-    "title": "Пример: интервью о том, как социолог смотрит кино",
-    "date": "Январь 2026",
-    "note": "интервью",
-    "url": "https://example.com"
+    "outlet": "Film.ru",
+    "title": "Интервью с Марком Форстером, режиссёром «Кванта милосердия»",
+    "date": "27 октября 2008",
+    "note": "Джеймс Бонд",
+    "url": "https://www.film.ru/articles/demony-dzheymsa-bonda"
   }
 ]

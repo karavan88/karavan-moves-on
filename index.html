@@ -435,7 +435,7 @@ async function renderCollection(slug){
 }
 
 /* ---------- PRESS (Публикации в СМИ) ---------- */
-const PRESS_RUBRICS = ['Тематические подборки','Рецензии','Эссе и колонки','Интервью'];
+const PRESS_RUBRICS = ['Тематические подборки','Рецензии с фестивалей','Рецензии','Интервью'];
 function pressItemHTML(p){
   return `<a class="press-item" href="${esc(p.url)}" target="_blank" rel="noopener">
     <div class="press-outlet">${p.outlet||''}</div>
