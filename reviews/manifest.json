@@ -1,5 +1,28 @@
 [
   {
+    "slug": "labirint-favna",
+    "film": "«Лабиринт Фавна»",
+    "title": "Классика. Просто не моя",
+    "year": "2006",
+    "director": "Гильермо дель Торо",
+    "original": "El laberinto del fauno / Pan's Labyrinth",
+    "rating": "",
+    "festival": "Канны 2026",
+    "poster": "https://image.tmdb.org/t/p/w500/z7xXihu5wHuSMWymq5VAulPVuvg.jpg",
+    "excerpt": "Двадцать лет спустя пересматриваю дебютный объект моего раздражения — теперь классику — в Каннах, в присутствии Дель Торо."
+  },
+  {
+    "slug": "bezumnyy-pierro",
+    "film": "«Безумный Пьеро»",
+    "title": "Эксперимент, который сработал лишь однажды",
+    "year": "1965",
+    "director": "Жан-Люк Годар",
+    "original": "Pierrot le fou",
+    "rating": "4.5",
+    "poster": "https://image.tmdb.org/t/p/w500/i124H6iQB4CawrgFW9aZaZs7OBO.jpg",
+    "excerpt": "Тот редкий Годар, где слом нарратива по-настоящему живёт. Один раз — эксперимент; во второй — уже нет."
+  },
+  {
     "slug": "amma-ariyan",
     "film": "«Сообщите матери» (Amma Ariyan)",
     "title": "Поколение, оставшееся без матери",
