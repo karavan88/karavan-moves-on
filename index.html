@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Караван идёт — авторский сайт о кино Карена Аванесяна</title>
-<meta name="description" content="Авторский сайт исследователя кино, кандидата социологических наук Карена Аванесяна. Рецензии, дневники с кинофестивалей, авторские подборки.">
+<meta name="description" content="Авторский сайт исследователя кино, кандидата социологических наук Карена Аванесяна. Рецензии, репортажи с кинофестивалей, публикации в СМИ.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230d0d12'/%3E%3Ccircle cx='35' cy='42' r='14' fill='%23e8b84b'/%3E%3Cpath d='M35 42 L86 28 L86 72 Z' fill='%23e8b84b' opacity='0.85'/%3E%3C/svg%3E">
+<meta property="og:title" content="Караван идёт — авторский сайт о кино Карена Аванесяна">
+<meta property="og:description" content="Кино глазами социолога: рецензии, репортажи с кинофестивалей и публикации в СМИ.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://karavanmoveson.netlify.app/assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
@@ -53,8 +58,8 @@
   .nav{max-width:var(--maxw);margin:0 auto;padding:14px 24px;
     display:flex;align-items:center;justify-content:space-between;gap:20px}
   .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
-  .brand .logo{width:42px;height:42px;border-radius:10px;object-fit:cover;
-    border:1px solid var(--border);box-shadow:0 0 24px rgba(232,184,75,.18)}
+  .brand .logo{width:42px;height:42px;border-radius:11px;display:block;
+    box-shadow:0 0 26px rgba(232,184,75,.2)}
   .brand .logo-fallback{width:42px;height:42px;border-radius:10px;
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
     display:grid;place-items:center;font-weight:800;color:#0a0a0c;font-size:22px}
@@ -241,16 +246,21 @@
 <header class="site">
   <div class="nav">
     <div class="brand" onclick="location.hash=''">
-      <img class="logo" src="assets/logo.png" alt="Караван идёт"
-           onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>К</div>'">
+      <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Караван идёт">
+        <defs><linearGradient id="km" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#e8b84b"/><stop offset="1" stop-color="#c8423a"/></linearGradient></defs>
+        <rect x="1" y="1" width="98" height="98" rx="24" fill="#0d0d12" stroke="#2c2c36" stroke-width="2"/>
+        <circle cx="35" cy="42" r="14" fill="url(#km)"/>
+        <path d="M35 42 L88 27 L88 73 Z" fill="url(#km)" opacity="0.9"/>
+      </svg>
       <div class="name">КАРАВАН <span>ИДЁТ</span></div>
     </div>
     <nav class="menu">
-      <a onclick="location.hash='#/feed'" data-nav="feed">Лента</a>
       <a onclick="location.hash='#/reviews'" data-nav="reviews">Рецензии</a>
+      <a onclick="location.hash='#/press'" data-nav="press">Публикации в СМИ</a>
       <a onclick="location.hash='#/festivals'" data-nav="festivals">Кинофестивали</a>
       <a onclick="location.hash='#/collections'" data-nav="collections">Подборки</a>
-      <a onclick="location.hash='#/press'" data-nav="press">Публикации в СМИ</a>
+      <a onclick="location.hash='#/feed'" data-nav="feed">Заметки</a>
       <a onclick="location.hash='#/about'" data-nav="about">Обо мне</a>
     </nav>
   </div>
@@ -375,7 +385,7 @@ async function renderHome(){
       <img class="hero-logo" src="assets/logo.png" alt="Караван идёт" onerror="this.style.display='none'">
       <div class="hero-text">
         <h1>Кино глазами <em>социолога</em></h1>
-        <p>Авторский сайт исследователя кино Карена Аванесяна. Заметки, рецензии и репортажи с фестивалей — кино как зеркало общества.</p>
+        <p>Карен Аванесян — исследователь кино, кандидат социологических наук. Рецензии, репортажи с фестивалей и публикации в СМИ: кино как зеркало общества и бессознательного.</p>
       </div>
     </section>
     <main id="home"><div class="state">Загрузка…</div></main>`;
@@ -390,11 +400,11 @@ async function renderHome(){
     document.querySelector('main').innerHTML = loadError(); return;
   }
   let out='';
-  if(feed&&feed.length) out+=`${homeLabel('Лента','#/feed')}<div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(feed.slice(0,3),'#/feed')}</div>`;
   if(reviews&&reviews.length) out+=`${homeLabel('Рецензии','#/reviews')}<div class="grid">${reviews.slice(0,3).map(reviewCardHTML).join('')}</div>`;
+  if(press&&press.length) out+=`${homeLabel('Публикации в СМИ','#/press')}<div class="press-list" style="max-width:none;margin:0">${press.slice(0,3).map(pressItemHTML).join('')}</div>`;
   if(festivals&&festivals.length) out+=`${homeLabel('Кинофестивали','#/festivals')}<div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(festivals.slice(0,2),'#/festival')}</div>`;
   if(collections&&collections.length) out+=`${homeLabel('Подборки','#/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
-  if(press&&press.length) out+=`${homeLabel('Публикации в СМИ','#/press')}<div class="press-list" style="max-width:none;margin:0">${press.slice(0,3).map(pressItemHTML).join('')}</div>`;
+  if(feed&&feed.length) out+=`${homeLabel('Заметки','#/feed')}<div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(feed.slice(0,2),'#/feed')}</div>`;
   document.getElementById('home').innerHTML = out || `<div class="state">Пока нет материалов.</div>`;
 }
 
@@ -402,8 +412,8 @@ async function renderHome(){
 async function renderFeed(){
   setActive('feed');
   app.innerHTML = `<main>
-    <div class="page-title">Лента</div>
-    <div class="page-sub">Короткие заметки и мысли о кино — по горячим следам.</div>
+    <div class="page-title">Заметки</div>
+    <div class="page-sub">Короткие мысли и наблюдения о кино — между большими текстами.</div>
     <div class="feed-list" id="feed"><div class="state">Загрузка…</div></div></main>`;
   try{
     const list = await getJSON('feed/manifest.json');
@@ -432,13 +442,17 @@ async function renderFestivals(){
   setActive('festivals');
   app.innerHTML = `<main>
     <div class="page-title">Кинофестивали</div>
-    <div class="page-sub">Репортажи и дневники с фестивалей — по горячим следам, прямо из зала.</div>
-    <div class="feed-list" id="feed"><div class="state">Загрузка…</div></div></main>`;
-  try{
-    const list = await getJSON('festivals/manifest.json');
-    const el = document.getElementById('feed');
-    el.innerHTML = list.length ? timelineItems(list,'#/festival') : `<div class="state">Пока нет записей.</div>`;
-  }catch(e){ document.querySelector('main').innerHTML = loadError(); }
+    <div class="page-sub">Я езжу на фестивали и пишу с места. Здесь собрано всё фестивальное в одном месте: дневники по горячим следам и мои рецензии, опубликованные в СМИ.</div>
+    <div id="fest"><div class="state">Загрузка…</div></div></main>`;
+  const [diaries, press] = await Promise.all([
+    getJSON('festivals/manifest.json').catch(()=>[]),
+    getJSON('press.json').catch(()=>[])
+  ]);
+  const festReviews = (press||[]).filter(p=>p.rubric==='Рецензии с фестивалей');
+  let out='';
+  if(diaries&&diaries.length) out+=`<div class="section-label">Дневники и репортажи</div><div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(diaries,'#/festival')}</div>`;
+  if(festReviews.length) out+=`<div class="section-label">Рецензии с фестивалей <a onclick="location.hash='#/press'">все публикации →</a></div><div class="press-list" style="max-width:none;margin:0">${festReviews.map(pressItemHTML).join('')}</div>`;
+  document.getElementById('fest').innerHTML = out || `<div class="state">Пока нет материалов.</div>`;
 }
 
 /* ---------- REVIEW page ---------- */
@@ -571,7 +585,7 @@ function route(){
   let m;
   if(m=h.match(/^\/review\/(.+)$/)) return renderReview(decodeURIComponent(m[1]));
   if(h==='/reviews') return renderReviews();
-  if(m=h.match(/^\/feed\/(.+)$/)) return renderTimelineItem('feed',decodeURIComponent(m[1]),'feed','#/feed','в ленту');
+  if(m=h.match(/^\/feed\/(.+)$/)) return renderTimelineItem('feed',decodeURIComponent(m[1]),'feed','#/feed','в заметки');
   if(h==='/feed') return renderFeed();
   if(m=h.match(/^\/festival\/(.+)$/)) return renderTimelineItem('festivals',decodeURIComponent(m[1]),'festivals','#/festivals','к фестивалям');
   if(h==='/festivals') return renderFestivals();
