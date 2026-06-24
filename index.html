@@ -246,7 +246,7 @@
       <div class="name">КАРАВАН <span>ИДЁТ</span></div>
     </div>
     <nav class="menu">
-      <a onclick="location.hash=''" data-nav="feed">Лента</a>
+      <a onclick="location.hash='#/feed'" data-nav="feed">Лента</a>
       <a onclick="location.hash='#/reviews'" data-nav="reviews">Рецензии</a>
       <a onclick="location.hash='#/festivals'" data-nav="festivals">Кинофестивали</a>
       <a onclick="location.hash='#/collections'" data-nav="collections">Подборки</a>
@@ -337,9 +337,39 @@ async function renderTimelineItem(folder, slug, navKey, backHash, backLabel){
   }
 }
 
-/* ---------- HOME = Лента ---------- */
+/* ---------- reusable cards ---------- */
+function reviewCardHTML(r){
+  return `<div class="card" onclick="location.hash='#/review/${r.slug}'">
+    <div class="poster">
+      ${r.poster?`<img src="${esc(r.poster)}" alt="${esc(r.title)}" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(r.title)}</div>'">`:`<div class="ph">${r.title}</div>`}
+      ${r.rating?`<div class="rating-badge">★ ${r.rating}</div>`:''}
+    </div>
+    <div class="card-body">
+      <h3>${r.title}</h3>
+      <div class="card-meta">${[r.year,r.director].filter(Boolean).join(' · ')}</div>
+      ${r.excerpt?`<div class="card-excerpt">${r.excerpt}</div>`:''}
+    </div>
+  </div>`;
+}
+function collectionCardHTML(c){
+  return `<div class="card" onclick="location.hash='#/collection/${c.slug}'">
+    <div class="poster cover">
+      ${c.cover?`<img src="${esc(c.cover)}" alt="${esc(c.title)}" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(c.title)}</div>'">`:`<div class="ph">${c.title}</div>`}
+      ${c.count?`<div class="count-badge">${c.count} фильмов</div>`:''}
+    </div>
+    <div class="card-body">
+      <h3>${c.title}</h3>
+      ${c.excerpt?`<div class="card-excerpt">${c.excerpt}</div>`:''}
+    </div>
+  </div>`;
+}
+function homeLabel(title, href){
+  return `<div class="section-label">${title} <a onclick="location.hash='${href}'">все →</a></div>`;
+}
+
+/* ---------- HOME = витрина разделов (обновляется сама) ---------- */
 async function renderHome(){
-  setActive('feed');
+  setActive('home');
   app.innerHTML = `
     <section class="hero">
       <img class="hero-logo" src="assets/logo.png" alt="Караван идёт" onerror="this.style.display='none'">
@@ -348,10 +378,33 @@ async function renderHome(){
         <p>Авторский сайт исследователя кино Карена Аванесяна. Заметки, рецензии и репортажи с фестивалей — кино как зеркало общества.</p>
       </div>
     </section>
-    <main>
-      <div class="section-label">Лента</div>
-      <div class="feed-list" id="feed"><div class="state">Загрузка…</div></div>
-    </main>`;
+    <main id="home"><div class="state">Загрузка…</div></main>`;
+  const [reviews, feed, festivals, collections, press] = await Promise.all([
+    getJSON('reviews/manifest.json').catch(()=>null),
+    getJSON('feed/manifest.json').catch(()=>null),
+    getJSON('festivals/manifest.json').catch(()=>null),
+    getJSON('collections/manifest.json').catch(()=>null),
+    getJSON('press.json').catch(()=>null)
+  ]);
+  if([reviews,feed,festivals,collections,press].every(x=>x===null)){
+    document.querySelector('main').innerHTML = loadError(); return;
+  }
+  let out='';
+  if(feed&&feed.length) out+=`${homeLabel('Лента','#/feed')}<div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(feed.slice(0,3),'#/feed')}</div>`;
+  if(reviews&&reviews.length) out+=`${homeLabel('Рецензии','#/reviews')}<div class="grid">${reviews.slice(0,3).map(reviewCardHTML).join('')}</div>`;
+  if(festivals&&festivals.length) out+=`${homeLabel('Кинофестивали','#/festivals')}<div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(festivals.slice(0,2),'#/festival')}</div>`;
+  if(collections&&collections.length) out+=`${homeLabel('Подборки','#/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
+  if(press&&press.length) out+=`${homeLabel('Публикации в СМИ','#/press')}<div class="press-list" style="max-width:none;margin:0">${press.slice(0,3).map(pressItemHTML).join('')}</div>`;
+  document.getElementById('home').innerHTML = out || `<div class="state">Пока нет материалов.</div>`;
+}
+
+/* ---------- FEED (полная лента) ---------- */
+async function renderFeed(){
+  setActive('feed');
+  app.innerHTML = `<main>
+    <div class="page-title">Лента</div>
+    <div class="page-sub">Короткие заметки и мысли о кино — по горячим следам.</div>
+    <div class="feed-list" id="feed"><div class="state">Загрузка…</div></div></main>`;
   try{
     const list = await getJSON('feed/manifest.json');
     const el = document.getElementById('feed');
@@ -370,18 +423,7 @@ async function renderReviews(){
     const list = await getJSON('reviews/manifest.json');
     const grid = document.getElementById('grid');
     if(!list.length){ grid.innerHTML = `<div class="state">Пока нет рецензий.</div>`; return; }
-    grid.innerHTML = list.map(r=>`
-      <div class="card" onclick="location.hash='#/review/${r.slug}'">
-        <div class="poster">
-          ${r.poster?`<img src="${esc(r.poster)}" alt="${esc(r.title)}" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(r.title)}</div>'">`:`<div class="ph">${r.title}</div>`}
-          ${r.rating?`<div class="rating-badge">★ ${r.rating}</div>`:''}
-        </div>
-        <div class="card-body">
-          <h3>${r.title}</h3>
-          <div class="card-meta">${[r.year,r.director].filter(Boolean).join(' · ')}</div>
-          ${r.excerpt?`<div class="card-excerpt">${r.excerpt}</div>`:''}
-        </div>
-      </div>`).join('');
+    grid.innerHTML = list.map(reviewCardHTML).join('');
   }catch(e){ document.querySelector('main').innerHTML = loadError(); }
 }
 
@@ -439,17 +481,7 @@ async function renderCollections(){
     const list = await getJSON('collections/manifest.json');
     const el = document.getElementById('cols');
     if(!list.length){ el.innerHTML=`<div class="state">Пока нет подборок.</div>`; return; }
-    el.innerHTML = list.map(c=>`
-      <div class="card" onclick="location.hash='#/collection/${c.slug}'">
-        <div class="poster cover">
-          ${c.cover?`<img src="${esc(c.cover)}" alt="${esc(c.title)}" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(c.title)}</div>'">`:`<div class="ph">${c.title}</div>`}
-          ${c.count?`<div class="count-badge">${c.count} фильмов</div>`:''}
-        </div>
-        <div class="card-body">
-          <h3>${c.title}</h3>
-          ${c.excerpt?`<div class="card-excerpt">${c.excerpt}</div>`:''}
-        </div>
-      </div>`).join('');
+    el.innerHTML = list.map(collectionCardHTML).join('');
   }catch(e){ document.querySelector('main').innerHTML = loadError(); }
 }
 async function renderCollection(slug){
@@ -539,7 +571,8 @@ function route(){
   let m;
   if(m=h.match(/^\/review\/(.+)$/)) return renderReview(decodeURIComponent(m[1]));
   if(h==='/reviews') return renderReviews();
-  if(m=h.match(/^\/feed\/(.+)$/)) return renderTimelineItem('feed',decodeURIComponent(m[1]),'feed','','в ленту');
+  if(m=h.match(/^\/feed\/(.+)$/)) return renderTimelineItem('feed',decodeURIComponent(m[1]),'feed','#/feed','в ленту');
+  if(h==='/feed') return renderFeed();
   if(m=h.match(/^\/festival\/(.+)$/)) return renderTimelineItem('festivals',decodeURIComponent(m[1]),'festivals','#/festivals','к фестивалям');
   if(h==='/festivals') return renderFestivals();
   if(m=h.match(/^\/collection\/(.+)$/)) return renderCollection(decodeURIComponent(m[1]));
