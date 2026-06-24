@@ -149,7 +149,14 @@
   .feed-item .more{color:var(--accent);font-size:14px;margin-top:10px;display:inline-block}
 
   /* PRESS */
-  .press-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+  .press-layout{display:flex;gap:36px;align-items:flex-start;max-width:980px;margin:0 auto}
+  .press-nav{position:sticky;top:78px;flex-shrink:0;width:190px;display:flex;flex-direction:column;gap:3px}
+  .press-nav a{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:14px;
+    padding:8px 12px;border-radius:9px;border-left:2px solid transparent;cursor:pointer;transition:.2s}
+  .press-nav a:hover,.press-nav a.active{color:var(--text);background:var(--bg-2);border-left-color:var(--accent)}
+  .press-nav a span{color:var(--muted);font-size:12px}
+  .press-body{flex:1;min-width:0}
+  .press-list{display:flex;flex-direction:column;gap:14px}
   .press-item{display:flex;align-items:stretch;gap:18px;
     background:linear-gradient(180deg,#191920,#121217);
     border:1px solid var(--border);border-radius:13px;padding:14px;
@@ -169,6 +176,12 @@
     text-transform:uppercase;margin-bottom:5px}
   .press-main h3{font-size:16px;font-weight:700;line-height:1.35}
   .press-main .press-meta{color:var(--muted);font-size:13px;margin-top:5px}
+  @media(max-width:760px){
+    .press-layout{flex-direction:column;gap:16px}
+    .press-nav{position:static;flex-direction:row;flex-wrap:wrap;width:auto;gap:8px}
+    .press-nav a{border-left:0;border:1px solid var(--border);border-radius:20px;padding:6px 12px}
+    .press-nav a span{display:none}
+  }
   @media(max-width:560px){.press-thumb{width:92px}}
 
   /* DETAIL PAGES */
@@ -438,21 +451,41 @@ async function renderReviews(){
 }
 
 /* ---------- FESTIVALS ---------- */
+function festivalItemHTML(it){
+  const thumb = it.thumb?`<img src="${esc(it.thumb)}" alt="" loading="lazy" onerror="this.style.display='none'">`:'';
+  const open = it.external?`href="${esc(it.href)}" target="_blank" rel="noopener"`:`href="${esc(it.href)}"`;
+  return `<a class="press-item" ${open}>
+    <div class="press-thumb">${thumb}<span class="press-ext">${it.external?'↗':'→'}</span></div>
+    <div class="press-main">
+      <div class="press-outlet">${it.kind}</div>
+      <h3>${it.title}</h3>
+      <div class="press-meta">${it.date||''}</div>
+    </div>
+  </a>`;
+}
 async function renderFestivals(){
   setActive('festivals');
   app.innerHTML = `<main>
     <div class="page-title">Кинофестивали</div>
-    <div class="page-sub">Я езжу на фестивали и пишу с места. Здесь собрано всё фестивальное в одном месте: дневники по горячим следам и мои рецензии, опубликованные в СМИ.</div>
+    <div class="page-sub">Я езжу на фестивали и пишу с места. Сюда автоматически собирается всё, у чего отмечен фестиваль — рецензии, заметки, дневники и публикации в СМИ.</div>
     <div id="fest"><div class="state">Загрузка…</div></div></main>`;
-  const [diaries, press] = await Promise.all([
+  const [reviews, feed, diaries, press] = await Promise.all([
+    getJSON('reviews/manifest.json').catch(()=>[]),
+    getJSON('feed/manifest.json').catch(()=>[]),
     getJSON('festivals/manifest.json').catch(()=>[]),
     getJSON('press.json').catch(()=>[])
   ]);
-  const festReviews = (press||[]).filter(p=>p.rubric==='Рецензии с фестивалей');
-  let out='';
-  if(diaries&&diaries.length) out+=`<div class="section-label">Дневники и репортажи</div><div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(diaries,'#/festival')}</div>`;
-  if(festReviews.length) out+=`<div class="section-label">Рецензии с фестивалей <a onclick="location.hash='#/press'">все публикации →</a></div><div class="press-list" style="max-width:none;margin:0">${festReviews.map(pressItemHTML).join('')}</div>`;
-  document.getElementById('fest').innerHTML = out || `<div class="state">Пока нет материалов.</div>`;
+  const groups={};
+  const add=(f,it)=>{ if(!f) return; (groups[f]=groups[f]||[]).push(it); };
+  (reviews||[]).forEach(r=>r.festival&&add(r.festival,{kind:'Рецензия',title:r.title,date:[r.year,r.director].filter(Boolean).join(' · '),thumb:r.poster,href:'#/review/'+r.slug,external:false}));
+  (feed||[]).forEach(f=>f.festival&&add(f.festival,{kind:'Заметка',title:f.title,date:f.date,thumb:'',href:'#/feed/'+f.slug,external:false}));
+  (diaries||[]).forEach(d=>add(d.festival||d.tag,{kind:'Дневник',title:d.title,date:d.date,thumb:'',href:'#/festival/'+d.slug,external:false}));
+  (press||[]).forEach(p=>p.festival&&add(p.festival,{kind:'Публикация · '+(p.outlet||''),title:p.title,date:p.date,thumb:p.thumb,href:p.url,external:true}));
+  const keys=Object.keys(groups);
+  if(!keys.length){ document.getElementById('fest').innerHTML=`<div class="state">Пока нет фестивальных материалов.</div>`; return; }
+  document.getElementById('fest').innerHTML = keys.map(f=>`
+    <div class="section-label">${f}</div>
+    <div class="press-list" style="max-width:none;margin:0 0 16px">${groups[f].map(festivalItemHTML).join('')}</div>`).join('');
 }
 
 /* ---------- REVIEW page ---------- */
@@ -533,22 +566,27 @@ function pressItemHTML(p){
     </div>
   </a>`;
 }
+function rubricId(r){ return 'pr-'+r.replace(/[^a-zа-я0-9]+/gi,'-').toLowerCase(); }
 async function renderPress(){
   setActive('press');
   app.innerHTML = `<main>
     <div class="page-title">Публикации в СМИ</div>
     <div class="page-sub">Мои тексты, опубликованные в других изданиях — по рубрикам.</div>
-    <div id="press" style="max-width:820px;margin:0 auto"><div class="state">Загрузка…</div></div></main>`;
+    <div class="press-layout">
+      <nav class="press-nav" id="pressNav"></nav>
+      <div class="press-body" id="press"><div class="state">Загрузка…</div></div>
+    </div></main>`;
   try{
     const list = await getJSON('press.json');
-    const el = document.getElementById('press');
-    if(!list.length){ el.innerHTML=`<div class="state">Пока нет публикаций.</div>`; return; }
+    if(!list.length){ document.getElementById('press').innerHTML=`<div class="state">Пока нет публикаций.</div>`; return; }
     const groups = {};
     list.forEach(p=>{ const r=p.rubric||'Прочее'; (groups[r]=groups[r]||[]).push(p); });
     const rubrics = [...PRESS_RUBRICS.filter(r=>groups[r]),
                      ...Object.keys(groups).filter(r=>!PRESS_RUBRICS.includes(r))];
-    el.innerHTML = rubrics.map(r=>`
-      <div class="section-label">${r}</div>
+    document.getElementById('pressNav').innerHTML = rubrics.map((r,i)=>
+      `<a onclick="document.getElementById('${rubricId(r)}').scrollIntoView({behavior:'smooth',block:'start'})">${r} <span>${groups[r].length}</span></a>`).join('');
+    document.getElementById('press').innerHTML = rubrics.map(r=>`
+      <div class="section-label" id="${rubricId(r)}" style="scroll-margin-top:78px">${r}</div>
       <div class="press-list" style="margin:0 0 30px">${groups[r].map(pressItemHTML).join('')}</div>
     `).join('');
   }catch(e){ document.querySelector('main').innerHTML = loadError(); }
