@@ -198,6 +198,13 @@
   .about-hero h1{font-family:"Playfair Display",serif;font-size:clamp(28px,5vw,44px);
     font-weight:800;line-height:1.08}
   .about-hero .role{color:var(--accent);margin-top:12px;font-size:15px;letter-spacing:.04em}
+  .about-hero .socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .about-hero .socials a{display:inline-flex;align-items:center;gap:6px;
+    border:1px solid var(--border);color:var(--text);font-size:13px;font-weight:500;
+    padding:8px 15px;border-radius:22px;background:linear-gradient(180deg,#17171d,#121217);
+    box-shadow:0 6px 16px rgba(0,0,0,.3);transition:border-color .2s,color .2s,transform .2s}
+  .about-hero .socials a span{color:var(--accent)}
+  .about-hero .socials a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 
   /* PROSE */
   article.prose{font-size:17px;color:#dadae2}
@@ -509,12 +516,15 @@ async function renderAbout(){
     const text = await getText('about.md');
     const {meta,body} = parseFrontMatter(text);
     const photo = meta.photo?`<img src="${esc(meta.photo)}" alt="${esc(meta.name)}" onerror="this.parentNode.innerHTML='${(meta.name||'К')[0]}'">`:(meta.name?meta.name[0]:'К');
+    const socials = [['Telegram',meta.telegram],['Letterboxd',meta.letterboxd],['Кинопоиск',meta.kinopoisk]].filter(s=>s[1]);
+    const socialHTML = socials.length?`<div class="socials">${socials.map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${s[0]} <span>↗</span></a>`).join('')}</div>`:'';
     app.innerHTML = `<main><div class="about-wrap">
       <div class="about-hero">
         <div class="photo">${photo}</div>
         <div class="who">
           <h1>${meta.name||'Карен Аванесян'}</h1>
           <div class="role">${meta.role||''}</div>
+          ${socialHTML}
         </div>
       </div>
       <article class="prose">${marked.parse(body)}</article>
