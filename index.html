@@ -132,8 +132,8 @@
   .card-meta{color:var(--muted);font-size:13px;margin-top:6px}
   .card-excerpt{color:#b9b9c4;font-size:14px;margin-top:10px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-  .card-headline{font-family:Georgia,"Playfair Display",serif;font-style:italic;
-    color:#c9c4b8;font-size:14.5px;line-height:1.4;margin-top:9px;
+  .card-headline{font-family:"Playfair Display",Georgia,serif;font-style:italic;
+    color:#c9c4b8;font-size:15px;line-height:1.38;margin-top:9px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
   /* FEED (timeline) */
@@ -207,6 +207,14 @@
   .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
   .pill{border:1px solid var(--border);color:var(--muted);font-size:12px;
     padding:5px 12px;border-radius:20px;letter-spacing:.03em}
+  .fest-badge{display:inline-block;margin-top:16px;background:rgba(232,184,75,.12);
+    border:1px solid rgba(232,184,75,.42);color:var(--accent);font-weight:700;font-size:13px;
+    padding:8px 15px;border-radius:20px;cursor:pointer;letter-spacing:.02em;transition:.2s}
+  .fest-badge:hover{background:rgba(232,184,75,.22)}
+  .search{width:100%;max-width:440px;margin:0 0 26px;padding:11px 16px;border-radius:11px;
+    border:1px solid var(--border);background:var(--bg-2);color:var(--text);font-size:15px;font-family:inherit}
+  .search:focus{outline:none;border-color:var(--accent)}
+  .search::placeholder{color:var(--muted)}
 
   /* ABOUT */
   .about-hero{display:flex;gap:30px;align-items:flex-start;margin-bottom:40px;flex-wrap:wrap}
@@ -229,9 +237,9 @@
 
   /* PROSE */
   article.prose{font-size:17px;color:#dadae2}
-  /* лид-абзац: красивый курсив (Georgia) */
-  article.prose > p:first-of-type{font-family:Georgia,"Playfair Display",serif;font-style:italic;
-    font-size:21px;line-height:1.6;color:#f0ede6;margin:0 0 26px}
+  /* лид-абзац: изысканный курсив Playfair Display (как в цитатах) */
+  article.prose > p:first-of-type{font-family:"Playfair Display",Georgia,serif;font-style:italic;
+    font-size:23px;line-height:1.5;color:#f4f0e8;margin:0 0 30px;letter-spacing:.004em}
   article.prose > p:first-of-type em{font-style:normal}
   article.prose h2{font-family:"Playfair Display",serif;font-size:26px;margin:36px 0 14px;color:#fff}
   article.prose h3{font-size:20px;margin:28px 0 12px}
@@ -417,7 +425,11 @@ async function renderHome(){
   let out='';
   if(reviews&&reviews.length) out+=`${homeLabel('Рецензии','#/reviews')}<div class="grid">${reviews.slice(0,3).map(reviewCardHTML).join('')}</div>`;
   if(press&&press.length) out+=`${homeLabel('Публикации в СМИ','#/press')}<div class="press-list" style="max-width:none;margin:0">${press.slice(0,3).map(pressItemHTML).join('')}</div>`;
-  if(festivals&&festivals.length) out+=`${homeLabel('Кинофестивали','#/festivals')}<div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(festivals.slice(0,2),'#/festival')}</div>`;
+  const festItems=[];
+  (reviews||[]).forEach(r=>r.festival&&festItems.push({kind:'Рецензия',title:r.film||r.title,date:r.festival,thumb:r.poster,href:'#/review/'+r.slug,external:false}));
+  (festivals||[]).forEach(d=>festItems.push({kind:'Дневник',title:d.title,date:d.festival||d.tag,thumb:'',href:'#/festival/'+d.slug,external:false}));
+  (press||[]).forEach(p=>p.festival&&festItems.push({kind:'Публикация · '+(p.outlet||''),title:p.title,date:p.festival,thumb:p.thumb,href:p.url,external:true}));
+  if(festItems.length) out+=`${homeLabel('Кинофестивали','#/festivals')}<div class="press-list" style="max-width:none;margin:0 0 8px">${festItems.slice(0,3).map(festivalItemHTML).join('')}</div>`;
   if(collections&&collections.length) out+=`${homeLabel('Подборки','#/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
   if(feed&&feed.length) out+=`${homeLabel('Заметки','#/feed')}<div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(feed.slice(0,2),'#/feed')}</div>`;
   document.getElementById('home').innerHTML = out || `<div class="state">Пока нет материалов.</div>`;
@@ -443,12 +455,19 @@ async function renderReviews(){
   app.innerHTML = `<main>
     <div class="page-title">Рецензии</div>
     <div class="page-sub">Разборы фильмов: личное впечатление и анализ в одном тексте.</div>
+    <input id="revSearch" class="search" type="search" placeholder="Поиск по названию (рус / eng) или режиссёру…">
     <div class="grid" id="grid"><div class="state">Загрузка…</div></div></main>`;
   try{
     const list = await getJSON('reviews/manifest.json');
     const grid = document.getElementById('grid');
     if(!list.length){ grid.innerHTML = `<div class="state">Пока нет рецензий.</div>`; return; }
-    grid.innerHTML = list.map(reviewCardHTML).join('');
+    const render = items => grid.innerHTML = items.length ? items.map(reviewCardHTML).join('') : `<div class="state">Ничего не найдено.</div>`;
+    render(list);
+    const inp = document.getElementById('revSearch');
+    inp.addEventListener('input', ()=>{
+      const q = inp.value.trim().toLowerCase();
+      render(list.filter(r => !q || [r.film,r.title,r.original,r.director,r.year].filter(Boolean).join(' ').toLowerCase().includes(q)));
+    });
   }catch(e){ document.querySelector('main').innerHTML = loadError(); }
 }
 
@@ -508,6 +527,7 @@ async function renderReview(slug){
           <h1>${meta.title||film||'Без названия'}</h1>
           <div class="sub">${[meta.film,meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).join(' · ')}</div>
           ${meta.rating?`<div class="stars">${stars(meta.rating)}<span class="num">${meta.rating} / 5</span></div>`:''}
+          ${meta.festival?`<div><a class="fest-badge" onclick="location.hash='#/festivals'">#${meta.festival}</a></div>`:''}
           ${tags.length?`<div class="pill-row">${tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div>`:''}
         </div>
       </div>

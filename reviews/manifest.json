@@ -5,6 +5,7 @@
     "title": "Поколение, оставшееся без матери",
     "year": "1986",
     "director": "Джон Абрахам",
+    "original": "Amma Ariyan",
     "rating": "4.5",
     "festival": "Il Cinema Ritrovato 2026",
     "poster": "https://image.tmdb.org/t/p/w500/uLZVNluzv0PCnHRPwrt4sSYac8Y.jpg",
@@ -13,9 +14,10 @@
   {
     "slug": "zakulisye-realnosti",
     "film": "«Закулисье реальности»",
-    "title": "Изнанка сентиментальной ценности",
+    "title": "Изнанка сентиментальности",
     "year": "2026",
     "director": "Кейн Парсонс",
+    "original": "The Backrooms",
     "rating": "3.5",
     "poster": "https://image.tmdb.org/t/p/w500/9aogyiv7s4U0nacrnQ9s4XEWJ15.jpg",
     "excerpt": "За жанровой обёрткой хоррора с жёлтыми комнатами прячется фрейдистская драма о доме, который не отпускает."
@@ -26,6 +28,7 @@
     "title": "Через космос к человеку: проблема субъектности и трансцендентного в «Солярисе» А. Тарковского",
     "year": "1972",
     "director": "Андрей Тарковский",
+    "original": "Solaris / Солярис",
     "rating": "4.5",
     "poster": "https://image.tmdb.org/t/p/w500/pgqj7QoBPWFLLKtLEpPmFYFRMgB.jpg",
     "excerpt": "Текст, начатый в 17 лет и переписанный двадцать лет спустя: о субъектности и трансцендентном у Тарковского."
