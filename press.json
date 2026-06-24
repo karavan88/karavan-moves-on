@@ -1,27 +1,12 @@
 [
   {
-    "rubric": "Тематические подборки",
-    "outlet": "Киноафиша",
-    "title": "Родители и дети: как кино прожило 2025 год",
-    "date": "26 марта 2026",
-    "note": "киноитоги",
-    "url": "https://www.kinoafisha.info/news/roditeli-i-deti-kak-kino-prozhilo-2025-god/"
-  },
-  {
-    "rubric": "Тематические подборки",
-    "outlet": "Киноафиша",
-    "title": "Молодёжь на распутье: подборка фильмов о молодых людях",
-    "date": "26 марта 2026",
-    "note": "подборка",
-    "url": "https://www.kinoafisha.info/news/molodezh-na-raspute-podborka-filmov-o-molodyh-lyudyah/"
-  },
-  {
-    "rubric": "Тематические подборки",
-    "outlet": "Киноафиша",
-    "title": "Против течения: пять культовых фильмов о героях-одиночках",
-    "date": "25 марта 2026",
-    "note": "подборка",
-    "url": "https://www.kinoafisha.info/news/protiv-techeniya-pyat-kultovyh-filmov-o-geroyah-odinochkah/"
+    "rubric": "Рецензии",
+    "outlet": "Мир фантастики",
+    "title": "«День разоблачения»: как Спилберг сказал что-то новое о контакте",
+    "date": "12 июня 2026",
+    "note": "Стивен Спилберг",
+    "thumb": "https://www.mirf.ru/backend/wp-content/uploads/2026/06/sGEKqRqy8gcsTHiVmyofJMDTn10ZB5fobPZkOgYC/x1200-y630.webp",
+    "url": "https://www.mirf.ru/kino/den-razoblacheniya-obzor"
   },
   {
     "rubric": "Рецензии с фестивалей",
@@ -29,6 +14,7 @@
     "title": "Канны-2026: искусственный интеллект, пришельцы и зомби",
     "date": "28 мая 2026",
     "note": "обзор фестиваля",
+    "thumb": "https://www.mirf.ru/backend/wp-content/uploads/2026/05/mVanzs4KzjMsv2f8K857Z1ePMUzWx8b4KLYTU1th/x1200-y630.webp",
     "url": "https://www.mirf.ru/kino/kanny-2026-sci-fi"
   },
   {
@@ -37,6 +23,7 @@
     "title": "«Колония»: феминистический зомби-хоррор",
     "date": "27 мая 2026",
     "note": "Канны 2026 · Ён Сан-хо",
+    "thumb": "https://static.kinoafisha.info/k/reviews/1200/upload/reviews/175770487744.jpg",
     "url": "https://www.kinoafisha.info/reviews/8330043/"
   },
   {
@@ -45,6 +32,7 @@
     "title": "Надежда глохнет последней: «Надежда» На Хон-джина",
     "date": "31 мая 2026",
     "note": "Канны 2026",
+    "thumb": "https://api.kinoart.ru/storage/post/3905/regular_detail_picture-de661214b9ea10052d4e02150b03353b.jpg",
     "url": "https://kinoart.ru/reviews/nadezhda-glohnet-pervoy-nadezhda-na-hon-dzhina"
   },
   {
@@ -53,6 +41,7 @@
     "title": "«Горькое Рождество»: Альмодовар насмехается над творчеством",
     "date": "21 мая 2026",
     "note": "Канны 2026 · Педро Альмодовар",
+    "thumb": "https://static.kinoafisha.info/k/reviews/1200/upload/reviews/303158545792.jpg",
     "url": "https://www.kinoafisha.info/reviews/8330036/"
   },
   {
@@ -61,6 +50,7 @@
     "title": "«Её личный ад»: тюрьма сознания",
     "date": "Май 2026",
     "note": "Канны 2026 · Николас Виндинг Рефн",
+    "thumb": "",
     "url": "https://www.kinoafisha.info/reviews/8330035/"
   },
   {
@@ -69,15 +59,35 @@
     "title": "«Бумажный тигр»: криминальная драма об американской мечте",
     "date": "18 мая 2026",
     "note": "Канны 2026 · Джеймс Грэй",
+    "thumb": "https://static.kinoafisha.info/k/reviews/1200/upload/reviews/304992015651.jpg",
     "url": "https://www.kinoafisha.info/reviews/8330031/"
   },
   {
-    "rubric": "Рецензии",
-    "outlet": "Мир фантастики",
-    "title": "«День разоблачения»: как Спилберг сказал что-то новое о контакте",
-    "date": "12 июня 2026",
-    "note": "Стивен Спилберг",
-    "url": "https://www.mirf.ru/kino/den-razoblacheniya-obzor"
+    "rubric": "Тематические подборки",
+    "outlet": "Киноафиша",
+    "title": "Родители и дети: как кино прожило 2025 год",
+    "date": "26 марта 2026",
+    "note": "киноитоги",
+    "thumb": "https://static.kinoafisha.info/k/news/canvas/1200x630/upload/news/824076720925.jpg",
+    "url": "https://www.kinoafisha.info/news/roditeli-i-deti-kak-kino-prozhilo-2025-god/"
+  },
+  {
+    "rubric": "Тематические подборки",
+    "outlet": "Киноафиша",
+    "title": "Молодёжь на распутье: подборка фильмов о молодых людях",
+    "date": "26 марта 2026",
+    "note": "подборка",
+    "thumb": "https://static.kinoafisha.info/k/news/canvas/1200x630/upload/news/878874928478.jpg",
+    "url": "https://www.kinoafisha.info/news/molodezh-na-raspute-podborka-filmov-o-molodyh-lyudyah/"
+  },
+  {
+    "rubric": "Тематические подборки",
+    "outlet": "Киноафиша",
+    "title": "Против течения: пять культовых фильмов о героях-одиночках",
+    "date": "25 марта 2026",
+    "note": "подборка",
+    "thumb": "https://static.kinoafisha.info/k/news/canvas/1200x630/upload/news/822031904484.jpg",
+    "url": "https://www.kinoafisha.info/news/protiv-techeniya-pyat-kultovyh-filmov-o-geroyah-odinochkah/"
   },
   {
     "rubric": "Интервью",
@@ -85,6 +95,7 @@
     "title": "Интервью с Марком Форстером, режиссёром «Кванта милосердия»",
     "date": "27 октября 2008",
     "note": "Джеймс Бонд",
+    "thumb": "https://www.film.ru/sites/default/files/styles/thumb_og_800x420/public/articles/0810/mark_forster_interview_pic2.jpg",
     "url": "https://www.film.ru/articles/demony-dzheymsa-bonda"
   }
 ]
