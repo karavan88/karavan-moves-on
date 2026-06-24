@@ -58,8 +58,8 @@
   .nav{max-width:var(--maxw);margin:0 auto;padding:14px 24px;
     display:flex;align-items:center;justify-content:space-between;gap:20px}
   .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
-  .brand .logo{width:42px;height:42px;border-radius:11px;display:block;
-    box-shadow:0 0 26px rgba(232,184,75,.2)}
+  .brand .logo{width:44px;height:44px;border-radius:11px;display:block;object-fit:cover;
+    border:1px solid var(--border);box-shadow:0 0 26px rgba(232,184,75,.2)}
   .brand .logo-fallback{width:42px;height:42px;border-radius:10px;
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
     display:grid;place-items:center;font-weight:800;color:#0a0a0c;font-size:22px}
@@ -259,13 +259,8 @@
 <header class="site">
   <div class="nav">
     <div class="brand" onclick="location.hash=''">
-      <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="Караван идёт">
-        <defs><linearGradient id="km" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#e8b84b"/><stop offset="1" stop-color="#c8423a"/></linearGradient></defs>
-        <rect x="1" y="1" width="98" height="98" rx="24" fill="#0d0d12" stroke="#2c2c36" stroke-width="2"/>
-        <circle cx="35" cy="42" r="14" fill="url(#km)"/>
-        <path d="M35 42 L88 27 L88 73 Z" fill="url(#km)" opacity="0.9"/>
-      </svg>
+      <img class="logo" src="assets/logo.png" alt="Караван идёт"
+           onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>К</div>'">
       <div class="name">КАРАВАН <span>ИДЁТ</span></div>
     </div>
     <nav class="menu">
@@ -395,7 +390,6 @@ async function renderHome(){
   setActive('home');
   app.innerHTML = `
     <section class="hero">
-      <img class="hero-logo" src="assets/logo.png" alt="Караван идёт" onerror="this.style.display='none'">
       <div class="hero-text">
         <h1>Кино глазами <em>социолога</em></h1>
         <p>Карен Аванесян — исследователь кино, кандидат социологических наук. Рецензии, репортажи с фестивалей и публикации в СМИ: кино как зеркало общества и бессознательного.</p>
@@ -600,7 +594,7 @@ async function renderAbout(){
     const text = await getText('about.md');
     const {meta,body} = parseFrontMatter(text);
     const photo = meta.photo?`<img src="${esc(meta.photo)}" alt="${esc(meta.name)}" onerror="this.parentNode.innerHTML='${(meta.name||'К')[0]}'">`:(meta.name?meta.name[0]:'К');
-    const socials = [['Telegram',meta.telegram],['Letterboxd',meta.letterboxd],['Кинопоиск',meta.kinopoisk]].filter(s=>s[1]);
+    const socials = [['Написать',meta.email?'mailto:'+meta.email:''],['Telegram',meta.telegram],['Letterboxd',meta.letterboxd],['Кинопоиск',meta.kinopoisk]].filter(s=>s[1]);
     const socialHTML = socials.length?`<div class="socials">${socials.map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${s[0]} <span>↗</span></a>`).join('')}</div>`:'';
     app.innerHTML = `<main><div class="about-wrap">
       <div class="about-hero">
