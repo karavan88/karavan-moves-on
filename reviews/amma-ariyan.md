@@ -5,7 +5,7 @@ director: Джон Абрахам
 country: Индия
 rating: 4.5
 festival: Il Cinema Ritrovato 2026
-poster:
+poster: https://image.tmdb.org/t/p/w500/uLZVNluzv0PCnHRPwrt4sSYac8Y.jpg
 tags: индийское кино, реставрация, авторское кино, политическое кино
 ---
 

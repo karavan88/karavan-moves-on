@@ -4,7 +4,7 @@ year: 1972
 director: Андрей Тарковский
 country: СССР
 rating: 4.5
-poster: https://optim.tildacdn.com/tild3165-6235-4862-a136-666261376637/-/format/webp/_1.jpg.webp
+poster: https://image.tmdb.org/t/p/w500/pgqj7QoBPWFLLKtLEpPmFYFRMgB.jpg
 tags: драма, фантастика, философия, Тарковский, советское кино
 ---
 
