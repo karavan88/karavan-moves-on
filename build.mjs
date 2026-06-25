@@ -11,13 +11,14 @@
    Разметку строит ТОТ ЖЕ модуль assets/render.js, что и браузер, — поэтому
    статика и клиентский рендер не расходятся.
    ========================================================================== */
-import { readFile, writeFile, mkdir, cp, rm } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, cp, rm, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { marked } from 'marked';
 import * as R from './assets/render.js';
 import { loadToken, resolveMissing } from './tools/resolve-tmdb.mjs';
+import { gatherTmdbUrls, localizeImages, applyMap } from './tools/localize-images.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
@@ -26,7 +27,9 @@ const SITE = (process.env.SITE_URL || 'https://karavanmoveson.netlify.app').repl
 const md = s => marked.parse(s || '');
 
 /* ---------- ввод/вывод ---------- */
-const readText = (p) => readFile(path.join(ROOT, p), 'utf8');
+// карта внешних TMDB-ссылок → локальных путей (заполняется в main, см. localizeImages)
+let IMG_MAP = new Map();
+const readText = async (p) => applyMap(await readFile(path.join(ROOT, p), 'utf8'), IMG_MAP);
 const readJSON = async (p) => { try { return JSON.parse(await readText(p)); } catch { return []; } };
 const readMd = async (p) => { try { return R.parseFrontMatter(await readText(p)); } catch { return null; } };
 
@@ -97,6 +100,25 @@ async function main(){
   /* статика: всё, что нужно отдать как есть (включая .md и манифесты для SPA) */
   for(const item of ['assets','reviews','feed','festivals','collections','about.md','press.json']){
     if(existsSync(path.join(ROOT,item))) await cp(path.join(ROOT,item), path.join(OUT,item), { recursive: true });
+  }
+
+  /* картинки TMDB → локально (image.tmdb.org недоступен части аудитории) */
+  const sourceData = [];
+  for(const d of ['reviews','feed','festivals','collections']){
+    const dir = path.join(ROOT, d);
+    if(existsSync(dir)) for(const f of await readdir(dir)) if(/\.(md|json)$/.test(f)) sourceData.push(path.join(d, f));
+  }
+  sourceData.push('about.md', 'press.json');
+  const tmdbUrls = await gatherTmdbUrls(ROOT, sourceData);
+  IMG_MAP = await localizeImages(tmdbUrls, {
+    distImgDir: path.join(OUT, 'assets', 'img'),
+    cacheDir: path.join(ROOT, '.cache', 'img'),
+    log: (m)=>console.log(m),
+  });
+  // переписать ссылки в данных, скопированных в dist (их фетчит SPA при клиентской навигации)
+  for(const rel of sourceData){
+    const p = path.join(OUT, rel);
+    if(existsSync(p)) await writeFile(p, applyMap(await readFile(p, 'utf8'), IMG_MAP));
   }
 
   /* данные */
