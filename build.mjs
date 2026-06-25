@@ -23,7 +23,7 @@ import { gatherTmdbUrls, localizeImages, applyMap } from './tools/localize-image
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
 const OUT = path.join(ROOT, 'dist');
-const SITE = (process.env.SITE_URL || 'https://karavanmoveson.netlify.app').replace(/\/$/,'');
+const SITE = (process.env.SITE_URL || 'https://karavancinema.netlify.app').replace(/\/$/,'');
 const md = s => marked.parse(s || '');
 
 /* ---------- ввод/вывод ---------- */
