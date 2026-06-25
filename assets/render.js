@@ -168,7 +168,7 @@ export function homeView(data){
   const collections = published(data.collections);
   const press = published(data.press);
   let out='';
-  if(reviews.length) out+=`${homeLabel('Рецензии','/reviews')}<div class="grid">${reviews.slice(0,3).map(reviewCardHTML).join('')}</div>`;
+  if(reviews.length) out+=`${homeLabel('Рецензии','/reviews')}<div class="grid">${reviews.slice(0,4).map(reviewCardHTML).join('')}</div>`;
   if(press.length) out+=`${homeLabel('Публикации в СМИ','/press')}<div class="press-list" style="max-width:none;margin:0">${press.slice(0,3).map(pressItemHTML).join('')}</div>`;
   const festItems = homeFestItems({reviews,festivals,press});
   if(festItems.length) out+=`${homeLabel('Кинофестивали','/festivals')}<div class="press-list" style="max-width:none;margin:0 0 8px">${festItems.slice(0,3).map(festivalItemHTML).join('')}</div>`;
@@ -178,7 +178,7 @@ export function homeView(data){
     <section class="hero">
       <div class="kicker">Авторский сайт о кино</div>
       <h1>Кино глазами <em>социолога</em></h1>
-      <p>Карен Аванесян — исследователь кино, кандидат социологических наук. Рецензии, репортажи с фестивалей и публикации в СМИ: кино как зеркало общества и бессознательного.</p>
+      <p>Карен Аванесян — исследователь кино, кандидат социологических наук. Рецензии, репортажи с фестивалей и публикации в СМИ:<br>кино как зеркало общества и бессознательного.</p>
     </section>
     <main id="home">${out || `<div class="state">Пока нет материалов.</div>`}</main>`;
 }

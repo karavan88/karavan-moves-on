@@ -5,7 +5,7 @@ year: 2026
 director: Кейн Парсонс
 country: США
 rating: 7
-poster: https://image.tmdb.org/t/p/w500/9aogyiv7s4U0nacrnQ9s4XEWJ15.jpg
+poster: https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg
 tags: хоррор, драма, психоанализ, «Закулисье реальности»
 tmdb: 1083381
 ---
