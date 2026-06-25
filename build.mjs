@@ -15,6 +15,7 @@ import { readFile, writeFile, mkdir, cp, rm, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { marked } from 'marked';
 import * as R from './assets/render.js';
 import { loadToken, resolveMissing } from './tools/resolve-tmdb.mjs';
@@ -46,7 +47,16 @@ const absUrl = (u) => !u ? `${SITE}/assets/logo.png` : (/^https?:/.test(u) ? u :
 const xmlEsc = (s) => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 /* ---------- шаблон ---------- */
-const TEMPLATE = await readText('index.html');
+/* кэш-бастинг локальных скриптов: ?v=<хэш содержимого>. Файлы кэшируются
+   надолго (max-age=86400), а хэш в ссылке меняется при каждой правке —
+   поэтому посетители сразу получают свежий JS после деплоя, без F5. */
+const assetVer = async (rel) =>
+  createHash('sha1').update(await readFile(path.join(ROOT, rel))).digest('hex').slice(0, 8);
+const bust = (html, rel, v) => html.replaceAll(rel, `${rel}?v=${v}`);
+let TEMPLATE = await readText('index.html');
+for (const rel of ['/assets/render.js', '/assets/marked.min.js']) {
+  TEMPLATE = bust(TEMPLATE, rel, await assetVer(rel.replace(/^\//, '')));
+}
 
 function buildMeta({title, description, urlPath, image, type='website', jsonld}){
   const url = `${SITE}${urlPath}`;
