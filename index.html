@@ -3,13 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- PAGE_META_START -->
 <title>Караван идёт — авторский сайт о кино Карена Аванесяна</title>
 <meta name="description" content="Авторский сайт исследователя кино, кандидата социологических наук Карена Аванесяна. Рецензии, репортажи с кинофестивалей, публикации в СМИ.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230d0d12'/%3E%3Ccircle cx='35' cy='42' r='14' fill='%23e8b84b'/%3E%3Cpath d='M35 42 L86 28 L86 72 Z' fill='%23e8b84b' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://karavanmoveson.netlify.app/">
 <meta property="og:title" content="Караван идёт — авторский сайт о кино Карена Аванесяна">
 <meta property="og:description" content="Кино глазами социолога: рецензии, репортажи с кинофестивалей и публикации в СМИ.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://karavanmoveson.netlify.app/">
 <meta property="og:image" content="https://karavanmoveson.netlify.app/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<!-- PAGE_META_END -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230d0d12'/%3E%3Ccircle cx='35' cy='42' r='14' fill='%23e8b84b'/%3E%3Cpath d='M35 42 L86 28 L86 72 Z' fill='%23e8b84b' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="alternate" type="application/rss+xml" title="Караван идёт — рецензии и заметки" href="/rss.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
@@ -20,7 +26,8 @@
     --card:#15151a;
     --border:#26262e;
     --text:#ececf1;
-    --muted:#9a9aa6;
+    --muted:#b0b0be;          /* подняли контраст до WCAG AA */
+    --muted-warm:#b3aa98;     /* тёплый приглушённый — для дат и подписей */
     --accent:#e8b84b;
     --accent-2:#c8423a;
     --maxw:1180px;
@@ -32,66 +39,62 @@
     font-family:"Manrope",system-ui,sans-serif;line-height:1.65;
     -webkit-font-smoothing:antialiased;min-height:100vh;position:relative;
   }
-  /* кинематографичный фон: тёплое сияние сверху + лёгкая виньетка */
+  /* кинематографичный фон: приглушённое тёплое сияние сверху + мягкая виньетка.
+     (Зерно плёнки убрано — меньше одновременных эффектов, чище картинка.) */
   body::before{
     content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
     background:
-      radial-gradient(900px 600px at 86% 2%, rgba(232,184,75,.24), transparent 60%),
-      radial-gradient(820px 560px at 4% 4%, rgba(200,66,58,.15), transparent 58%),
-      radial-gradient(1300px 1050px at 50% 42%, rgba(62,62,88,.26), transparent 72%),
-      radial-gradient(165% 120% at 50% 38%, transparent 46%, rgba(0,0,0,.72) 100%),
+      radial-gradient(900px 600px at 86% 2%, rgba(232,184,75,.15), transparent 60%),
+      radial-gradient(820px 560px at 4% 4%, rgba(200,66,58,.09), transparent 58%),
+      radial-gradient(1300px 1050px at 50% 42%, rgba(62,62,88,.18), transparent 72%),
+      radial-gradient(165% 120% at 50% 38%, transparent 48%, rgba(0,0,0,.66) 100%),
       linear-gradient(180deg, #13131e 0%, #0c0c13 50%, #08080b 100%);
-  }
-  /* тонкое зерно плёнки */
-  body::after{
-    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  main,.hero{animation:fadeUp .5s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  main,.hero{animation:fadeUp .45s ease both}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 
   /* HEADER */
   header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
-    background:rgba(10,10,12,.78);border-bottom:1px solid var(--border)}
+    background:rgba(10,10,12,.80);border-bottom:1px solid var(--border)}
   .nav{max-width:var(--maxw);margin:0 auto;padding:14px 24px;
     display:flex;align-items:center;justify-content:space-between;gap:20px}
-  .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+  .brand{display:flex;align-items:center;gap:12px}
   .brand .logo{width:44px;height:44px;border-radius:11px;display:block;object-fit:cover;
-    border:1px solid var(--border);box-shadow:0 0 26px rgba(232,184,75,.2)}
+    border:1px solid var(--border);box-shadow:0 0 22px rgba(232,184,75,.16)}
   .brand .logo-fallback{width:42px;height:42px;border-radius:10px;
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
     display:grid;place-items:center;font-weight:800;color:#0a0a0c;font-size:22px}
   .brand .name{font-weight:800;letter-spacing:.16em;font-size:16px;white-space:nowrap}
   .brand .name span{color:var(--accent)}
-  .menu{display:flex;gap:22px;flex-wrap:wrap}
-  .menu a{color:var(--muted);font-size:14px;letter-spacing:.02em;cursor:pointer;
-    transition:color .2s;position:relative}
+  .menu{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+  .menu a{color:var(--muted);font-size:14px;letter-spacing:.02em;
+    transition:color .2s;position:relative;padding:2px 0}
   .menu a:hover,.menu a.active{color:var(--text)}
   .menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
+  .nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:9px;
+    width:42px;height:38px;color:var(--text);cursor:pointer;font-size:18px;line-height:1}
 
-  /* HERO */
-  .hero{max-width:var(--maxw);margin:0 auto;padding:60px 24px 24px;
-    display:flex;align-items:center;gap:48px;flex-wrap:wrap}
-  .hero .hero-logo{width:180px;height:180px;border-radius:18px;object-fit:cover;
-    border:1px solid var(--border);box-shadow:0 0 60px rgba(232,184,75,.16);flex-shrink:0}
-  .hero .hero-text{flex:1;min-width:280px}
-  .hero h1{font-family:"Playfair Display",serif;font-size:clamp(32px,5.2vw,56px);
-    font-weight:800;line-height:1.06;letter-spacing:-.01em;max-width:15ch}
+  /* HERO — центрированный, спокойный, с киккером и слоганом */
+  .hero{max-width:var(--maxw);margin:0 auto;padding:64px 24px 26px;text-align:center}
+  .hero .kicker{color:var(--muted-warm);font-size:13px;letter-spacing:.26em;
+    text-transform:uppercase;margin-bottom:20px}
+  .hero h1{font-family:"Playfair Display",serif;font-size:clamp(34px,5.6vw,62px);
+    font-weight:800;line-height:1.05;letter-spacing:-.01em;margin:0 auto;max-width:18ch}
   .hero h1 em{color:var(--accent);font-style:italic}
-  .hero p{color:var(--muted);font-size:18px;margin-top:18px;max-width:52ch}
+  .hero p{color:var(--muted);font-size:18px;margin:20px auto 0;max-width:58ch}
 
   /* LAYOUT */
   main{max-width:var(--maxw);margin:0 auto;padding:18px 24px 90px;min-height:46vh}
   .section-label{display:flex;align-items:center;gap:14px;margin:30px 0 24px;
     color:var(--muted);font-size:13px;letter-spacing:.18em;text-transform:uppercase}
   .section-label::after{content:"";flex:1;height:1px;
-    background:linear-gradient(90deg, rgba(232,184,75,.5), rgba(38,38,46,0))}
+    background:linear-gradient(90deg, rgba(232,184,75,.35), rgba(38,38,46,0))}
   .section-label a{color:var(--accent);text-transform:none;letter-spacing:.02em;
-    font-size:13px;cursor:pointer;white-space:nowrap}
+    font-size:13px;white-space:nowrap}
   .section-label a:hover{text-decoration:underline}
-  .home-feed{max-width:760px;margin:8px 0 0}
   .page-title{font-family:"Playfair Display",serif;font-size:clamp(28px,5vw,44px);
     font-weight:800;margin:8px 0 6px}
   .page-sub{color:var(--muted);font-size:16px;margin-bottom:24px;max-width:60ch}
@@ -100,55 +103,65 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:26px}
   .grid.wide{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
   .card{background:linear-gradient(180deg,#1a1a22,#121217);border:1px solid var(--border);
-    border-radius:14px;overflow:hidden;cursor:pointer;
+    border-radius:14px;overflow:hidden;cursor:pointer;color:inherit;
     transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column;
-    box-shadow:0 16px 38px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.06)}
-  .card:hover{transform:translateY(-6px);border-color:#43434f;
-    box-shadow:0 26px 55px rgba(0,0,0,.6), 0 0 0 1px rgba(232,184,75,.18), inset 0 1px 0 rgba(255,255,255,.07)}
-  .poster{aspect-ratio:2/3;position:relative;overflow:hidden;
-    background:linear-gradient(160deg,#1d1d26,#0e0e12)}
+    box-shadow:0 10px 26px rgba(0,0,0,.40), inset 0 1px 0 rgba(255,255,255,.05)}
+  .card:hover{transform:translateY(-5px);border-color:#43434f;
+    box-shadow:0 18px 40px rgba(0,0,0,.46), 0 0 0 1px rgba(232,184,75,.14), inset 0 1px 0 rgba(255,255,255,.06)}
+  /* Постер ВНУТРИ киноплёнки: чёрные поля с перфорацией по краям, изображение между ними —
+     перфорация больше не перекрывает картинку. */
+  .poster{aspect-ratio:2/3;position:relative;overflow:hidden;padding:0 14px;background:#08080b}
   .poster.cover{aspect-ratio:16/10}
   .poster img{width:100%;height:100%;object-fit:cover}
-  /* перфорация киноплёнки поверх ЛЮБОГО постера (и картинки, и заглушки) */
-  .poster::before,.poster::after{content:"";position:absolute;top:0;bottom:0;width:13px;z-index:2;
+  .poster::before,.poster::after{content:"";position:absolute;top:0;bottom:0;width:14px;z-index:2;
     pointer-events:none;
     background:repeating-linear-gradient(to bottom,
-      rgba(0,0,0,.5) 0 7px, rgba(255,255,255,.11) 7px 14px)}
+      #08080b 0 6px, rgba(255,255,255,.16) 6px 12px)}
   .poster::before{left:0}
   .poster::after{right:0}
   .poster .ph{width:100%;height:100%;display:grid;place-items:center;
-    color:#5a5a68;font-family:"Playfair Display",serif;font-size:30px;text-align:center;
+    color:#6a6a78;font-family:"Playfair Display",serif;font-size:30px;text-align:center;
     padding:24px 34px;
-    background:radial-gradient(120% 90% at 50% 0%, rgba(232,184,75,.08), transparent 55%),
+    background:radial-gradient(120% 90% at 50% 0%, rgba(232,184,75,.06), transparent 55%),
       linear-gradient(160deg,#1b1b24,#0d0d12)}
-  .rating-badge{position:absolute;top:12px;right:12px;z-index:3;background:rgba(10,10,12,.82);
+  .rating-badge{position:absolute;top:12px;right:18px;z-index:3;background:rgba(10,10,12,.82);
     border:1px solid var(--border);color:var(--accent);font-weight:700;font-size:14px;
     padding:5px 10px;border-radius:20px;backdrop-filter:blur(4px)}
-  .count-badge{position:absolute;bottom:12px;left:12px;z-index:3;background:rgba(10,10,12,.82);
+  .count-badge{position:absolute;bottom:12px;left:18px;z-index:3;background:rgba(10,10,12,.82);
     border:1px solid var(--border);color:var(--text);font-size:12px;
     padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px)}
   .card-body{padding:16px 16px 18px}
   .card-body h3{font-size:17px;font-weight:700;line-height:1.3}
-  .card-meta{color:#b3aea2;font-size:13px;margin-top:6px;letter-spacing:.01em}
-  .card-excerpt{color:#b9b9c4;font-size:14px;margin-top:10px;
+  .card-meta{color:var(--muted-warm);font-size:13px;margin-top:6px;letter-spacing:.01em}
+  .card-excerpt{color:#c2c2cc;font-size:14px;margin-top:10px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .card-headline{font-family:"Playfair Display",Georgia,serif;font-style:italic;
-    color:#c9c4b8;font-size:15px;line-height:1.38;margin-top:9px;
+    color:#cdc8bc;font-size:15px;line-height:1.38;margin-top:9px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
   /* FEED (timeline) */
   .feed-list{max-width:760px;margin:0 auto}
-  .feed-item{padding:22px 24px;margin-bottom:14px;border:1px solid var(--border);border-radius:13px;
+  .feed-item{display:block;padding:22px 24px;margin-bottom:14px;border:1px solid var(--border);
+    border-radius:13px;color:inherit;
     background:linear-gradient(180deg,#16161c,#111116);
-    box-shadow:0 10px 26px rgba(0,0,0,.36);cursor:pointer;
+    box-shadow:0 8px 22px rgba(0,0,0,.30);cursor:pointer;
     transition:transform .2s,border-color .2s,box-shadow .2s}
   .feed-item:hover{transform:translateY(-3px);border-color:#43434f;
-    box-shadow:0 18px 38px rgba(0,0,0,.52), 0 0 0 1px rgba(232,184,75,.12)}
-  .feed-date{color:var(--accent);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+    box-shadow:0 14px 32px rgba(0,0,0,.42), 0 0 0 1px rgba(232,184,75,.10)}
+  .feed-item.has-img{display:flex;gap:22px;align-items:stretch;padding:18px 20px}
+  .feed-item .feed-thumb{flex-shrink:0;width:200px;border-radius:10px;overflow:hidden;
+    border:1px solid var(--border);background:#0d0d12}
+  .feed-item .feed-thumb img{width:100%;height:100%;object-fit:cover;min-height:140px}
+  .feed-item .feed-main{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+  @media(max-width:560px){
+    .feed-item.has-img{flex-direction:column;gap:14px}
+    .feed-item .feed-thumb{width:100%;aspect-ratio:16/9}
+  }
+  .feed-date{color:var(--muted-warm);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
   .feed-item h3{font-family:"Playfair Display",serif;font-size:24px;font-weight:700;margin:8px 0}
   .feed-item .feed-tag{display:inline-block;border:1px solid var(--border);color:var(--muted);
     font-size:11px;padding:3px 10px;border-radius:20px;margin-bottom:8px;letter-spacing:.04em}
-  .feed-item p{color:#b9b9c4;font-size:15px}
+  .feed-item p{color:#c2c2cc;font-size:15px}
   .feed-item .more{color:var(--accent);font-size:14px;margin-top:10px;display:inline-block}
 
   /* PRESS */
@@ -160,22 +173,22 @@
   .press-nav a span{color:var(--muted);font-size:12px}
   .press-body{flex:1;min-width:0}
   .press-list{display:flex;flex-direction:column;gap:14px}
-  .press-item{display:flex;align-items:stretch;gap:18px;
+  .press-item{display:flex;align-items:stretch;gap:18px;color:inherit;
     background:linear-gradient(180deg,#191920,#121217);
     border:1px solid var(--border);border-radius:13px;padding:14px;
-    box-shadow:0 10px 26px rgba(0,0,0,.4);
+    box-shadow:0 8px 22px rgba(0,0,0,.32);
     transition:transform .2s,border-color .2s,box-shadow .2s}
   .press-item:hover{transform:translateY(-3px);border-color:#46464f;
-    box-shadow:0 20px 40px rgba(0,0,0,.55), 0 0 0 1px rgba(232,184,75,.16)}
+    box-shadow:0 14px 32px rgba(0,0,0,.44), 0 0 0 1px rgba(232,184,75,.12)}
   .press-thumb{position:relative;width:124px;flex-shrink:0;aspect-ratio:16/10;
     border-radius:9px;overflow:hidden;border:1px solid var(--border);
-    background:radial-gradient(120% 90% at 50% 0%,rgba(232,184,75,.1),transparent 55%),linear-gradient(160deg,#1d1d26,#0d0d12)}
+    background:radial-gradient(120% 90% at 50% 0%,rgba(232,184,75,.08),transparent 55%),linear-gradient(160deg,#1d1d26,#0d0d12)}
   .press-thumb img{width:100%;height:100%;object-fit:cover}
   .press-ext{position:absolute;top:7px;left:7px;width:24px;height:24px;border-radius:7px;
     background:rgba(10,10,12,.82);border:1px solid var(--border);color:var(--accent);
     display:grid;place-items:center;font-size:14px;backdrop-filter:blur(3px)}
   .press-main{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
-  .press-outlet{color:var(--accent);font-weight:700;font-size:12px;letter-spacing:.05em;
+  .press-outlet{color:var(--muted-warm);font-weight:700;font-size:12px;letter-spacing:.05em;
     text-transform:uppercase;margin-bottom:5px}
   .press-main h3{font-size:16px;font-weight:700;line-height:1.35}
   .press-main .press-meta{color:var(--muted);font-size:13px;margin-top:5px}
@@ -190,17 +203,20 @@
   /* DETAIL PAGES */
   .review-wrap,.about-wrap{max-width:760px;margin:0 auto}
   .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);
-    font-size:14px;margin-bottom:30px;transition:color .2s;cursor:pointer}
+    font-size:14px;margin-bottom:30px;transition:color .2s}
   .back:hover{color:var(--accent)}
   .review-head{display:flex;gap:28px;margin-bottom:34px;flex-wrap:wrap}
-  .review-head .poster{width:180px;border-radius:12px;border:1px solid var(--border);flex-shrink:0}
+  /* На странице рецензии постер показываем целиком, без киноплёнки по краям. */
+  .review-head .poster{width:180px;border-radius:12px;border:1px solid var(--border);flex-shrink:0;
+    padding:0;overflow:hidden;background:linear-gradient(160deg,#1d1d26,#0e0e12)}
+  .review-head .poster::before,.review-head .poster::after{display:none}
   .review-head .info{flex:1;min-width:240px}
   .review-head h1{font-family:"Playfair Display",serif;font-size:clamp(28px,5vw,42px);
     font-weight:800;line-height:1.1}
-  .review-head .film-line{font-family:"Playfair Display",serif;color:var(--accent);
-    font-weight:700;font-size:19px;margin-top:14px;letter-spacing:.01em}
-  .review-head .sub{color:#b6b1a6;margin-top:7px;font-size:14px;letter-spacing:.02em}
-  .stars{margin-top:18px;font-size:22px;letter-spacing:3px}
+  .review-head .film-line{font-family:"Playfair Display",serif;color:#e7e2d6;
+    font-style:normal;font-weight:600;font-size:20px;margin-top:14px;letter-spacing:.01em}
+  .review-head .sub{color:var(--muted-warm);margin-top:7px;font-size:14px;letter-spacing:.02em}
+  .stars{margin-top:18px;font-size:19px;letter-spacing:2px;line-height:1.4}
   .stars .st-full{color:var(--accent)}
   .stars .st-empty{color:#3a3a46}
   .stars .st-half{position:relative;color:#3a3a46}
@@ -213,6 +229,17 @@
     border:1px solid rgba(232,184,75,.42);color:var(--accent);font-weight:700;font-size:13px;
     padding:8px 15px;border-radius:20px;cursor:pointer;letter-spacing:.02em;transition:.2s}
   .fest-badge:hover{background:rgba(232,184,75,.22)}
+  /* бейдж «открыть на Letterboxd» */
+  .ext-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .ext{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;
+    padding:8px 15px;border-radius:11px;border:1px solid var(--border);color:var(--text);
+    background:linear-gradient(180deg,#17171d,#121217);
+    box-shadow:0 6px 16px rgba(0,0,0,.3);transition:border-color .2s,transform .2s,color .2s}
+  .ext .ico{flex-shrink:0;display:block}
+  .ext .ico-lb{height:11px;width:auto}
+  .ext .arr{color:var(--muted);font-size:12px}
+  .ext:hover{transform:translateY(-2px)}
+  .ext.lb:hover{border-color:#00e054;color:#fff}
   .search{width:100%;max-width:440px;margin:0 0 26px;padding:11px 16px;border-radius:11px;
     border:1px solid var(--border);background:var(--bg-2);color:var(--text);font-size:15px;font-family:inherit}
   .search:focus{outline:none;border-color:var(--accent)}
@@ -238,22 +265,21 @@
   .about-hero .socials a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 
   /* PROSE */
-  article.prose{font-size:17px;color:#dadae2}
-  /* лид-абзац: изысканный курсив Playfair Display (как в цитатах) */
-  article.prose > p:first-of-type{font-family:"Playfair Display",Georgia,serif;font-style:italic;
-    font-size:19px;line-height:1.55;color:#ede9e0;margin:0 0 28px;letter-spacing:.003em}
-  article.prose > p:first-of-type em{font-style:normal}
-  article.prose h2{font-family:"Playfair Display",serif;font-size:26px;margin:36px 0 14px;color:#fff}
-  article.prose h3{font-size:20px;margin:28px 0 12px}
-  article.prose p{margin:0 0 20px}
-  article.prose blockquote{border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:24px 0;
+  article.prose,.prose{font-size:17px;color:#dadae2}
+  /* лид-абзац: крупнее и светлее, но БЕЗ курсива — длинный курсив утомляет */
+  .prose > p:first-of-type{font-size:19px;line-height:1.6;color:#ede9e0;
+    font-weight:500;margin:0 0 26px;letter-spacing:.002em}
+  .prose h2{font-family:"Playfair Display",serif;font-size:26px;margin:36px 0 14px;color:#fff}
+  .prose h3{font-size:20px;margin:28px 0 12px}
+  .prose p{margin:0 0 20px}
+  .prose blockquote{border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:24px 0;
     color:#fff;font-family:"Playfair Display",serif;font-style:italic;font-size:21px}
-  article.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
-  article.prose ul,article.prose ol{margin:0 0 20px 22px}
-  article.prose li{margin:6px 0}
-  article.prose img{border-radius:12px;margin:24px auto;display:block;border:1px solid var(--border)}
-  article.prose hr{border:none;border-top:1px solid var(--border);margin:36px 0}
-  article.prose code{background:var(--bg-2);padding:2px 7px;border-radius:5px;font-size:15px}
+  .prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  .prose ul,.prose ol{margin:0 0 20px 22px}
+  .prose li{margin:6px 0}
+  .prose img{border-radius:12px;margin:24px auto;display:block;border:1px solid var(--border)}
+  .prose hr{border:none;border-top:1px solid var(--border);margin:36px 0}
+  .prose code{background:var(--bg-2);padding:2px 7px;border-radius:5px;font-size:15px}
 
   /* COLLECTION entries (рендерятся внутри .prose) */
   .coll-entry{display:flex;gap:22px;align-items:flex-start;padding:26px 0;border-bottom:1px solid var(--border)}
@@ -275,405 +301,237 @@
     text-align:center;padding:34px 24px}
   footer.site a{color:var(--accent)}
 
+  @media(max-width:760px){
+    .nav-toggle{display:block}
+    .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;
+      gap:0;background:rgba(12,12,16,.98);border-bottom:1px solid var(--border);padding:8px 0}
+    .menu.open{display:flex}
+    .menu a{padding:12px 24px;width:100%}
+    .menu a.active::after{display:none}
+    .menu a.active{color:var(--accent)}
+    .nav{position:relative}
+  }
   @media(max-width:560px){
-    .hero{padding:36px 20px 12px;gap:24px}
-    .hero .hero-logo{width:120px;height:120px}
+    .hero{padding:42px 20px 14px}
     .nav{padding:12px 16px;gap:12px}
-    .menu{gap:16px}
     .review-head .poster{width:130px}
-    .press-outlet{width:auto}
   }
 </style>
 </head>
 <body>
 <header class="site">
   <div class="nav">
-    <div class="brand" onclick="location.hash=''">
-      <img class="logo" src="assets/logo.png" alt="Караван идёт"
+    <a class="brand" href="/" aria-label="Караван идёт — на главную">
+      <img class="logo" src="/assets/logo.png" alt="Караван идёт"
            onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>К</div>'">
       <div class="name">КАРАВАН <span>ИДЁТ</span></div>
-    </div>
-    <nav class="menu">
-      <a onclick="location.hash='#/reviews'" data-nav="reviews">Рецензии</a>
-      <a onclick="location.hash='#/press'" data-nav="press">Публикации в СМИ</a>
-      <a onclick="location.hash='#/festivals'" data-nav="festivals">Кинофестивали</a>
-      <a onclick="location.hash='#/collections'" data-nav="collections">Подборки</a>
-      <a onclick="location.hash='#/feed'" data-nav="feed">Заметки</a>
-      <a onclick="location.hash='#/about'" data-nav="about">Обо мне</a>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    <nav class="menu" id="menu" aria-label="Основное меню">
+      <a href="/reviews" data-nav="reviews">Рецензии</a>
+      <a href="/press" data-nav="press">Публикации в СМИ</a>
+      <a href="/festivals" data-nav="festivals">Кинофестивали</a>
+      <a href="/collections" data-nav="collections">Подборки</a>
+      <a href="/feed" data-nav="feed">Заметки</a>
+      <a href="/about" data-nav="about">Обо мне</a>
     </nav>
   </div>
 </header>
 
-<div id="app"></div>
+<div id="app"><!-- APP_CONTENT --></div>
 
 <footer class="site">
   © <span id="year"></span> Караван идёт · Карен Аванесян — авторский сайт о кино.
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script>
+<!-- VIEW_FLAG -->
+<script src="/assets/marked.min.js"></script>
+<script type="module">
+import * as R from '/assets/render.js';
+
 document.getElementById('year').textContent = new Date().getFullYear();
 const app = document.getElementById('app');
-const navLinks = document.querySelectorAll('.menu a');
-function setActive(which){
-  navLinks.forEach(a=>a.classList.toggle('active', a.dataset.nav===which));
-}
+const navLinks = document.querySelectorAll('.menu a[data-nav]');
+const menu = document.getElementById('menu');
+const navToggle = document.getElementById('navToggle');
 
-/* ---------- helpers ---------- */
-function parseFrontMatter(text){
-  const m = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
-  if(!m) return {meta:{}, body:text};
-  const meta = {};
-  m[1].split('\n').forEach(line=>{
-    const i = line.indexOf(':'); if(i===-1) return;
-    const key = line.slice(0,i).trim();
-    let val = line.slice(i+1).trim().replace(/^["']|["']$/g,'');
-    meta[key]=val;
-  });
-  return {meta, body:m[2]};
-}
-function stars(rating){
-  const r = Math.max(0,Math.min(5,parseFloat(rating)||0));
-  let html='';
-  for(let i=1;i<=5;i++){
-    if(r>=i) html+='<span class="st-full">★</span>';
-    else if(r>=i-0.5) html+='<span class="st-half">★</span>';
-    else html+='<span class="st-empty">★</span>';
-  }
-  return html;
-}
-function esc(s){return (s||'').replace(/"/g,'&quot;')}
-async function getJSON(path){
-  const r = await fetch(path+'?_='+Date.now()); if(!r.ok) throw new Error(path); return r.json();
-}
-async function getText(path){
-  const r = await fetch(path+'?_='+Date.now()); if(!r.ok) throw new Error(path); return r.text();
-}
-function loadError(){
-  return `<main><div class="state"><h2>Не удалось загрузить контент</h2>
-    <p>Открой сайт через локальный сервер или хостинг (см. README), а не двойным кликом по файлу.</p></div></main>`;
-}
+function setActive(which){ navLinks.forEach(a=>a.classList.toggle('active', a.dataset.nav===which)); }
+const md = s => (window.marked ? window.marked.parse(s) : s);
+async function getJSON(p){ const r=await fetch(p); if(!r.ok) throw new Error(p); return r.json(); }
+async function getText(p){ const r=await fetch(p); if(!r.ok) throw new Error(p); return r.text(); }
+function setApp(html){ app.innerHTML = html; }
+function loading(){ setApp(`<main><div class="state">Загрузка…</div></main>`); }
+const setTitle = t => { document.title = t; };
 
-/* ---------- generic timeline (Лента / Кинофестивали) ---------- */
-function timelineItems(list, itemPrefix){
-  return list.map(f=>`
-    <div class="feed-item" onclick="location.hash='${itemPrefix}/${f.slug}'">
-      ${f.tag?`<span class="feed-tag">${f.tag}</span><br>`:''}
-      <span class="feed-date">${f.date||''}</span>
-      <h3>${f.title}</h3>
-      ${f.excerpt?`<p>${f.excerpt}</p>`:''}
-      <span class="more">Читать →</span>
-    </div>`).join('');
-}
-async function renderTimelineItem(folder, slug, navKey, backHash, backLabel){
-  setActive(navKey);
-  app.innerHTML = `<main><div class="state">Загрузка…</div></main>`;
-  try{
-    const text = await getText(`${folder}/${slug}.md`);
-    const {meta,body} = parseFrontMatter(text);
-    app.innerHTML = `<main><div class="review-wrap">
-      <a class="back" onclick="location.hash='${backHash}'">← ${backLabel}</a>
-      ${meta.date?`<div class="feed-date" style="margin-bottom:10px">${meta.date}</div>`:''}
-      <h1 class="page-title" style="margin-top:0">${meta.title||''}</h1>
-      ${meta.tag?`<div class="pill-row" style="margin-bottom:20px"><span class="pill">${meta.tag}</span></div>`:''}
-      <article class="prose">${marked.parse(body)}</article>
-    </div></main>`;
-    window.scrollTo(0,0);
-  }catch(e){
-    app.innerHTML = `<main><div class="state"><h2>Запись не найдена</h2>
-      <a class="back" onclick="location.hash='${backHash}'">← ${backLabel}</a></div></main>`;
-  }
-}
+/* мобильное меню */
+navToggle.addEventListener('click', ()=>{
+  const open = menu.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open?'true':'false');
+});
 
-/* ---------- reusable cards ---------- */
-function reviewCardHTML(r){
-  const film = r.film || r.title;
-  return `<div class="card" onclick="location.hash='#/review/${r.slug}'">
-    <div class="poster">
-      ${r.poster?`<img src="${esc(r.poster)}" alt="${esc(film)}" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(film)}</div>'">`:`<div class="ph">${film}</div>`}
-      ${r.rating?`<div class="rating-badge">★ ${r.rating}</div>`:''}
-    </div>
-    <div class="card-body">
-      <h3>${film}</h3>
-      <div class="card-meta">${[r.year,r.director].filter(Boolean).join(' · ')}</div>
-      ${r.title&&r.title!==film?`<div class="card-headline">${r.title}</div>`:''}
-    </div>
-  </div>`;
-}
-function collectionCardHTML(c){
-  return `<div class="card" onclick="location.hash='#/collection/${c.slug}'">
-    <div class="poster cover">
-      ${c.cover?`<img src="${esc(c.cover)}" alt="${esc(c.title)}" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(c.title)}</div>'">`:`<div class="ph">${c.title}</div>`}
-      ${c.count?`<div class="count-badge">${c.count} фильмов</div>`:''}
-    </div>
-    <div class="card-body">
-      <h3>${c.title}</h3>
-      ${c.excerpt?`<div class="card-excerpt">${c.excerpt}</div>`:''}
-    </div>
-  </div>`;
-}
-function homeLabel(title, href){
-  return `<div class="section-label">${title} <a onclick="location.hash='${href}'">все →</a></div>`;
-}
-
-/* ---------- HOME = витрина разделов (обновляется сама) ---------- */
+/* ---------- рендереры (фетч + сборка из общего модуля R) ---------- */
 async function renderHome(){
-  setActive('home');
-  app.innerHTML = `
-    <section class="hero">
-      <div class="hero-text">
-        <h1>Кино глазами <em>социолога</em></h1>
-        <p>Карен Аванесян — исследователь кино, кандидат социологических наук. Рецензии, репортажи с фестивалей и публикации в СМИ: кино как зеркало общества и бессознательного.</p>
-      </div>
-    </section>
-    <main id="home"><div class="state">Загрузка…</div></main>`;
-  const [reviews, feed, festivals, collections, press] = await Promise.all([
-    getJSON('reviews/manifest.json').catch(()=>null),
-    getJSON('feed/manifest.json').catch(()=>null),
-    getJSON('festivals/manifest.json').catch(()=>null),
-    getJSON('collections/manifest.json').catch(()=>null),
-    getJSON('press.json').catch(()=>null)
+  setActive('home'); loading();
+  const [reviews,feed,festivals,collections,press] = await Promise.all([
+    getJSON('/reviews/manifest.json').catch(()=>null),
+    getJSON('/feed/manifest.json').catch(()=>null),
+    getJSON('/festivals/manifest.json').catch(()=>null),
+    getJSON('/collections/manifest.json').catch(()=>null),
+    getJSON('/press.json').catch(()=>null)
   ]);
-  if([reviews,feed,festivals,collections,press].every(x=>x===null)){
-    document.querySelector('main').innerHTML = loadError(); return;
-  }
-  let out='';
-  if(reviews&&reviews.length) out+=`${homeLabel('Рецензии','#/reviews')}<div class="grid">${reviews.slice(0,3).map(reviewCardHTML).join('')}</div>`;
-  if(press&&press.length) out+=`${homeLabel('Публикации в СМИ','#/press')}<div class="press-list" style="max-width:none;margin:0">${press.slice(0,3).map(pressItemHTML).join('')}</div>`;
-  const festItems=[];
-  (reviews||[]).forEach(r=>r.festival&&festItems.push({kind:'Рецензия',title:r.film||r.title,date:r.festival,thumb:r.poster,href:'#/review/'+r.slug,external:false}));
-  (festivals||[]).forEach(d=>festItems.push({kind:'Дневник',title:d.title,date:d.festival||d.tag,thumb:'',href:'#/festival/'+d.slug,external:false}));
-  (press||[]).forEach(p=>p.festival&&festItems.push({kind:'Публикация · '+(p.outlet||''),title:p.title,date:p.festival,thumb:p.thumb,href:p.url,external:true}));
-  if(festItems.length) out+=`${homeLabel('Кинофестивали','#/festivals')}<div class="press-list" style="max-width:none;margin:0 0 8px">${festItems.slice(0,3).map(festivalItemHTML).join('')}</div>`;
-  if(collections&&collections.length) out+=`${homeLabel('Подборки','#/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
-  if(feed&&feed.length) out+=`${homeLabel('Заметки','#/feed')}<div class="feed-list" style="max-width:none;margin:0 0 8px">${timelineItems(feed.slice(0,2),'#/feed')}</div>`;
-  document.getElementById('home').innerHTML = out || `<div class="state">Пока нет материалов.</div>`;
+  if([reviews,feed,festivals,collections,press].every(x=>x===null)){ setApp(R.loadError()); return; }
+  setApp(R.homeView({reviews,feed,festivals,collections,press}));
+  setTitle('Караван идёт — авторский сайт о кино Карена Аванесяна');
 }
 
-/* ---------- FEED (полная лента) ---------- */
-async function renderFeed(){
-  setActive('feed');
-  app.innerHTML = `<main>
-    <div class="page-title">Заметки</div>
-    <div class="page-sub">Короткие мысли и наблюдения о кино — между большими текстами.</div>
-    <div class="feed-list" id="feed"><div class="state">Загрузка…</div></div></main>`;
-  try{
-    const list = await getJSON('feed/manifest.json');
-    const el = document.getElementById('feed');
-    el.innerHTML = list.length ? timelineItems(list,'#/feed') : `<div class="state">Пока нет записей.</div>`;
-  }catch(e){ document.querySelector('main').innerHTML = loadError(); }
-}
-
-/* ---------- REVIEWS grid ---------- */
 async function renderReviews(){
-  setActive('reviews');
-  app.innerHTML = `<main>
-    <div class="page-title">Рецензии</div>
-    <div class="page-sub">Разборы фильмов: личное впечатление и анализ в одном тексте.</div>
-    <input id="revSearch" class="search" type="search" placeholder="Поиск по названию (рус / eng) или режиссёру…">
-    <div class="grid" id="grid"><div class="state">Загрузка…</div></div></main>`;
+  setActive('reviews'); loading();
   try{
-    const list = await getJSON('reviews/manifest.json');
-    const grid = document.getElementById('grid');
-    if(!list.length){ grid.innerHTML = `<div class="state">Пока нет рецензий.</div>`; return; }
-    const render = items => grid.innerHTML = items.length ? items.map(reviewCardHTML).join('') : `<div class="state">Ничего не найдено.</div>`;
-    render(list);
-    const inp = document.getElementById('revSearch');
-    inp.addEventListener('input', ()=>{
-      const q = inp.value.trim().toLowerCase();
-      render(list.filter(r => !q || [r.film,r.title,r.original,r.director,r.year].filter(Boolean).join(' ').toLowerCase().includes(q)));
-    });
-  }catch(e){ document.querySelector('main').innerHTML = loadError(); }
+    const list = await getJSON('/reviews/manifest.json');
+    setApp(R.reviewsView(list));
+    wireReviewSearch(list);
+    setTitle('Рецензии — Караван идёт');
+  }catch(e){ setApp(R.loadError()); }
+}
+function wireReviewSearch(list){
+  const inp = document.getElementById('revSearch');
+  const grid = document.getElementById('grid');
+  if(!inp||!grid) return;
+  const pub = R.published(list);
+  inp.addEventListener('input', ()=>{
+    const q = inp.value.trim().toLowerCase();
+    const items = pub.filter(r => !q || [r.film,r.title,r.original,r.director,r.year].filter(Boolean).join(' ').toLowerCase().includes(q));
+    grid.innerHTML = items.length ? items.map(R.reviewCardHTML).join('') : `<div class="state">Ничего не найдено.</div>`;
+  });
 }
 
-/* ---------- FESTIVALS ---------- */
-function festivalItemHTML(it){
-  const thumb = it.thumb?`<img src="${esc(it.thumb)}" alt="" loading="lazy" onerror="this.style.display='none'">`:'';
-  const open = it.external?`href="${esc(it.href)}" target="_blank" rel="noopener"`:`href="${esc(it.href)}"`;
-  return `<a class="press-item" ${open}>
-    <div class="press-thumb">${thumb}<span class="press-ext">${it.external?'↗':'→'}</span></div>
-    <div class="press-main">
-      <div class="press-outlet">${it.kind}</div>
-      <h3>${it.title}</h3>
-      <div class="press-meta">${it.date||''}</div>
-    </div>
-  </a>`;
-}
-async function renderFestivals(){
-  setActive('festivals');
-  app.innerHTML = `<main>
-    <div class="page-title">Кинофестивали</div>
-    <div class="page-sub">Я езжу на фестивали и пишу с места. Сюда автоматически собирается всё, у чего отмечен фестиваль — рецензии, заметки, дневники и публикации в СМИ.</div>
-    <div id="fest"><div class="state">Загрузка…</div></div></main>`;
-  const [reviews, feed, diaries, press] = await Promise.all([
-    getJSON('reviews/manifest.json').catch(()=>[]),
-    getJSON('feed/manifest.json').catch(()=>[]),
-    getJSON('festivals/manifest.json').catch(()=>[]),
-    getJSON('press.json').catch(()=>[])
-  ]);
-  const groups={};
-  const add=(f,it)=>{ if(!f) return; (groups[f]=groups[f]||[]).push(it); };
-  (reviews||[]).forEach(r=>r.festival&&add(r.festival,{kind:'Рецензия',title:r.film||r.title,date:[r.year,r.director].filter(Boolean).join(' · '),thumb:r.poster,href:'#/review/'+r.slug,external:false}));
-  (feed||[]).forEach(f=>f.festival&&add(f.festival,{kind:'Заметка',title:f.title,date:f.date,thumb:'',href:'#/feed/'+f.slug,external:false}));
-  (diaries||[]).forEach(d=>add(d.festival||d.tag,{kind:'Дневник',title:d.title,date:d.date,thumb:'',href:'#/festival/'+d.slug,external:false}));
-  (press||[]).forEach(p=>p.festival&&add(p.festival,{kind:'Публикация · '+(p.outlet||''),title:p.title,date:p.date,thumb:p.thumb,href:p.url,external:true}));
-  const keys=Object.keys(groups);
-  if(!keys.length){ document.getElementById('fest').innerHTML=`<div class="state">Пока нет фестивальных материалов.</div>`; return; }
-  document.getElementById('fest').innerHTML = keys.map(f=>`
-    <div class="section-label">${f}</div>
-    <div class="press-list" style="max-width:none;margin:0 0 16px">${groups[f].map(festivalItemHTML).join('')}</div>`).join('');
-}
-
-/* ---------- REVIEW page ---------- */
 async function renderReview(slug){
-  setActive('reviews');
-  app.innerHTML = `<main><div class="state">Загрузка…</div></main>`;
+  setActive('reviews'); loading();
   try{
-    const text = await getText(`reviews/${slug}.md`);
-    const {meta,body} = parseFrontMatter(text);
-    const tags=(meta.tags||'').split(',').map(s=>s.trim()).filter(Boolean);
-    const film = meta.film || meta.title;
-    const poster = meta.poster?`<img src="${esc(meta.poster)}" alt="${esc(film)}" onerror="this.parentNode.innerHTML='<div class=&quot;ph&quot;>${esc(film)}</div>'">`:`<div class="ph">${film||'?'}</div>`;
-    app.innerHTML = `<main><div class="review-wrap">
-      <a class="back" onclick="location.hash='#/reviews'">← ко всем рецензиям</a>
-      <div class="review-head">
-        <div class="poster">${poster}</div>
-        <div class="info">
-          <h1>${meta.title||film||'Без названия'}</h1>
-          ${meta.film?`<div class="film-line">${meta.film}</div>`:''}
-          <div class="sub">${[meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).join(' · ')}</div>
-          ${meta.rating?`<div class="stars">${stars(meta.rating)}<span class="num">${meta.rating} / 5</span></div>`:''}
-          ${meta.festival?`<div><a class="fest-badge" onclick="location.hash='#/festivals'">#${meta.festival}</a></div>`:''}
-          ${tags.length?`<div class="pill-row">${tags.map(t=>`<span class="pill">${t}</span>`).join('')}</div>`:''}
-        </div>
-      </div>
-      <article class="prose">${marked.parse(body)}</article>
-    </div></main>`;
+    const {meta,body} = R.parseFrontMatter(await getText(`/reviews/${slug}.md`));
+    setApp(R.reviewPageView(meta, md(body)));
+    setTitle(`${meta.title||meta.film||'Рецензия'}${meta.film&&meta.film!==meta.title?' — '+meta.film:''} — Караван идёт`);
     window.scrollTo(0,0);
-  }catch(e){
-    app.innerHTML = `<main><div class="state"><h2>Рецензия не найдена</h2>
-      <a class="back" onclick="location.hash='#/reviews'">← ко всем рецензиям</a></div></main>`;
-  }
+  }catch(e){ setApp(R.notFoundView('Рецензия не найдена','/reviews','ко всем рецензиям')); }
 }
 
-/* ---------- COLLECTIONS ---------- */
 async function renderCollections(){
-  setActive('collections');
-  app.innerHTML = `<main>
-    <div class="page-title">Подборки</div>
-    <div class="page-sub">Авторские коллекции фильмов на разные темы — кино, собранное по смыслу, а не по алфавиту.</div>
-    <div class="grid wide" id="cols"><div class="state">Загрузка…</div></div></main>`;
-  try{
-    const list = await getJSON('collections/manifest.json');
-    const el = document.getElementById('cols');
-    if(!list.length){ el.innerHTML=`<div class="state">Пока нет подборок.</div>`; return; }
-    el.innerHTML = list.map(collectionCardHTML).join('');
-  }catch(e){ document.querySelector('main').innerHTML = loadError(); }
+  setActive('collections'); loading();
+  try{ setApp(R.collectionsView(await getJSON('/collections/manifest.json'))); setTitle('Подборки — Караван идёт'); }
+  catch(e){ setApp(R.loadError()); }
 }
 async function renderCollection(slug){
-  setActive('collections');
-  app.innerHTML = `<main><div class="state">Загрузка…</div></main>`;
+  setActive('collections'); loading();
   try{
-    const text = await getText(`collections/${slug}.md`);
-    const {meta,body} = parseFrontMatter(text);
-    app.innerHTML = `<main><div class="review-wrap">
-      <a class="back" onclick="location.hash='#/collections'">← ко всем подборкам</a>
-      ${meta.cover?`<div class="poster cover" style="border-radius:14px;border:1px solid var(--border);margin-bottom:24px;max-height:320px"><img src="${esc(meta.cover)}" alt="" onerror="this.parentNode.style.display='none'"></div>`:''}
-      <h1 class="page-title" style="margin-top:0">${meta.title||''}</h1>
-      ${meta.subtitle?`<div class="page-sub">${meta.subtitle}</div>`:''}
-      <article class="prose">${marked.parse(body)}</article>
-    </div></main>`;
+    const {meta,body} = R.parseFrontMatter(await getText(`/collections/${slug}.md`));
+    setApp(R.collectionPageView(meta, md(body)));
+    setTitle(`${meta.title||'Подборка'} — Подборки — Караван идёт`);
     window.scrollTo(0,0);
-  }catch(e){
-    app.innerHTML = `<main><div class="state"><h2>Подборка не найдена</h2>
-      <a class="back" onclick="location.hash='#/collections'">← к подборкам</a></div></main>`;
-  }
+  }catch(e){ setApp(R.notFoundView('Подборка не найдена','/collections','к подборкам')); }
 }
 
-/* ---------- PRESS (Публикации в СМИ) ---------- */
-const PRESS_RUBRICS = ['Рецензии','Рецензии с фестивалей','Тематические подборки','Интервью'];
-function pressItemHTML(p){
-  const thumb = p.thumb
-    ? `<img src="${esc(p.thumb)}" alt="" loading="lazy" onerror="this.style.display='none'">`
-    : '';
-  return `<a class="press-item" href="${esc(p.url)}" target="_blank" rel="noopener">
-    <div class="press-thumb">${thumb}<span class="press-ext" aria-label="Открыть оригинал">↗</span></div>
-    <div class="press-main">
-      <div class="press-outlet">${p.outlet||''}</div>
-      <h3>${p.title||''}</h3>
-      <div class="press-meta">${[p.date,p.note].filter(Boolean).join(' · ')}</div>
-    </div>
-  </a>`;
+async function renderFeed(){
+  setActive('feed'); loading();
+  try{ setApp(R.feedView(await getJSON('/feed/manifest.json'))); setTitle('Заметки — Караван идёт'); }
+  catch(e){ setApp(R.loadError()); }
 }
-function rubricId(r){ return 'pr-'+r.replace(/[^a-zа-я0-9]+/gi,'-').toLowerCase(); }
+
 async function renderPress(){
-  setActive('press');
-  app.innerHTML = `<main>
-    <div class="page-title">Публикации в СМИ</div>
-    <div class="page-sub">Мои тексты, опубликованные в других изданиях — по рубрикам.</div>
-    <div class="press-layout">
-      <nav class="press-nav" id="pressNav"></nav>
-      <div class="press-body" id="press"><div class="state">Загрузка…</div></div>
-    </div></main>`;
-  try{
-    const list = await getJSON('press.json');
-    if(!list.length){ document.getElementById('press').innerHTML=`<div class="state">Пока нет публикаций.</div>`; return; }
-    const groups = {};
-    list.forEach(p=>{ const r=p.rubric||'Прочее'; (groups[r]=groups[r]||[]).push(p); });
-    const rubrics = [...PRESS_RUBRICS.filter(r=>groups[r]),
-                     ...Object.keys(groups).filter(r=>!PRESS_RUBRICS.includes(r))];
-    document.getElementById('pressNav').innerHTML = rubrics.map((r,i)=>
-      `<a onclick="document.getElementById('${rubricId(r)}').scrollIntoView({behavior:'smooth',block:'start'})">${r} <span>${groups[r].length}</span></a>`).join('');
-    document.getElementById('press').innerHTML = rubrics.map(r=>`
-      <div class="section-label" id="${rubricId(r)}" style="scroll-margin-top:78px">${r}</div>
-      <div class="press-list" style="margin:0 0 30px">${groups[r].map(pressItemHTML).join('')}</div>
-    `).join('');
-  }catch(e){ document.querySelector('main').innerHTML = loadError(); }
+  setActive('press'); loading();
+  try{ setApp(R.pressView(await getJSON('/press.json'))); setTitle('Публикации в СМИ — Караван идёт'); }
+  catch(e){ setApp(R.loadError()); }
 }
 
-/* ---------- ABOUT ---------- */
-async function renderAbout(){
-  setActive('about');
-  app.innerHTML = `<main><div class="state">Загрузка…</div></main>`;
+async function renderFestivals(){
+  setActive('festivals'); loading();
+  const [reviews,feed,diaries,press] = await Promise.all([
+    getJSON('/reviews/manifest.json').catch(()=>[]),
+    getJSON('/feed/manifest.json').catch(()=>[]),
+    getJSON('/festivals/manifest.json').catch(()=>[]),
+    getJSON('/press.json').catch(()=>[])
+  ]);
+  setApp(R.festivalsView({reviews,feed,diaries,press}));
+  setTitle('Кинофестивали — Караван идёт');
+}
+
+async function renderTimelineItem(folder, slug, navKey, backHref, backLabel){
+  setActive(navKey); loading();
   try{
-    const text = await getText('about.md');
-    const {meta,body} = parseFrontMatter(text);
-    const photo = meta.photo?`<img src="${esc(meta.photo)}" alt="${esc(meta.name)}" onerror="this.parentNode.innerHTML='${(meta.name||'К')[0]}'">`:(meta.name?meta.name[0]:'К');
-    const socials = [['Написать',meta.email?'mailto:'+meta.email:''],['Telegram',meta.telegram],['Letterboxd',meta.letterboxd],['Кинопоиск',meta.kinopoisk]].filter(s=>s[1]);
-    const socialHTML = socials.length?`<div class="socials">${socials.map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${s[0]} <span>↗</span></a>`).join('')}</div>`:'';
-    app.innerHTML = `<main><div class="about-wrap">
-      <div class="about-hero">
-        <div class="photo">${photo}</div>
-        <div class="who">
-          <h1>${meta.name||'Карен Аванесян'}</h1>
-          <div class="role">${meta.role||''}</div>
-          ${socialHTML}
-        </div>
-      </div>
-      <article class="prose">${marked.parse(body)}</article>
-    </div></main>`;
+    const {meta,body} = R.parseFrontMatter(await getText(`/${folder}/${slug}.md`));
+    setApp(R.timelineItemView(meta, md(body), backHref, backLabel));
+    setTitle(`${meta.title||'Запись'} — Караван идёт`);
     window.scrollTo(0,0);
-  }catch(e){ app.innerHTML = loadError(); }
+  }catch(e){ setApp(R.notFoundView('Запись не найдена',backHref,backLabel)); }
 }
 
-/* ---------- ROUTER ---------- */
-function route(){
-  const h = location.hash.replace(/^#/,'');
-  let m;
-  if(m=h.match(/^\/review\/(.+)$/)) return renderReview(decodeURIComponent(m[1]));
-  if(h==='/reviews') return renderReviews();
-  if(m=h.match(/^\/feed\/(.+)$/)) return renderTimelineItem('feed',decodeURIComponent(m[1]),'feed','#/feed','в заметки');
-  if(h==='/feed') return renderFeed();
-  if(m=h.match(/^\/festival\/(.+)$/)) return renderTimelineItem('festivals',decodeURIComponent(m[1]),'festivals','#/festivals','к фестивалям');
-  if(h==='/festivals') return renderFestivals();
-  if(m=h.match(/^\/collection\/(.+)$/)) return renderCollection(decodeURIComponent(m[1]));
-  if(h==='/collections') return renderCollections();
-  if(h==='/press') return renderPress();
-  if(h==='/about') return renderAbout();
-  return renderHome(); // '' и '/feed' → Лента
+async function renderAbout(){
+  setActive('about'); loading();
+  try{
+    const {meta,body} = R.parseFrontMatter(await getText('/about.md'));
+    setApp(R.aboutView(meta, md(body)));
+    setTitle('Обо мне — Карен Аванесян — Караван идёт');
+    window.scrollTo(0,0);
+  }catch(e){ setApp(R.loadError()); }
 }
-window.addEventListener('hashchange', route);
-route();
+
+/* ---------- роутер на реальных путях ---------- */
+function route(){
+  const path = location.pathname.replace(/\/+$/,'') || '/';
+  let m;
+  if(m=path.match(/^\/review\/(.+)$/)) return renderReview(decodeURIComponent(m[1]));
+  if(path==='/reviews') return renderReviews();
+  if(m=path.match(/^\/collection\/(.+)$/)) return renderCollection(decodeURIComponent(m[1]));
+  if(path==='/collections') return renderCollections();
+  if(m=path.match(/^\/festival\/(.+)$/)) return renderTimelineItem('festivals',decodeURIComponent(m[1]),'festivals','/festivals','к фестивалям');
+  if(path==='/festivals') return renderFestivals();
+  if(m=path.match(/^\/feed\/(.+)$/)) return renderTimelineItem('feed',decodeURIComponent(m[1]),'feed','/feed','в заметки');
+  if(path==='/feed') return renderFeed();
+  if(path==='/press') return renderPress();
+  if(path==='/about') return renderAbout();
+  return renderHome();
+}
+
+function navTo(path){
+  if(path === location.pathname) { window.scrollTo(0,0); return; }
+  history.pushState({}, '', path);
+  menu.classList.remove('open'); navToggle.setAttribute('aria-expanded','false');
+  route();
+}
+
+/* перехват кликов по внутренним ссылкам → SPA-навигация */
+document.addEventListener('click', e=>{
+  if(e.defaultPrevented || e.button!==0 || e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+  const a = e.target.closest('a');
+  if(!a) return;
+  const href = a.getAttribute('href');
+  if(!href || a.target==='_blank' || a.hasAttribute('download')) return;
+  if(/^(https?:|mailto:|tel:)/.test(href)) return;
+  if(href.startsWith('#')) return; /* внутренние якоря (рубрики прессы) */
+  e.preventDefault();
+  navTo(href);
+});
+window.addEventListener('popstate', route);
+
+/* ---------- инициализация ---------- */
+(function init(){
+  /* совместимость со старыми ссылками вида #/review/slug */
+  if(location.hash.startsWith('#/')){
+    history.replaceState({}, '', location.hash.slice(1));
+    route();
+    return;
+  }
+  /* страница пререндерена сборщиком: контент уже в DOM — не перерисовываем,
+     только подсвечиваем меню и довешиваем интерактив */
+  if(window.__VIEW__){
+    const v = window.__VIEW__;
+    setActive(v.nav||'home');
+    if(v.view==='reviews'){
+      getJSON('/reviews/manifest.json').then(wireReviewSearch).catch(()=>{});
+    }
+    return;
+  }
+  route();
+})();
 </script>
 </body>
 </html>

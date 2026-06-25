@@ -1,0 +1,26 @@
+{
+  "name": "karavan-moves-on",
+  "version": "1.0.0",
+  "description": "Авторский сайт Карена Аванесяна: рецензии, лента с дневниками фестивалей, авторские подборки и публикации в прессе. Весь контент — простые текстовые файлы, добавлять новое легко.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "resolve": "node tools/resolve-tmdb.mjs",
+    "dev": "node build.mjs && cd dist && python3 -m http.server 8000",
+    "serve": "cd dist && python3 -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karavan88/karavan-moves-on.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karavan88/karavan-moves-on/issues"
+  },
+  "homepage": "https://github.com/karavan88/karavan-moves-on#readme",
+  "dependencies": {
+    "marked": "^12.0.2"
+  }
+}
