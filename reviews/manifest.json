@@ -1,5 +1,29 @@
 [
   {
+    "slug": "genij-dzyudo",
+    "film": "«Легенда о великом мастере дзюдо»",
+    "title": "Дебют Куросавы возвращается целым",
+    "year": "1943",
+    "director": "Акира Куросава",
+    "original": "Sanshiro Sugata",
+    "rating": "7",
+    "festival": "Il Cinema Ritrovato 2026",
+    "poster": "https://image.tmdb.org/t/p/w500/vmQV7lDO8hCaU6tuKhF3b9gFs4f.jpg",
+    "excerpt": "Реставрация 4K дебюта Куросавы вернула двенадцать вырезанных в войну минут. Cannes Classics и Il Cinema Ritrovato, 2026: видно, откуда вышел режиссёр, всю жизнь сомневавшийся в праве сильного."
+  },
+  {
+    "slug": "stychka-v-nochi",
+    "film": "«Стычка в ночи»",
+    "title": "Дом там, где кончаются дороги",
+    "year": "1952",
+    "director": "Фриц Ланг",
+    "original": "Clash by Night",
+    "rating": "7",
+    "festival": "Il Cinema Ritrovato 2026",
+    "poster": "https://image.tmdb.org/t/p/w500/zhGWvfuKUSeOZZaHJrIGyluGLZY.jpg",
+    "excerpt": "Отреставрированную «Стычку в ночи» представил в Болонье Вим Вендерс. Поздний Ланг, в котором сегодня читается раннее высказывание о женском выборе — через Барбару Стэнвик и юную Мэрилин Монро."
+  },
+  {
     "slug": "amma-ariyan",
     "film": "«Сообщите матери» (Amma Ariyan)",
     "title": "Поколение, оставшееся без матери",

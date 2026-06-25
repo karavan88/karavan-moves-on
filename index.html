@@ -187,6 +187,16 @@
   .press-ext{position:absolute;top:7px;left:7px;width:24px;height:24px;border-radius:7px;
     background:rgba(10,10,12,.82);border:1px solid var(--border);color:var(--accent);
     display:grid;place-items:center;font-size:14px;backdrop-filter:blur(3px)}
+  /* Заголовок фестиваля: название Playfair + золотой разделитель, при наличии — логотип */
+  .fest-head{display:flex;align-items:center;gap:14px;margin:40px 0 22px;padding:0 0 15px;
+    border-bottom:1px solid rgba(232,184,75,.26)}
+  .fest-head:first-child{margin-top:8px}
+  .fest-name{font-family:"Playfair Display",serif;font-size:clamp(21px,2.6vw,27px);font-weight:700;
+    color:#fff;line-height:1.12}
+  .fest-emblem{flex-shrink:0;display:grid;place-items:center;height:42px}
+  .fest-logo{height:42px;width:auto;max-width:160px;display:block}
+  .fest-logo.gold{width:130px;background:var(--accent);
+    -webkit-mask:var(--logo) left center/contain no-repeat;mask:var(--logo) left center/contain no-repeat}
   .press-main{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
   .press-outlet{color:var(--muted-warm);font-weight:700;font-size:12px;letter-spacing:.05em;
     text-transform:uppercase;margin-bottom:5px}

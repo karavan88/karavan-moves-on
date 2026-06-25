@@ -298,6 +298,21 @@ export function pressView(list){
 /* Текущий/недавний фестиваль — выше. Прочие сохраняют исходный порядок. */
 export const FESTIVAL_ORDER = ['Il Cinema Ritrovato 2026','Канны 2026'];
 export function festId(f){ return 'fest-'+f.replace(/[^a-zа-я0-9]+/gi,'-').toLowerCase(); }
+
+/* Логотипы фестивалей. Файл кладётся в assets/fest/ (официальный логотип, который
+   приносит владелец сайта). gold:true — перекрашиваем в золото через CSS-маску
+   (для одноцветных лого вроде каннской пальмы); иначе показываем как есть.
+   Пока список пуст — заголовки фестивалей выводятся только текстом. */
+const FESTIVAL_LOGOS = [
+  { re:/канны|cannes/i, src:'/assets/fest/cannes.svg',    gold:true  },
+  { re:/ritrovato/i,    src:'/assets/fest/ritrovato.png', gold:false },
+];
+export function festivalLogoTag(name){
+  const m = FESTIVAL_LOGOS.find(l=>l.re.test(name));
+  if(!m) return '';
+  if(m.gold) return `<span class="fest-logo gold" style="--logo:url('${m.src}')" role="img" aria-label="${esc(name)}"></span>`;
+  return `<img class="fest-logo" src="${esc(m.src)}" alt="${esc(name)}" loading="lazy" decoding="async">`;
+}
 export function festivalsView(data){
   const groups = festivalGroups({
     reviews: published(data.reviews),
@@ -313,9 +328,15 @@ export function festivalsView(data){
     <div class="page-sub">Я езжу на фестивали и пишу с места. Сюда автоматически собирается всё, у чего отмечен фестиваль — рецензии, заметки, дневники и публикации в СМИ.</div>`;
   if(!keys.length) return `<main>${intro}<div class="state">Пока нет фестивальных материалов.</div></main>`;
   const nav = keys.map(f=>`<a href="#${festId(f)}">${esc(f)} <span>${groups[f].length}</span></a>`).join('');
-  const body = keys.map(f=>`
-    <div class="section-label" id="${festId(f)}" style="scroll-margin-top:78px">${esc(f)}</div>
-    <div class="press-list" style="max-width:none;margin:0 0 26px">${groups[f].map(festivalItemHTML).join('')}</div>`).join('');
+  const body = keys.map(f=>{
+    const logo = festivalLogoTag(f);
+    return `
+    <div class="fest-head${logo?' has-logo':''}" id="${festId(f)}" style="scroll-margin-top:78px">
+      ${logo?`<span class="fest-emblem">${logo}</span>`:''}
+      <span class="fest-name">${esc(f)}</span>
+    </div>
+    <div class="press-list" style="max-width:none;margin:0 0 30px">${groups[f].map(festivalItemHTML).join('')}</div>`;
+  }).join('');
   return `<main>${intro}
     <div class="press-layout">
       <nav class="press-nav" aria-label="Фестивали">${nav}</nav>
