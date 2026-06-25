@@ -160,6 +160,33 @@ export function festivalGroups({reviews=[], feed=[], diaries=[], press=[]}){
   return groups;
 }
 
+/* Большой «выбор автора» — флагманский материал на всю ширину. */
+export function featuredReviewHTML(r){
+  const film = r.film || r.title;
+  const img = r.poster
+    ? `<img src="${esc(r.poster)}" alt="${esc(film)}" decoding="async" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(film)}</div>'">`
+    : `<div class="ph">${esc(film)}</div>`;
+  return `<a class="featured" href="/review/${esc(r.slug)}">
+    <div class="featured-poster">${img}${r.rating?`<div class="rating-badge">★ ${esc(r.rating)}</div>`:''}</div>
+    <div class="featured-body">
+      <div class="featured-kicker">Выбор автора</div>
+      <h2 class="featured-title">${esc(r.title||film)}</h2>
+      ${r.title&&r.title!==film?`<div class="featured-film">${esc(film)}</div>`:''}
+      <div class="featured-meta">${[r.year,r.director].filter(Boolean).map(esc).join(' · ')}</div>
+      ${r.excerpt?`<p class="featured-excerpt">${esc(r.excerpt)}</p>`:''}
+      <span class="featured-cta">Читать →</span>
+    </div>
+  </a>`;
+}
+
+/* «С чего начать» — 3 курируемых текста по slug из site.json. */
+export function startHereHTML(reviews, slugs){
+  const bySlug = Object.fromEntries(published(reviews).map(r=>[r.slug,r]));
+  const picks = (slugs||[]).map(s=>bySlug[s]).filter(Boolean);
+  if(!picks.length) return '';
+  return `<div class="section-label">С чего начать</div><div class="grid">${picks.map(reviewCardHTML).join('')}</div>`;
+}
+
 /* ---------- ВИДЫ (содержимое #app) ---------- */
 export function homeView(data){
   const reviews = published(data.reviews);
@@ -167,20 +194,35 @@ export function homeView(data){
   const festivals = published(data.festivals);
   const collections = published(data.collections);
   const press = published(data.press);
+  const site = data.site || {};
+
+  /* редакционная «шапка»: выбор автора → последняя публикация → с чего начать */
+  let top='';
+  const featured = site.featured ? reviews.find(r=>r.slug===site.featured) : null;
+  if(featured) top += featuredReviewHTML(featured);
+  if(press.length) top += `${homeLabel('Последняя публикация','/press')}<div class="press-list" style="max-width:none;margin:0 0 8px">${pressItemHTML(press[0])}</div>`;
+  top += startHereHTML(reviews, site.startHere);
+
+  /* ряды разделов (последняя публикация уже показана — в ряду берём следующие) */
   let out='';
   if(reviews.length) out+=`${homeLabel('Рецензии','/reviews')}<div class="grid">${reviews.slice(0,4).map(reviewCardHTML).join('')}</div>`;
-  if(press.length) out+=`${homeLabel('Публикации в СМИ','/press')}<div class="press-list" style="max-width:none;margin:0">${press.slice(0,3).map(pressItemHTML).join('')}</div>`;
+  const pressRow = press.slice(1,4);
+  if(pressRow.length) out+=`${homeLabel('Публикации в СМИ','/press')}<div class="press-list" style="max-width:none;margin:0">${pressRow.map(pressItemHTML).join('')}</div>`;
   const festItems = homeFestItems({reviews,festivals,press});
   if(festItems.length) out+=`${homeLabel('Кинофестивали','/festivals')}<div class="press-list" style="max-width:none;margin:0 0 8px">${festItems.slice(0,3).map(festivalItemHTML).join('')}</div>`;
   if(collections.length) out+=`${homeLabel('Подборки','/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
   if(feed.length) out+=`${homeLabel('Заметки','/feed')}<div class="grid wide">${feed.slice(0,2).map(feedCardHTML).join('')}</div>`;
+
+  const heroCopy = site.heroCopy
+    || 'Карен Аванесян — исследователь кино, кандидат социологических наук. Рецензии, репортажи с фестивалей и публикации в СМИ:<br>кино как зеркало общества и бессознательного.';
+  const body = top + out;
   return `
     <section class="hero">
       <div class="kicker">Авторский сайт о кино</div>
       <h1>Кино глазами <em>социолога</em></h1>
-      <p>Карен Аванесян — исследователь кино, кандидат социологических наук. Рецензии, репортажи с фестивалей и публикации в СМИ:<br>кино как зеркало общества и бессознательного.</p>
+      <p>${heroCopy}</p>
     </section>
-    <main id="home">${out || `<div class="state">Пока нет материалов.</div>`}</main>`;
+    <main id="home">${body || `<div class="state">Пока нет материалов.</div>`}</main>`;
 }
 
 export function reviewsView(list){
@@ -209,25 +251,26 @@ function extLinkRow(meta){
 }
 
 export function reviewPageView(meta, bodyHtml){
-  const tags=(meta.tags||'').split(',').map(s=>s.trim()).filter(Boolean);
   const film = meta.film || meta.title;
+  const headline = (meta.title && meta.title !== film) ? meta.title : '';
   const poster = meta.poster
     ? `<img src="${esc(meta.poster)}" alt="${esc(film)}" decoding="async" onerror="this.parentNode.innerHTML='<div class=&quot;ph&quot;>${esc(film)}</div>'">`
     : `<div class="ph">${esc(film||'?')}</div>`;
   return `<main><article class="review-wrap">
     <a class="back" href="/reviews">← ко всем рецензиям</a>
     <div class="review-head">
-      <div class="poster">${poster}</div>
+      <div class="poster-col">
+        <div class="poster">${poster}</div>
+      </div>
       <div class="info">
-        <h1>${esc(meta.title||film||'Без названия')}</h1>
-        ${meta.film?`<div class="film-line">${esc(meta.film)}</div>`:''}
+        <h1>${esc(film||'Без названия')}</h1>
         <div class="sub">${[meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).map(esc).join(' · ')}</div>
         ${meta.rating?`<div class="stars">${stars(meta.rating)}<span class="num">${esc(meta.rating)} / 10</span></div>`:''}
         ${meta.festival?`<div><a class="fest-badge" href="/festivals">#${esc(meta.festival)}</a></div>`:''}
-        ${tags.length?`<div class="pill-row">${tags.map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</div>`:''}
         ${extLinkRow(meta)}
       </div>
     </div>
+    ${headline?`<h2 class="review-headline">${esc(headline)}</h2>`:''}
     <div class="prose">${bodyHtml}</div>
   </article></main>`;
 }

@@ -1,7 +1,7 @@
 ---
 name: Карен Аванесян
 role: Исследователь кино · кандидат социологических наук
-photo: assets/karen.jpg
+photo: /assets/karen.jpg
 telegram: https://t.me/karavan_goes
 letterboxd: https://letterboxd.com/karavan0788/
 kinopoisk: https://www.kinopoisk.ru/user/karavan88/

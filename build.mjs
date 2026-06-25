@@ -98,7 +98,7 @@ async function main(){
   await mkdir(OUT, { recursive: true });
 
   /* статика: всё, что нужно отдать как есть (включая .md и манифесты для SPA) */
-  for(const item of ['assets','reviews','feed','festivals','collections','about.md','press.json']){
+  for(const item of ['assets','reviews','feed','festivals','collections','about.md','press.json','site.json']){
     if(existsSync(path.join(ROOT,item))) await cp(path.join(ROOT,item), path.join(OUT,item), { recursive: true });
   }
 
@@ -127,6 +127,7 @@ async function main(){
   const festivals   = await readJSON('festivals/manifest.json');
   const collections = await readJSON('collections/manifest.json');
   const press       = await readJSON('press.json');
+  let site = {}; try { site = JSON.parse(await readText('site.json')); } catch {}
 
   const pubReviews     = R.published(reviews);
   const pubFeed        = R.published(feed);
@@ -143,7 +144,7 @@ async function main(){
       description: 'Кино глазами социолога: рецензии, репортажи с кинофестивалей и публикации в СМИ. Авторский сайт Карена Аванесяна.',
       urlPath: '/',
     }),
-    appHtml: R.homeView({reviews,feed,festivals,collections,press}),
+    appHtml: R.homeView({reviews,feed,festivals,collections,press,site}),
     view: {view:'home', nav:'home'},
   }));
   urls.push({loc:'/', priority:'1.0'});

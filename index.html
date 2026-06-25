@@ -140,6 +140,33 @@
     color:#cdc8bc;font-size:15px;line-height:1.38;margin-top:9px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
+  /* FEATURED — «выбор автора» на главной */
+  .featured{display:flex;align-items:stretch;gap:0;margin:6px 0 16px;color:inherit;
+    background:linear-gradient(180deg,#181820,#101015);border:1px solid var(--border);
+    border-radius:16px;overflow:hidden;
+    box-shadow:0 14px 40px rgba(0,0,0,.42);transition:transform .25s,border-color .25s,box-shadow .25s}
+  .featured:hover{transform:translateY(-4px);border-color:#43434f;
+    box-shadow:0 22px 54px rgba(0,0,0,.5), 0 0 0 1px rgba(232,184,75,.16)}
+  .featured-poster{position:relative;flex-shrink:0;width:210px;background:#0d0d12}
+  .featured-poster img{width:100%;height:100%;object-fit:cover;display:block}
+  .featured-poster .ph{width:100%;height:100%;min-height:300px;display:grid;place-items:center;
+    color:#6a6a78;font-family:"Playfair Display",serif;font-size:26px;text-align:center;padding:24px;
+    background:linear-gradient(160deg,#1b1b24,#0d0d12)}
+  .featured-body{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:30px 34px}
+  .featured-kicker{color:var(--accent);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+  .featured-title{font-family:"Playfair Display",serif;font-size:clamp(24px,3.2vw,34px);font-weight:800;
+    line-height:1.1;color:#fff}
+  .featured-film{font-family:"Playfair Display",serif;color:#e7e2d6;font-size:18px;margin-top:10px}
+  .featured-meta{color:var(--muted-warm);font-size:14px;margin-top:8px}
+  .featured-excerpt{color:#c2c2cc;font-size:16px;line-height:1.6;margin-top:14px;max-width:62ch;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .featured-cta{color:var(--accent);font-size:15px;font-weight:600;margin-top:18px}
+  @media(max-width:680px){
+    .featured{flex-direction:column}
+    .featured-poster{width:100%;height:260px}
+    .featured-body{padding:22px 22px 26px}
+  }
+
   /* FEED (timeline) */
   .feed-list{max-width:760px;margin:0 auto}
   .feed-item{display:block;padding:22px 24px;margin-bottom:14px;border:1px solid var(--border);
@@ -216,17 +243,19 @@
   .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);
     font-size:14px;margin-bottom:30px;transition:color .2s}
   .back:hover{color:var(--accent)}
-  .review-head{display:flex;align-items:flex-start;gap:28px;margin-bottom:34px;flex-wrap:wrap}
+  .review-head{display:flex;align-items:flex-start;gap:28px;margin-bottom:30px;flex-wrap:wrap}
+  .review-head .poster-col{flex-shrink:0;width:180px}
   /* На странице рецензии постер показываем целиком, без киноплёнки по краям. */
-  .review-head .poster{width:180px;border-radius:12px;border:1px solid var(--border);flex-shrink:0;
+  .review-head .poster{width:100%;border-radius:12px;border:1px solid var(--border);
     padding:0;overflow:hidden;background:linear-gradient(160deg,#1d1d26,#0e0e12)}
   .review-head .poster::before,.review-head .poster::after{display:none}
   .review-head .info{flex:1;min-width:240px}
   .review-head h1{font-family:"Playfair Display",serif;font-size:clamp(28px,5vw,42px);
-    font-weight:800;line-height:1.1}
-  .review-head .film-line{font-family:"Playfair Display",serif;color:#e7e2d6;
-    font-style:normal;font-weight:600;font-size:20px;margin-top:14px;letter-spacing:.01em}
-  .review-head .sub{color:var(--muted-warm);margin-top:7px;font-size:14px;letter-spacing:.02em}
+    font-weight:800;line-height:1.12}
+  .review-head .sub{color:var(--muted-warm);margin-top:10px;font-size:14px;letter-spacing:.02em}
+  /* заголовок-рубрика статьи: между шапкой и текстом, ведёт в тело рецензии */
+  .review-headline{font-family:"Playfair Display",serif;font-weight:800;
+    font-size:clamp(24px,3.6vw,34px);line-height:1.14;color:#fff;margin:6px 0 26px}
   .stars{margin-top:18px;font-size:19px;letter-spacing:2px;line-height:1.4}
   .stars .st-full{color:var(--accent)}
   .stars .st-empty{color:#3a3a46}
@@ -336,7 +365,7 @@
   @media(max-width:560px){
     .hero{padding:42px 20px 14px}
     .nav{padding:12px 16px;gap:12px}
-    .review-head .poster{width:130px}
+    .review-head .poster-col{width:130px}
   }
 </style>
 </head>
@@ -394,15 +423,16 @@ navToggle.addEventListener('click', ()=>{
 /* ---------- рендереры (фетч + сборка из общего модуля R) ---------- */
 async function renderHome(){
   setActive('home'); loading();
-  const [reviews,feed,festivals,collections,press] = await Promise.all([
+  const [reviews,feed,festivals,collections,press,site] = await Promise.all([
     getJSON('/reviews/manifest.json').catch(()=>null),
     getJSON('/feed/manifest.json').catch(()=>null),
     getJSON('/festivals/manifest.json').catch(()=>null),
     getJSON('/collections/manifest.json').catch(()=>null),
-    getJSON('/press.json').catch(()=>null)
+    getJSON('/press.json').catch(()=>null),
+    getJSON('/site.json').catch(()=>null)
   ]);
   if([reviews,feed,festivals,collections,press].every(x=>x===null)){ setApp(R.loadError()); return; }
-  setApp(R.homeView({reviews,feed,festivals,collections,press}));
+  setApp(R.homeView({reviews,feed,festivals,collections,press,site}));
   setTitle('Караван идёт — авторский сайт о кино Карена Аванесяна');
 }
 
