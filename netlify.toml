@@ -1,5 +1,21 @@
-# Конфигурация Netlify для статического сайта «Караван идёт».
-# Сайт не требует сборки — публикуем файлы как есть.
+# Конфигурация Netlify для сайта «Караван идёт».
+# Сборка пререндерит каждую страницу в статический HTML (см. build.mjs).
 [build]
-  publish = "."
-  command = ""
+  publish = "dist"
+  command = "npm run build"
+
+# Кэширование: HTML — всегда свежий, статика (картинки/шрифты/js) — надолго.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

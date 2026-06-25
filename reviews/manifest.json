@@ -1,14 +1,82 @@
 [
   {
+    "slug": "amma-ariyan",
+    "film": "«Сообщите матери» (Amma Ariyan)",
+    "title": "Поколение, оставшееся без матери",
+    "year": "1986",
+    "director": "Джон Абрахам",
+    "original": "Amma Ariyan",
+    "rating": "9",
+    "festival": "Il Cinema Ritrovato 2026",
+    "poster": "https://image.tmdb.org/t/p/w500/uLZVNluzv0PCnHRPwrt4sSYac8Y.jpg",
+    "excerpt": "Тихий шедевр индийского кино: целое поколение осиротело и отправилось искать мать."
+  },
+  {
     "slug": "chasy",
     "film": "«Часы»",
     "title": "Три утра, сшитые одним романом",
     "year": "2002",
     "director": "Стивен Долдри",
     "original": "The Hours",
-    "rating": "4",
+    "rating": "8",
     "poster": "https://image.tmdb.org/t/p/w500/4myDtowDJQPQnkEDB1IWGtJR1Fo.jpg",
     "excerpt": "К дню рождения Николь Кидман: три женщины, три эпохи и один роман «Миссис Дэллоуэй», сшивающий их в общий мотив о близости смерти."
+  },
+  {
+    "slug": "bezumnyy-pierro",
+    "film": "«Безумный Пьеро»",
+    "title": "Эксперимент, который сработал лишь однажды",
+    "year": "1965",
+    "director": "Жан-Люк Годар",
+    "original": "Pierrot le fou",
+    "rating": "9",
+    "poster": "https://image.tmdb.org/t/p/w500/i124H6iQB4CawrgFW9aZaZs7OBO.jpg",
+    "excerpt": "Тот редкий Годар, где слом нарратива по-настоящему живёт. Один раз — эксперимент; во второй — уже нет."
+  },
+  {
+    "slug": "zakulisye-realnosti",
+    "film": "«Закулисье реальности»",
+    "title": "Изнанка сентиментальности",
+    "year": "2026",
+    "director": "Кейн Парсонс",
+    "original": "The Backrooms",
+    "rating": "7",
+    "poster": "https://image.tmdb.org/t/p/w500/9aogyiv7s4U0nacrnQ9s4XEWJ15.jpg",
+    "excerpt": "За жанровой обёрткой хоррора с жёлтыми комнатами прячется фрейдистская драма о доме, который не отпускает."
+  },
+  {
+    "slug": "labirint-favna",
+    "film": "«Лабиринт Фавна»",
+    "title": "Классика. Просто не моя",
+    "year": "2006",
+    "director": "Гильермо дель Торо",
+    "original": "El laberinto del fauno / Pan's Labyrinth",
+    "rating": "5",
+    "festival": "Канны 2026",
+    "poster": "https://image.tmdb.org/t/p/w500/z7xXihu5wHuSMWymq5VAulPVuvg.jpg",
+    "excerpt": "Двадцать лет спустя пересматриваю дебютный объект моего раздражения — теперь классику — в Каннах, в присутствии Дель Торо."
+  },
+  {
+    "slug": "solaris",
+    "film": "«Солярис»",
+    "title": "Через космос к человеку: проблема субъектности и трансцендентного в «Солярисе» А. Тарковского",
+    "year": "1972",
+    "director": "Андрей Тарковский",
+    "original": "Solaris / Солярис",
+    "rating": "9",
+    "poster": "https://image.tmdb.org/t/p/w500/pgqj7QoBPWFLLKtLEpPmFYFRMgB.jpg",
+    "excerpt": "Текст, начатый в 17 лет и переписанный двадцать лет спустя: о субъектности и трансцендентном у Тарковского."
+  },
+  {
+    "slug": "zona-interesov",
+    "film": "«Зона интересов»",
+    "title": "Хоррор без единого выстрела",
+    "year": "2023",
+    "director": "Джонатан Глейзер",
+    "original": "The Zone of Interest",
+    "rating": "8",
+    "poster": "https://image.tmdb.org/t/p/w500/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg",
+    "excerpt": "Притча о банальности зла: хоррор, в котором нет ни трупа, ни выстрела — только обычная жизнь обычной семьи у забора Освенцима."
   },
   {
     "slug": "poznanie-ploti",
@@ -17,7 +85,7 @@
     "year": "1971",
     "director": "Майк Николс",
     "original": "Carnal Knowledge",
-    "rating": "4",
+    "rating": "8",
     "poster": "https://image.tmdb.org/t/p/w500/l7e1qP8Mq97W1Wg14FNnbz1OxmG.jpg",
     "excerpt": "Один из самых беспощадных фильмов о сексе глазами мужчин: освобождение от табу не приносит свободы, а лишь оголяет нарциссизм."
   },
@@ -28,7 +96,7 @@
     "year": "2025",
     "director": "Джош Сэфди",
     "original": "Marty Supreme",
-    "rating": "3.5",
+    "rating": "7",
     "poster": "https://image.tmdb.org/t/p/w500/lYWEXbQgRTR4ZQleSXAgRbxAjvq.jpg",
     "excerpt": "Шаламе играет человека, одержимого собственным величием ещё до того, как его достиг. Фильм о спорте, в котором так мало спорта."
   },
@@ -39,20 +107,9 @@
     "year": "2025",
     "director": "Райан Куглер",
     "original": "Sinners",
-    "rating": "3.5",
+    "rating": "7",
     "poster": "https://image.tmdb.org/t/p/w500/fWPgbnt2LSqkQ6cdQc0SZN9CpLm.jpg",
     "excerpt": "Куглер говорит о расовой травме не через трибунал, а через миф и жанр: грех здесь не поступок, а условие, в которое поставлена система."
-  },
-  {
-    "slug": "zona-interesov",
-    "film": "«Зона интересов»",
-    "title": "Хоррор без единого выстрела",
-    "year": "2023",
-    "director": "Джонатан Глейзер",
-    "original": "The Zone of Interest",
-    "rating": "4",
-    "poster": "https://image.tmdb.org/t/p/w500/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg",
-    "excerpt": "Притча о банальности зла: хоррор, в котором нет ни трупа, ни выстрела — только обычная жизнь обычной семьи у забора Освенцима."
   },
   {
     "slug": "otec-mat-sestra-brat",
@@ -61,7 +118,7 @@
     "year": "2025",
     "director": "Джим Джармуш",
     "original": "Father Mother Sister Brother",
-    "rating": "3",
+    "rating": "6",
     "poster": "https://image.tmdb.org/t/p/w500/96O3Ol3f2veMxAxYqsML8rOumB9.jpg",
     "excerpt": "Золотой лев Венеции: три новеллы за кофейным столиком о неловкости близких и желании сохранить статус-кво — от глубинки США до Парижа."
   },
@@ -72,65 +129,8 @@
     "year": "2025",
     "director": "Пак Чхан-ук",
     "original": "No Other Choice / 어쩔수가없다",
-    "rating": "3.5",
+    "rating": "7",
     "poster": "https://image.tmdb.org/t/p/w500/sBpxTGLzKnvPSVtL5yQYpSxvKEb.jpg",
     "excerpt": "Сокращённый клерк начинает устранять конкурентов за вакансию. Театр абсурда о рынке труда, где этика исчезает быстрее, чем рабочие места."
-  },
-  {
-    "slug": "labirint-favna",
-    "film": "«Лабиринт Фавна»",
-    "title": "Классика. Просто не моя",
-    "year": "2006",
-    "director": "Гильермо дель Торо",
-    "original": "El laberinto del fauno / Pan's Labyrinth",
-    "rating": "",
-    "festival": "Канны 2026",
-    "poster": "https://image.tmdb.org/t/p/w500/z7xXihu5wHuSMWymq5VAulPVuvg.jpg",
-    "excerpt": "Двадцать лет спустя пересматриваю дебютный объект моего раздражения — теперь классику — в Каннах, в присутствии Дель Торо."
-  },
-  {
-    "slug": "bezumnyy-pierro",
-    "film": "«Безумный Пьеро»",
-    "title": "Эксперимент, который сработал лишь однажды",
-    "year": "1965",
-    "director": "Жан-Люк Годар",
-    "original": "Pierrot le fou",
-    "rating": "4.5",
-    "poster": "https://image.tmdb.org/t/p/w500/i124H6iQB4CawrgFW9aZaZs7OBO.jpg",
-    "excerpt": "Тот редкий Годар, где слом нарратива по-настоящему живёт. Один раз — эксперимент; во второй — уже нет."
-  },
-  {
-    "slug": "amma-ariyan",
-    "film": "«Сообщите матери» (Amma Ariyan)",
-    "title": "Поколение, оставшееся без матери",
-    "year": "1986",
-    "director": "Джон Абрахам",
-    "original": "Amma Ariyan",
-    "rating": "4.5",
-    "festival": "Il Cinema Ritrovato 2026",
-    "poster": "https://image.tmdb.org/t/p/w500/uLZVNluzv0PCnHRPwrt4sSYac8Y.jpg",
-    "excerpt": "Тихий шедевр индийского кино: целое поколение осиротело и отправилось искать мать."
-  },
-  {
-    "slug": "zakulisye-realnosti",
-    "film": "«Закулисье реальности»",
-    "title": "Изнанка сентиментальности",
-    "year": "2026",
-    "director": "Кейн Парсонс",
-    "original": "The Backrooms",
-    "rating": "3.5",
-    "poster": "https://image.tmdb.org/t/p/w500/9aogyiv7s4U0nacrnQ9s4XEWJ15.jpg",
-    "excerpt": "За жанровой обёрткой хоррора с жёлтыми комнатами прячется фрейдистская драма о доме, который не отпускает."
-  },
-  {
-    "slug": "solaris",
-    "film": "«Солярис»",
-    "title": "Через космос к человеку: проблема субъектности и трансцендентного в «Солярисе» А. Тарковского",
-    "year": "1972",
-    "director": "Андрей Тарковский",
-    "original": "Solaris / Солярис",
-    "rating": "4.5",
-    "poster": "https://image.tmdb.org/t/p/w500/pgqj7QoBPWFLLKtLEpPmFYFRMgB.jpg",
-    "excerpt": "Текст, начатый в 17 лет и переписанный двадцать лет спустя: о субъектности и трансцендентном у Тарковского."
   }
 ]
