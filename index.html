@@ -345,6 +345,82 @@
   .coll-body p{color:#cccdd6;font-size:15px;line-height:1.62;margin:0}
   @media(max-width:560px){.coll-entry{gap:14px}.coll-entry .coll-poster{width:92px}.coll-rank{font-size:23px;min-width:30px}}
 
+  /* ============ СКРОЛЛ-ИСТОРИЯ (подборка, layout: scrolly) ============ */
+  /* мягкий «доводчик» к сценам — не ловушка, можно прокручивать свободно */
+  html.scrolly-lock{scroll-snap-type:y proximity;scroll-padding-top:64px}
+  main.scrolly{max-width:none;margin:0;padding:0;min-height:100vh}
+  .scrolly-back{position:fixed;top:74px;left:max(18px,4vw);z-index:40;display:inline-flex;
+    align-items:center;gap:8px;color:#cfcabf;font-size:14px;padding:8px 14px;border-radius:30px;
+    background:rgba(12,12,16,.55);border:1px solid var(--border);backdrop-filter:blur(8px);transition:color .2s,border-color .2s}
+  .scrolly-back:hover{color:var(--accent);border-color:#43434f}
+
+  /* интро-сцена */
+  .scene-intro{min-height:100vh;display:grid;place-items:center;text-align:center;
+    padding:90px 6vw;scroll-snap-align:start;position:relative}
+  .scene-intro-inner{max-width:780px}
+  .scrolly-kicker{color:var(--accent);font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px}
+  .scrolly-title{font-family:"Playfair Display",serif;font-weight:800;color:#fff;
+    font-size:clamp(34px,6.4vw,68px);line-height:1.04;letter-spacing:-.01em}
+  .scrolly-sub{color:#c8c3b8;font-size:clamp(16px,2vw,21px);line-height:1.5;margin:26px auto 0;max-width:620px}
+  .scroll-hint{margin-top:54px;color:var(--muted);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:12px}
+  .scroll-hint i{width:1px;height:46px;background:linear-gradient(var(--accent),transparent);animation:scrollPulse 1.9s ease-in-out infinite}
+  @keyframes scrollPulse{0%,100%{opacity:.25;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+  /* каждая запись подборки → сцена на весь экран */
+  .scrolly .scrolly-body{margin:0}
+  /* вводный абзац подборки — отдельная центрированная «сцена-эпиграф» */
+  .scrolly-body>p:first-child{min-height:90vh;display:grid;place-items:center;margin:0;
+    padding:80px 6vw;text-align:center;font-family:"Playfair Display",serif;font-style:italic;
+    color:#e7e2d6;font-size:clamp(20px,2.8vw,30px);line-height:1.5;scroll-snap-align:center}
+  .scrolly .coll-entry{position:relative;min-height:100vh;display:flex;align-items:center;
+    gap:clamp(28px,5vw,72px);padding:96px 7vw;border:none;overflow:hidden;scroll-snap-align:center}
+  /* размытый постер-фон (--bg ставит JS из src постера) */
+  .scrolly .coll-entry::before{content:"";position:absolute;inset:0;z-index:0;
+    background:var(--bg,#0d0d12) center/cover no-repeat;transform:scale(1.25);
+    filter:blur(46px) brightness(.30) saturate(1.2)}
+  .scrolly .coll-entry::after{content:"";position:absolute;inset:0;z-index:0;
+    background:radial-gradient(120% 90% at 50% 30%,transparent,rgba(7,7,10,.72) 70%),linear-gradient(180deg,rgba(7,7,10,.55),rgba(7,7,10,.85))}
+  /* гигантский «призрачный» номер */
+  .scrolly .coll-rank{position:absolute;z-index:0;top:50%;left:3vw;transform:translateY(-50%);
+    font-size:42vh;line-height:1;opacity:.07;color:#fff;pointer-events:none;min-width:0}
+  /* постер крупным планом */
+  .scrolly .coll-entry .coll-poster{position:relative;z-index:1;width:clamp(180px,24vw,320px);
+    border-radius:16px;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .scrolly .coll-body{position:relative;z-index:1;flex:1;max-width:560px}
+  .scrolly .coll-body h3{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,46px);
+    font-weight:800;color:#fff;line-height:1.06;margin:0}
+  .scrolly .coll-meta{color:#d8d3c7;font-size:clamp(13px,1.5vw,16px);margin:16px 0 20px}
+  .scrolly .coll-meta b{color:var(--accent)}
+  .scrolly .coll-body p{color:#e4e4ea;font-size:clamp(15px,1.7vw,19px);line-height:1.66}
+  /* чётные сцены — зеркально, для ритма */
+  .scrolly .coll-entry:nth-of-type(even){flex-direction:row-reverse}
+  .scrolly .coll-entry:nth-of-type(even) .coll-rank{left:auto;right:3vw}
+  /* появление при прокрутке (класс .in ставит IntersectionObserver) */
+  .scrolly .coll-entry .coll-poster,.scrolly .coll-entry .coll-body{
+    opacity:0;transform:translateY(46px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+  .scrolly .coll-entry.in .coll-poster{opacity:1;transform:none}
+  .scrolly .coll-entry.in .coll-body{opacity:1;transform:none;transition-delay:.12s}
+  /* счётчик сцен */
+  .scrolly-counter{position:fixed;right:max(18px,4vw);bottom:30px;z-index:40;
+    font-family:"Playfair Display",serif;color:#fff;background:rgba(12,12,16,.5);
+    border:1px solid var(--border);backdrop-filter:blur(8px);padding:8px 16px;border-radius:30px;
+    display:flex;align-items:baseline;gap:5px}
+  .scrolly-counter b{font-size:22px;font-weight:800;color:var(--accent)}
+  .scrolly-counter i{font-style:normal;font-size:13px;color:var(--muted)}
+  @media(max-width:680px){
+    .scrolly .coll-entry{flex-direction:column;text-align:center;justify-content:center;gap:22px;padding:90px 22px}
+    .scrolly .coll-entry:nth-of-type(even){flex-direction:column}
+    .scrolly .coll-rank{font-size:34vh;left:50%;right:auto;transform:translate(-50%,-50%)}
+    .scrolly .coll-entry:nth-of-type(even) .coll-rank{left:50%;right:auto}
+    .scrolly .coll-body{max-width:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .scrolly .coll-entry .coll-poster,.scrolly .coll-entry .coll-body{opacity:1;transform:none;transition:none}
+    .scroll-hint i{animation:none}
+    html.scrolly-lock{scroll-snap-type:none}
+  }
+
   .state{text-align:center;color:var(--muted);padding:80px 20px}
   .state h2{color:var(--text);font-family:"Playfair Display",serif;margin-bottom:10px}
 
@@ -479,6 +555,7 @@ async function renderCollection(slug){
     setApp(R.collectionPageView(meta, md(body)));
     setTitle(`${meta.title||'Подборка'} — Подборки — Караван идёт`);
     window.scrollTo(0,0);
+    enhanceScrolly();
   }catch(e){ setApp(R.notFoundView('Подборка не найдена','/collections','к подборкам')); }
 }
 
@@ -526,8 +603,38 @@ async function renderAbout(){
   }catch(e){ setApp(R.loadError()); }
 }
 
+/* ---------- скролл-история подборки ---------- */
+let scrollyIO = null;
+function enhanceScrolly(){
+  const root = document.querySelector('.scrolly');
+  if(!root){ document.documentElement.classList.remove('scrolly-lock'); return; }
+  document.documentElement.classList.add('scrolly-lock');
+  const scenes = [...root.querySelectorAll('.coll-entry')];
+  const now = document.getElementById('scNow');
+  scenes.forEach((s,i)=>{
+    s.classList.add('scene');
+    s.dataset.idx = i+1;
+    const img = s.querySelector('.coll-poster');
+    const src = img && img.getAttribute('src');
+    if(src) s.style.setProperty('--bg', `url("${src}")`);
+  });
+  if(scrollyIO) scrollyIO.disconnect();
+  scrollyIO = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        if(now && e.intersectionRatio>=0.5) now.textContent = e.target.dataset.idx;
+      }
+    });
+  }, {threshold:[0.15,0.5,0.75]});
+  scenes.forEach(s=>scrollyIO.observe(s));
+}
+
 /* ---------- роутер на реальных путях ---------- */
 function route(){
+  /* уходя с любой страницы — снимаем режим скролл-истории */
+  document.documentElement.classList.remove('scrolly-lock');
+  if(scrollyIO){ scrollyIO.disconnect(); scrollyIO = null; }
   const path = location.pathname.replace(/\/+$/,'') || '/';
   let m;
   if(m=path.match(/^\/review\/(.+)$/)) return renderReview(decodeURIComponent(m[1]));
@@ -587,6 +694,7 @@ window.addEventListener('popstate', route);
     if(v.view==='reviews'){
       getJSON('/reviews/manifest.json').then(wireReviewSearch).catch(()=>{});
     }
+    enhanceScrolly(); /* пререндеренная скролл-подборка — довешиваем фон/анимации */
     return;
   }
   route();

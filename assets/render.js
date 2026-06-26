@@ -275,6 +275,7 @@ export function collectionsView(list){
 }
 
 export function collectionPageView(meta, bodyHtml){
+  if(meta.layout === 'scrolly') return collectionScrollyView(meta, bodyHtml);
   return `<main><article class="review-wrap">
     <a class="back" href="/collections">← ко всем подборкам</a>
     ${meta.cover?`<div class="poster cover" style="border-radius:14px;border:1px solid var(--border);margin-bottom:24px;max-height:320px"><img src="${esc(meta.cover)}" alt="" decoding="async" onerror="this.parentNode.style.display='none'"></div>`:''}
@@ -282,6 +283,29 @@ export function collectionPageView(meta, bodyHtml){
     ${meta.subtitle?`<div class="page-sub">${esc(meta.subtitle)}</div>`:''}
     <div class="prose">${bodyHtml}</div>
   </article></main>`;
+}
+
+/* Кинематографичная «скролл-история»: каждая запись подборки (.coll-entry из
+   markdown) превращается в сцену на весь экран. Постер уходит в размытый фон,
+   текст проявляется при прокрутке. Браузерный «усилитель» (enhanceScrolly в
+   index.html) добавляет фон, анимации и счётчик; без JS страница остаётся
+   читаемой как обычный список. */
+export function collectionScrollyView(meta, bodyHtml){
+  const count = (bodyHtml.match(/class="coll-entry"/g) || []).length;
+  const kicker = meta.kicker || (count ? `Подборка · ${count}` : 'Подборка');
+  return `<main class="scrolly">
+    <a class="back scrolly-back" href="/collections">← ко всем подборкам</a>
+    <section class="scene scene-intro">
+      <div class="scene-intro-inner">
+        <div class="scrolly-kicker">${esc(kicker)}</div>
+        <h1 class="scrolly-title">${esc(meta.title || '')}</h1>
+        ${meta.subtitle ? `<p class="scrolly-sub">${esc(meta.subtitle)}</p>` : ''}
+        <div class="scroll-hint" aria-hidden="true"><span>прокрутите вниз</span><i></i></div>
+      </div>
+    </section>
+    <div class="prose scrolly-body">${bodyHtml}</div>
+    ${count ? `<div class="scrolly-counter" aria-hidden="true"><b id="scNow">1</b><i>/ ${count}</i></div>` : ''}
+  </main>`;
 }
 
 export function feedView(list){
