@@ -250,9 +250,9 @@
     padding:0;overflow:hidden;background:linear-gradient(160deg,#1d1d26,#0e0e12)}
   .review-head .poster::before,.review-head .poster::after{display:none}
   .review-head .info{flex:1;min-width:240px}
-  .review-head h1{font-family:"Playfair Display",serif;font-size:clamp(28px,5vw,42px);
-    font-weight:800;line-height:1.12}
-  .review-head .sub{color:var(--muted-warm);margin-top:10px;font-size:14px;letter-spacing:.02em}
+  .review-head h1{font-family:"Playfair Display",serif;font-size:clamp(25px,4.2vw,36px);
+    font-weight:800;line-height:1.14}
+  .review-head .sub{color:var(--muted-warm);margin-top:11px;font-size:15.5px;letter-spacing:.02em}
   /* заголовок-рубрика статьи: между шапкой и текстом, ведёт в тело рецензии */
   .review-headline{font-family:"Playfair Display",serif;font-weight:800;
     font-size:clamp(24px,3.6vw,34px);line-height:1.14;color:#fff;margin:6px 0 26px}
@@ -558,7 +558,14 @@ document.addEventListener('click', e=>{
   const href = a.getAttribute('href');
   if(!href || a.target==='_blank' || a.hasAttribute('download')) return;
   if(/^(https?:|mailto:|tel:)/.test(href)) return;
-  if(href.startsWith('#')) return; /* внутренние якоря (рубрики прессы) */
+  if(href.startsWith('#')){
+    /* внутренние якоря (рубрики прессы, фестивали). id содержит кириллицу,
+       а нативный переход по #хэшу её процент-кодирует и не находит элемент —
+       поэтому скроллим сами по раскодированному id. */
+    const el = document.getElementById(decodeURIComponent(href.slice(1)));
+    if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); history.replaceState({}, '', location.pathname + href); }
+    return;
+  }
   e.preventDefault();
   navTo(href);
 });

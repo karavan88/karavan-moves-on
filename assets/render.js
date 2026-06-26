@@ -179,14 +179,6 @@ export function featuredReviewHTML(r){
   </a>`;
 }
 
-/* «С чего начать» — 3 курируемых текста по slug из site.json. */
-export function startHereHTML(reviews, slugs){
-  const bySlug = Object.fromEntries(published(reviews).map(r=>[r.slug,r]));
-  const picks = (slugs||[]).map(s=>bySlug[s]).filter(Boolean);
-  if(!picks.length) return '';
-  return `<div class="section-label">С чего начать</div><div class="grid">${picks.map(reviewCardHTML).join('')}</div>`;
-}
-
 /* ---------- ВИДЫ (содержимое #app) ---------- */
 export function homeView(data){
   const reviews = published(data.reviews);
@@ -196,17 +188,15 @@ export function homeView(data){
   const press = published(data.press);
   const site = data.site || {};
 
-  /* редакционная «шапка»: выбор автора → последняя публикация → с чего начать */
+  /* редакционная «шапка»: флагманский материал — «выбор автора» */
   let top='';
   const featured = site.featured ? reviews.find(r=>r.slug===site.featured) : null;
   if(featured) top += featuredReviewHTML(featured);
-  if(press.length) top += `${homeLabel('Последняя публикация','/press')}<div class="press-list" style="max-width:none;margin:0 0 8px">${pressItemHTML(press[0])}</div>`;
-  top += startHereHTML(reviews, site.startHere);
 
-  /* ряды разделов (последняя публикация уже показана — в ряду берём следующие) */
+  /* ряды разделов */
   let out='';
   if(reviews.length) out+=`${homeLabel('Рецензии','/reviews')}<div class="grid">${reviews.slice(0,4).map(reviewCardHTML).join('')}</div>`;
-  const pressRow = press.slice(1,4);
+  const pressRow = press.slice(0,3);
   if(pressRow.length) out+=`${homeLabel('Публикации в СМИ','/press')}<div class="press-list" style="max-width:none;margin:0">${pressRow.map(pressItemHTML).join('')}</div>`;
   const festItems = homeFestItems({reviews,festivals,press});
   if(festItems.length) out+=`${homeLabel('Кинофестивали','/festivals')}<div class="press-list" style="max-width:none;margin:0 0 8px">${festItems.slice(0,3).map(festivalItemHTML).join('')}</div>`;
@@ -218,7 +208,7 @@ export function homeView(data){
   const body = top + out;
   return `
     <section class="hero">
-      <div class="kicker">Авторский сайт о кино</div>
+      <div class="kicker">Авторский сайт о кино Карена Аванесяна</div>
       <h1>Кино глазами <em>социолога</em></h1>
       <p>${heroCopy}</p>
     </section>
