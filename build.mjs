@@ -58,21 +58,34 @@ for (const rel of ['/assets/render.js', '/assets/marked.min.js']) {
   TEMPLATE = bust(TEMPLATE, rel, await assetVer(rel.replace(/^\//, '')));
 }
 
-function buildMeta({title, description, urlPath, image, type='website', jsonld}){
+const SITE_NAME = 'Караван идёт';
+/* ogTitle — короткий заголовок для карточки-превью (Telegram/Twitter/WhatsApp):
+   без хвоста «— Караван идёт», его роль играет og:site_name. По умолчанию = title. */
+function buildMeta({title, ogTitle, description, urlPath, image, type='website', jsonld, author, published}){
   const url = `${SITE}${urlPath}`;
   const img = absUrl(image);
   const desc = (description||'').replace(/\s+/g,' ').trim();
+  const ogt = ogTitle || title;
   const lines = [
     `<title>${R.esc(title)}</title>`,
     `<meta name="description" content="${R.esc(desc)}">`,
     `<link rel="canonical" href="${R.esc(url)}">`,
-    `<meta property="og:title" content="${R.esc(title)}">`,
+    `<meta property="og:site_name" content="${R.esc(SITE_NAME)}">`,
+    `<meta property="og:locale" content="ru_RU">`,
+    `<meta property="og:title" content="${R.esc(ogt)}">`,
     `<meta property="og:description" content="${R.esc(desc)}">`,
     `<meta property="og:type" content="${type}">`,
     `<meta property="og:url" content="${R.esc(url)}">`,
     `<meta property="og:image" content="${R.esc(img)}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${R.esc(ogt)}">`,
+    `<meta name="twitter:description" content="${R.esc(desc)}">`,
+    `<meta name="twitter:image" content="${R.esc(img)}">`,
   ];
+  if(type==='article'){
+    lines.push(`<meta property="article:author" content="${R.esc(author||SITE_NAME)}">`);
+    if(published) lines.push(`<meta property="article:published_time" content="${R.esc(published)}">`);
+  }
   if(jsonld) lines.push(`<script type="application/ld+json">${JSON.stringify(jsonld)}</script>`);
   return lines.join('\n');
 }
@@ -186,7 +199,9 @@ async function main(){
     await emit(`/review/${r.slug}`, renderPage({
       meta: buildMeta({
         title: `${(meta.title||r.title)} — ${film} — Караван идёт`,
+        ogTitle: `${(meta.title||r.title)} · ${film}`,
         description: desc, urlPath:`/review/${r.slug}`, image: meta.poster||r.poster, type:'article', jsonld,
+        author:'Карен Аванесян', published: meta.date,
       }),
       appHtml: R.reviewPageView(meta, md(body)),
       view: {view:'review', nav:'reviews', slug:r.slug},
@@ -237,7 +252,7 @@ async function main(){
     if(!parsed) continue;
     const { meta, body } = parsed;
     await emit(`/festival/${d.slug}`, renderPage({
-      meta: buildMeta({ title:`${meta.title||d.title} — Кинофестивали — Караван идёт`, description: d.excerpt||excerptFromBody(body), urlPath:`/festival/${d.slug}`, type:'article' }),
+      meta: buildMeta({ title:`${meta.title||d.title} — Кинофестивали — Караван идёт`, ogTitle: meta.title||d.title, description: d.excerpt||excerptFromBody(body), urlPath:`/festival/${d.slug}`, image: meta.poster||meta.image, type:'article', author:'Карен Аванесян', published: meta.date }),
       appHtml: R.timelineItemView(meta, md(body), '/festivals', 'к фестивалям'),
       view: {view:'festival', nav:'festivals', slug:d.slug},
     }));
@@ -256,7 +271,7 @@ async function main(){
     if(!parsed) continue;
     const { meta, body } = parsed;
     await emit(`/feed/${f.slug}`, renderPage({
-      meta: buildMeta({ title:`${meta.title||f.title} — Заметки — Караван идёт`, description: f.excerpt||excerptFromBody(body), urlPath:`/feed/${f.slug}`, type:'article' }),
+      meta: buildMeta({ title:`${meta.title||f.title} — Заметки — Караван идёт`, ogTitle: meta.title||f.title, description: f.excerpt||excerptFromBody(body), urlPath:`/feed/${f.slug}`, image: meta.poster||meta.image, type:'article', author:'Карен Аванесян', published: meta.date }),
       appHtml: R.timelineItemView(meta, md(body), '/feed', 'в заметки'),
       view: {view:'feedItem', nav:'feed', slug:f.slug},
     }));
