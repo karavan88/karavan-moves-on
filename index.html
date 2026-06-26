@@ -377,7 +377,7 @@
     padding:80px 6vw;text-align:center;font-family:"Playfair Display",serif;font-style:italic;
     color:#e7e2d6;font-size:clamp(20px,2.8vw,30px);line-height:1.5;scroll-snap-align:center}
   .scrolly .coll-entry{position:relative;min-height:100vh;display:flex;align-items:center;
-    gap:clamp(28px,5vw,72px);padding:96px 7vw;border:none;overflow:hidden;scroll-snap-align:center}
+    gap:clamp(24px,4vw,56px);padding:84px 5vw;border:none;overflow:hidden;scroll-snap-align:center}
   /* размытый постер-фон (--bg ставит JS из src постера) */
   .scrolly .coll-entry::before{content:"";position:absolute;inset:0;z-index:0;
     background:var(--bg,#0d0d12) center/cover no-repeat;transform:scale(1.25);
@@ -390,7 +390,7 @@
   /* постер крупным планом */
   .scrolly .coll-entry .coll-poster{position:relative;z-index:1;width:clamp(180px,24vw,320px);
     border-radius:16px;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 80px rgba(0,0,0,.6)}
-  .scrolly .coll-body{position:relative;z-index:1;flex:1;max-width:560px}
+  .scrolly .coll-body{position:relative;z-index:1;flex:1;max-width:min(760px,56vw)}
   .scrolly .coll-body h3{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,46px);
     font-weight:800;color:#fff;line-height:1.06;margin:0}
   /* название фильма — прямо под именем героини */
@@ -399,6 +399,14 @@
   .scrolly .coll-meta{color:#dcd7cc;font-size:clamp(15px,1.8vw,19px);margin:13px 0 22px}
   .scrolly .coll-meta b{color:var(--accent)}
   .scrolly .coll-body p{color:#e4e4ea;font-size:clamp(15px,1.7vw,19px);line-height:1.66}
+  .scrolly .coll-body p + p{margin-top:.85em}
+  /* иконка-ссылка на Letterboxd (три фирменные точки) */
+  a.lb{display:inline-block;width:36px;height:14px;vertical-align:middle;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104 40'%3E%3Ccircle cx='20' cy='20' r='19' fill='%23FF8000'/%3E%3Ccircle cx='52' cy='20' r='19' fill='%2300E054'/%3E%3Ccircle cx='84' cy='20' r='19' fill='%2340BCF4'/%3E%3C/svg%3E") center/contain no-repeat;
+    opacity:.9;transition:opacity .2s,transform .2s}
+  a.lb:hover{opacity:1;transform:scale(1.14)}
+  .scrolly .coll-meta a.lb{margin-left:10px}
+  .scrolly .coll-film a.lb{margin-left:12px}
   /* чётные сцены — зеркально, для ритма */
   .scrolly .coll-entry:nth-of-type(even){flex-direction:row-reverse}
   .scrolly .coll-entry:nth-of-type(even) .coll-rank{left:auto;right:3vw}
