@@ -411,7 +411,7 @@
   .scrolly-counter{position:fixed;right:max(18px,4vw);bottom:30px;z-index:40;
     font-family:"Playfair Display",serif;color:#fff;background:rgba(12,12,16,.5);
     border:1px solid var(--border);backdrop-filter:blur(8px);padding:8px 16px;border-radius:30px;
-    display:flex;align-items:baseline;gap:5px}
+    display:flex;align-items:baseline;gap:5px;opacity:0;transition:opacity .3s ease}
   .scrolly-counter b{font-size:22px;font-weight:800;color:var(--accent)}
   .scrolly-counter i{font-style:normal;font-size:13px;color:var(--muted)}
   @media(max-width:680px){
@@ -635,21 +635,23 @@ function enhanceScrolly(){
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
   }, {threshold:0.15});
   scenes.forEach(s=>scrollyIO.observe(s));
-  /* счётчик — напрямую от позиции прокрутки: берём сцену, чей центр ближе
-     всего к центру экрана. Надёжнее IO для высоких сцен и обновляется на
-     каждом кадре прокрутки, поэтому номер меняется на КАЖДОМ фильме. */
+  /* счётчик — напрямую от позиции прокрутки: активна та сцена-фильм, внутри
+     которой проходит центр экрана. Обновляется на каждом кадре, поэтому номер
+     меняется на КАЖДОМ фильме. На вступительных слайдах (заголовок и эпиграф —
+     не .coll-entry) центр ни в одной сцене не лежит → счётчик прячем. */
+  const counter = document.querySelector('.scrolly-counter');
   let ticking = false;
   const updateCounter = ()=>{
     ticking = false;
     if(!now) return;
     const mid = window.innerHeight/2;
-    let best=null, bd=Infinity;
+    let active = null;
     scenes.forEach(s=>{
       const r = s.getBoundingClientRect();
-      const d = Math.abs(r.top + r.height/2 - mid);
-      if(d<bd){ bd=d; best=s; }
+      if(r.top <= mid && r.bottom >= mid) active = s;
     });
-    if(best) now.textContent = best.dataset.idx;
+    if(active){ if(counter) counter.style.opacity = '1'; now.textContent = active.dataset.idx; }
+    else if(counter){ counter.style.opacity = '0'; }
   };
   if(scrollyScroll) window.removeEventListener('scroll', scrollyScroll);
   scrollyScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(updateCounter); } };
