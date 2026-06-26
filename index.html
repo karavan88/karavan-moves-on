@@ -349,7 +349,9 @@
   /* ============ СКРОЛЛ-ИСТОРИЯ (подборка, layout: scrolly) ============ */
   /* мягкий «доводчик» к сценам — не ловушка, можно прокручивать свободно */
   html.scrolly-lock{scroll-snap-type:y proximity;scroll-padding-top:64px}
-  main.scrolly{max-width:none;margin:0;padding:0;min-height:100vh}
+  /* без fadeUp: его transform (fill:both) сделал бы main контейнером для
+     position:fixed, и счётчик/кнопка «назад» поехали бы вместе со страницей */
+  main.scrolly{max-width:none;margin:0;padding:0;min-height:100vh;animation:none}
   .scrolly-back{position:fixed;top:74px;left:max(18px,4vw);z-index:40;display:inline-flex;
     align-items:center;gap:8px;color:#cfcabf;font-size:14px;padding:8px 14px;border-radius:30px;
     background:rgba(12,12,16,.55);border:1px solid var(--border);backdrop-filter:blur(8px);transition:color .2s,border-color .2s}
@@ -608,10 +610,15 @@ async function renderAbout(){
 }
 
 /* ---------- скролл-история подборки ---------- */
-let scrollyIO = null;
+let scrollyIO = null, scrollyScroll = null;
+function teardownScrolly(){
+  document.documentElement.classList.remove('scrolly-lock');
+  if(scrollyIO){ scrollyIO.disconnect(); scrollyIO = null; }
+  if(scrollyScroll){ window.removeEventListener('scroll', scrollyScroll); scrollyScroll = null; }
+}
 function enhanceScrolly(){
   const root = document.querySelector('.scrolly');
-  if(!root){ document.documentElement.classList.remove('scrolly-lock'); return; }
+  if(!root){ teardownScrolly(); return; }
   document.documentElement.classList.add('scrolly-lock');
   const scenes = [...root.querySelectorAll('.coll-entry')];
   const now = document.getElementById('scNow');
@@ -622,27 +629,38 @@ function enhanceScrolly(){
     const src = img && img.getAttribute('src');
     if(src) s.style.setProperty('--bg', `url("${src}")`);
   });
+  /* появление сцен — через IntersectionObserver */
   if(scrollyIO) scrollyIO.disconnect();
-  /* счётчик показывает самую заметную сцену: храним долю видимости каждой
-     сцены и на каждом событии берём максимум — номер обновляется на всём пути */
-  const ratios = new Map();
   scrollyIO = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('in');
-      ratios.set(e.target, e.isIntersecting ? e.intersectionRatio : 0);
-    });
-    let best=null, bestR=-1;
-    ratios.forEach((r,el)=>{ if(r>bestR){ bestR=r; best=el; } });
-    if(best && bestR>0 && now) now.textContent = best.dataset.idx;
-  }, {threshold:[0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1]});
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:0.15});
   scenes.forEach(s=>scrollyIO.observe(s));
+  /* счётчик — напрямую от позиции прокрутки: берём сцену, чей центр ближе
+     всего к центру экрана. Надёжнее IO для высоких сцен и обновляется на
+     каждом кадре прокрутки, поэтому номер меняется на КАЖДОМ фильме. */
+  let ticking = false;
+  const updateCounter = ()=>{
+    ticking = false;
+    if(!now) return;
+    const mid = window.innerHeight/2;
+    let best=null, bd=Infinity;
+    scenes.forEach(s=>{
+      const r = s.getBoundingClientRect();
+      const d = Math.abs(r.top + r.height/2 - mid);
+      if(d<bd){ bd=d; best=s; }
+    });
+    if(best) now.textContent = best.dataset.idx;
+  };
+  if(scrollyScroll) window.removeEventListener('scroll', scrollyScroll);
+  scrollyScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(updateCounter); } };
+  window.addEventListener('scroll', scrollyScroll, {passive:true});
+  updateCounter();
 }
 
 /* ---------- роутер на реальных путях ---------- */
 function route(){
   /* уходя с любой страницы — снимаем режим скролл-истории */
-  document.documentElement.classList.remove('scrolly-lock');
-  if(scrollyIO){ scrollyIO.disconnect(); scrollyIO = null; }
+  teardownScrolly();
   const path = location.pathname.replace(/\/+$/,'') || '/';
   let m;
   if(m=path.match(/^\/review\/(.+)$/)) return renderReview(decodeURIComponent(m[1]));
