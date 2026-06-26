@@ -340,6 +340,7 @@
   .coll-entry .coll-poster{width:124px;flex-shrink:0;border-radius:10px;border:1px solid var(--border);margin:0}
   .coll-body{flex:1;min-width:0}
   .coll-body h3{font-family:"Playfair Display",serif;font-size:21px;font-weight:700;line-height:1.2;color:#fff;margin:0}
+  .coll-film{font-family:"Playfair Display",serif;font-style:italic;color:var(--accent);font-size:16px;margin-top:4px}
   .coll-meta{color:var(--muted);font-size:13px;margin:7px 0 11px}
   .coll-meta b{color:var(--accent);font-weight:700}
   .coll-body p{color:#cccdd6;font-size:15px;line-height:1.62;margin:0}
@@ -390,7 +391,10 @@
   .scrolly .coll-body{position:relative;z-index:1;flex:1;max-width:560px}
   .scrolly .coll-body h3{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,46px);
     font-weight:800;color:#fff;line-height:1.06;margin:0}
-  .scrolly .coll-meta{color:#d8d3c7;font-size:clamp(13px,1.5vw,16px);margin:16px 0 20px}
+  /* название фильма — прямо под именем героини */
+  .scrolly .coll-film{font-family:"Playfair Display",serif;font-style:italic;color:var(--accent);
+    font-size:clamp(18px,2.2vw,27px);line-height:1.2;margin-top:11px}
+  .scrolly .coll-meta{color:#dcd7cc;font-size:clamp(15px,1.8vw,19px);margin:13px 0 22px}
   .scrolly .coll-meta b{color:var(--accent)}
   .scrolly .coll-body p{color:#e4e4ea;font-size:clamp(15px,1.7vw,19px);line-height:1.66}
   /* чётные сцены — зеркально, для ритма */
@@ -619,14 +623,18 @@ function enhanceScrolly(){
     if(src) s.style.setProperty('--bg', `url("${src}")`);
   });
   if(scrollyIO) scrollyIO.disconnect();
+  /* счётчик показывает самую заметную сцену: храним долю видимости каждой
+     сцены и на каждом событии берём максимум — номер обновляется на всём пути */
+  const ratios = new Map();
   scrollyIO = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
-      if(e.isIntersecting){
-        e.target.classList.add('in');
-        if(now && e.intersectionRatio>=0.5) now.textContent = e.target.dataset.idx;
-      }
+      if(e.isIntersecting) e.target.classList.add('in');
+      ratios.set(e.target, e.isIntersecting ? e.intersectionRatio : 0);
     });
-  }, {threshold:[0.15,0.5,0.75]});
+    let best=null, bestR=-1;
+    ratios.forEach((r,el)=>{ if(r>bestR){ bestR=r; best=el; } });
+    if(best && bestR>0 && now) now.textContent = best.dataset.idx;
+  }, {threshold:[0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1]});
   scenes.forEach(s=>scrollyIO.observe(s));
 }
 
