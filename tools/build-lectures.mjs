@@ -57,7 +57,7 @@ function renderLanding(subjects){
     const body = lectures.length
       ? `<div class="lecgrid">${items}</div>`
       : `<div class="empty">План курса готовится</div>`;
-    return `<section class="subj">
+    return `<section class="subj" id="subj-${s.slug}">
       <div class="subj-head">
         <h2>${esc(s.title)}</h2>
         <p>${esc(s.blurb)}</p>
@@ -88,6 +88,7 @@ function renderLanding(subjects){
   --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--bone);font-family:var(--serif);-webkit-font-smoothing:antialiased;min-height:100vh}
 .wrap{max-width:1080px;margin:0 auto;padding:40px 28px 80px}
 a{color:inherit;text-decoration:none}
@@ -98,7 +99,10 @@ a{color:inherit;text-decoration:none}
 .kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
 h1{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(44px,8vw,104px);line-height:.92;letter-spacing:-.01em}
 .sub{font-family:var(--display);font-weight:300;font-size:clamp(17px,2vw,24px);color:var(--bone-dim);margin-top:14px}
-.subj{margin-top:54px}
+.subjnav{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:8px;padding:14px 0 16px;margin-top:4px;background:linear-gradient(var(--ink) 72%,rgba(20,17,15,0))}
+.subjnav a{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);border:1px solid var(--line-strong);padding:9px 14px;border-radius:2px;transition:.16s}
+.subjnav a:hover{border-color:var(--red);color:var(--bone);background:var(--ink-2)}
+.subj{margin-top:50px;scroll-margin-top:72px}
 .subj-head h2{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(24px,3.4vw,42px);letter-spacing:-.005em;color:var(--bone)}
 .subj-head h2::before{content:"";display:inline-block;width:26px;height:13px;background:var(--red);margin-right:14px;transform:skewX(-12deg)}
 .subj-head p{max-width:74ch;margin:12px 0 22px;font-size:clamp(15px,1.4vw,17px);line-height:1.5;color:var(--bone-dim)}
@@ -127,6 +131,9 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-fa
     <h1>Лекции</h1>
     <div class="sub">Курсы о кино как способе понять капитализм, идеологию и общество.</div>
   </header>
+  <nav class="subjnav" aria-label="Предметы">
+    ${subjects.map(s=>`<a href="#subj-${s.slug}">${esc(s.title)}</a>`).join('\n    ')}
+  </nav>
   ${subjects.map(card).join('\n')}
   <footer>Караван идёт · авторский сайт о кино Карена Аванесяна</footer>
 </div>

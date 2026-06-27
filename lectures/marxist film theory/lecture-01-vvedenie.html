@@ -183,6 +183,21 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 .framebox{position:relative;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink-2);min-height:300px;align-self:stretch}
 .framebox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .framebox .fbcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);background:linear-gradient(transparent,rgba(20,17,15,.94))}
+/* Оглавление лекции */
+.toc-btn{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);background:var(--ink-2);border:1px solid var(--line-strong);padding:8px 12px;border-radius:2px;cursor:pointer;transition:.16s}
+.toc-btn:hover{border-color:var(--red);color:#fff}
+.toc-panel{position:fixed;inset:0;z-index:60;background:rgba(10,8,7,.74);display:none;opacity:0;transition:opacity .2s}
+.toc-panel.open{display:block;opacity:1}
+.toc-inner{position:absolute;left:0;top:0;bottom:0;width:min(430px,86vw);background:var(--ink-2);border-right:2px solid var(--red);padding:30px 26px;overflow:auto;box-shadow:0 0 60px rgba(0,0,0,.6)}
+.toc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:12px}
+.toc-title{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:22px;color:var(--bone)}
+.toc-back{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ochre);text-decoration:none}
+.toc-back:hover{color:var(--red)}
+.toc-list{display:flex;flex-direction:column}
+.toc-item{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:13px 4px;font-family:var(--serif);font-size:16px;color:var(--bone);cursor:pointer;transition:.14s}
+.toc-item:hover{color:var(--red);padding-left:10px}
+.toc-item.cur{color:var(--ochre)}
+.toc-item .tnum{font-family:var(--mono);font-size:12px;color:var(--red);min-width:24px}
 /* Постеры: контактный лист + сетка-канон */
 .contactrow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-self:center;width:100%;max-width:1040px;margin:0 auto}
 .pcard{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);overflow:hidden;aspect-ratio:2/3}
@@ -234,7 +249,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
   /* hide interactive chrome */
-  .nav,.help,.progress,.zone{ display:none !important; }
+  .nav,.help,.progress,.zone,.toc-btn,.toc-panel{ display:none !important; }
   /* turn the stacked deck into a normal flow */
   .deck{ position:static !important; }
   .rail{ position:absolute !important; }
@@ -278,10 +293,10 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- COLD OPEN: CONTACT SHEET -->
-  <section class="slide">
+  <section class="slide" data-toc="Введение">
     <div class="eyebrow">Лекция 01 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
     <h2>Что общего у этих фильмов?</h2>
-    <p class="lead" style="max-width:62ch;margin:14px 0 4px">Не жанр. Не страна. Не эпоха — между крайними почти сто лет. И всё же их роднит одно. И это «одно» — не про искусство.</p>
+    <p class="lead" style="max-width:62ch;margin:14px 0 4px">Не жанр. Не страна. Не эпоха — между крайними ровно сто лет, 1925–2025. И всё же их роднит одно. И это «одно» — не про искусство.</p>
     <div style="flex:1;display:flex;align-items:center;width:100%">
       <div class="contactrow">
         <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/7Gd1FOmFD3fyY3bCUt7GwQTwcza.jpg" alt="Постер «Броненосец Потёмкин»"><div class="pgrad"></div><span class="pcyr">1925</span><span class="pcname">Броненосец Потёмкин</span></div>
@@ -289,7 +304,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
         <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/74MfDraK1Ro8k6wAgSyPLvgtZaP.jpg" alt="Постер «Новые времена»"><div class="pgrad"></div><span class="pcyr">1936</span><span class="pcname">Новые времена</span></div>
         <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/qZEuNUlUWzzaVpSgnHDtxYZJH7g.jpg" alt="Постер «Чужие среди нас»"><div class="pgrad"></div><span class="pcyr">1988</span><span class="pcname">Чужие среди нас</span></div>
         <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/2eH78Nz708yFVrcaZAE2bspY5q5.jpg" alt="Постер «Нефть»"><div class="pgrad"></div><span class="pcyr">2007</span><span class="pcname">Нефть</span></div>
-        <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/mMM8kcfspicib7AmPTvf97Rarwn.jpg" alt="Постер «Паразиты»"><div class="pgrad"></div><span class="pcyr">2019</span><span class="pcname">Паразиты</span></div>
+        <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/nt2WCkLXv1VSlcwiNIEpnspWM5x.jpg" alt="Постер «Метод исключения»"><div class="pgrad"></div><span class="pcyr">2025</span><span class="pcname">Метод исключения</span></div>
       </div>
     </div>
     <div class="slide-foot"><span class="src">Четыре из них — фильмы этой лекции. Подсказка: ответ начинается не с того, о чём фильм, а с того, как он сделан и продан.</span><span class="fpg"></span></div>
@@ -304,7 +319,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- BIG QUESTION OF THE COURSE -->
-  <section class="slide">
+  <section class="slide" data-toc="Главный вопрос и метод">
     <div class="eyebrow">Лекция 01 <span class="sep">/</span> <span class="tag">Главный вопрос курса</span></div>
     <h2>Как кино отражает, производит и&nbsp;воспроизводит общественные отношения?</h2>
     <div class="cols-3" style="margin-top:20px">
@@ -350,7 +365,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- PROBLEM -->
-  <section class="slide divider">
+  <section class="slide divider" data-toc="Категории Маркса">
     <div class="slash"></div>
     <div class="divider-inner">
       <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
@@ -647,7 +662,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   <!-- ============ FILM 1: MODERN TIMES (5) ============ -->
 
   <!-- PREFRAME: MODERN TIMES -->
-  <section class="slide framefull">
+  <section class="slide framefull" data-toc="Кейс 01 · Новые времена">
     <div class="shot"><img src="https://image.tmdb.org/t/p/w1280/kSlO1pHpwQfPQdgVPr7dJiJNtJ8.jpg" alt="Кадр из «Новых времён»"></div>
     <span class="fyear">1936</span>
     <div class="fcap"><div class="fk">Кейс 01 · к разбору</div><h2>Новые времена</h2></div>
@@ -752,7 +767,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   <!-- ============ FILM 2: METROPOLIS (6) ============ -->
 
   <!-- PREFRAME: METROPOLIS -->
-  <section class="slide framefull">
+  <section class="slide framefull" data-toc="Кейс 02 · Метрополис">
     <div class="shot"><img src="https://image.tmdb.org/t/p/w1280/r8pUcom5Mw8igtBpj3AHSAUvH0R.jpg" alt="Кадр из «Метрополиса»"></div>
     <span class="fyear top">1927</span>
     <div class="fcap"><div class="fk">Кейс 02 · к разбору</div><h2>Метрополис</h2></div>
@@ -871,7 +886,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   <!-- ============ FILM 3: THEY LIVE (5) ============ -->
 
   <!-- PREFRAME: THEY LIVE -->
-  <section class="slide framefull">
+  <section class="slide framefull" data-toc="Кейс 03 · Чужие среди нас">
     <div class="shot"><img src="https://image.tmdb.org/t/p/w1280/faWmnpDRoG0Yv9NLKOFtLro6qMq.jpg" alt="Кадр из «Чужие среди нас»"></div>
     <span class="fyear">1988</span>
     <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Чужие среди нас</h2></div>
@@ -972,7 +987,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   <!-- ============ FILM 4: THERE WILL BE BLOOD (5) ============ -->
 
   <!-- PREFRAME: THERE WILL BE BLOOD -->
-  <section class="slide framefull">
+  <section class="slide framefull" data-toc="Кейс 04 · Нефть">
     <div class="shot"><img src="https://image.tmdb.org/t/p/w1280/zPQYSaRUzCAksd25fLEVbh3zQcv.jpg" alt="Кадр из «Нефти»"></div>
     <span class="fyear bl">2007</span>
     <div class="fcap"><div class="fk">Кейс 04 · к разбору</div><h2>Нефть</h2></div>
@@ -1071,7 +1086,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- SYNTHESIS ACROSS FILMS -->
-  <section class="slide">
+  <section class="slide" data-toc="Синтез и итоги">
     <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Четыре фильма вместе</span></div>
     <h2>Что добавляет марксистское чтение</h2>
     <div class="cols" style="margin-top:16px">
@@ -1121,7 +1136,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- К ПРОСМОТРУ -->
-  <section class="slide">
+  <section class="slide" data-toc="К просмотру и чтению">
     <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
     <h2>К просмотру</h2>
     <p class="lead" style="max-width:72ch;margin:12px 0 2px">Лекция построена на четырёх фильмах — посмотрите их целиком до семинара.</p>
@@ -1168,6 +1183,17 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
   <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
 </nav>
+
+<button class="toc-btn" id="tocBtn" aria-label="Содержание лекции">☰ Содержание</button>
+<div class="toc-panel" id="tocPanel" role="dialog" aria-label="Содержание лекции">
+  <div class="toc-inner">
+    <div class="toc-head">
+      <span class="toc-title">Содержание</span>
+      <a class="toc-back" href="/lectures/">← Все лекции</a>
+    </div>
+    <div class="toc-list" id="tocList"></div>
+  </div>
+</div>
 
 <script>
 const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
@@ -1219,6 +1245,25 @@ document.addEventListener('keydown',e=>{
 let tx=0;
 document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
 document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+/* оглавление лекции (собирается из data-toc) */
+(function(){
+  const btn=document.getElementById('tocBtn'), panel=document.getElementById('tocPanel'), list=document.getElementById('tocList');
+  if(!btn||!panel||!list) return;
+  const items=[];
+  slides.forEach((s,idx)=>{
+    const t=s.getAttribute('data-toc'); if(!t) return;
+    const b=document.createElement('button'); b.className='toc-item'; b.dataset.idx=idx;
+    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t+'</span>';
+    b.addEventListener('click',()=>{ show(idx); close(); });
+    list.appendChild(b); items.push(b);
+  });
+  function mark(){ items.forEach((b,k)=>{ const cur=+b.dataset.idx, next=items[k+1]?+items[k+1].dataset.idx:Infinity; b.classList.toggle('cur', i>=cur && i<next); }); }
+  function open(){ mark(); panel.classList.add('open'); }
+  function close(){ panel.classList.remove('open'); }
+  btn.addEventListener('click',()=>panel.classList.contains('open')?close():open());
+  panel.addEventListener('click',e=>{ if(e.target===panel) close(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+})();
 const start=parseInt((location.hash||'').replace('#',''),10);
 show(Number.isInteger(start)&&start>=1?start-1:0);
 loadTMDBStills();
