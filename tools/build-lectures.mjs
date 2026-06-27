@@ -25,7 +25,7 @@ const SUBJECTS = [
     blurb: 'История одной интеллектуальной традиции: как кино связано с капитализмом, идеологией и властью. Одиннадцать лекций — от товара и идеологии до политической экономии кино.',
     lectures: [
       { n:'01', file:'lecture-01-vvedenie.html',           title:'Зачем марксизму кино',     sub:'Основания: товар и идеология',          ready:true  },
-      { n:'02', file:'lecture-02-montazh.html',            title:'Монтаж и спор о форме',     sub:'Форма как идеология · диалектика монтажа', ready:false },
+      { n:'02', file:'lecture-02-montazh.html',            title:'Монтаж и спор о форме',     sub:'Форма как идеология · диалектика монтажа', ready:true  },
       { n:'03', file:'lecture-03-kulturindustriya_1.html', title:'Культуриндустрия',          sub:'Культура как товар · стандартизация',   ready:false },
       { n:'04', file:'lecture-04-benyamin_1.html',         title:'Беньямин: аура',            sub:'Воспроизводимость · политизация искусства', ready:false },
       { n:'05', file:'lecture-05-brecht_1.html',           title:'Брехт: очуждение',          sub:'Очуждение против идеологии вживания',   ready:false },

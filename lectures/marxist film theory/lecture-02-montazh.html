@@ -148,12 +148,89 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 @media (max-width:900px){.watchlist{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.watchlist{grid-template-columns:1fr}}
 
+/* ===== NEW SLIDE TYPES (v2 — перенос из лекции 1) ===== */
+/* Ключевой тезис / афоризм */
+.slide.thesis{justify-content:center}
+.thesis .tlbl{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ochre);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.thesis .tlbl::before{content:"";width:30px;height:2px;background:var(--red)}
+.thesis .big{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(38px,6.4vw,96px);line-height:.95;letter-spacing:-.01em;max-width:20ch}
+.thesis .big .hl{color:var(--red)}.thesis .big .oc{color:var(--ochre)}
+.thesis .tsub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,22px);color:var(--bone-dim);margin-top:24px;max-width:52ch}
+/* Полноэкранный кадр */
+.slide.framefull{justify-content:flex-end;overflow:hidden}
+.framefull .shot{position:absolute;inset:0;background:var(--ink-2);z-index:0}
+.framefull .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.framefull .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,17,15,.94),rgba(20,17,15,.20) 44%,rgba(20,17,15,.5))}
+.framefull .fcap{position:relative;z-index:2;max-width:66%}
+.framefull .fk{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.framefull .fcap h2{font-size:clamp(30px,4.4vw,62px)}
+.framefull .fcap p{margin-top:12px;font-size:clamp(15px,1.4vw,19px);max-width:54ch;color:var(--bone)}
+.framefull .slide-foot{color:var(--bone-dim);border-color:var(--line-strong)}
+.slide.thesis .slide-foot,.slide.framefull .slide-foot{position:absolute;left:calc(var(--rail) + 54px);right:60px;bottom:22px;margin-top:0}
+/* Крупный прозрачный красный год на полноэкранных кадрах-визитках */
+.framefull .fyear{position:absolute;z-index:2;font-family:var(--display);font-weight:700;font-size:clamp(96px,17vw,260px);line-height:.76;color:rgba(214,52,42,.42);letter-spacing:-.02em;pointer-events:none;right:50px;bottom:26px}
+.framefull .fyear.top{top:18px;bottom:auto;right:50px}
+.framefull .fyear.bl{left:calc(var(--rail) + 54px);right:auto;bottom:26px}
+/* Портреты теоретиков */
+.thinkers{display:flex;gap:14px;margin-top:16px}
+.thinkers figure{width:102px}
+.thinkers img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;border:1px solid var(--line-strong);filter:grayscale(1) contrast(1.05) brightness(1.02);display:block}
+.thinkers figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:6px;line-height:1.5}
+.thinkers figcaption b{color:var(--ochre);display:block;font-weight:500}
+/* Рамка-кадр внутри обычного слайда */
+.framebox{position:relative;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink-2);min-height:300px;align-self:stretch}
+.framebox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.framebox .fbcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);background:linear-gradient(transparent,rgba(20,17,15,.94))}
+/* Оглавление лекции */
+.toc-btn{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);background:var(--ink-2);border:1px solid var(--line-strong);padding:8px 12px;border-radius:2px;cursor:pointer;transition:.16s}
+.toc-btn:hover{border-color:var(--red);color:#fff}
+.toc-panel{position:fixed;inset:0;z-index:60;background:rgba(10,8,7,.74);display:none;opacity:0;transition:opacity .2s}
+.toc-panel.open{display:block;opacity:1}
+.toc-inner{position:absolute;left:0;top:0;bottom:0;width:min(430px,86vw);background:var(--ink-2);border-right:2px solid var(--red);padding:30px 26px;overflow:auto;box-shadow:0 0 60px rgba(0,0,0,.6)}
+.toc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:12px}
+.toc-title{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:22px;color:var(--bone)}
+.toc-back{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ochre);text-decoration:none}
+.toc-back:hover{color:var(--red)}
+.toc-list{display:flex;flex-direction:column}
+.toc-item{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:13px 4px;font-family:var(--serif);font-size:16px;color:var(--bone);cursor:pointer;transition:.14s}
+.toc-item:hover{color:var(--red);padding-left:10px}
+.toc-item.cur{color:var(--ochre)}
+.toc-item .tnum{font-family:var(--mono);font-size:12px;color:var(--red);min-width:24px}
+/* Контактный лист постеров */
+.contactrow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-self:center;width:100%;max-width:1040px;margin:0 auto}
+.pcard{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);overflow:hidden;aspect-ratio:2/3}
+.pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pcard .pgrad{position:absolute;left:0;right:0;bottom:0;top:52%;background:linear-gradient(transparent,rgba(20,17,15,.95));z-index:1}
+.pcard .pcyr{position:absolute;left:11px;bottom:28px;z-index:2;font-family:var(--display);font-weight:700;font-size:21px;color:#fff}
+.pcard .pcname{position:absolute;left:11px;right:11px;bottom:10px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim)}
+/* Схема-поток */
+.flow{display:flex;align-items:stretch;align-self:center;width:100%;gap:0}
+.flow .fstep{flex:1;border:1px solid var(--line-strong);background:var(--ink-2);padding:18px 16px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.flow .fstep .fsk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.flow .fstep h3{font-size:clamp(15px,1.5vw,21px)}
+.flow .fstep p{font-size:12.5px;color:var(--bone-dim);line-height:1.4}
+.flow .fstep.eco{border-top:4px solid var(--red)}.flow .fstep.eco .fsk{color:var(--red)}
+.flow .fstep.ideo{border-top:4px solid var(--ochre);background:var(--oxblood)}.flow .fstep.ideo .fsk{color:var(--ochre)}
+.flow .farr{display:flex;align-items:center;padding:0 9px;color:var(--red);font-family:var(--display);font-weight:700;font-size:24px}
+/* Постеры в списке «К просмотру» */
+.watchlist.withposters .wfilm{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start;padding:16px 18px 16px 16px}
+.watchlist.withposters .wfilm .wy{display:none}
+.watchlist.withposters .wpost{grid-row:span 4;aspect-ratio:2/3;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink)}
+.watchlist.withposters .wpost img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:900px){
+  .contactrow{grid-template-columns:repeat(2,1fr);max-width:340px}
+  .flow{flex-direction:column}.flow .farr{transform:rotate(90deg);padding:6px 0;justify-content:center}
+  .framefull .fcap{max-width:100%}
+  .slide.thesis .slide-foot,.slide.framefull .slide-foot{left:18px;right:18px}
+  .flow .fstep{padding:13px 14px}.flow .fstep p{font-size:11.5px}
+}
+
 /* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
 @media print{
   @page{ size: A4 landscape; margin:0; }
   html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
-  .nav,.help,.progress,.zone{ display:none !important; }
+  .nav,.help,.progress,.zone,.toc-btn,.toc-panel{ display:none !important; }
   .deck{ position:static !important; }
   .rail{ position:absolute !important; }
   .slide{
@@ -183,7 +260,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   <section class="slide cover active">
     <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
     <div class="cover-inner">
-      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 02 / 10</div>
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 02 / 11</div>
       <div class="course-name">Марксистская теория кино</div>
       <h1>Монтаж<br>и спор<br>о <span class="hl">форме</span></h1>
       <div class="subt">Советский авангард и вопрос: революционна ли сама форма?</div>
@@ -192,6 +269,29 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
         <span><b>Кейсы:</b> Эйзенштейн · Вертов · Пудовкин</span>
       </div>
     </div>
+  </section>
+
+  <!-- COLD OPEN: CONTACT SHEET -->
+  <section class="slide" data-toc="Введение">
+    <div class="eyebrow">Лекция 02 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
+    <h2>Что общего у этих фильмов?</h2>
+    <p class="lead" style="max-width:68ch;margin:14px 0 4px">Дело не в том, что все они — советские и почти ровесники. Дело в том, что все они служат <strong>одной идеологии</strong> — и пытаются сделать революционной не только тему, но и саму форму фильма.</p>
+    <div style="flex:1;display:flex;align-items:center;width:100%">
+      <div class="contactrow" style="grid-template-columns:repeat(3,1fr);max-width:600px">
+        <div class="pcard"><img src="img/poster_ru_potemkin.jpg" alt="Русский постер «Броненосец Потёмкин» (1925)"></div>
+        <div class="pcard"><img src="img/poster_ru_mother.jpg" alt="Русский постер «Мать» (1926)"></div>
+        <div class="pcard"><img src="img/poster_ru_october.jpg" alt="Русский постер «Октябрь» (1928)"></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">«Броненосец Потёмкин» (1925) · «Мать» (1926) · «Октябрь» (1928) — все воплощают одну революционную идеологию.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS A: ANSWER -->
+  <section class="slide thesis">
+    <div class="tlbl">Ответ</div>
+    <div class="big">Их роднит не страна, а <span class="hl">идеология</span></div>
+    <div class="tsub">Все они служат одной революции — и потому хотят сделать революционной саму форму фильма. Орудие этой революции — монтаж.</div>
+    <div class="slide-foot"><span>С чего начинается метод</span><span class="fpg"></span></div>
   </section>
 
   <!-- 2 WHERE WE ARE -->
@@ -210,31 +310,13 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
       <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
       <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
       <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+      <div class="node"><span class="nn">11</span><span class="nt">Политэкономия кино</span></div>
     </div>
     <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
   </section>
 
-  <!-- 3 AGENDA -->
-  <section class="slide">
-    <div class="eyebrow">Лекция 02 <span class="sep">/</span> <span class="tag">План занятия</span></div>
-    <div class="cols-wide">
-      <div class="stack">
-        <h2>План<br>сегодня</h2>
-        <p style="max-width:34ch;margin-top:14px">От теории монтажа — к большому спору о том, какая форма «по-настоящему» революционна. Авангард здесь не икона, а <em>сторона в конфликте</em>.</p>
-      </div>
-      <div class="deflist">
-        <div class="def"><span class="term">01 · Проблема</span><p>Революционна ли сама форма фильма?</p></div>
-        <div class="def"><span class="term">02 · Контекст</span><p>Молодое советское кино после 1917</p></div>
-        <div class="def"><span class="term">03 · Теория</span><p>Эффект Кулешова · монтаж аттракционов · киноглаз</p></div>
-        <div class="def"><span class="term">04 · Кейсы</span><p>«Потёмкин» · «Человек с киноаппаратом» · «Мать»</p></div>
-        <div class="def"><span class="term">05 · Спор</span><p>Реализм vs. формализм: Лукач, Брехт, соцреализм</p></div>
-      </div>
-    </div>
-    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
-  </section>
-
   <!-- 4 PROBLEM -->
-  <section class="slide divider">
+  <section class="slide divider" data-toc="Можно ли смонтировать революцию?">
     <div class="slash"></div>
     <div class="divider-inner">
       <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
@@ -261,7 +343,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- 6 MONTAGE AS MATERIAL -->
-  <section class="slide">
+  <section class="slide" data-toc="Теория монтажа">
     <div class="eyebrow">Теория <span class="sep">/</span> <span class="tag">Эффект Кулешова</span></div>
     <div class="cols">
       <div class="stack">
@@ -348,13 +430,21 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 
   <!-- ============ FILM 1: BATTLESHIP POTEMKIN (5) ============ -->
 
+  <!-- PREFRAME: POTEMKIN -->
+  <section class="slide framefull" data-toc="Кейс 01 · Броненосец Потёмкин">
+    <div class="shot"><img src="img/w1280_3RH61Z7BP3f215936PJBEG2qQrT.jpg" alt="Кадр из «Броненосца Потёмкина»"></div>
+    <span class="fyear">1925</span>
+    <div class="fcap"><div class="fk">Кейс 01 · столкновение</div><h2>Броненосец «Потёмкин»</h2></div>
+    <div class="slide-foot"><span class="src">«Броненосец Потёмкин» · реж. Сергей Эйзенштейн · СССР</span><span class="fpg"></span></div>
+  </section>
+
   <!-- F1 INTRO -->
   <section class="slide">
     <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Столкновение</span></div>
     <div class="film">
       <div class="still" data-tmdb="Battleship Potemkin" data-year="1925" data-idx="0">
         <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1925</span><span class="pt">Броненосец<br>«Потёмкин»</span><span class="pd">реж. Сергей Эйзенштейн</span></div>
-        <img alt="Кадр из фильма «Броненосец Потёмкин»" loading="lazy">
+        <img alt="Кадр из фильма «Броненосец Потёмкин»" loading="lazy" src="img/w1280_sRm843SBypb9fa9t2XojoVzGNcj.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <div class="meta-row"><span><b>Реж.</b> С. Эйзенштейн</span><span><b>1925 · СССР</b></span></div>
@@ -391,7 +481,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <div class="film">
       <div class="still" data-tmdb="Battleship Potemkin" data-year="1925" data-idx="1">
         <div class="ph"><span class="frame-tag">Кадр · лестница</span><span class="yr">1925</span><span class="pt">Одесская<br>лестница</span><span class="pd">«Броненосец Потёмкин»</span></div>
-        <img alt="Сцена на Одесской лестнице из «Броненосца Потёмкин»" loading="lazy">
+        <img alt="Сцена на Одесской лестнице из «Броненосца Потёмкин»" loading="lazy" src="img/w1280_ivSUjtWDxXjJy07LTdJPX3whdt.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <h2>Ужас, собранный из склеек</h2>
@@ -441,13 +531,21 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 
   <!-- ============ FILM 2: MAN WITH A MOVIE CAMERA (5) ============ -->
 
+  <!-- PREFRAME: MAN WITH A MOVIE CAMERA -->
+  <section class="slide framefull" data-toc="Кейс 02 · Человек с киноаппаратом">
+    <div class="shot"><img src="img/w1280_byRNEm1QwfQC1Mn0K4gLM2fIfWO.jpg" alt="Кадр из «Человека с киноаппаратом»"></div>
+    <span class="fyear top">1929</span>
+    <div class="fcap"><div class="fk">Кейс 02 · киноглаз</div><h2>Человек с киноаппаратом</h2></div>
+    <div class="slide-foot"><span class="src">«Человек с киноаппаратом» · реж. Дзига Вертов · СССР</span><span class="fpg"></span></div>
+  </section>
+
   <!-- F2 INTRO -->
   <section class="slide">
     <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Киноглаз</span></div>
     <div class="film">
       <div class="still" data-tmdb="Man with a Movie Camera" data-year="1929" data-idx="0">
         <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1929</span><span class="pt">Человек<br>с киноаппаратом</span><span class="pd">реж. Дзига Вертов</span></div>
-        <img alt="Кадр из фильма «Человек с киноаппаратом»" loading="lazy">
+        <img alt="Кадр из фильма «Человек с киноаппаратом»" loading="lazy" src="img/w1280_xPuGtHPc1aADsfXds87noXVz2Hh.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <div class="meta-row"><span><b>Реж.</b> Дзига Вертов</span><span><b>1929 · СССР</b></span></div>
@@ -484,7 +582,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <div class="film">
       <div class="still" data-tmdb="Man with a Movie Camera" data-year="1929" data-idx="1">
         <div class="ph"><span class="frame-tag">Кадр · монтажный стол</span><span class="yr">1929</span><span class="pt">Плёнка<br>и склейка</span><span class="pd">«Человек с киноаппаратом»</span></div>
-        <img alt="Сцена монтажа из «Человека с киноаппаратом»" loading="lazy">
+        <img alt="Сцена монтажа из «Человека с киноаппаратом»" loading="lazy" src="img/w1280_ntTV4sWN8NDoSvgamPRjYpxUgtL.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <h2>Кино, которое себя разбирает</h2>
@@ -534,13 +632,21 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 
   <!-- ============ FILM 3: MOTHER (5) ============ -->
 
+  <!-- PREFRAME: MOTHER -->
+  <section class="slide framefull" data-toc="Кейс 03 · Мать">
+    <div class="shot"><img src="img/w1280_7m8Bdr7LB3AkGBZtmVg8WXJHQum.jpg" alt="Кадр из «Матери»"></div>
+    <span class="fyear bl">1926</span>
+    <div class="fcap"><div class="fk">Кейс 03 · сцепление</div><h2>Мать</h2></div>
+    <div class="slide-foot"><span class="src">«Мать» · реж. Всеволод Пудовкин · СССР</span><span class="fpg"></span></div>
+  </section>
+
   <!-- F3 INTRO -->
   <section class="slide">
     <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Сцепление</span></div>
     <div class="film">
       <div class="still" data-tmdb="Mother" data-year="1926" data-idx="0">
         <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1926</span><span class="pt">Мать</span><span class="pd">реж. Всеволод Пудовкин</span></div>
-        <img alt="Кадр из фильма «Мать»" loading="lazy">
+        <img alt="Кадр из фильма «Мать»" loading="lazy" src="img/w1280_2OacO4XVZFz4nyFudM1uEog4gk6.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <div class="meta-row"><span><b>Реж.</b> В. Пудовкин</span><span><b>1926 · СССР</b></span><span><b>по роману М. Горького</b></span></div>
@@ -577,7 +683,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <div class="film">
       <div class="still" data-tmdb="Mother" data-year="1926" data-idx="1">
         <div class="ph"><span class="frame-tag">Кадр · ледоход</span><span class="yr">1926</span><span class="pt">Ледоход<br>и демонстрация</span><span class="pd">«Мать»</span></div>
-        <img alt="Сцена ледохода из фильма «Мать»" loading="lazy">
+        <img alt="Сцена ледохода из фильма «Мать»" loading="lazy" src="img/w1280_1042LGs3hKDjrJ4Fq60aDBj5Orh.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <h2>Ледоход и пробуждение</h2>
@@ -626,7 +732,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- 20 THE DEBATE SETUP -->
-  <section class="slide divider">
+  <section class="slide divider" data-toc="Реализм против формализма">
     <div class="slash"></div>
     <div class="divider-inner">
       <div class="eyebrow" style="color:#fff">Большой спор</div>
@@ -679,7 +785,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
       <div class="stack">
         <h2>Как ортодоксия<br>осудила авангард</h2>
         <p style="margin-top:12px">В 1934-м <strong>социалистический реализм</strong> провозглашён единственным официальным методом. С середины 1930-х разворачивается кампания против «формализма»: авангард клеймят как буржуазный, элитарный, непонятный массам.</p>
-        <p style="margin-top:10px">Это и есть тот факт, с которого вы начали: <em>именно марксисты — государственные — раздавили марксистский авангард</em>.</p>
+        <p style="margin-top:10px"><em>Именно марксисты — государственные — раздавили марксистский авангард.</em></p>
       </div>
       <div class="deflist" style="align-self:center">
         <div class="def"><span class="term">1934</span><p>Соцреализм — обязательная доктрина для всех искусств.</p></div>
@@ -709,7 +815,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- 25 SYNTHESIS -->
-  <section class="slide">
+  <section class="slide" data-toc="Синтез">
     <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Что мы вынесли</span></div>
     <h2>Три формы — один вопрос</h2>
     <div class="cols-3" style="margin-top:18px">
@@ -775,7 +881,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- 29 К ПРОСМОТРУ -->
-  <section class="slide">
+  <section class="slide" data-toc="К просмотру и чтению">
     <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
     <h2>К просмотру</h2>
     <p class="lead" style="max-width:72ch;margin:14px 0 2px">Три фильма-кейса плюс ранняя «Стачка» как дополнительный пример монтажа аттракционов.</p>
@@ -830,7 +936,17 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
   <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
 </nav>
-<div class="help">← → · пробел · клик по краям</div>
+
+<button class="toc-btn" id="tocBtn" aria-label="Содержание лекции">☰ Содержание</button>
+<div class="toc-panel" id="tocPanel" role="dialog" aria-label="Содержание лекции">
+  <div class="toc-inner">
+    <div class="toc-head">
+      <span class="toc-title">Содержание</span>
+      <a class="toc-back" href="/lectures/">← Все лекции</a>
+    </div>
+    <div class="toc-list" id="tocList"></div>
+  </div>
+</div>
 
 <script>
 const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
@@ -881,6 +997,25 @@ document.addEventListener('keydown',e=>{
 let tx=0;
 document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
 document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+/* оглавление лекции (собирается из data-toc) */
+(function(){
+  const btn=document.getElementById('tocBtn'), panel=document.getElementById('tocPanel'), list=document.getElementById('tocList');
+  if(!btn||!panel||!list) return;
+  const items=[];
+  slides.forEach((s,idx)=>{
+    const t=s.getAttribute('data-toc'); if(!t) return;
+    const b=document.createElement('button'); b.className='toc-item'; b.dataset.idx=idx;
+    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t+'</span>';
+    b.addEventListener('click',()=>{ show(idx); close(); });
+    list.appendChild(b); items.push(b);
+  });
+  function mark(){ items.forEach((b,k)=>{ const cur=+b.dataset.idx, next=items[k+1]?+items[k+1].dataset.idx:Infinity; b.classList.toggle('cur', i>=cur && i<next); }); }
+  function open(){ mark(); panel.classList.add('open'); }
+  function close(){ panel.classList.remove('open'); }
+  btn.addEventListener('click',()=>panel.classList.contains('open')?close():open());
+  panel.addEventListener('click',e=>{ if(e.target===panel) close(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+})();
 const start=parseInt((location.hash||'').replace('#',''),10);
 show(Number.isInteger(start)&&start>=1?start-1:0);
 loadTMDBStills();
