@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 3 — Культуриндустрия | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(44px,7.8vw,112px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:24ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:30ch}
+.timeline{display:flex;flex-direction:column;gap:10px;align-self:center}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14.5px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">03</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 03 / 10</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Культур<span class="hl">·</span><br>индустрия</h1>
+      <div class="subt">Адорно и Хоркхаймер: развлечение как продолжение труда</div>
+      <div class="meta">
+        <span><b>Понятия:</b> стандартизация · псевдоиндивидуализация</span>
+        <span><b>Кейсы:</b> Беркли · Дисней · Marvel</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE WE ARE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 03 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:64ch;margin:16px 0 22px">В лекции 2 форма была <em>орудием пробуждения</em>. Теперь — зеркальный поворот: Франкфуртская школа смотрит на ту же киноиндустрию и видит машину <em>усыпления</em>. Мы возвращаемся к кино-как-товару (лекция 1) на новом, более мрачном витке — и здесь же раскрываем экономический пласт: студию как фабрику.</p>
+    <div class="coursemap">
+      <div class="node"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node cur"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 03 <span class="sep">/</span> <span class="tag">План занятия</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>План<br>сегодня</h2>
+        <p style="max-width:34ch;margin-top:12px">Самая пессимистичная позиция курса — и проверка её на трёх продуктах индустрии разных эпох: 1930-е, 1937, наши дни.</p>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">01 · Проблема</span><p>Развлечение освобождает — или готовит к новой смене?</p></div>
+        <div class="def"><span class="term">02 · Контекст</span><p>Франкфуртская школа в эмиграции, рядом с Голливудом</p></div>
+        <div class="def"><span class="term">03 · Понятия</span><p>Культуриндустрия · стандартизация · псевдоиндивидуализация</p></div>
+        <div class="def"><span class="term">04 · Кейсы</span><p>Мюзикл Беркли · «Белоснежка» · «Мстители»</p></div>
+        <div class="def"><span class="term">05 · Спор</span><p>Прав ли Адорно сегодня? Элитизм и зритель</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
+      <h2>Отдых — это свобода<br>или ещё одна смена?</h2>
+      <p class="sub">Тезис Франкфуртской школы: «свободное время» под капитализмом восстанавливает рабочую силу для следующего рабочего дня. Развлечение не противоположно труду, а его продолжение.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Постановка проблемы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Контекст <span class="sep">/</span> <span class="tag">Изгнание · 1940-е</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Эмигранты<br>напротив Голливуда</h2>
+        <p style="margin-top:12px;max-width:46ch">Бежавшие от нацизма теоретики Института социальных исследований оказались в США: институт — в Нью-Йорке, Адорно и Хоркхаймер — под Лос-Анджелесом, рядом с фабрикой грёз. «<strong>Диалектику просвещения</strong>» (1944/47) они пишут, наблюдая Голливуд из эмиграции.</p>
+        <p style="margin-top:10px">Их подозрение: между тоталитарной пропагандой, от которой они бежали, и весёлой американской индустрией развлечений есть тревожное <em>родство</em> — обе штампуют согласие.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Кто</span><p>Т. Адорно, М. Хоркхаймер; рядом — Беньямин, Маркузе.</p></div>
+        <div class="def"><span class="term">Где</span><p>США, Калифорния — в виду самого Голливуда.</p></div>
+        <div class="def"><span class="term">Опыт</span><p>Фашизм научил: культура может организовывать массы.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Их пессимизм рождён конкретным опытом: они видели, как культура работает на тоталитаризм.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- INVERSION -->
+  <section class="slide">
+    <div class="eyebrow">Поворот <span class="sep">/</span> <span class="tag">Зеркало лекции 2</span></div>
+    <h2>Пробуждение → усыпление</h2>
+    <div class="cols" style="margin-top:18px">
+      <div class="card accent"><span class="k">Советы (л. 2)</span><h3>Кино будит</h3><p>Монтаж шокирует, разрывает иллюзию, рождает классовое сознание. Форма — оружие революции.</p></div>
+      <div class="card ochre"><span class="k">Франкфурт (л. 3)</span><h3>Голливуд усыпляет</h3><p>Гладкая форма убаюкивает, подтверждает мир таким, как есть. Развлечение — анестезия.</p></div>
+    </div>
+    <p style="margin-top:20px;max-width:78ch">Одна и та же технология (массовое кино) у одних — инструмент освобождения, у других — инструмент подчинения. Разницу делает не техника, а <strong>кто и зачем</strong> ею владеет.</p>
+    <div class="slide-foot"><span>Инверсия тезиса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONCEPT 1 -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 01 <span class="sep">/</span> <span class="tag">Культуриндустрия</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">01</span>
+        <h2 style="margin-top:6px">Культур·<br>индустрия</h2>
+        <p style="margin-top:12px;max-width:46ch">Адорно и Хоркхаймер сознательно избегают слов «массовая культура»: те намекают, будто культура поднимается <em>снизу</em>, от народа. Их термин подчёркивает обратное — это <strong>индустрия</strong>, производящая культуру <em>сверху</em>, как любой другой товар.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Культуриндустрия накладывает на всё один и тот же штамп.</q>
+        <div class="attr">Т. Адорно, М. Хоркхаймер — «Диалектика просвещения»</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Определение</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ECONOMIC PILLAR: STUDIO AS FACTORY -->
+  <section class="slide">
+    <div class="eyebrow">Экономика <span class="sep">/</span> <span class="tag">Студия как фабрика</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Где здесь<br>марксизм</h2>
+        <p style="margin-top:10px">Это лекция, где экономический пласт курса виден прямее всего. Культуриндустрия — это <strong>реальное производство</strong>: студия организована как фабрика, с разделением труда, конвейером смен, нормами выработки и наёмными работниками.</p>
+        <p style="margin-top:8px">Фильм здесь — товар в самом прямом марксовом смысле: произведён ради прибавочной стоимости, а его «художественность» подчинена рентабельности.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Разделение<br>труда</span><p>Сценарист, оператор, монтажёр, аниматор — узкие операции на конвейере.</p></div>
+        <div class="def"><span class="term">Стандарт</span><p>Жанр и формула снижают риск и удешевляют производство.</p></div>
+        <div class="def"><span class="term">Прибыль</span><p>Критерий не «истина» или «красота», а кассовый сбор.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: товар, прибавочная стоимость, разделение труда — в самом сердце «искусства».</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONCEPT 2 STANDARDIZATION -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 02 <span class="sep">/</span> <span class="tag">Стандартизация</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Всё новое —<br>по старому шаблону</h2>
+        <p style="margin-top:10px">Продукты индустрии строятся по общей матрице: завязка, кульминация, развязка, типы героев, тайминг эмоций. Детали меняются — <strong>структура неизменна</strong>. Зная начало, вы предугадываете финал.</p>
+        <p style="margin-top:8px">Стандарт удешевляет производство и приучает зрителя к предсказуемому — а значит, к согласию.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Поверхность</span><span class="it">Разные сюжеты, лица, антуражи</span></div>
+        <div class="arrowzone"><span>прячет ↓</span><span>↑ продаёт как «новое»</span></div>
+        <div class="tier base"><span class="lab">Матрица</span><span class="it"><b>Одна и та же структура и набор приёмов</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Понятие · стандартизация</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONCEPT 3 PSEUDO-INDIVIDUALIZATION -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 03 <span class="sep">/</span> <span class="tag">Псевдоиндивидуализация</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">03</span>
+        <h2 style="margin-top:6px">Псевдо·<br>индивидуализация</h2>
+        <p style="margin-top:12px;max-width:46ch">Чтобы стандарт продавался, его надо подать как <strong>уникальное</strong>. Мелкие отличия — новый герой, неожиданный твист, свежий саундтрек — создают <em>иллюзию выбора и новизны</em>, маскируя тождество продуктов.</p>
+        <p style="margin-top:10px">«Выбирай своего любимого супергероя» — но матрица фильма одна на всех.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Иллюзия<br>выбора</span><p>Множество опций при одной структуре.</p></div>
+        <div class="def"><span class="term">Знак<br>отличия</span><p>«Фишка» продаёт повтор как новинку.</p></div>
+        <div class="def"><span class="term">Эффект</span><p>Зритель чувствует себя индивидуальным, оставаясь в шаблоне.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Термин Адорно из работ о поп-музыке — но идеально ложится на кино-франшизы.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONCEPT 4 AMUSEMENT AS PROLONGATION OF LABOR -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 04 <span class="sep">/</span> <span class="tag">Развлечение = продолжение труда</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">04</span>
+        <h2 style="margin-top:6px">Развлечение —<br>продолжение труда</h2>
+        <p style="margin-top:12px;max-width:46ch">Зритель приходит в кино уставшим — и индустрия даёт ровно столько отдыха, чтобы он смог вернуться к станку. Развлечение не позволяет думать (мысль — это усилие), оно <strong>восстанавливает рабочую силу</strong> и приучает к пассивности.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Развлечение — это продолжение труда при позднем капитализме.</q>
+        <div class="attr">Т. Адорно, М. Хоркхаймер</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: воспроизводство рабочей силы — досуг тоже работает на капитал.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS OF CONCEPTS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Мрачный тезис</span></div>
+    <h2>Индустрия штампует согласие</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">Форма</span><h3>Стандарт</h3><p>Единая матрица под видом разнообразия.</p></div>
+      <div class="card ochre"><span class="k">Продажа</span><h3>Псевдовыбор</h3><p>Иллюзия новизны и индивидуальности.</p></div>
+      <div class="card"><span class="k">Эффект</span><h3>Пассивность</h3><p>Отдых вместо мысли, согласие вместо критики.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px;max-width:80ch">Вывод Адорно жёсток: культуриндустрия производит не сознание, а <strong>согласие</strong>. Она не лжёт о мире — она отучает желать иного.</p>
+    <div class="slide-foot"><span>Главный тезис</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAVEAT / FORWARD -->
+  <section class="slide">
+    <div class="eyebrow">Оговорка <span class="sep">/</span> <span class="tag">Это спорная позиция</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Самая<br>пессимистичная глава</h2>
+        <p style="margin-top:10px">Держите в уме: это крайняя точка курса. Адорно почти не оставляет зрителю свободы — и за это его будут критиковать.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">→ Лекция 4</span><p>Беньямин возразит: техника может и <em>политизировать</em> массы, а не только усыплять.</p></div>
+        <div class="def"><span class="term">→ Лекция 8</span><p>Грамши и Холл: зритель не пассивен, прочтение бывает оппозиционным.</p></div>
+        <div class="def"><span class="term">Вопрос</span><p>Элитизм ли это — презрение к «низкому» вкусу масс?</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Куда пойдёт спор</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 1: GOLD DIGGERS 1933 (5) ============ -->
+
+  <!-- F1 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Конвейер удовольствия</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Gold Diggers of 1933" data-year="1933" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1933</span><span class="pt">Золото·<br>искатели 1933</span><span class="pd">номера Базби Беркли</span></div>
+        <img alt="Кадр из фильма «Золотоискатели 1933»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Мервин Лерой</span><span><b>Номера</b> Базби Беркли</span><span><b>Год</b> 1933 · США</span></div>
+        <h2>Золотоискатели 1933</h2>
+        <div><span class="chip">Стандартизация</span><span class="chip">Масса-орнамент</span><span class="chip">Эскапизм</span></div>
+        <p>Бэкстейдж-мюзикл Warner о девушках, ставящих ревю в разгар Депрессии. Хореография Беркли превращает десятки танцовщиц в <strong>геометрический узор</strong>, снятый сверху.</p>
+        <p>Идеальный наглядный материал для тезиса о механизированном, поставленном на конвейер удовольствии.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Способ производства</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Студийная система<br>на пике</h2>
+        <p style="margin-top:10px">1933 год, дно Великой депрессии. Warner Bros. выпускает мюзиклы как с конвейера: серия «Золотоискателей» и «42-я улица» — продукты <strong>студийной фабрики</strong> с жёстким разделением труда между режиссёром драмы и постановщиком номеров.</p>
+        <p style="margin-top:8px">Массовое развлечение продаётся именно тогда, когда зрителю особенно тяжело — и обещает ему сияющий мир вместо очереди за пособием.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Эпоха</span><p>Безработица, нищета — спрос на эскапизм максимален.</p></div>
+        <div class="def"><span class="term">Фабрика</span><p>Студийная система: фильмы как серийная продукция.</p></div>
+        <div class="def"><span class="term">Конвейер</span><p>Несколько «Золотоискателей» подряд — франшиза до франшиз.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Чем хуже живётся зрителю, тем прибыльнее индустрия грёз — это марксистское наблюдение, а не мораль.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · сцена <span class="sep">/</span> <span class="tag">«We're in the Money»</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Gold Diggers of 1933" data-year="1933" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · номер</span><span class="yr">1933</span><span class="pt">We're in<br>the Money</span><span class="pd">«Золотоискатели 1933»</span></div>
+        <img alt="Музыкальный номер из «Золотоискателей 1933»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Деньги в разгар нищеты</h2>
+        <p>Фильм открывается номером «We're in the Money»: танцовщицы в костюмах из гигантских монет поют о богатстве — посреди Депрессии. Репетицию тут же прерывают приставы, описывающие реквизит за долги.</p>
+        <p>Индустрия буквально продаёт <strong>фантазию о деньгах</strong> тем, у кого их нет: развлечение как компенсация за лишения.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> идеологическая компенсация</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Масса-орнамент<br>Беркли</h2>
+        <p style="margin-top:10px">Камера сверху превращает танцовщиц в симметричный узор — отдельный человек растворён в декоративном строе. Кракауэр назвал это «<strong>массой-орнаментом</strong>»: эстетика, выражающая саму логику капиталистической рационализации.</p>
+        <p style="margin-top:8px">Прямой привет «Метрополису» (лекция 1): и синхронные рабочие, и синхронные танцовщицы — одно и то же превращение людей в узор.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Вид<br>сверху</span><p>Геометрия важнее лиц — индивид исчезает.</p></div>
+        <div class="def"><span class="term">Синхрон</span><p>Тела движутся как единый механизм.</p></div>
+        <div class="def"><span class="term">Узор</span><p>Удовольствие от порядка, а не от личности.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: масса-орнамент Беркли = эстетический двойник конвейера.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что подтверждает тезис</h3>
+        <p style="margin-top:6px">Фильм почти буквально иллюстрирует Адорно: стандартный продукт, механизированное удовольствие, эскапизм как компенсация за тяготы труда.</p>
+        <h3 style="margin-top:18px">Где сложнее</h3>
+        <p style="margin-top:6px">Но сюжет «Золотоискателей» <em>сам</em> говорит о безработице и долгах: индустрия иногда проговаривает то, что должна была бы прятать. Полного «усыпления» не выходит.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Даже образцовый продукт индустрии не до конца однозначен. Это первая трещина в пессимизме Адорно — её расширят Беньямин и Грамши.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 2: SNOW WHITE 1937 (5) ============ -->
+
+  <!-- F2 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Собственный пример Адорно</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Snow White and the Seven Dwarfs" data-year="1937" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1937</span><span class="pt">Белоснежка</span><span class="pd">студия Уолта Диснея</span></div>
+        <img alt="Кадр из «Белоснежки»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Студия</b> Walt Disney</span><span><b>Год</b> 1937 · США</span><span><b>Хроно</b> 83 мин</span></div>
+        <h2>Белоснежка и семь гномов</h2>
+        <div><span class="chip">Псевдоиндивидуализация</span><span class="chip">Конвейер анимации</span></div>
+        <p>Первый полнометражный мультфильм Диснея — и сам Адорно поминает Дисней в «Диалектике просвещения». Сказка собрана из узнаваемых блоков: принцесса, злодейка, комические помощники, спасение любовью.</p>
+        <p>За «волшебством» — индустриальный процесс рисованной анимации.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 CONTEXT: DISNEY STRIKE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Труд за «волшебством»</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Забастовка<br>аниматоров</h2>
+        <p style="margin-top:10px">Лучшая иллюстрация к «студии-фабрике»: в <strong>1941 году</strong> аниматоры Диснея вышли на забастовку за профсоюз и достойную оплату. «Фабрика грёз» оказалась обычным предприятием с классовым конфликтом между владельцем и наёмными работниками.</p>
+        <p style="margin-top:8px">За каждым кадром «волшебства» — разделение труда: одни рисуют ключевые позы, другие — промежуточные, третьи заливают цвет.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">1941</span><p>Стачка художников против студии Диснея.</p></div>
+        <div class="def"><span class="term">Конвейер</span><p>Анимация разбита на узкие повторяющиеся операции.</p></div>
+        <div class="def"><span class="term">Фетиш</span><p>Готовая «магия» прячет труд сотен художников (см. лекцию 1).</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: за товаром-сказкой — реальный труд и реальная классовая борьба.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена <span class="sep">/</span> <span class="tag">Формула сказки</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Snow White and the Seven Dwarfs" data-year="1937" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · сцена</span><span class="yr">1937</span><span class="pt">Гномы</span><span class="pd">«Белоснежка»</span></div>
+        <img alt="Сцена с гномами из «Белоснежки»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Милота по стандарту</h2>
+        <p>Семь гномов — это семь готовых «характеров-функций» (Ворчун, Весельчак, Соня…): индивидуальность сведена к одной узнаваемой черте. Эмоции зрителя выверены и предсказуемы.</p>
+        <p>Это псевдоиндивидуализация в чистом виде: максимум «характерности» при минимуме настоящего различия.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> псевдоиндивидуализация</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Узнаваемость<br>как технология</h2>
+        <p style="margin-top:10px">Дисней доводит до совершенства <strong>стиль, который ни с чем не спутаешь</strong>: округлые формы, большие глаза, плавное движение. Узнаваемость — это и художественный приём, и бизнес-актив (бренд).</p>
+        <p style="margin-top:8px">Адорно язвительно замечал: герои мультфильмов раз за разом получают побои — приучая зрителя стойко принимать собственные.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Стиль =<br>бренд</span><p>Эстетика работает как товарный знак.</p></div>
+        <div class="def"><span class="term">Гладкость</span><p>Ничто не царапает, всё «приятно» — анти-очуждение.</p></div>
+        <div class="def"><span class="term">Дисциплина</span><p>Комедия насилия как урок терпения (по Адорно).</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Форма-крючок: «милое» — не нейтрально, оно тоже воспитывает.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что подтверждает тезис</h3>
+        <p style="margin-top:6px">Дисней — почти лабораторный случай: стандартная формула, узнаваемый стиль-бренд, эмоции по расписанию, реальная фабрика с забастовкой за кулисами.</p>
+        <h3 style="margin-top:18px">Где сложнее</h3>
+        <p style="margin-top:6px">И всё же эти образы любят, помнят, пересобирают. Привязанность зрителя — не только «обман»: здесь и подлинная культурная память, которую Адорно склонен недооценивать.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Дисней показывает силу теории — и её слепое пятно: презрение к массовому удовольствию. Этот вопрос мы держим открытым до лекции 8.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 3: AVENGERS ENDGAME (5) ============ -->
+
+  <!-- F3 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Тезис сегодня</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Avengers Endgame" data-year="2019" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2019</span><span class="pt">Мстители:<br>Финал</span><span class="pd">реж. братья Руссо</span></div>
+        <img alt="Кадр из «Мстители: Финал»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Э. и Дж. Руссо</span><span><b>Год</b> 2019 · США</span><span><b>Студия</b> Marvel / Disney</span></div>
+        <h2>Мстители: Финал</h2>
+        <div><span class="chip">Франшиза</span><span class="chip">Стандарт + псевдовыбор</span></div>
+        <p>Кульминация 22 фильмов и один из самых кассовых релизов в истории. Идеальный тест: работает ли тезис Адорно в эпоху кинематографических вселенных?</p>
+        <p>Каждый фильм «свой» — но все собраны по одной матрице «фазами», как продукция конвейера.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Способ производства</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Франшиза<br>как фабрика</h2>
+        <p style="margin-top:10px">Marvel (внутри Disney) превратила производство фильмов в <strong>промышленный график</strong>: релизы по «фазам», единый дом-стиль, взаимозаменяемые режиссёры, унифицированный визуальный продукт на сотни миллионов бюджета.</p>
+        <p style="margin-top:8px">Это студийная система Адорно, доведённая до предела: культура планируется, как выпуск моделей автомобилей.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">«Фазы»</span><p>Продукция выходит сериями по расписанию.</p></div>
+        <div class="def"><span class="term">Дом-стиль</span><p>Узнаваемый шаблон важнее авторской подписи.</p></div>
+        <div class="def"><span class="term">Вертикаль</span><p>Один корпоративный собственник — Disney.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: концентрация капитала и стандартизация производства культуры.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · сцена <span class="sep">/</span> <span class="tag">Команда героев</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Avengers Endgame" data-year="2019" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · финальная битва</span><span class="yr">2019</span><span class="pt">Сбор<br>героев</span><span class="pd">«Мстители: Финал»</span></div>
+        <img alt="Финальная битва из «Мстители: Финал»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Каталог вместо характеров</h2>
+        <p>Финальная битва — это парад всех героев вселенной: каждый со своей «фишкой», но все — пункты одного каталога. Зритель узнаёт и предвкушает, а не открывает новое.</p>
+        <p>Удовольствие здесь — от <strong>узнавания и комплектности</strong>, а не от непредсказуемости: чистая логика франшизы-коллекции.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> стандартизация + псевдовыбор</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Разное только<br>на поверхности</h2>
+        <p style="margin-top:10px">Каждый фильм маркирован «жанром» (шпионский, космический, комедийный), но структура, ритм шуток, тайминг экшена и финал — общие. Это <strong>псевдоиндивидуализация на индустриальном масштабе</strong>.</p>
+        <p style="margin-top:8px">«Выбери любимого героя» — приглашение к идентификации, которое не меняет матрицу продукта.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Ярлык<br>жанра</span><p>Косметическое отличие поверх единой схемы.</p></div>
+        <div class="def"><span class="term">Ритм</span><p>Шутка-экшен-эмоция по выверенному графику.</p></div>
+        <div class="def"><span class="term">Сцена<br>после титров</span><p>Приём, продающий следующий продукт серии.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Форма прямо рекламирует следующую покупку — товар, встроенный в товар.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Адорно как будто прав</h3>
+        <p style="margin-top:6px">MCU выглядит триумфом его прогноза: культура планируется как промышленная серия, стандарт продаётся как событие, отдых — как пассивное узнавание.</p>
+        <h3 style="margin-top:18px">Но есть и обратное</h3>
+        <p style="margin-top:6px">Фанаты не пассивны: они спорят, переосмысляют, создают фан-творчество, читают «против шерсти». Зритель — соавтор смысла, а не только мишень.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Marvel — лучший аргумент за Адорно и лучший повод его оспорить. Активность аудитории — мост к Грамши и cultural studies (лекция 8).</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS ACROSS FILMS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Три эпохи индустрии</span></div>
+    <h2>Один штамп, три времени</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">1933 · Беркли</span><h3>Конвейер</h3><p>Масса-орнамент и эскапизм Депрессии.</p></div>
+      <div class="card ochre"><span class="k">1937 · Дисней</span><h3>Бренд</h3><p>Стиль-знак и забастовка за кулисами.</p></div>
+      <div class="card"><span class="k">2019 · Marvel</span><h3>Франшиза</h3><p>Стандарт и псевдовыбор в планетарном масштабе.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px;max-width:80ch">За 86 лет техника изменилась радикально — а логика осталась: <strong>культура как стандартизованный товар</strong>. Вопрос лишь в том, так ли беспомощен зритель, как думал Адорно.</p>
+    <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DEBATE: IS ADORNO RIGHT -->
+  <section class="slide">
+    <div class="eyebrow">Дебаты <span class="sep">/</span> <span class="tag">Прав ли Адорно?</span></div>
+    <h2>Сильная теория — и её слепое пятно</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="card accent" style="gap:12px"><span class="k">За Адорно</span><p>Концентрация капитала, формульность франшиз и индустриальный график производства — всё это подтверждает его диагноз спустя десятилетия.</p></div>
+      <div class="card ochre" style="gap:12px"><span class="k">Против</span><p>Теория презирает массовый вкус и считает зрителя пассивным. Но люди спорят, пересобирают и сопротивляются смыслам — это покажут Грамши и Холл.</p></div>
+    </div>
+    <p style="margin-top:18px;max-width:80ch">Продуктивный вывод: культуриндустрия — <strong>мощная тенденция</strong>, а не железный закон. Где Адорно видит только подчинение, дальнейший курс будет искать зазоры борьбы.</p>
+    <div class="slide-foot"><span>Спор о теории</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DISCUSSION -->
+  <section class="slide">
+    <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
+    <h2>Вопросы к дискуссии</h2>
+    <ul class="qlist" style="margin-top:14px">
+      <li><p>Если вы любите какую-то франшизу — делает ли это вас «жертвой» культуриндустрии, или Адорно недооценивает зрителя? Где грань?</p></li>
+      <li><p>Чем «псевдоиндивидуализация» отличается от настоящего разнообразия? Как отличить их на практике, разбирая фильм?</p></li>
+      <li><p>Забастовка аниматоров Диснея: меняет ли знание о труде за кадром ваше восприятие «волшебства»?</p></li>
+      <li><p>Советский монтаж (л. 2) будил, Голливуд (л. 3) усыпляет. Возможно ли массовое кино, которое <em>и</em> развлекает, <em>и</em> будит?</p></li>
+    </ul>
+    <div class="slide-foot"><span>Для семинара</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="slide">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Глоссарий лекции</span></div>
+    <h2>Ключевые понятия</h2>
+    <div class="cols" style="margin-top:12px">
+      <div class="deflist">
+        <div class="def"><span class="term">Культур·<br>индустрия</span><p>Производство культуры сверху, как товара, а не «снизу» от масс.</p></div>
+        <div class="def"><span class="term">Стандарти·<br>зация</span><p>Единая структурная матрица под видом разнообразия.</p></div>
+        <div class="def"><span class="term">Псевдоинди·<br>видуализация</span><p>Мелкие отличия, маскирующие тождество продуктов.</p></div>
+        <div class="def"><span class="term">Масса-<br>орнамент</span><p>Узор из людей как эстетика капиталистической рационализации (Кракауэр).</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Развлечение<br>= труд</span><p>Досуг восстанавливает рабочую силу и приучает к пассивности.</p></div>
+        <div class="def"><span class="term">Студия-<br>фабрика</span><p>Разделение труда и конвейер в производстве фильмов.</p></div>
+        <div class="def"><span class="term">Воспроиз·<br>водство<br>раб. силы</span><p>Поддержание работника в готовности к новому труду.</p></div>
+        <div class="def"><span class="term">Эскапизм</span><p>Бегство в фантазию как компенсация за тяготы.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Глоссарий</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- К ПРОСМОТРУ -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 2px">Три продукта индустрии из разных эпох — смотрите их как кейсы одной логики.</p>
+    <div class="watchlist" style="margin-top:16px">
+      <div class="wfilm"><span class="wy">1933</span><span class="wt">Золото·<br>искатели 1933</span><span class="wd">М. Лерой / номера Б. Беркли · США</span><span class="wn">Сцена: «We're in the Money». Понятия — стандартизация, масса-орнамент, эскапизм.</span></div>
+      <div class="wfilm"><span class="wy">1937</span><span class="wt">Белоснежка</span><span class="wd">Walt Disney · США · 83 мин</span><span class="wn">Контекст: забастовка аниматоров 1941. Понятие — псевдоиндивидуализация.</span></div>
+      <div class="wfilm"><span class="wy">2019</span><span class="wt">Мстители:<br>Финал</span><span class="wd">бр. Руссо · Marvel/Disney</span><span class="wn">Тест тезиса сегодня: франшиза как фабрика. Понятие — стандарт + псевдовыбор.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING + NEXT -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению и следующая лекция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>К чтению</h3>
+        <div class="readlist" style="margin-top:4px">
+          <div class="r"><span class="n">01</span><span class="ttl"><b>Т. Адорно, М. Хоркхаймер.</b> «Культуриндустрия» (из «Диалектики просвещения»)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">02</span><span class="ttl"><b>Т. Адорно.</b> «О популярной музыке» — стандартизация и псевдоиндивидуализация</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">03</span><span class="ttl"><b>З. Кракауэр.</b> «Орнамент массы»</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">04</span><span class="ttl"><b>Контекст:</b> забастовка аниматоров Disney 1941 года</span><span class="typ">Контекст</span></div>
+        </div>
+      </div>
+      <div class="oxpanel" style="padding:26px 28px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Лекция 04 →</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Беньямин: аура</h2>
+        <p style="margin-top:10px;color:rgba(255,255,255,.92)">Соратник Адорно — и его оптимистичный оппонент. Техническая воспроизводимость лишает искусство «ауры», но может и <em>политизировать</em> массы. Первый ответ пессимизму культуриндустрии.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 03 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+<div class="help">← → · пробел · клик по краям</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

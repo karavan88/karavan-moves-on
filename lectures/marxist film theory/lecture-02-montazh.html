@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 2 — Монтаж и спор о форме | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:48px 64px 64px calc(var(--rail) + 56px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:18px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(30px,4vw,52px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.25vw,18px);line-height:1.5}
+.lead{font-size:clamp(17px,1.55vw,22px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:18px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:60%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,96px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.34em;text-transform:uppercase;color:var(--bone-dim);font-size:13px;margin-bottom:22px}
+.cover h1{font-size:clamp(44px,7.6vw,108px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(20px,2.6vw,34px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:22ch}
+.cover .meta{margin-top:42px;display:flex;gap:38px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:38px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:46px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:24px 26px;border-radius:2px;display:flex;flex-direction:column;gap:10px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:14px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(15px,1.4vw,19px);white-space:nowrap}
+.def p{font-size:15px}
+.quote{position:relative;padding:8px 0 8px 64px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-24px;font-family:var(--display);font-weight:700;font-size:140px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,32px);line-height:1.28;display:block}
+.quote .attr{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:18px 22px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:46px;padding:8px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:6px}
+.schema .it{font-family:var(--serif);font-size:15px;color:var(--bone)}.schema .it b{color:#fff}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:30px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:22px;left:26px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(56px,7vw,104px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:24px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(22px,2.4vw,34px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:10px;z-index:2}
+.film .info{background:var(--ink);padding:30px 32px;display:flex;flex-direction:column;gap:14px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(26px,3vw,40px)}.film .info p{font-size:15.5px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:18px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:16px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,19px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:48px 1fr auto;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:14px 12px;background:var(--ink-2);display:flex;flex-direction:column;gap:8px;min-height:120px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:20px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12.5px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(34px,5.4vw,72px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:28ch}
+.nav{position:fixed;right:26px;bottom:22px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:18px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:18%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:30px 20px 70px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:18px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:240px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:40px}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:26px}}
+
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:20px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:13px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+@media (max-width:900px){.watchlist{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.watchlist{grid-template-columns:1fr}}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">02</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- 1 COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 02 / 10</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Монтаж<br>и спор<br>о <span class="hl">форме</span></h1>
+      <div class="subt">Советский авангард и вопрос: революционна ли сама форма?</div>
+      <div class="meta">
+        <span><b>Понятия:</b> монтаж · диалектика · формализм</span>
+        <span><b>Кейсы:</b> Эйзенштейн · Вертов · Пудовкин</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 WHERE WE ARE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 02 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:64ch;margin:18px 0 26px">В лекции 1 кино оказалось <em>товаром, который производит идеологию</em>. Теперь — поворот к <em>форме</em>: советский авангард утверждал, что революционным может быть само устройство фильма, а не только его сюжет. И сразу же — что с этим тезисом сделал ортодоксальный марксизм.</p>
+    <div class="coursemap">
+      <div class="node"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node cur"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 3 AGENDA -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 02 <span class="sep">/</span> <span class="tag">План занятия</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>План<br>сегодня</h2>
+        <p style="max-width:34ch;margin-top:14px">От теории монтажа — к большому спору о том, какая форма «по-настоящему» революционна. Авангард здесь не икона, а <em>сторона в конфликте</em>.</p>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">01 · Проблема</span><p>Революционна ли сама форма фильма?</p></div>
+        <div class="def"><span class="term">02 · Контекст</span><p>Молодое советское кино после 1917</p></div>
+        <div class="def"><span class="term">03 · Теория</span><p>Эффект Кулешова · монтаж аттракционов · киноглаз</p></div>
+        <div class="def"><span class="term">04 · Кейсы</span><p>«Потёмкин» · «Человек с киноаппаратом» · «Мать»</p></div>
+        <div class="def"><span class="term">05 · Спор</span><p>Реализм vs. формализм: Лукач, Брехт, соцреализм</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 4 PROBLEM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
+      <h2>Можно ли смонтировать<br>революцию?</h2>
+      <p class="sub">Советский тезис: содержание не делает искусство революционным — старые буржуазные формы переваривают любой сюжет. Менять нужно само устройство восприятия. Но согласны ли с этим другие марксисты?</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Постановка проблемы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 5 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Контекст <span class="sep">/</span> <span class="tag">1917 →</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Кино молодой<br>революции</h2>
+        <p style="margin-top:14px;max-width:46ch">После 1917 кинематограф для большевиков — главный инструмент агитации в неграмотной стране. Плёнки не хватает, поэтому в мастерской Кулешова учатся выжимать смысл не из съёмки, а из <strong>склейки</strong>. Дефицит сам толкает к теории монтажа.</p>
+      </div>
+      <div class="quote" style="align-self:center;padding-left:58px">
+        <q>Из всех искусств для нас важнейшим является кино.</q>
+        <div class="attr">Лозунг, приписываемый В. И. Ленину (через Луначарского)</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Здесь рождается смысл A марксистской теории кино: марксисты не критики фильмов, а их творцы.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 6 MONTAGE AS MATERIAL -->
+  <section class="slide">
+    <div class="eyebrow">Теория <span class="sep">/</span> <span class="tag">Эффект Кулешова</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Смысл рождается<br>между кадрами</h2>
+        <p style="margin-top:12px">Кулешов соединял один и тот же кадр лица актёра с тарелкой супа, гробом, ребёнком — и зрители «видели» то голод, то скорбь, то нежность. Вывод: <strong>значение производит не кадр, а склейка</strong>.</p>
+        <p style="margin-top:10px">Это и есть специфический материал кино. Монтаж — не способ рассказать историю, а способ <em>конструировать</em> мысль и чувство зрителя.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Кадр A</span><span class="it">Нейтральное лицо</span></div>
+        <div class="arrowzone"><span>+ склейка →</span><span>= новый смысл</span></div>
+        <div class="tier base"><span class="lab">Кадр B</span><span class="it"><b>Суп / гроб / ребёнок</b> → голод / скорбь / нежность</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Эффект Кулешова</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 7 EISENSTEIN ATTRACTIONS -->
+  <section class="slide">
+    <div class="eyebrow">Теория <span class="sep">/</span> <span class="tag">Эйзенштейн · аттракцион</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">A</span>
+        <h2 style="margin-top:8px">Монтаж<br>аттракционов</h2>
+        <p style="margin-top:14px;max-width:46ch">Эйзенштейн строит фильм из «аттракционов» — ударных эпизодов, рассчитанных на <strong>шок и эмоциональное потрясение</strong> зрителя. Цель не убаюкать иллюзией, а активно воздействовать, монтируя зрителя, как монтируют плёнку.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Аттракцион</span><p>Единица сильного воздействия, выбранная по расчёту эффекта.</p></div>
+        <div class="def"><span class="term">Зритель</span><p>Не наблюдатель, а материал, который надо «обработать».</p></div>
+        <div class="def"><span class="term">Цель</span><p>Не развлечь, а пробудить и направить классовое чувство.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Понятие · монтаж аттракционов</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 8 DIALECTICAL MONTAGE -->
+  <section class="slide">
+    <div class="eyebrow">Теория <span class="sep">/</span> <span class="tag">Диалектический монтаж</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Диалектика<br>в самой склейке</h2>
+        <p style="margin-top:12px">Для Эйзенштейна монтаж — это <strong>столкновение</strong>: кадр А и кадр Б конфликтуют, и из их удара рождается третье — понятие. Это прямая проекция <em>диалектики</em> на форму: тезис, антитезис, синтез прямо в склейке.</p>
+        <p style="margin-top:10px">Вот почему авангард претендует на звание <em>материалистической</em> формы: не «история о революции», а революция в способе мышления зрителя.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Тезис · кадр А</span><span class="it">Образ 1</span></div>
+        <div class="arrowzone"><span>× конфликт</span><span>⇣</span></div>
+        <div class="tier" style="background:var(--ink-2);border-bottom:none"><span class="lab" style="color:var(--ochre)">Антитезис · кадр Б</span><span class="it">Образ 2</span></div>
+        <div class="arrowzone"><span></span><span>= синтез: понятие</span></div>
+        <div class="tier base"><span class="lab">Синтез</span><span class="it"><b>Новая мысль, которой нет ни в А, ни в Б</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Марксистский крючок: диалектика становится монтажным приёмом, а не только содержанием.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 9 VERTOV KINO-EYE -->
+  <section class="slide">
+    <div class="eyebrow">Теория <span class="sep">/</span> <span class="tag">Вертов · киноглаз</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">B</span>
+        <h2 style="margin-top:8px">Киноглаз<br>и киноправда</h2>
+        <p style="margin-top:14px;max-width:46ch">Вертов отвергает игровое кино как «опиум»: никаких актёров, декораций и сюжетов. Камера — <strong>совершенный глаз</strong>, который видит мир точнее человеческого, а монтаж даёт «коммунистическую расшифровку» действительности.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Против<br>вымысла</span><p>Игровое кино обманывает; правда — в съёмке жизни врасплох.</p></div>
+        <div class="def"><span class="term">Киноглаз</span><p>Камера видит больше глаза: ускорение, замедление, ракурс.</p></div>
+        <div class="def"><span class="term">Монтаж<br>фактов</span><p>Смысл собирается из реальных фрагментов труда и города.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Понятие · киноглаз</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 10 PUDOVKIN VS EISENSTEIN -->
+  <section class="slide">
+    <div class="eyebrow">Теория <span class="sep">/</span> <span class="tag">Спор внутри авангарда</span></div>
+    <h2>Столкновение или сцепление?</h2>
+    <div class="cols" style="margin-top:18px">
+      <div class="card accent"><span class="k">Эйзенштейн</span><h3>Монтаж-столкновение</h3><p>Кадры конфликтуют; смысл взрывается из противоречия. Зритель потрясён и пробуждён.</p></div>
+      <div class="card ochre"><span class="k">Пудовкин</span><h3>Монтаж-сцепление</h3><p>Кадры складываются, как кирпичи; эмоция нарастает плавно. Зритель ведётся и сопереживает.</p></div>
+    </div>
+    <p style="margin-top:22px;max-width:76ch">Уже внутри авангарда нет единой «революционной формы»: спор о том, должен ли монтаж <em>ломать</em> зрителя или <em>вести</em> его, предвосхищает большой конфликт реализма и формализма, к которому мы придём.</p>
+    <div class="slide-foot"><span>Внутренний спор о монтаже</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 1: BATTLESHIP POTEMKIN (5) ============ -->
+
+  <!-- F1 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Столкновение</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Battleship Potemkin" data-year="1925" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1925</span><span class="pt">Броненосец<br>«Потёмкин»</span><span class="pd">реж. Сергей Эйзенштейн</span></div>
+        <img alt="Кадр из фильма «Броненосец Потёмкин»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> С. Эйзенштейн</span><span><b>1925 · СССР</b></span></div>
+        <h2>Броненосец «Потёмкин»</h2>
+        <div><span class="chip">Диалектич. монтаж</span><span class="chip">Коллектив-герой</span></div>
+        <p>Восстание матросов 1905 года. Центрального героя нет — действующее лицо это <strong>масса</strong>. Кульминация — расстрел на Одесской лестнице, эталон ритмического монтажа.</p>
+        <p>Рядом — ранняя «<em>Стачка</em>» (1925), где Эйзенштейн впервые разворачивает монтаж аттракционов в полный рост.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Монтаж аттракционов</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Кино как<br>удар, а не рассказ</h2>
+        <p style="margin-top:10px">Эйзенштейн начинал в театре с идеи «<strong>монтажа аттракционов</strong>» (1923): спектакль (а затем фильм) — это серия рассчитанных потрясений, бьющих по зрителю. В «Стачке» и «Потёмкине» он переносит это в кино.</p>
+        <p style="margin-top:8px">Фильм заказан к 20-летию революции 1905 года — и Эйзенштейн делает героем не личность, а восставший коллектив.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Аттракцион</span><p>Кадр как рассчитанный удар по зрителю.</p></div>
+        <div class="def"><span class="term">1905</span><p>Заказ к юбилею революции.</p></div>
+        <div class="def"><span class="term">Масса</span><p>Субъект истории — класс, а не герой.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">С. Эйзенштейн, «Монтаж аттракционов» (1923); «Стачка» (1925).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · сцена <span class="sep">/</span> <span class="tag">Одесская лестница</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Battleship Potemkin" data-year="1925" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · лестница</span><span class="yr">1925</span><span class="pt">Одесская<br>лестница</span><span class="pd">«Броненосец Потёмкин»</span></div>
+        <img alt="Сцена на Одесской лестнице из «Броненосца Потёмкин»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Ужас, собранный из склеек</h2>
+        <p>Расстрел построен не на «реализме», а на монтажном ритме: сапоги солдат, катящаяся коляска, лица — короткие куски сталкиваются и нагнетают ужас. В финале три кадра каменных львов (лежит → поднимает голову → встаёт) монтируются в одну фигуру: <strong>«даже камни восстают»</strong>.</p>
+        <p>Смысл рождается из склейки, а не из того, что в отдельном кадре.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> диалектический и интеллектуальный монтаж</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Столкновение<br>как метод</h2>
+        <p style="margin-top:10px">У Эйзенштейна монтаж — это <strong>конфликт</strong>: два кадра сталкиваются (тезис + антитезис) и рождают третий смысл (синтез), которого нет ни в одном из них. Львы — чистый интеллектуальный монтаж: идея «восстания» возникает из склейки статичных скульптур.</p>
+        <p style="margin-top:8px">Длина кусков задаёт пульс сцены сильнее, чем само действие, — это ритмический монтаж.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Ритм</span><p>Длина кадров — пульс сцены.</p></div>
+        <div class="def"><span class="term">Коляска</span><p>Аттракцион-шок: беспомощность против машины насилия.</p></div>
+        <div class="def"><span class="term">Львы</span><p>Метафора-синтез из трёх статичных кадров.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: форма как носитель смысла; коллектив как субъект истории.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Сила фильма</h3>
+        <p style="margin-top:6px">Доказывает тезис на деле: эмоцию можно <strong>сконструировать</strong> монтажом, а героем сделать класс, а не личность. Форма работает политически.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Расчётливое потрясение легко становится <em>манипуляцией</em>. Та же монтажная машина одинаково служит и революции, и любой пропаганде — вопрос, который встанет в лекции 4 (Беньямин и Рифеншталь).</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">«Потёмкин» — лучший аргумент за тезис «форма революционна». Но его же сила обнажает риск: техника воздействия нейтральна, заряд ей придаёт контекст, а не сам приём.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 2: MAN WITH A MOVIE CAMERA (5) ============ -->
+
+  <!-- F2 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Киноглаз</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Man with a Movie Camera" data-year="1929" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1929</span><span class="pt">Человек<br>с киноаппаратом</span><span class="pd">реж. Дзига Вертов</span></div>
+        <img alt="Кадр из фильма «Человек с киноаппаратом»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Дзига Вертов</span><span><b>1929 · СССР</b></span></div>
+        <h2>Человек с киноаппаратом</h2>
+        <div><span class="chip">Киноглаз</span><span class="chip">Саморефлексия</span><span class="chip">Анти-иллюзия</span></div>
+        <p>День большого города от рассвета до ночи: труд, машины, рождение, спорт. Без актёров, без титров, без сюжета — манифест киноглаза в действии.</p>
+        <p>Фильм постоянно показывает <strong>сам процесс</strong>: оператора, монтажницу за столом, плёнку.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Вертов и киноправда</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>«Кинодрама —<br>опиум народа»</h2>
+        <p style="margin-top:10px">Вертов и его «Совет троих» презирали игровое кино: выдуманные истории, по их мнению, усыпляют. Лозунг группы прямо переиначивал Маркса: <strong>художественная драма — опиум</strong>. Вместо неё — «киноправда» и «киноглаз»: камера как более совершенный глаз, ловящий жизнь врасплох.</p>
+        <p style="margin-top:8px">Это конструктивизм в кино: фильм не «отражает», а <em>строит</em> новое зрение нового общества.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Киноглаз</span><p>Камера видит точнее и иначе, чем человек.</p></div>
+        <div class="def"><span class="term">Киноправда</span><p>Жизнь, пойманная врасплох, без актёров.</p></div>
+        <div class="def"><span class="term">Конструк-<br>тивизм</span><p>Фильм строит зрение, а не отражает мир.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Д. Вертов, манифесты «киноглаза» и «киноправды» (1920-е); группа ЛЕФ.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена <span class="sep">/</span> <span class="tag">Фильм показывает свою фабрику</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Man with a Movie Camera" data-year="1929" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · монтажный стол</span><span class="yr">1929</span><span class="pt">Плёнка<br>и склейка</span><span class="pd">«Человек с киноаппаратом»</span></div>
+        <img alt="Сцена монтажа из «Человека с киноаппаратом»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Кино, которое себя разбирает</h2>
+        <p>Мы видим, как оператор снимает, как монтажница режет и склеивает плёнку, как кадр застывает на стоп-кадре. Кино перестаёт притворяться «окном в мир» и показывает себя как <strong>труд и конструкцию</strong>.</p>
+        <p>Перекличка с лекцией 1: если товарный фетишизм прячет труд, Вертов делает обратное — <em>выставляет труд кино напоказ</em>, разрушая фетиш готового фильма.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> обнажение приёма, анти-фетишизм</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Симфония<br>города</h2>
+        <p style="margin-top:10px">Вертов монтирует не сюжет, а ассоциации и ритмы: двойная экспозиция, расщеплённый экран, ускорение и стоп-кадр, рифмы движений (станок ↔ швейная машина ↔ пишущая). Форма сама становится <strong>конструкцией</strong>, а не невидимой «прозрачностью».</p>
+        <p style="margin-top:8px">Структура «один день города» связывает труд людей и труд киногруппы в единый ритм.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Приёмы</span><p>Двойная экспозиция, стоп-кадр, расщеплённый экран.</p></div>
+        <div class="def"><span class="term">Рифма</span><p>Монтаж по сходству движений и форм.</p></div>
+        <div class="def"><span class="term">Труд</span><p>Параллель: работа города и работа кино.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: разоблачение труда против товарного фетишизма (л. 1).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Сила фильма</h3>
+        <p style="margin-top:6px">Самый «теоретический» из всех: форма прямо встроила в себя критику иллюзии. В 1970-е Вертов станет героем теоретиков аппарата (л. 7) и «группы Дзиги Вертова» Годара (л. 5).</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Радикальная форма рискует остаться <em>элитарной</em>: восторгает теоретика, но трудна для массового зрителя — ровно тот упрёк, который скоро бросит авангарду ортодоксия.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Вертов доводит тезис «форма революционна» до предела: фильм не о революции, а сам по себе — революция способа видеть. Здесь же его уязвимость: чем радикальнее форма, тем уже аудитория.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 3: MOTHER (5) ============ -->
+
+  <!-- F3 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Сцепление</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Mother" data-year="1926" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1926</span><span class="pt">Мать</span><span class="pd">реж. Всеволод Пудовкин</span></div>
+        <img alt="Кадр из фильма «Мать»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> В. Пудовкин</span><span><b>1926 · СССР</b></span><span><b>по роману М. Горького</b></span></div>
+        <h2>Мать</h2>
+        <div><span class="chip">Монтаж-сцепление</span><span class="chip">Идентификация</span></div>
+        <p>По роману Горького: мать постепенно переходит на сторону сына-революционера. Монтаж Пудовкина — не удар, а нарастание: кадры складываются в эмоциональную волну.</p>
+        <p>Знаменитая сцена — ледоход на реке, смонтированный с растущей демонстрацией рабочих.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Монтаж как кладка</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Не удар,<br>а кирпичи</h2>
+        <p style="margin-top:10px">Пудовкин спорит с Эйзенштейном: для него монтаж — не столкновение, а <strong>сцепление</strong>, складывание кадров, как кирпичей в стену. Каждый кадр добавляет смысл и эмоцию к предыдущему, ведя зрителя плавно, а не толчками.</p>
+        <p style="margin-top:8px">Поэтому у Пудовкина есть герой, с которым отождествляешься, — путь к эмоции идёт через характер.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Сцепление</span><p>Кадры складываются, а не сталкиваются.</p></div>
+        <div class="def"><span class="term">Кирпич</span><p>Монтаж как кладка смысла слой за слоем.</p></div>
+        <div class="def"><span class="term">Герой</span><p>Эмоция — через идентификацию с персонажем.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">В. Пудовкин о монтаже как основе киноискусства (1926); спор с Эйзенштейном.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · сцена <span class="sep">/</span> <span class="tag">Ледоход</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Mother" data-year="1926" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · ледоход</span><span class="yr">1926</span><span class="pt">Ледоход<br>и демонстрация</span><span class="pd">«Мать»</span></div>
+        <img alt="Сцена ледохода из фильма «Мать»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Ледоход и пробуждение</h2>
+        <p>Весенний лёд трескается и идёт по реке — и в монтаже это становится образом просыпающихся масс. В отличие от эйзенштейновского столкновения, Пудовкин <strong>сцепляет</strong> кадры в плавную метафору, ведя зрителя к сопереживанию, а не к шоку.</p>
+        <p>Тот же материал — революция — но другая стратегия формы: эмоциональная идентификация вместо интеллектуального удара.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> монтаж-метафора, нарастание</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Волна вместо<br>толчка</h2>
+        <p style="margin-top:10px">Параллельный монтаж природы (ледоход) и истории (восстание) копит эмоцию постепенно, как прибывающая вода. Зритель не отстранён, а <strong>втянут</strong> — это ближе к «реализму», чем к авангардному шоку.</p>
+        <p style="margin-top:8px">Пудовкин делает монтаж невидимым там, где Вертов его обнажает: две противоположные стратегии внутри одного авангарда.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Параллель</span><p>Природа (ледоход) ↔ история (восстание).</p></div>
+        <div class="def"><span class="term">Нарастание</span><p>Эмоция копится кирпич за кирпичом.</p></div>
+        <div class="def"><span class="term">Идентифи-<br>кация</span><p>Зритель сопереживает герою — ближе к реализму.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: форма как стратегия вовлечения; альтернатива внутри авангарда.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Сила фильма</h3>
+        <p style="margin-top:6px">Пудовкин доступнее Эйзенштейна и Вертова: эмоция и характер делают авангардный монтаж понятным широкому зрителю. Это «мост» к будущему реализму.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Чем сильнее идентификация с героем, тем ближе фильм к той самой иллюзорной форме, которую авангард обещал сломать. Граница между «вести» и «убаюкивать» тонка.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Три фильма — три ответа на вопрос о форме: потрясти (Эйзенштейн), показать механику (Вертов), увлечь (Пудовкин). Единой «марксистской формы» нет даже у авангарда.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 20 THE DEBATE SETUP -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Большой спор</div>
+      <h2>Реализм<br>против формализма</h2>
+      <p class="sub">Главный конфликт марксистской эстетики XX века: что делает искусство революционным — верное отражение целого или взлом привычного восприятия? Авангард ответил «форма». Многие марксисты ответили «нет».</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Поворот лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 21 LUKACS -->
+  <section class="slide">
+    <div class="eyebrow">Спор <span class="sep">/</span> <span class="tag">Лукач · за реализм</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">I</span>
+        <h2 style="margin-top:8px">Лукач:<br>искусство целого</h2>
+        <p style="margin-top:14px;max-width:46ch">Дьёрдь Лукач — крупнейший марксистский теоретик — защищает <strong>реализм</strong>: задача искусства показать <em>тотальность</em> общественных отношений через типические характеры. Модернизм и формализм он считает буржуазным распадом, бегством от целого к осколкам и приёму.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Тотальность</span><p>Показать общество как целое, а не набор фрагментов.</p></div>
+        <div class="def"><span class="term">Типизация</span><p>Герой как тип, в котором сходятся силы эпохи.</p></div>
+        <div class="def"><span class="term">Упрёк</span><p>Формализм = декаданс, оторванный от масс.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Позиция I · реализм</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 22 BRECHT -->
+  <section class="slide">
+    <div class="eyebrow">Спор <span class="sep">/</span> <span class="tag">Брехт · за форму</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">II</span>
+        <h2 style="margin-top:8px">Брехт:<br>взломать иллюзию</h2>
+        <p style="margin-top:14px;max-width:46ch">Бертольт Брехт возражает Лукачу: «гладкий» реализм, который просто отражает поверхность, <strong>усыпляет</strong> и выдаёт исторические отношения за вечные. Нужна форма, которая <em>очуждает</em> привычное и заставляет зрителя думать, а не сопереживать.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Очуждение</span><p>Сделать знакомое странным, чтобы оно стало видимым.</p></div>
+        <div class="def"><span class="term">Против<br>иллюзии</span><p>Разрыв вживания — зритель остаётся критиком.</p></div>
+        <div class="def"><span class="term">Вперёд →</span><p>Брехт и кино — отдельная лекция 5.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Заметки Брехта против Лукача опубликованы позже — спор остался незавершённым.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 23 SOCIALIST REALISM -->
+  <section class="slide">
+    <div class="eyebrow">Спор <span class="sep">/</span> <span class="tag">Развязка · соцреализм</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Как ортодоксия<br>осудила авангард</h2>
+        <p style="margin-top:12px">В 1934-м <strong>социалистический реализм</strong> провозглашён единственным официальным методом. С середины 1930-х разворачивается кампания против «формализма»: авангард клеймят как буржуазный, элитарный, непонятный массам.</p>
+        <p style="margin-top:10px">Это и есть тот факт, с которого вы начали: <em>именно марксисты — государственные — раздавили марксистский авангард</em>.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">1934</span><p>Соцреализм — обязательная доктрина для всех искусств.</p></div>
+        <div class="def"><span class="term">1936 →</span><p>Газетная травля «формализма» в музыке и кино.</p></div>
+        <div class="def"><span class="term">«Бежин<br>луг»</span><p>Фильм Эйзенштейна остановлен и фактически уничтожен (1937), обвинён в формализме.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Историческая развязка</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 24 DOES AVANTGARDE RHYME -->
+  <section class="slide">
+    <div class="eyebrow">Ответ <span class="sep">/</span> <span class="tag">Возражение разобрано</span></div>
+    <h2>Так «рифмуется» ли авангард с марксизмом?</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="card accent" style="gap:12px">
+        <span class="k">Контраргумент</span>
+        <p>«Раз ортодоксы его осудили — значит, авангард вне марксистской теории кино».</p>
+      </div>
+      <div class="card ochre" style="gap:12px">
+        <span class="k">Ответ курса</span>
+        <p>Наоборот: авангард — не периферия, а <strong>сторона в центральном споре</strong> марксистской эстетики. «Марксисты критиковали» означает лишь, что марксизм внутренне расколот, а не что предмет лежит вне его.</p>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:22px;max-width:80ch">К тому же побеждённая ветвь не исчезла: в 1970-е теоретики <em>Screen</em> и Годар вернут Эйзенштейна и Вертова как образец <strong>материалистической, анти-иллюзорной формы</strong> (лекция 7). Поражение в СССР обернулось каноном на Западе.</p>
+    <div class="slide-foot"><span>Прямой ответ на возражение</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 25 SYNTHESIS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Что мы вынесли</span></div>
+    <h2>Три формы — один вопрос</h2>
+    <div class="cols-3" style="margin-top:18px">
+      <div class="card accent"><span class="k">Эйзенштейн</span><h3>Столкновение</h3><p>Диалектика в склейке; коллектив как герой. Мощно — и манипулятивно.</p></div>
+      <div class="card"><span class="k">Вертов</span><h3>Обнажение</h3><p>Показать труд кино, сломать иллюзию. Радикально — и элитарно.</p></div>
+      <div class="card ochre"><span class="k">Пудовкин</span><h3>Сцепление</h3><p>Эмоция и характер. Доступно — и близко к «иллюзии».</p></div>
+    </div>
+    <p class="lead" style="margin-top:22px;max-width:80ch">Авангард доказал, что <strong>форма политически нагружена</strong>. Но он же показал: единого рецепта «революционной формы» нет — и сам марксизм об этом спорит до сих пор.</p>
+    <div class="slide-foot"><span>Синтез лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 26 BRIDGE -->
+  <section class="slide">
+    <div class="eyebrow">Связки <span class="sep">/</span> <span class="tag">Куда тянутся нити</span></div>
+    <h2>Нити вперёд и назад</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="deflist">
+        <div class="def"><span class="term">← Лекция 1</span><p>Вертов как анти-фетишизм: фильм показывает свой труд.</p></div>
+        <div class="def"><span class="term">→ Лекция 4</span><p>Беньямин: техническая воспроизводимость и политизация искусства.</p></div>
+        <div class="def"><span class="term">→ Лекция 5</span><p>Брехт и очуждение в кино — продолжение спора с реализмом.</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">→ Лекция 7</span><p>Screen и Годар возвращают авангард как образец формы.</p></div>
+        <div class="def"><span class="term">⟂ Контраст</span><p>В лекции 3 Адорно увидит в Голливуде ровно обратное монтажу: стандартизацию.</p></div>
+        <div class="def"><span class="term">Вопрос</span><p>Чья форма победила в массовом кино — авангарда или индустрии?</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Связи курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 27 DISCUSSION -->
+  <section class="slide">
+    <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
+    <h2>Вопросы к дискуссии</h2>
+    <ul class="qlist" style="margin-top:14px">
+      <li><p>Если монтажная техника одинаково служит «Потёмкину» и пропаганде, можно ли вообще говорить о «революционной форме» — или политику задаёт только контекст?</p></li>
+      <li><p>Кто прав в споре Лукача и Брехта применительно к кино: нужен ли массам понятный реализм или взламывающая форма? Приведите современный пример.</p></li>
+      <li><p>Был ли разгром формализма «предательством» марксизма — или закономерным выбором массовой доступности против элитарности?</p></li>
+      <li><p>Какой современный фильм ближе к Вертову (обнажает свою сделанность), а какой — к Пудовкину (ведёт за героем)?</p></li>
+    </ul>
+    <div class="slide-foot"><span>Для семинара</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 28 GLOSSARY -->
+  <section class="slide">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Глоссарий лекции</span></div>
+    <h2>Ключевые понятия</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="deflist">
+        <div class="def"><span class="term">Монтаж</span><p>Соединение кадров как главный смыслопорождающий приём кино.</p></div>
+        <div class="def"><span class="term">Эффект<br>Кулешова</span><p>Смысл рождается из соседства кадров, а не из их содержания.</p></div>
+        <div class="def"><span class="term">Монтаж<br>аттракционов</span><p>Построение фильма из ударных эпизодов воздействия.</p></div>
+        <div class="def"><span class="term">Диалектич.<br>монтаж</span><p>Столкновение кадров рождает новое понятие (синтез).</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Киноглаз</span><p>Камера как совершенный глаз; монтаж фактов вместо вымысла.</p></div>
+        <div class="def"><span class="term">Очуждение</span><p>Приём, делающий привычное странным и видимым (Брехт).</p></div>
+        <div class="def"><span class="term">Реализм<br>(Лукач)</span><p>Отражение тотальности через типические характеры.</p></div>
+        <div class="def"><span class="term">Соцреализм</span><p>Официальный метод советского искусства с 1934 года.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Глоссарий</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 29 К ПРОСМОТРУ -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:72ch;margin:14px 0 2px">Три фильма-кейса плюс ранняя «Стачка» как дополнительный пример монтажа аттракционов.</p>
+    <div class="watchlist" style="margin-top:18px">
+      <div class="wfilm"><span class="wy">1925</span><span class="wt">Броненосец<br>«Потёмкин»</span><span class="wd">С. Эйзенштейн · СССР · 75 мин</span><span class="wn">Сцена: Одесская лестница · три каменных льва. Приём — диалектический монтаж.</span></div>
+      <div class="wfilm"><span class="wy">1929</span><span class="wt">Человек с<br>киноаппаратом</span><span class="wd">Дзига Вертов · СССР · 68 мин</span><span class="wn">Сцены: оператор и монтажница за работой. Приём — киноглаз, обнажение метода.</span></div>
+      <div class="wfilm"><span class="wy">1926</span><span class="wt">Мать</span><span class="wd">В. Пудовкин · СССР · 89 мин</span><span class="wn">Сцена: ледоход и демонстрация. Приём — монтаж-сцепление.</span></div>
+      <div class="wfilm"><span class="wy">1925</span><span class="wt">Стачка</span><span class="wd">С. Эйзенштейн · СССР · 82 мин</span><span class="wn">Доп.: расстрел рабочих, смонтированный с бойней. Приём — монтаж аттракционов.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 30 READING -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению</span></div>
+    <h2>К чтению</h2>
+    <div class="readlist" style="margin-top:10px">
+      <div class="r"><span class="n">01</span><span class="ttl"><b>С. Эйзенштейн.</b> «Монтаж аттракционов»; «Диалектический подход к форме фильма»</span><span class="typ">Источник</span></div>
+      <div class="r"><span class="n">02</span><span class="ttl"><b>Дзига Вертов.</b> Манифесты киноглаза («Мы», «Киноки. Переворот»)</span><span class="typ">Источник</span></div>
+      <div class="r"><span class="n">03</span><span class="ttl"><b>В. Пудовкин.</b> О монтаже как сцеплении (из работ о кинорежиссуре)</span><span class="typ">Источник</span></div>
+      <div class="r"><span class="n">04</span><span class="ttl"><b>Лукач · Брехт.</b> Спор о реализме / экспрессионизме (избранное)</span><span class="typ">Спор</span></div>
+      <div class="r"><span class="n">05</span><span class="ttl"><b>Обзор:</b> кампания против формализма и судьба «Бежина луга»</span><span class="typ">Контекст</span></div>
+    </div>
+    <div class="slide-foot"><span>Литература</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 30 NEXT -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">Следующая лекция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>Итог лекции 2</h3>
+        <p style="margin-top:8px;max-width:48ch">Форма политически нагружена — но что происходит, когда мощная киноформа попадает в руки <em>индустрии</em>, а не революции? Советы видели в кино орудие пробуждения. Франкфуртская школа увидит в Голливуде машину усыпления.</p>
+        <p style="margin-top:10px">Поворот от формы как освобождения — к форме как стандартизации.</p>
+      </div>
+      <div class="oxpanel" style="padding:28px 30px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:10px">Лекция 03 →</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Культуриндустрия</h2>
+        <p style="margin-top:12px;color:rgba(255,255,255,.92)">Адорно и Хоркхаймер: развлечение как продолжение труда, стандартизация и псевдоиндивидуализация. Голливуд как фабрика — и кино как товар (возврат к лекции 1 на новом витке).</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 02 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+<div class="help">← → · пробел · клик по краям</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

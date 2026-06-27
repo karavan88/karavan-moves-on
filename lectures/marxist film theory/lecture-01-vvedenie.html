@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 1 — Зачем марксизму кино | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(44px,7.8vw,112px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:22ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:30ch}
+.timeline{display:flex;flex-direction:column;gap:10px;align-self:center}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14.5px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== NEW SLIDE TYPES (v2 — переработка л.1; при распространении скопировать в остальные лекции) ===== */
+/* Ключевой тезис / афоризм */
+.slide.thesis{justify-content:center}
+.thesis .tlbl{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ochre);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.thesis .tlbl::before{content:"";width:30px;height:2px;background:var(--red)}
+.thesis .big{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(38px,6.4vw,96px);line-height:.95;letter-spacing:-.01em;max-width:20ch}
+.thesis .big .hl{color:var(--red)}.thesis .big .oc{color:var(--ochre)}
+.thesis .tsub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,22px);color:var(--bone-dim);margin-top:24px;max-width:52ch}
+/* Полноэкранный кадр */
+.slide.framefull{justify-content:flex-end;overflow:hidden}
+.framefull .shot{position:absolute;inset:0;background:var(--ink-2);z-index:0}
+.framefull .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.framefull .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,17,15,.94),rgba(20,17,15,.20) 44%,rgba(20,17,15,.5))}
+.framefull .fcap{position:relative;z-index:2;max-width:66%}
+.framefull .fk{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.framefull .fcap h2{font-size:clamp(30px,4.4vw,62px)}
+.framefull .fcap p{margin-top:12px;font-size:clamp(15px,1.4vw,19px);max-width:54ch;color:var(--bone)}
+.framefull .slide-foot{color:var(--bone-dim);border-color:var(--line-strong)}
+.slide.thesis .slide-foot,.slide.framefull .slide-foot{position:absolute;left:calc(var(--rail) + 54px);right:60px;bottom:22px;margin-top:0}
+/* Крупный прозрачный красный год на полноэкранных кадрах-визитках */
+.framefull .fyear{position:absolute;z-index:2;font-family:var(--display);font-weight:700;font-size:clamp(96px,17vw,260px);line-height:.76;color:rgba(214,52,42,.42);letter-spacing:-.02em;pointer-events:none;right:50px;bottom:26px}
+.framefull .fyear.top{top:18px;bottom:auto;right:50px}
+.framefull .fyear.bl{left:calc(var(--rail) + 54px);right:auto;bottom:26px}
+/* Портреты теоретиков */
+.thinkers{display:flex;gap:14px;margin-top:16px}
+.thinkers figure{width:102px}
+.thinkers img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;border:1px solid var(--line-strong);filter:grayscale(1) contrast(1.05) brightness(1.02);display:block}
+.thinkers figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:6px;line-height:1.5}
+.thinkers figcaption b{color:var(--ochre);display:block;font-weight:500}
+/* Рамка-кадр внутри обычного слайда */
+.framebox{position:relative;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink-2);min-height:300px;align-self:stretch}
+.framebox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.framebox .fbcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);background:linear-gradient(transparent,rgba(20,17,15,.94))}
+/* Постеры: контактный лист + сетка-канон */
+.contactrow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-self:center;width:100%;max-width:1040px;margin:0 auto}
+.pcard{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);overflow:hidden;aspect-ratio:2/3}
+.pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pcard .pgrad{position:absolute;left:0;right:0;bottom:0;top:52%;background:linear-gradient(transparent,rgba(20,17,15,.95));z-index:1}
+.pcard .pcyr{position:absolute;left:11px;bottom:28px;z-index:2;font-family:var(--display);font-weight:700;font-size:21px;color:#fff}
+.pcard .pcname{position:absolute;left:11px;right:11px;bottom:10px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim)}
+.postergrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-self:center;width:100%;max-width:860px;margin:0 auto}
+.postergrid .plnum{position:absolute;top:0;left:0;z-index:2;font-family:var(--display);font-weight:700;font-size:14px;color:#fff;background:var(--red);padding:2px 8px}
+.postergrid .pttl{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px 9px 9px;font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:10.5px;line-height:1.05;color:#fff;background:linear-gradient(transparent,rgba(20,17,15,.96))}
+/* Схема-поток */
+.flow{display:flex;align-items:stretch;align-self:center;width:100%;gap:0}
+.flow .fstep{flex:1;border:1px solid var(--line-strong);background:var(--ink-2);padding:18px 16px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.flow .fstep .fsk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.flow .fstep h3{font-size:clamp(15px,1.5vw,21px)}
+.flow .fstep p{font-size:12.5px;color:var(--bone-dim);line-height:1.4}
+.flow .fstep.eco{border-top:4px solid var(--red)}.flow .fstep.eco .fsk{color:var(--red)}
+.flow .fstep.ideo{border-top:4px solid var(--ochre);background:var(--oxblood)}.flow .fstep.ideo .fsk{color:var(--ochre)}
+.flow .farr{display:flex;align-items:center;padding:0 9px;color:var(--red);font-family:var(--display);font-weight:700;font-size:24px}
+/* Айсберг: видно / не видно */
+.iceberg{position:relative;align-self:center;width:100%;max-width:720px;border:1px solid var(--line-strong);display:flex;flex-direction:column;min-height:360px;overflow:hidden}
+.iceberg .ib-above{flex:0 0 33%;padding:20px 26px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:linear-gradient(160deg,rgba(236,230,218,.06),transparent)}
+.iceberg .ib-water{height:0;border-top:2px dashed var(--red);position:relative}
+.iceberg .ib-water span{position:absolute;right:16px;top:-9px;background:var(--ink);padding:0 8px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.iceberg .ib-below{flex:1;padding:22px 26px;display:flex;flex-direction:column;justify-content:center;gap:16px;background:linear-gradient(180deg,rgba(58,23,20,.6),var(--ink) 92%)}
+.iceberg .ib-zone{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.iceberg .ib-above .ib-zone{color:var(--bone-dim)}.iceberg .ib-below .ib-zone{color:var(--red)}
+.iceberg .ib-it b{font-family:var(--display);font-weight:600;text-transform:uppercase;color:#fff;font-size:15px;display:block}
+.iceberg .ib-it span{font-size:13.5px;color:var(--bone-dim)}
+/* Постеры в списке «К просмотру» */
+.watchlist.withposters .wfilm{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start;padding:16px 18px 16px 16px}
+.watchlist.withposters .wfilm .wy{display:none}
+.watchlist.withposters .wpost{grid-row:span 4;aspect-ratio:2/3;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink)}
+.watchlist.withposters .wpost img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:900px){
+  .contactrow{grid-template-columns:repeat(2,1fr);max-width:340px}
+  .postergrid{grid-template-columns:repeat(3,1fr)}
+  .flow{flex-direction:column}.flow .farr{transform:rotate(90deg);padding:6px 0;justify-content:center}
+  .framefull .fcap{max-width:100%}
+  .iceberg .ib-above{flex-basis:30%}
+  .slide.thesis .slide-foot,.slide.framefull .slide-foot{left:18px;right:18px}
+  .flow .fstep{padding:13px 14px}.flow .fstep p{font-size:11.5px}
+}
+@media (max-width:560px){.postergrid{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  /* hide interactive chrome */
+  .nav,.help,.progress,.zone{ display:none !important; }
+  /* turn the stacked deck into a normal flow */
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  /* keep film stills/placeholders from collapsing on paper */
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">01</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 01 / 11</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Зачем марксизму<br>кино, а кино —<br><span class="hl">марксизму</span></h1>
+      <div class="subt">Введение: фильм как товар и как идеологическая машина</div>
+      <div class="meta">
+        <span><b>Категории:</b> базис · надстройка · товар</span>
+        <span><b>Кейсы:</b> Чаплин · Ланг · Карпентер · Андерсон</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLD OPEN: CONTACT SHEET -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 01 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
+    <h2>Что общего у этих фильмов?</h2>
+    <p class="lead" style="max-width:62ch;margin:14px 0 4px">Не жанр. Не страна. Не эпоха — между крайними почти сто лет. И всё же их роднит одно. И это «одно» — не про искусство.</p>
+    <div style="flex:1;display:flex;align-items:center;width:100%">
+      <div class="contactrow">
+        <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/7Gd1FOmFD3fyY3bCUt7GwQTwcza.jpg" alt="Постер «Броненосец Потёмкин»"><div class="pgrad"></div><span class="pcyr">1925</span><span class="pcname">Броненосец Потёмкин</span></div>
+        <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/b9IVtOO89Ays4v0eWfADQ4Lq3wZ.jpg" alt="Постер «Метрополис»"><div class="pgrad"></div><span class="pcyr">1927</span><span class="pcname">Метрополис</span></div>
+        <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/74MfDraK1Ro8k6wAgSyPLvgtZaP.jpg" alt="Постер «Новые времена»"><div class="pgrad"></div><span class="pcyr">1936</span><span class="pcname">Новые времена</span></div>
+        <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/qZEuNUlUWzzaVpSgnHDtxYZJH7g.jpg" alt="Постер «Чужие среди нас»"><div class="pgrad"></div><span class="pcyr">1988</span><span class="pcname">Чужие среди нас</span></div>
+        <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/2eH78Nz708yFVrcaZAE2bspY5q5.jpg" alt="Постер «Нефть»"><div class="pgrad"></div><span class="pcyr">2007</span><span class="pcname">Нефть</span></div>
+        <div class="pcard"><img src="https://image.tmdb.org/t/p/w500/mMM8kcfspicib7AmPTvf97Rarwn.jpg" alt="Постер «Паразиты»"><div class="pgrad"></div><span class="pcyr">2019</span><span class="pcname">Паразиты</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Четыре из них — фильмы этой лекции. Подсказка: ответ начинается не с того, о чём фильм, а с того, как он сделан и продан.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS A: ANSWER -->
+  <section class="slide thesis">
+    <div class="tlbl">Ответ</div>
+    <div class="big">Все они — <span class="hl">товар</span> определённого способа производства</div>
+    <div class="tsub">Прежде чем стать искусством, фильм — это индустрия, рынок и наёмный труд. Именно здесь, а не в «смысле кадра», начинается марксистский взгляд на кино.</div>
+    <div class="slide-foot"><span>С чего начинается метод</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BIG QUESTION OF THE COURSE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 01 <span class="sep">/</span> <span class="tag">Главный вопрос курса</span></div>
+    <h2>Как кино отражает, производит и&nbsp;воспроизводит общественные отношения?</h2>
+    <div class="cols-3" style="margin-top:20px">
+      <div class="card accent"><span class="k">Отражает</span><h3>На экране</h3><p>Показывает классы, труд, конфликты — как зеркало эпохи. Самый очевидный и самый поверхностный слой.</p></div>
+      <div class="card ochre"><span class="k">Производит</span><h3>Сознание</h3><p>Формирует представления о «нормальном»: что естественно, что желанно, кто прав. Это уже идеология.</p></div>
+      <div class="card"><span class="k">Воспроизводит</span><h3>Сам строй</h3><p>Как товар и как практика кино поддерживает отношения, которые его и породили.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Каждая из десяти лекций отвечает на одну часть этого вопроса. Возвращаемся к нему постоянно.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THREE LEVELS OF ANALYSIS -->
+  <section class="slide">
+    <div class="eyebrow">Метод <span class="sep">/</span> <span class="tag">Три уровня анализа</span></div>
+    <h2>Один фильм — три разреза</h2>
+    <p class="lead" style="max-width:64ch;margin:14px 0 18px">Сквозной каркас курса. Любую теорию — Беньямина, Альтюссера, Грамши, Джеймисона — мы будем спрашивать: на каком из трёх уровней она работает?</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">01 · Производство</span><h3>Кино как индустрия</h3><p>Кто владеет студией и камерой? На каком капитале и чьём труде сделан фильм?</p></div>
+      <div class="card ochre"><span class="k">02 · Текст</span><h3>Кино как высказывание</h3><p>Какими художественными средствами фильм воспроизводит — или подрывает — идеологию?</p></div>
+      <div class="card"><span class="k">03 · Практика</span><h3>Кино как жизнь</h3><p>Как фильмы смотрят, обсуждают, распространяют; какое место они занимают в обществе.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Не десять отдельных теорий, а три способа смотреть на один и тот же феномен.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WHERE WE ARE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 01 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:62ch;margin:16px 0 22px">Курс идёт от <em>оснований</em> (марксовы категории) к <em>форме</em> (советский монтаж), затем к <em>идеологии и аппарату</em> и к <em>современному анализу глобального капитализма</em>. Первая лекция задаёт инструменты на все десять занятий.</p>
+    <div class="coursemap">
+      <div class="node cur"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+      <div class="node"><span class="nn">11</span><span class="nt">Политэкономия кино</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
+      <h2>Фильм — это товар<br>или идеология?</h2>
+      <p class="sub">Марксистский ответ: и то и другое сразу — и одно работает через другое. Кино продаётся как вещь и при этом производит наши представления о мире.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Постановка проблемы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTEXT → FLOW -->
+  <section class="slide">
+    <div class="eyebrow">Контекст <span class="sep">/</span> <span class="tag">1895 →</span></div>
+    <h2>Кино рождается внутри капитализма</h2>
+    <p class="lead" style="max-width:76ch;margin:12px 0 22px">Единственное из больших искусств, которое <strong>с первого дня</strong> — промышленное производство и рыночный товар одновременно. У кино нет «докапиталистического» прошлого: оно ровесник массового индустриального капитализма. Отсюда и точка входа метода — не сюжет, а цикл.</p>
+    <div class="flow">
+      <div class="fstep eco"><span class="fsk">Базис · 01</span><h3>Производство</h3><p>Студия-фабрика: разделение труда, смены, наёмный труд.</p></div>
+      <div class="farr">→</div>
+      <div class="fstep eco"><span class="fsk">Базис · 02</span><h3>Обращение</h3><p>Билет, прокат, франшиза, платформа — фильм циркулирует как товар.</p></div>
+      <div class="farr">→</div>
+      <div class="fstep eco"><span class="fsk">Базис · 03</span><h3>Потребление</h3><p>Массовая аудитория покупает готовый продукт.</p></div>
+      <div class="farr">→</div>
+      <div class="fstep ideo"><span class="fsk">Надстройка</span><h3>Идеология</h3><p>И тем же движением производит представления о мире.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Красным — экономический цикл (базис); охрой — его идеологический выход (надстройка).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- MARX NEVER SAW CINEMA / BLOC OF THEORIES -->
+  <section class="slide">
+    <div class="eyebrow">Оговорка <span class="sep">/</span> <span class="tag">Важно проговорить сразу</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Маркс кино<br>не видел</h2>
+        <p style="margin-top:12px;max-width:46ch">Маркс умер в <strong>1883</strong>-м, Энгельс — в <strong>1895</strong>-м, ровно когда братья Люмьер дали первый публичный сеанс. Ни один из них <strong>не видел ни одного фильма</strong> и никогда не писал о кино. Они анализировали капитал, труд, идеологию и класс — не кинематограф.</p>
+        <p style="margin-top:10px">Поэтому курс не «излагает теорию Маркса о кино». Он <em>применяет</em> его категории к медиуму, которого Маркс не застал.</p>
+        <div class="thinkers">
+          <figure><img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Karl_Marx_001.jpg" alt="Карл Маркс"><figcaption><b>Карл Маркс</b>1818 — 1883</figcaption></figure>
+          <figure><img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Friedrich_Engels_portrait_%28cropped%29.jpg" alt="Фридрих Энгельс"><figcaption><b>Фридрих Энгельс</b>1820 — 1895</figcaption></figure>
+        </div>
+      </div>
+      <div class="stack">
+        <h3>Не теория, а семейство теорий</h3>
+        <p style="font-size:14.5px;margin:2px 0 8px">«Марксистская теория кино» — конструкция XX–XXI веков: блок направлений из разных исторических контекстов, скреплённых лишь тем, что все опираются на введённые Марксом понятия.</p>
+        <div class="timeline">
+          <div class="t"><span class="yr2">1920-е</span><span class="ds"><b>Советы</b> — революционная форма в молодом соцгосударстве</span></div>
+          <div class="t"><span class="yr2">1940-е</span><span class="ds"><b>Франкфурт</b> — культуриндустрия глазами эмигрантов</span></div>
+          <div class="t"><span class="yr2">1960–70-е</span><span class="ds"><b>Франция / Screen</b> — идеология и киноаппарат</span></div>
+          <div class="t"><span class="yr2">1980-е →</span><span class="ds"><b>Cultural studies</b> — гегемония, прочтение, поздний капитализм</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Единство — не в школе, а в общем наборе понятий: класс, идеология, товар, способ производства.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WHY CINEMA NOT LITERATURE -->
+  <section class="slide">
+    <div class="eyebrow">Вопрос <span class="sep">/</span> <span class="tag">Почему именно кино</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Почему кино,<br>а не роман?</h2>
+        <p style="margin-top:10px">Марксистская критика искусства существовала и до кинематографа. Но именно кино стало её <strong>привилегированным объектом</strong> — и не случайно.</p>
+        <p style="margin-top:8px">Литература — индивидуальное чтение и в основе своей кустарное письмо. Кино с рождения иное: оно собирает в одном предмете всё, что марксизм и так изучает.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Массовость</span><p>Один фильм — миллионы зрителей почти одновременно.</p></div>
+        <div class="def"><span class="term">Индустри-<br>альность</span><p>Производится фабрично, на крупный капитал.</p></div>
+        <div class="def"><span class="term">Коллек-<br>тивность</span><p>Сотни наёмных работников вместо одного автора.</p></div>
+        <div class="def"><span class="term">Воспроиз-<br>водимость</span><p>Тиражируется без потери оригинала — к этому вернётся Беньямин (л.4).</p></div>
+        <div class="def"><span class="term">Влияние</span><p>Прямо формирует массовое сознание.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Кино концентрирует индустрию, массу и идеологию в одном предмете — потому марксизм и обратился к нему.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WHAT IT DOES NOT DO -->
+  <section class="slide">
+    <div class="eyebrow">Рамки метода <span class="sep">/</span> <span class="tag">Снимаем путаницу</span></div>
+    <h2>Чего марксистский анализ не делает</h2>
+    <div class="cols-3" style="margin-top:18px">
+      <div class="card"><span class="k">Не оценка</span><h3>Не выносит вердикт</h3><p>«Хороший или плохой фильм» — не его вопрос. «<em>Шедевр</em>» и «<em>проходняк</em>» разбираются одинаково.</p></div>
+      <div class="card"><span class="k">Не биография</span><h3>Не разбор стиля автора</h3><p>Режиссёрский почерк интересен лишь как симптом, а не сам по себе.</p></div>
+      <div class="card"><span class="k">Не эстетика</span><h3>Не композиция ради формы</h3><p>Свет и кадр важны не «красотой», а тем, какую работу они выполняют.</p></div>
+    </div>
+    <div class="oxpanel" style="padding:18px 24px;margin-top:18px">
+      <h3 style="color:#fff">А спрашивает он другое</h3>
+      <p style="margin-top:6px;max-width:90ch">Как фильм встроен в способ производства? Чьи интересы он подаёт как естественные? Какой труд — свой и чужой — он прячет? К этим трём вопросам метод сводит всё остальное.</p>
+    </div>
+    <div class="slide-foot"><span>Границы подхода</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WHY MARX -->
+  <section class="slide">
+    <div class="eyebrow">Инструменты <span class="sep">/</span> <span class="tag">Что даёт марксов аппарат</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Не «искать политику<br>в сюжете»</h2>
+        <p style="margin-top:10px">Марксистский подход — это набор <em>категорий</em>, связывающих экран с <strong>материальными условиями</strong> его производства и с производством сознания.</p>
+        <p style="margin-top:10px">Отличие от широкой «социальной критики»: вопрос не только «что фильм говорит о неравенстве», но «как фильм встроен в способ производства и как он воспроизводит общественные отношения».</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Способ<br>производства</span><p>Как общество производит свою материальную жизнь — фундамент анализа.</p></div>
+        <div class="def"><span class="term">Класс</span><p>Положение в производстве, а не «доход» или «вкус».</p></div>
+        <div class="def"><span class="term">Идеология</span><p>Не ложь, а воображаемое отношение людей к реальным условиям.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Почему именно Маркс</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAT 1 DEF -->
+  <section class="slide">
+    <div class="eyebrow">Категория 01 <span class="sep">/</span> <span class="tag">Базис и надстройка</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">01</span>
+        <h2 style="margin-top:6px">Базис<br>и надстройка</h2>
+        <p style="margin-top:12px;max-width:44ch">Экономический <strong>базис</strong> — производственные отношения — образует фундамент, над которым возвышается <strong>надстройка</strong>: право, политика, искусство, идеи. Культура не висит в воздухе: она вырастает из материальной основы.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Способ производства материальной жизни обусловливает социальный, политический и духовный процессы жизни вообще.</q>
+        <div class="attr">К. Маркс — «К критике политической экономии», 1859</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Определение</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAT 1 SCHEMA -->
+  <section class="slide">
+    <div class="eyebrow">Категория 01 <span class="sep">/</span> <span class="tag">Схема</span></div>
+    <h2>Не «отражение», а сложная связь</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="schema">
+        <div class="tier super"><span class="lab">Надстройка</span><span class="it">Право · государство · мораль · <b>искусство и кино</b> · идеи об обществе</span></div>
+        <div class="arrowzone"><span>↓ обусловливает</span><span>↑ воздействует</span></div>
+        <div class="tier base"><span class="lab">Базис</span><span class="it"><b>Производительные силы</b> + <b>производственные отношения</b></span></div>
+      </div>
+      <div class="stack">
+        <h3>Осторожно: не вульгарный детерминизм</h3>
+        <p style="margin-top:6px">Связь не механическая. Надстройка обладает <em>относительной автономией</em> и обратно влияет на базис. Поэтому неверно сводить фильм к «зеркалу экономики».</p>
+        <p style="margin-top:8px">Весь курс — спор о том, <strong>насколько</strong> и <strong>как</strong> кино связано с базисом: жёстко (вульгарный марксизм), относительно автономно (Альтюссер), через гегемонию (Грамши).</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Схема базис/надстройка</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAT 1 APPLIED -->
+  <section class="slide">
+    <div class="eyebrow">Категория 01 <span class="sep">/</span> <span class="tag">Применение</span></div>
+    <h2>Куда поместить фильм?</h2>
+    <div class="cols-3" style="margin-top:18px">
+      <div class="card accent"><span class="k">В базисе</span><h3>Фильм как товар</h3><p>Производится наёмным трудом, продаётся ради прибыли. Экономика студии, проката, платформ.</p></div>
+      <div class="card ochre"><span class="k">В надстройке</span><h3>Фильм как идея</h3><p>Транслирует ценности, образы «нормального», представления о классе, семье, нации.</p></div>
+      <div class="card"><span class="k">Между ними</span><h3>Фильм как связка</h3><p>Кино связывает базис и надстройку — товар, который производит идеологию.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Поэтому кино — привилегированный объект для марксизма: экономика и идеология в одном предмете.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS B -->
+  <section class="slide thesis">
+    <div class="tlbl">Ключевой тезис</div>
+    <div class="big">Фильм продаётся как <span class="hl">вещь</span> — и тем же движением продаёт <span class="oc">картину мира</span></div>
+    <div class="tsub">Товар и идеология — не два разных свойства кино, а одно: второе работает через первое.</div>
+    <div class="slide-foot"><span>Тезис курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAT 2 DEF -->
+  <section class="slide">
+    <div class="eyebrow">Категория 02 <span class="sep">/</span> <span class="tag">Идеология</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">02</span>
+        <h2 style="margin-top:6px">Идеология</h2>
+        <p style="margin-top:12px;max-width:44ch">Идеология — не «сознательная ложь» и не «партийная программа». Это <strong>само собой разумеющееся</strong>: то, что кажется естественным, вечным, единственно возможным, хотя на деле исторично и служит определённым интересам.</p>
+        <p style="margin-top:10px">Сила идеологии — в её <em>невидимости</em>. Лучше всего она работает, когда мы её не замечаем.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Господствующими мыслями любой эпохи всегда были лишь мысли господствующего класса.</q>
+        <div class="attr">К. Маркс, Ф. Энгельс — «Немецкая идеология»</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Определение</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAT 2 APPLIED -->
+  <section class="slide">
+    <div class="eyebrow">Категория 02 <span class="sep">/</span> <span class="tag">Применение</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Кино натурализует<br>случайное</h2>
+        <p style="margin-top:10px">Идеологическая работа фильма — превращать <strong>историческое и спорное</strong> в <strong>естественное и очевидное</strong>: «так устроен мир», «иначе не бывает», «хороший герой думает так».</p>
+        <p style="margin-top:8px">Поэтому марксистский анализ читает фильм <em>«против шерсти»</em>: ищет, что подаётся как само собой разумеющееся, и спрашивает — чьим интересам это служит?</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Что<br>натурализуется</span><p>Рынок, конкуренция, семья, гендерные роли, «нормальная» жизнь.</p></div>
+        <div class="def"><span class="term">Как</span><p>Идентификация с героем, «реалистичность», happy end, монтаж «как в жизни».</p></div>
+        <div class="def"><span class="term">Симптом</span><p>То, о чём фильм молчит, иногда красноречивее сюжета.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Идеология на экране</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAT 3 DEF -->
+  <section class="slide">
+    <div class="eyebrow">Категория 03 <span class="sep">/</span> <span class="tag">Товарный фетишизм</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">03</span>
+        <h2 style="margin-top:6px">Товар и товарный<br>фетишизм</h2>
+        <p style="margin-top:12px;max-width:46ch">В товаре общественные отношения между людьми принимают <strong>фантастическую форму отношения между вещами</strong>. Мы видим цену и вещь — но не видим труд и отношения, которые за ними стоят.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Определённое общественное отношение людей принимает для них призрачную форму отношения вещей.</q>
+        <div class="attr">К. Маркс — «Капитал», т. 1, гл. 1</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Определение</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAT 3 MECH → ICEBERG -->
+  <section class="slide">
+    <div class="eyebrow">Категория 03 <span class="sep">/</span> <span class="tag">Механизм</span></div>
+    <h2>Что фетиш прячет</h2>
+    <div class="cols-wide" style="margin-top:14px;align-items:center">
+      <div class="iceberg">
+        <div class="ib-above">
+          <span class="ib-zone">Видно</span>
+          <div class="ib-it"><b>Вещь и цена</b><span>Готовый фильм, билет, блеск звёзд, «магия кино».</span></div>
+        </div>
+        <div class="ib-water"><span>ватерлиния товарной формы</span></div>
+        <div class="ib-below">
+          <span class="ib-zone">Не видно</span>
+          <div class="ib-it"><b>Труд</b><span>Сотни смен, монтажёров, техников — исчезают за словом «магия».</span></div>
+          <div class="ib-it"><b>Отношения</b><span>Кто кому платит, кто владеет правами, как делится прибыль.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <h3>Не ошибка зрения, а форма</h3>
+        <p style="margin-top:8px">Над водой — то, что товар показывает сам: вещь и цену. Под водой — труд и общественные отношения, которые он же делает невидимыми.</p>
+        <p style="margin-top:8px">Фетишизм — <em>не</em> заблуждение, которое можно «исправить, приглядевшись». Это реальная форма, в которой вещи являются нам на рынке.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Задача анализа — нырнуть ниже ватерлинии: к труду и отношениям, спрятанным товарной формой.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAT 3 APPLIED -->
+  <section class="slide">
+    <div class="eyebrow">Категория 03 <span class="sep">/</span> <span class="tag">Применение</span></div>
+    <div class="cols">
+      <div class="quote" style="align-self:center;padding-left:58px">
+        <q>«Фабрика грёз» — это прежде всего <em>фабрика</em>.</q>
+        <div class="attr">Рабочая формула курса</div>
+      </div>
+      <div class="stack">
+        <h3>Кино прячет собственный труд</h3>
+        <p style="margin-top:8px">Голливуд зовёт себя «фабрикой грёз», но слово «грёзы» затушёвывает слово «фабрика». Зритель потребляет готовый блеск и не видит индустриального процесса.</p>
+        <h3 style="margin-top:18px">Двойное сокрытие</h3>
+        <p style="margin-top:8px">Фильм-товар прячет <strong>свой</strong> труд (титры мелькают за секунды) и часто прячет <strong>чужой</strong> труд — изображая капитал без рабочих, богатство без производства.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Фетишизм и кино</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS C -->
+  <section class="slide thesis">
+    <div class="tlbl">Ключевой тезис</div>
+    <div class="big">Товар скрывает труд. Фильм скрывает <span class="hl">и свой собственный</span> тоже</div>
+    <div class="tsub">Титры мелькают за секунды; «фабрика грёз» оставляет на виду только «грёзы» — и прячет «фабрику».</div>
+    <div class="slide-foot"><span>Тезис курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS OF 3 CATS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Двойственная природа кино</span></div>
+    <h2>Товар, который производит идеологию</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">Базис</span><h3>Товар</h3><p>Производится и продаётся ради прибыли — материальная основа.</p></div>
+      <div class="card ochre"><span class="k">Надстройка</span><h3>Идеология</h3><p>Формирует представления о «нормальном» мире — символическая работа.</p></div>
+      <div class="card"><span class="k">Связка</span><h3>Фетишизм</h3><p>Товарная форма сама прячет труд — экономика и идеология в одном жесте.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px;max-width:72ch">Тезис курса: <strong>кино одновременно товар и идеологический аппарат, и второе работает через первое.</strong></p>
+    <div class="slide-foot"><span>Главный тезис</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- TWO SENSES -->
+  <section class="slide">
+    <div class="eyebrow">Уточнение <span class="sep">/</span> <span class="tag">Важное различение</span></div>
+    <h2>Две «марксистские теории кино»</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="card accent" style="gap:12px"><span class="k">Смысл A · производство</span><h3>Марксисты как творцы</h3><p>Как <strong>делать</strong> революционное кино: поэтика монтажа, очуждение, Третий кинематограф. Эйзенштейн, Вертов, Годар.</p></div>
+      <div class="card ochre" style="gap:12px"><span class="k">Смысл B · критика</span><h3>Марксисты как критики</h3><p>Как <strong>читать</strong> кино (особенно капиталистическое) как идеологию и товар. Франкфурт, Альтюссер, Screen, Джеймисон.</p></div>
+    </div>
+    <p style="margin-top:18px;max-width:76ch">Эти два предприятия часто называют одним именем — и часто конфликтуют (лекция 2: ортодоксия осуждала формалистов). Курс держит оба смысла в поле зрения.</p>
+    <div class="slide-foot"><span>Различение A / B</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 1: MODERN TIMES (5) ============ -->
+
+  <!-- PREFRAME: MODERN TIMES -->
+  <section class="slide framefull">
+    <div class="shot"><img src="https://image.tmdb.org/t/p/w1280/kSlO1pHpwQfPQdgVPr7dJiJNtJ8.jpg" alt="Кадр из «Новых времён»"></div>
+    <span class="fyear">1936</span>
+    <div class="fcap"><div class="fk">Кейс 01 · к разбору</div><h2>Новые времена</h2></div>
+    <div class="slide-foot"><span class="src">«Новые времена» · реж. Чарли Чаплин · США</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Труд и машина</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Modern Times" data-year="1936" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1936</span><span class="pt">Новые<br>времена</span><span class="pd">реж. Чарли Чаплин</span></div>
+        <img alt="Кадр из фильма «Новые времена»" loading="lazy" src="https://image.tmdb.org/t/p/w1280/83cMbOs2Ng7kfL3U8hpcXEQDXCw.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Чарли Чаплин</span><span><b>Год</b> 1936</span><span><b>Страна</b> США</span><span><b>Хроно</b> 87 мин</span></div>
+        <h2>Новые времена</h2>
+        <div><span class="chip">Труд</span><span class="chip">Отчуждение</span><span class="chip">Тейлоризм</span></div>
+        <p>Бродяга на конвейере: тело человека подчинено ритму машины. Знаменитые сцены — закручивание гаек до автоматизма и «кормящая машина», призванная сократить обеденный перерыв.</p>
+        <p>Идеальный вход в категорию <em>отчуждённого труда</em>: рабочий не управляет процессом — процесс управляет им.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Способ производства</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Как и кем<br>снят фильм</h2>
+        <p style="margin-top:10px">1936 год, мир ещё не вышел из Великой депрессии. Чаплин снимает на собственной студии и выпускает через <strong>United Artists</strong> — компанию, которую он сам соучредил, чтобы не зависеть от крупных студий.</p>
+        <p style="margin-top:8px">Ирония, важная для марксистского чтения: фильм о порабощении рабочего конвейером сделан автором, который как раз <em>контролировал собственные средства производства</em>.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Эпоха</span><p>Депрессия, безработица, страх перед машиной и фордизмом.</p></div>
+        <div class="def"><span class="term">Звук</span><p>Почти немой в эпоху звука: Чаплин сопротивлялся диалогу — техника как насилие над формой.</p></div>
+        <div class="def"><span class="term">Автор-<br>собственник</span><p>Независимое производство против студийной фабрики.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Условия производства — часть смысла: кто владеет камерой, тоже политический вопрос.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · сцена <span class="sep">/</span> <span class="tag">Человек как винтик</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Modern Times" data-year="1936" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · сцена конвейера</span><span class="yr">1936</span><span class="pt">Конвейер</span><span class="pd">«Новые времена»</span></div>
+        <img alt="Сцена конвейера из «Новых времён»" loading="lazy" src="https://image.tmdb.org/t/p/w1280/yyi6rpwvH5INxUKmgcfttbxnQv3.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <h2>Конвейер</h2>
+        <p>Тело рабочего продолжает дёргаться в ритме машины даже после смены — буквальная визуализация <strong>отчуждения</strong>: труд перестаёт принадлежать тому, кто его выполняет.</p>
+        <p>«Кормящая машина» переводит в гэг идею, что капитал стремится сократить даже время отдыха, превратив всё в производительное время.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> отчуждённый труд</span><span><b>Приём</b> комический гэг</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Комедия как<br>метод критики</h2>
+        <p style="margin-top:10px">Чаплин не читает мораль и не показывает митингов. Критика встроена в <strong>телесную клоунаду</strong>: чем точнее тело повторяет движение машины, тем очевиднее абсурд системы.</p>
+        <p style="margin-top:8px">Смех здесь — инструмент очуждения: он делает привычный заводской труд <em>странным</em> и потому видимым.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Ритм</span><p>Монтаж и движение синхронизированы с тактом конвейера.</p></div>
+        <div class="def"><span class="term">Тело</span><p>Пластика Чаплина — главный «спецэффект» фильма.</p></div>
+        <div class="def"><span class="term">Масштаб</span><p>Гигантские шестерни делают человека буквально мелким.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Форма-крючок: социальная критика проведена не словом, а движением тела.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols-wide" style="align-items:stretch">
+      <div class="framebox">
+        <img src="https://image.tmdb.org/t/p/w1280/zvo2YtKRtkSOJDg1rnfh5TIcEeN.jpg" alt="Финал «Новых времён» — дорога вдвоём">
+        <span class="fbcap">Развязка: не преобразование системы, а уход из неё — дорога вдвоём</span>
+      </div>
+      <div class="stack">
+        <h3>Что фильм делает блестяще</h3>
+        <p style="margin-top:6px">Показывает <strong>процесс производства</strong> и тело рабочего — то, что коммерческое кино обычно прячет. Конвейер выведен из-за кулис на авансцену.</p>
+        <h3 style="margin-top:14px">Где пределы</h3>
+        <p style="margin-top:6px">Развязка — <em>уход</em> из системы, а не её преобразование. Критика тейлоризма скорее гуманистическая и ностальгическая, чем анализ классовой борьбы.</p>
+        <div class="oxpanel" style="padding:16px 20px;margin-top:14px">
+          <h3 style="color:#fff">Урок метода</h3>
+          <p style="margin-top:6px">Изобразить отчуждение — ещё не значит дать его <em>марксистский</em> анализ. Чаплин сочувствует рабочему, но решение предлагает индивидуальное.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 2: METROPOLIS (6) ============ -->
+
+  <!-- PREFRAME: METROPOLIS -->
+  <section class="slide framefull">
+    <div class="shot"><img src="https://image.tmdb.org/t/p/w1280/r8pUcom5Mw8igtBpj3AHSAUvH0R.jpg" alt="Кадр из «Метрополиса»"></div>
+    <span class="fyear top">1927</span>
+    <div class="fcap"><div class="fk">Кейс 02 · к разбору</div><h2>Метрополис</h2></div>
+    <div class="slide-foot"><span class="src">«Метрополис» · реж. Фриц Ланг · Германия</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Класс в пространстве</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Metropolis" data-year="1927" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1927</span><span class="pt">Метрополис</span><span class="pd">реж. Фриц Ланг</span></div>
+        <img alt="Кадр из фильма «Метрополис»" loading="lazy" src="https://image.tmdb.org/t/p/w1280/7hLkbos5YNoFE3qmrvaHYpw9pnH.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Фриц Ланг</span><span><b>Год</b> 1927</span><span><b>Страна</b> Германия</span><span><b>Хроно</b> 153 мин</span></div>
+        <h2>Метрополис</h2>
+        <div><span class="chip">Класс</span><span class="chip">Базис/надстройка</span><span class="chip">Экспрессионизм</span></div>
+        <p>Город будущего разделён по вертикали: праздные хозяева наверху, рабочие у машин внизу. Машина-«Молох» буквально пожирает рабочих.</p>
+        <p>Классовое разделение <em>овеществлено</em> в архитектуре — почти учебная иллюстрация базиса и надстройки.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 1 / 6</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Способ производства</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Дорогой фильм<br>Веймарской студии</h2>
+        <p style="margin-top:10px">Снят на студии <strong>UFA</strong> — один из самых дорогих немых фильмов в истории; его бюджет едва не разорил студию. Веймарская Германия конца 1920-х: кризис, инфляция, страх перед массами и машинами.</p>
+        <p style="margin-top:8px">После премьеры фильм жестоко перемонтировали; часть плёнки считалась утраченной до находки почти полной копии в Буэнос-Айресе и реставрации <strong>2010</strong> года.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Двусмыс-<br>ленность</span><p>Сценаристка Теа фон Харбоу позже стала нацисткой; финал примиряет классы — политика фильма спорна.</p></div>
+        <div class="def"><span class="term">Индустрия</span><p>Гигантский бюджет сам по себе говорит о мощи капитала, который фильм критикует.</p></div>
+        <div class="def"><span class="term">Версии</span><p>Смотреть реставрацию 2010 г. — иначе теряется логика сюжета.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Условия производства противоречат посланию: антикапиталистический образ снят на капитал крупной студии.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE 1 -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена I <span class="sep">/</span> <span class="tag">Вертикаль и Молох</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Metropolis" data-year="1927" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · машина-Молох</span><span class="yr">1927</span><span class="pt">Молох</span><span class="pd">«Метрополис»</span></div>
+        <img alt="Сцена машины-Молоха из «Метрополиса»" loading="lazy" src="https://image.tmdb.org/t/p/w1280/rnN9yJfwso6JA64wIPqK1m6K6e1.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <h2>Архитектура как классовая карта</h2>
+        <p>Вертикаль города — это базис и надстройка, отлитые в декорациях: <strong>внизу</strong> производство и машины, <strong>наверху</strong> досуг и власть.</p>
+        <p>Видение машины как <strong>Молоха</strong> превращает фабрику в алтарь, пожирающий рабочих: кино даёт абстрактному социальному отношению зримую форму.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> класс</span><span><b>Приём</b> пространственная метафора</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 3 / 6</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE 2 -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена II <span class="sep">/</span> <span class="tag">Ложная Мария</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Metropolis" data-year="1927" data-idx="2">
+        <div class="ph"><span class="frame-tag">Кадр · робот-двойник</span><span class="yr">1927</span><span class="pt">Ложная<br>Мария</span><span class="pd">«Метрополис»</span></div>
+        <img alt="Сцена с ложной Марией из «Метрополиса»" loading="lazy" src="https://image.tmdb.org/t/p/w1280/f0oDtB2JCMlPKjphBJ90GcfVzWg.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <h2>Двойник и ложное сознание</h2>
+        <p>Робот, которому придали облик Марии, подстрекает рабочих разрушить машины — и те затапливают <strong>собственный</strong> город, едва не погубив своих детей.</p>
+        <p>Это образ <strong>ложного сознания</strong> и манипуляции массами: подложный «вождь» направляет гнев рабочих против их же интересов. Прямой мост к идеологии (категория 02) и к лекции 6.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> идеология / ложное сознание</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 4 / 6</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Экспрессионизм<br>и масса-орнамент</h2>
+        <p style="margin-top:10px;max-width:48ch">Монументальные декорации, геометрия и <strong>синхронные толпы</strong> рабочих, движущихся как единый механизм. Люди превращены в узор — то, что Кракауэр позже назовёт «массой-орнаментом»: индивид растворён в декоративном строе.</p>
+        <p style="margin-top:8px">Форма сама делает классовое сообщение: верх — свет и простор, низ — тень, ритм, строй.</p>
+      </div>
+      <div class="schema" style="align-self:center;max-width:380px">
+        <div class="tier super"><span class="lab">Верхний город</span><span class="it">Досуг · власть · сады</span></div>
+        <div class="arrowzone"><span>▲ власть</span><span>▼ труд</span></div>
+        <div class="tier base"><span class="lab">Город рабочих</span><span class="it">Машины · смены · Молох</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: класс овеществлён не только в сюжете, но и в композиции кадра.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Сила фильма</h3>
+        <p style="margin-top:6px">Один из мощнейших образов классового общества в истории кино — и редкий случай, когда показан сам труд, а не только его плоды.</p>
+        <h3 style="margin-top:18px">Идеалистическая развязка</h3>
+        <p style="margin-top:6px">Финальная формула — «<em>посредник между головой и руками — сердце</em>» — предлагает <strong>примирение классов</strong> через чувство, а не через изменение отношений производства.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">«Метрополис» гениально <em>изображает</em> класс, но предлагает <em>немарксистское</em> решение: конфликт снимается рукопожатием. Различать <strong>репрезентацию класса</strong> и <strong>анализ классовых отношений</strong> — ключевой навык курса.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 6 / 6</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 3: THEY LIVE (5) ============ -->
+
+  <!-- PREFRAME: THEY LIVE -->
+  <section class="slide framefull">
+    <div class="shot"><img src="https://image.tmdb.org/t/p/w1280/faWmnpDRoG0Yv9NLKOFtLro6qMq.jpg" alt="Кадр из «Чужие среди нас»"></div>
+    <span class="fyear">1988</span>
+    <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Чужие среди нас</h2></div>
+    <div class="slide-foot"><span class="src">«Чужие среди нас» · реж. Джон Карпентер · США</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Идеология видимая</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="They Live" data-year="1988" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1988</span><span class="pt">Чужие<br>среди нас</span><span class="pd">реж. Джон Карпентер</span></div>
+        <img alt="Кадр из фильма «Чужие среди нас»" loading="lazy" src="https://image.tmdb.org/t/p/w1280/3k2DQBryXzaL7DoAtu6veWWluwt.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Джон Карпентер</span><span><b>Год</b> 1988</span><span><b>Страна</b> США</span><span><b>Хроно</b> 94 мин</span></div>
+        <h2>Чужие среди нас</h2>
+        <div><span class="chip">Идеология</span><span class="chip">Альтюссер →</span><span class="chip">Жижек →</span></div>
+        <p>Герой находит очки, сквозь которые видны скрытые сообщения рекламы: «ПОДЧИНЯЙСЯ», «ПОТРЕБЛЯЙ», «НЕ ДУМАЙ». Под ними — правящий класс инопланетян.</p>
+        <p>Поп-аллегория самого понятия идеологии — мост к лекциям 6 и 10.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Способ производства</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Памфлет против<br>рейганомики</h2>
+        <p style="margin-top:10px">Карпентер снял фильм как прямую сатиру на <strong>1980-е</strong>: дерегуляцию, культ потребления и яппи рейгановской Америки. Инопланетяне — метафора правящего класса, выкачивающего ресурсы планеты ради прибыли.</p>
+        <p style="margin-top:8px">Жанр (фантастический боевик категории B) — сознательный выбор: радикальное сообщение спрятано в массовом развлечении, которое само продаётся как товар.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Эпоха</span><p>Неолиберальный поворот, рост неравенства, телевидение и реклама.</p></div>
+        <div class="def"><span class="term">Жанр</span><p>B-movie как троянский конь для политической критики.</p></div>
+        <div class="def"><span class="term">Парадокс</span><p>Антипотребительский фильм — сам рыночный продукт.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Тот же парадокс, что у Чаплина и Ланга: критика капитализма как капиталистический товар.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · сцена <span class="sep">/</span> <span class="tag">Очки</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="They Live" data-year="1988" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · сквозь очки</span><span class="yr">1988</span><span class="pt">ПОДЧИНЯЙСЯ</span><span class="pd">«Чужие среди нас»</span></div>
+        <img alt="Сцена с очками из «Чужих среди нас»" loading="lazy" src="https://image.tmdb.org/t/p/w1280/bwyLycDaQdS3rS4crpbYssYLJRy.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <h2>Очки, которые показывают идеологию</h2>
+        <p>Надев очки, герой видит за яркой рекламой прямые команды: подчиняйся, потребляй, размножайся, не думай. Фильм буквализует идею, что идеология — <strong>скрытый приказ внутри «нейтрального» образа</strong>.</p>
+        <p>Почти иллюстрация альтюссеровского тезиса: идеология <em>окликает</em> нас, делая послушными субъектами.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> идеология</span><span><b>Приём</b> ч/б «истинное зрение»</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Чёрно-белое<br>как разоблачение</h2>
+        <p style="margin-top:10px">Приём прост и гениален: «истинная» реальность сквозь очки показана <strong>чёрно-белой</strong>, цветной мир — это и есть иллюзия. Зрение героя = критическая оптика, наложенная на привычную картинку.</p>
+        <p style="margin-top:8px">Знаменитая шестиминутная драка из-за очков формой говорит то же, что теория: <em>выйти из идеологии не легко и не приятно</em> — друга приходится принуждать «увидеть».</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Контраст</span><p>Цвет = иллюзия, ч/б = разоблачение.</p></div>
+        <div class="def"><span class="term">Текст<br>в кадре</span><p>Команды OBEY / CONSUME вместо рекламы.</p></div>
+        <div class="def"><span class="term">Драка</span><p>Сопротивление прозрению — метафора инерции идеологии.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Форма сама ставит вопрос: можно ли вообще «снять» идеологию, как очки?</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Сила фильма</h3>
+        <p style="margin-top:6px">Делает абстрактное понятие идеологии <strong>осязаемым</strong> и помнит про экономику: за идеологией стоит класс, извлекающий прибыль.</p>
+        <h3 style="margin-top:18px">Ловушка «магических очков»</h3>
+        <p style="margin-top:6px">Фильм намекает, что идеологию можно просто «снять», как пелену, и увидеть голую истину. Но идеология — не слой поверх реальности: мы живём <em>внутри</em> неё.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Жижек заметит позже: показательно, что очки <em>больно</em> надевать. Выход из идеологии — не «прозрение», а труд и борьба. К этому вернёмся в лекции 10.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 4: THERE WILL BE BLOOD (5) ============ -->
+
+  <!-- PREFRAME: THERE WILL BE BLOOD -->
+  <section class="slide framefull">
+    <div class="shot"><img src="https://image.tmdb.org/t/p/w1280/zPQYSaRUzCAksd25fLEVbh3zQcv.jpg" alt="Кадр из «Нефти»"></div>
+    <span class="fyear bl">2007</span>
+    <div class="fcap"><div class="fk">Кейс 04 · к разбору</div><h2>Нефть</h2></div>
+    <div class="slide-foot"><span class="src">«Нефть» · реж. Пол Томас Андерсон · США</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F4 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 04 · знакомство <span class="sep">/</span> <span class="tag">Рождение капитала</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="There Will Be Blood" data-year="2007" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2007</span><span class="pt">Нефть</span><span class="pd">реж. Пол Томас Андерсон</span></div>
+        <img alt="Кадр из фильма «Нефть»" loading="lazy" src="https://image.tmdb.org/t/p/w1280/9UAKA6ceZi6TgQwTAAMt7DWwYPI.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Пол Томас Андерсон</span><span><b>Год</b> 2007</span><span><b>Страна</b> США</span><span><b>по роману Э. Синклера</b></span></div>
+        <h2>Нефть</h2>
+        <div><span class="chip">Первоначальное накопление</span><span class="chip">Религия — опиум</span></div>
+        <p>Старатель Дэниел Плейнвью на рубеже XX века выкачивает нефть, скупает землю и людей, выстраивая империю на лжи и насилии. По роману социалиста Эптона Синклера «Нефть!».</p>
+        <p>Фильм о самом рождении капитала — и о том, как он расправляется с религией.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 04 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F4 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 04 · контекст <span class="sep">/</span> <span class="tag">Первоначальное накопление</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Богатство, нажитое<br>насилием</h2>
+        <p style="margin-top:10px">Маркс называл «<strong>первоначальным накоплением</strong>» кровавое, насильственное происхождение капитала: захват земли, обман, экспроприацию. Плейнвью — его воплощение: природа (нефть) превращается в товар, община — в ресурс, доверие — в инструмент.</p>
+        <p style="margin-top:8px">«Нефть» показывает то, что капитал обычно прячет: его богатства <em>нажиты нечестным путём</em>, в самой их основе — насилие.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Накопление</span><p>Насильственное происхождение капитала.</p></div>
+        <div class="def"><span class="term">Экспро-<br>приация</span><p>Земля и труд отняты у общины.</p></div>
+        <div class="def"><span class="term">Товар-<br>нефть</span><p>Природа превращена в меновую стоимость.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">К. Маркс, «Капитал», т. 1 — о так называемом первоначальном накоплении.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F4 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 04 · сцена <span class="sep">/</span> <span class="tag">Крещение и расплата</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="There Will Be Blood" data-year="2007" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · финал</span><span class="yr">2007</span><span class="pt">Капитал ↔<br>церковь</span><span class="pd">«Нефть»</span></div>
+        <img alt="Финальная сцена из фильма «Нефть»" loading="lazy" src="https://image.tmdb.org/t/p/w1280/kC2EW0zSTks4R2UP2THAgJDLJxU.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <h2>Капитал крушит церковь</h2>
+        <p>Чтобы получить право на трубопровод, Плейнвью вынужден публично креститься у проповедника Илая — религия инструментализирована. А в финале капиталист заставляет Илая отречься от веры («я — лжепророк, Бог — суеверие») и убивает его.</p>
+        <p>Базис буквально забивает надстройку: старая идеология — церковь — повержена новой силой, капиталом.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> религия — опиум народа</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 04 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F4 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 04 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Эпос без героя<br>для сочувствия</h2>
+        <p style="margin-top:10px">Андерсон снимает рождение капитала как мрачный эпос: тревожная музыка Гринвуда, долгие безмолвные сцены труда, монументальный пейзаж. Зрителю не дают «положительного героя» — только холодную логику накопления, воплощённую в Плейнвью.</p>
+        <p style="margin-top:8px">Форма не приглашает отождествиться, а заставляет наблюдать механизм — лёгкое очуждение (мост к л. 5).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Эпос</span><p>Рождение капитала как мрачная сага.</p></div>
+        <div class="def"><span class="term">Музыка</span><p>Тревожный саундтрек вместо сопереживания.</p></div>
+        <div class="def"><span class="term">Без героя</span><p>Не с кем отождествиться — только логика капитала.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: форма, отказывающая в утешительной идентификации (мост к л. 5).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F4 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 04 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что показывает фильм</h3>
+        <p style="margin-top:6px">Сразу два тезиса Маркса: первоначальное накопление (богатство из насилия и экспроприации) и религия как опиум — идеология, которую капитал то использует, то крушит. Идеальный фундамент для всего курса.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Фильм объясняет зло капитала через одну чудовищную личность — есть риск увидеть проблему в «плохом человеке», а не в системе. Марксистское чтение возвращает фокус с психологии Плейнвью на логику капитала.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Капитал — не злодей-одиночка, а общественное отношение; «Нефть» лишь даёт лицо тому, что на деле безлично.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 04 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS ACROSS FILMS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Четыре фильма вместе</span></div>
+    <h2>Что добавляет марксистское чтение</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="card accent"><span class="k">Чаплин</span><h3>Труд</h3><p>Показал производство — но решил уходом, не анализом.</p></div>
+      <div class="card ochre"><span class="k">Ланг</span><h3>Класс</h3><p>Овеществил класс — но примирил его «сердцем».</p></div>
+      <div class="card"><span class="k">Карпентер</span><h3>Идеология</h3><p>Сделал идеологию видимой — но как снимаемую пелену.</p></div>
+      <div class="card accent"><span class="k">Андерсон</span><h3>Накопление</h3><p>Показал кровавое рождение капитала — но через одну личность.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px;max-width:80ch">Все четыре <em>изображают</em> что-то важное о капитализме. Марксистский анализ идёт дальше «социальной критики»: он спрашивает про <strong>способ производства, класс и товарную форму</strong> — и замечает, где фильм останавливается на полпути.</p>
+    <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DISCUSSION -->
+  <section class="slide">
+    <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
+    <h2>Вопросы к дискуссии</h2>
+    <ul class="qlist" style="margin-top:14px">
+      <li><p>Если фильм критикует капитализм, но сам является прибыльным товаром, — отменяет ли товарная форма его критику? Сравните Чаплина, Ланга, Карпентера и Андерсона.</p></li>
+      <li><p>Где граница между «изобразить класс» и «дать марксистский анализ класса»? Достаточно ли первого?</p></li>
+      <li><p>Можно ли «снять очки» и выйти из идеологии — или это само по себе идеологическая фантазия? Что говорит финал «Чужих среди нас»?</p></li>
+      <li><p>Раз Маркс кино не видел, в каком смысле эти чтения вообще «марксистские»? Что именно делает анализ марксистским?</p></li>
+    </ul>
+    <div class="slide-foot"><span>Для семинара</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="slide">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Глоссарий лекции</span></div>
+    <h2>Ключевые понятия</h2>
+    <div class="cols" style="margin-top:12px">
+      <div class="deflist">
+        <div class="def"><span class="term">Способ<br>производства</span><p>Исторический способ, которым общество производит материальную жизнь.</p></div>
+        <div class="def"><span class="term">Базис</span><p>Производительные силы и производственные отношения.</p></div>
+        <div class="def"><span class="term">Надстройка</span><p>Право, политика, идеи, искусство, кино над базисом.</p></div>
+        <div class="def"><span class="term">Класс</span><p>Положение группы в отношениях производства.</p></div>
+        <div class="def"><span class="term">Отчуждение</span><p>Отделение работника от продукта, процесса и себя.</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Идеология</span><p>Воображаемое отношение к реальным условиям; «само собой разумеющееся».</p></div>
+        <div class="def"><span class="term">Ложное<br>сознание</span><p>Искажённое понимание своих интересов (ранняя модель идеологии).</p></div>
+        <div class="def"><span class="term">Товар</span><p>Продукт труда, произведённый для обмена на рынке.</p></div>
+        <div class="def"><span class="term">Товарный<br>фетишизм</span><p>Отношения между людьми являются как отношения между вещами.</p></div>
+        <div class="def"><span class="term">Натурали-<br>зация</span><p>Подача исторического и спорного как естественного и вечного.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Глоссарий</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- К ПРОСМОТРУ -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:72ch;margin:12px 0 2px">Лекция построена на четырёх фильмах — посмотрите их целиком до семинара.</p>
+    <div style="flex:1;display:flex;align-items:center;width:100%;margin-top:14px">
+      <div class="watchlist withposters" style="width:100%">
+      <div class="wfilm"><div class="wpost"><img src="https://image.tmdb.org/t/p/w500/74MfDraK1Ro8k6wAgSyPLvgtZaP.jpg" alt="Постер «Новые времена»"></div><span class="wy">1936</span><span class="wt">Новые<br>времена</span><span class="wd">Чарли Чаплин · США · 87 мин</span><span class="wn">Сцены: конвейер · «кормящая машина». Категория — отчуждённый труд.</span></div>
+      <div class="wfilm"><div class="wpost"><img src="https://image.tmdb.org/t/p/w500/b9IVtOO89Ays4v0eWfADQ4Lq3wZ.jpg" alt="Постер «Метрополис»"></div><span class="wy">1927</span><span class="wt">Метрополис</span><span class="wd">Фриц Ланг · Германия · 153 мин (реставрация 2010)</span><span class="wn">Сцены: Молох · ложная Мария · «сердце-посредник». Категория — класс.</span></div>
+      <div class="wfilm"><div class="wpost"><img src="https://image.tmdb.org/t/p/w500/qZEuNUlUWzzaVpSgnHDtxYZJH7g.jpg" alt="Постер «Чужие среди нас»"></div><span class="wy">1988</span><span class="wt">Чужие<br>среди нас</span><span class="wd">Джон Карпентер · США · 94 мин</span><span class="wn">Сцены: очки · драка из-за очков. Категория — идеология.</span></div>
+      <div class="wfilm"><div class="wpost"><img src="https://image.tmdb.org/t/p/w500/2eH78Nz708yFVrcaZAE2bspY5q5.jpg" alt="Постер «Нефть»"></div><span class="wy">2007</span><span class="wt">Нефть</span><span class="wd">Пол Томас Андерсон · США · 158 мин</span><span class="wn">Сцены: крещение · финал с Илаем. Категория — первоначальное накопление, религия.</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING + NEXT -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению и следующая лекция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>К чтению</h3>
+        <div class="readlist" style="margin-top:4px">
+          <div class="r"><span class="n">01</span><span class="ttl"><b>К. Маркс.</b> Предисловие «К критике политической экономии» (1859)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">02</span><span class="ttl"><b>К. Маркс.</b> «Капитал», т. 1, гл. 1 (раздел о фетишизме)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">03</span><span class="ttl"><b>К. Маркс, Ф. Энгельс.</b> «Немецкая идеология» (избр.)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">04</span><span class="ttl"><b>Обзор:</b> введение в марксистскую теорию кино (по выбору преподавателя)</span><span class="typ">Обзор</span></div>
+        </div>
+      </div>
+      <div class="oxpanel" style="padding:26px 28px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Лекция 02 →</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Монтаж и спор о форме</h2>
+        <p style="margin-top:10px;color:rgba(255,255,255,.92)">Может ли быть революционной сама <em>форма</em> фильма? И почему ортодоксальный марксизм осудил авангард как «формализм»? Спор реализм vs. формализм: Лукач против Брехта.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 01 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+// dynamic numbering
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

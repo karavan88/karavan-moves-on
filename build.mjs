@@ -20,6 +20,7 @@ import { marked } from 'marked';
 import * as R from './assets/render.js';
 import { loadToken, resolveMissing } from './tools/resolve-tmdb.mjs';
 import { gatherTmdbUrls, localizeImages, applyMap } from './tools/localize-images.mjs';
+import { buildLectures } from './tools/build-lectures.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
@@ -324,6 +325,9 @@ ${rssItems.map(i=>`<item><title>${xmlEsc(i.title)}</title><link>${i.link}</link>
 </channel></rss>
 `;
   await writeFile(path.join(OUT,'rss.xml'), rss);
+
+  /* ЛЕКЦИИ — самодостаточные слайд-деки + лендинг /lectures/ */
+  await buildLectures({ ROOT, OUT, log:(m)=>console.log(m) });
 
   console.log(`✓ Собрано ${urls.length} страниц + sitemap.xml, rss.xml, robots.txt → dist/`);
 }

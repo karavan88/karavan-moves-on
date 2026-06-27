@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 9 — Джеймисон: постмодерн | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(42px,7vw,104px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:26ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;align-self:center;width:100%;border:1px solid var(--line-strong)}
+.vs .vh{padding:12px 18px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:15px;border-bottom:1px solid var(--line-strong)}
+.vs .vh.l{color:var(--bone-dim);background:var(--ink-2)}
+.vs .vh.r{color:var(--ochre);background:var(--oxblood)}
+.vs .vc{padding:9px 18px;font-size:13.5px;border-bottom:1px solid var(--line);font-family:var(--serif)}
+.vs .vc.l{color:var(--bone-dim)}
+.vs .vc.r{color:var(--bone);background:rgba(58,23,20,.35)}
+.vs .vc:nth-last-child(-n+2){border-bottom:none}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:34ch}
+.timeline{display:flex;flex-direction:column;gap:10px;align-self:center}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14.5px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">09</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 09 / 10</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Джеймисон:<br><span class="hl">постмодерн</span></h1>
+      <div class="subt">Культурная логика позднего капитализма · и Бодрийяр</div>
+      <div class="meta">
+        <span><b>Понятия:</b> пастиш · симулякр · когнитивная карта</span>
+        <span><b>Кейсы:</b> «Волк с Уолл-стрит» · «Бойцовский клуб» · «Психопат»</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE WE ARE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 09 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:64ch;margin:16px 0 22px">После «марксизма без гарантий» (л. 8) Джеймисон возвращает <em>жёсткую оптику капитала</em> и тотальность: постмодернизм — не просто стиль, а «культурная логика позднего капитализма». Сюда же мы вписываем Бодрийяра с обществом потребления и гиперреальностью — честно отметив, что он уже вышел за пределы Маркса.</p>
+    <div class="coursemap">
+      <div class="node"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node cur"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 09 <span class="sep">/</span> <span class="tag">План занятия</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>План<br>сегодня</h2>
+        <p style="max-width:34ch;margin-top:12px">От периодизации капитала у Джеймисона — к гиперреальности Бодрийяра и к трём фильмам о субъекте, потерявшем глубину.</p>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">01 · Проблема</span><p>Что, если у культуры больше нет «снаружи» капитала?</p></div>
+        <div class="def"><span class="term">02 · Джеймисон</span><p>Поздний капитализм · пастиш · утрата историчности</p></div>
+        <div class="def"><span class="term">03 · Бодрийяр</span><p>Общество потребления · симулякр · гиперреальность</p></div>
+        <div class="def"><span class="term">04 · Кейсы</span><p>«Волк с Уолл-стрит» · «Бойцовский клуб» · «Американский психопат»</p></div>
+        <div class="def"><span class="term">05 · Ответ</span><p>Когнитивное картографирование</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
+      <h2>А есть ли у культуры<br>«снаружи» капитала?</h2>
+      <p class="sub">Раньше искусство могло встать вне рынка и критиковать его. Джеймисон утверждает: при позднем капитализме культура полностью поглощена экономикой — критическая дистанция исчезла. Как сопротивляться системе, у которой нет «снаружи»?</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Постановка проблемы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Контекст <span class="sep">/</span> <span class="tag">Джеймисон · 1984/1991</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Тотальность<br>возвращается</h2>
+        <p style="margin-top:12px;max-width:46ch">Фредрик Джеймисон — американский марксист. Его программная работа «<strong>Постмодернизм, или Культурная логика позднего капитализма</strong>» (1984/1991) идёт против модного отказа от «больших нарративов» (Лиотар): Джеймисон настаивает, что капитал — это по-прежнему та тотальность, которую обязана мыслить теория.</p>
+        <p style="margin-top:10px">После дрейфа cultural studies (л. 8) это сознательное возвращение к экономическому основанию.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Тезис</span><p>Постмодернизм = логика стадии капитала.</p></div>
+        <div class="def"><span class="term">Против</span><p>Лиотара: «больших нарративов» не избежать.</p></div>
+        <div class="def"><span class="term">Метод</span><p>Диалектика: и катастрофа, и прогресс сразу.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Ф. Джеймисон, «Постмодернизм, или Культурная логика позднего капитализма» (NLR 1984; кн. 1991).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PERIODIZATION -->
+  <section class="slide">
+    <div class="eyebrow">Каркас <span class="sep">/</span> <span class="tag">Мандель · три стадии</span></div>
+    <h2>Стадия капитала → форма культуры</h2>
+    <div class="vs" style="margin-top:14px">
+      <div class="vh l">Стадия капитализма (Мандель)</div>
+      <div class="vh r">Господствующая культурная форма</div>
+      <div class="vc l">Рыночный (нац. рынки, пар)</div>
+      <div class="vc r">Реализм</div>
+      <div class="vc l">Монополистический / империализм (электричество)</div>
+      <div class="vc r">Модернизм</div>
+      <div class="vc l">Поздний / многонациональный, потребительский (электроника)</div>
+      <div class="vc r">Постмодернизм</div>
+    </div>
+    <p style="margin-top:14px;max-width:82ch">Это и есть марксистский костяк лекции: каждая <strong>стадия способа производства</strong> рождает свою культурную доминанту. Постмодерн — не «дух времени», а культура конкретной экономической эпохи.</p>
+    <div class="slide-foot"><span class="src">Периодизация по Э. Манделю, «Поздний капитализм» (1972).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CULTURAL DOMINANT -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 01 <span class="sep">/</span> <span class="tag">Культурная доминанта</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Не стиль,<br>а логика</h2>
+        <p style="margin-top:10px">Джеймисон настаивает: постмодернизм — не один из стилей на выбор, а <strong>культурная доминанта</strong> эпохи, силовое поле, в котором существует всё, включая попытки ему сопротивляться.</p>
+        <p style="margin-top:8px">Ключевой симптом — исчезновение критической дистанции: культура и экономика слились так, что «выйти наружу» и судить систему извне больше негде.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Доминанта</span><p>Силовое поле, а не один из стилей.</p></div>
+        <div class="def"><span class="term">Слияние</span><p>Культура и экономика неразличимы.</p></div>
+        <div class="def"><span class="term">Дистанция</span><p>Критического «вне» больше нет.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Понятие · cultural dominant</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PASTICHE -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 02 <span class="sep">/</span> <span class="tag">Пастиш</span></div>
+    <h2>Пародия ↔ пастиш</h2>
+    <div class="vs" style="margin-top:14px">
+      <div class="vh l">Пародия (модернизм)</div>
+      <div class="vh r">Пастиш (постмодерн)</div>
+      <div class="vc l">Высмеивает стиль, имея норму</div>
+      <div class="vc r">Имитирует без насмешки — «пустая пародия»</div>
+      <div class="vc l">Есть здоровый язык, от которого отклоняются</div>
+      <div class="vc r">Норма утрачена: остались лишь мёртвые стили</div>
+      <div class="vc l">Сатира, критика, позиция</div>
+      <div class="vc r">Нейтральная мимикрия, «речь на мёртвом языке»</div>
+    </div>
+    <p style="margin-top:14px;max-width:82ch">Современная культура бесконечно <strong>перерабатывает прошлые стили</strong>, не имея собственного. Это первый признак того, что мы потеряли связь с настоящим как историей.</p>
+    <div class="slide-foot"><span>Понятие · pastiche как «пустая пародия»</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- NOSTALGIA MODE -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 03 <span class="sep">/</span> <span class="tag">Ностальгический режим</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Прошлое<br>как картинка</h2>
+        <p style="margin-top:10px">«Ностальгическое кино» (la mode rétro) воссоздаёт не реальную историю, а её <strong>стилистический глянец</strong>: «пятидесятость», «восьмидесятость» как набор фактур. Мы способны представить любую эпоху — кроме собственного настоящего.</p>
+        <p style="margin-top:8px">История превращается в склад стилей для разграбления; подлинное прошлое заменяется его поп-образом.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Глянец</span><p>«Пастность» как стиль, а не событие.</p></div>
+        <div class="def"><span class="term">Настоящее</span><p>Именно его и нельзя ухватить.</p></div>
+        <div class="def"><span class="term">Ремейк</span><p>Культура питается собственной памятью.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: ностальгия — обратная сторона утраты историчности.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WANING OF AFFECT / DEATH OF SUBJECT -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 04 <span class="sep">/</span> <span class="tag">Угасание аффекта</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">04</span>
+        <h2 style="margin-top:6px">Смерть<br>субъекта</h2>
+        <p style="margin-top:12px;max-width:46ch">Тревога и отчуждение модернизма (мунковский «Крик») предполагали целостное «я», которому есть что терять. В постмодерне это центрированное буржуазное «я» <strong>распадается</strong>: глубокие чувства уступают место «<em>свободно плавающим интенсивностям</em>» — мимолётным, безличным состояниям.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Нет больше «я», чтобы чувствовать, — только интенсивности.</q>
+        <div class="attr">по Ф. Джеймисону — об угасании аффекта</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: «смерть субъекта» продолжает антигуманизм Альтюссера (л. 6) на новом витке.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DEPTHLESSNESS / SIMULACRUM -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 05 <span class="sep">/</span> <span class="tag">Безглубинность и симулякр</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Поверхность<br>без глубины</h2>
+        <p style="margin-top:10px">Постмодерн отменяет «глубину»: за образом больше нет скрытой истины, сущности, бессознательного — только новая поверхность. Господствует <strong>симулякр</strong> — копия, у которой нет оригинала.</p>
+        <p style="margin-top:8px">Башмаки крестьянина у Ван Гога ещё отсылали к миру труда; блестящие туфли Уорхола не отсылают ни к чему, кроме собственного глянца.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Модернизм</span><span class="it">Образ → скрытая глубина, истина, труд</span></div>
+        <div class="arrowzone"><span>исчезает ↓</span></div>
+        <div class="tier base"><span class="lab">Постмодерн</span><span class="it"><b>Образ → только поверхность; симулякр без оригинала</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Понятие · depthlessness, the simulacrum</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- HISTORICITY / HYPERSPACE -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 06 <span class="sep">/</span> <span class="tag">Утрата историчности</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Вечное<br>настоящее</h2>
+        <p style="margin-top:10px">Распад связной истории Джеймисон уподобляет «шизофреническому» времени по Лакану: цепочка времени рвётся, остаётся <strong>серия несвязанных «сейчас»</strong>. Мы не умеем помыслить собственную эпоху исторически.</p>
+        <p style="margin-top:8px">Его пространственный символ — дезориентирующий отель «Бонавентура»: тело теряется в гиперпространстве, как субъект теряется в невообразимой системе мирового капитала.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Время</span><p>Цепь «сейчас» без истории.</p></div>
+        <div class="def"><span class="term">Прост-<br>ранство</span><p>Гиперпространство, где теряется тело.</p></div>
+        <div class="def"><span class="term">Аллегория</span><p>Непредставимость мировой системы капитала.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: невозможность «увидеть» систему — главный политический симптом.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- COGNITIVE MAPPING -->
+  <section class="slide">
+    <div class="eyebrow">Ответ <span class="sep">/</span> <span class="tag">Когнитивное картографирование</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Нарисовать<br>невидимую систему</h2>
+        <p style="margin-top:12px;max-width:46ch">Выход, который предлагает Джеймисон, — <strong>эстетика когнитивного картографирования</strong>: искусство, которое помогло бы субъекту найти своё место в глобальной системе, которую невозможно охватить чувственно.</p>
+        <p style="margin-top:10px">Это новая, постмодерная версия задачи всего курса: вернуть способность <em>видеть</em> тотальность капитала — и тем самым действовать.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Карта</span><p>Помочь субъекту локализовать себя в системе.</p></div>
+        <div class="def"><span class="term">Паранойя</span><p>Конспирология — жалкий суррогат такой карты.</p></div>
+        <div class="def"><span class="term">Задача</span><p>Снова сделать капитал видимым и мыслимым.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Программа Джеймисона</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BAUDRILLARD 1: CONSUMER SOCIETY -->
+  <section class="slide">
+    <div class="eyebrow">Бодрийяр <span class="sep">/</span> <span class="tag">Общество потребления</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Мы потребляем<br>не вещи, а знаки</h2>
+        <p style="margin-top:10px">Жан Бодрийяр в «<strong>Обществе потребления</strong>» (1970) утверждает: мы покупаем не пользу вещей, а их <strong>знаковую стоимость</strong> — различия, статус, образ. Потребности не даны природой, а производятся самой системой как код.</p>
+        <p style="margin-top:8px">Это радикализует товарный фетишизм Маркса (л. 1): за товаром прячется уже не труд, а бесконечная игра знаков.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Знаковая<br>стоимость</span><p>Ценен статус-различие, а не польза.</p></div>
+        <div class="def"><span class="term">Код</span><p>Вещи образуют систему знаков.</p></div>
+        <div class="def"><span class="term">Потреб-<br>ности</span><p>Производятся системой, а не природой.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Ж. Бодрийяр, «Общество потребления» (1970).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BAUDRILLARD 2: HYPERREALITY + HONEST CAVEAT -->
+  <section class="slide">
+    <div class="eyebrow">Бодрийяр <span class="sep">/</span> <span class="tag">Гиперреальность · и честная оговорка</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Карта<br>пожирает<br>территорию</h2>
+        <p style="margin-top:10px">В «<strong>Симулякрах и симуляции</strong>» (1981) Бодрийяр идёт дальше: знаки больше не отсылают к реальности — они её <em>замещают</em>. Наступает <strong>гиперреальность</strong>, где копия предшествует оригиналу, а «Диснейленд существует, чтобы скрыть, что вся Америка — Диснейленд».</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Честно: это уже не Маркс</h3>
+        <p style="margin-top:8px">После «<em>Зеркала производства</em>» (1973) Бодрийяр <strong>порывает с марксизмом</strong>: он считает само понятие производства буржуазной иллюзией. Поэтому он у нас — гость-пост-марксист: блестящий диагност гиперреальности, но он <em>отпускает</em> ту экономическую почву, которую Джеймисон удерживает.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Ж. Бодрийяр, «Симулякры и симуляция» (1981); «Зеркало производства» (1973) — разрыв с Марксом.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 1: THE WOLF OF WALL STREET (5) ============ -->
+
+  <!-- F1 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Поверхность изобилия</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="The Wolf of Wall Street" data-year="2013" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2013</span><span class="pt">Волк с<br>Уолл-стрит</span><span class="pd">реж. Мартин Скорсезе</span></div>
+        <img alt="Кадр из «Волка с Уолл-стрит»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Мартин Скорсезе</span><span><b>2013 · США</b></span><span><b>по мемуарам Дж. Белфорта</b></span></div>
+        <h2>Волк с Уолл-стрит</h2>
+        <div><span class="chip">Финансовый эксцесс</span><span class="chip">Знаковая стоимость</span></div>
+        <p>Взлёт и крах биржевого мошенника Джордана Белфорта: «накачка и сброс» мусорных акций, оргия потребления, наркотики, яхты. Прибыль из воздуха, возведённая в стиль жизни.</p>
+        <p>Поздний капитализм в чистом, эйфорическом виде.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Деньги как наркотик</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Капитал без<br>производства</h2>
+        <p style="margin-top:10px">Белфорт ничего не производит — он торгует обещаниями, накачивает мусорные акции и сбрасывает их доверчивым. Это <strong>финансиализация</strong> (л. 10) в кадре: богатство оторвано от труда и вещей, чистая спекуляция.</p>
+        <p style="margin-top:8px">А потребление здесь — не про пользу вещей, а про статус и избыток: яхта, особняк, часы — знаковая стоимость Бодрийяра, доведённая до наркотической дозы.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Спекуляция</span><p>Прибыль из воздуха, без производства.</p></div>
+        <div class="def"><span class="term">Знаковая<br>стоимость</span><p>Покупается статус, а не польза.</p></div>
+        <div class="def"><span class="term">Эксцесс</span><p>Потребление как зависимость.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: финансовый капитал и знаковая стоимость (л. 1, 9).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · сцена <span class="sep">/</span> <span class="tag">«Продай мне эту ручку»</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="The Wolf of Wall Street" data-year="2013" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · «продай мне ручку»</span><span class="yr">2013</span><span class="pt">Стоимость<br>из ничего</span><span class="pd">«Волк с Уолл-стрит»</span></div>
+        <img alt="Сцена «продай мне ручку» из «Волка с Уолл-стрит»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Ценность из блефа</h2>
+        <p>Белфорт предлагает «продать ему ручку» — и весь фокус в том, что ценность создаёт не вещь, а искусственно вызванная нужда и убеждение. Буквальная демонстрация: в позднем капитализме продаётся <strong>знак и желание</strong>, а не польза.</p>
+        <p>Прямое обращение в камеру втягивает зрителя в соучастие — мы наслаждаемся вместе с ним.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> знаковая стоимость, поверхность без глубины</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Глянец, который<br>соблазняет</h2>
+        <p style="margin-top:10px">Скорсезе снимает мошенника без дистанции осуждения — в эйфорической, клиповой, безудержной форме: зритель захвачен изобилием раньше, чем успевает осудить. Это постмодерн в действии: критика и удовольствие слиты, «снаружи» нет.</p>
+        <p style="margin-top:8px">Формально — <strong>пастиш</strong> собственного гангстерского жанра Скорсезе (схема «взлёт и крах»), перенесённый на финансы; ирония и прямое обращение упраздняют моральную глубину.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Эйфория</span><p>Клиповый ритм избытка вместо осуждения.</p></div>
+        <div class="def"><span class="term">Соучастие</span><p>Прямой адрес делает зрителя сообщником.</p></div>
+        <div class="def"><span class="term">Пастиш</span><p>Гангстерский жанр, наложенный на финансы.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: безглубинность и слияние критики с удовольствием (л. 9).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что показывает фильм</h3>
+        <p style="margin-top:6px">Идеальный портрет субъекта позднего капитализма: ни глубины, ни вины — только интенсивности (угасание аффекта по Джеймисону) и бесконечное потребление знаков. Капитал, оторванный от производства, как чистая эйфория.</p>
+        <h3 style="margin-top:18px">Где спор</h3>
+        <p style="margin-top:6px">Фильм обвиняли в том, что он сам соблазняет тем, что критикует: зритель скорее завидует Белфорту, чем осуждает. Но это и есть точная иллюстрация тезиса «у культуры нет снаружи» — даже сатира на эксцесс продаётся как эксцесс.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">При постмодерне обличение и обольщение неразделимы: форма соблазна и есть сообщение.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 2: FIGHT CLUB (5) ============ -->
+
+  <!-- F2 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Общество потребления</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Fight Club" data-year="1999" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1999</span><span class="pt">Бойцовский<br>клуб</span><span class="pd">реж. Дэвид Финчер</span></div>
+        <img alt="Кадр из «Бойцовского клуба»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Дэвид Финчер</span><span><b>1999 · США</b></span><span><b>по Ч. Паланику</b></span></div>
+        <h2>Бойцовский клуб</h2>
+        <div><span class="chip">Знаковая стоимость</span><span class="chip">Распад субъекта</span></div>
+        <p>Безымянный рассказчик собирает идентичность из каталога IKEA — пока бессонница и встреча с Тайлером Дёрденом не взрывают его потребительское «я».</p>
+        <p>Идеальный фильм для Бодрийяра и Джеймисона сразу.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Я как набор покупок</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>«Вещи, которыми<br>ты владеешь,<br>владеют тобой»</h2>
+        <p style="margin-top:10px">Герой буквально живёт внутри каталога: квартира подписана названиями товаров, как реклама. Его личность — это <strong>знаковая стоимость</strong> по Бодрийяру: набор различий-покупок вместо «я».</p>
+        <p style="margin-top:8px">Пустота этого потребительского субъекта и есть мотор фильма: ему нечего терять, потому что и «себя» по сути нет.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Каталог</span><p>Идентичность собрана из товаров.</p></div>
+        <div class="def"><span class="term">Пустота</span><p>За покупками — отсутствие субъекта.</p></div>
+        <div class="def"><span class="term">Бессон-<br>ница</span><p>Симптом жизни без подлинности.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: знаковая стоимость Бодрийяра как развитие товарного фетишизма (л. 1).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена <span class="sep">/</span> <span class="tag">Тайлер — это я</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Fight Club" data-year="1999" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · двойник</span><span class="yr">1999</span><span class="pt">Один человек —<br>двое</span><span class="pd">«Бойцовский клуб»</span></div>
+        <img alt="Сцена с Тайлером из «Бойцовского клуба»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Расщеплённый субъект</h2>
+        <p>Финальный твист — Тайлер и рассказчик одно лицо — это буквальная <strong>«смерть субъекта»</strong> по Джеймисону: центрированное «я» распалось на две несшиваемые проекции.</p>
+        <p>Бунт против потребления оказывается симптомом того же распада, а не выходом из него.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> фрагментация субъекта</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Реклама,<br>обращённая против<br>себя</h2>
+        <p style="margin-top:10px">Финчер снимает в эстетике клипа и рекламы — глянцевые вставки, прямое обращение в камеру, «склейки» Тайлера в кадр. Форма сама <strong>сделана из языка потребления</strong>, который критикует.</p>
+        <p style="margin-top:8px">Это постмодерн в действии: критика капитализма ведётся изнутри его же визуального словаря — «снаружи» нет.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Клип</span><p>Эстетика рекламы как материал фильма.</p></div>
+        <div class="def"><span class="term">Адрес</span><p>Разрывы иллюзии — но уже как «фишка» (ср. л. 5).</p></div>
+        <div class="def"><span class="term">Глянец</span><p>Антипотребление, снятое потребительски.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: брехтовский приём (л. 5) здесь кооптирован в стиль развлечения.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что показывает фильм</h3>
+        <p style="margin-top:6px">Мощный диагноз потребительской пустоты и распада «я». «Проект Хаос» — это и попытка когнитивно картографировать систему, и провал такой попытки.</p>
+        <h3 style="margin-top:18px">Где опасность</h3>
+        <p style="margin-top:6px">Бунт скатывается к зрелищному насилию и почти фашистскому культу мужской силы. Не имея карты системы, гнев находит ложного врага — это критика, обращённая и на сам фильм.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Без когнитивной карты антикапиталистический протест легко вырождается в спектакль и реакцию — урок, который мы понесём в лекцию 10.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 3: AMERICAN PSYCHO (5) ============ -->
+
+  <!-- F3 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Гиперреальность</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="American Psycho" data-year="2000" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2000</span><span class="pt">Американский<br>психопат</span><span class="pd">реж. Мэри Хэррон</span></div>
+        <img alt="Кадр из «Американского психопата»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Мэри Хэррон</span><span><b>2000 · США</b></span><span><b>по Б. Истону Эллису</b></span></div>
+        <h2>Американский психопат</h2>
+        <div><span class="chip">Симулякр</span><span class="chip">Угасание аффекта</span></div>
+        <p>Уолл-стрит конца 80-х. Патрик Бэйтман — безупречная поверхность из брендов, за которой, возможно, ничего нет. Хэррон превращает роман в сатиру на маскулинность и капитал.</p>
+        <p>Самый чистый бодрийяровский фильм курса.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Взаимозаменяемые люди</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Все —<br>один и тот же<br>яппи</h2>
+        <p style="margin-top:10px">Герои постоянно путают друг друга: одинаковые костюмы, причёски, рестораны. Идентичность сведена к набору знаков-различий — и потому <strong>никакой устойчивой личности нет</strong>. Это знаковая стоимость, доведённая до полного стирания референта.</p>
+        <p style="margin-top:8px">Сатира тем острее, что фильм снят женщиной-режиссёром: маскулинный культ успеха показан как пустая симуляция.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Путаница</span><p>Никто не отличает одного яппи от другого.</p></div>
+        <div class="def"><span class="term">Бренды</span><p>Личность = перечень марок.</p></div>
+        <div class="def"><span class="term">Сатира</span><p>Маскулинность как пустой знак (Хэррон).</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: гиперреальность — знаки без референта, различия без сущности.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · сцена <span class="sep">/</span> <span class="tag">Визитные карточки</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="American Psycho" data-year="2000" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · визитки</span><span class="yr">2000</span><span class="pt">Битва<br>визиток</span><span class="pd">«Американский психопат»</span></div>
+        <img alt="Сцена с визитными карточками из «Американского психопата»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Война знаков без содержания</h2>
+        <p>Коллеги в смертельном напряжении сравнивают визитки: оттенок бумаги, шрифт, тиснение. За ничтожными различиями — <strong>чистая знаковая стоимость</strong>: статус решает фактура карточки, а не что-либо реальное.</p>
+        <p>Бэйтман едва не теряет сознание от «лучшей» чужой визитки — аффект жив только в игре знаков.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> знаковая стоимость, различие без сущности</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Глянец,<br>под которым<br>пустота</h2>
+        <p style="margin-top:10px">Фильм снят холодно и безупречно, как реклама: симметрия, идеальные интерьеры, монологи Бэйтмана о хай-фай и уходе за кожей. Поверхность тотальна — <strong>глубины (вины, страха) нет</strong>, это и есть угасание аффекта.</p>
+        <p style="margin-top:8px">Финал нарочно неразрешим: были ли убийства? В гиперреальности сам вопрос «что реально» теряет смысл.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Реклама</span><p>Эстетика глянца как форма.</p></div>
+        <div class="def"><span class="term">Без<br>аффекта</span><p>Ни вины, ни страха — только маска.</p></div>
+        <div class="def"><span class="term">Неразре-<br>шимость</span><p>«Реально ли это?» — вопрос без ответа.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: «эффект реальности» (л. 7) сменился неразрешимостью реального.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что показывает фильм</h3>
+        <p style="margin-top:6px">Предельная визуализация Бодрийяра и Джеймисона: субъект-симулякр, знаковое потребление, угасание аффекта, неразрешимость реального — постмодерн в чистом виде.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Но «реально ли это?» рискует обернуться нигилизмом, в котором тонет и сам вопрос об ответственности и о капитале. Это слабое место Бодрийяра, а не Джеймисона.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Гиперреальность — мощный диагноз. Но без экономической почвы (которую держит Джеймисон) она грозит превратить критику в красивое «всё ненастоящее».</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Поверхность позднего капитала</span></div>
+    <h2>Изобилие → пустота → симулякр</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">Волк с Уолл-стрит</span><h3>Изобилие</h3><p>Эйфория потребления, безглубинность, знак вместо пользы.</p></div>
+      <div class="card ochre"><span class="k">Бойцовский клуб</span><h3>Субъект</h3><p>Потребитель без «я»; бунт без карты системы.</p></div>
+      <div class="card"><span class="k">Американский психопат</span><h3>Реальность</h3><p>Знаки без референта; реальное становится неразрешимым.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px;max-width:80ch">Вместе они рисуют постмодерн как <strong>культуру без «снаружи»</strong>. Задача Джеймисона — не оплакать глубину, а заново научиться <em>картографировать</em> систему, которая её упразднила.</p>
+    <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CRITIQUE -->
+  <section class="slide">
+    <div class="eyebrow">Критика <span class="sep">/</span> <span class="tag">Спор о постмодерне</span></div>
+    <h2>А постмодерн ещё длится?</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="card accent" style="gap:11px"><span class="k">«После» постмодерна</span><p>Многие считают, что после кризиса 2008-го и возвращения политики «история вернулась». Возникают ярлыки «метамодернизм», «капиталистический реализм» (Фишер): не конец постмодерна, а его <strong>усталая фаза</strong>.</p></div>
+      <div class="card ochre" style="gap:11px"><span class="k">Слишком крупный мазок?</span><p>Критики (в т. ч. справа от Джеймисона) упрекают: «тотальность» сглаживает различия, а нигилизм Бодрийяра растворяет всякую политику в игре знаков.</p></div>
+    </div>
+    <p style="margin-top:16px;max-width:82ch">Вывод курса: Джеймисон даёт самую амбициозную карту культуры капитала — но карта требует постоянного обновления. Лекция 10 проверит её на капитализме <strong>сегодня</strong>.</p>
+    <div class="slide-foot"><span class="src">Ср. М. Фишер, «Капиталистический реализм» (2009) — наследник проблематики Джеймисона.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- RELEVANCE -->
+  <section class="slide">
+    <div class="eyebrow">Сегодня <span class="sep">/</span> <span class="tag">Гиперреальность 2.0</span></div>
+    <h2>Лента как вечное настоящее</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="stack">
+        <p>Бесконечный скролл, ИИ-картинки и дипфейки, ремейки и франшизы, эстетика «вайбов» — постмодерн Джеймисона и гиперреальность Бодрийяра описывают наш день точнее, чем 1991-й. Копия окончательно обогнала оригинал.</p>
+        <p style="margin-top:10px">Лента — это и есть «серия несвязанных сейчас»: историю заменил поток, в котором новость, ностальгия и реклама неразличимы.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">ИИ-образ</span><p>Симулякр без всякого оригинала.</p></div>
+        <div class="def"><span class="term">Ремейк</span><p>Пастиш как индустриальная норма.</p></div>
+        <div class="def"><span class="term">Скролл</span><p>Вечное настоящее без истории.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Актуальность</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DISCUSSION -->
+  <section class="slide">
+    <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
+    <h2>Вопросы к дискуссии</h2>
+    <ul class="qlist" style="margin-top:14px">
+      <li><p>Приведите пример пастиша из недавнего кино. Есть ли там пародия — или только нейтральная имитация мёртвого стиля?</p></li>
+      <li><p>Чем знаковая стоимость Бодрийяра отличается от товарного фетишизма Маркса (л. 1) — и что важного теряется при разрыве с Марксом?</p></li>
+      <li><p>«Бойцовский клуб»: это критика потребления или его симптом? Где грань между когнитивной картой и спектаклем?</p></li>
+      <li><p>Если у культуры «нет снаружи», возможна ли вообще критика — или Джеймисон загоняет нас в тупик?</p></li>
+    </ul>
+    <div class="slide-foot"><span>Для семинара</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="slide">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Глоссарий лекции</span></div>
+    <h2>Ключевые понятия</h2>
+    <div class="cols" style="margin-top:12px">
+      <div class="deflist">
+        <div class="def"><span class="term">Поздний<br>капитализм</span><p>Третья стадия (Мандель); почва постмодерна.</p></div>
+        <div class="def"><span class="term">Культ.<br>доминанта</span><p>Постмодерн как силовое поле, не один из стилей.</p></div>
+        <div class="def"><span class="term">Пастиш</span><p>«Пустая пародия»; имитация мёртвых стилей.</p></div>
+        <div class="def"><span class="term">Ностальг.<br>режим</span><p>Прошлое как стилистический глянец.</p></div>
+        <div class="def"><span class="term">Угасание<br>аффекта</span><p>Распад «я»; интенсивности вместо чувств.</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Безглубин-<br>ность</span><p>Поверхность без скрытой истины.</p></div>
+        <div class="def"><span class="term">Когнит.<br>картогр.</span><p>Искусство, рисующее место субъекта в системе.</p></div>
+        <div class="def"><span class="term">Знаковая<br>стоимость</span><p>Потребление различий и статуса (Бодрийяр).</p></div>
+        <div class="def"><span class="term">Симулякр</span><p>Копия без оригинала.</p></div>
+        <div class="def"><span class="term">Гипер-<br>реальность</span><p>Знаки заместили реальность (Бодрийяр).</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Глоссарий</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- К ПРОСМОТРУ -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 2px">Образ → субъект → реальность. Смотрите, отслеживая пастиш, знаковую стоимость и симулякр.</p>
+    <div class="watchlist" style="margin-top:16px">
+      <div class="wfilm"><span class="wy">2013</span><span class="wt">Волк с<br>Уолл-стрит</span><span class="wd">Мартин Скорсезе · США</span><span class="wn">«Продай мне ручку», эйфория эксцесса. Знаковая стоимость и безглубинность.</span></div>
+      <div class="wfilm"><span class="wy">1999</span><span class="wt">Бойцовский<br>клуб</span><span class="wd">Дэвид Финчер · по Ч. Паланику</span><span class="wn">Идентичность-каталог, расщеплённый субъект. Бодрийяр + Джеймисон.</span></div>
+      <div class="wfilm"><span class="wy">2000</span><span class="wt">Американский<br>психопат</span><span class="wd">Мэри Хэррон · по Б. Истону Эллису</span><span class="wn">Битва визиток, угасание аффекта. Гиперреальность.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING + NEXT -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению и следующая лекция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>К чтению</h3>
+        <div class="readlist" style="margin-top:4px">
+          <div class="r"><span class="n">01</span><span class="ttl"><b>Ф. Джеймисон.</b> Постмодернизм, или Культурная логика позднего капитализма (1991)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">02</span><span class="ttl"><b>Ж. Бодрийяр.</b> Общество потребления (1970)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">03</span><span class="ttl"><b>Ж. Бодрийяр.</b> Симулякры и симуляция (1981)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">04</span><span class="ttl"><b>F. Jameson.</b> The Geopolitical Aesthetic (1992) — когнитивная карта в кино</span><span class="typ">Анализ</span></div>
+          <div class="r"><span class="n">05</span><span class="ttl"><b>М. Фишер.</b> Капиталистический реализм (2009)</span><span class="typ">Развитие</span></div>
+        </div>
+      </div>
+      <div class="oxpanel" style="padding:26px 28px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Лекция 10 →</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Капитализм сегодня</h2>
+        <p style="margin-top:10px;color:rgba(255,255,255,.92)">Проверка всей оптики курса на современном кино: «Паразиты» и «Метод исключения» Пак Чхан-ука. Класс, прекарность и отчуждение труда здесь и сейчас.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 09 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+<div class="help">← → · пробел · клик по краям</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

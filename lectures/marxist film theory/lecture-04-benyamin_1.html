@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 4 — Беньямин: аура | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(44px,7.8vw,112px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:24ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:32ch}
+.timeline{display:flex;flex-direction:column;gap:10px;align-self:center}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14.5px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">04</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 04 / 10</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Беньямин:<br><span class="hl">аура</span></h1>
+      <div class="subt">Техническая воспроизводимость и политическая ставка кино</div>
+      <div class="meta">
+        <span><b>Понятия:</b> аура · оптическое бессознательное</span>
+        <span><b>Кейсы:</b> Вертов · Рифеншталь · Чаплин</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE WE ARE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 04 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:64ch;margin:16px 0 22px">Адорно (лекция 3) видел в кино машину усыпления. Его друг и оппонент Вальтер Беньямин смотрит на ту же технологию и находит в ней <em>революционный шанс</em>: разрушая «ауру», кино может политизировать массы. Самый оптимистичный — и самый опасно балансирующий — момент курса.</p>
+    <div class="coursemap">
+      <div class="node"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node cur"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 04 <span class="sep">/</span> <span class="tag">План занятия</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>План<br>сегодня</h2>
+        <p style="max-width:34ch;margin-top:12px">От понятия ауры — к политической развилке Беньямина и к трём фильмам, которые стоят по разные её стороны.</p>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">01 · Проблема</span><p>Что теряет искусство, когда его можно копировать?</p></div>
+        <div class="def"><span class="term">02 · Контекст</span><p>Беньямин между Франкфуртом, Брехтом и изгнанием</p></div>
+        <div class="def"><span class="term">03 · Понятия</span><p>Аура · экспозиционная ценность · оптическое бессознательное</p></div>
+        <div class="def"><span class="term">04 · Развилка</span><p>Эстетизация политики ↔ политизация искусства</p></div>
+        <div class="def"><span class="term">05 · Кейсы</span><p>Вертов · «Триумф воли» · «Великий диктатор»</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
+      <h2>У копии есть<br>«здесь и сейчас»?</h2>
+      <p class="sub">Оригинал картины существует в одном месте и времени. Фильм-копия — везде и нигде. Беньямин спрашивает: что мы теряем с этой утратой уникальности — и что, возможно, выигрываем политически?</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Постановка проблемы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Контекст <span class="sep">/</span> <span class="tag">1935–36 · изгнание</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Самый<br>неортодоксальный</h2>
+        <p style="margin-top:12px;max-width:46ch">Беньямин связан с Франкфуртской школой, но стоит особняком: марксизм у него сплавлен с иудейским мессианством и с влиянием друга — <strong>Брехта</strong> (мост к лекции 5). Эссе «<em>Произведение искусства в эпоху его технической воспроизводимости</em>» написано в эмиграции в Париже в 1935–36 годах.</p>
+        <p style="margin-top:10px">Он пишет под нависающей тенью фашизма — и в 1940-м, спасаясь от нацистов, гибнет на испанской границе.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Связи</span><p>Адорно, Хоркхаймер — но без их академизма.</p></div>
+        <div class="def"><span class="term">Брехт</span><p>Друг, толкнувший Беньямина к материализму формы.</p></div>
+        <div class="def"><span class="term">1940</span><p>Гибель в Портбоу при бегстве от нацистов.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Эссе — не кабинетная теория, а попытка найти оружие против наступающего фашизма.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIALOGUE WITH ADORNO -->
+  <section class="slide">
+    <div class="eyebrow">Поворот <span class="sep">/</span> <span class="tag">Диалог с лекцией 3</span></div>
+    <h2>Та же техника — обратный вердикт</h2>
+    <div class="cols" style="margin-top:18px">
+      <div class="card accent"><span class="k">Адорно (л. 3)</span><h3>Пессимизм</h3><p>Массовое искусство усыпляет и стандартизирует. Воспроизводимость = власть индустрии над сознанием.</p></div>
+      <div class="card ochre"><span class="k">Беньямин (л. 4)</span><h3>Осторожный оптимизм</h3><p>Утрата ауры освобождает искусство от ритуала и делает его доступным массам — а значит, политически активным.</p></div>
+    </div>
+    <p style="margin-top:20px;max-width:80ch">Между друзьями шёл реальный спор: Адорно считал оптимизм Беньямина наивным. Курс держит оба голоса — это не «правильный» и «неправильный», а два полюса одного вопроса.</p>
+    <div class="slide-foot"><span>Спор Адорно — Беньямин</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONCEPT 1: AURA -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 01 <span class="sep">/</span> <span class="tag">Аура</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">01</span>
+        <h2 style="margin-top:6px">Аура</h2>
+        <p style="margin-top:12px;max-width:46ch">Аура — это <strong>уникальное «здесь и сейчас»</strong> произведения: его подлинность, неповторимое присутствие в одном месте и времени, ореол дистанции и почтения. Аура коренится в <em>ритуале</em>: икона, реликвия, шедевр в храме искусства.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Аура — это уникальное явление дали, как бы близка она ни была.</q>
+        <div class="attr">В. Беньямин — «Произведение искусства…»</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Определение</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONCEPT 1b: LOSS OF AURA -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 01 <span class="sep">/</span> <span class="tag">Утрата ауры</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Копия отрывает<br>от традиции</h2>
+        <p style="margin-top:10px">У фотографии и кино нет «оригинала»: каждая копия равноценна. Воспроизводимость <strong>вырывает</strong> образ из его единственного места и времени, обрывает связь с ритуалом и традицией. Аура увядает.</p>
+        <p style="margin-top:8px">Для Беньямина это не только потеря: вместе с аурой уходит и почтительная дистанция, державшая искусство сакральным и недоступным.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Уникум</span><span class="it">Картина в храме · «здесь и сейчас» · ритуал</span></div>
+        <div class="arrowzone"><span>воспроизводимость ↓</span></div>
+        <div class="tier base"><span class="lab">Копия</span><span class="it"><b>Везде и нигде · нет оригинала · доступно массам</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Механизм утраты ауры</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONCEPT 2: CULT -> EXHIBITION -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 02 <span class="sep">/</span> <span class="tag">Ценность: культ → экспозиция</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>От ритуала<br>к показу</h2>
+        <p style="margin-top:10px">Раньше искусство имело <strong>культовую ценность</strong>: важно было его наличие, не показ (идол в нише, фреска в склепе). Воспроизводимость переносит вес на <strong>экспозиционную ценность</strong> — искусство создано, чтобы быть показанным многим.</p>
+        <p style="margin-top:8px">А освобождённое от ритуала искусство, по Беньямину, неизбежно становится <em>политическим</em>: вопрос лишь, <em>чьей</em> политике оно служит.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Культовая</span><p>Ценно присутствие; показ вторичен (икона, реликвия).</p></div>
+        <div class="def"><span class="term">Экспози-<br>ционная</span><p>Ценен показ массам; кино — её предел.</p></div>
+        <div class="def"><span class="term">Итог</span><p>Искусство без ритуала становится полем политики.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Понятие · смена режима ценности</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONCEPT 3: OPTICAL UNCONSCIOUS -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 03 <span class="sep">/</span> <span class="tag">Оптическое бессознательное</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">03</span>
+        <h2 style="margin-top:6px">Оптическое<br>бессознательное</h2>
+        <p style="margin-top:12px;max-width:46ch">Камера видит то, чего не видит глаз: крупный план, замедление, остановку движения. Она открывает скрытую структуру вещей — как психоанализ открывает скрытое в психике. Кино не просто фиксирует мир, оно <strong>анализирует восприятие</strong>.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Крупный<br>план</span><p>Раскрывает то, что в обычном взгляде слито.</p></div>
+        <div class="def"><span class="term">Замедление</span><p>Показывает невидимую механику движения.</p></div>
+        <div class="def"><span class="term">Анализ</span><p>Камера как инструмент познания, а не только записи.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Это позитивная сторона техники: новое, более глубокое зрение для масс.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONCEPT 4: DISTRACTION + COLLECTIVE -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 04 <span class="sep">/</span> <span class="tag">Рассеянное восприятие</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Зритель —<br>коллектив</h2>
+        <p style="margin-top:10px">Картину созерцают в тишине и поодиночке. Кино воспринимают <strong>массой</strong> и в состоянии <em>рассеянности</em>: смех, реакция зала, поток образов. Беньямин видит в этом не деградацию, а новую — <strong>коллективную и тренирующую</strong> — форму восприятия.</p>
+        <p style="margin-top:8px">Тут он расходится с Адорно: для одного рассеянность = тупость, для другого = школа коллективного, критического взгляда.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Созерцание</span><p>Один на один с уникумом, в почтении.</p></div>
+        <div class="def"><span class="term">Рассеянность</span><p>Масса, поток, реакция — новая норма кино.</p></div>
+        <div class="def"><span class="term">Тренировка</span><p>Зритель учится осваивать сложный новый мир.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Понятие · приём в рассеянии</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THE POLITICAL FORK -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Развилка Беньямина</div>
+      <h2>Эстетизация политики<br>↔ политизация искусства</h2>
+      <p class="sub">Фашизм даёт массам не права, а возможность «выразить себя» в спектакле — и доводит эстетизацию политики до войны как зрелища. Ответ, по Беньямину, один: коммунизм отвечает политизацией искусства.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Кульминация лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- FORK EXPLAINED -->
+  <section class="slide">
+    <div class="eyebrow">Развилка <span class="sep">/</span> <span class="tag">Два пути одной техники</span></div>
+    <h2>Куда направить утрату ауры</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="card accent" style="gap:12px"><span class="k">Опасный путь</span><h3>Эстетизация политики</h3><p>Власть возвращает фальшивую «ауру» вождю и нации через зрелище: митинг, парад, война как красота. Массы любуются — но ничего не меняют.</p></div>
+      <div class="card ochre" style="gap:12px"><span class="k">Освободительный путь</span><h3>Политизация искусства</h3><p>Искусство открыто берёт на себя политическую функцию: будит, информирует, организует — не пряча, а обнажая свою позицию.</p></div>
+    </div>
+    <p style="margin-top:18px;max-width:80ch">Три фильма дальше — это три точки на этой развилке: новое зрение (Вертов), опасный путь (Рифеншталь) и ответ на него (Чаплин).</p>
+    <div class="slide-foot"><span>Карта развилки</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 1: MAN WITH A MOVIE CAMERA (5) ============ -->
+
+  <!-- F1 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Новое зрение</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Man with a Movie Camera" data-year="1929" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1929</span><span class="pt">Человек с<br>киноаппаратом</span><span class="pd">реж. Дзига Вертов</span></div>
+        <img alt="Кадр из «Человека с киноаппаратом»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Дзига Вертов</span><span><b>Год</b> 1929 · СССР</span><span><b>Хроно</b> 68 мин</span></div>
+        <h2>Человек с киноаппаратом</h2>
+        <div><span class="chip">Утрата ауры</span><span class="chip">Оптич. бессознательное</span></div>
+        <p>Мы уже видели его в лекции 2 как манифест монтажа. Теперь читаем его глазами Беньямина: это кино <strong>без ауры</strong> — без сюжета, звёзд и почтительной дистанции, зато с новым, аналитическим зрением.</p>
+        <p>Камера здесь — инструмент познания мира труда, а не поклонения.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Идеал Беньямина</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Кино, о котором<br>он мечтал</h2>
+        <p style="margin-top:10px">Вертов — почти буквальное воплощение программы Беньямина: коллективное производство, отказ от культа автора и звезды, экспозиционная ценность вместо ритуала. Фильм снят как часть <strong>политического проекта</strong> нового общества.</p>
+        <p style="margin-top:8px">Не случайно через сорок лет именно Вертова поднимут на знамя левые теоретики и Годар (лекция 7).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Без звезды</span><p>Нет культа лица — нет ауры.</p></div>
+        <div class="def"><span class="term">Коллектив</span><p>Герой — город и труд, а не личность.</p></div>
+        <div class="def"><span class="term">Показ</span><p>Сделан, чтобы быть увиденным массами.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: экспозиционная ценность и коллективное производство против культа.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · сцена <span class="sep">/</span> <span class="tag">Камера видит больше глаза</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Man with a Movie Camera" data-year="1929" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · стоп-кадр</span><span class="yr">1929</span><span class="pt">Стоп-кадр</span><span class="pd">«Человек с киноаппаратом»</span></div>
+        <img alt="Стоп-кадр из «Человека с киноаппаратом»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Оптическое бессознательное в действии</h2>
+        <p>Вертов замедляет, останавливает, дробит движение, показывает работу самой плёнки. Зритель видит то, что недоступно живому глазу, — буквальная демонстрация <strong>оптического бессознательного</strong> Беньямина.</p>
+        <p>Кино здесь не «окно в мир», а прибор для его анализа.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> оптическое бессознательное</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Обнажённая<br>техника</h2>
+        <p style="margin-top:10px">Фильм демонстративно показывает камеру, монтаж, экран — отказываясь от иллюзии и «магии». Это и есть <strong>анти-аура</strong>: вместо почтительной дистанции — приглашение разобраться, как сделан образ.</p>
+        <p style="margin-top:8px">Форма прямо реализует тезис Беньямина: техника не уничтожает искусство, а меняет его функцию с ритуальной на познавательную и политическую.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Виден<br>аппарат</span><p>Камера и монтаж — часть зрелища.</p></div>
+        <div class="def"><span class="term">Нет<br>дистанции</span><p>Зритель — соучастник, не паломник.</p></div>
+        <div class="def"><span class="term">Функция</span><p>Познание и мобилизация вместо культа.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: «обнажение приёма» (л. 2) = «утрата ауры» (л. 4) — одно и то же с двух сторон.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что подтверждает тезис</h3>
+        <p style="margin-top:6px">Вертов показывает «хорошую» сторону развилки: техника без ауры рождает новое, коллективное, аналитическое зрение — потенциально освобождающее.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Но «новое зрение» не гарантирует освобождения само по себе: тот же арсенал приёмов, как мы сейчас увидим, фашизм поставит на службу противоположной цели.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Утрата ауры открывает дверь — но не говорит, в какую сторону идти. Вертов выбрал политизацию искусства. Следующий фильм выбирает обратное.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 2: TRIUMPH OF THE WILL (5) ============ -->
+
+  <!-- F2 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Опасный путь</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Triumph of the Will" data-year="1935" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1935</span><span class="pt">Триумф<br>воли</span><span class="pd">реж. Лени Рифеншталь</span></div>
+        <img alt="Кадр из «Триумфа воли»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Лени Рифеншталь</span><span><b>Год</b> 1935 · Германия</span></div>
+        <h2>Триумф воли</h2>
+        <div><span class="chip">Эстетизация политики</span><span class="chip">Пропаганда</span></div>
+        <p>Заказанный Гитлером фильм о нацистском съезде в Нюрнберге 1934 года. Мы разбираем его <strong>критически</strong> — как образец того самого опасного пути, о котором предупреждал Беньямин.</p>
+        <p>Здесь техника кино служит не познанию, а культу власти.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Техника на службе режима</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Новаторство<br>как оружие</h2>
+        <p style="margin-top:10px">Рифеншталь получила беспрецедентные ресурсы: десятки камер, краны, рельсы, операторы на лифтах и стадионе. Технически фильм был передовым — и именно это делает его <strong>опаснее</strong>, а не «лучше».</p>
+        <p style="margin-top:8px">Важная этическая рамка курса: формальное мастерство здесь неотделимо от пропаганды геноцидного режима. Мы изучаем <em>как это работает</em>, чтобы научиться это распознавать.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Заказ</span><p>Снят по поручению нацистского руководства.</p></div>
+        <div class="def"><span class="term">Ресурс</span><p>Техническая роскошь, недоступная обычному кино.</p></div>
+        <div class="def"><span class="term">Цель</span><p>Не информировать, а возвеличить вождя и партию.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Мастерство формы — не оправдание; для Беньямина именно красивая форма делает фашизм соблазнительным.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена <span class="sep">/</span> <span class="tag">Бог с небес и строй</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Triumph of the Will" data-year="1935" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · открытие</span><span class="yr">1935</span><span class="pt">Сошествие<br>с небес</span><span class="pd">«Триумф воли»</span></div>
+        <img alt="Сцена открытия «Триумфа воли»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Фальшивая аура власти</h2>
+        <p>Фильм открывается самолётом вождя, спускающимся сквозь облака на город, — буквально «бог с небес». Дальше — бесконечные геометрические колонны людей, снятые так, чтобы внушать трепет.</p>
+        <p>Кино здесь <strong>возвращает ауру</strong> — но фальшивую, искусственно сконструированную вокруг диктатора и массы.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> эстетизация политики</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Масса-орнамент<br>как культ</h2>
+        <p style="margin-top:10px">Те же синхронные толпы-узоры, что у Беркли и в «Метрополисе» (лекции 1, 3), но здесь масса-орнамент работает на <strong>обожествление власти</strong>: человек растворён в строю, строй подчинён вождю.</p>
+        <p style="margin-top:8px">Низкие ракурсы, монументальная симметрия, ритм маршей — арсенал, восстанавливающий дистанцию и трепет, то есть ауру.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Ракурс<br>снизу</span><p>Делает фигуры вождя и знамён грандиозными.</p></div>
+        <div class="def"><span class="term">Симметрия</span><p>Порядок как красота, послушание как эстетика.</p></div>
+        <div class="def"><span class="term">Строй</span><p>Индивид исчезает в массе-орнаменте.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: один и тот же приём (масса-орнамент) служит то критике, то культу — решает контекст.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что показывает фильм</h3>
+        <p style="margin-top:6px">Это наглядное доказательство правоты Беньямина: техника, лишившая искусство ауры, может вернуть фальшивую ауру власти — и сделать политику предметом любования вместо действия.</p>
+        <h3 style="margin-top:18px">Этический предел</h3>
+        <p style="margin-top:6px">Любование «эстетикой» в отрыве от содержания — само ловушка. Восхищаться формой «Триумфа воли», забыв, чему она служит, значит повторять ошибку, которую анализирует Беньямин.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">«Эстетизация политики кончается войной». Фильм — предупреждение, а не образец для подражания. Изучаем механику, чтобы ей сопротивляться.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 3: THE GREAT DICTATOR (5) ============ -->
+
+  <!-- F3 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Ответ на опасный путь</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="The Great Dictator" data-year="1940" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1940</span><span class="pt">Великий<br>диктатор</span><span class="pd">реж. Чарли Чаплин</span></div>
+        <img alt="Кадр из «Великого диктатора»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Чарли Чаплин</span><span><b>Год</b> 1940 · США</span><span><b>Хроно</b> 125 мин</span></div>
+        <h2>Великий диктатор</h2>
+        <div><span class="chip">Политизация искусства</span><span class="chip">Срыв ауры</span></div>
+        <p>Кинематографический ответ Рифеншталь: Чаплин играет диктатора Хинкеля (пародия на Гитлера) и еврея-парикмахера. Снято независимо, до вступления США в войну, на реальный политический риск.</p>
+        <p>Там, где «Триумф воли» строит ауру вождя, Чаплин её <strong>осмеивает</strong>.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Способ производства</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Риск<br>автора-собственника</h2>
+        <p style="margin-top:10px">Как и в «Новых временах» (лекция 1), Чаплин — независимый автор-собственник (United Artists). Он вложил собственные деньги в открыто антифашистский фильм в момент, когда Голливуд избегал злить Германию.</p>
+        <p style="margin-top:8px">Жуткое совпадение: Чаплин и Гитлер родились с разницей в несколько дней и носили одинаковые усики — Чаплин обращает это сходство в оружие.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Незави-<br>симость</span><p>Контроль над средствами производства = свобода высказывания.</p></div>
+        <div class="def"><span class="term">Риск</span><p>Открытая политика вопреки осторожности индустрии.</p></div>
+        <div class="def"><span class="term">Двойник</span><p>Сходство с Гитлером превращено в сатиру.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: кто владеет камерой, тот и решает, политизировать искусство или нет.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · сцена <span class="sep">/</span> <span class="tag">Глобус и речь</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="The Great Dictator" data-year="1940" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · танец с глобусом</span><span class="yr">1940</span><span class="pt">Танец<br>с глобусом</span><span class="pd">«Великий диктатор»</span></div>
+        <img alt="Сцена танца с глобусом из «Великого диктатора»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Аура, которую сдувают</h2>
+        <p>Хинкель танцует с воздушным шаром-глобусом: мания величия превращена в нелепый балет — и шар лопается. Величие вождя обнажено как пустая надувная игрушка.</p>
+        <p>В финале Чаплин выходит из роли и обращается прямо в камеру с речью о человечности: искусство открыто берёт политическую функцию.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Категория</b> политизация искусства</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Смех и прямое<br>обращение</h2>
+        <p style="margin-top:10px">Два приёма срывают ауру власти. <strong>Пародия</strong>: трепет невозможен там, где смешно. И <strong>прямое обращение</strong> в финале: Чаплин ломает иллюзию, говорит со зрителем напрямую — почти по Брехту (лекция 5).</p>
+        <p style="margin-top:8px">Это форма, противоположная Рифеншталь: не дистанция и культ, а близость и призыв думать.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Пародия</span><p>Смех уничтожает священный трепет.</p></div>
+        <div class="def"><span class="term">Прямая<br>речь</span><p>Разрыв иллюзии — мост к очуждению Брехта.</p></div>
+        <div class="def"><span class="term">Близость</span><p>Не «бог с небес», а человек лицом к лицу.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: финальная речь предвосхищает антииллюзионизм Брехта (лекция 5).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что делает фильм</h3>
+        <p style="margin-top:6px">Прямой ответ на «Триумф воли»: то же оружие — кино — направлено против культа вождя. Политизация искусства Беньямина в чистом виде.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Но финальная проповедь сама рискует новой эстетизацией — пафосом и сентиментальностью. Грань между «политизировать» и «снова заворожить» тоньше, чем кажется.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Развилка Беньямина — не гарантия, а задача. Даже благое искусство должно постоянно проверять себя: будит оно мысль или снова усыпляет восторгом?</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS ACROSS FILMS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Три точки развилки</span></div>
+    <h2>Одна техника, три судьбы</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">Вертов</span><h3>Новое зрение</h3><p>Без ауры, аналитично, коллективно — потенциал свободы.</p></div>
+      <div class="card"><span class="k">Рифеншталь</span><h3>Опасный путь</h3><p>Фальшивая аура власти — эстетизация политики.</p></div>
+      <div class="card ochre"><span class="k">Чаплин</span><h3>Ответ</h3><p>Смех и прямая речь — политизация искусства.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px;max-width:80ch">Вывод Беньямина: техника не предрешает исхода. <strong>Утрата ауры — это развилка, а не судьба</strong>; политический выбор делают люди, а не аппарат.</p>
+    <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- RELEVANCE TODAY -->
+  <section class="slide">
+    <div class="eyebrow">Сегодня <span class="sep">/</span> <span class="tag">Аура в эпоху ИИ</span></div>
+    <h2>Беньямин и бесконечная копия</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="stack">
+        <p>Сегодня воспроизводимость дошла до предела: дипфейки, ИИ-картинки, бесконечная лента. Вопрос Беньямина звучит острее, чем когда-либо: если копировать можно всё, что остаётся от подлинности — и кто управляет потоком образов?</p>
+        <p style="margin-top:10px">Соцсети заново продают «ауру» — лайки, верификация, культ блогера-вождя. Эстетизация политики никуда не делась, она переехала в смартфон.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Дипфейк</span><p>Копия без оригинала, доведённая до конца.</p></div>
+        <div class="def"><span class="term">Новая<br>аура</span><p>Верификация и культ личности в ленте.</p></div>
+        <div class="def"><span class="term">Развилка</span><p>Та же: спектакль власти или мобилизация?</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Актуальность</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DISCUSSION -->
+  <section class="slide">
+    <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
+    <h2>Вопросы к дискуссии</h2>
+    <ul class="qlist" style="margin-top:14px">
+      <li><p>Кто ближе к истине — Адорно (техника усыпляет) или Беньямин (техника может освобождать)? Обоснуйте на конкретном фильме.</p></li>
+      <li><p>Если масса-орнамент работает и у Беркли, и у Рифеншталь, есть ли у формы собственная политика — или всё решает контекст?</p></li>
+      <li><p>Этический вопрос: можно ли изучать мастерство «Триумфа воли», не рискуя его эстетизировать? Как удержать критическую дистанцию?</p></li>
+      <li><p>Существует ли «аура» в эпоху дипфейков и ИИ-генерации — или понятие устарело? Что пришло ему на смену?</p></li>
+    </ul>
+    <div class="slide-foot"><span>Для семинара</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="slide">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Глоссарий лекции</span></div>
+    <h2>Ключевые понятия</h2>
+    <div class="cols" style="margin-top:12px">
+      <div class="deflist">
+        <div class="def"><span class="term">Аура</span><p>Уникальное «здесь и сейчас» произведения; подлинность и дистанция.</p></div>
+        <div class="def"><span class="term">Утрата<br>ауры</span><p>Воспроизводимость отрывает образ от ритуала и оригинала.</p></div>
+        <div class="def"><span class="term">Культовая<br>ценность</span><p>Важно наличие произведения, а не его показ.</p></div>
+        <div class="def"><span class="term">Экспозиц.<br>ценность</span><p>Важен показ многим; кино — её предел.</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Оптическое<br>бессозн.</span><p>То, что открывает камера, но не видит глаз.</p></div>
+        <div class="def"><span class="term">Рассеянное<br>восприятие</span><p>Коллективное, нецелостное восприятие кино массой.</p></div>
+        <div class="def"><span class="term">Эстетизация<br>политики</span><p>Власть как красивое зрелище; путь фашизма.</p></div>
+        <div class="def"><span class="term">Политизация<br>искусства</span><p>Искусство открыто берёт политическую функцию.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Глоссарий</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- К ПРОСМОТРУ -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 2px">Три фильма — три точки на развилке Беньямина. «Триумф воли» смотрим строго критически, как документ пропаганды.</p>
+    <div class="watchlist" style="margin-top:16px">
+      <div class="wfilm"><span class="wy">1929</span><span class="wt">Человек с<br>киноаппаратом</span><span class="wd">Дзига Вертов · СССР · 68 мин</span><span class="wn">Утрата ауры и оптическое бессознательное; новое коллективное зрение.</span></div>
+      <div class="wfilm"><span class="wy">1935</span><span class="wt">Триумф<br>воли</span><span class="wd">Лени Рифеншталь · Германия</span><span class="wn">Критический разбор: эстетизация политики, фальшивая аура власти.</span></div>
+      <div class="wfilm"><span class="wy">1940</span><span class="wt">Великий<br>диктатор</span><span class="wd">Чарли Чаплин · США · 125 мин</span><span class="wn">Сцены: танец с глобусом · финальная речь. Политизация искусства.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING + NEXT -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению и следующая лекция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>К чтению</h3>
+        <div class="readlist" style="margin-top:4px">
+          <div class="r"><span class="n">01</span><span class="ttl"><b>В. Беньямин.</b> «Произведение искусства в эпоху его технической воспроизводимости»</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">02</span><span class="ttl"><b>В. Беньямин.</b> «Краткая история фотографии» (об ауре)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">03</span><span class="ttl"><b>Адорно — Беньямин.</b> Переписка о массовой культуре (избранное)</span><span class="typ">Спор</span></div>
+          <div class="r"><span class="n">04</span><span class="ttl"><b>Контекст:</b> С. Зонтаг, «Магический фашизм» — о Рифеншталь</span><span class="typ">Контекст</span></div>
+        </div>
+      </div>
+      <div class="oxpanel" style="padding:26px 28px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Лекция 05 →</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Брехт: очуждение</h2>
+        <p style="margin-top:10px;color:rgba(255,255,255,.92)">Друг Беньямина и автор идеи разрыва иллюзии. Эффект очуждения против вживания: как сделать зрителя не зачарованным, а думающим. Прямое продолжение «политизации искусства».</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 04 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+<div class="help">← → · пробел · клик по краям</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

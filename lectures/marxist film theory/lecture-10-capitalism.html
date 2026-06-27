@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 10 — Капитализм сегодня | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(42px,7vw,104px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:26ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;align-self:center;width:100%;border:1px solid var(--line-strong)}
+.vs .vh{padding:12px 18px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:15px;border-bottom:1px solid var(--line-strong)}
+.vs .vh.l{color:var(--bone-dim);background:var(--ink-2)}
+.vs .vh.r{color:var(--ochre);background:var(--oxblood)}
+.vs .vc{padding:9px 18px;font-size:13.5px;border-bottom:1px solid var(--line);font-family:var(--serif)}
+.vs .vc.l{color:var(--bone-dim)}
+.vs .vc.r{color:var(--bone);background:rgba(58,23,20,.35)}
+.vs .vc:nth-last-child(-n+2){border-bottom:none}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.coursemap .node.done .nn{color:var(--ochre)}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:34ch}
+.timeline{display:flex;flex-direction:column;gap:9px;align-self:center;width:100%}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">10</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 10 / 10</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Капитализм<br><span class="hl">сегодня</span></h1>
+      <div class="subt">Весь инструментарий курса — на современном кино</div>
+      <div class="meta">
+        <span><b>Понятия:</b> прекарность · капиталистический реализм</span>
+        <span><b>Кейсы:</b> «Паразиты» · «Метод исключения» · «Сквозь снег»</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE WE ARE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 10 <span class="sep">/</span> <span class="tag">Карта курса · финал</span></div>
+    <h2>Весь путь пройден</h2>
+    <p class="lead" style="max-width:64ch;margin:16px 0 22px">Финальная лекция собирает девять предыдущих в один <em>инструментарий</em> и направляет его на капитализм здесь и сейчас: прекарность, платформы, выгорание, «капиталистический реализм». Проверка: способно ли кино сегодня <strong>картографировать</strong> систему — или критика стала жанром?</p>
+    <div class="coursemap">
+      <div class="node done"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node done"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node done"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node done"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node done"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node done"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node done"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node done"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node done"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node cur"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 10 <span class="sep">/</span> <span class="tag">План занятия</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>План<br>сегодня</h2>
+        <p style="max-width:34ch;margin-top:12px">Синтез инструментов курса, диагноз современного капитализма и проверка на трёх свежих фильмах о труде и классе.</p>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">01 · Синтез</span><p>Инструментарий девяти лекций в одной таблице</p></div>
+        <div class="def"><span class="term">02 · Проблема</span><p>Критика системы — или критика как жанр?</p></div>
+        <div class="def"><span class="term">03 · Диагноз</span><p>Прекарность · платформы · выгорание · долг</p></div>
+        <div class="def"><span class="term">04 · Условие</span><p>«Капиталистический реализм» Фишера</p></div>
+        <div class="def"><span class="term">05 · Кейсы</span><p>«Паразиты» · «Метод исключения» · «Сквозь снег»</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS: THE TOOLKIT -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Инструментарий курса</span></div>
+    <h2>Девять инструментов чтения фильма</h2>
+    <div class="timeline" style="margin-top:14px">
+      <div class="t"><span class="yr2">Л1</span><span class="ds"><b>Товар + идеология</b> — фильм как товар, производящий «само собой разумеющееся»</span></div>
+      <div class="t"><span class="yr2">Л2</span><span class="ds"><b>Форма как политика</b> — монтаж будит или усыпляет; спор реализма и авангарда</span></div>
+      <div class="t"><span class="yr2">Л3</span><span class="ds"><b>Культуриндустрия</b> — стандартизация и развлечение как продолжение труда</span></div>
+      <div class="t"><span class="yr2">Л4</span><span class="ds"><b>Аура</b> — техника, эстетизация политики против политизации искусства</span></div>
+      <div class="t"><span class="yr2">Л5</span><span class="ds"><b>Очуждение</b> — денатурализация; контр-кино против вживания</span></div>
+      <div class="t"><span class="yr2">Л6</span><span class="ds"><b>Интерпелляция</b> — ISA и «оклик», делающий нас субъектами</span></div>
+      <div class="t"><span class="yr2">Л7</span><span class="ds"><b>Аппарат и взгляд</b> — идеология в самой машине кино; симптоматичное чтение</span></div>
+      <div class="t"><span class="yr2">Л8</span><span class="ds"><b>Гегемония</b> — согласие как поле борьбы; декодирование зрителем</span></div>
+      <div class="t"><span class="yr2">Л9</span><span class="ds"><b>Постмодерн</b> — пастиш, симулякр и задача когнитивной карты</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Сегодня применяем всё это разом к капитализму XXI века.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
+      <h2>Кино показывает систему —<br>или продаёт её критику?</h2>
+      <p class="sub">Сегодня «фильмы о неравенстве» — отдельный прибыльный жанр. Главный вопрос финала: даёт ли он зрителю <em>когнитивную карту</em> (Джеймисон) и волю к действию — или позволяет насладиться критикой, ничего не меняя?</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Постановка проблемы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTEXT: NEOLIBERALISM -->
+  <section class="slide">
+    <div class="eyebrow">Диагноз <span class="sep">/</span> <span class="tag">Неолиберализм</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Сорок лет<br>демонтажа</h2>
+        <p style="margin-top:10px">С конца 1970-х (Тэтчер, Рейган) — неолиберальный поворот: приватизация, дерегуляция, ослабление профсоюзов, финансиализация, деиндустриализация Запада и вынос производства. Дэвид Харви описал это как <strong>классовый проект</strong> по восстановлению власти капитала.</p>
+        <p style="margin-top:8px">Рынок объявлен мерой всего — и эта «очевидность» (гегемония, л. 8) держится до сих пор.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Финансиа-<br>лизация</span><p>Прибыль из денег, а не из производства.</p></div>
+        <div class="def"><span class="term">Деиндуст-<br>риализация</span><p>Заводы Запада закрываются и переезжают.</p></div>
+        <div class="def"><span class="term">Проект</span><p>Восстановление власти класса капитала (Харви).</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Д. Харви, «Краткая история неолиберализма» (2005).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PRECARITY -->
+  <section class="slide">
+    <div class="eyebrow">Диагноз <span class="sep">/</span> <span class="tag">Прекариат</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">01</span>
+        <h2 style="margin-top:6px">Прекарность</h2>
+        <p style="margin-top:12px;max-width:46ch">Стабильная занятость сменяется <strong>прекарностью</strong>: временные контракты, гиг-подработки, отсутствие гарантий. Гай Стэндинг назвал это новым «опасным классом» — <em>прекариатом</em>, который живёт от заказа к заказу.</p>
+        <p style="margin-top:10px">Отчуждение труда (л. 1) возвращается в новой форме: рабочий теперь конкурирует не только с капиталом, но и с другими рабочими за сам шанс работать.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Гиг</span><p>Труд раздроблен на разовые заказы.</p></div>
+        <div class="def"><span class="term">Без<br>гарантий</span><p>Ни стабильности, ни защиты, ни будущего.</p></div>
+        <div class="def"><span class="term">Конку-<br>ренция</span><p>Рабочий против рабочего — ключевая тема кейсов.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Г. Стэндинг, «Прекариат: новый опасный класс» (2011).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PLATFORM / SURVEILLANCE -->
+  <section class="slide">
+    <div class="eyebrow">Диагноз <span class="sep">/</span> <span class="tag">Платформы и надзор</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Лента как<br>фабрика</h2>
+        <p style="margin-top:10px">Платформенный капитализм превращает наше внимание и данные в сырьё. Шошана Зубофф называет это <strong>надзорным капитализмом</strong>: компании извлекают «поведенческий излишек», чтобы предсказывать и направлять нас.</p>
+        <p style="margin-top:8px">Это прямое продолжение курса: культуриндустрия (л. 3) и «рекомендовано для вас» (л. 6) теперь работают на данных в реальном времени.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Данные</span><p>Внимание и поведение — новое сырьё.</p></div>
+        <div class="def"><span class="term">Прогноз</span><p>Цель — предсказывать и направлять нас.</p></div>
+        <div class="def"><span class="term">Аппарат</span><p>Лента — идеологический аппарат XXI века.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Ш. Зубофф, «Эпоха надзорного капитализма» (2019).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BURNOUT / DEBT -->
+  <section class="slide">
+    <div class="eyebrow">Диагноз <span class="sep">/</span> <span class="tag">Самоэксплуатация и долг</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Сам себе<br>надсмотрщик</h2>
+        <p style="margin-top:10px">Бён-Чхоль Хан: на смену «обществу дисциплины» пришло <strong>общество достижений</strong>, где субъект эксплуатирует себя сам — добровольно, под лозунгом «ты можешь всё». Результат — выгорание вместо бунта.</p>
+        <p style="margin-top:8px">А долг (Лаццарато, Бифо) делает каждого «вечным должником»: кредит на учёбу, ипотека и рассрочка дисциплинируют надёжнее полиции.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Достижение</span><p>«Ты можешь всё» = ты сам себя гонишь.</p></div>
+        <div class="def"><span class="term">Выгорание</span><p>Усталость заменяет сопротивление.</p></div>
+        <div class="def"><span class="term">Долг</span><p>Должник послушен без всякого надзора.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Бён-Чхоль Хан, «Общество усталости» (2010); М. Лаццарато, «Фабрика задолжавшего человека» (2011).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CAPITALIST REALISM -->
+  <section class="slide">
+    <div class="eyebrow">Условие <span class="sep">/</span> <span class="tag">Фишер · капиталистический реализм</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Легче вообразить<br>конец света</h2>
+        <p style="margin-top:12px;max-width:46ch">Марк Фишер назвал нынешнее состояние «<strong>капиталистическим реализмом</strong>»: глубоко усвоенное чувство, что капитализму нет альтернативы. Прямое развитие тезиса Джеймисона о «культуре без снаружи» (л. 9).</p>
+        <p style="margin-top:10px">Кино полно апокалипсисов — но почти не способно вообразить иную экономику. Это и есть предел воображения, который должен пробить наш инструментарий.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Легче вообразить конец света, чем конец капитализма.</q>
+        <div class="attr">формула, обобщённая М. Фишером</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">М. Фишер, «Капиталистический реализм: разве нет альтернативы?» (2009).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- EAT THE RICH GENRE -->
+  <section class="slide">
+    <div class="eyebrow">Жанр <span class="sep">/</span> <span class="tag">«Сожрать богатых»</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Когда критика<br>становится хитом</h2>
+        <p style="margin-top:10px">«Паразиты», «Игра в кальмара», «Треугольник печали», «Достать ножи», «Меню», «Сквозь снег» — классовая критика стала <strong>модным прибыльным жанром</strong>. Зрители обожают смотреть, как унижают богатых.</p>
+        <p style="margin-top:8px">Тревожный вопрос (культуриндустрия, л. 3): не превращается ли антикапитализм в <em>товар</em>, который продают тем же зрителям, чьё согласие он должен был расшатать?</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Жанр</span><p>«Eat the rich» как рыночная ниша.</p></div>
+        <div class="def"><span class="term">Катарсис</span><p>Гнев разряжается зрелищем, а не действием.</p></div>
+        <div class="def"><span class="term">Вопрос</span><p>Карта системы — или её приятная имитация?</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: инкорпорация (л. 8) + культуриндустрия (л. 3) применительно к самой классовой критике.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 1: PARASITE (5) ============ -->
+
+  <!-- F1 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Архитектура класса</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Parasite" data-year="2019" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2019</span><span class="pt">Паразиты</span><span class="pd">реж. Пон Джун-хо</span></div>
+        <img alt="Кадр из «Паразитов»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Пон Джун-хо</span><span><b>2019 · Юж. Корея</b></span><span><b>Палм. ветвь + «Оскар»</b></span></div>
+        <h2>Паразиты</h2>
+        <div><span class="chip">Класс</span><span class="chip">Без выхода</span></div>
+        <p>Бедная семья из полуподвала шаг за шагом внедряется в дом богачей. Глобальный фильм-символ неравенства: первый неанглоязычный лауреат «Оскара» за лучший фильм.</p>
+        <p>Идеальный финальный кейс: вся оптика курса работает на нём сразу.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Вертикаль как у Ланга</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Класс,<br>отлитый в<br>архитектуре</h2>
+        <p style="margin-top:10px">Пространство фильма — это классовая карта по вертикали: особняк на холме, полуподвал, тайный бункер под ним. Прямая рифма «Метрополису» (л. 1): класс снова <strong>овеществлён в этажах</strong>.</p>
+        <p style="margin-top:8px">Корея — концентрат глобальной проблемы: бурный рост, чудовищное неравенство, культ образования и долговая кабала.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Верх / низ</span><p>Холм, полуподвал, бункер — три класса.</p></div>
+        <div class="def"><span class="term">Метрополис</span><p>Возврат вертикали класса (л. 1).</p></div>
+        <div class="def"><span class="term">Корея</span><p>Локальный сюжет — глобальный диагноз.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: пространственная метафора класса — от Ланга (л. 1) к Пон Джун-хо.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · сцена <span class="sep">/</span> <span class="tag">Запах</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Parasite" data-year="2019" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · «запах полуподвала»</span><span class="yr">2019</span><span class="pt">Запах<br>бедности</span><span class="pd">«Паразиты»</span></div>
+        <img alt="Сцена про запах из «Паразитов»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Класс, который нельзя смыть</h2>
+        <p>Богатый хозяин брезгливо морщится от «запаха» бедняков — запаха полуподвала, который не отстирать. Класс показан как <strong>телесная, неустранимая граница</strong>, прорывающаяся сквозь все маскировки.</p>
+        <p>Именно этот жест отвращения, а не деньги, запускает финальную катастрофу.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> классовая граница как телесность</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · форма <span class="sep">/</span> <span class="tag">Бедные против бедных</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Нет солидарности —<br>есть конкуренция</h2>
+        <p style="margin-top:10px">Главный марксистский нерв фильма: внизу две бедные семьи сражаются <strong>друг с другом</strong> за место при богатых, вместо того чтобы объединиться против них. Система устроена так, что злость направлена вбок, а не вверх.</p>
+        <p style="margin-top:8px">Жанровые переключения (комедия → триллер → трагедия) не дают зрителю устроиться в удобной позиции — лёгкий брехтовский эффект (л. 5).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Вбок</span><p>Гнев бедных направлен на бедных.</p></div>
+        <div class="def"><span class="term">Жанр</span><p>Резкие сломы тона держат зрителя начеку.</p></div>
+        <div class="def"><span class="term">Финал</span><p>Мечта «выкупить дом» — несбыточная фантазия.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: интра-классовая конкуренция — сквозная тема всех трёх кейсов.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Сила фильма</h3>
+        <p style="margin-top:6px">Блестящая когнитивная карта (л. 9): зритель буквально видит структуру класса и механизм, стравливающий бедных. Никакого утешительного выхода — честнее, чем «Шоу Трумана» (л. 6).</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">И всё же это — глобальный хит и оскароносный товар. «Паразиты» рискуют стать витриной жанра «eat the rich»: великая диагностика без указания пути к действию.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Показать систему — огромное достижение. Но картография — ещё не стратегия: фильм рисует тупик, не предлагая из него выхода.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 2: NO OTHER CHOICE (5) ============ -->
+
+  <!-- F2 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Прекарность доведённая до предела</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="No Other Choice" data-year="2025" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2025</span><span class="pt">Метод<br>исключения</span><span class="pd">реж. Пак Чхан-ук</span></div>
+        <img alt="Кадр из «Метода исключения»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Пак Чхан-ук</span><span><b>2025 · Юж. Корея</b></span><span><b>в гл. роли Ли Бён-хон</b></span></div>
+        <h2>Метод исключения</h2>
+        <div><span class="chip">Деиндустриализация</span><span class="chip">Рабочий против рабочего</span></div>
+        <p>Менеджер бумажной фабрики теряет работу после того, как предприятие покупает американская компания. Не найдя места, он начинает <strong>устранять конкурентов</strong> за вакансии. По роману Уэстлейка «Топор».</p>
+        <p>Критики назвали фильм «марксистской комедией» и ответом «Паразитам».</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Когда поглощают завод</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Глобальный<br>капитал увольняет</h2>
+        <p style="margin-top:10px">Завязка — концентрат современного капитализма: транснациональный капитал покупает завод и «оптимизирует» персонал. Стабильная жизнь специалиста рушится в одночасье — это <strong>прекарность</strong> Стэндинга в действии.</p>
+        <p style="margin-top:8px">Пак Чхан-ук берёт холодную экономическую логику и доводит её до абсурдного, страшного предела.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Поглощение</span><p>ТНК покупает завод и сокращает людей.</p></div>
+        <div class="def"><span class="term">Падение</span><p>Из среднего класса — в прекариат за день.</p></div>
+        <div class="def"><span class="term">Источник</span><p>Роман Уэстлейка «Топор» (1997).</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: деиндустриализация и прекарность как двигатель сюжета.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена <span class="sep">/</span> <span class="tag">Список конкурентов</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="No Other Choice" data-year="2025" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · охота за вакансией</span><span class="yr">2025</span><span class="pt">Устранить<br>соперника</span><span class="pd">«Метод исключения»</span></div>
+        <img alt="Сцена из «Метода исключения»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Конкуренция как буквальное убийство</h2>
+        <p>Герой составляет список претендентов на ту же должность — и methодично «исключает» их. Метафора капиталистической конкуренции реализована <strong>буквально</strong>: чтобы выжить, рабочий уничтожает таких же рабочих.</p>
+        <p>Чёрная комедия обнажает то, что система требует от каждого: видеть в соседе по очереди не товарища, а угрозу.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> интра-классовая конкуренция</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · форма <span class="sep">/</span> <span class="tag">Чёрная комедия как очуждение</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Смех, от которого<br>становится страшно</h2>
+        <p style="margin-top:10px">Пак Чхан-ук использует гротеск и чёрный юмор как <strong>очуждение</strong> (л. 5): абсурд заставляет увидеть конкуренцию за работу не как «норму жизни», а как чудовищный, исторически созданный механизм.</p>
+        <p style="margin-top:8px">Стильная, выверенная форма режиссёра удерживает дистанцию: мы не вживаемся в героя, а изучаем логику, которая его создала.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Гротеск</span><p>Абсурд денатурализует «норму».</p></div>
+        <div class="def"><span class="term">Дистанция</span><p>Мы анализируем механизм, а не плачем с героем.</p></div>
+        <div class="def"><span class="term">Историзация</span><p>Конкуренция показана как сделанная, не вечная.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: брехтовское очуждение (л. 5) средствами жанровой комедии.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Сила фильма</h3>
+        <p style="margin-top:6px">Прямое продолжение «Паразитов»: если там бедные дрались за объедки, здесь конкуренция за рабочее место доведена до логического конца — убийства. Жёсткая карта прекарного труда.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Как и «Паразиты», фильм гениально ставит диагноз, но герой действует в одиночку: коллективного ответа (профсоюз, солидарность) в кадре нет. Тупик индивидуализма.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Первые два кейса показывают, к чему ведёт распад солидарности. Третий — восстание и его ловушку.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 3: SNOWPIERCER (5) ============ -->
+
+  <!-- F3 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Класс как поезд</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Snowpiercer" data-year="2013" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2013</span><span class="pt">Сквозь<br>снег</span><span class="pd">реж. Пон Джун-хо</span></div>
+        <img alt="Кадр из «Сквозь снег»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Пон Джун-хо</span><span><b>2013 · Корея/США</b></span><span><b>по графич. роману</b></span></div>
+        <h2>Сквозь снег</h2>
+        <div><span class="chip">Класс-вертикаль</span><span class="chip">Восстание</span></div>
+        <p>После климатической катастрофы остатки человечества живут в вечно идущем поезде, разделённом по классам: хвост — беднота, голова — элита и священный «двигатель». Хвост поднимает восстание и пробивается к голове, вагон за вагоном.</p>
+        <p>Первый англоязычный фильм Пона — и кейс о бунте и его пределах.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · контекст <span class="sep">/</span> <span class="tag">«Знай своё место»</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Система, которой<br>нужен хвост</h2>
+        <p style="margin-top:10px">Поезд — замкнутая модель общества: жёсткая иерархия по вагонам, идеология «каждый на своём месте», культ «двигателя». Беднота хвоста — не сбой, а <strong>структурная необходимость</strong>: система спроектирована так, что низ ей нужен.</p>
+        <p style="margin-top:8px">Классовая вертикаль «Метрополиса» (л. 1) и «Паразитов» здесь развёрнута в горизонталь поезда — но логика та же.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Вагоны</span><p>Класс овеществлён в отсеках поезда.</p></div>
+        <div class="def"><span class="term">«Своё<br>место»</span><p>Идеология, удерживающая иерархию.</p></div>
+        <div class="def"><span class="term">Нужен<br>низ</span><p>Бедность встроена в устройство системы.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: пространственная модель класса (Ланг, л. 1; «Паразиты»).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · сцена <span class="sep">/</span> <span class="tag">Двигатель</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Snowpiercer" data-year="2013" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · голова поезда</span><span class="yr">2013</span><span class="pt">Бунтарю —<br>трон</span><span class="pd">«Сквозь снег»</span></div>
+        <img alt="Финальная сцена у двигателя из «Сквозь снег»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Бунтарю предлагают трон</h2>
+        <p>Дойдя до головы, лидер восстания Кёртис узнаёт страшное: бунты <strong>спланированы самой системой</strong> — чтобы регулировать население и держать «баланс». Уилфорд предлагает ему занять место у двигателя.</p>
+        <p>Это инкорпорация в чистом виде (рифма с л. 8): возглавить систему — значит её сохранить. Революция, что лишь меняет машиниста, остаётся той же машиной.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> инкорпорация бунта</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Урок длиной<br>в поезд</h2>
+        <p style="margin-top:10px">Фильм построен как движение вагон за вагоном — каждый отсек отдельное «тэбло» класса, и зритель буквально проходит сквозь структуру общества снизу вверх. Жанр (экшен-антиутопия) несёт аллегорию, делая её зрелищной и доходчивой <strong>когнитивной картой</strong> (л. 9).</p>
+        <p style="margin-top:8px">Но та же зрелищность ставит вопрос «eat the rich»: не превращается ли бунт в аттракцион? (см. вердикт лекции).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Вагон-<br>тэбло</span><p>Каждый отсек — отдельный класс.</p></div>
+        <div class="def"><span class="term">Снизу<br>вверх</span><p>Зритель проходит всю иерархию.</p></div>
+        <div class="def"><span class="term">Жанр</span><p>Экшен как носитель аллегории.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: форма как карта системы (л. 9).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что показывает фильм</h3>
+        <p style="margin-top:6px">Восстание возможно — но фильм честно показывает его ловушку: бунт, который лишь карабкается по иерархии, система предвидит и поглощает. Подлинный разрыв — не возглавить поезд, а сломать его: Намгун предлагает взорвать дверь и выйти наружу.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Финал двойствен: поезд гибнет, выживают двое детей, вдали — белый медведь (жизнь снаружи есть). Радикальная надежда — или почти всеобщая гибель? Разрыв с системой стоит дорого.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Реформа и «смена машиниста» кооптируются; шанс даёт лишь разрыв с самой машиной — но цена его огромна.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AUTEUR COMMERCIALIZATION -->
+  <section class="slide">
+    <div class="eyebrow">Тема <span class="sep">/</span> <span class="tag">Капитал и автор</span></div>
+    <h2>Когда критика — её же продукт</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="stack">
+        <p>«Сквозь снег» — повод поговорить о судьбе самого режиссёра-критика. Автор может быть органическим интеллектуалом (Грамши, л. 8) — но капитал умеет инкорпорировать и его. При выпуске в США студия Вайнштейна требовала вырезать около 20 минут и добавить закадровый голос — «чтобы поняли в Айове». Пон отказался — и получил лишь ограниченный прокат.</p>
+        <p style="margin-top:10px">А затем «Паразиты» берут «Оскар»: радикальная критика становится глобальным <strong>престижным брендом</strong>, «корейская волна» — маркетинговым ярлыком, Пон — голливудским именем.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Адорно + Грамши — о самом авторе</h3>
+        <p style="margin-top:8px">«Оскар» — высшая форма инкорпорации (л. 8): система обнимает свою критику и обезвреживает её как престиж (культуриндустрия, л. 3). Честно: признание даёт критике огромную аудиторию — и одновременно рискует превратить её в фестивальный товар. Та же дилемма «eat the rich», но на уровне автора.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: инкорпорация (л. 8) + культуриндустрия (л. 3), применённые к режиссёру.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">От тупика к действию</span></div>
+    <h2>Три ответа на один вопрос</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">Паразиты</span><h3>Карта тупика</h3><p>Структура класса видна; выхода нет, бедные бьются друг с другом.</p></div>
+      <div class="card ochre"><span class="k">Метод исключения</span><h3>Предел конкуренции</h3><p>Прекарность доводит рабочего до убийства соперников.</p></div>
+      <div class="card"><span class="k">Сквозь снег</span><h3>Разрыв</h3><p>Восстание возможно — но карабкаться по иерархии мало; нужен разрыв с машиной.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px;max-width:80ch">Дуга финала — от тупика к воображению разрыва. <strong>Картография системы (л. 9) обретает смысл лишь там, где не убаюкивает катарсисом, а подталкивает к действию (л. 8).</strong></p>
+    <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- VERDICT -->
+  <section class="slide">
+    <div class="eyebrow">Вердикт <span class="sep">/</span> <span class="tag">Карта или катарсис</span></div>
+    <h2>Что должно делать кино сегодня</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="card accent" style="gap:11px"><span class="k">Опасность</span><p>Жанр «eat the rich» рискует стать <strong>интерпассивностью</strong>: фильм «возмущается» за нас, а мы, насладившись критикой, ничего не меняем. Капитализм продаёт даже собственное отрицание.</p></div>
+      <div class="card ochre" style="gap:11px"><span class="k">Задача</span><p>Настоящая цель — не катарсис, а <strong>когнитивная карта + воля к действию</strong>: показать систему так, чтобы стало мыслимо её изменить, и связать зрителя с коллективом, а не оставить наедине с гневом.</p></div>
+    </div>
+    <p style="margin-top:16px;max-width:82ch">Здесь сходится весь курс: товар и идеология, форма и аппарат, гегемония и тотальность — инструменты, чтобы отличить кино, которое <em>будит</em>, от кино, которое лишь <em>успокаивает</em>.</p>
+    <div class="slide-foot"><span>Главный вывод</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DISCUSSION -->
+  <section class="slide">
+    <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
+    <h2>Вопросы к дискуссии</h2>
+    <ul class="qlist" style="margin-top:14px">
+      <li><p>«Паразиты» получили «Оскар» и принесли прибыль. Подрывает ли коммерческий успех их антикапиталистическое послание — или усиливает его охват?</p></li>
+      <li><p>Почему в «Паразитах» и «Методе исключения» бедные воюют друг с другом? Что этот мотив говорит о современном капитализме?</p></li>
+      <li><p>Достаточно ли «показать систему» (когнитивная карта), или фильм обязан указывать на разрыв с ней, как «Сквозь снег» — где возглавить систему значит её сохранить?</p></li>
+      <li><p>Возьмите любой фильм и прогоните его через весь инструментарий курса. Что добавляет каждая из десяти оптик?</p></li>
+    </ul>
+    <div class="slide-foot"><span>Для семинара</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="slide">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Глоссарий лекции</span></div>
+    <h2>Ключевые понятия</h2>
+    <div class="cols" style="margin-top:12px">
+      <div class="deflist">
+        <div class="def"><span class="term">Неолибе-<br>рализм</span><p>Классовый проект приватизации и дерегуляции (Харви).</p></div>
+        <div class="def"><span class="term">Прекариат</span><p>Класс нестабильного, негарантированного труда (Стэндинг).</p></div>
+        <div class="def"><span class="term">Надзорный<br>капитализм</span><p>Извлечение прибыли из данных и поведения (Зубофф).</p></div>
+        <div class="def"><span class="term">Общество<br>усталости</span><p>Самоэксплуатация и выгорание (Хан).</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Капит.<br>реализм</span><p>Чувство, что альтернативы капитализму нет (Фишер).</p></div>
+        <div class="def"><span class="term">Интра-кл.<br>конкуренция</span><p>Рабочие борются друг с другом, а не с капиталом.</p></div>
+        <div class="def"><span class="term">Интерпас-<br>сивность</span><p>Фильм «возмущается» за зрителя вместо него.</p></div>
+        <div class="def"><span class="term">Когнит.<br>карта</span><p>Сделать систему видимой и мыслимой (Джеймисон).</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Глоссарий</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- К ПРОСМОТРУ -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 2px">От тупика к действию — три фильма о труде и классе сегодня.</p>
+    <div class="watchlist" style="margin-top:16px">
+      <div class="wfilm"><span class="wy">2019</span><span class="wt">Паразиты</span><span class="wd">Пон Джун-хо · Юж. Корея</span><span class="wn">Архитектура класса, «запах», бедные против бедных. Карта тупика.</span></div>
+      <div class="wfilm"><span class="wy">2025</span><span class="wt">Метод<br>исключения</span><span class="wd">Пак Чхан-ук · Ли Бён-хон</span><span class="wn">Деиндустриализация, прекарность, конкуренция как убийство.</span></div>
+      <div class="wfilm"><span class="wy">2013</span><span class="wt">Сквозь<br>снег</span><span class="wd">Пон Джун-хо · Корея/США</span><span class="wn">Класс-поезд, бунт спланирован системой. Инкорпорация и разрыв.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению</span></div>
+    <h2>К чтению</h2>
+    <div class="readlist" style="margin-top:12px;max-width:88ch">
+      <div class="r"><span class="n">01</span><span class="ttl"><b>М. Фишер.</b> Капиталистический реализм: разве нет альтернативы? (2009)</span><span class="typ">Источник</span></div>
+      <div class="r"><span class="n">02</span><span class="ttl"><b>Д. Харви.</b> Краткая история неолиберализма (2005)</span><span class="typ">Контекст</span></div>
+      <div class="r"><span class="n">03</span><span class="ttl"><b>Г. Стэндинг.</b> Прекариат: новый опасный класс (2011)</span><span class="typ">Контекст</span></div>
+      <div class="r"><span class="n">04</span><span class="ttl"><b>Ш. Зубофф.</b> Эпоха надзорного капитализма (2019)</span><span class="typ">Контекст</span></div>
+      <div class="r"><span class="n">05</span><span class="ttl"><b>Бён-Чхоль Хан.</b> Общество усталости (2010)</span><span class="typ">Контекст</span></div>
+      <div class="r"><span class="n">06</span><span class="ttl"><b>К. Маркс.</b> Капитал, т. 1 — перечитать с высоты курса</span><span class="typ">Источник</span></div>
+    </div>
+    <div class="slide-foot"><span>Литература финала</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- COURSE CONCLUSION (closing cover) -->
+  <section class="slide cover">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Курс завершён</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Конец —<br>это <span class="hl">метод</span></h1>
+      <div class="subt" style="max-width:34ch">От «Маркс кино не видел» — к десяти оптикам, которыми вы теперь читаете любой кадр.</div>
+      <div class="meta" style="max-width:70ch">
+        <span><b>Стержень:</b> фильм — это товар, производящий идеологию</span>
+        <span><b>Задача:</b> сделать систему видимой — и мыслимой иначе</span>
+      </div>
+    </div>
+    <div class="slide-foot" style="position:relative;z-index:3"><span>Спасибо · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+<div class="help">← → · пробел · клик по краям</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

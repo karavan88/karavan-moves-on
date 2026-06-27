@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 6 — Альтюссер: интерпелляция | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(40px,7vw,104px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:24ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;align-self:center;width:100%;border:1px solid var(--line-strong)}
+.vs .vh{padding:12px 18px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:15px;border-bottom:1px solid var(--line-strong)}
+.vs .vh.l{color:var(--bone-dim);background:var(--ink-2)}
+.vs .vh.r{color:var(--ochre);background:var(--oxblood)}
+.vs .vc{padding:9px 18px;font-size:13.5px;border-bottom:1px solid var(--line);font-family:var(--serif)}
+.vs .vc.l{color:var(--bone-dim)}
+.vs .vc.r{color:var(--bone);background:rgba(58,23,20,.35)}
+.vs .vc:nth-last-child(-n+2){border-bottom:none}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:32ch}
+.timeline{display:flex;flex-direction:column;gap:10px;align-self:center}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14.5px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">06</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 06 / 10</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Альтюссер:<br><span class="hl">интерпелляция</span></h1>
+      <div class="subt">Как идеология делает нас субъектами</div>
+      <div class="meta">
+        <span><b>Понятия:</b> ISA · интерпелляция · méconnaissance</span>
+        <span><b>Кейсы:</b> Кубрик · Уир · Хичкок</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE WE ARE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 06 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:64ch;margin:16px 0 22px">Брехт (л. 5) учил <em>денатурализовать</em> идеологию. Альтюссер объясняет противоположный процесс: как идеология <em>конституирует</em> нас изнутри — делает «нормальными субъектами», которые сами хотят того, что их подчиняет. Эта лекция — теоретическое сердце курса и прямой трамплин к теории киноаппарата (л. 7).</p>
+    <div class="coursemap">
+      <div class="node"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node cur"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 06 <span class="sep">/</span> <span class="tag">План занятия</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>План<br>сегодня</h2>
+        <p style="max-width:34ch;margin-top:12px">От воспроизводства производственных отношений — к механике, которой идеология «вербует» субъектов, и к её кинематографической ставке.</p>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">01 · Проблема</span><p>Почему мы хотим того, что нас подчиняет?</p></div>
+        <div class="def"><span class="term">02 · Рамка</span><p>Воспроизводство производственных отношений</p></div>
+        <div class="def"><span class="term">03 · Аппараты</span><p>RSA против ISA · образование как главный</p></div>
+        <div class="def"><span class="term">04 · Механизм</span><p>Два тезиса · интерпелляция · зеркальная структура</p></div>
+        <div class="def"><span class="term">05 · Кейсы</span><p>«Цельнометаллическая оболочка» · «Шоу Трумана» · «Окно во двор»</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
+      <h2>Почему мы сами хотим<br>того, что нас подчиняет?</h2>
+      <p class="sub">Принуждения недостаточно: ни одна система не держится на одной полиции. Альтюссер спрашивает, как порядок воспроизводит себя <em>добровольно</em> — через субъектов, которые искренне считают его своим.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Постановка проблемы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Контекст <span class="sep">/</span> <span class="tag">Структурный марксизм · 1970</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Марксизм без<br>«человека»</h2>
+        <p style="margin-top:12px;max-width:46ch">Луи Альтюссер — структурный марксист. Его программный текст — «<em>Идеология и идеологические аппараты государства</em>» (1970). Он отвергает и вульгарный экономизм, и гуманизм: для него <strong>нет «человеческой сущности»</strong> как начала. Субъект — не источник, а <em>результат</em> идеологии.</p>
+        <p style="margin-top:10px">Это смещает вопрос: не «что люди думают», а «что делает людей теми, кто так думает».</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Анти-<br>гуманизм</span><p>Субъект — эффект структуры, а не её причина.</p></div>
+        <div class="def"><span class="term">Анти-<br>экономизм</span><p>Идеология относительно автономна (ср. л. 1).</p></div>
+        <div class="def"><span class="term">1970</span><p>Эссе об ISA — фундамент теории кино 1970-х.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Сдвиг курса: от «фильм лжёт людям» к «фильм производит самих людей».</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- FRAME: REPRODUCTION -->
+  <section class="slide">
+    <div class="eyebrow">Рамка <span class="sep">/</span> <span class="tag">Зачем системе идеология</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Воспроизводство<br>отношений</h2>
+        <p style="margin-top:10px">Чтобы производство продолжалось, капитализм должен воспроизводить не только станки и рабочую силу, но и <strong>подчинение правилам</strong> — готовность людей занимать свои места в системе.</p>
+        <p style="margin-top:8px">Идеология — не «обман-надстройка» поверх экономики, а <em>материальное условие</em> того, чтобы базис вообще функционировал завтра. Вот почему она необходима, а не декоративна.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Что надо воспроизвести</span><span class="it">Средства производства · рабочая сила · <b>подчинение отношениям</b></span></div>
+        <div class="arrowzone"><span>третье обеспечивает ↓</span></div>
+        <div class="tier base"><span class="lab">Через что</span><span class="it"><b>Идеологические аппараты (школа, семья, медиа, кино)</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: идеология как условие воспроизводства производственных отношений.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- RSA VS ISA -->
+  <section class="slide">
+    <div class="eyebrow">Понятие <span class="sep">/</span> <span class="tag">Два типа аппаратов</span></div>
+    <h2>Аппарат насилия ↔ аппарат идеологии</h2>
+    <div class="vs" style="margin-top:14px">
+      <div class="vh l">RSA · репрессивный</div>
+      <div class="vh r">ISA · идеологический</div>
+      <div class="vc l">Правительство, армия, полиция, суды, тюрьмы</div>
+      <div class="vc r">Религия, школа, семья, право, медиа, культура, кино</div>
+      <div class="vc l">Действует прежде всего насилием</div>
+      <div class="vc r">Действует прежде всего идеологией</div>
+      <div class="vc l">Один, публичный, единый</div>
+      <div class="vc r">Множественны, во многом «частные»</div>
+      <div class="vc l">Держит порядок силой</div>
+      <div class="vc r">Производит согласие и субъектов</div>
+    </div>
+    <div class="slide-foot"><span class="src">Различие — в доминанте: у RSA есть и идеология, у ISA — «остаточное» насилие (отметка, отчисление).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- EDUCATION AS DOMINANT ISA -->
+  <section class="slide">
+    <div class="eyebrow">Понятие <span class="sep">/</span> <span class="tag">Главный аппарат</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Школа сменила<br>церковь</h2>
+        <p style="margin-top:10px">При зрелом капитализме, по Альтюссеру, <strong>образование</strong> — доминирующий ISA: оно годами держит всех детей, сортирует их по будущим классовым ролям и снабжает каждого «нужной» дозой знаний и покорности.</p>
+        <p style="margin-top:8px">А кино и медиа — мощный ISA культуры: они не «приказывают», но изо дня в день показывают, как устроен «нормальный» мир.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Школа</span><p>Сортирует и распределяет по классовым позициям.</p></div>
+        <div class="def"><span class="term">Семья</span><p>Первый и интимнейший идеологический аппарат.</p></div>
+        <div class="def"><span class="term">Кино</span><p>Культурный ISA: норма, поданная как удовольствие.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Где в этой схеме кино</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS 1 -->
+  <section class="slide">
+    <div class="eyebrow">Тезис 01 <span class="sep">/</span> <span class="tag">Что такое идеология</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">I</span>
+        <h2 style="margin-top:6px">Воображаемое<br>отношение</h2>
+        <p style="margin-top:12px;max-width:46ch">Главный тезис (мы уже встречали его в л. 1): идеология — не ложные <em>идеи</em>, а воображаемое <strong>отношение</strong> к реальным условиям. Она не «врёт о фактах», а выстраивает то, как мы <em>переживаем</em> своё место в мире.</p>
+        <p style="margin-top:10px">Поэтому из неё нельзя просто «выйти, узнав правду» (привет «магическим очкам» из л. 1): мы живём <em>внутри</em> отношения, а не поверх него.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Идеология есть воображаемое отношение индивидов к их реальным условиям существования.</q>
+        <div class="attr">Л. Альтюссер — «Идеология и ИАГ», 1970</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Тезис 1 · определение</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS 2 -->
+  <section class="slide">
+    <div class="eyebrow">Тезис 02 <span class="sep">/</span> <span class="tag">Идеология материальна</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Сначала ритуал,<br>потом вера</h2>
+        <p style="margin-top:10px">Идеология существует не в головах, а в <strong>практиках и ритуалах</strong> аппаратов. Альтюссер вспоминает Паскаля: «<em>преклони колени, шевели губами в молитве — и уверуешь</em>». Не убеждение рождает обряд, а обряд — убеждение.</p>
+        <p style="margin-top:8px">Поход в кино — тоже ритуал: тёмный зал, неподвижность, общий экран. Идеология кино материальна ещё до всякого «содержания».</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Практика</span><p>Вера закреплена в действиях, а не в мыслях.</p></div>
+        <div class="def"><span class="term">Ритуал</span><p>Повторение тела формирует «убеждение».</p></div>
+        <div class="def"><span class="term">Кинозал</span><p>Сама ситуация просмотра — идеологический обряд.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Это уже мост к теории аппарата (л. 7): идеологичен сам диспозитив зала.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- INTERPELLATION -->
+  <section class="slide">
+    <div class="eyebrow">Механизм <span class="sep">/</span> <span class="tag">Интерпелляция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>«Эй, вы,<br>там!»</h2>
+        <p style="margin-top:12px;max-width:46ch">Знаменитая сцена: на улице полицейский окликает — «Эй, вы, там!». Человек оборачивается. В этом повороте на 180° он <strong>становится субъектом</strong> — признаёт, что окликнули именно его.</p>
+        <p style="margin-top:10px">Так идеология «вербует» индивидов: она <em>окликает</em> нас по имени, роли, месту — и мы откликаемся, узнавая себя в оклике.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Оклик</span><span class="it">Идеология обращается: «это ты»</span></div>
+        <div class="arrowzone"><span>поворот на 180° ↓</span></div>
+        <div class="tier base"><span class="lab">Субъект</span><span class="it"><b>«Да, это я» — индивид признаёт себя адресатом</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Интерпелляция / hèlement</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ALWAYS-ALREADY + DOUBLE MEANING -->
+  <section class="slide">
+    <div class="eyebrow">Механизм <span class="sep">/</span> <span class="tag">Всегда-уже субъект</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Окликнут ещё<br>до рождения</h2>
+        <p style="margin-top:10px">Сцена с полицейским — лишь иллюстрация: на деле «обращение» и «ответ» совпадают. Мы <strong>всегда-уже субъекты</strong>: ребёнка ждут с именем, полом и ролью прежде, чем он появится. Нет «момента до» идеологии.</p>
+        <p style="margin-top:8px">Отсюда двойной смысл слова <em>субъект</em>: и «свободный деятель», и «подданный, подчинённый». Чувство свободы — часть механизма подчинения.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Всегда-<br>уже</span><p>Субъектами нас делают до всякого «выбора».</p></div>
+        <div class="def"><span class="term">Двойной<br>смысл</span><p>Subject = и деятель, и подданный.</p></div>
+        <div class="def"><span class="term">Свобода</span><p>Ощущение свободы — форма добровольного подчинения.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Парадокс субъекта</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SPECULAR STRUCTURE + MECONNAISSANCE -->
+  <section class="slide">
+    <div class="eyebrow">Механизм <span class="sep">/</span> <span class="tag">Зеркальная структура</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Узнавание,<br>которое обманывает</h2>
+        <p style="margin-top:10px">Идеология имеет <strong>зеркальную (спекулярную)</strong> структуру: субъект узнаёт себя в Большом Субъекте (Бог, Нация, Народ, Герой) — как в зеркале. Это узнавание (<em>reconnaissance</em>) одновременно есть <strong>неузнавание</strong> (<em>méconnaissance</em>): «да, это я» скрывает, как именно меня сделали этим «я».</p>
+        <p style="margin-top:8px">Здесь Альтюссер опирается на Лакана и «стадию зеркала» — и именно отсюда вырастет теория кино: экран как зеркало (л. 7).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Спекуляр-<br>ность</span><p>Субъект ↔ Большой Субъект, как отражение.</p></div>
+        <div class="def"><span class="term">Méconnais-<br>sance</span><p>Узнавание-как-обман: «это я» прячет механизм.</p></div>
+        <div class="def"><span class="term">→ Лакан</span><p>Стадия зеркала; экран-зеркало в л. 7.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: спекулярность Альтюссера + зеркало Лакана = ядро теории киноаппарата.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CINEMATIC STAKE -->
+  <section class="slide">
+    <div class="eyebrow">Ставка <span class="sep">/</span> <span class="tag">Зачем это кино</span></div>
+    <h2>Фильм окликает зрителя</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="stack">
+        <p>Перенос на кино: фильм не просто «показывает идеологию» — он <strong>интерпеллирует зрителя</strong>, отводит ему место всезнающего, всё-видящего субъекта, который «сам» собирает смысл. Вы чувствуете себя свободным наблюдателем — а на деле заняли заготовленную позицию.</p>
+        <p style="margin-top:10px">Это и есть предмет следующей лекции: как сам киноаппарат — кадр, монтаж, точка зрения — производит субъекта-зрителя.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Позиция</span><p>Фильм заранее готовит «место зрителя».</p></div>
+        <div class="def"><span class="term">Узнавание</span><p>«Я всё понимаю» = méconnaissance в действии.</p></div>
+        <div class="def"><span class="term">→ Л. 7</span><p>Бодри, Метц, шов (suture): механика этой позиции.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кинематографическая ставка</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 1: FULL METAL JACKET (5) ============ -->
+
+  <!-- F1 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Аппарат производит субъектов</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Full Metal Jacket" data-year="1987" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1987</span><span class="pt">Цельно·<br>металлическая</span><span class="pd">реж. Стэнли Кубрик</span></div>
+        <img alt="Кадр из «Цельнометаллической оболочки»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Стэнли Кубрик</span><span><b>1987 · США/Великобр.</b></span><span><b>116 мин</b></span></div>
+        <h2>Цельнометаллическая оболочка</h2>
+        <div><span class="chip">RSA + ISA</span><span class="chip">Производство субъекта</span></div>
+        <p>Первая половина — учебка морпехов — почти буквальный показ того, как аппарат <strong>изготавливает субъектов</strong>: ломает индивидуальность и пересобирает рекрутов в «морпехов».</p>
+        <p>Армия здесь — гибрид: репрессивный аппарат, который одновременно ведёт идеологическую работу.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Вьетнам и машина армии</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Учебка как<br>конвейер личностей</h2>
+        <p style="margin-top:10px">Кубрик строит первую часть как замкнутый ритуал: бритьё голов, единая форма, отмена имён и присвоение кличек, муштра. Это не метафора, а показ <strong>реальной технологии</strong>, которой государство производит солдата.</p>
+        <p style="margin-top:8px">Армия сочетает оба аппарата Альтюссера: насилие (RSA) и идеологию мужественности, нации, долга (ISA).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Ритуал</span><p>Тело перекраивается до «убеждений» (тезис 2).</p></div>
+        <div class="def"><span class="term">Имя</span><p>Старая личность стёрта, выдана новая роль.</p></div>
+        <div class="def"><span class="term">Гибрид</span><p>RSA и ISA слиты в одном институте.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: материальность идеологии — субъект делается через практику тела.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · сцена <span class="sep">/</span> <span class="tag">Оклик сержанта</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Full Metal Jacket" data-year="1987" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · учебка</span><span class="yr">1987</span><span class="pt">Сержант<br>Хартман</span><span class="pd">«Цельнометаллическая оболочка»</span></div>
+        <img alt="Сцена с сержантом из «Цельнометаллической оболочки»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Интерпелляция в действии</h2>
+        <p>Сержант Хартман непрерывно <strong>окликает</strong> рекрутов — орёт, называет, унижает, переименовывает. Каждый «оклик» требует немедленного «да, сэр» — буквальный поворот-на-180°, которым индивид принимает навязанное место.</p>
+        <p>Ритуал с винтовкой («это моя винтовка…») материализует новую идентичность через повторение.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> интерпелляция / hèlement</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Симметрия<br>и повтор</h2>
+        <p style="margin-top:10px">Кубрик снимает учебку холодно-симметрично: центрированные коридоры казармы, фронтальные планы, ритм муштры. Форма сама передаёт <strong>обезличивающую машину</strong> — порядок кадра = порядок аппарата.</p>
+        <p style="margin-top:8px">Зритель помещён в позицию наблюдателя конвейера: мы видим не «героя», а процесс производства субъектов.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Симметрия</span><p>Композиция как казарменный порядок.</p></div>
+        <div class="def"><span class="term">Повтор</span><p>Монтаж муштры = ритуал, формирующий тело.</p></div>
+        <div class="def"><span class="term">Холод</span><p>Дистанция камеры обнажает механику.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Форма-крючок: эстетика порядка делает видимой работу аппарата.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что подтверждает теорию</h3>
+        <p style="margin-top:6px">Идеальная драматизация Альтюссера: мы видим, как институт стирает индивида и «вербует» субъекта через насилие + идеологию + ритуал тела.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Трагедия рядового Пайла показывает <em>сбой</em> машины — а значит, и сопротивление возможно. Тут Альтюссер уязвим: его модель плохо объясняет провалы интерпелляции (см. критику ниже).</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Фильм и иллюстрирует теорию, и обнажает её слабость: если аппарат всесилен, откуда сбои и бунт? Запомним вопрос до слайда критики.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 2: THE TRUMAN SHOW (5) ============ -->
+
+  <!-- F2 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Идеология как среда</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="The Truman Show" data-year="1998" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1998</span><span class="pt">Шоу<br>Трумана</span><span class="pd">реж. Питер Уир</span></div>
+        <img alt="Кадр из «Шоу Трумана»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Питер Уир</span><span><b>1998 · США</b></span><span><b>103 мин</b></span></div>
+        <h2>Шоу Трумана</h2>
+        <div><span class="chip">Воображаемое отношение</span><span class="chip">Всегда-уже субъект</span></div>
+        <p>Труман с рождения живёт внутри телешоу-декорации, не зная об этом. Его «реальные условия существования» скрыты, а отношение к миру — целиком <strong>сконструировано</strong>.</p>
+        <p>Чистейшая модель идеологии как тотальной, обжитой среды.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Среда вместо приказа</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Город как<br>идеологический<br>аппарат</h2>
+        <p style="margin-top:10px">Сихейвен — не тюрьма с надзирателями, а уютный городок: семья, соседи, реклама, ТВ. Власть здесь работает не насилием, а <strong>заботой и нормой</strong> — идеальный ISA, который Труман любит и считает своим.</p>
+        <p style="margin-top:8px">Труман — «всегда-уже субъект»: его сделали героем шоу ещё до рождения, с готовой биографией.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Забота</span><p>Контроль маскируется под комфорт и любовь.</p></div>
+        <div class="def"><span class="term">Страх</span><p>Боязнь воды вживлена, чтобы он не уехал.</p></div>
+        <div class="def"><span class="term">Всегда-<br>уже</span><p>Роль задана до всякого «выбора» Трумана.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: идеология как воображаемое отношение к скрытым реальным условиям.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена <span class="sep">/</span> <span class="tag">Стена неба</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="The Truman Show" data-year="1998" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · край мира</span><span class="yr">1998</span><span class="pt">Стена<br>горизонта</span><span class="pd">«Шоу Трумана»</span></div>
+        <img alt="Сцена со стеной горизонта из «Шоу Трумана»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Лодка упирается в небо</h2>
+        <p>Труман доплывает до края — и нос лодки врезается в нарисованную «стену неба». Граница «естественного мира» оказывается декорацией. Воображаемое отношение даёт трещину, и проступают реальные условия.</p>
+        <p>Выход не дарован «прозрением»: Труман идёт сквозь свой смертельный страх воды — выход требует <strong>труда и риска</strong>.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> разрыв воображаемого отношения</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Камеры внутри<br>кадра</h2>
+        <p style="margin-top:10px">Фильм то и дело показывает «картинку с камер шоу»: круглые виньетки, странные ракурсы из зеркал и пуговиц. Зритель видит <strong>аппарат наблюдения</strong> внутри истории — и узнаёт собственное положение перед экраном.</p>
+        <p style="margin-top:8px">Идеальная глянцевая «нормальность» Сихейвена сама становится подозрительной: слишком чисто, чтобы быть правдой.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Виньетки</span><p>Взгляд скрытых камер обнажает наблюдение.</p></div>
+        <div class="def"><span class="term">Глянец</span><p>«Норма» доведена до тревожного совершенства.</p></div>
+        <div class="def"><span class="term">Зеркало</span><p>Зритель узнаёт в Трумане себя — méconnaissance.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: камеры в кадре переводят интерпелляцию в зрительское самоузнавание.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что подтверждает теорию</h3>
+        <p style="margin-top:6px">Лучшая иллюстрация тезиса 1: идеология — не ложь в голове, а целый обжитой мир, любимый изнутри. И выход из него — болезненный труд, а не лёгкое «прозрение».</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Но фильм всё же предлагает «снаружи»: настоящую дверь в стене. Альтюссер строже — у него нет простого «вне идеологии». Финал утешает там, где теория не обещает утешения.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">«Шоу Трумана» гуманистичнее Альтюссера: оно верит в субъекта, который вырвется. Сам Альтюссер в этом сомневался — и здесь начинается спор.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 3: REAR WINDOW (5) ============ -->
+
+  <!-- F3 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Зритель окликнут</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Rear Window" data-year="1954" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1954</span><span class="pt">Окно<br>во двор</span><span class="pd">реж. Альфред Хичкок</span></div>
+        <img alt="Кадр из «Окна во двор»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Альфред Хичкок</span><span><b>1954 · США</b></span><span><b>112 мин</b></span></div>
+        <h2>Окно во двор</h2>
+        <div><span class="chip">Спекулярность</span><span class="chip">Зритель-вуайерист</span></div>
+        <p>Фотограф со сломанной ногой неподвижно сидит у окна и подсматривает за соседями. Его положение — <strong>точная метафора зрителя в кинозале</strong>: обездвижен, в полумраке, смотрит на «экран» двора.</p>
+        <p>Фильм окликает нас как вуайеристов — и мы откликаемся.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Хичкок и взгляд</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Двор как<br>экран</h2>
+        <p style="margin-top:10px">Хичкок выстраивает идеальную лабораторию взгляда: окна-двора — это «кадры»-экраны, бинокль и телеобъектив — это «зум», а сам Джеффрис в кресле — <strong>зеркало зрителя</strong>, который тоже неподвижно потребляет чужие жизни.</p>
+        <p style="margin-top:8px">Поэтому фильм станет хрестоматийным для теории взгляда (Лора Малви) и теории аппарата (л. 7).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Кресло</span><p>Обездвиженность = положение зрителя в зале.</p></div>
+        <div class="def"><span class="term">Окна</span><p>Каждое окно — отдельный «экран»/кадр.</p></div>
+        <div class="def"><span class="term">Объектив</span><p>Подглядывание оснащено оптикой кино.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: фильм тематизирует саму позицию, в которую он же помещает зрителя.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · сцена <span class="sep">/</span> <span class="tag">Взгляд, который ловят</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Rear Window" data-year="1954" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · взгляд в камеру</span><span class="yr">1954</span><span class="pt">Он<br>смотрит в ответ</span><span class="pd">«Окно во двор»</span></div>
+        <img alt="Сцена ответного взгляда из «Окна во двор»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Когда экран смотрит на тебя</h2>
+        <p>В кульминации сосед-убийца замечает, что за ним следят, и <strong>смотрит прямо в объектив</strong> — то есть на Джеффриса и на нас. Безопасная позиция всезнающего наблюдателя рушится: взгляд оказывается взаимным.</p>
+        <p>Это и есть момент <em>méconnaissance</em>, обнажённый: «я просто смотрю» оборачивается «меня уже сделали тем, кто смотрит».</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> зеркальная структура взгляда</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Монтаж взгляда<br>как «оклик»</h2>
+        <p style="margin-top:10px">Хичкок держит нас почти исключительно на точке зрения Джеффриса: план его взгляда → план того, что он видит → план его реакции. Эта связка <strong>«пришивает» нас</strong> к его позиции — мы вынуждены смотреть его глазами.</p>
+        <p style="margin-top:8px">Именно эту механику в л. 7 назовут «швом» (suture): монтаж так зашивает зрителя в фильм, что тот принимает чужую точку зрения за свою.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Точка<br>зрения</span><p>Мы заперты в перспективе героя.</p></div>
+        <div class="def"><span class="term">План /<br>обратный</span><p>Связка взгляд–объект создаёт идентификацию.</p></div>
+        <div class="def"><span class="term">→ Шов</span><p>Механизм «пришивания» зрителя (л. 7).</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: монтаж точки зрения = интерпелляция зрителя средствами формы.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что показывает фильм</h3>
+        <p style="margin-top:6px">«Окно во двор» делает наглядной зеркально-вуайеристскую структуру кино: фильм окликает зрителя и отводит ему место, которое тот принимает за «свой свободный взгляд».</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Но Хичкок и <em>разрушает</em> эту позицию (взгляд в ответ): кино способно не только интерпеллировать, но и обнажать интерпелляцию. Зритель не обязан быть пассивным — теория аппарата это недооценит.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Фильм — идеальный переход к лекции 7: он и демонстрирует «оклик зрителя», и показывает, что этот оклик можно вернуть.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS ACROSS FILMS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Три грани одной теории</span></div>
+    <h2>Как делается субъект</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">Кубрик</span><h3>Аппарат</h3><p>Институт стирает и пересобирает индивида: RSA + ISA + ритуал.</p></div>
+      <div class="card ochre"><span class="k">Уир</span><h3>Среда</h3><p>Идеология как любимый, обжитой мир; выход — труд.</p></div>
+      <div class="card"><span class="k">Хичкок</span><h3>Взгляд</h3><p>Зритель окликнут и «пришит» к заготовленной позиции.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px;max-width:80ch">Вместе они показывают цепочку Альтюссера: аппарат → воображаемое отношение → интерпелляция взглядом. Субъект — не начало истории, а её <strong>продукт</strong>.</p>
+    <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CRITIQUE -->
+  <section class="slide">
+    <div class="eyebrow">Критика <span class="sep">/</span> <span class="tag">Где Альтюссер уязвим</span></div>
+    <h2>Если аппарат всесилен — откуда борьба?</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="card accent" style="gap:11px"><span class="k">Функционализм</span><p>Если всё «воспроизводит систему», то для <strong>сопротивления и классовой борьбы</strong> не остаётся места. Э. П. Томпсон обвинял Альтюссера в том, что у него история — процесс без субъектов.</p></div>
+      <div class="card ochre" style="gap:11px"><span class="k">Круг интерпелляции</span><p>Чтобы откликнуться на оклик, надо <em>уже</em> быть субъектом, способным узнать себя. Критики (П. Хёрст) указывали на <strong>логический круг</strong> в самой сцене с полицейским.</p></div>
+    </div>
+    <p style="margin-top:16px;max-width:82ch">Отсюда — переход к лекции 8: <strong>Грамши</strong> вернёт в теорию борьбу. Гегемония — не раз навсегда установленный аппарат, а зыбкое, оспариваемое согласие, которое надо постоянно отвоёвывать.</p>
+    <div class="slide-foot"><span>Спор о теории</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- RELEVANCE -->
+  <section class="slide">
+    <div class="eyebrow">Сегодня <span class="sep">/</span> <span class="tag">Алгоритмический оклик</span></div>
+    <h2>«Рекомендовано для вас»</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="stack">
+        <p>Сегодня нас окликает не полицейский, а <strong>лента и алгоритм</strong>. «Рекомендовано <em>для вас</em>», персональная реклама, имя в пуш-уведомлении — это интерпелляция в чистом виде: платформа обращается именно к «тебе», и ты узнаёшь себя в подобранном профиле.</p>
+        <p style="margin-top:10px">Стриминги и соцсети — новые ISA культуры: они не приказывают, но день за днём показывают, кто ты и чего «должен» хотеть.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Оклик</span><p>«Для вас» = персональная интерпелляция.</p></div>
+        <div class="def"><span class="term">Профиль</span><p>Узнавание себя в данных = méconnaissance.</p></div>
+        <div class="def"><span class="term">Платформа</span><p>Новый идеологический аппарат культуры.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Актуальность</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DISCUSSION -->
+  <section class="slide">
+    <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
+    <h2>Вопросы к дискуссии</h2>
+    <ul class="qlist" style="margin-top:14px">
+      <li><p>Назовите ISA из вашей жизни и опишите, через какие ритуалы он вас «окликает». Где там «да, это я»?</p></li>
+      <li><p>Если мы «всегда-уже субъекты», возможно ли вообще сопротивление — или прав Томпсон, что у Альтюссера нет места борьбе?</p></li>
+      <li><p>Сравните выход из идеологии у Трумана (есть дверь наружу) и у Альтюссера (нет простого «вне»). Чья модель честнее?</p></li>
+      <li><p>Чем «рекомендовано для вас» отличается от оклика полицейского — и чем опаснее?</p></li>
+    </ul>
+    <div class="slide-foot"><span>Для семинара</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="slide">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Глоссарий лекции</span></div>
+    <h2>Ключевые понятия</h2>
+    <div class="cols" style="margin-top:12px">
+      <div class="deflist">
+        <div class="def"><span class="term">Воспроиз·<br>водство</span><p>Поддержание производственных отношений во времени.</p></div>
+        <div class="def"><span class="term">RSA</span><p>Репрессивный аппарат: насилие (армия, полиция, суд).</p></div>
+        <div class="def"><span class="term">ISA</span><p>Идеологический аппарат: школа, семья, медиа, кино.</p></div>
+        <div class="def"><span class="term">Воображ.<br>отношение</span><p>Идеология как переживаемое отношение к реальным условиям.</p></div>
+        <div class="def"><span class="term">Материаль·<br>ность</span><p>Идеология живёт в практиках и ритуалах.</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Интерпел·<br>ляция</span><p>«Оклик», которым идеология делает индивида субъектом.</p></div>
+        <div class="def"><span class="term">Всегда-<br>уже</span><p>Субъектами нас делают до всякого выбора.</p></div>
+        <div class="def"><span class="term">Спекуляр·<br>ность</span><p>Зеркальная структура: субъект ↔ Большой Субъект.</p></div>
+        <div class="def"><span class="term">Méconnais·<br>sance</span><p>Узнавание-как-неузнавание себя.</p></div>
+        <div class="def"><span class="term">Анти-<br>гуманизм</span><p>Субъект — эффект структуры, а не её источник.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Глоссарий</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- К ПРОСМОТРУ -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 2px">Три фильма — три механизма производства субъекта. Смотрите, отслеживая «оклик» и момент узнавания.</p>
+    <div class="watchlist" style="margin-top:16px">
+      <div class="wfilm"><span class="wy">1987</span><span class="wt">Цельномет.<br>оболочка</span><span class="wd">Стэнли Кубрик · 116 мин</span><span class="wn">Учебка: аппарат изготавливает субъектов. RSA + ISA + ритуал.</span></div>
+      <div class="wfilm"><span class="wy">1998</span><span class="wt">Шоу<br>Трумана</span><span class="wd">Питер Уир · 103 мин</span><span class="wn">Сцена: лодка и стена неба. Идеология как тотальная среда.</span></div>
+      <div class="wfilm"><span class="wy">1954</span><span class="wt">Окно<br>во двор</span><span class="wd">Альфред Хичкок · 112 мин</span><span class="wn">Двор как экран, взгляд в ответ. Зритель окликнут как вуайерист.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING + NEXT -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению и следующая лекция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>К чтению</h3>
+        <div class="readlist" style="margin-top:4px">
+          <div class="r"><span class="n">01</span><span class="ttl"><b>Л. Альтюссер.</b> Идеология и идеологические аппараты государства (1970)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">02</span><span class="ttl"><b>Л. Альтюссер.</b> За Маркса / Читать «Капитал» (избр. о структуре)</span><span class="typ">Контекст</span></div>
+          <div class="r"><span class="n">03</span><span class="ttl"><b>J. Lacan.</b> Стадия зеркала — спекулярность субъекта</span><span class="typ">Теория</span></div>
+          <div class="r"><span class="n">04</span><span class="ttl"><b>E. P. Thompson.</b> The Poverty of Theory — критика Альтюссера</span><span class="typ">Критика</span></div>
+        </div>
+      </div>
+      <div class="oxpanel" style="padding:26px 28px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Лекция 07 →</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Теория аппарата · Screen</h2>
+        <p style="margin-top:10px;color:rgba(255,255,255,.92)">Альтюссер + Лакан, доведённые до кино: Бодри и «эффект реальности», «воображаемое означающее» Метца, «шов», разбор «Молодого мистера Линкольна» в Cahiers. Как сам киноаппарат производит идеологию.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 06 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+<div class="help">← → · пробел · клик по краям</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

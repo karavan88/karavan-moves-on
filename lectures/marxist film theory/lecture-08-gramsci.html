@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 8 — Грамши и гегемония | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(42px,7vw,104px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:26ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;align-self:center;width:100%;border:1px solid var(--line-strong)}
+.vs .vh{padding:12px 18px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:15px;border-bottom:1px solid var(--line-strong)}
+.vs .vh.l{color:var(--bone-dim);background:var(--ink-2)}
+.vs .vh.r{color:var(--ochre);background:var(--oxblood)}
+.vs .vc{padding:9px 18px;font-size:13.5px;border-bottom:1px solid var(--line);font-family:var(--serif)}
+.vs .vc.l{color:var(--bone-dim)}
+.vs .vc.r{color:var(--bone);background:rgba(58,23,20,.35)}
+.vs .vc:nth-last-child(-n+2){border-bottom:none}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:34ch}
+.timeline{display:flex;flex-direction:column;gap:10px;align-self:center}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14.5px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">08</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 08 / 10</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Грамши и<br><span class="hl">гегемония</span></h1>
+      <div class="subt">Культура как поле борьбы за согласие</div>
+      <div class="meta">
+        <span><b>Понятия:</b> гегемония · здравый смысл · декодирование</span>
+        <span><b>Кейсы:</b> «Соль земли» · «Королевская битва»</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE WE ARE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 08 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:64ch;margin:16px 0 22px">Лекции 6–7 рисовали почти всесильную идеологию и пассивного зрителя. Грамши и Стюарт Холл возвращают <em>борьбу</em>: гегемония — не раз навсегда установленный аппарат, а зыбкое согласие, которое надо отвоёвывать. Зритель снова становится <strong>активным</strong>. Здесь же — порог, где марксизм перетекает в cultural studies.</p>
+    <div class="coursemap">
+      <div class="node"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node cur"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 08 <span class="sep">/</span> <span class="tag">План занятия</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>План<br>сегодня</h2>
+        <p style="max-width:34ch;margin-top:12px">От гегемонии Грамши — к модели декодирования Холла и к честному вопросу: где здесь кончается марксизм?</p>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">01 · Проблема</span><p>Почему угнетённые соглашаются добровольно?</p></div>
+        <div class="def"><span class="term">02 · Грамши</span><p>Гегемония · здравый смысл · позиционная война</p></div>
+        <div class="def"><span class="term">03 · Холл</span><p>Кодирование/декодирование · три прочтения</p></div>
+        <div class="def"><span class="term">04 · Честно</span><p>«Марксизм без гарантий» и риск популизма</p></div>
+        <div class="def"><span class="term">05 · Кейсы</span><p>«Соль земли» ↔ «Королевская битва»</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
+      <h2>Почему люди соглашаются<br>со своим угнетением?</h2>
+      <p class="sub">Ни одна власть не держится на одних штыках. Грамши спрашивает: как господствующий класс добивается, чтобы подчинённые принимали его порядок как «естественный», «разумный», как свой собственный?</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Постановка проблемы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Контекст <span class="sep">/</span> <span class="tag">Грамши · 1891–1937</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Теория<br>из тюрьмы</h2>
+        <p style="margin-top:12px;max-width:46ch">Антонио Грамши — один из основателей Компартии Италии. Фашисты бросили его в тюрьму; прокурор требовал «<em>остановить этот мозг на двадцать лет</em>». Там, обходя цензуру эзоповым языком, Грамши пишет «<strong>Тюремные тетради</strong>» (1929–35).</p>
+        <p style="margin-top:10px">Его вопрос рождён поражением: почему революция победила в отсталой России, но провалилась на развитом Западе? Ответ — гегемония.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Тетради</span><p>Фрагментарные, зашифрованные от цензора.</p></div>
+        <div class="def"><span class="term">Поражение</span><p>Почему Запад не пошёл за Октябрём?</p></div>
+        <div class="def"><span class="term">Ответ</span><p>На Западе господство держится согласием.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Сдвиг курса: от «идеология подчиняет» к «согласие нужно постоянно отвоёвывать».</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- HEGEMONY -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 01 <span class="sep">/</span> <span class="tag">Гегемония</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">01</span>
+        <h2 style="margin-top:6px">Господство +<br>согласие</h2>
+        <p style="margin-top:12px;max-width:46ch">Гегемония — это власть, которая правит не столько силой, сколько <strong>согласием</strong>. Господствующий класс делает свой взгляд на мир всеобщим «здравым смыслом» и завоёвывает <em>активное согласие</em> подчинённых: те принимают чужой порядок как собственный.</p>
+        <p style="margin-top:10px">Грамши различает <em>dominio</em> (господство силой) и <em>direzione</em> (интеллектуальное и моральное лидерство). Зрелая власть нуждается в обоих.</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>Господство силой — и руководство согласием.</q>
+        <div class="attr">по А. Грамши — «Тюремные тетради»</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Определение</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CIVIL SOCIETY -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 02 <span class="sep">/</span> <span class="tag">Гражданское общество</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Где куётся<br>согласие</h2>
+        <p style="margin-top:10px">Грамши делит надстройку на <strong>политическое общество</strong> (государство, армия, суд — сила) и <strong>гражданское общество</strong> (школы, церковь, профсоюзы, партии, пресса, кино — согласие). Именно гражданское общество — мастерская гегемонии.</p>
+        <p style="margin-top:8px">Это переосмысляет базис/надстройку из лекции 1: надстройка перестаёт быть пассивным «отражением» и становится <em>полем активной борьбы</em>.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Гражданское общество</span><span class="it">Школа · церковь · медиа · <b>кино</b> — согласие</span></div>
+        <div class="arrowzone"><span>гегемония ↕ борьба</span></div>
+        <div class="tier base"><span class="lab">Политическое общество</span><span class="it"><b>Государство, армия, суд — сила</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: надстройка обретает автономию и агентность (против вульгарного экономизма).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- COMMON SENSE -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 03 <span class="sep">/</span> <span class="tag">Здравый смысл</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>«Все же знают,<br>что…»</h2>
+        <p style="margin-top:10px">Гегемония живёт в <strong>здравом смысле</strong> (senso comune) — бессвязном, противоречивом наборе «очевидностей», осевших в головах: «надо много работать», «политика — грязное дело», «иначе не бывает». Внутри него есть и зерно критики — «<em>добрый смысл</em>».</p>
+        <p style="margin-top:8px">Кино — одна из главных фабрик здравого смысла: оно изо дня в день показывает, что «нормально», желанно и неизбежно.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Здравый<br>смысл</span><p>Стихийная «мудрость», унаследованная от господствующего порядка.</p></div>
+        <div class="def"><span class="term">Добрый<br>смысл</span><p>Ядро здравой критики внутри него.</p></div>
+        <div class="def"><span class="term">Кино</span><p>Производит и обновляет «очевидное».</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: «натурализация» (л. 1) теперь — поле борьбы, а не приговор.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WAR OF POSITION -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 04 <span class="sep">/</span> <span class="tag">Позиционная война</span></div>
+    <h2>Маневренная ↔ позиционная</h2>
+    <div class="vs" style="margin-top:14px">
+      <div class="vh l">Маневренная война</div>
+      <div class="vh r">Позиционная война</div>
+      <div class="vc l">Лобовой штурм власти (модель 1917)</div>
+      <div class="vc r">Долгая «окопная» борьба за институты</div>
+      <div class="vc l">Возможна, где гражданское общество слабо</div>
+      <div class="vc r">Необходима на Западе с плотной культурой</div>
+      <div class="vc l">Захват государства</div>
+      <div class="vc r">Завоевание гегемонии в школах, медиа, кино</div>
+    </div>
+    <p style="margin-top:14px;max-width:82ch">Вывод для нашего курса: <strong>культура — это окопы позиционной войны</strong>. Каждый фильм — маленькое сражение за «здравый смысл» эпохи.</p>
+    <div class="slide-foot"><span>Понятие · стратегия борьбы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ORGANIC INTELLECTUALS -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 05 <span class="sep">/</span> <span class="tag">Органические интеллектуалы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>У каждого класса —<br>свои мыслители</h2>
+        <p style="margin-top:10px">Каждый класс рождает <strong>органических интеллектуалов</strong>, которые придают его опыту форму и связность. Им противостоят «<em>традиционные</em>» интеллектуалы (профессора, клир), воображающие себя надклассовыми.</p>
+        <p style="margin-top:8px">Режиссёр и кинокритик тоже могут быть органическими интеллектуалами — теми, кто даёт классу язык, чтобы увидеть себя (как авторы «Соли земли», кейс ниже).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Органиче-<br>ские</span><p>Выражают и организуют опыт своего класса.</p></div>
+        <div class="def"><span class="term">Традицион.</span><p>Мнят себя автономными от классов.</p></div>
+        <div class="def"><span class="term">Кино</span><p>Режиссёр-органик даёт классу голос.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Понятие · интеллектуалы и класс</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- HEGEMONY NEVER COMPLETE -->
+  <section class="slide">
+    <div class="eyebrow">Ключ <span class="sep">/</span> <span class="tag">Главное отличие от Альтюссера</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Гегемония<br>никогда не завершена</h2>
+        <p style="margin-top:10px">Вот лекарство от функционализма Альтюссера (л. 6–7): гегемония — <strong>неустойчивое равновесие</strong>, которое нужно постоянно пересобирать. Чтобы удержаться, она вынуждена <em>впитывать</em> элементы культуры подчинённых — и потому всегда уязвима.</p>
+        <p style="margin-top:8px">Согласие можно завоевать — и можно потерять. Значит, сопротивление возможно, и зритель не обречён быть пассивным.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Равновесие</span><p>Зыбкое, требует постоянной работы.</p></div>
+        <div class="def"><span class="term">Инкорпо-<br>рация</span><p>Власть поглощает протест, чтобы выжить.</p></div>
+        <div class="def"><span class="term">Уязви-<br>мость</span><p>Согласие можно отвоевать обратно.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Это и есть возврат борьбы и агентности, которых не хватало теории аппарата.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- STUART HALL CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Холл <span class="sep">/</span> <span class="tag">Бирмингем · cultural studies</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Грамши<br>приходит в медиа</h2>
+        <p style="margin-top:12px;max-width:46ch">Стюарт Холл и Бирмингемский <strong>Центр современных культурных исследований</strong> переносят Грамши на телевидение и кино. Их вопрос: если текст несёт идеологию, то <em>обязан</em> ли зритель её принять?</p>
+        <p style="margin-top:10px">Ответ Холла перевернёт теорию аппарата: смысл не вшит в текст намертво — он <strong>рождается в акте прочтения</strong>, а прочтение бывает разным.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">CCCS</span><p>Бирмингем, британские культурные исследования.</p></div>
+        <div class="def"><span class="term">Холл</span><p>Грамшианский поворот в анализе медиа.</p></div>
+        <div class="def"><span class="term">Сдвиг</span><p>От «текст диктует» к «зритель декодирует».</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">С. Холл, Бирмингемский центр (CCCS); грамшианская традиция в медиаисследованиях.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ENCODING/DECODING -->
+  <section class="slide">
+    <div class="eyebrow">Модель <span class="sep">/</span> <span class="tag">Кодирование / декодирование</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Послание<br>не равно прочтению</h2>
+        <p style="margin-top:10px">Производитель <strong>кодирует</strong> сообщение, вкладывая «предпочтительный смысл» (несущий господствующую идеологию). Зритель его <strong>декодирует</strong> — но кодирование и декодирование <em>не совпадают</em>. Между ними — зазор, где и идёт борьба.</p>
+        <p style="margin-top:8px">Это не наивный плюрализм: у текста есть структура и «предпочтительное» прочтение. Но оно не гарантировано.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Кодирование</span><span class="it">Производитель закладывает предпочтительный смысл</span></div>
+        <div class="arrowzone"><span>зазор ↓ нет гарантии</span></div>
+        <div class="tier base"><span class="lab">Декодирование</span><span class="it"><b>Зритель прочитывает по-своему — здесь борьба</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">С. Холл, «Кодирование/декодирование в телевизионном дискурсе» (1973/1980).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THREE READINGS -->
+  <section class="slide">
+    <div class="eyebrow">Модель <span class="sep">/</span> <span class="tag">Три позиции зрителя</span></div>
+    <h2>Как можно прочитать фильм</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">01 · доминантная</span><h3>Принять</h3><p>Зритель читает в «предпочтительном коде» и принимает заложенный смысл целиком.</p></div>
+      <div class="card ochre"><span class="k">02 · договорная</span><h3>Приспособить</h3><p>В целом соглашается с кодом, но на «местном» уровне делает исключения под себя.</p></div>
+      <div class="card"><span class="k">03 · оппозиционная</span><h3>Перевернуть</h3><p>Понимает предпочтительный смысл — и читает «против шерсти»: «национальный интерес» как «классовый».</p></div>
+    </div>
+    <p class="lead" style="margin-top:18px;max-width:80ch">Это и есть возврат <strong>активного зрителя</strong>: тот самый, кого теория аппарата (л. 7) считала пассивно «сшитым» с текстом.</p>
+    <div class="slide-foot"><span>Три прочтения по Холлу</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- HONESTY: MARXISM WITHOUT GUARANTEES -->
+  <section class="slide">
+    <div class="eyebrow">Честно <span class="sep">/</span> <span class="tag">Где кончается марксизм</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Марксизм<br>без гарантий</h2>
+        <p style="margin-top:10px">Здесь нужно быть честными. Грамши — твёрдый марксист. Но Холл работает в регистре, который сам называет «<strong>марксизм без гарантий</strong>»: нет гарантии, что класс определяет сознание, а экономика — культуру.</p>
+        <p style="margin-top:8px">Это сознательное ослабление связи базис→надстройка. С него начинается дрейф от собственно марксистской теории кино к более широким <em>cultural studies</em>.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Порог дисциплины</h3>
+        <p style="margin-top:8px">Ровно об этом мы говорили на первой встрече: cultural studies — это рубеж, за которым марксистский костяк (класс, товар, способ производства) может незаметно раствориться в общем «изучении культуры».</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">С. Холл, «Проблема идеологии: марксизм без гарантий» (1983).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 1: SALT OF THE EARTH (5) ============ -->
+
+  <!-- F1 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Контр-гегемония</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Salt of the Earth" data-year="1954" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1954</span><span class="pt">Соль<br>земли</span><span class="pd">реж. Герберт Биберман</span></div>
+        <img alt="Кадр из «Соли земли»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Герберт Биберман</span><span><b>1954 · США</b></span><span><b>снят в «чёрном списке»</b></span></div>
+        <h2>Соль земли</h2>
+        <div><span class="chip">Контр-гегемония</span><span class="chip">Органический интеллектуал</span></div>
+        <p>Реальная забастовка шахтёров-чиканос, снятая кинематографистами из голливудского «чёрного списка». Сам фильм был <strong>актом классовой борьбы</strong> — и потому его пытались похоронить.</p>
+        <p>Чистейший пример того, как кино оспаривает господствующий «здравый смысл».</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Фильм-оружие</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Кино, сделанное<br>как борьба</h2>
+        <p style="margin-top:10px">В основе — настоящая забастовка 1951 года на цинковом руднике в Нью-Мексико: горняки мексиканского происхождения, профсоюз Mine-Mill. Авторы — Биберман, сценарист Уилсон, продюсер Джаррико — все занесены в маккартистский <strong>«чёрный список»</strong>. Играют сами шахтёры, а не актёры.</p>
+        <p style="margin-top:8px">Исполнительницу главной роли депортировали прямо во время съёмок, а прокат бойкотировали — гегемония показала зубы.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Чёрный<br>список</span><p>Авторы вне закона — сам фильм нелегитимен для системы.</p></div>
+        <div class="def"><span class="term">Реальность</span><p>В основе — подлинная забастовка горняков.</p></div>
+        <div class="def"><span class="term">Непрофес-<br>сионалы</span><p>В кадре — настоящие рабочие, а не звёзды.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: коллективное производство как сопротивление (ср. Вертов, л. 2).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · сцена <span class="sep">/</span> <span class="tag">Женщины на пикете</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Salt of the Earth" data-year="1954" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · пикет</span><span class="yr">1954</span><span class="pt">Линию держат<br>женщины</span><span class="pd">«Соль земли»</span></div>
+        <img alt="Сцена пикета из «Соли земли»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Запрет встречают солидарностью</h2>
+        <p>Суд запрещает бастующим мужчинам стоять в пикете — и тогда линию занимают их жёны. Удар силой (RSA) встречен не отступлением, а <strong>расширением солидарности</strong>: борьба за зарплату сплетается с борьбой женщин за равенство в собственном доме.</p>
+        <p>Коллектив побеждает там, где одиночка проиграл бы.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> контр-гегемония, солидарность</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Герой — не один,<br>а все</h2>
+        <p style="margin-top:10px">Докуrealистичная фактура, непрофессиональные актёры, <strong>коллективный герой</strong> вместо звезды — форма сама воплощает солидарность, прямая рифма к «массе-герою» советского монтажа (л. 2).</p>
+        <p style="margin-top:8px">Фильм не развлекает, а вооружает зрителя языком, чтобы назвать несправедливость своим именем.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Коллектив</span><p>Герой — община, а не личность.</p></div>
+        <div class="def"><span class="term">Документ</span><p>Реальные лица и места вместо студии.</p></div>
+        <div class="def"><span class="term">Голос</span><p>Класс получает язык самоописания.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: форма как политика (л. 2, 5) на службе контр-гегемонии.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Сила фильма</h3>
+        <p style="margin-top:6px">Контр-гегемония сразу на трёх уровнях: содержание, способ производства и сам факт запрета. И редкое для 1954-го пересечение класса, расы и гендера.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Фильм почти не дошёл до зрителя — его похоронили. Контр-гегемония может быть правой и всё же проиграть позиционную войну, если у неё отняли каналы распространения.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Сам запрет фильма доказывает Грамши: когда согласие под угрозой, гегемония достаёт «последний довод» — принуждение (RSA).</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 2: BATTLE ROYALE (5) ============ -->
+
+  <!-- F2 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Гегемония изнутри</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Battle Royale" data-year="2000" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2000</span><span class="pt">Королевская<br>битва</span><span class="pd">реж. Киндзи Фукасаку</span></div>
+        <img alt="Кадр из «Королевской битвы»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Киндзи Фукасаку</span><span><b>2000 · Япония</b></span><span><b>по роману К. Таками</b></span></div>
+        <h2>Королевская битва</h2>
+        <div><span class="chip">Согласие-как-закон</span><span class="chip">Интра-классовая конкуренция</span></div>
+        <p>Близкое будущее: по «Закону о BR» случайный школьный класс вывозят на остров и заставляют убивать друг друга, пока не останется один. Взрывной ошейник не даёт выйти из игры.</p>
+        <p>Идеальный антитезис «Соли земли».</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Узаконенный ужас</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Насилие, принятое<br>обществом</h2>
+        <p style="margin-top:10px">«Закон о BR» подан как реакция взрослых на страх перед молодёжью — безработицу, прогулы, подростковый бунт. Чудовищное <strong>узаконено и принято</strong> как «здравый смысл» нации: согласие на насилие встроено в сам порядок.</p>
+        <p style="margin-top:8px">Фукасаку, переживший войну подростком, снимает это как притчу о том, как система заставляет молодых уничтожать друг друга.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Закон</span><p>Ужас оформлен как легитимная норма.</p></div>
+        <div class="def"><span class="term">Страх</span><p>Взрослые «согласны» из страха перед молодыми.</p></div>
+        <div class="def"><span class="term">Согласие</span><p>Порядок принят, а не просто навязан.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: гегемония как принятый, узаконенный «здравый смысл» (ср. натурализация, л. 1).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена <span class="sep">/</span> <span class="tag">Класс против класса</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Battle Royale" data-year="2000" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · остров</span><span class="yr">2000</span><span class="pt">Свои<br>против своих</span><span class="pd">«Королевская битва»</span></div>
+        <img alt="Сцена из «Королевской битвы»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Грызть соседа, а не систему</h2>
+        <p>Вместо того чтобы объединиться против устроителей игры, школьники в большинстве набрасываются друг на друга. Система устроена так, что насилие направлено <strong>вбок</strong> — на таких же жертв, а не вверх. Те немногие, кто держится вместе, — исключение.</p>
+        <p>Ошейник — метафора: правила игры нельзя нарушить, можно лишь играть по ним.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> интра-классовая конкуренция</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Как быстро «нормальные»<br>принимают правила</h2>
+        <p style="margin-top:10px">Ужас фильма — в скорости, с какой обычные одноклассники принимают смертельную логику как данность. Это <strong>натурализация немыслимого</strong> (зеркало л. 1): чудовищное за минуты становится «правилами, которые просто есть».</p>
+        <p style="margin-top:8px">Холодная подача и чёрный юмор удерживают дистанцию — мы видим механизм, а не просто триллер.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Принятие</span><p>Жертвы усваивают правила игры как норму.</p></div>
+        <div class="def"><span class="term">Скорость</span><p>Немыслимое нормализуется почти мгновенно.</p></div>
+        <div class="def"><span class="term">Дистанция</span><p>Гротеск обнажает механизм, а не щекочет нервы.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: натурализация (л. 1) и историзация наоборот (л. 5).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что показывает фильм</h3>
+        <p style="margin-top:6px">Торжествующая гегемония: согласие настолько глубоко, что жертвы воюют друг с другом и принимают свою гибель как «правила». Прямая рифма с финалом курса — «Паразиты» и «Метод исключения» (л. 10).</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Это про класс — или про страх взрослых перед молодёжью, японскую специфику? Фильм — аллегория; классовое прочтение требует чтения «против шерсти» (метод л. 7).</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Самое прочное согласие — то, при котором угнетённые сами поддерживают порядок, уничтожая друг друга.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS / ANTITHESIS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Антитезис</span></div>
+    <h2>Солидарность ↔ атомизация</h2>
+    <div class="cols" style="margin-top:16px">
+      <div class="card accent" style="gap:11px"><span class="k">Соль земли</span><h3>Согласие оспаривают</h3><p>Коллектив объединяется снизу: пикет, солидарность, контр-гегемония. Гнев направлен <strong>вверх</strong> — на систему.</p></div>
+      <div class="card ochre" style="gap:11px"><span class="k">Королевская битва</span><h3>Согласие торжествует</h3><p>Жертвы атомизированы и грызут друг друга, приняв порядок как закон. Гнев направлен <strong>вбок</strong> — на своих.</p></div>
+    </div>
+    <p class="lead" style="margin-top:18px;max-width:82ch">Два полюса одного понятия. Гегемония — не вечный аппарат, а <strong>исход борьбы</strong>: либо солидарность отвоёвывает «здравый смысл», либо система добивается, чтобы угнетённые сами держали её строй. Кино — поле, где этот исход разыгрывается.</p>
+    <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CRITIQUE: CULTURAL POPULISM -->
+  <section class="slide">
+    <div class="eyebrow">Критика <span class="sep">/</span> <span class="tag">Риск дрейфа</span></div>
+    <h2>Когда «активный зритель» — алиби рынка</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="card accent" style="gap:11px"><span class="k">Культурный популизм</span><p>Джим Макгиган предупреждал: упоение «активной аудиторией» вырождается в <strong>культурный популизм</strong> — где любая покупка и любой выбор объявляются «сопротивлением», а критика капитала тихо исчезает.</p></div>
+      <div class="card ochre" style="gap:11px"><span class="k">Алиби рынка</span><p>«Люди ведь сами выбирают» — и оппозиционное прочтение превращается в оправдание статус-кво. Свобода декодировать не отменяет того, <em>кто</em> владеет студией и каналом.</p></div>
+    </div>
+    <p style="margin-top:16px;max-width:82ch">Вывод курса: Грамши и Холл вернули зрителю агентность — но цена неосторожности в том, что марксистская критика может <strong>раствориться</strong> в комплименте потребителю. Лекции 9–10 возвращают нас к жёсткой оптике капитала.</p>
+    <div class="slide-foot"><span class="src">Дж. Макгиган, «Культурный популизм» (1992).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- RELEVANCE -->
+  <section class="slide">
+    <div class="eyebrow">Сегодня <span class="sep">/</span> <span class="tag">Войны за смысл</span></div>
+    <h2>Лента как окоп</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="stack">
+        <p>«Культурные войны», мемы, вирусные клипы, фандомы — это и есть позиционная война Грамши в цифре. Каждая дискуссия в комментариях — микро-битва доминантного и оппозиционного прочтений за «здравый смысл».</p>
+        <p style="margin-top:10px">Платформы освоили инкорпорацию в совершенстве: протестный образ за день становится мерчем. А лента, как остров в «Королевской битве», умело стравливает пользователей друг с другом вместо борьбы с системой.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Мем</span><p>Снаряд в борьбе за здравый смысл.</p></div>
+        <div class="def"><span class="term">Фандом</span><p>Оппозиционное прочтение как практика.</p></div>
+        <div class="def"><span class="term">Мерч</span><p>Инкорпорация протеста в считанные дни.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Актуальность</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DISCUSSION -->
+  <section class="slide">
+    <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
+    <h2>Вопросы к дискуссии</h2>
+    <ul class="qlist" style="margin-top:14px">
+      <li><p>Возьмите массовый хит и прочитайте его в трёх позициях Холла. Какое прочтение «предпочтительное» и почему?</p></li>
+      <li><p>«Соль земли» и «Королевская битва» — два полюса одного понятия. Какой из ваших любимых фильмов ближе к контр-гегемонии, а какой — к торжествующему согласию?</p></li>
+      <li><p>Где проходит граница между «активным зрителем» и «культурным популизмом»? Как не превратить декодирование в алиби рынка?</p></li>
+      <li><p>Если культура — окопы позиционной войны, кто сегодня выигрывает эти окопы в вашей ленте — и какими средствами?</p></li>
+    </ul>
+    <div class="slide-foot"><span>Для семинара</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="slide">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Глоссарий лекции</span></div>
+    <h2>Ключевые понятия</h2>
+    <div class="cols" style="margin-top:12px">
+      <div class="deflist">
+        <div class="def"><span class="term">Гегемония</span><p>Власть через согласие, а не только силу.</p></div>
+        <div class="def"><span class="term">Граждан.<br>общество</span><p>Школы, медиа, кино — мастерская согласия.</p></div>
+        <div class="def"><span class="term">Здравый<br>смысл</span><p>Осевшие «очевидности» господствующего порядка.</p></div>
+        <div class="def"><span class="term">Позицион.<br>война</span><p>Долгая борьба за гегемонию в институтах.</p></div>
+        <div class="def"><span class="term">Органич.<br>интеллектуал</span><p>Тот, кто даёт классу язык самосознания.</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Инкорпо-<br>рация</span><p>Поглощение протеста ради сохранения власти.</p></div>
+        <div class="def"><span class="term">Кодир./<br>декодир.</span><p>Зазор между вложенным и прочитанным смыслом.</p></div>
+        <div class="def"><span class="term">Три<br>прочтения</span><p>Доминантное · договорное · оппозиционное.</p></div>
+        <div class="def"><span class="term">Интра-кл.<br>конкуренция</span><p>Угнетённые грызут друг друга вместо борьбы с системой.</p></div>
+        <div class="def"><span class="term">Культ.<br>популизм</span><p>Дрейф к похвале аудитории без критики капитала.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Глоссарий</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- К ПРОСМОТРУ -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 2px">Два полюса борьбы за согласие — смотрите их как пару, антитезис друг друга.</p>
+    <div class="watchlist" style="margin-top:16px">
+      <div class="wfilm"><span class="wy">1954</span><span class="wt">Соль<br>земли</span><span class="wd">Герберт Биберман · США</span><span class="wn">Забастовка, женский пикет, фильм-оружие. Контр-гегемония и солидарность.</span></div>
+      <div class="wfilm"><span class="wy">2000</span><span class="wt">Королевская<br>битва</span><span class="wd">Киндзи Фукасаку · Япония</span><span class="wn">Узаконенное насилие, ошейник, свои против своих. Торжествующая гегемония.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING + NEXT -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению и следующая лекция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>К чтению</h3>
+        <div class="readlist" style="margin-top:4px">
+          <div class="r"><span class="n">01</span><span class="ttl"><b>А. Грамши.</b> Тюремные тетради (избранное: гегемония, интеллектуалы)</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">02</span><span class="ttl"><b>S. Hall.</b> Encoding/Decoding (1973/1980)</span><span class="typ">Теория</span></div>
+          <div class="r"><span class="n">03</span><span class="ttl"><b>S. Hall.</b> The Problem of Ideology: Marxism without Guarantees (1983)</span><span class="typ">Теория</span></div>
+          <div class="r"><span class="n">04</span><span class="ttl"><b>S. Hall.</b> Notes on Deconstructing 'the Popular' (1981)</span><span class="typ">Контекст</span></div>
+          <div class="r"><span class="n">05</span><span class="ttl"><b>J. McGuigan.</b> Cultural Populism (1992) — критика</span><span class="typ">Критика</span></div>
+        </div>
+      </div>
+      <div class="oxpanel" style="padding:26px 28px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Лекция 09 →</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Джеймисон: постмодерн</h2>
+        <p style="margin-top:10px;color:rgba(255,255,255,.92)">Возврат к жёсткой оптике капитала: постмодернизм как «культурная логика позднего капитализма». Пастиш, утрата историчности — и Бодрийяр с обществом потребления: «Бойцовский клуб» и «Американский психопат».</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 08 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+<div class="help">← → · пробел · клик по краям</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

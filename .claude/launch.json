@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8000", "--directory", "dist"],
       "port": 8000
+    },
+    {
+      "name": "lectures-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8011"],
+      "port": 8011
     }
   ]
 }

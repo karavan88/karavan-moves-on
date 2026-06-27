@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 7 — Теория аппарата и Screen | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(40px,7vw,100px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:26ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;align-self:center;width:100%;border:1px solid var(--line-strong)}
+.vs .vh{padding:12px 18px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:15px;border-bottom:1px solid var(--line-strong)}
+.vs .vh.l{color:var(--bone-dim);background:var(--ink-2)}
+.vs .vh.r{color:var(--ochre);background:var(--oxblood)}
+.vs .vc{padding:9px 18px;font-size:13.5px;border-bottom:1px solid var(--line);font-family:var(--serif)}
+.vs .vc.l{color:var(--bone-dim)}
+.vs .vc.r{color:var(--bone);background:rgba(58,23,20,.35)}
+.vs .vc:nth-last-child(-n+2){border-bottom:none}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:34ch}
+.timeline{display:flex;flex-direction:column;gap:10px;align-self:center}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14.5px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">07</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 07 / 10</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Теория<br>аппарата<br><span class="hl">· Screen</span></h1>
+      <div class="subt">Идеология не в сюжете, а в самой машине кино</div>
+      <div class="meta">
+        <span><b>Понятия:</b> базовый аппарат · шов · взгляд</span>
+        <span><b>Кейсы:</b> Форд · «Джильда» · Акерман</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE WE ARE -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 07 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:64ch;margin:16px 0 22px">Здесь марксистская теория кино достигает теоретического пика. Альтюссер (л. 6) и Лакан, помноженные на семиотику, дают радикальный тезис: идеологична не «история» фильма, а сам <em>аппарат</em> — камера, монтаж, тёмный зал, неподвижный зритель. Это программа журналов <strong>Cahiers</strong> и <strong>Screen</strong> 1970-х.</p>
+    <div class="coursemap">
+      <div class="node"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node cur"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 07 <span class="sep">/</span> <span class="tag">План занятия</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>План<br>сегодня</h2>
+        <p style="max-width:34ch;margin-top:12px">От «базового аппарата» Бодри — к методу симптоматичного чтения и феминистской критике взгляда.</p>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">01 · Проблема</span><p>Где живёт идеология — в сюжете или в машине?</p></div>
+        <div class="def"><span class="term">02 · Аппарат</span><p>Бодри: камера, пещера, трансцендентальный субъект</p></div>
+        <div class="def"><span class="term">03 · Психоанализ</span><p>Метц (воображаемое означающее) · шов (suture)</p></div>
+        <div class="def"><span class="term">04 · Метод</span><p>Комолли–Нарбони · «против шерсти» · Малви и взгляд</p></div>
+        <div class="def"><span class="term">05 · Кейсы</span><p>«Молодой мистер Линкольн» · «Джильда» · «Жанна Дильман»</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Проблемный вопрос</div>
+      <h2>Идеология — в фильме<br>или в проекторе?</h2>
+      <p class="sub">Прежние лекции искали идеологию в содержании. Теория аппарата делает радикальный шаг: даже «нейтральная», «реалистичная» съёмка уже идеологична — потому что сама оптика кино конструирует определённый тип субъекта.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Постановка проблемы</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Контекст <span class="sep">/</span> <span class="tag">Париж и Лондон · 1969–1977</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Синтез<br>1970-х</h2>
+        <p style="margin-top:12px;max-width:46ch">После Мая 68 <strong>Cahiers du cinéma</strong> радикализуются, а британский <strong>Screen</strong> переводит и развивает их идеи. Рождается мощный сплав: <em>марксизм Альтюссера + психоанализ Лакана + семиотика</em>. Кино впервые анализируют как машину по производству субъектов.</p>
+        <p style="margin-top:10px">Мишень — реализм Базена с его «окном в мир»: то, что он считал природой кино, теперь объявлено идеологической иллюзией.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Cahiers</span><p>Комолли, Нарбони; коллективные разборы.</p></div>
+        <div class="def"><span class="term">Screen</span><p>Хит, Маккейб, Малви, Уоллен — британская сцена.</p></div>
+        <div class="def"><span class="term">Сплав</span><p>Альтюссер + Лакан + семиотика = «теория 70-х».</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: л. 6 дала субъекта идеологии — л. 7 показывает, как кино его производит технически.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BAUDRY: BASIC APPARATUS -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 01 <span class="sep">/</span> <span class="tag">Бодри · базовый аппарат</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Идеология в самой<br>технике</h2>
+        <p style="margin-top:10px">Жан-Луи Бодри: идеология вписана не только в фильм, но в <strong>«базовый аппарат»</strong> — камеру, проектор, экран, тёмный зал и неподвижного зрителя. Прежде чем появится первый кадр, аппарат уже расставил всех по местам.</p>
+        <p style="margin-top:8px">Кино — не «нейтральная запись» реальности, а машина с заложенной в неё позицией субъекта.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Кажется</span><span class="it">Камера просто фиксирует мир</span></div>
+        <div class="arrowzone"><span>на деле ↓</span></div>
+        <div class="tier base"><span class="lab">Базовый аппарат</span><span class="it"><b>Камера · экран · тьма · неподвижность = готовая позиция субъекта</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Ж.-Л. Бодри, «Идеологические эффекты базового кинематографического аппарата» (1970).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BAUDRY: QUATTROCENTO -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 01 <span class="sep">/</span> <span class="tag">Перспектива и субъект</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Глаз эпохи<br>Возрождения</h2>
+        <p style="margin-top:12px;max-width:46ch">Объектив камеры наследует <strong>перспективу кватроченто</strong>: монокулярную, центрированную систему, где все линии сходятся к единственной точке — глазу наблюдателя. Эта оптика помещает зрителя в центр мира как его хозяина.</p>
+        <p style="margin-top:10px">Так аппарат восстанавливает идеалистический <em>трансцендентальный субъект</em> — целостное, всевидящее буржуазное «я», которому мир дан как зрелище для него.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Кватроченто</span><p>Центральная перспектива = одна точка зрения.</p></div>
+        <div class="def"><span class="term">Центр</span><p>Зритель в позиции хозяина видимого.</p></div>
+        <div class="def"><span class="term">Субъект</span><p>Целостное «я», которому всё дано как зрелище.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: «нейтральная» оптика несёт классово определённую модель субъекта.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BAUDRY: PLATO'S CAVE -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 01 <span class="sep">/</span> <span class="tag">Пещера и сон</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Кинозал как<br>пещера Платона</h2>
+        <p style="margin-top:10px">В поздней работе Бодри сравнивает зрителя с узником платоновской пещеры: обездвиженный, в темноте, он принимает тени на стене за реальность. Состояние просмотра напоминает <strong>сон, регрессию</strong> — и именно в этом пониженном, грезящем состоянии идеология работает беспрепятственно.</p>
+        <p style="margin-top:8px">«Эффект реальности» — не свойство мира, а продукт диспозитива.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Пещера</span><p>Тени приняты за реальность.</p></div>
+        <div class="def"><span class="term">Регрессия</span><p>Темнота и неподвижность ↔ сон.</p></div>
+        <div class="def"><span class="term">Эффект<br>реальности</span><p>Иллюзия, произведённая аппаратом.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Ж.-Л. Бодри, «Диспозитив» (1975): кино как искусственное сновидение.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- METZ: IMAGINARY SIGNIFIER -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 02 <span class="sep">/</span> <span class="tag">Метц · воображаемое означающее</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">02</span>
+        <h2 style="margin-top:6px">Воображаемое<br>означающее</h2>
+        <p style="margin-top:12px;max-width:46ch">Кристиан Метц: кино означает через <strong>воображаемое</strong>. В отличие от театра, где актёр телесно присутствует, на экране всё фундаментально <em>отсутствует</em> — мы видим присутствие отсутствующего. Кино — это сама структура «есть и нет одновременно».</p>
+      </div>
+      <div class="quote" style="align-self:center">
+        <q>То, что я воспринимаю, не здесь — и всё же это «вот оно».</q>
+        <div class="attr">по К. Метцу — «Воображаемое означающее», 1975</div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Определение · le signifiant imaginaire</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- METZ: IDENTIFICATION + MIRROR -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 02 <span class="sep">/</span> <span class="tag">Идентификация</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Зритель — это<br>сама камера</h2>
+        <p style="margin-top:10px">Метц различает идентификации. <strong>Вторичная</strong> — с героем. <strong>Первичная</strong> — с самим <em>актом смотрения</em>, то есть с камерой: зритель отождествляет себя с чистым восприятием, со всевидящим взглядом.</p>
+        <p style="margin-top:8px">Экран — как зеркало Лакана, но с парадоксом: своего тела зритель в нём <strong>не видит</strong>. Поэтому он узнаёт себя не в образе, а в позиции взгляда.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Вторичная</span><span class="it">Идентификация с персонажем</span></div>
+        <div class="arrowzone"><span>глубже ↓</span></div>
+        <div class="tier base"><span class="lab">Первичная</span><span class="it"><b>Идентификация с камерой = с собой как всевидящим взглядом</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: «зеркало» прямо продолжает спекулярность Альтюссера и Лакана (л. 6).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- METZ: VOYEURISM + DISAVOWAL -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 02 <span class="sep">/</span> <span class="tag">Вуайеризм и отрицание</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>«Я знаю,<br>но всё же…»</h2>
+        <p style="margin-top:10px">Зритель — <strong>вуайерист</strong>: герои не знают, что на них смотрят (в отличие от театра). А вера в фильм держится на <strong>фетишистском отрицании</strong>: «я знаю, что это лишь плёнка, но всё же переживаю как настоящее».</p>
+        <p style="margin-top:8px">Кино как институт — это «ментальная машина», воспитывающая зрителя, который снова и снова возвращается в зал.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Вуайеризм</span><p>Смотреть на тех, кто «не видит» тебя.</p></div>
+        <div class="def"><span class="term">Отрицание</span><p>«Знаю, но всё же» — формула кинематографической веры.</p></div>
+        <div class="def"><span class="term">Институт</span><p>Кино производит желание возвращаться.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Либидинальная экономия кино</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SUTURE -->
+  <section class="slide">
+    <div class="eyebrow">Понятие 03 <span class="sep">/</span> <span class="tag">Шов · suture</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <span class="bignum">03</span>
+        <h2 style="margin-top:6px">Шов<br>(suture)</h2>
+        <p style="margin-top:12px;max-width:46ch">Удар и Хит (по Лакану) объясняют, как монтаж «пришивает» зрителя к фильму. Кадр вызывает тревожный вопрос: <em>чей это взгляд?</em> Обратный план («восьмёрка») отвечает — показывает героя, чей взгляд мотивировал первый кадр, — и <strong>зашивает</strong> зияние, пряча камеру и закадровое.</p>
+        <p style="margin-top:10px">Так зритель незаметно соглашается на чужую точку зрения как на свою.</p>
+      </div>
+      <div class="schema" style="align-self:center">
+        <div class="tier super"><span class="lab">Кадр 1</span><span class="it">«Кто это видит?» — зияние, тревога</span></div>
+        <div class="arrowzone"><span>обратный план ↓</span></div>
+        <div class="tier base"><span class="lab">Кадр 2</span><span class="it"><b>Вот кто смотрел — зияние зашито, аппарат скрыт</b></span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Ж.-П. Удар (Cahiers, 1969); Д. Дайан, С. Хит — теория «шва».</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- COMOLLI-NARBONI METHOD -->
+  <section class="slide">
+    <div class="eyebrow">Метод <span class="sep">/</span> <span class="tag">Комолли–Нарбони · 1969</span></div>
+    <h2>Семь типов фильмов</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="deflist">
+        <div class="def"><span class="term">(a)</span><p>Целиком в плену господствующей идеологии — большинство коммерческого кино.</p></div>
+        <div class="def"><span class="term">(b/d)</span><p>Атакуют идеологию <em>и</em> по содержанию, <em>и</em> по форме — политическое контр-кино.</p></div>
+        <div class="def"><span class="term">(c)</span><p>«Левое» содержание в конформной форме — и потому проигрывает.</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">(e) ★</span><p>Кажутся идеологичными, но <strong>трещат изнутри</strong>: их можно прочесть «против шерсти».</p></div>
+        <div class="def"><span class="term">(f/g)</span><p>Прямое кино и документалистика, ставящие под вопрос свою форму.</p></div>
+        <div class="def"><span class="term">Метод</span><p>Искать «структурирующие отсутствия» — то, что фильм вытесняет.</p></div>
+      </div>
+    </div>
+    <p style="margin-top:14px;max-width:82ch">Главное открытие — категория <strong>(e)</strong>: даже голливудский фильм можно вскрыть симптоматично (по Альтюссеру), читая его пустоты и противоречия. Это мы и сделаем с «Молодым мистером Линкольном».</p>
+    <div class="slide-foot"><span class="src">Ж.-Л. Комолли, Ж. Нарбони, «Кино / идеология / критика» (Cahiers, 1969).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- MULVEY -->
+  <section class="slide">
+    <div class="eyebrow">Поворот <span class="sep">/</span> <span class="tag">Малви · Screen, 1975</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>У взгляда есть<br>пол</h2>
+        <p style="margin-top:12px;max-width:46ch">Лора Малви и использует, и взрывает универсальный субъект теории: у аппарата, говорит она, <strong>мужской взгляд</strong>. Удовольствие от смотрения (скопофилия) распределено по полу: мужчина — носитель взгляда и действия, женщина — образ, <em>«призванность-быть-увиденной»</em>.</p>
+        <p style="margin-top:10px">Перед «угрозой» женского образа взгляд защищается двумя путями: вуайеристски-садистским (расследовать, наказать) и фетишистски-скопическим (превратить женщину в идеальный фетиш-зрелище).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Скопофилия</span><p>Удовольствие смотреть, заложенное в аппарат.</p></div>
+        <div class="def"><span class="term">Мужской<br>взгляд</span><p>Камера, герой и зритель смотрят «по-мужски».</p></div>
+        <div class="def"><span class="term">Женщина-<br>образ</span><p>«To-be-looked-at-ness»: тело как зрелище.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Л. Малви, «Визуальное удовольствие и нарративное кино» (Screen, 1975); позже она сама уточнит позицию женского зрителя.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 1: YOUNG MR LINCOLN (5) ============ -->
+
+  <!-- F1 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Чтение против шерсти</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Young Mr. Lincoln" data-year="1939" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1939</span><span class="pt">Молодой<br>мистер Линкольн</span><span class="pd">реж. Джон Форд</span></div>
+        <img alt="Кадр из «Молодого мистера Линкольна»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Джон Форд</span><span><b>1939 · США</b></span><span><b>100 мин</b></span></div>
+        <h2>Молодой мистер Линкольн</h2>
+        <div><span class="chip">Категория (e)</span><span class="chip">Симптоматичное чтение</span></div>
+        <p>Внешне — безобидная патриотическая биография молодого адвоката Линкольна. Именно её редколлегия <strong>Cahiers</strong> в 1970-м разобрала коллективно как образец чтения «против шерсти».</p>
+        <p>Канонический пример категории (e): фильм, трещащий под собственной идеологией.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Коллективный разбор Cahiers</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Не «что хотел<br>сказать автор»</h2>
+        <p style="margin-top:10px">Разбор Cahiers сознательно отбрасывает вопрос об авторском замысле Форда. Применяя <strong>симптоматичное чтение</strong> Альтюссера, критики ищут то, что фильм <em>вытесняет</em>: реальную политику, экономику, классовый конфликт эпохи.</p>
+        <p style="margin-top:8px">Линкольн подан не как политик, а как воплощение <strong>Закона и Слова</strong> — почти сверхчеловеческая, кастрирующая фигура, стоящая над схваткой.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Метод</span><p>Чтение пустот и противоречий, а не замысла.</p></div>
+        <div class="def"><span class="term">Вытеснено</span><p>Политика и экономика заменены мифом.</p></div>
+        <div class="def"><span class="term">Линкольн</span><p>Фигура Закона, а не партийный деятель.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Коллектив Cahiers, «Молодой мистер Линкольн Джона Форда» (1970).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · сцена <span class="sep">/</span> <span class="tag">Суд и порядок</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Young Mr. Lincoln" data-year="1939" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · сцена суда</span><span class="yr">1939</span><span class="pt">Закон<br>в лице героя</span><span class="pd">«Молодой мистер Линкольн»</span></div>
+        <img alt="Сцена суда из «Молодого мистера Линкольна»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Как миф гасит конфликт</h2>
+        <p>В сцене, где толпа готова к самосуду, Линкольн в одиночку усмиряет её одной лишь моральной силой. Реальные противоречия — собственность, власть, насилие общины — снимаются <strong>харизмой Закона</strong>, а не политическим решением.</p>
+        <p>Фильм выдаёт идеологическую операцию: классовый конфликт замещён мифом о справедливом отце нации.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> структурирующее отсутствие</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Прозрачность,<br>что прячет швы</h2>
+        <p style="margin-top:10px">Форд — мастер «невидимого» классического стиля: плавный континуальный монтаж, центрированные композиции, «естественный» свет. Аппарат полностью скрыт — фильм притворяется <strong>окном в историю</strong>.</p>
+        <p style="margin-top:8px">Именно эта прозрачность и есть идеологический приём: чем незаметнее форма, тем убедительнее миф выдаёт себя за реальность.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Континуал.<br>монтаж</span><p>Швы спрятаны — иллюзия непрерывности.</p></div>
+        <div class="def"><span class="term">Свет</span><p>Героя буквально подсвечивают как икону.</p></div>
+        <div class="def"><span class="term">Прозрач-<br>ность</span><p>Невидимость формы = сила идеологии.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: «прозрачность» Форда = классический реалистический текст Маккейба (л. 5).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F1 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 01 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Сила метода</h3>
+        <p style="margin-top:6px">Разбор показывает главное: даже невинный мейнстрим работает идеологически — и критик может вскрыть это, читая пустоты, а не намерения.</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Риск симптоматичного чтения — <em>находить что угодно где угодно</em>: метод почти невозможно опровергнуть. Эту проблему мы разберём в слайде критики.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">«Молодой мистер Линкольн» — манифест дисциплины: фильм-симптом. Но он же ставит вопрос о границах интерпретации.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 2: GILDA (5) ============ -->
+
+  <!-- F2 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Женщина-зрелище</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Gilda" data-year="1946" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1946</span><span class="pt">Джильда</span><span class="pd">реж. Чарльз Видор</span></div>
+        <img alt="Кадр из «Джильды»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Чарльз Видор</span><span><b>1946 · США</b></span><span><b>В ролях</b> Рита Хейворт</span></div>
+        <h2>Джильда</h2>
+        <div><span class="chip">Мужской взгляд</span><span class="chip">Скопофилия</span></div>
+        <p>Классический нуар, где Рита Хейворт — воплощённый объект взгляда. Хрестоматийный материал для тезиса Малви о женщине как зрелище.</p>
+        <p>Идеальный полигон, чтобы увидеть, как аппарат «смотрит по-мужски».</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Femme fatale и тревога</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Зрелище и<br>угроза</h2>
+        <p style="margin-top:10px">Послевоенный нуар одержим фигурой <strong>роковой женщины</strong>: она притягивает взгляд и одновременно тревожит — слишком автономна, слишком желанна. Джильда — её эталон.</p>
+        <p style="margin-top:8px">По Малви, фильм «решает» эту тревогу двумя путями: расследует и наказывает героиню (вуайеристски) и превращает её в сияющий фетиш-образ (скопически).</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Femme<br>fatale</span><p>Желанна и опасна одновременно.</p></div>
+        <div class="def"><span class="term">Наказание</span><p>Сюжет «приручает» автономную женщину.</p></div>
+        <div class="def"><span class="term">Фетиш</span><p>Гламур превращает угрозу в зрелище.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: пол вписан в саму структуру удовольствия от смотрения.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · сцена <span class="sep">/</span> <span class="tag">Номер в казино</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Gilda" data-year="1946" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · номер</span><span class="yr">1946</span><span class="pt">Put the Blame<br>on Mame</span><span class="pd">«Джильда»</span></div>
+        <img alt="Музыкальный номер из «Джильды»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Когда действие замирает ради взгляда</h2>
+        <p>В знаменитом номере Джильда поёт и эффектным жестом снимает перчатку — толпа в кадре и зритель в зале сливаются в одном взгляде. Сюжет <strong>останавливается</strong>, чтобы предъявить женщину как чистое зрелище.</p>
+        <p>Именно такие «паузы на любование» Малви считала местом, где обнажается мужской взгляд аппарата.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> to-be-looked-at-ness</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Камера ласкает,<br>монтаж владеет</h2>
+        <p style="margin-top:10px">Свет лепит лицо и фигуру Хейворт, камера медленно скользит по ней, обратные планы мужских лиц «дарят» нам их взгляд. <strong>Шов</strong> здесь работает на скопофилию: мы смотрим глазами мужчины-героя и принимаем это за «просто кино».</p>
+        <p style="margin-top:8px">Форма не нейтральна: она конструирует пол того, кто смотрит.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Свет</span><p>Гламурная подсветка фетишизирует тело.</p></div>
+        <div class="def"><span class="term">Движение</span><p>Камера-ласка по фигуре героини.</p></div>
+        <div class="def"><span class="term">Шов</span><p>Обратные планы навязывают мужскую точку зрения.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: суть «шва» (выше) — здесь поставлена на службу гендеру взгляда.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F2 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 02 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что показывает фильм</h3>
+        <p style="margin-top:6px">Наглядно: «удовольствие смотреть» не невинно и не бесполо. Аппарат и нарратив сговариваются, чтобы предъявить женщину как объект мужского взгляда.</p>
+        <h3 style="margin-top:18px">Где спорят с Малви</h3>
+        <p style="margin-top:6px">А где же <em>женщина-зритель</em>? Критики (Доан, Студлар) и сама Малви позже усложнят схему: «маскарад», женский взгляд, удовольствие сопротивления. Модель «мужского взгляда» — мощная, но не единственная.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">Малви взрывает «универсального зрителя» теории аппарата, вводя пол. Но и её схема — лишь первый ход в долгом споре о зрителе.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ FILM 3: JEANNE DIELMAN (5) ============ -->
+
+  <!-- F3 INTRO -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Контр-аппарат</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Jeanne Dielman" data-year="1975" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1975</span><span class="pt">Жанна<br>Дильман</span><span class="pd">реж. Шанталь Акерман</span></div>
+        <img alt="Кадр из «Жанны Дильман»" loading="lazy">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Шанталь Акерман</span><span><b>1975 · Бельгия</b></span><span><b>201 мин</b></span></div>
+        <h2>Жанна Дильман</h2>
+        <div><span class="chip">Феминистское контр-кино</span><span class="chip">Отказ от взгляда</span></div>
+        <p>Три с лишним часа реального времени домашнего труда вдовы, которая тайно подрабатывает проституцией. Прямой <strong>ответ</strong> на призыв Малви «разрушить визуальное удовольствие».</p>
+        <p>В 2022-м фильм возглавил опрос Sight &amp; Sound — теория стала каноном.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 CONTEXT -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Практика теории</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Кино, сделанное<br>против аппарата</h2>
+        <p style="margin-top:10px">Если предыдущие фильмы анализируют аппарат, то Акерман его <strong>демонтирует на практике</strong>. Её фильм — феминистское контр-кино, рифма брехтовскому контр-кино из лекции 5, но средствами не разрыва, а <em>длительности и монотонии</em>.</p>
+        <p style="margin-top:8px">Невидимый домашний труд женщины (категория курса!) впервые становится самим телом фильма.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Контр-кино</span><p>Практический ответ на теорию взгляда.</p></div>
+        <div class="def"><span class="term">Труд</span><p>Репродуктивный, домашний труд — в центре кадра.</p></div>
+        <div class="def"><span class="term">Длитель-<br>ность</span><p>Реальное время вместо «эффектных» эллипсисов.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Категория курса: домашний/репродуктивный труд как невидимая опора капитализма.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 SCENE -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · сцена <span class="sep">/</span> <span class="tag">Чистка картофеля</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="Jeanne Dielman" data-year="1975" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · реальное время</span><span class="yr">1975</span><span class="pt">Кухня,<br>в упор</span><span class="pd">«Жанна Дильман»</span></div>
+        <img alt="Сцена на кухне из «Жанны Дильман»" loading="lazy">
+      </div>
+      <div class="info">
+        <h2>Когда нечем «любоваться»</h2>
+        <p>Героиня чистит картофель в реальном времени, фронтально, без музыки и крупных планов. Камера не ласкает и не «дарит» нам взгляд — она просто фиксирует на уровне глаз. Любоваться <strong>нечем и некому</strong>.</p>
+        <p>Едва заметный сбой в рутине — и есть всё «событие»: внимание зрителя перенастроено с зрелища на труд и время.</p>
+        <div class="meta-row" style="margin-top:4px"><span><b>Понятие</b> отказ от скопофилии и шва</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 FORM -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · форма <span class="sep">/</span> <span class="tag">Как это сделано</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Аппарат,<br>лишённый власти</h2>
+        <p style="margin-top:10px">Неподвижная камера, фронтальные планы, отсутствие «восьмёрок» и крупностей: Акерман отказывается от <strong>шва</strong>. Нет точки зрения героя, которую нам навяжут, — есть равный, нейтральный, женский взгляд.</p>
+        <p style="margin-top:8px">Реальная длительность ломает «эффект реальности»: фильм не гипнотизирует, а заставляет ощущать само время.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Фронталь-<br>ность</span><p>Нет «восьмёрки» — нет шва.</p></div>
+        <div class="def"><span class="term">Длитель-<br>ность</span><p>Время не сжато ради удовольствия.</p></div>
+        <div class="def"><span class="term">Взгляд</span><p>Не мужской, а ровный, «бытовой».</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Связка курса: систематический отказ от всех приёмов, описанных в первой половине лекции.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- F3 READING -->
+  <section class="slide">
+    <div class="eyebrow">Кейс 03 · чтение <span class="sep">/</span> <span class="tag">Сила и пределы</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h3>Что доказывает фильм</h3>
+        <p style="margin-top:6px">Что теория продуктивна: из критики аппарата можно вывести <strong>иную практику</strong> — кино без мужского взгляда, без шва, без зрелища. И что такое кино может стать каноническим (№1 в Sight &amp; Sound).</p>
+        <h3 style="margin-top:18px">Где предел</h3>
+        <p style="margin-top:6px">Три часа «неудовольствия» требуют подготовленного зрителя — снова вопрос аудитории (ср. контр-кино Годара, л. 5). Радикальная форма рискует остаться элитарной.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <h3 style="color:#fff">Урок метода</h3>
+        <p style="margin-top:8px">«Жанна Дильман» закрывает дугу: метод (Линкольн) → диагноз (Джильда) → лечение (Акерман). Теория аппарата не только разбирает кино, но и порождает новое.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS -->
+  <section class="slide">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Метод → диагноз → лечение</span></div>
+    <h2>Три ставки теории аппарата</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">Линкольн</span><h3>Метод</h3><p>Симптоматичное чтение мейнстрима «против шерсти».</p></div>
+      <div class="card ochre"><span class="k">Джильда</span><h3>Диагноз</h3><p>У взгляда есть пол; удовольствие не невинно.</p></div>
+      <div class="card"><span class="k">Жанна Дильман</span><h3>Лечение</h3><p>Контр-практика: кино без шва, взгляда и зрелища.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px;max-width:80ch">Вывод: идеология кино — в его <strong>устройстве</strong>, а не только в сюжете. Но если аппарат можно демонтировать (Акерман), значит, он не всесилен — и зритель не обязан быть пассивным.</p>
+    <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CRITIQUE -->
+  <section class="slide">
+    <div class="eyebrow">Критика <span class="sep">/</span> <span class="tag">«Post-Theory» и не только</span></div>
+    <h2>Слишком стройно, чтобы быть правдой?</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="card accent" style="gap:11px"><span class="k">Бордуэлл и Кэрролл</span><p>В сборнике «Post-Theory» (1996) они громят «большую теорию» (сплав Соссюр–Лакан–Альтюссер–Барт) как <strong>неопровержимую и внеисторичную</strong>: она выводит зрителя из доктрины, а не из того, как люди реально смотрят кино.</p></div>
+      <div class="card ochre" style="gap:11px"><span class="k">Монолитный субъект</span><p>Теория постулирует <strong>одного</strong> вечного пассивного зрителя — без различий пола (Малви это начала ломать), расы, класса, без реальных разных аудиторий и сопротивления.</p></div>
+    </div>
+    <p style="margin-top:16px;max-width:82ch">Отсюда — переход к лекции 8: <strong>Грамши и cultural studies</strong> вернут зрителю активность. Текст не фиксирует субъекта намертво — смысл рождается в борьбе за прочтение.</p>
+    <div class="slide-foot"><span>Спор о теории</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- RELEVANCE -->
+  <section class="slide">
+    <div class="eyebrow">Сегодня <span class="sep">/</span> <span class="tag">Новые диспозитивы</span></div>
+    <h2>Когда пещера — в кармане</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="stack">
+        <p>«Базовый аппарат» Бодри описывал тёмный зал. А что делает с субъектом <strong>вертикальное видео в метро</strong>, бесконечный скролл, игры от первого лица и VR, где зритель буквально «внутри» камеры?</p>
+        <p style="margin-top:10px">Диспозитив изменился — значит, изменился и тип субъекта. Вопрос теории аппарата остаётся живым: какая позиция «я» встроена в экран, который мы носим с собой?</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Экран-<br>в-кармане</span><p>Зал заменён персональным устройством.</p></div>
+        <div class="def"><span class="term">POV / VR</span><p>Зритель помещён внутрь точки зрения.</p></div>
+        <div class="def"><span class="term">Вопрос</span><p>Какой субъект встроен в новый диспозитив?</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Актуальность</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DISCUSSION -->
+  <section class="slide">
+    <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
+    <h2>Вопросы к дискуссии</h2>
+    <ul class="qlist" style="margin-top:14px">
+      <li><p>Возьмите любимый мейнстрим-фильм и попробуйте чтение «против шерсти» (категория e): что он вытесняет?</p></li>
+      <li><p>Найдите в фильме «паузу на любование» по Малви. Кто носитель взгляда, кто — образ? Меняет ли что-то пол зрителя?</p></li>
+      <li><p>Прав ли Бордуэлл: не подгоняет ли теория аппарата факты под доктрину? Как её можно было бы проверить?</p></li>
+      <li><p>Меняет ли экран смартфона «базовый аппарат» Бодри — или производит того же субъекта другими средствами?</p></li>
+    </ul>
+    <div class="slide-foot"><span>Для семинара</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="slide">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Глоссарий лекции</span></div>
+    <h2>Ключевые понятия</h2>
+    <div class="cols" style="margin-top:12px">
+      <div class="deflist">
+        <div class="def"><span class="term">Базовый<br>аппарат</span><p>Камера, экран, зал — идеология в самой технике (Бодри).</p></div>
+        <div class="def"><span class="term">Трансценд.<br>субъект</span><p>Центрированное всевидящее «я», заданное перспективой.</p></div>
+        <div class="def"><span class="term">Воображ.<br>означающее</span><p>Присутствие отсутствующего; имагинарность кино (Метц).</p></div>
+        <div class="def"><span class="term">Первичная<br>идентифик.</span><p>Отождествление с камерой/взглядом, а не с героем.</p></div>
+        <div class="def"><span class="term">Отрицание</span><p>«Знаю, но всё же» — фетишистская вера зрителя.</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Шов<br>(suture)</span><p>Монтаж «восьмёрки» пришивает зрителя к фильму.</p></div>
+        <div class="def"><span class="term">Категория<br>(e)</span><p>Фильм, трещащий изнутри; чтение «против шерсти».</p></div>
+        <div class="def"><span class="term">Структур.<br>отсутствие</span><p>То, что фильм вытесняет, но что определяет его.</p></div>
+        <div class="def"><span class="term">Мужской<br>взгляд</span><p>Гендерная структура удовольствия смотреть (Малви).</p></div>
+        <div class="def"><span class="term">Скопофилия</span><p>Влечение смотреть, встроенное в кино.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Глоссарий</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- К ПРОСМОТРУ -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 2px">Метод → диагноз → контр-практика. Смотрите, отслеживая работу шва и взгляда.</p>
+    <div class="watchlist" style="margin-top:16px">
+      <div class="wfilm"><span class="wy">1939</span><span class="wt">Молодой<br>м-р Линкольн</span><span class="wd">Джон Форд · 100 мин</span><span class="wn">Чтение «против шерсти» (Cahiers). Симптом и структурирующее отсутствие.</span></div>
+      <div class="wfilm"><span class="wy">1946</span><span class="wt">Джильда</span><span class="wd">Чарльз Видор · Р. Хейворт</span><span class="wn">Номер с перчаткой. Мужской взгляд и to-be-looked-at-ness (Малви).</span></div>
+      <div class="wfilm"><span class="wy">1975</span><span class="wt">Жанна<br>Дильман</span><span class="wd">Шанталь Акерман · 201 мин</span><span class="wn">Реальное время, фронтальность. Отказ от шва и зрелища.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING + NEXT -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению и следующая лекция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>К чтению</h3>
+        <div class="readlist" style="margin-top:4px">
+          <div class="r"><span class="n">01</span><span class="ttl"><b>J.-L. Baudry.</b> Идеологические эффекты базового аппарата (1970)</span><span class="typ">Теория</span></div>
+          <div class="r"><span class="n">02</span><span class="ttl"><b>C. Metz.</b> Воображаемое означающее (1975)</span><span class="typ">Теория</span></div>
+          <div class="r"><span class="n">03</span><span class="ttl"><b>Comolli & Narboni.</b> Cinema/Ideology/Criticism (1969); Cahiers о «Линкольне» (1970)</span><span class="typ">Метод</span></div>
+          <div class="r"><span class="n">04</span><span class="ttl"><b>L. Mulvey.</b> Визуальное удовольствие и нарративное кино (1975)</span><span class="typ">Теория</span></div>
+          <div class="r"><span class="n">05</span><span class="ttl"><b>Bordwell & Carroll (ред.).</b> Post-Theory (1996)</span><span class="typ">Критика</span></div>
+        </div>
+      </div>
+      <div class="oxpanel" style="padding:26px 28px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Лекция 08 →</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Грамши и гегемония</h2>
+        <p style="margin-top:10px;color:rgba(255,255,255,.92)">Ответ на «пассивного зрителя»: культура — поле борьбы за согласие. Гегемония, кодирование/декодирование Холла, оппозиционное прочтение. Зритель снова становится активным.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 07 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+<div class="help">← → · пробел · клик по краям</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>
