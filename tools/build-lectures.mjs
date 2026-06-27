@@ -11,12 +11,10 @@
    Не-готовые лекции и предметы без плана показываются на лендинге как
    «готовится» (без ссылки) — файлы в dist не попадают.
    ========================================================================== */
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { writeFile, mkdir, cp } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { collectTmdbUrls, localizeImages, applyMap } from './localize-images.mjs';
 
-const WIKIMEDIA_RE = /https?:\/\/upload\.wikimedia\.org\/[^\s"'<>)]+?\.(?:jpg|jpeg|png|svg|webp)/gi;
 const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 const SUBJECTS = [
@@ -145,37 +143,26 @@ export async function buildLectures({ ROOT, OUT, log = ()=>{} }){
   const LECT_SRC = path.join(ROOT, 'lectures');
   if(!existsSync(LECT_SRC)){ return; }
 
-  // 1) собрать внешние картинки всех ГОТОВЫХ лекций и локализовать одним проходом
-  const urls = [];
-  const readyFiles = [];
+  // Картинки в деках уже «запечены» локально (см. tools/bake-lecture-images.mjs):
+  // ссылки относительные img/<…>, файлы лежат в lectures/<курс>/img/. Поэтому при
+  // сборке ничего не качаем — просто копируем дек и его папку img/ в dist.
+  let count = 0;
   for(const s of SUBJECTS){
     if(!s.srcDir) continue;
-    for(const l of (s.lectures||[])){
-      if(!(l.ready && l.file)) continue;
-      const p = path.join(LECT_SRC, s.srcDir, l.file);
-      if(!existsSync(p)){ log(`  ! нет файла лекции: ${l.file}`); continue; }
-      const html = await readFile(p, 'utf8');
-      urls.push(...collectTmdbUrls(html), ...(html.match(WIKIMEDIA_RE) || []));
-      readyFiles.push({ s, l, p });
+    const ready = (s.lectures||[]).filter(l => l.ready && l.file && existsSync(path.join(LECT_SRC, s.srcDir, l.file)));
+    if(!ready.length) continue;
+    const destDir = path.join(OUT, 'lectures', s.slug);
+    await mkdir(destDir, { recursive: true });
+    const imgSrc = path.join(LECT_SRC, s.srcDir, 'img');
+    if(existsSync(imgSrc)) await cp(imgSrc, path.join(destDir, 'img'), { recursive: true });
+    for(const l of ready){
+      await cp(path.join(LECT_SRC, s.srcDir, l.file), path.join(destDir, l.file));
+      count++;
     }
   }
-  const IMG = await localizeImages(urls, {
-    distImgDir: path.join(OUT, 'assets', 'img'),
-    cacheDir: path.join(ROOT, '.cache', 'img'),
-    log,
-  });
 
-  // 2) записать готовые лекции в dist с переписанными ссылками
-  for(const { s, l, p } of readyFiles){
-    const html = applyMap(await readFile(p, 'utf8'), IMG);
-    const dest = path.join(OUT, 'lectures', s.slug, l.file);
-    await mkdir(path.dirname(dest), { recursive: true });
-    await writeFile(dest, html);
-  }
-
-  // 3) лендинг
   await mkdir(path.join(OUT, 'lectures'), { recursive: true });
   await writeFile(path.join(OUT, 'lectures', 'index.html'), renderLanding(SUBJECTS));
 
-  log(`  лекции: ${readyFiles.length} опубликовано, лендинг /lectures/`);
+  log(`  лекции: ${count} опубликовано (картинки запечены), лендинг /lectures/`);
 }
