@@ -26,7 +26,7 @@ const SUBJECTS = [
     lectures: [
       { n:'01', file:'lecture-01-vvedenie.html',           title:'Зачем марксизму кино',     sub:'Основания: товар и идеология',          ready:true  },
       { n:'02', file:'lecture-02-montazh.html',            title:'Монтаж и спор о форме',     sub:'Форма как идеология · диалектика монтажа', ready:true  },
-      { n:'03', file:'lecture-03-kulturindustriya_1.html', title:'Культуриндустрия',          sub:'Культура как товар · стандартизация',   ready:false },
+      { n:'03', file:'lecture-03-kulturindustriya_1.html', title:'Культуриндустрия',          sub:'Культура как товар · стандартизация',   ready:true  },
       { n:'04', file:'lecture-04-benyamin_1.html',         title:'Беньямин: аура',            sub:'Воспроизводимость · политизация искусства', ready:false },
       { n:'05', file:'lecture-05-brecht_1.html',           title:'Брехт: очуждение',          sub:'Очуждение против идеологии вживания',   ready:false },
       { n:'06', file:'lecture-06-althusser_1.html',        title:'Альтюссер: интерпелляция',  sub:'Идеологические аппараты и субъект',     ready:false },

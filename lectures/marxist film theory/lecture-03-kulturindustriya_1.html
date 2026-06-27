@@ -150,12 +150,89 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 }
 @media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
 
+/* ===== NEW SLIDE TYPES (v2 — перенос из лекции 1) ===== */
+/* Ключевой тезис / афоризм */
+.slide.thesis{justify-content:center}
+.thesis .tlbl{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ochre);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.thesis .tlbl::before{content:"";width:30px;height:2px;background:var(--red)}
+.thesis .big{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(38px,6.4vw,96px);line-height:.95;letter-spacing:-.01em;max-width:20ch}
+.thesis .big .hl{color:var(--red)}.thesis .big .oc{color:var(--ochre)}
+.thesis .tsub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,22px);color:var(--bone-dim);margin-top:24px;max-width:52ch}
+/* Полноэкранный кадр */
+.slide.framefull{justify-content:flex-end;overflow:hidden}
+.framefull .shot{position:absolute;inset:0;background:var(--ink-2);z-index:0}
+.framefull .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.framefull .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,17,15,.94),rgba(20,17,15,.20) 44%,rgba(20,17,15,.5))}
+.framefull .fcap{position:relative;z-index:2;max-width:66%}
+.framefull .fk{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.framefull .fcap h2{font-size:clamp(30px,4.4vw,62px)}
+.framefull .fcap p{margin-top:12px;font-size:clamp(15px,1.4vw,19px);max-width:54ch;color:var(--bone)}
+.framefull .slide-foot{color:var(--bone-dim);border-color:var(--line-strong)}
+.slide.thesis .slide-foot,.slide.framefull .slide-foot{position:absolute;left:calc(var(--rail) + 54px);right:60px;bottom:22px;margin-top:0}
+/* Крупный прозрачный красный год на полноэкранных кадрах-визитках */
+.framefull .fyear{position:absolute;z-index:2;font-family:var(--display);font-weight:700;font-size:clamp(96px,17vw,260px);line-height:.76;color:rgba(214,52,42,.42);letter-spacing:-.02em;pointer-events:none;right:50px;bottom:26px}
+.framefull .fyear.top{top:18px;bottom:auto;right:50px}
+.framefull .fyear.bl{left:calc(var(--rail) + 54px);right:auto;bottom:26px}
+/* Портреты теоретиков */
+.thinkers{display:flex;gap:14px;margin-top:16px}
+.thinkers figure{width:102px}
+.thinkers img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;border:1px solid var(--line-strong);filter:grayscale(1) contrast(1.05) brightness(1.02);display:block}
+.thinkers figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:6px;line-height:1.5}
+.thinkers figcaption b{color:var(--ochre);display:block;font-weight:500}
+/* Рамка-кадр внутри обычного слайда */
+.framebox{position:relative;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink-2);min-height:300px;align-self:stretch}
+.framebox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.framebox .fbcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);background:linear-gradient(transparent,rgba(20,17,15,.94))}
+/* Оглавление лекции */
+.toc-btn{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);background:var(--ink-2);border:1px solid var(--line-strong);padding:8px 12px;border-radius:2px;cursor:pointer;transition:.16s}
+.toc-btn:hover{border-color:var(--red);color:#fff}
+.toc-panel{position:fixed;inset:0;z-index:60;background:rgba(10,8,7,.74);display:none;opacity:0;transition:opacity .2s}
+.toc-panel.open{display:block;opacity:1}
+.toc-inner{position:absolute;left:0;top:0;bottom:0;width:min(430px,86vw);background:var(--ink-2);border-right:2px solid var(--red);padding:30px 26px;overflow:auto;box-shadow:0 0 60px rgba(0,0,0,.6)}
+.toc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:12px}
+.toc-title{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:22px;color:var(--bone)}
+.toc-back{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ochre);text-decoration:none}
+.toc-back:hover{color:var(--red)}
+.toc-list{display:flex;flex-direction:column}
+.toc-item{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:13px 4px;font-family:var(--serif);font-size:16px;color:var(--bone);cursor:pointer;transition:.14s}
+.toc-item:hover{color:var(--red);padding-left:10px}
+.toc-item.cur{color:var(--ochre)}
+.toc-item .tnum{font-family:var(--mono);font-size:12px;color:var(--red);min-width:24px}
+/* Контактный лист постеров */
+.contactrow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-self:center;width:100%;max-width:1040px;margin:0 auto}
+.pcard{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);overflow:hidden;aspect-ratio:2/3}
+.pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pcard .pgrad{position:absolute;left:0;right:0;bottom:0;top:52%;background:linear-gradient(transparent,rgba(20,17,15,.95));z-index:1}
+.pcard .pcyr{position:absolute;left:11px;bottom:28px;z-index:2;font-family:var(--display);font-weight:700;font-size:21px;color:#fff}
+.pcard .pcname{position:absolute;left:11px;right:11px;bottom:10px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim)}
+/* Схема-поток */
+.flow{display:flex;align-items:stretch;align-self:center;width:100%;gap:0}
+.flow .fstep{flex:1;border:1px solid var(--line-strong);background:var(--ink-2);padding:18px 16px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.flow .fstep .fsk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.flow .fstep h3{font-size:clamp(15px,1.5vw,21px)}
+.flow .fstep p{font-size:12.5px;color:var(--bone-dim);line-height:1.4}
+.flow .fstep.eco{border-top:4px solid var(--red)}.flow .fstep.eco .fsk{color:var(--red)}
+.flow .fstep.ideo{border-top:4px solid var(--ochre);background:var(--oxblood)}.flow .fstep.ideo .fsk{color:var(--ochre)}
+.flow .farr{display:flex;align-items:center;padding:0 9px;color:var(--red);font-family:var(--display);font-weight:700;font-size:24px}
+/* Постеры в списке «К просмотру» */
+.watchlist.withposters .wfilm{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start;padding:16px 18px 16px 16px}
+.watchlist.withposters .wfilm .wy{display:none}
+.watchlist.withposters .wpost{grid-row:span 4;aspect-ratio:2/3;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink)}
+.watchlist.withposters .wpost img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:900px){
+  .contactrow{grid-template-columns:repeat(2,1fr);max-width:340px}
+  .flow{flex-direction:column}.flow .farr{transform:rotate(90deg);padding:6px 0;justify-content:center}
+  .framefull .fcap{max-width:100%}
+  .slide.thesis .slide-foot,.slide.framefull .slide-foot{left:18px;right:18px}
+  .flow .fstep{padding:13px 14px}.flow .fstep p{font-size:11.5px}
+}
+
 /* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
 @media print{
   @page{ size: A4 landscape; margin:0; }
   html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
-  .nav,.help,.progress,.zone{ display:none !important; }
+  .nav,.help,.progress,.zone,.toc-btn,.toc-panel{ display:none !important; }
   .deck{ position:static !important; }
   .rail{ position:absolute !important; }
   .slide{
@@ -185,7 +262,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   <section class="slide cover active">
     <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
     <div class="cover-inner">
-      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 03 / 10</div>
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 03 / 11</div>
       <div class="course-name">Марксистская теория кино</div>
       <h1>Культур<span class="hl">·</span><br>индустрия</h1>
       <div class="subt">Адорно и Хоркхаймер: развлечение как продолжение труда</div>
@@ -194,6 +271,32 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
         <span><b>Кейсы:</b> Беркли · Дисней · Marvel</span>
       </div>
     </div>
+  </section>
+
+  <!-- COLD OPEN: CONTACT SHEET -->
+  <section class="slide" data-toc="Введение">
+    <div class="eyebrow">Лекция 03 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
+    <h2>Почему они так похожи?</h2>
+    <p class="lead" style="max-width:66ch;margin:14px 0 4px">Шесть блокбастеров, миллиарды сборов, разные герои. Но постеры, ритм, структура, финал — почти неотличимы. Это не совпадение и не лень режиссёров.</p>
+    <div style="flex:1;display:flex;align-items:center;width:100%">
+      <div class="contactrow">
+        <div class="pcard"><img src="img/w500_hj1xaEUGMiUxaFYoutlljtlkHSG.jpg" alt="Постер «Мстители: Финал»"></div>
+        <div class="pcard"><img src="img/w500_t24aimjQLa0dyoZQEbSws7XK1U0.jpg" alt="Постер «Мстители: Война бесконечности»"></div>
+        <div class="pcard"><img src="img/w500_5mxlzNZFeuWRcAZV6ECOwYfN7oZ.jpg" alt="Постер «Чёрная Пантера»"></div>
+        <div class="pcard"><img src="img/w500_ndo3IkcvMhhE4g6ZIlxZpwdT5ve.jpg" alt="Постер «Капитан Марвел»"></div>
+        <div class="pcard"><img src="img/w500_dKCpOcAFtuPjnzDXwjLfxEYLsKT.jpg" alt="Постер «Лига справедливости»"></div>
+        <div class="pcard"><img src="img/w500_iunkSeLonYKVmp89zCJuJVptUTU.jpg" alt="Постер «Тор: Рагнарёк»"></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Подсказка: ответ — не в режиссёрах, а в том, как капитал организует производство культуры.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS A: ANSWER -->
+  <section class="slide thesis">
+    <div class="tlbl">Ответ</div>
+    <div class="big">Их делает похожими <span class="hl">логика индустрии</span></div>
+    <div class="tsub">Стандарт снижает риск капитала: проверенная формула продаётся надёжнее новизны. Культура здесь производится серийно — как любой товар. Именно это в 1944-м назвали «культуриндустрией».</div>
+    <div class="slide-foot"><span>С чего начинается метод</span><span class="fpg"></span></div>
   </section>
 
   <!-- WHERE WE ARE -->
@@ -212,27 +315,22 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
       <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
       <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
       <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+      <div class="node"><span class="nn">11</span><span class="nt">Политэкономия кино</span></div>
     </div>
     <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
   </section>
 
-  <!-- AGENDA -->
-  <section class="slide">
-    <div class="eyebrow">Лекция 03 <span class="sep">/</span> <span class="tag">План занятия</span></div>
-    <div class="cols-wide">
-      <div class="stack">
-        <h2>План<br>сегодня</h2>
-        <p style="max-width:34ch;margin-top:12px">Самая пессимистичная позиция курса — и проверка её на трёх продуктах индустрии разных эпох: 1930-е, 1937, наши дни.</p>
-      </div>
-      <div class="deflist">
-        <div class="def"><span class="term">01 · Проблема</span><p>Развлечение освобождает — или готовит к новой смене?</p></div>
-        <div class="def"><span class="term">02 · Контекст</span><p>Франкфуртская школа в эмиграции, рядом с Голливудом</p></div>
-        <div class="def"><span class="term">03 · Понятия</span><p>Культуриндустрия · стандартизация · псевдоиндивидуализация</p></div>
-        <div class="def"><span class="term">04 · Кейсы</span><p>Мюзикл Беркли · «Белоснежка» · «Мстители»</p></div>
-        <div class="def"><span class="term">05 · Спор</span><p>Прав ли Адорно сегодня? Элитизм и зритель</p></div>
-      </div>
+  <!-- THREE QUESTIONS (spine, replaces agenda) -->
+  <section class="slide" data-toc="Три вопроса лекции">
+    <div class="eyebrow">Лекция 03 <span class="sep">/</span> <span class="tag">Расследование</span></div>
+    <h2>Три вопроса лекции</h2>
+    <p class="lead" style="max-width:66ch;margin:14px 0 18px">Не история идей Адорно, а расследование. Вся лекция — попытка ответить на три вопроса, и каждый тянет за собой следующий.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Вопрос 01</span><h3>Почему капитализм массово производит культуру?</h3><p>Студия как фабрика: экономика, разделение труда, прибыль.</p></div>
+      <div class="card ochre"><span class="k">Вопрос 02</span><h3>Что происходит с искусством, ставшим товаром?</h3><p>Стандартизация, псевдоиндивидуализация, развлечение как труд.</p></div>
+      <div class="card"><span class="k">Вопрос 03</span><h3>Может ли массовое кино оставаться критическим?</h3><p>Критика Адорно, активный зритель, кино против индустрии.</p></div>
     </div>
-    <div class="slide-foot"><span>План занятия</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span class="src">Сквозной спор лекции: массовая культура освобождает — или подчиняет?</span><span class="fpg"></span></div>
   </section>
 
   <!-- PROBLEM -->
@@ -262,6 +360,27 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
       </div>
     </div>
     <div class="slide-foot"><span class="src">Их пессимизм рождён конкретным опытом: они видели, как культура работает на тоталитаризм.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- TWO AUTHORS -->
+  <section class="slide">
+    <div class="eyebrow">Контекст <span class="sep">/</span> <span class="tag">Книга двух авторов</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Почему «культур·<br>индустрия» — на двоих</h2>
+        <p style="margin-top:12px;max-width:46ch">Понятие родилось не у одного Адорно. «Диалектику просвещения» (1944/47) Адорно и Хоркхаймер писали <strong>вместе</strong>, в эмиграции — как общий счёт Просвещению, которое обернулось и Голливудом, и Освенцимом.</p>
+        <div class="thinkers">
+          <figure><img src="img/Theodor_W._Adorno.jpg" alt="Теодор Адорно"><figcaption><b>Теодор Адорно</b>1903 — 1969</figcaption></figure>
+          <figure><img src="img/Max_Horkheimer.jpg" alt="Макс Хоркхаймер"><figcaption><b>Макс Хоркхаймер</b>1895 — 1973</figcaption></figure>
+        </div>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Хоркхаймер</span><p>Директор Института, автор программы «критической теории».</p></div>
+        <div class="def"><span class="term">Адорно</span><p>Музыковед и эстетик — отсюда примеры из поп-музыки и формы.</p></div>
+        <div class="def"><span class="term">Институт</span><p>Франкфуртская школа: марксизм без партии, критика без иллюзий.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">«Культуриндустрия» — глава их общей книги; за термином стоит школа, а не один мыслитель.</span><span class="fpg"></span></div>
   </section>
 
   <!-- INVERSION -->
@@ -309,6 +428,19 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
       </div>
     </div>
     <div class="slide-foot"><span class="src">Категория курса: товар, прибавочная стоимость, разделение труда — в самом сердце «искусства».</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ECONOMICS 2: STUDIO SYSTEM -->
+  <section class="slide">
+    <div class="eyebrow">Экономика <span class="sep">/</span> <span class="tag">Как устроена фабрика</span></div>
+    <h2>Студийная система: машина минимизации риска</h2>
+    <div class="cols-3" style="margin-top:16px">
+      <div class="card accent"><span class="k">Конвейер</span><h3>Вертикальная интеграция</h3><p>«Большая пятёрка» владеет всем — производством, прокатом и кинотеатрами. Фильм застрахован сбытом ещё до съёмки.</p></div>
+      <div class="card ochre"><span class="k">Формула</span><h3>Жанр снижает риск</h3><p>Вестерн, мюзикл, нуар — готовые матрицы. Капитал не любит неопределённости и повторяет то, что уже продалось.</p></div>
+      <div class="card"><span class="k">Бренд</span><h3>Звезда как товар</h3><p>Актёр на контракте — узнаваемый товарный знак. Его лицо продаёт билет надёжнее сюжета.</p></div>
+    </div>
+    <p style="margin-top:18px;max-width:82ch">Адорно описывает не злой умысел, а <strong>экономическую логику</strong>: стандарт, жанр и звезда — способы капитала застраховать вложения. Эстетика следует за бухгалтерией. (Подробно — лекция 11.)</p>
+    <div class="slide-foot"><span class="src">Вопрос 01: почему капитализм массово производит культуру именно так.</span><span class="fpg"></span></div>
   </section>
 
   <!-- CONCEPT 2 STANDARDIZATION -->
@@ -397,13 +529,21 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 
   <!-- ============ FILM 1: GOLD DIGGERS 1933 (5) ============ -->
 
+  <!-- PREFRAME: GOLD DIGGERS -->
+  <section class="slide framefull" data-toc="Кейс 01 · Золотоискатели 1933">
+    <div class="shot"><img src="img/w1280_z2d5PkgcccJkjtFwgfjCOaHIktI.jpg" alt="Кадр из «Золотоискателей 1933»"></div>
+    <span class="fyear">1933</span>
+    <div class="fcap"><div class="fk">Кейс 01 · конвейер-кордебалет</div><h2>Золотоискатели 1933</h2></div>
+    <div class="slide-foot"><span class="src">«Gold Diggers of 1933» · номера Базби Беркли · США</span><span class="fpg"></span></div>
+  </section>
+
   <!-- F1 INTRO -->
   <section class="slide">
     <div class="eyebrow">Кейс 01 · знакомство <span class="sep">/</span> <span class="tag">Конвейер удовольствия</span></div>
     <div class="film">
       <div class="still" data-tmdb="Gold Diggers of 1933" data-year="1933" data-idx="0">
         <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1933</span><span class="pt">Золото·<br>искатели 1933</span><span class="pd">номера Базби Беркли</span></div>
-        <img alt="Кадр из фильма «Золотоискатели 1933»" loading="lazy">
+        <img alt="Кадр из фильма «Золотоискатели 1933»" loading="lazy" src="img/w1280_wbNj4c8VOboFqmkzLCGyj15uPLT.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <div class="meta-row"><span><b>Реж.</b> Мервин Лерой</span><span><b>Номера</b> Базби Беркли</span><span><b>Год</b> 1933 · США</span></div>
@@ -440,7 +580,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <div class="film">
       <div class="still" data-tmdb="Gold Diggers of 1933" data-year="1933" data-idx="1">
         <div class="ph"><span class="frame-tag">Кадр · номер</span><span class="yr">1933</span><span class="pt">We're in<br>the Money</span><span class="pd">«Золотоискатели 1933»</span></div>
-        <img alt="Музыкальный номер из «Золотоискателей 1933»" loading="lazy">
+        <img alt="Музыкальный номер из «Золотоискателей 1933»" loading="lazy" src="img/w1280_3mowZ66omJZgNIfp9YEapg6cbn.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <h2>Деньги в разгар нищеты</h2>
@@ -490,13 +630,21 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 
   <!-- ============ FILM 2: SNOW WHITE 1937 (5) ============ -->
 
+  <!-- PREFRAME: SNOW WHITE -->
+  <section class="slide framefull" data-toc="Кейс 02 · Белоснежка">
+    <div class="shot"><img src="img/w1280_4yWayBvwl9gHXaWrDrAslxjL7mh.jpg" alt="Кадр из «Белоснежки»"></div>
+    <span class="fyear top">1937</span>
+    <div class="fcap"><div class="fk">Кейс 02 · фабрика грёз</div><h2>Белоснежка</h2></div>
+    <div class="slide-foot"><span class="src">«Белоснежка и семь гномов» · Walt Disney · США</span><span class="fpg"></span></div>
+  </section>
+
   <!-- F2 INTRO -->
   <section class="slide">
     <div class="eyebrow">Кейс 02 · знакомство <span class="sep">/</span> <span class="tag">Собственный пример Адорно</span></div>
     <div class="film">
       <div class="still" data-tmdb="Snow White and the Seven Dwarfs" data-year="1937" data-idx="0">
         <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">1937</span><span class="pt">Белоснежка</span><span class="pd">студия Уолта Диснея</span></div>
-        <img alt="Кадр из «Белоснежки»" loading="lazy">
+        <img alt="Кадр из «Белоснежки»" loading="lazy" src="img/w1280_rq4XfyRu4UYvH5RL6wqQhnsbPGE.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <div class="meta-row"><span><b>Студия</b> Walt Disney</span><span><b>Год</b> 1937 · США</span><span><b>Хроно</b> 83 мин</span></div>
@@ -533,7 +681,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <div class="film">
       <div class="still" data-tmdb="Snow White and the Seven Dwarfs" data-year="1937" data-idx="1">
         <div class="ph"><span class="frame-tag">Кадр · сцена</span><span class="yr">1937</span><span class="pt">Гномы</span><span class="pd">«Белоснежка»</span></div>
-        <img alt="Сцена с гномами из «Белоснежки»" loading="lazy">
+        <img alt="Сцена с гномами из «Белоснежки»" loading="lazy" src="img/w1280_wmSxNVGZOV1A51Yx6ChDXk3NVVi.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <h2>Милота по стандарту</h2>
@@ -583,13 +731,21 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 
   <!-- ============ FILM 3: AVENGERS ENDGAME (5) ============ -->
 
+  <!-- PREFRAME: AVENGERS -->
+  <section class="slide framefull" data-toc="Кейс 03 · Мстители: Финал">
+    <div class="shot"><img src="img/w1280_7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg" alt="Кадр из «Мстители: Финал»"></div>
+    <span class="fyear bl">2019</span>
+    <div class="fcap"><div class="fk">Кейс 03 · франшиза</div><h2>Мстители: Финал</h2></div>
+    <div class="slide-foot"><span class="src">«Мстители: Финал» · бр. Руссо · Marvel/Disney</span><span class="fpg"></span></div>
+  </section>
+
   <!-- F3 INTRO -->
   <section class="slide">
     <div class="eyebrow">Кейс 03 · знакомство <span class="sep">/</span> <span class="tag">Тезис сегодня</span></div>
     <div class="film">
       <div class="still" data-tmdb="Avengers Endgame" data-year="2019" data-idx="0">
         <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2019</span><span class="pt">Мстители:<br>Финал</span><span class="pd">реж. братья Руссо</span></div>
-        <img alt="Кадр из «Мстители: Финал»" loading="lazy">
+        <img alt="Кадр из «Мстители: Финал»" loading="lazy" src="img/w1280_91iy9F1JOG1dvM6M6JNYgvScZpK.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <div class="meta-row"><span><b>Реж.</b> Э. и Дж. Руссо</span><span><b>Год</b> 2019 · США</span><span><b>Студия</b> Marvel / Disney</span></div>
@@ -626,7 +782,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <div class="film">
       <div class="still" data-tmdb="Avengers Endgame" data-year="2019" data-idx="1">
         <div class="ph"><span class="frame-tag">Кадр · финальная битва</span><span class="yr">2019</span><span class="pt">Сбор<br>героев</span><span class="pd">«Мстители: Финал»</span></div>
-        <img alt="Финальная битва из «Мстители: Финал»" loading="lazy">
+        <img alt="Финальная битва из «Мстители: Финал»" loading="lazy" src="img/w1280_9wXPKruA6bWYk2co5ix6fH59Qr8.jpg" onload="this.closest('.still').classList.add('has-image')">
       </div>
       <div class="info">
         <h2>Каталог вместо характеров</h2>
@@ -687,16 +843,83 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
   </section>
 
-  <!-- DEBATE: IS ADORNO RIGHT -->
+  <!-- Q3: NETWORK PREFRAME -->
+  <section class="slide framefull" data-toc="Кино против индустрии · Network">
+    <div class="shot"><img src="img/w1280_m4Iyzh9YVOh0ra7UwdMoJcrjxkx.jpg" alt="Кадр из «Network»"></div>
+    <span class="fyear">1976</span>
+    <div class="fcap"><div class="fk">Вопрос 03 · может ли кино быть критическим</div><h2>Network</h2></div>
+    <div class="slide-foot"><span class="src">«Network» · реж. Сидни Люмет · США · 1976</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- Q3: NETWORK ANALYSIS -->
   <section class="slide">
-    <div class="eyebrow">Дебаты <span class="sep">/</span> <span class="tag">Прав ли Адорно?</span></div>
-    <h2>Сильная теория — и её слепое пятно</h2>
-    <div class="cols" style="margin-top:16px">
-      <div class="card accent" style="gap:12px"><span class="k">За Адорно</span><p>Концентрация капитала, формульность франшиз и индустриальный график производства — всё это подтверждает его диагноз спустя десятилетия.</p></div>
-      <div class="card ochre" style="gap:12px"><span class="k">Против</span><p>Теория презирает массовый вкус и считает зрителя пассивным. Но люди спорят, пересобирают и сопротивляются смыслам — это покажут Грамши и Холл.</p></div>
+    <div class="eyebrow">Вопрос 03 <span class="sep">/</span> <span class="tag">Кино, кусающее руку</span></div>
+    <div class="cols">
+      <div class="stack">
+        <h2>Когда товар<br>обличает рынок</h2>
+        <p style="margin-top:10px">«Network» — голливудский продукт, который изнутри показывает, как телевидение превращает <strong>гнев, новости, саму жизнь в рейтинг и товар</strong>. Безумный пророк в эфире продаётся тем лучше, чем он безумнее.</p>
+        <p style="margin-top:8px">Парадокс прямо по Адорно: фильм-критика индустрии сам произведён и продан индустрией — и собрал «Оскары».</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">«Я зол<br>как чёрт»</span><p>Протест мгновенно становится новым форматом и рекламной паузой.</p></div>
+        <div class="def"><span class="term">Информация<br>= товар</span><p>Капитал коммодифицирует внимание и аффект (мост к лекции 11).</p></div>
+        <div class="def"><span class="term">Ответ Q3</span><p>Массовое кино <em>может</em> быть критическим — но и критика продаётся.</p></div>
+      </div>
     </div>
-    <p style="margin-top:18px;max-width:80ch">Продуктивный вывод: культуриндустрия — <strong>мощная тенденция</strong>, а не железный закон. Где Адорно видит только подчинение, дальнейший курс будет искать зазоры борьбы.</p>
+    <div class="slide-foot"><span class="src">Network усложняет Адорно: индустрия способна продать даже обличение самой себя.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CRITIQUE OF ADORNO -->
+  <section class="slide" data-toc="Критика Адорно">
+    <div class="eyebrow">Вопрос 03 <span class="sep">/</span> <span class="tag">Критика Адорно</span></div>
+    <h2>Сильная теория — и четыре слепых пятна</h2>
+    <div class="cols" style="margin-top:14px">
+      <div class="deflist">
+        <div class="def"><span class="term">Зритель</span><p>Аудитория у Адорно — пассивная мишень. Но люди спорят, переосмысляют, читают «против шерсти».</p></div>
+        <div class="def"><span class="term">Сопро·<br>тивление</span><p>Теория почти не допускает оппозиционного прочтения и низовой переработки культуры.</p></div>
+      </div>
+      <div class="deflist">
+        <div class="def"><span class="term">Элитизм</span><p>За «низким массовым вкусом» — презрение к самим массам, от чьего имени говорит критика.</p></div>
+        <div class="def"><span class="term">Аномалии</span><p>Не объясняет сложные, но массовые фильмы — те, что и кассовы, и подрывны.</p></div>
+      </div>
+    </div>
+    <p style="margin-top:16px;max-width:82ch">Продуктивный вывод: культуриндустрия — <strong>мощная тенденция</strong>, а не железный закон. Где Адорно видит только подчинение, курс будет искать зазоры борьбы.</p>
     <div class="slide-foot"><span>Спор о теории</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- STUART HALL -->
+  <section class="slide">
+    <div class="eyebrow">Вопрос 03 <span class="sep">/</span> <span class="tag">Зритель не пассивен · Холл →</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Зритель не объект,<br>а соавтор смысла</h2>
+        <p style="margin-top:12px;max-width:48ch">Адорно видит зрителя как <strong>объект воздействия</strong>. Позже Стюарт Холл предложит модель сложнее: текст <em>кодируется</em> индустрией, но зритель <em>декодирует</em> его по-своему — иногда вопреки замыслу.</p>
+        <p style="margin-top:8px">Полностью — в лекции 8 (Грамши и гегемония). Здесь важно одно: между «послано» и «понято» есть зазор, и в нём живёт борьба.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Согласное<br>чтение</span><p>Зритель принимает смысл, как задумала индустрия.</p></div>
+        <div class="def"><span class="term">Договорное</span><p>Принимает в целом, но спорит в деталях.</p></div>
+        <div class="def"><span class="term">Оппози·<br>ционное</span><p>Перечитывает текст против его же идеологии.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Кодирование/декодирование (Холл) — прямой ответ на пассивного зрителя Адорно.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PROVOCATEUR -->
+  <section class="slide" data-toc="Спор: «Крёстный отец»?">
+    <div class="eyebrow">Спор у доски <span class="sep">/</span> <span class="tag">Граница теории</span></div>
+    <div class="cols-wide">
+      <div class="framebox">
+        <img src="img/w1280_ejdD20cdHNFAYAN2DlqPToXKyzx.jpg" alt="Кадр из «Крёстного отца»">
+        <span class="fbcap">«Крёстный отец» (1972) — кассовый хит Paramount и одновременно большое авторское кино</span>
+      </div>
+      <div class="stack">
+        <h2>«Крёстный отец» —<br>продукт культуриндустрии?</h2>
+        <p style="margin-top:10px">Снят студией ради прибыли, по жанровой формуле, со звёздами на контракте — по всем признакам продукт индустрии. И при этом — сложное, авторское, критическое кино.</p>
+        <p style="margin-top:8px"><strong>Для спора:</strong> рушит ли такой фильм теорию Адорно — или показывает, что «индустрия» и «искусство» не исключают друг друга? А Тарковский — вне индустрии или просто другой её сегмент?</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Намеренно без ответа: пусть студенты спорят. Здесь и проходит граница теории.</span><span class="fpg"></span></div>
   </section>
 
   <!-- DISCUSSION -->
@@ -734,7 +957,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   </section>
 
   <!-- К ПРОСМОТРУ -->
-  <section class="slide">
+  <section class="slide" data-toc="К просмотру и чтению">
     <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру · основа лекции</span></div>
     <h2>К просмотру</h2>
     <p class="lead" style="max-width:74ch;margin:12px 0 2px">Три продукта индустрии из разных эпох — смотрите их как кейсы одной логики.</p>
@@ -778,7 +1001,17 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
   <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
 </nav>
-<div class="help">← → · пробел · клик по краям</div>
+
+<button class="toc-btn" id="tocBtn" aria-label="Содержание лекции">☰ Содержание</button>
+<div class="toc-panel" id="tocPanel" role="dialog" aria-label="Содержание лекции">
+  <div class="toc-inner">
+    <div class="toc-head">
+      <span class="toc-title">Содержание</span>
+      <a class="toc-back" href="/lectures/">← Все лекции</a>
+    </div>
+    <div class="toc-list" id="tocList"></div>
+  </div>
+</div>
 
 <script>
 const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
@@ -829,6 +1062,25 @@ document.addEventListener('keydown',e=>{
 let tx=0;
 document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
 document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+/* оглавление лекции (собирается из data-toc) */
+(function(){
+  const btn=document.getElementById('tocBtn'), panel=document.getElementById('tocPanel'), list=document.getElementById('tocList');
+  if(!btn||!panel||!list) return;
+  const items=[];
+  slides.forEach((s,idx)=>{
+    const t=s.getAttribute('data-toc'); if(!t) return;
+    const b=document.createElement('button'); b.className='toc-item'; b.dataset.idx=idx;
+    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t+'</span>';
+    b.addEventListener('click',()=>{ show(idx); close(); });
+    list.appendChild(b); items.push(b);
+  });
+  function mark(){ items.forEach((b,k)=>{ const cur=+b.dataset.idx, next=items[k+1]?+items[k+1].dataset.idx:Infinity; b.classList.toggle('cur', i>=cur && i<next); }); }
+  function open(){ mark(); panel.classList.add('open'); }
+  function close(){ panel.classList.remove('open'); }
+  btn.addEventListener('click',()=>panel.classList.contains('open')?close():open());
+  panel.addEventListener('click',e=>{ if(e.target===panel) close(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+})();
 const start=parseInt((location.hash||'').replace('#',''),10);
 show(Number.isInteger(start)&&start>=1?start-1:0);
 loadTMDBStills();
