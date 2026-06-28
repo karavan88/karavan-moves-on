@@ -62,15 +62,25 @@
       radial-gradient(1200px 900px at 50% 0%, rgba(255,255,255,.85), transparent 62%),
       linear-gradient(180deg, #ffffff 0%, #fbfaf7 58%);
   }
-  [data-theme="light"] header.site{background:rgba(251,250,247,.85)}
-  [data-theme="light"] .brand .logo{box-shadow:0 0 0 1px var(--border)}
+  /* тёмно-синяя шапка на светлом теле — тональный ритм + бренд «ночное небо» */
+  [data-theme="light"] header.site{background:var(--navy);border-bottom-color:#1b254a;
+    box-shadow:0 1px 0 rgba(255,255,255,.05)}
+  [data-theme="light"] header.site .brand .name{color:#f3f1ea}
+  [data-theme="light"] header.site .menu a{color:#c7cbd8}
+  [data-theme="light"] header.site .menu a:hover,
+  [data-theme="light"] header.site .menu a.active{color:#ffffff}
+  [data-theme="light"] header.site .menu a.active::after{background:var(--gold)}
+  [data-theme="light"] header.site .theme-toggle,
+  [data-theme="light"] header.site .nav-toggle{border-color:#2a3560;color:#c7cbd8}
+  [data-theme="light"] header.site .theme-toggle:hover{border-color:var(--gold);color:var(--gold)}
+  [data-theme="light"] .brand .logo{box-shadow:0 0 0 1px #2a3560}
   /* поверхности — белые карточки на бумаге, тёплая граница + тонкая тень */
   [data-theme="light"] .card,
   [data-theme="light"] .featured,
   [data-theme="light"] .feed-item,
   [data-theme="light"] .press-item,
-  [data-theme="light"] .ext{background:#ffffff;
-    box-shadow:0 1px 2px rgba(21,23,30,.04),0 8px 24px rgba(21,23,30,.06)}
+  [data-theme="light"] .ext{background:#ffffff;border-color:#e3ddd0;
+    box-shadow:0 1px 2px rgba(21,23,30,.05),0 12px 30px rgba(21,23,30,.10)}
   [data-theme="light"] .poster,
   [data-theme="light"] .featured-poster{background:#eceae3}
   [data-theme="light"] .ph,
@@ -101,7 +111,10 @@
   [data-theme="light"] article.prose,
   [data-theme="light"] .prose{color:#2b2f3a}
   [data-theme="light"] .prose > p:first-of-type{color:#1a1d27}
-  [data-theme="light"] .menu{background:rgba(251,250,247,.98)}
+  [data-theme="light"] .menu{background:var(--navy)}
+  /* тёмный футер — закрывает тональный ритм: шапка ↔ тело ↔ футер */
+  [data-theme="light"] footer.site{background:var(--navy);border-top-color:#1b254a;color:#c7cbd8}
+  [data-theme="light"] footer.site a{color:var(--gold)}
   /* кнопки «Обо мне»: белые пилюли, латунная рамка, чернила, синяя стрелка */
   [data-theme="light"] .about-hero .socials a{background:#ffffff;color:var(--text);
     border-color:#dccfa6;box-shadow:0 1px 2px rgba(21,23,30,.05)}
@@ -203,8 +216,8 @@
   .page-sub{color:var(--muted);font-size:16px;margin-bottom:24px;max-width:60ch}
 
   /* CARD GRID (reviews + collections) */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:26px}
-  .grid.wide{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px}
+  .grid.wide{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}
   .card{background:linear-gradient(180deg,#1a1a22,#121217);border:1px solid var(--border);
     border-radius:14px;overflow:hidden;cursor:pointer;color:inherit;
     transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column;
@@ -298,11 +311,13 @@
 
   /* PRESS */
   .press-layout{display:flex;gap:36px;align-items:flex-start;max-width:980px;margin:0 auto}
-  .press-nav{position:sticky;top:78px;flex-shrink:0;width:190px;display:flex;flex-direction:column;gap:3px}
-  .press-nav a{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:14px;
-    padding:8px 12px;border-radius:9px;border-left:2px solid transparent;cursor:pointer;transition:.2s}
-  .press-nav a:hover,.press-nav a.active{color:var(--text);background:var(--bg-2);border-left-color:var(--accent)}
-  .press-nav a span{color:var(--muted);font-size:12px}
+  .press-nav{position:sticky;top:82px;flex-shrink:0;width:238px;display:flex;flex-direction:column;gap:2px;
+    background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px;
+    box-shadow:0 1px 2px rgba(0,0,0,.04),0 10px 26px rgba(0,0,0,.05)}
+  .press-nav a{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:14px;
+    padding:9px 12px;border-radius:9px;border-left:2px solid transparent;cursor:pointer;transition:.2s}
+  .press-nav a:hover,.press-nav a.active{color:var(--text);background:var(--bg-2);border-left-color:var(--gold)}
+  .press-nav a span{color:var(--gold);font-size:12px;font-weight:700;font-family:"Playfair Display",serif}
   .press-body{flex:1;min-width:0}
   .press-list{display:flex;flex-direction:column;gap:14px}
   .press-item{display:flex;align-items:stretch;gap:18px;color:inherit;
@@ -327,7 +342,7 @@
     color:var(--heading);line-height:1.12}
   .fest-emblem{flex-shrink:0;display:grid;place-items:center;height:42px}
   .fest-logo{height:42px;width:auto;max-width:160px;display:block}
-  .fest-logo.gold{width:130px;background:var(--accent);
+  .fest-logo.gold{width:130px;background:var(--gold);
     -webkit-mask:var(--logo) left center/contain no-repeat;mask:var(--logo) left center/contain no-repeat}
   .press-main{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
   .press-outlet{color:var(--muted-warm);font-weight:700;font-size:12px;letter-spacing:.05em;
@@ -336,7 +351,8 @@
   .press-main .press-meta{color:var(--muted);font-size:13px;margin-top:5px}
   @media(max-width:760px){
     .press-layout{flex-direction:column;gap:16px}
-    .press-nav{position:static;flex-direction:row;flex-wrap:wrap;width:auto;gap:8px}
+    .press-nav{position:static;flex-direction:row;flex-wrap:wrap;width:auto;gap:8px;
+      background:none;border:none;padding:0;box-shadow:none}
     .press-nav a{border-left:0;border:1px solid var(--border);border-radius:20px;padding:6px 12px}
     .press-nav a span{display:none}
   }
