@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>try{if(localStorage.getItem('km-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
 <!-- PAGE_META_START -->
 <title>Караван идёт — авторский сайт о кино Карена Аванесяна</title>
 <meta name="description" content="Авторский сайт исследователя кино, кандидата социологических наук Карена Аванесяна. Рецензии, репортажи с кинофестивалей, публикации в СМИ.">
@@ -30,8 +31,68 @@
     --muted-warm:#b3aa98;     /* тёплый приглушённый — для дат и подписей */
     --accent:#e8b84b;
     --accent-2:#c8423a;
+    --heading:#fff;
     --maxw:1180px;
   }
+  /* ============ СВЕТЛАЯ ТЕМА (белый + светло-синий) ============
+     Только переопределения — тёмная тема не трогается. Скролл-истории
+     остаются тёмными (см. main.scrolly ниже), это «кинозал». */
+  :root[data-theme="light"]{
+    --bg:#f5f8fd;
+    --bg-2:#e9f0f9;
+    --card:#ffffff;
+    --border:#d6e2f0;
+    --text:#16202e;
+    --muted:#55657c;
+    --muted-warm:#6a7282;
+    --accent:#2f6fe0;
+    --accent-2:#1a4fb5;
+    --heading:#11233b;
+  }
+  [data-theme="light"] body::before{
+    background:
+      radial-gradient(900px 600px at 86% 2%, rgba(47,111,224,.10), transparent 60%),
+      radial-gradient(820px 560px at 4% 4%, rgba(120,170,255,.10), transparent 58%),
+      radial-gradient(1300px 1050px at 50% 42%, rgba(206,222,247,.30), transparent 72%),
+      linear-gradient(180deg, #eef4fc 0%, #f3f7fd 50%, #f7fafe 100%);
+  }
+  [data-theme="light"] header.site{background:rgba(255,255,255,.82)}
+  [data-theme="light"] .brand .logo{box-shadow:0 0 22px rgba(47,111,224,.16)}
+  /* поверхности-карточки → светлые */
+  [data-theme="light"] .card{background:linear-gradient(180deg,#ffffff,#eef4fc)}
+  [data-theme="light"] .featured{background:linear-gradient(180deg,#ffffff,#eaf1fb)}
+  [data-theme="light"] .feed-item,
+  [data-theme="light"] .press-item,
+  [data-theme="light"] .ext,
+  [data-theme="light"] .pill{background:linear-gradient(180deg,#ffffff,#eef4fc)}
+  [data-theme="light"] .poster,
+  [data-theme="light"] .featured-poster{background:#e6edf6}
+  [data-theme="light"] .ph,
+  [data-theme="light"] .featured-poster .ph,
+  [data-theme="light"] .review-head .poster,
+  [data-theme="light"] .fest-badge{background:linear-gradient(160deg,#eef3fb,#dde7f5)}
+  [data-theme="light"] .card:hover,
+  [data-theme="light"] .featured:hover,
+  [data-theme="light"] .feed-item:hover,
+  [data-theme="light"] .press-item:hover{border-color:#9fbde6}
+  /* заголовки и текст, заданные жёстким #fff/серым → читаемые на белом */
+  [data-theme="light"] .featured-title,
+  [data-theme="light"] .review-head h1,
+  [data-theme="light"] .review-headline,
+  [data-theme="light"] .prose h2,
+  [data-theme="light"] .prose blockquote,
+  [data-theme="light"] .prose blockquote.pullquote{color:var(--heading)}
+  [data-theme="light"] .featured-film{color:#51607a}
+  [data-theme="light"] .card-excerpt,
+  [data-theme="light"] .card-headline,
+  [data-theme="light"] .featured-excerpt,
+  [data-theme="light"] .feed-item p,
+  [data-theme="light"] .coll-body p{color:#3b4658}
+  [data-theme="light"] article.prose,
+  [data-theme="light"] .prose{color:#2b3645}
+  [data-theme="light"] .prose > p:first-of-type{color:#1a2535}
+  /* мобильное меню на светлом фоне */
+  [data-theme="light"] .menu{background:rgba(255,255,255,.98)}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
@@ -76,6 +137,16 @@
   .menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
   .nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:9px;
     width:42px;height:38px;color:var(--text);cursor:pointer;font-size:18px;line-height:1}
+  .nav-right{display:flex;align-items:center;gap:22px}
+  .theme-toggle{background:none;border:1px solid var(--border);border-radius:50%;
+    width:38px;height:38px;display:grid;place-items:center;color:var(--text);cursor:pointer;
+    flex-shrink:0;transition:color .2s,border-color .2s}
+  .theme-toggle:hover{color:var(--accent);border-color:var(--accent)}
+  .theme-toggle .ic{width:18px;height:18px}
+  .theme-toggle .ic-sun{display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+  .theme-toggle .ic-moon{display:none;fill:currentColor;stroke:none}
+  :root[data-theme="light"] .theme-toggle .ic-sun{display:none}
+  :root[data-theme="light"] .theme-toggle .ic-moon{display:block}
 
   /* HERO — центрированный, спокойный, с киккером и слоганом */
   .hero{max-width:var(--maxw);margin:0 auto;padding:64px 24px 26px;text-align:center}
@@ -354,7 +425,13 @@
   .scrolly--paged .scene-intro,.scrolly--paged .scene-note,.scrolly--paged .coll-entry{scroll-snap-stop:always}
   /* без fadeUp: его transform (fill:both) сделал бы main контейнером для
      position:fixed, и счётчик/кнопка «назад» поехали бы вместе со страницей */
-  main.scrolly{max-width:none;margin:0;padding:0;min-height:100vh;animation:none}
+  /* скролл-история — всегда «кинозал»: тёмный фон и золотой акцент,
+     независимо от темы сайта (переопределяем переменные внутри scrolly) */
+  main.scrolly{max-width:none;margin:0;padding:0;min-height:100vh;animation:none;
+    background:#0a0a0c;color:#ececf1;
+    --bg:#0a0a0c;--bg-2:#111114;--card:#15151a;--border:#2a2a33;
+    --text:#ececf1;--muted:#b0b0be;--muted-warm:#b3aa98;
+    --accent:#e8b84b;--accent-2:#c8423a;--heading:#fff}
   .scrolly-back{position:fixed;top:74px;left:max(18px,4vw);z-index:40;display:inline-flex;
     align-items:center;gap:8px;color:#cfcabf;font-size:14px;padding:8px 14px;border-radius:30px;
     background:rgba(12,12,16,.55);border:1px solid var(--border);backdrop-filter:blur(8px);transition:color .2s,border-color .2s}
@@ -486,16 +563,22 @@
            onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>К</div>'">
       <div class="name">КАРАВАН <span>ИДЁТ</span></div>
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Меню" aria-expanded="false">☰</button>
-    <nav class="menu" id="menu" aria-label="Основное меню">
-      <a href="/reviews" data-nav="reviews">Рецензии</a>
-      <a href="/press" data-nav="press">Публикации в СМИ</a>
-      <a href="/festivals" data-nav="festivals">Кинофестивали</a>
-      <a href="/collections" data-nav="collections">Подборки</a>
-      <a href="/feed" data-nav="feed">Заметки</a>
-      <a href="/lectures/">Лекции</a>
-      <a href="/about" data-nav="about">Обо мне</a>
-    </nav>
+    <div class="nav-right">
+      <nav class="menu" id="menu" aria-label="Основное меню">
+        <a href="/reviews" data-nav="reviews">Рецензии</a>
+        <a href="/press" data-nav="press">Публикации в СМИ</a>
+        <a href="/festivals" data-nav="festivals">Кинофестивали</a>
+        <a href="/collections" data-nav="collections">Подборки</a>
+        <a href="/feed" data-nav="feed">Заметки</a>
+        <a href="/lectures/">Лекции</a>
+        <a href="/about" data-nav="about">Обо мне</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Светлая или тёмная тема" title="Светлая / тёмная тема">
+        <svg class="ic ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><line x1="12" y1="1.7" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.3"/><line x1="1.7" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.3" y2="12"/><line x1="4.3" y1="4.3" x2="6" y2="6"/><line x1="18" y1="18" x2="19.7" y2="19.7"/><line x1="4.3" y1="19.7" x2="6" y2="18"/><line x1="18" y1="6" x2="19.7" y2="4.3"/></svg>
+        <svg class="ic ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    </div>
   </div>
 </header>
 
@@ -528,6 +611,14 @@ const setTitle = t => { document.title = t; };
 navToggle.addEventListener('click', ()=>{
   const open = menu.classList.toggle('open');
   navToggle.setAttribute('aria-expanded', open?'true':'false');
+});
+
+/* переключатель темы (солнце/луна), запоминается в localStorage */
+document.getElementById('themeToggle').addEventListener('click', ()=>{
+  const toLight = document.documentElement.getAttribute('data-theme') !== 'light';
+  if(toLight) document.documentElement.setAttribute('data-theme','light');
+  else document.documentElement.removeAttribute('data-theme');
+  try{ localStorage.setItem('km-theme', toLight?'light':'dark'); }catch(e){}
 });
 
 /* ---------- рендереры (фетч + сборка из общего модуля R) ---------- */
