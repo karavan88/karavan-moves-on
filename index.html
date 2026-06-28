@@ -32,67 +32,99 @@
     --accent:#e8b84b;
     --accent-2:#c8423a;
     --heading:#fff;
+    --gold:#e8b84b;          /* латунь — звёзды, капитель, линейки (в тёмной = акцент) */
+    --gold-empty:#3a3a46;    /* пустые звёзды */
+    --navy:#0e1638;          /* структурный тёмно-синий — бейджи */
     --maxw:1180px;
   }
-  /* ============ СВЕТЛАЯ ТЕМА (белый + светло-синий) ============
-     Только переопределения — тёмная тема не трогается. Скролл-истории
-     остаются тёмными (см. main.scrolly ниже), это «кинозал». */
+  /* ============ СВЕТЛАЯ ТЕМА — «бумага + чернила + латунь» ============
+     Тёплый off-white вместо холодного голубого. Синий — только интерактив,
+     латунь (--gold) — украшающий акцент: звёзды, капитель, линейки, рамки.
+     Только переопределения; тёмная тема не трогается. */
   :root[data-theme="light"]{
-    --bg:#f5f8fd;
-    --bg-2:#e9f0f9;
-    --card:#ffffff;
-    --border:#d6e2f0;
-    --text:#16202e;
-    --muted:#55657c;
-    --muted-warm:#6a7282;
-    --accent:#2f6fe0;
-    --accent-2:#1a4fb5;
-    --heading:#11233b;
+    --bg:#fbfaf7;          /* бумага */
+    --bg-2:#f2efe9;
+    --card:#ffffff;        /* карточки «плывут» по бумаге */
+    --border:#e8e4db;      /* тёплые линейки 1px */
+    --text:#15171e;        /* чернила */
+    --muted:#5b6170;
+    --muted-warm:#7c7563;
+    --accent:#1e3fb8;      /* синий — только ссылки/активное/«Читать →» */
+    --accent-2:#0e1638;
+    --heading:#15171e;
+    --gold:#b98b2e;        /* латунь — декор */
+    --gold-empty:#d9d4c9;  /* пустые звёзды */
+    --navy:#0e1638;
   }
+  [data-theme="light"] body{background:var(--bg)}
   [data-theme="light"] body::before{
     background:
-      radial-gradient(900px 600px at 86% 2%, rgba(47,111,224,.10), transparent 60%),
-      radial-gradient(820px 560px at 4% 4%, rgba(120,170,255,.10), transparent 58%),
-      radial-gradient(1300px 1050px at 50% 42%, rgba(206,222,247,.30), transparent 72%),
-      linear-gradient(180deg, #eef4fc 0%, #f3f7fd 50%, #f7fafe 100%);
+      radial-gradient(1200px 900px at 50% 0%, rgba(255,255,255,.85), transparent 62%),
+      linear-gradient(180deg, #ffffff 0%, #fbfaf7 58%);
   }
-  [data-theme="light"] header.site{background:rgba(255,255,255,.82)}
-  [data-theme="light"] .brand .logo{box-shadow:0 0 22px rgba(47,111,224,.16)}
-  /* поверхности-карточки → светлые */
-  [data-theme="light"] .card{background:linear-gradient(180deg,#ffffff,#eef4fc)}
-  [data-theme="light"] .featured{background:linear-gradient(180deg,#ffffff,#eaf1fb)}
+  [data-theme="light"] header.site{background:rgba(251,250,247,.85)}
+  [data-theme="light"] .brand .logo{box-shadow:0 0 0 1px var(--border)}
+  /* поверхности — белые карточки на бумаге, тёплая граница + тонкая тень */
+  [data-theme="light"] .card,
+  [data-theme="light"] .featured,
   [data-theme="light"] .feed-item,
   [data-theme="light"] .press-item,
-  [data-theme="light"] .ext,
-  [data-theme="light"] .pill{background:linear-gradient(180deg,#ffffff,#eef4fc)}
+  [data-theme="light"] .ext{background:#ffffff;
+    box-shadow:0 1px 2px rgba(21,23,30,.04),0 8px 24px rgba(21,23,30,.06)}
   [data-theme="light"] .poster,
-  [data-theme="light"] .featured-poster{background:#e6edf6}
+  [data-theme="light"] .featured-poster{background:#eceae3}
   [data-theme="light"] .ph,
   [data-theme="light"] .featured-poster .ph,
-  [data-theme="light"] .review-head .poster,
-  [data-theme="light"] .fest-badge{background:linear-gradient(160deg,#eef3fb,#dde7f5)}
+  [data-theme="light"] .review-head .poster{background:linear-gradient(160deg,#f3f1ea,#e7e3d8)}
+  /* убираем «киноплёнку» по краям постеров — в светлой теме это читается как глитч */
+  [data-theme="light"] .poster{padding:0}
+  [data-theme="light"] .poster::before,
+  [data-theme="light"] .poster::after{display:none}
   [data-theme="light"] .card:hover,
   [data-theme="light"] .featured:hover,
   [data-theme="light"] .feed-item:hover,
-  [data-theme="light"] .press-item:hover{border-color:#9fbde6}
-  /* заголовки и текст, заданные жёстким #fff/серым → читаемые на белом */
+  [data-theme="light"] .press-item:hover{border-color:#d8c89a;
+    box-shadow:0 2px 4px rgba(21,23,30,.05),0 14px 32px rgba(21,23,30,.09)}
+  /* заголовки и тело, заданные жёстким #fff/кремовым → читаемые на бумаге */
   [data-theme="light"] .featured-title,
   [data-theme="light"] .review-head h1,
   [data-theme="light"] .review-headline,
   [data-theme="light"] .prose h2,
   [data-theme="light"] .prose blockquote,
   [data-theme="light"] .prose blockquote.pullquote{color:var(--heading)}
-  [data-theme="light"] .featured-film{color:#51607a}
+  [data-theme="light"] .featured-film{color:#6a6256}
   [data-theme="light"] .card-excerpt,
   [data-theme="light"] .card-headline,
   [data-theme="light"] .featured-excerpt,
   [data-theme="light"] .feed-item p,
-  [data-theme="light"] .coll-body p{color:#3b4658}
+  [data-theme="light"] .coll-body p{color:#3c4150}
   [data-theme="light"] article.prose,
-  [data-theme="light"] .prose{color:#2b3645}
-  [data-theme="light"] .prose > p:first-of-type{color:#1a2535}
-  /* мобильное меню на светлом фоне */
-  [data-theme="light"] .menu{background:rgba(255,255,255,.98)}
+  [data-theme="light"] .prose{color:#2b2f3a}
+  [data-theme="light"] .prose > p:first-of-type{color:#1a1d27}
+  [data-theme="light"] .menu{background:rgba(251,250,247,.98)}
+  /* кнопки «Обо мне»: белые пилюли, латунная рамка, чернила, синяя стрелка */
+  [data-theme="light"] .about-hero .socials a{background:#ffffff;color:var(--text);
+    border-color:#dccfa6;box-shadow:0 1px 2px rgba(21,23,30,.05)}
+  [data-theme="light"] .about-hero .socials a:hover{border-color:var(--gold);color:var(--gold)}
+  [data-theme="light"] .about-hero .photo{background:linear-gradient(160deg,#f3f1ea,#e7e3d8)}
+  /* скролл-истории следуют теме: в светлой — бумага вместо чёрного «зала» */
+  [data-theme="light"] .scrolly .coll-entry::before{filter:blur(46px) brightness(1.04) saturate(1.05)}
+  [data-theme="light"] .scrolly .coll-entry::after{
+    background:radial-gradient(120% 90% at 50% 30%,transparent,rgba(251,250,247,.72) 70%),
+      linear-gradient(180deg,rgba(251,250,247,.5),rgba(251,250,247,.86))}
+  [data-theme="light"] .scrolly .coll-rank{color:#15171e;opacity:.05}
+  [data-theme="light"] .scrolly .coll-body h3,
+  [data-theme="light"] .scrolly .scrolly-title,
+  [data-theme="light"] .scrolly .scene-note h2{color:var(--heading)}
+  [data-theme="light"] .scrolly .coll-meta,
+  [data-theme="light"] .scrolly .scrolly-sub,
+  [data-theme="light"] .scrolly .scene-note p,
+  [data-theme="light"] .scrolly-body > p:first-child{color:#3c4150}
+  [data-theme="light"] .scrolly .coll-body p{color:#2b2f3a}
+  [data-theme="light"] .scrolly-back,
+  [data-theme="light"] .scrolly-counter{background:rgba(255,255,255,.72)}
+  [data-theme="light"] .scrolly-back{color:var(--muted)}
+  [data-theme="light"] .scrolly-counter i{color:var(--muted)}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
@@ -129,7 +161,7 @@
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
     display:grid;place-items:center;font-weight:800;color:#0a0a0c;font-size:22px}
   .brand .name{font-weight:800;letter-spacing:.16em;font-size:16px;white-space:nowrap}
-  .brand .name span{color:var(--accent)}
+  .brand .name span{color:var(--gold)}
   .menu{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
   .menu a{color:var(--muted);font-size:14px;letter-spacing:.02em;
     transition:color .2s;position:relative;padding:2px 0}
@@ -154,7 +186,7 @@
     text-transform:uppercase;margin-bottom:20px}
   .hero h1{font-family:"Playfair Display",serif;font-size:clamp(34px,5.6vw,62px);
     font-weight:800;line-height:1.05;letter-spacing:-.01em;margin:0 auto;max-width:18ch}
-  .hero h1 em{color:var(--accent);font-style:italic}
+  .hero h1 em{color:var(--gold);font-style:italic}
   .hero p{color:var(--muted);font-size:18px;margin:20px auto 0;max-width:58ch}
 
   /* LAYOUT */
@@ -196,11 +228,12 @@
     padding:24px 34px;
     background:radial-gradient(120% 90% at 50% 0%, rgba(232,184,75,.06), transparent 55%),
       linear-gradient(160deg,#1b1b24,#0d0d12)}
-  .rating-badge{position:absolute;top:12px;right:18px;z-index:3;background:rgba(10,10,12,.82);
-    border:1px solid var(--border);color:var(--accent);font-weight:700;font-size:14px;
+  /* бейджи на постерах — тёмно-синяя пилюля, латунная звезда / белый текст */
+  .rating-badge{position:absolute;top:12px;right:18px;z-index:3;background:rgba(14,22,56,.82);
+    border:1px solid rgba(255,255,255,.16);color:var(--gold);font-weight:700;font-size:14px;
     padding:5px 10px;border-radius:20px;backdrop-filter:blur(4px)}
-  .count-badge{position:absolute;bottom:12px;left:18px;z-index:3;background:rgba(10,10,12,.82);
-    border:1px solid var(--border);color:var(--text);font-size:12px;
+  .count-badge{position:absolute;bottom:12px;left:18px;z-index:3;background:rgba(14,22,56,.82);
+    border:1px solid rgba(255,255,255,.16);color:#fff;font-size:12px;
     padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px)}
   .card-body{padding:16px 16px 18px}
   .card-body h3{font-size:17px;font-weight:700;line-height:1.3}
@@ -224,7 +257,7 @@
     color:#6a6a78;font-family:"Playfair Display",serif;font-size:26px;text-align:center;padding:24px;
     background:linear-gradient(160deg,#1b1b24,#0d0d12)}
   .featured-body{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:30px 34px}
-  .featured-kicker{color:var(--accent);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+  .featured-kicker{color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
   .featured-title{font-family:"Playfair Display",serif;font-size:clamp(24px,3.2vw,34px);font-weight:800;
     line-height:1.1;color:#fff}
   .featured-film{font-family:"Playfair Display",serif;color:#e7e2d6;font-size:18px;margin-top:10px}
@@ -291,7 +324,7 @@
     border-bottom:1px solid rgba(232,184,75,.26)}
   .fest-head:first-child{margin-top:8px}
   .fest-name{font-family:"Playfair Display",serif;font-size:clamp(21px,2.6vw,27px);font-weight:700;
-    color:#fff;line-height:1.12}
+    color:var(--heading);line-height:1.12}
   .fest-emblem{flex-shrink:0;display:grid;place-items:center;height:42px}
   .fest-logo{height:42px;width:auto;max-width:160px;display:block}
   .fest-logo.gold{width:130px;background:var(--accent);
@@ -328,18 +361,18 @@
   .review-headline{font-family:"Playfair Display",serif;font-weight:800;
     font-size:clamp(24px,3.6vw,34px);line-height:1.14;color:#fff;margin:6px 0 26px}
   .stars{margin-top:18px;font-size:19px;letter-spacing:2px;line-height:1.4}
-  .stars .st-full{color:var(--accent)}
-  .stars .st-empty{color:#3a3a46}
-  .stars .st-half{position:relative;color:#3a3a46}
-  .stars .st-half::before{content:"★";position:absolute;left:0;top:0;width:50%;overflow:hidden;color:var(--accent)}
+  .stars .st-full{color:var(--gold)}
+  .stars .st-empty{color:var(--gold-empty)}
+  .stars .st-half{position:relative;color:var(--gold-empty)}
+  .stars .st-half::before{content:"★";position:absolute;left:0;top:0;width:50%;overflow:hidden;color:var(--gold)}
   .stars .num{color:var(--muted);font-size:14px;letter-spacing:0;margin-left:10px}
   .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
   .pill{border:1px solid var(--border);color:var(--muted);font-size:12px;
     padding:5px 12px;border-radius:20px;letter-spacing:.03em}
-  .fest-badge{display:inline-block;margin-top:16px;background:rgba(232,184,75,.12);
-    border:1px solid rgba(232,184,75,.42);color:var(--accent);font-weight:700;font-size:13px;
+  .fest-badge{display:inline-block;margin-top:16px;background:rgba(185,139,46,.10);
+    border:1px solid rgba(185,139,46,.45);color:var(--gold);font-weight:700;font-size:13px;
     padding:8px 15px;border-radius:20px;cursor:pointer;letter-spacing:.02em;transition:.2s}
-  .fest-badge:hover{background:rgba(232,184,75,.22)}
+  .fest-badge:hover{background:rgba(185,139,46,.18)}
   /* бейдж «открыть на Letterboxd» */
   .ext-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
   .ext{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;
@@ -366,7 +399,7 @@
   .about-hero .who{flex:1;min-width:240px}
   .about-hero h1{font-family:"Playfair Display",serif;font-size:clamp(28px,5vw,44px);
     font-weight:800;line-height:1.08}
-  .about-hero .role{color:var(--accent);margin-top:12px;font-size:15px;letter-spacing:.04em}
+  .about-hero .role{color:var(--gold);margin-top:12px;font-size:15px;letter-spacing:.04em}
   .about-hero .socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
   .about-hero .socials a{display:inline-flex;align-items:center;gap:6px;
     border:1px solid var(--border);color:var(--text);font-size:13px;font-weight:500;
@@ -425,13 +458,7 @@
   .scrolly--paged .scene-intro,.scrolly--paged .scene-note,.scrolly--paged .coll-entry{scroll-snap-stop:always}
   /* без fadeUp: его transform (fill:both) сделал бы main контейнером для
      position:fixed, и счётчик/кнопка «назад» поехали бы вместе со страницей */
-  /* скролл-история — всегда «кинозал»: тёмный фон и золотой акцент,
-     независимо от темы сайта (переопределяем переменные внутри scrolly) */
-  main.scrolly{max-width:none;margin:0;padding:0;min-height:100vh;animation:none;
-    background:#0a0a0c;color:#ececf1;
-    --bg:#0a0a0c;--bg-2:#111114;--card:#15151a;--border:#2a2a33;
-    --text:#ececf1;--muted:#b0b0be;--muted-warm:#b3aa98;
-    --accent:#e8b84b;--accent-2:#c8423a;--heading:#fff}
+  main.scrolly{max-width:none;margin:0;padding:0;min-height:100vh;animation:none}
   .scrolly-back{position:fixed;top:74px;left:max(18px,4vw);z-index:40;display:inline-flex;
     align-items:center;gap:8px;color:#cfcabf;font-size:14px;padding:8px 14px;border-radius:30px;
     background:rgba(12,12,16,.55);border:1px solid var(--border);backdrop-filter:blur(8px);transition:color .2s,border-color .2s}
@@ -441,7 +468,7 @@
   .scene-intro{min-height:100vh;display:grid;place-items:center;text-align:center;
     padding:90px 6vw;scroll-snap-align:start;position:relative}
   .scene-intro-inner{max-width:780px}
-  .scrolly-kicker{color:var(--accent);font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px}
+  .scrolly-kicker{color:var(--gold);font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px}
   .scrolly-title{font-family:"Playfair Display",serif;font-weight:800;color:#fff;
     font-size:clamp(34px,6.4vw,68px);line-height:1.04;letter-spacing:-.01em}
   .scrolly-sub{color:#c8c3b8;font-size:clamp(16px,2vw,21px);line-height:1.5;margin:26px auto 0;max-width:620px}
@@ -487,12 +514,12 @@
   .scrolly .coll-body h3{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,46px);
     font-weight:800;color:#fff;line-height:1.06;margin:0}
   /* название фильма — прямо под именем героини */
-  .scrolly .coll-film{font-family:"Playfair Display",serif;font-style:italic;color:var(--accent);
+  .scrolly .coll-film{font-family:"Playfair Display",serif;font-style:italic;color:var(--gold);
     font-size:clamp(18px,2.2vw,27px);line-height:1.2;margin-top:11px}
   .scrolly .coll-meta{color:#dcd7cc;font-size:clamp(15px,1.8vw,19px);margin:13px 0 22px}
   .scrolly .coll-meta b{color:var(--accent)}
   /* пометка «вне канона» для фильмов второго ряда */
-  .scrolly .coll-meta .oc{color:var(--accent);font-style:italic;border:1px solid rgba(232,184,75,.4);
+  .scrolly .coll-meta .oc{color:var(--gold);font-style:italic;border:1px solid rgba(185,139,46,.45);
     border-radius:20px;padding:1px 9px;font-size:.85em;white-space:nowrap}
   .scrolly .coll-body p{color:#e4e4ea;font-size:clamp(15px,1.7vw,19px);line-height:1.66}
   .scrolly .coll-body p + p{margin-top:.85em}
@@ -516,7 +543,7 @@
     font-family:"Playfair Display",serif;color:#fff;background:rgba(12,12,16,.5);
     border:1px solid var(--border);backdrop-filter:blur(8px);padding:8px 16px;border-radius:30px;
     display:flex;align-items:baseline;gap:5px;opacity:0;transition:opacity .3s ease}
-  .scrolly-counter b{font-size:22px;font-weight:800;color:var(--accent)}
+  .scrolly-counter b{font-size:22px;font-weight:800;color:var(--gold)}
   .scrolly-counter i{font-style:normal;font-size:13px;color:var(--muted)}
   @media(max-width:680px){
     .scrolly .coll-entry{flex-direction:column;text-align:center;justify-content:center;gap:22px;padding:90px 22px}
