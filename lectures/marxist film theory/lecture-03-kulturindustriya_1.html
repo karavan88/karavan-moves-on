@@ -214,6 +214,16 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 .flow .fstep.eco{border-top:4px solid var(--red)}.flow .fstep.eco .fsk{color:var(--red)}
 .flow .fstep.ideo{border-top:4px solid var(--ochre);background:var(--oxblood)}.flow .fstep.ideo .fsk{color:var(--ochre)}
 .flow .farr{display:flex;align-items:center;padding:0 9px;color:var(--red);font-family:var(--display);font-weight:700;font-size:24px}
+/* Таймлайн с мини-постерами */
+.tline{display:flex;flex-direction:column;gap:8px;align-self:center;width:100%;max-width:960px}
+.tline .tl{display:grid;grid-template-columns:104px 46px 1fr auto;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding:8px 6px}
+.tline .tl.star{background:var(--oxblood);border:1px solid var(--red);border-radius:2px;padding:10px 12px}
+.tline .ty{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--red)}
+.tline .tp{width:46px;aspect-ratio:2/3;object-fit:cover;border:1px solid var(--line-strong);display:block;background:var(--ink)}
+.tline .tt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(14px,1.5vw,19px);color:var(--bone);line-height:1.05}
+.tline .tt span{display:block;font-family:var(--serif);font-weight:400;text-transform:none;font-size:12.5px;color:var(--bone-dim);margin-top:3px}
+.tline .tstar{font-family:var(--mono);font-size:11px;color:var(--ochre);letter-spacing:.08em;white-space:nowrap}
+@media (max-width:900px){.tline .tl{grid-template-columns:74px 38px 1fr;gap:10px}.tline .tstar{display:none}}
 /* Постеры в списке «К просмотру» */
 .watchlist.withposters .wfilm{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start;padding:16px 18px 16px 16px}
 .watchlist.withposters .wfilm .wy{display:none}
@@ -441,6 +451,39 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     </div>
     <p style="margin-top:18px;max-width:82ch">Адорно описывает не злой умысел, а <strong>экономическую логику</strong>: стандарт, жанр и звезда — способы капитала застраховать вложения. Эстетика следует за бухгалтерией. (Подробно — лекция 11.)</p>
     <div class="slide-foot"><span class="src">Вопрос 01: почему капитализм массово производит культуру именно так.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- TIMELINE: HISTORY OF CULTURE INDUSTRY -->
+  <section class="slide" data-toc="Когда началась культуриндустрия">
+    <div class="eyebrow">Вопрос 01 <span class="sep">/</span> <span class="tag">Историзация · когда это началось</span></div>
+    <h2>Когда культура встала на конвейер</h2>
+    <p class="lead" style="max-width:80ch;margin:12px 0 16px">Культуриндустрия — не вечная данность, а историческая форма. Вот её этапы: от кустарного эксперимента до платформенного капитализма.</p>
+    <div class="tline">
+      <div class="tl"><span class="ty">1895–1915</span><img class="tp" src="img/w500_v5Mv84C79pDiSAjeKCJS6lQeb9P.jpg" alt="«Путешествие на Луну»"><span class="tt">Экспериментальное кино<span>Мельес, ранний Чаплин, Гриффит изобретают язык. Стандарта ещё нет.</span></span><span class="tstar"></span></div>
+      <div class="tl"><span class="ty">1915–1927</span><img class="tp" src="img/w500_xW1pBLD4n8b71ThadZMNlcGJ0jj.jpg" alt="«Рождение нации»"><span class="tt">Индустриализация<span>Paramount, MGM, Fox, Warner: крупные студии и вертикальная интеграция.</span></span><span class="tstar"></span></div>
+      <div class="tl star"><span class="ty">1930–1948</span><img class="tp" src="img/w500_plVMSnTjPNaeLYiKuCc8ndFCXQg.jpg" alt="«Золотоискатели 1933»"><span class="tt">Классическая студийная система<span>Контракты, жанры-конвейеры, звёзды, серийность. Кино как завод Форда.</span></span><span class="tstar">★ это описывает Адорно</span></div>
+      <div class="tl"><span class="ty">1975 →</span><img class="tp" src="img/w500_zHO7LcDKgAM1sLAZ1Y9yuWc7W7B.jpg" alt="«Челюсти»"><span class="tt">Блокбастер<span>«Челюсти» и «Звёздные войны»: продают не фильм, а событие и франшизу.</span></span><span class="tstar"></span></div>
+      <div class="tl"><span class="ty">2007 →</span><img class="tp" src="img/w500_hj1xaEUGMiUxaFYoutlljtlkHSG.jpg" alt="«Мстители»"><span class="tt">Платформенный капитализм<span>Netflix, Disney+, Amazon: стандарт задаёт не продюсер, а данные (→ лекция 11).</span></span><span class="tstar"></span></div>
+    </div>
+    <div class="slide-foot"><span class="src">«Рождение нации» Гриффита (1915) — веха киноязыка и одновременно расистская пропаганда: признанный «шедевр» переоценивается вместе с ценностями.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WHY 1944 -->
+  <section class="slide">
+    <div class="eyebrow">Вопрос 01 <span class="sep">/</span> <span class="tag">Почему именно 1944</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Адорно описывает<br>не Netflix, а Голливуд 1940-х</h2>
+        <p style="margin-top:12px;max-width:48ch">«Диалектику просвещения» Адорно и Хоркхаймер пишут в <strong>1944-м</strong> — в разгар классической студийной системы. Их «культуриндустрия» — это конкретный Голливуд 1930-х–40-х, работающий как фабрика. Отсюда и индустриальный словарь.</p>
+        <p style="margin-top:8px">Важно для студента: теория родилась из наблюдения <em>конкретного</em> исторического этапа, а не из абстрактной нелюбви к «массовому».</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">1944</span><p>Текст написан в эмиграции, на глазах у студийного Голливуда.</p></div>
+        <div class="def"><span class="term">«Как Форд»</span><p>Контракты, жанры-линии, тестовые показы, звёзды-бренды.</p></div>
+        <div class="def"><span class="term">1948 →</span><p>Дело Paramount: студии теряют кинотеатры — но индустрия не слабеет, а меняет форму.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Историзировать Адорно — значит увидеть, что он анализировал реальный завод, а не «плохой вкус».</span><span class="fpg"></span></div>
   </section>
 
   <!-- CONCEPT 2 STANDARDIZATION -->
@@ -843,6 +886,39 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <div class="slide-foot"><span>Синтез кейсов</span><span class="fpg"></span></div>
   </section>
 
+  <!-- BLOCKBUSTER 1: JAWS -->
+  <section class="slide framefull" data-toc="Блокбастер · продают событие">
+    <div class="shot"><img src="img/w1280_i1yf91svRHX45l9BXL8rVFzLoPH.jpg" alt="Кадр из «Челюстей»"></div>
+    <span class="fyear">1975</span>
+    <div class="fcap"><div class="fk">Перелом · рождение блокбастера</div><h2>Голливуд перестал продавать фильмы — и начал продавать события</h2></div>
+    <div class="slide-foot"><span class="src">«Челюсти» · Стивен Спилберг · 1975 — широкий релиз + телереклама = новая модель.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BLOCKBUSTER 2: STAR WARS / FRANCHISE -->
+  <section class="slide">
+    <div class="eyebrow">Перелом <span class="sep">/</span> <span class="tag">От фильма к франшизе</span></div>
+    <div class="cols-wide">
+      <div class="framebox">
+        <img src="img/w1280_3H94YlnYWVLKQKEnfTBKvrCmHmt.jpg" alt="Кадр из «Звёздных войн»">
+        <span class="fbcap">«Звёздные войны» (1977) — фильм как ядро бренда, а не конечный продукт</span>
+      </div>
+      <div class="stack">
+        <h2>Франшиза:<br>стандартизация 2.0</h2>
+        <p style="margin-top:10px">«Звёздные войны» закрепляют модель: сам фильм — лишь центр <strong>бренда</strong>. Деньги — в сиквелах, игрушках, мерче, лицензиях, сериалах. Стандарт теперь не в одном фильме, а в бесконечной серии.</p>
+        <p style="margin-top:8px">Прямая линия к «Мстителям» (кейс 03): псевдоиндивидуализация Адорно, развёрнутая в планетарную вселенную.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Студийная система рухнула в 1948-м — но её логика вернулась как франшиза.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- KEY TAKEAWAY THESIS -->
+  <section class="slide thesis" data-toc="Главный вывод">
+    <div class="tlbl">Главный вывод</div>
+    <div class="big">Культуриндустрия — не порча Голливуда, а <span class="hl">следствие способа производства</span></div>
+    <div class="tsub">Адорно не говорит, что кино «испортилось». Он говорит, что сам капитализм ведёт искусство к стандартизации. Поэтому одна логика объясняет и студию 1930-х, и Netflix, и Marvel, и TikTok — это её разные исторические формы.</div>
+    <div class="slide-foot"><span>Что унести с лекции</span><span class="fpg"></span></div>
+  </section>
+
   <!-- Q3: NETWORK PREFRAME -->
   <section class="slide framefull" data-toc="Кино против индустрии · Network">
     <div class="shot"><img src="img/w1280_m4Iyzh9YVOh0ra7UwdMoJcrjxkx.jpg" alt="Кадр из «Network»"></div>
@@ -927,6 +1003,7 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <div class="eyebrow">Семинар <span class="sep">/</span> <span class="tag">Вопросы для обсуждения</span></div>
     <h2>Вопросы к дискуссии</h2>
     <ul class="qlist" style="margin-top:14px">
+      <li><p>На каком этапе шкалы (эксперимент → студия → блокбастер → платформа), по-вашему, <em>начинается</em> культуриндустрия — и почему именно там?</p></li>
       <li><p>Если вы любите какую-то франшизу — делает ли это вас «жертвой» культуриндустрии, или Адорно недооценивает зрителя? Где грань?</p></li>
       <li><p>Чем «псевдоиндивидуализация» отличается от настоящего разнообразия? Как отличить их на практике, разбирая фильм?</p></li>
       <li><p>Забастовка аниматоров Диснея: меняет ли знание о труде за кадром ваше восприятие «волшебства»?</p></li>
