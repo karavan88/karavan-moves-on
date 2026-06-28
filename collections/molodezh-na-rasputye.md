@@ -1,7 +1,7 @@
 ---
 title: Молодёжь на распутье
 subtitle: Пять фильмов о молодёжи как коллективном акторе под давлением классовых и культурных противоречий — от японской новой волны до парижских окраин
-cover: https://image.tmdb.org/t/p/w1280/t5AvHxcbYHKVzLqL40Ro5k8C5d9.jpg
+cover: https://image.tmdb.org/t/p/w1280/viGCwLxupyoaLsa6hrnu1gYrB0B.jpg
 kicker: 5 фильмов · скролл-история
 layout: scrolly
 ---

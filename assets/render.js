@@ -303,6 +303,10 @@ export function scrollyView(meta, bodyHtml, backHref, backLabel){
         ${kicker ? `<div class="scrolly-kicker">${esc(kicker)}</div>` : ''}
         <h1 class="scrolly-title">${esc(meta.title || '')}</h1>
         ${meta.subtitle ? `<p class="scrolly-sub">${esc(meta.subtitle)}</p>` : ''}
+        <div class="scrolly-author">
+          <img class="scrolly-avatar" src="/assets/karen.jpg" alt="Карен Аванесян" decoding="async" onerror="this.style.display='none'">
+          <span>рассказывает <b>Карен Аванесян</b></span>
+        </div>
         <div class="scroll-hint" aria-hidden="true"><span>прокрутите вниз</span><i></i></div>
       </div>
     </section>
