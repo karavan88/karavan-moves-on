@@ -24,18 +24,18 @@ const SUBJECTS = [
     title: 'Марксистская теория кино',
     blurb: 'История одной интеллектуальной традиции: как кино связано с капитализмом, идеологией и властью. Двенадцать лекций — от товара и идеологии до политической экономии кино.',
     lectures: [
-      { n:'01', file:'lecture-01-vvedenie.html',           title:'Зачем марксизму кино',     sub:'Основания: товар и идеология',          ready:true  },
-      { n:'02', file:'lecture-02-montazh.html',            title:'Монтаж и спор о форме',     sub:'Форма как идеология · диалектика монтажа', ready:true  },
-      { n:'03', file:'lecture-03-kulturindustriya_1.html', title:'Культуриндустрия',          sub:'Культура как товар · стандартизация',   ready:true  },
-      { n:'04', file:'lecture-04-benyamin_1.html',         title:'Беньямин: аура',            sub:'Воспроизводимость · политизация искусства', ready:false },
-      { n:'05', file:'lecture-05-brecht_1.html',           title:'Брехт: очуждение',          sub:'Очуждение против идеологии вживания',   ready:false },
-      { n:'06', file:'lecture-06-althusser_1.html',        title:'Альтюссер: интерпелляция',  sub:'Идеологические аппараты и субъект',     ready:false },
-      { n:'07', file:'lecture-07-apparatus.html',          title:'Теория аппарата',           sub:'Киноаппарат как идеологическая машина', ready:false },
-      { n:'08', file:'lecture-08-gramsci.html',            title:'Грамши и гегемония',        sub:'Культурная гегемония и согласие класса', ready:false },
-      { n:'09', file:'lecture-09-jameson.html',            title:'Джеймисон: постмодерн',     sub:'Поздний капитализм и культура',         ready:false },
-      { n:'10', file:'lecture-10-kinopraktika.html',       title:'Можно ли снять марксистский фильм?', sub:'Марксизм как кинопрактика: форма, содержание, практика', ready:false },
-      { n:'11', file:'lecture-10-capitalism.html',         title:'Капитализм сегодня',        sub:'Тупик, конкуренция, разрыв',            ready:false },
-      { n:'12', file:'lecture-11-politekonomiya.html',      title:'Политическая экономия кино',sub:'Индустрия, стриминг, внимание, ИИ',     ready:false },
+      { n:'01', file:'lecture-01-vvedenie.html',           title:'Зачем марксизму кино',     sub:'Основания: товар и идеология',          films:'«Новые времена» · «Метрополис» · «Чужие среди нас» · «Нефть»', ready:true  },
+      { n:'02', file:'lecture-02-montazh.html',            title:'Монтаж и спор о форме',     sub:'Форма как идеология · диалектика монтажа', films:'«Броненосец Потёмкин» · «Человек с киноаппаратом» · «Мать»', ready:true  },
+      { n:'03', file:'lecture-03-kulturindustriya_1.html', title:'Культуриндустрия',          sub:'Культура как товар · стандартизация',   films:'«Белоснежка» · «Унесённые ветром» · «Мстители»', ready:true  },
+      { n:'04', file:'lecture-04-benyamin_1.html',         title:'Беньямин: аура',            sub:'Воспроизводимость · политизация искусства', films:'«Человек с киноаппаратом» · «Триумф воли» · «Великий диктатор»', ready:false },
+      { n:'05', file:'lecture-05-brecht_1.html',           title:'Брехт: очуждение',          sub:'Очуждение против идеологии вживания',   films:'«Куле Вампе» · «Всё в порядке» · «Догвилль»', ready:false },
+      { n:'06', file:'lecture-06-althusser_1.html',        title:'Альтюссер: интерпелляция',  sub:'Идеологические аппараты и субъект',     films:'«Цельнометаллическая оболочка» · «Шоу Трумана» · «Окно во двор»', ready:false },
+      { n:'07', file:'lecture-07-apparatus.html',          title:'Теория аппарата',           sub:'Киноаппарат как идеологическая машина', films:'«Молодой мистер Линкольн» · «Джильда» · «Жанна Дильман»', ready:false },
+      { n:'08', file:'lecture-08-gramsci.html',            title:'Грамши и гегемония',        sub:'Культурная гегемония и согласие класса', films:'«Соль земли» · «Королевская битва»', ready:false },
+      { n:'09', file:'lecture-09-jameson.html',            title:'Джеймисон: постмодерн',     sub:'Поздний капитализм и культура',         films:'«Волк с Уолл-стрит» · «Бойцовский клуб» · «Американский психопат»', ready:false },
+      { n:'10', file:'lecture-10-kinopraktika.html',       title:'Можно ли снять марксистский фильм?', sub:'Марксизм как кинопрактика: форма, содержание, практика', films:'«Октябрь» · «Двадцатый век» · «Час печей» · «Платформа»', ready:false },
+      { n:'11', file:'lecture-10-capitalism.html',         title:'Капитализм сегодня',        sub:'Тупик, конкуренция, разрыв',            films:'«Паразиты» · «Метод исключения» · «Сквозь снег»', ready:false },
+      { n:'12', file:'lecture-11-politekonomiya.html',     title:'Политическая экономия кино',sub:'Индустрия, стриминг, внимание, ИИ',     films:'«Ирландец» · «Социальная дилемма» · «Игрок»', ready:false },
     ],
   },
   {
@@ -43,18 +43,18 @@ const SUBJECTS = [
     title: 'Психоанализ и теория кино',
     blurb: 'Взгляд, желание, фантазм и бессознательное: как психоанализ читает кино — и как кино спорит с ним. Двенадцать лекций от Фрейда и Юнга до лаканианского поворота.',
     lectures: [
-      { n:'01', file:null, title:'С чего начинается бессознательное в кино?',                 sub:'Фрейд и Юнг · жуткое · двойник как Тень',                 ready:false },
-      { n:'02', file:null, title:'Думает ли кино так, как мы видим сны?',                      sub:'Толкование сновидений · работа сна · сюрреализм',         ready:false },
-      { n:'03', file:null, title:'Почему в темноте зала мы теряем себя?',                      sub:'Бодри и Метц · аппарат · идентификация и шов',            ready:false },
-      { n:'04', file:null, title:'Почему кино заставляет нас узнавать себя?',                  sub:'Лакан · стадия зеркала · Воображаемое',                   ready:false },
-      { n:'05', file:null, title:'Почему мы смотрим именно так?',                              sub:'Малви и её критики · взгляд, маскарад, оппозиция',        ready:false },
-      { n:'06', file:null, title:'Почему семейные истории никогда не бывают только семейными?', sub:'Эдип · Имя-Отца · кастрация · миф/клиника/нуар',          ready:false },
-      { n:'07', file:null, title:'Как кино устраивает наше желание?',                          sub:'Лапланш и Понталис · Коуи · фантазм как завеса',          ready:false },
-      { n:'08', file:null, title:'Почему нас тянет к тому, что отвратительно?',                sub:'Кристева: абъекция · Крид против Кловер',                 ready:false },
-      { n:'09', file:null, title:'Можно ли показать безумие, не предав его?',                  sub:'Спецнеделя · безумие, этика, стигма · Фуко, Габбард',     ready:false },
-      { n:'10', file:null, title:'Что видит ребёнок, чего не видим мы?',                       sub:'Взгляд ребёнка · травма · психоанализ против истории',    ready:false },
-      { n:'11', file:null, title:'Что смотрит на нас с экрана?',                               sub:'Лакановский поворот · Жижек, Макгоуэн · взгляд-объект',   ready:false },
-      { n:'12', file:null, title:'Можно ли прочитать один фильм до самого дна?',               sub:'Капстоун · «Правила игры» Ренуара · весь инструментарий', ready:false },
+      { n:'01', file:null, title:'Жуткое и двойник',          sub:'С чего начинается бессознательное в кино?',              films:'«Калигари» · «Носферату» · «Пражский студент» · «Тайны одной души»', ready:false },
+      { n:'02', file:null, title:'Сновидение и сюрреализм',   sub:'Думает ли кино так, как мы видим сны?',                  films:'«Андалузский пёс» · «Завороженный» · «Сны» Куросавы', ready:false },
+      { n:'03', file:null, title:'Аппарат и шов',             sub:'Почему в темноте зала мы теряем себя?',                  films:'«Окно во двор» · «Шерлок-младший» · «Птицы»', ready:false },
+      { n:'04', file:null, title:'Лакан: стадия зеркала',     sub:'Почему кино заставляет нас узнавать себя?',              films:'«Персона» · «Таксист» · «Шоссе в никуда»', ready:false },
+      { n:'05', file:null, title:'Малви: мужской взгляд',     sub:'Почему мы смотрим именно так?',                          films:'«Головокружение» · «Гильда» · «Стелла Даллас»', ready:false },
+      { n:'06', file:null, title:'Эдип и Имя-Отца',           sub:'Почему семейные истории никогда не бывают только семейными?', films:'«Царь Эдип» · «Чайнатаун» · «Психо»', ready:false },
+      { n:'07', file:null, title:'Фантазм и желание',         sub:'Как кино устраивает наше желание?',                      films:'«Вперёд, путешественник» · «Малхолланд Драйв» · «Дневная красавица»', ready:false },
+      { n:'08', file:null, title:'Абъекция и чудовищное',     sub:'Почему нас тянет к тому, что отвратительно?',            films:'«Чужой» · «Кэрри» · «Хэллоуин»', ready:false },
+      { n:'09', file:null, title:'Безумие на экране',         sub:'Можно ли показать безумие, не предав его?',              films:'«Отвращение» · «Жилец» · «Чистый, бритый» · «Меланхолия»', ready:false },
+      { n:'10', file:null, title:'Взгляд ребёнка',            sub:'Что видит ребёнок, чего не видим мы?',                   films:'«Дух улья» · «Выкорми ворона» · «Лабиринт Фавна»', ready:false },
+      { n:'11', file:null, title:'Лаканианский поворот',      sub:'Что смотрит на нас с экрана?',                           films:'«Синий бархат» · «Скрытое» · «Прочь»', ready:false },
+      { n:'12', file:null, title:'«Правила игры»: капстоун',  sub:'Можно ли прочитать один фильм до самого дна?',           films:'«Правила игры» (Ренуар)', ready:false },
     ],
   },
   { slug:'sociology',      title:'Социология кино',           blurb:'Производство, аудитории и социальные институты кинематографа. План курса готовится.', lectures:[] },
@@ -66,7 +66,7 @@ function renderLanding(subjects){
     const items = lectures.map(l=>{
       const href = (l.ready && l.file) ? `/lectures/${s.slug}/${l.file}` : null;
       const tag = href ? '<span class="go">смотреть →</span>' : '<span class="soon">готовится</span>';
-      const inner = `<span class="ln">${l.n}</span><span class="lt">${esc(l.title)}</span>${l.sub?`<span class="ls">${esc(l.sub)}</span>`:''}${tag}`;
+      const inner = `<span class="ln">${l.n}</span><span class="lt">${esc(l.title)}</span>${l.sub?`<span class="ls">${esc(l.sub)}</span>`:''}${l.films?`<span class="lf"><b>Кейсы:</b> ${esc(l.films)}</span>`:''}${tag}`;
       return href
         ? `<a class="lec ready" href="${href}">${inner}</a>`
         : `<div class="lec">${inner}</div>`;
@@ -125,9 +125,11 @@ h1{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size
 .subj-head p{max-width:74ch;margin:12px 0 22px;font-size:clamp(15px,1.4vw,17px);line-height:1.5;color:var(--bone-dim)}
 .lecgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .lec{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:18px;row-gap:2px;align-items:baseline;border:1px solid var(--line-strong);background:var(--ink-2);padding:18px 22px;border-radius:2px}
-.lec .ln{grid-row:span 3;font-family:var(--display);font-weight:700;font-size:34px;line-height:.8;color:var(--red)}
+.lec .ln{grid-row:span 4;font-family:var(--display);font-weight:700;font-size:34px;line-height:.8;color:var(--red)}
 .lec .lt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:18px;letter-spacing:.01em}
 .lec .ls{font-size:13.5px;color:var(--bone-dim);line-height:1.4}
+.lec .lf{font-family:var(--mono);font-size:11px;letter-spacing:.01em;color:var(--bone-dim);line-height:1.5;margin-top:8px}
+.lec .lf b{color:var(--ochre);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:10px;margin-right:5px}
 .lec .go{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre);margin-top:8px}
 .lec .soon{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-top:8px}
 .lec.ready{transition:.18s;cursor:pointer}
