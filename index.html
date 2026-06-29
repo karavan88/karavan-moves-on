@@ -15,20 +15,21 @@
 <meta property="og:image" content="https://karavancinema.netlify.app/assets/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <!-- PAGE_META_END -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230d0d12'/%3E%3Ccircle cx='35' cy='42' r='14' fill='%23e8b84b'/%3E%3Cpath d='M35 42 L86 28 L86 72 Z' fill='%23e8b84b' opacity='0.85'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='10' fill='%2315223e'/%3E%3Cpath d='M30 10 L36 15 L16 34 L9 34 Z' fill='%23c69a48' fill-opacity='.85'/%3E%3Ccircle cx='33' cy='12' r='4.5' fill='%23c69a48'/%3E%3Cg fill='%23f3ead7'%3E%3Crect x='9' y='29' width='1.4' height='5' rx='.5'/%3E%3Crect x='12.6' y='29' width='1.4' height='5' rx='.5'/%3E%3Crect x='17' y='29' width='1.4' height='5' rx='.5'/%3E%3Crect x='20.2' y='29' width='1.4' height='5' rx='.5'/%3E%3Cellipse cx='15' cy='28.4' rx='7.5' ry='2.8'/%3E%3Ccircle cx='12.4' cy='26.4' r='2.4'/%3E%3Ccircle cx='17' cy='26.4' r='2.4'/%3E%3Cpolygon points='20,28.4 22,23 23.3,23 21.3,29'/%3E%3Cellipse cx='23.4' cy='22.4' rx='1.8' ry='1.4'/%3E%3Cpolygon points='24.4,22 26,21.5 25.6,23.2 24.4,23.2'/%3E%3C/g%3E%3Cg fill='%23c69a48'%3E%3Crect x='6' y='5' width='4' height='2.4' rx='.7'/%3E%3Crect x='13' y='5' width='4' height='2.4' rx='.7'/%3E%3Crect x='20' y='5' width='4' height='2.4' rx='.7'/%3E%3Crect x='27' y='5' width='4' height='2.4' rx='.7'/%3E%3Crect x='34' y='5' width='4' height='2.4' rx='.7'/%3E%3Crect x='6' y='36.6' width='4' height='2.4' rx='.7'/%3E%3Crect x='13' y='36.6' width='4' height='2.4' rx='.7'/%3E%3Crect x='20' y='36.6' width='4' height='2.4' rx='.7'/%3E%3Crect x='27' y='36.6' width='4' height='2.4' rx='.7'/%3E%3Crect x='34' y='36.6' width='4' height='2.4' rx='.7'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="alternate" type="application/rss+xml" title="Караван идёт — рецензии и заметки" href="/rss.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0a0a0c;
-    --bg-2:#111114;
-    --card:#15151a;
-    --border:#26262e;
+    --bg:#080910;
+    --bg-2:#10131f;
+    --card:#171c2c;
+    --border:#2c3247;
     --text:#ececf1;
-    --muted:#b0b0be;          /* подняли контраст до WCAG AA */
+    --muted:#9aa2b6;          /* подняли контраст до WCAG AA */
     --muted-warm:#b3aa98;     /* тёплый приглушённый — для дат и подписей */
+    --sand:#cdbb95;      /* песочный — подзаголовки / второй уровень */
     --accent:#e8b84b;
     --accent-2:#c8423a;
     --heading:#fff;
@@ -117,8 +118,10 @@
   [data-theme="light"] .prose > p:first-of-type{color:#1a1d27}
   /* лазурный футер — замыкает ритм: небо (шапка) ↔ бумага ↔ море (футер) */
   [data-theme="light"] footer.site{background:linear-gradient(180deg,#1c87c4,#166ea6);
-    border-top-color:rgba(255,255,255,.2);color:rgba(255,255,255,.88)}
+    border-top-color:rgba(255,255,255,.2);color:rgba(255,255,255,.88);box-shadow:none}
   [data-theme="light"] footer.site a{color:#ffd75e}
+  [data-theme="light"] header.site::after,
+  [data-theme="light"] footer.site::after{display:none}
   /* кнопки «Обо мне»: белые пилюли, латунная рамка, чернила, синяя стрелка */
   [data-theme="light"] .about-hero .socials a{background:#ffffff;color:var(--text);
     border-color:#dccfa6;box-shadow:0 1px 2px rgba(21,23,30,.05)}
@@ -168,11 +171,18 @@
 
   /* HEADER */
   header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
-    background:rgba(10,10,12,.80);border-bottom:1px solid var(--border)}
+    background:#0b0c10;border-bottom:1px solid transparent;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 12px 30px -12px rgba(0,0,0,.78)}
+  /* свет из-под ленты: сильнее по краям, гаснет к центру → шапка «парит» */
+  header.site::after{content:"";position:absolute;left:0;right:0;top:100%;height:74px;pointer-events:none;z-index:-1;
+    background:
+      radial-gradient(42% 130% at 0% 0%, rgba(232,184,75,.13), transparent 70%),
+      radial-gradient(44% 130% at 100% 0%, rgba(232,184,75,.145), transparent 70%),
+      radial-gradient(60% 120% at 50% 0%, rgba(232,184,75,.10), transparent 73%)}
   .nav{max-width:var(--maxw);margin:0 auto;padding:14px 24px;
     display:flex;align-items:center;justify-content:space-between;gap:20px}
   .brand{display:flex;align-items:center;gap:12px}
-  .brand .logo{width:44px;height:44px;border-radius:11px;display:block;object-fit:cover;
+  .brand .logo{height:48px;width:auto;border-radius:10px;display:block;overflow:hidden;
     border:1px solid var(--border);box-shadow:0 0 22px rgba(232,184,75,.16)}
   .brand .logo-fallback{width:42px;height:42px;border-radius:10px;
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
@@ -180,9 +190,9 @@
   .brand .name{font-weight:800;letter-spacing:.16em;font-size:16px;white-space:nowrap}
   .brand .name span{color:var(--gold)}
   .menu{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
-  .menu a{color:var(--muted);font-size:14px;letter-spacing:.02em;
+  .menu a{color:#eef1f8;font-size:14px;font-weight:700;letter-spacing:.02em;
     transition:color .2s;position:relative;padding:2px 0}
-  .menu a:hover,.menu a.active{color:var(--text)}
+  .menu a:hover,.menu a.active{color:#fff}
   .menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
   .nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:9px;
     width:42px;height:38px;color:var(--text);cursor:pointer;font-size:18px;line-height:1}
@@ -222,11 +232,11 @@
   /* CARD GRID (reviews + collections) */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px}
   .grid.wide{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}
-  .card{background:linear-gradient(180deg,#1a1a22,#121217);border:1px solid var(--border);
+  .card{background:linear-gradient(180deg,#1e2438,#141828);border:1px solid var(--border);
     border-radius:14px;overflow:hidden;cursor:pointer;color:inherit;
     transition:transform .25s,border-color .25s,box-shadow .25s;display:flex;flex-direction:column;
-    box-shadow:0 10px 26px rgba(0,0,0,.40), inset 0 1px 0 rgba(255,255,255,.05)}
-  .card:hover{transform:translateY(-5px);border-color:#43434f;
+    box-shadow:0 16px 36px rgba(0,0,0,.55), inset 0 1px 0 rgba(160,185,245,.10)}
+  .card:hover{transform:translateY(-5px);border-color:#3b4565;
     box-shadow:0 18px 40px rgba(0,0,0,.46), 0 0 0 1px rgba(232,184,75,.14), inset 0 1px 0 rgba(255,255,255,.06)}
   /* Постер в рамке киноплёнки: перфорация по краям в полях, картинка между ними.
      Пропорции заданы самой картинке, поэтому поля её не обрезают. */
@@ -254,15 +264,15 @@
   .card-excerpt{color:#c2c2cc;font-size:14px;margin-top:10px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .card-headline{font-family:"Playfair Display",Georgia,serif;font-style:italic;
-    color:#cdc8bc;font-size:15px;line-height:1.38;margin-top:9px;
+    color:var(--sand);font-size:15px;line-height:1.38;margin-top:9px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
   /* FEATURED — «выбор автора» на главной */
   .featured{display:flex;align-items:stretch;gap:0;margin:6px 0 16px;color:inherit;
-    background:linear-gradient(180deg,#181820,#101015);border:1px solid var(--border);
+    background:linear-gradient(180deg,#1c2236,#13172a);border:1px solid var(--border);
     border-radius:16px;overflow:hidden;
-    box-shadow:0 14px 40px rgba(0,0,0,.42);transition:transform .25s,border-color .25s,box-shadow .25s}
-  .featured:hover{transform:translateY(-4px);border-color:#43434f;
+    box-shadow:0 18px 44px rgba(0,0,0,.55), inset 0 1px 0 rgba(160,185,245,.09);transition:transform .25s,border-color .25s,box-shadow .25s}
+  .featured:hover{transform:translateY(-4px);border-color:#3b4565;
     box-shadow:0 22px 54px rgba(0,0,0,.5), 0 0 0 1px rgba(232,184,75,.16)}
   .featured-poster{position:relative;flex-shrink:0;width:210px;background:#0d0d12}
   .featured-poster img{width:100%;height:100%;object-fit:cover;display:block}
@@ -273,7 +283,7 @@
   .featured-kicker{color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
   .featured-title{font-family:"Playfair Display",serif;font-size:clamp(24px,3.2vw,34px);font-weight:800;
     line-height:1.1;color:#fff}
-  .featured-film{font-family:"Playfair Display",serif;color:#e7e2d6;font-size:18px;margin-top:10px}
+  .featured-film{font-family:"Playfair Display",serif;color:var(--sand);font-size:18px;margin-top:10px}
   .featured-meta{color:var(--muted-warm);font-size:14px;margin-top:8px}
   .featured-excerpt{color:#c2c2cc;font-size:16px;line-height:1.6;margin-top:14px;max-width:62ch;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
@@ -288,10 +298,10 @@
   .feed-list{max-width:760px;margin:0 auto}
   .feed-item{display:block;padding:22px 24px;margin-bottom:14px;border:1px solid var(--border);
     border-radius:13px;color:inherit;
-    background:linear-gradient(180deg,#16161c,#111116);
-    box-shadow:0 8px 22px rgba(0,0,0,.30);cursor:pointer;
+    background:linear-gradient(180deg,#191f30,#131726);
+    box-shadow:0 12px 28px rgba(0,0,0,.5), inset 0 1px 0 rgba(160,185,245,.08);cursor:pointer;
     transition:transform .2s,border-color .2s,box-shadow .2s}
-  .feed-item:hover{transform:translateY(-3px);border-color:#43434f;
+  .feed-item:hover{transform:translateY(-3px);border-color:#3b4565;
     box-shadow:0 14px 32px rgba(0,0,0,.42), 0 0 0 1px rgba(232,184,75,.10)}
   .feed-item.has-img{display:flex;gap:22px;align-items:stretch;padding:18px 20px}
   .feed-item .feed-thumb{flex-shrink:0;width:200px;border-radius:10px;overflow:hidden;
@@ -426,7 +436,7 @@
   /* лид-абзац: крупнее и светлее, но БЕЗ курсива — длинный курсив утомляет */
   .prose > p:first-of-type{font-size:19px;line-height:1.6;color:#ede9e0;
     font-weight:500;margin:0 0 26px;letter-spacing:.002em}
-  .prose h2{font-family:"Playfair Display",serif;font-size:26px;margin:36px 0 14px;color:#fff}
+  .prose h2{font-family:"Playfair Display",serif;font-size:26px;margin:36px 0 14px;color:var(--sand)}
   .prose h3{font-size:20px;margin:28px 0 12px}
   .prose p{margin:0 0 20px}
   .prose blockquote{border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:24px 0;
@@ -604,8 +614,14 @@
   .state{text-align:center;color:var(--muted);padding:80px 20px}
   .state h2{color:var(--text);font-family:"Playfair Display",serif;margin-bottom:10px}
 
-  footer.site{border-top:1px solid var(--border);color:var(--muted);font-size:13px;
-    text-align:center;padding:34px 24px}
+  footer.site{position:relative;background:#0b0c10;border-top:1px solid transparent;color:#cdd3e2;font-size:13px;
+    text-align:center;padding:34px 24px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 -12px 30px -12px rgba(0,0,0,.78)}
+  footer.site::after{content:"";position:absolute;left:0;right:0;bottom:100%;height:74px;pointer-events:none;
+    background:
+      radial-gradient(42% 130% at 0% 100%, rgba(232,184,75,.10), transparent 70%),
+      radial-gradient(44% 130% at 100% 100%, rgba(232,184,75,.11), transparent 70%),
+      radial-gradient(60% 120% at 50% 100%, rgba(232,184,75,.09), transparent 73%)}
   footer.site a{color:var(--accent)}
 
   @media(max-width:760px){
@@ -630,8 +646,31 @@
 <header class="site">
   <div class="nav">
     <a class="brand" href="/" aria-label="Караван идёт — на главную">
-      <img class="logo" src="/assets/logo.png" alt="Караван идёт"
-           onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>К</div>'">
+      <svg class="logo" viewBox="0 0 84 84" width="84" height="84" role="img" aria-label="Караван идёт" xmlns="http://www.w3.org/2000/svg">
+        <rect width="84" height="84" fill="#15223e"/>
+        <clipPath id="kkwin"><rect x="5" y="13" width="74" height="56.5"/></clipPath>
+        <g clip-path="url(#kkwin)"><path d="M 60,17 L 71,29 L 42,69.5 L 10,69.5 Z" fill="#c69a48" fill-opacity="0.85"/></g>
+        <g transform="translate(5.2,31) scale(0.525)">
+          <path d="M 18.00,40.00 C 19.00,37.83 21.50,34.00 24.00,31.00 C 26.50,28.00 29.50,22.25 33.00,22.00 C 36.50,21.75 41.00,29.58 45.00,29.50 C 49.00,29.42 53.50,21.25 57.00,21.50 C 60.50,21.75 63.33,31.25 66.00,31.00 C 68.67,30.75 70.92,22.75 73.00,20.00 C 75.08,17.25 76.75,15.67 78.50,14.50 C 80.25,13.33 81.83,12.67 83.50,13.00 C 85.17,13.33 87.17,15.17 88.50,16.50 C 89.83,17.83 90.87,19.75 91.50,21.00 C 92.13,22.25 92.80,23.17 92.30,24.00 C 91.80,24.83 89.72,25.83 88.50,26.00 C 87.28,26.17 86.08,24.58 85.00,25.00 C 83.92,25.42 83.17,26.83 82.00,28.50 C 80.83,30.17 79.33,32.08 78.00,35.00 C 76.67,37.92 77.00,43.50 74.00,46.00 C 71.00,48.50 64.83,49.17 60.00,50.00 C 55.17,50.83 49.83,51.00 45.00,51.00 C 40.17,51.00 34.67,50.67 31.00,50.00 C 27.33,49.33 25.17,48.00 23.00,47.00 C 20.83,46.00 18.83,45.17 18.00,44.00 C 17.17,42.83 17.00,42.17 18.00,40.00 Z" fill="#f3ead7"/>
+          <path d="M 66.80,48.00 L 72.20,48.00 L 72.30,71.60 L 73.20,73.00 L 67.45,73.00 L 67.90,71.60 Z" fill="#f3ead7"/>
+          <path d="M 58.40,49.00 L 63.60,49.00 L 61.70,71.60 L 62.60,73.00 L 57.05,73.00 L 57.50,71.60 Z" fill="#f3ead7"/>
+          <path d="M 32.40,49.50 L 37.60,49.50 L 37.80,71.60 L 38.70,73.00 L 33.15,73.00 L 33.60,71.60 Z" fill="#f3ead7"/>
+          <path d="M 23.30,48.50 L 28.70,48.50 L 27.00,71.60 L 27.90,73.00 L 22.15,73.00 L 22.60,71.60 Z" fill="#f3ead7"/>
+          <path d="M 19.5,41 C 16.5,45 14.5,49 14.8,53 C 14.9,54.4 16,54.6 16.4,53.2 C 16.9,50 18.6,46.5 21,44 Z" fill="#f3ead7"/>
+        </g>
+        <circle cx="65" cy="24" r="9" fill="#c69a48"/>
+        <rect x="5" y="11.8" width="74" height="1.7" rx="0.85" fill="#c69a48"/>
+        <rect x="5" y="69.3" width="74" height="1.7" rx="0.85" fill="#c69a48"/>
+        <g fill="#c69a48">
+          <rect x="3.0" y="4.0" width="7.0" height="5.0" rx="1.4"/><rect x="3.0" y="75.0" width="7.0" height="5.0" rx="1.4"/>
+          <rect x="15.0" y="4.0" width="7.0" height="5.0" rx="1.4"/><rect x="15.0" y="75.0" width="7.0" height="5.0" rx="1.4"/>
+          <rect x="27.0" y="4.0" width="7.0" height="5.0" rx="1.4"/><rect x="27.0" y="75.0" width="7.0" height="5.0" rx="1.4"/>
+          <rect x="39.0" y="4.0" width="7.0" height="5.0" rx="1.4"/><rect x="39.0" y="75.0" width="7.0" height="5.0" rx="1.4"/>
+          <rect x="51.0" y="4.0" width="7.0" height="5.0" rx="1.4"/><rect x="51.0" y="75.0" width="7.0" height="5.0" rx="1.4"/>
+          <rect x="63.0" y="4.0" width="7.0" height="5.0" rx="1.4"/><rect x="63.0" y="75.0" width="7.0" height="5.0" rx="1.4"/>
+          <rect x="75.0" y="4.0" width="7.0" height="5.0" rx="1.4"/><rect x="75.0" y="75.0" width="7.0" height="5.0" rx="1.4"/>
+        </g>
+      </svg>
       <div class="name">КАРАВАН <span>ИДЁТ</span></div>
     </a>
     <div class="nav-right">
