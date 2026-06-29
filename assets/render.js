@@ -296,11 +296,13 @@ export function scrollyView(meta, bodyHtml, backHref, backLabel){
   const count = (bodyHtml.match(/class="coll-entry"/g) || []).length;
   const kicker = meta.kicker || (count ? `${count}` : '');
   const paged = meta.snap === 'page' || meta.snap === 'mandatory';
-  return `<main class="scrolly${paged ? ' scrolly--paged' : ''}"${paged ? ' data-snap="mandatory"' : ''}>
+  const stills = meta.media === 'stills';  /* широкие кадры вместо постеров */
+  return `<main class="scrolly${paged ? ' scrolly--paged' : ''}${stills ? ' scrolly--stills' : ''}"${paged ? ' data-snap="mandatory"' : ''}>
     <a class="back scrolly-back" href="${backHref}">← ${esc(backLabel)}</a>
     <section class="scene scene-intro">
       <div class="scene-intro-inner">
         ${kicker ? `<div class="scrolly-kicker">${esc(kicker)}</div>` : ''}
+        ${meta.overline ? `<div class="scrolly-overline">${esc(meta.overline)}</div>` : ''}
         <h1 class="scrolly-title">${esc(meta.title || '')}</h1>
         ${meta.subtitle ? `<p class="scrolly-sub">${esc(meta.subtitle)}</p>` : ''}
         <div class="scrolly-author">

@@ -7,6 +7,7 @@ tag: Скролл-история
 image: https://image.tmdb.org/t/p/w780/lyIhbqqCXpY5Qrgb3FAwza0wxIw.jpg
 layout: scrolly
 snap: page
+media: stills
 letterboxd: https://letterboxd.com/tmdb/47795/
 ---
 <section class="scene scene-note">
