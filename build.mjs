@@ -44,7 +44,7 @@ function excerptFromBody(body, limit=160){
     .replace(/\s+/g,' ').trim();
   return t.length>limit ? t.slice(0,limit-1).replace(/\s+\S*$/,'')+'…' : t;
 }
-const absUrl = (u) => !u ? `${SITE}/assets/logo.png` : (/^https?:/.test(u) ? u : `${SITE}${u.startsWith('/')?'':'/'}${u}`);
+const absUrl = (u) => !u ? `${SITE}/logo/karavan-signature.png` : (/^https?:/.test(u) ? u : `${SITE}${u.startsWith('/')?'':'/'}${u}`);
 const xmlEsc = (s) => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 /* ---------- шаблон ---------- */
@@ -122,7 +122,7 @@ async function main(){
   await mkdir(OUT, { recursive: true });
 
   /* статика: всё, что нужно отдать как есть (включая .md и манифесты для SPA) */
-  for(const item of ['assets','reviews','feed','festivals','collections','about.md','press.json','site.json']){
+  for(const item of ['assets','logo','reviews','feed','festivals','collections','about.md','press.json','site.json']){
     if(existsSync(path.join(ROOT,item))) await cp(path.join(ROOT,item), path.join(OUT,item), { recursive: true });
   }
 
