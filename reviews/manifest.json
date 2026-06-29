@@ -5,7 +5,7 @@
     "title": "Дебют Куросавы возвращается целым",
     "year": "1943",
     "director": "Акира Куросава",
-    "original": "Sanshiro Sugata",
+    "original": "姿三四郎 / Sanshiro Sugata",
     "rating": "7",
     "festival": "Il Cinema Ritrovato 2026",
     "poster": "https://image.tmdb.org/t/p/w500/vmQV7lDO8hCaU6tuKhF3b9gFs4f.jpg",
@@ -25,7 +25,7 @@
   },
   {
     "slug": "amma-ariyan",
-    "film": "«Сообщите матери» (Amma Ariyan)",
+    "film": "«Сообщите матери»",
     "title": "Поколение, оставшееся без матери",
     "year": "1986",
     "director": "Джон Абрахам",
@@ -86,7 +86,6 @@
     "title": "Через космос к человеку: проблема субъектности и трансцендентного в «Солярисе» А. Тарковского",
     "year": "1972",
     "director": "Андрей Тарковский",
-    "original": "Solaris / Солярис",
     "rating": "9",
     "poster": "https://image.tmdb.org/t/p/w500/pgqj7QoBPWFLLKtLEpPmFYFRMgB.jpg",
     "excerpt": "Текст, начатый в 17 лет и переписанный двадцать лет спустя: о субъектности и трансцендентном у Тарковского."
@@ -152,7 +151,7 @@
     "title": "Когда выбора нет",
     "year": "2025",
     "director": "Пак Чхан-ук",
-    "original": "No Other Choice / 어쩔수가없다",
+    "original": "어쩔수가없다 / No Other Choice",
     "rating": "7",
     "poster": "https://image.tmdb.org/t/p/w500/sBpxTGLzKnvPSVtL5yQYpSxvKEb.jpg",
     "excerpt": "Сокращённый клерк начинает устранять конкурентов за вакансию. Театр абсурда о рынке труда, где этика исчезает быстрее, чем рабочие места."

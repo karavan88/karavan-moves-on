@@ -1,7 +1,7 @@
 ---
 title: Дебют Куросавы возвращается целым
 film: «Легенда о великом мастере дзюдо»
-original: Sanshiro Sugata / 姿三四郎
+original: 姿三四郎 / Sanshiro Sugata
 year: 1943
 director: Акира Куросава
 country: Япония

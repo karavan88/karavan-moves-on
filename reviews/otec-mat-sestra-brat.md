@@ -1,6 +1,6 @@
 ---
 title: Кризис семьи вне географии
-film: «Отец мать сестра брат»
+film: «Отец, мать, сестра, брат»
 original: Father Mother Sister Brother
 year: 2025
 director: Джим Джармуш

@@ -33,6 +33,14 @@ export function stars(rating){
   return html;
 }
 
+/* Единый рендер оценки (шкала 0–10).
+   mode 'badge' — пилюля «★ N» на постере; mode 'full' — ряд из 10 звёзд + «N / 10». */
+export function ratingHTML(rating, mode='badge'){
+  if(rating===undefined || rating===null || rating==='') return '';
+  if(mode==='full') return `<div class="stars">${stars(rating)}<span class="num">${esc(rating)} / 10</span></div>`;
+  return `<div class="rating-badge">★ ${esc(rating)}</div>`;
+}
+
 /* черновики (draft: true) не публикуются */
 export function isPublished(x){ return !(x && (x.draft===true || x.draft==='true')); }
 export function published(list){ return (list||[]).filter(isPublished); }
@@ -46,7 +54,7 @@ export function reviewCardHTML(r){
   return `<a class="card" href="/review/${esc(r.slug)}">
     <div class="poster">
       ${poster}
-      ${r.rating?`<div class="rating-badge">★ ${esc(r.rating)}</div>`:''}
+      ${ratingHTML(r.rating)}
     </div>
     <div class="card-body">
       <h3>${esc(film)}</h3>
@@ -167,7 +175,7 @@ export function featuredReviewHTML(r){
     ? `<img src="${esc(r.poster)}" alt="${esc(film)}" decoding="async" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(film)}</div>'">`
     : `<div class="ph">${esc(film)}</div>`;
   return `<a class="featured" href="/review/${esc(r.slug)}">
-    <div class="featured-poster">${img}${r.rating?`<div class="rating-badge">★ ${esc(r.rating)}</div>`:''}</div>
+    <div class="featured-poster">${img}${ratingHTML(r.rating)}</div>
     <div class="featured-body">
       <div class="featured-kicker">Выбор автора</div>
       <h2 class="featured-title">${esc(r.title||film)}</h2>
@@ -254,8 +262,9 @@ export function reviewPageView(meta, bodyHtml){
       </div>
       <div class="info">
         <h1>${esc(film||'Без названия')}</h1>
+        ${meta.original?`<div class="review-orig">${esc(meta.original)}</div>`:''}
         <div class="sub">${[meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).map(esc).join(' · ')}</div>
-        ${meta.rating?`<div class="stars">${stars(meta.rating)}<span class="num">${esc(meta.rating)} / 10</span></div>`:''}
+        ${ratingHTML(meta.rating,'full')}
         ${meta.festival?`<div><a class="fest-badge" href="/festivals">#${esc(meta.festival)}</a></div>`:''}
         ${extLinkRow(meta)}
       </div>

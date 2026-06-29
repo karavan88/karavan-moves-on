@@ -1,6 +1,6 @@
 ---
 title: Когда выбора нет
-film: «Метод исключения» (No Other Choice)
+film: «Метод исключения»
 original: 어쩔수가없다 / No Other Choice
 year: 2025
 director: Пак Чхан-ук

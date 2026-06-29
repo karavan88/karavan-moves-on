@@ -373,6 +373,9 @@
   .review-head h1{font-family:"Playfair Display",serif;font-size:clamp(25px,4.2vw,36px);
     font-weight:800;line-height:1.14}
   .review-head .sub{color:var(--muted-warm);margin-top:11px;font-size:15.5px;letter-spacing:.02em}
+  /* оригинальное название под русским заголовком рецензии */
+  .review-head .review-orig{font-family:"Playfair Display",serif;font-style:italic;color:var(--gold);
+    font-size:17px;margin-top:8px}
   /* заголовок-рубрика статьи: между шапкой и текстом, ведёт в тело рецензии */
   .review-headline{font-family:"Playfair Display",serif;font-weight:800;
     font-size:clamp(24px,3.6vw,34px);line-height:1.14;color:#fff;margin:6px 0 26px}
@@ -462,6 +465,8 @@
   .coll-body h3{font-family:"Playfair Display",serif;font-size:21px;font-weight:700;line-height:1.2;color:#fff;margin:0}
   .coll-film{font-family:"Playfair Display",serif;font-style:italic;color:var(--accent);font-size:16px;margin-top:4px}
   .coll-meta{color:var(--muted);font-size:13px;margin:7px 0 11px}
+  /* единая инлайн-оценка в подборках/заметках: «★ N/10», звезда — латунь */
+  .rate{color:var(--gold);font-weight:700;white-space:nowrap}
   .coll-meta b{color:var(--accent);font-weight:700}
   .coll-body p{color:#cccdd6;font-size:15px;line-height:1.62;margin:0}
   @media(max-width:560px){.coll-entry{gap:14px}.coll-entry .coll-poster{width:92px}.coll-rank{font-size:23px;min-width:30px}}
@@ -555,8 +560,8 @@
   .scrolly .coll-meta{color:#dcd7cc;font-size:clamp(15px,1.8vw,19px);margin:13px 0 22px}
   /* звёзды в скролл-сценах: фон сцен разный — даём ореол, чтобы золото не
      сливалось и сохраняло яркость на любом кадре */
-  .scrolly .coll-stars{text-shadow:0 1px 6px rgba(0,0,0,.5), 0 0 2px rgba(0,0,0,.45)}
-  [data-theme="light"] .scrolly .coll-stars{text-shadow:0 1px 5px rgba(0,0,0,.4), 0 0 1px rgba(0,0,0,.55)}
+  .scrolly .coll-stars,.scrolly .rate{text-shadow:0 1px 6px rgba(0,0,0,.5), 0 0 2px rgba(0,0,0,.45)}
+  [data-theme="light"] .scrolly .coll-stars,[data-theme="light"] .scrolly .rate{text-shadow:0 1px 5px rgba(0,0,0,.4), 0 0 1px rgba(0,0,0,.55)}
   .scrolly .coll-meta b{color:var(--accent)}
   /* пометка «вне канона» для фильмов второго ряда */
   .scrolly .coll-meta .oc{color:var(--gold);font-style:italic;border:1px solid rgba(185,139,46,.45);

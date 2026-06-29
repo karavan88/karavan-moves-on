@@ -1,6 +1,7 @@
 ---
 title: Поколение, оставшееся без матери
-film: «Сообщите матери» (Amma Ariyan)
+film: «Сообщите матери»
+original: Amma Ariyan
 year: 1986
 director: Джон Абрахам
 country: Индия
