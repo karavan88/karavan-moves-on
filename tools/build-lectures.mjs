@@ -22,7 +22,7 @@ const SUBJECTS = [
     slug: 'marxist-film-theory',
     srcDir: 'marxist film theory',
     title: 'Марксистская теория кино',
-    blurb: 'История одной интеллектуальной традиции: как кино связано с капитализмом, идеологией и властью. Одиннадцать лекций — от товара и идеологии до политической экономии кино.',
+    blurb: 'История одной интеллектуальной традиции: как кино связано с капитализмом, идеологией и властью. Двенадцать лекций — от товара и идеологии до политической экономии кино.',
     lectures: [
       { n:'01', file:'lecture-01-vvedenie.html',           title:'Зачем марксизму кино',     sub:'Основания: товар и идеология',          ready:true  },
       { n:'02', file:'lecture-02-montazh.html',            title:'Монтаж и спор о форме',     sub:'Форма как идеология · диалектика монтажа', ready:true  },
@@ -33,8 +33,9 @@ const SUBJECTS = [
       { n:'07', file:'lecture-07-apparatus.html',          title:'Теория аппарата',           sub:'Киноаппарат как идеологическая машина', ready:false },
       { n:'08', file:'lecture-08-gramsci.html',            title:'Грамши и гегемония',        sub:'Культурная гегемония и согласие класса', ready:false },
       { n:'09', file:'lecture-09-jameson.html',            title:'Джеймисон: постмодерн',     sub:'Поздний капитализм и культура',         ready:false },
-      { n:'10', file:'lecture-10-capitalism.html',         title:'Капитализм сегодня',        sub:'Капстоун: тупик, конкуренция, разрыв',  ready:false },
-      { n:'11', file:null,                                  title:'Политическая экономия кино',sub:'Индустрия, стриминг, внимание, ИИ',     ready:false },
+      { n:'10', file:'lecture-10-kinopraktika.html',       title:'Можно ли снять марксистский фильм?', sub:'Марксизм как кинопрактика: форма, содержание, практика', ready:false },
+      { n:'11', file:'lecture-10-capitalism.html',         title:'Капитализм сегодня',        sub:'Тупик, конкуренция, разрыв',            ready:false },
+      { n:'12', file:'lecture-11-politekonomiya.html',      title:'Политическая экономия кино',sub:'Индустрия, стриминг, внимание, ИИ',     ready:false },
     ],
   },
   { slug:'psychoanalysis', title:'Психоанализ и теория кино', blurb:'Взгляд, желание, фантазм: как психоанализ объясняет кино. План курса готовится.', lectures:[] },
@@ -76,7 +77,7 @@ function renderLanding(subjects){
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;700;800&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
 <style>
 :root{
   --ink:#14110f;--ink-2:#1d1916;--oxblood:#3a1714;
@@ -119,11 +120,54 @@ h1{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size
 .empty{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);border:1px dashed var(--line-strong);padding:22px 24px;border-radius:2px}
 footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
 @media (max-width:720px){.lecgrid{grid-template-columns:1fr}}
+/* ===== общая шапка сайта (как на основном сайте) ===== */
+:root{--bg:#0a0a0c;--border:#26262e;--text:#ececf1;--muted:#b0b0be;--accent:#e8b84b;--accent-2:#c8423a;--gold:#e8b84b;--maxw:1180px}
+header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,12,.80);border-bottom:1px solid var(--border);font-family:'Manrope',system-ui,sans-serif}
+header.site .nav{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+header.site .brand{display:flex;align-items:center;gap:12px}
+header.site .brand .logo{width:44px;height:44px;border-radius:11px;display:block;object-fit:cover;border:1px solid var(--border);box-shadow:0 0 22px rgba(232,184,75,.16)}
+header.site .brand .logo-fallback{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#0a0a0c;font-size:22px}
+header.site .brand .name{font-weight:800;letter-spacing:.16em;font-size:16px;white-space:nowrap;color:var(--text)}
+header.site .brand .name span{color:var(--gold)}
+header.site .nav-right{display:flex;align-items:center;gap:22px}
+header.site .menu{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+header.site .menu a{color:var(--muted);font-size:14px;letter-spacing:.02em;transition:color .2s;position:relative;padding:2px 0}
+header.site .menu a:hover,header.site .menu a.active{color:var(--text)}
+header.site .menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
+header.site .nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:9px;width:42px;height:38px;color:var(--text);cursor:pointer;font-size:18px;line-height:1}
+@media(max-width:760px){
+  header.site .nav-toggle{display:block}
+  header.site .nav{position:relative}
+  header.site .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(12,12,16,.98);border-bottom:1px solid var(--border);padding:8px 0}
+  header.site .menu.open{display:flex}
+  header.site .menu a{padding:12px 24px;width:100%}
+  header.site .menu a.active::after{display:none}
+}
 </style>
 </head>
 <body>
+<header class="site">
+  <div class="nav">
+    <a class="brand" href="/" aria-label="Караван идёт — на главную">
+      <img class="logo" src="/assets/logo.png" alt="Караван идёт"
+           onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>К</div>'">
+      <div class="name">КАРАВАН <span>ИДЁТ</span></div>
+    </a>
+    <div class="nav-right">
+      <nav class="menu" id="menu" aria-label="Основное меню">
+        <a href="/reviews">Рецензии</a>
+        <a href="/press">Публикации в СМИ</a>
+        <a href="/festivals">Кинофестивали</a>
+        <a href="/collections">Подборки</a>
+        <a href="/feed">Заметки</a>
+        <a href="/lectures/" class="active">Лекции</a>
+        <a href="/about">Обо мне</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
 <div class="wrap">
-  <a class="back" href="/">← Караван идёт</a>
   <header class="masthead">
     <div class="kick">Авторские курсы · Карен Аванесян</div>
     <h1>Лекции</h1>
@@ -135,6 +179,9 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-fa
   ${subjects.map(card).join('\n')}
   <footer>Караван идёт · авторский сайт о кино Карена Аванесяна</footer>
 </div>
+<script>
+(function(){var m=document.getElementById('menu'),t=document.getElementById('navToggle');if(t&&m)t.addEventListener('click',function(){var o=m.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});})();
+</script>
 </body>
 </html>`;
 }

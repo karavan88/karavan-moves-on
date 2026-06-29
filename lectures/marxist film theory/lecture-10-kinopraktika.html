@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 10 — Можно ли снять марксистский фильм? | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(44px,7.8vw,112px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:24ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;flex:1;align-content:center}
+.cols-poster{display:grid;grid-template-columns:288px 1fr;gap:42px;flex:1;align-content:center}
+.pbox{align-self:center;justify-self:center;border:1px solid var(--line-strong);background:var(--ink-2);width:100%;max-width:288px}
+.pbox img{width:100%;display:block}
+.coursemap.coursemap-12{grid-template-columns:repeat(6,1fr)}
+.meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.meta-row b{color:var(--ochre);font-weight:500}
+@media (max-width:960px){.cols-4{grid-template-columns:1fr 1fr}.cols-poster{grid-template-columns:1fr}}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:30ch}
+.timeline{display:flex;flex-direction:column;gap:10px;align-self:center}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14.5px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== NEW SLIDE TYPES (v2 — перенос из лекции 1) ===== */
+/* Ключевой тезис / афоризм */
+.slide.thesis{justify-content:center}
+.thesis .tlbl{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ochre);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.thesis .tlbl::before{content:"";width:30px;height:2px;background:var(--red)}
+.thesis .big{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(38px,6.4vw,96px);line-height:.95;letter-spacing:-.01em;max-width:20ch}
+.thesis .big .hl{color:var(--red)}.thesis .big .oc{color:var(--ochre)}
+.thesis .tsub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,22px);color:var(--bone-dim);margin-top:24px;max-width:52ch}
+/* Полноэкранный кадр */
+.slide.framefull{justify-content:flex-end;overflow:hidden}
+.framefull .shot{position:absolute;inset:0;background:var(--ink-2);z-index:0}
+.framefull .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.framefull .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,17,15,.94),rgba(20,17,15,.20) 44%,rgba(20,17,15,.5))}
+.framefull .fcap{position:relative;z-index:2;max-width:66%}
+.framefull .fk{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.framefull .fcap h2{font-size:clamp(30px,4.4vw,62px)}
+.framefull .fcap p{margin-top:12px;font-size:clamp(15px,1.4vw,19px);max-width:54ch;color:var(--bone)}
+.framefull .slide-foot{color:var(--bone-dim);border-color:var(--line-strong)}
+.slide.thesis .slide-foot,.slide.framefull .slide-foot{position:absolute;left:calc(var(--rail) + 54px);right:60px;bottom:22px;margin-top:0}
+/* Крупный прозрачный красный год на полноэкранных кадрах-визитках */
+.framefull .fyear{position:absolute;z-index:2;font-family:var(--display);font-weight:700;font-size:clamp(96px,17vw,260px);line-height:.76;color:rgba(214,52,42,.42);letter-spacing:-.02em;pointer-events:none;right:50px;bottom:26px}
+.framefull .fyear.top{top:18px;bottom:auto;right:50px}
+.framefull .fyear.bl{left:calc(var(--rail) + 54px);right:auto;bottom:26px}
+/* Портреты теоретиков */
+.thinkers{display:flex;gap:14px;margin-top:16px}
+.thinkers figure{width:102px}
+.thinkers img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;border:1px solid var(--line-strong);filter:grayscale(1) contrast(1.05) brightness(1.02);display:block}
+.thinkers figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:6px;line-height:1.5}
+.thinkers figcaption b{color:var(--ochre);display:block;font-weight:500}
+/* Рамка-кадр внутри обычного слайда */
+.framebox{position:relative;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink-2);min-height:300px;align-self:stretch}
+.framebox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.framebox .fbcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);background:linear-gradient(transparent,rgba(20,17,15,.94))}
+/* Оглавление лекции */
+.toc-btn{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);background:var(--ink-2);border:1px solid var(--line-strong);padding:8px 12px;border-radius:2px;cursor:pointer;transition:.16s}
+.toc-btn:hover{border-color:var(--red);color:#fff}
+.toc-panel{position:fixed;inset:0;z-index:60;background:rgba(10,8,7,.74);display:none;opacity:0;transition:opacity .2s}
+.toc-panel.open{display:block;opacity:1}
+.toc-inner{position:absolute;left:0;top:0;bottom:0;width:min(430px,86vw);background:var(--ink-2);border-right:2px solid var(--red);padding:30px 26px;overflow:auto;box-shadow:0 0 60px rgba(0,0,0,.6)}
+.toc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:12px}
+.toc-title{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:22px;color:var(--bone)}
+.toc-back{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ochre);text-decoration:none}
+.toc-back:hover{color:var(--red)}
+.toc-list{display:flex;flex-direction:column}
+.toc-item{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:13px 4px;font-family:var(--serif);font-size:16px;color:var(--bone);cursor:pointer;transition:.14s}
+.toc-item:hover{color:var(--red);padding-left:10px}
+.toc-item.cur{color:var(--ochre)}
+.toc-item .tnum{font-family:var(--mono);font-size:12px;color:var(--red);min-width:24px}
+/* Контактный лист постеров */
+.contactrow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-self:center;width:100%;max-width:1040px;margin:0 auto}
+.pcard{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);overflow:hidden;aspect-ratio:2/3}
+.pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pcard .pgrad{position:absolute;left:0;right:0;bottom:0;top:52%;background:linear-gradient(transparent,rgba(20,17,15,.95));z-index:1}
+.pcard .pcyr{position:absolute;left:11px;bottom:28px;z-index:2;font-family:var(--display);font-weight:700;font-size:21px;color:#fff}
+.pcard .pcname{position:absolute;left:11px;right:11px;bottom:10px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim)}
+/* Схема-поток */
+.flow{display:flex;align-items:stretch;align-self:center;width:100%;gap:0}
+.flow .fstep{flex:1;border:1px solid var(--line-strong);background:var(--ink-2);padding:18px 16px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.flow .fstep .fsk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.flow .fstep h3{font-size:clamp(15px,1.5vw,21px)}
+.flow .fstep p{font-size:12.5px;color:var(--bone-dim);line-height:1.4}
+.flow .fstep.eco{border-top:4px solid var(--red)}.flow .fstep.eco .fsk{color:var(--red)}
+.flow .fstep.ideo{border-top:4px solid var(--ochre);background:var(--oxblood)}.flow .fstep.ideo .fsk{color:var(--ochre)}
+.flow .farr{display:flex;align-items:center;padding:0 9px;color:var(--red);font-family:var(--display);font-weight:700;font-size:24px}
+/* Таймлайн с мини-постерами */
+.tline{display:flex;flex-direction:column;gap:8px;align-self:center;width:100%;max-width:960px}
+.tline .tl{display:grid;grid-template-columns:104px 46px 1fr auto;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding:8px 6px}
+.tline .tl.star{background:var(--oxblood);border:1px solid var(--red);border-radius:2px;padding:10px 12px}
+.tline .ty{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--red)}
+.tline .tp{width:46px;aspect-ratio:2/3;object-fit:cover;border:1px solid var(--line-strong);display:block;background:var(--ink)}
+.tline .tt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(14px,1.5vw,19px);color:var(--bone);line-height:1.05}
+.tline .tt span{display:block;font-family:var(--serif);font-weight:400;text-transform:none;font-size:12.5px;color:var(--bone-dim);margin-top:3px}
+.tline .tstar{font-family:var(--mono);font-size:11px;color:var(--ochre);letter-spacing:.08em;white-space:nowrap}
+@media (max-width:900px){.tline .tl{grid-template-columns:74px 38px 1fr;gap:10px}.tline .tstar{display:none}}
+/* Постеры в списке «К просмотру» */
+.watchlist.withposters .wfilm{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start;padding:16px 18px 16px 16px}
+.watchlist.withposters .wfilm .wy{display:none}
+.watchlist.withposters .wpost{grid-row:span 4;aspect-ratio:2/3;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink)}
+.watchlist.withposters .wpost img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:900px){
+  .contactrow{grid-template-columns:repeat(2,1fr);max-width:340px}
+  .flow{flex-direction:column}.flow .farr{transform:rotate(90deg);padding:6px 0;justify-content:center}
+  .framefull .fcap{max-width:100%}
+  .slide.thesis .slide-foot,.slide.framefull .slide-foot{left:18px;right:18px}
+  .flow .fstep{padding:13px 14px}.flow .fstep p{font-size:11.5px}
+}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone,.toc-btn,.toc-panel{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">10</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 10 / 12</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Можно ли снять<br>марксистский<br>фильм<span class="hl">?</span></h1>
+      <div class="subt">Марксизм как кинопрактика: форма, содержание, политика, память</div>
+      <div class="meta">
+        <span><b>Режим:</b> от советского авангарда до Цзя Чжанкэ</span>
+        <span><b>Центр:</b> «Двадцатый век» · Третий кинематограф</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLD OPEN: roster of films -->
+  <section class="slide" data-toc="Введение">
+    <div class="eyebrow">Лекция 10 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
+    <h2>Шесть фильмов с пяти континентов</h2>
+    <p class="lead" style="max-width:80ch;margin:14px 0 4px">СССР, Италия, Аргентина, Чили, Индия, Китай. Полвека и тысячи километров между ними. Все шестеро пытались сделать одно — поставить марксизм на экран. И сделали это совершенно по-разному.</p>
+    <div style="flex:1;display:flex;align-items:center;width:100%">
+      <div class="contactrow">
+        <div class="pcard"><img src="img/poster_ru_potemkin.jpg" alt="«Броненосец Потёмкин»"><div class="pgrad"></div><span class="pcyr">1925</span><span class="pcname">Броненосец<br>Потёмкин</span></div>
+        <div class="pcard"><img src="img/poster_ru_october.jpg" alt="«Октябрь»"><div class="pgrad"></div><span class="pcyr">1927</span><span class="pcname">Октябрь</span></div>
+        <div class="pcard"><img src="img/Calcutta_71_poster.jpg" alt="«Калькутта 71»"><div class="pgrad"></div><span class="pcyr">1972</span><span class="pcname">Калькутта 71</span></div>
+        <div class="pcard"><img src="img/Battle_of_Chile_poster.jpg" alt="«Битва за Чили»"><div class="pgrad"></div><span class="pcyr">1975</span><span class="pcname">Битва<br>за Чили</span></div>
+        <div class="pcard"><img src="img/Novecento_1900_poster.jpg" alt="«Двадцатый век»"><div class="pgrad"></div><span class="pcyr">1976</span><span class="pcname">Двадцатый<br>век</span></div>
+        <div class="pcard"><img src="img/Platform_Jia_poster.jpg" alt="«Платформа»"><div class="pgrad"></div><span class="pcyr">2000</span><span class="pcname">Платформа</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Девять лекций мы изучали теорию. Эта — о тех, кто пытался её снять.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS: the question -->
+  <section class="slide thesis">
+    <div class="tlbl">Главный вопрос</div>
+    <div class="big">Можно ли <span class="hl">снять</span><br>марксистский фильм?</div>
+    <div class="tsub">Вопрос не в том, какие фильмы «про коммунизм». А в том, что вообще значит — снять марксизм. Это форма? Содержание? Политическое действие? Память о поражении? Каждый ответ даёт совершенно другое кино — и мы разберём четыре.</div>
+    <div class="slide-foot"><span>Четыре ответа на один вопрос</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WHERE WE ARE: coursemap (12 nodes) -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 10 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:70ch;margin:16px 0 22px">Девять лекций мы собирали инструментарий: как кино значит, усыпляет, очуждает, интерпеллирует, держит гегемонию. Теперь — поворот от теории к практике: посмотрим, как сами режиссёры пытались эти идеи воплотить. А две финальные лекции покажут, об какую стену эта попытка билась.</p>
+    <div class="coursemap coursemap-12">
+      <div class="node"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Теория аппарата</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node cur"><span class="nn">10</span><span class="nt">Марксизм как кинопрактика</span></div>
+      <div class="node"><span class="nn">11</span><span class="nt">Капитализм сегодня</span></div>
+      <div class="node"><span class="nn">12</span><span class="nt">Политэкономия кино</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- TYPOLOGY: the spine -->
+  <section class="slide" data-toc="Четыре формы марксизма в кино">
+    <div class="eyebrow">Рамка <span class="sep">/</span> <span class="tag">Типология</span></div>
+    <h2>Марксизм в кино живёт в четырёх формах</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 16px">Главная мысль лекции: «марксистский фильм» — не один жанр, а минимум четыре разных способа связать кино с Марксом. Это и будет наш маршрут.</p>
+    <div class="cols-4">
+      <div class="card accent"><span class="k">01 · Форма</span><h3>Новый язык</h3><p>Авангард переустраивает само кино, чтобы создать нового зрителя. Эйзенштейн, Вертов.</p></div>
+      <div class="card ochre"><span class="k">02 · Содержание</span><h3>Классовый сюжет</h3><p>История как борьба классов прямо на экране. Бертолуччи, Сен, Абрахам.</p></div>
+      <div class="card"><span class="k">03 · Практика</span><h3>Кино как оружие</h3><p>Фильм — часть революции, а не рассказ о ней. Третий кинематограф.</p></div>
+      <div class="card" style="border-top:4px solid var(--bone)"><span class="k">04 · Память</span><h3>Критика и элегия</h3><p>Скорбь по социалистическому проекту и его итогам. Цзя Чжанкэ.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Не каталог «коммунистических фильмов», а карта того, как по-разному марксизм входит в кинематограф.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIVIDER 1: FORM -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Форма · 01</div>
+      <h2>Марксизм<br>как новый язык</h2>
+      <p class="sub">Советский авангард не иллюстрировал революцию — он хотел переделать само зрение зрителя. Это марксизм, спрятанный не в сюжете, а в монтаже.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Эйзенштейн · Вертов · Довженко</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- FORM: OKTYABR (3 slides — angle: new spectator, not montage) -->
+  <!-- OKTYABR intro -->
+  <section class="slide" data-toc="«Октябрь»: кино делает революцию">
+    <div class="eyebrow">Форма <span class="sep">/</span> <span class="tag">Эйзенштейн · 1927</span></div>
+    <div class="cols-poster">
+      <div class="pbox"><img src="img/poster_ru_october.jpg" alt="«Октябрь» (1927)"></div>
+      <div class="stack" style="align-self:center">
+        <div class="meta-row"><span><b>Реж.</b> С. Эйзенштейн</span><span><b>Год</b> 1927 · СССР</span><span><b>Заказ государства</b></span></div>
+        <h2>Октябрь</h2>
+        <div><span class="chip">Новый зритель</span><span class="chip">Масса-герой</span></div>
+        <p style="margin-top:4px">Монтаж мы разбирали в лекции 2 — здесь нас интересует другое. «Октябрь» снят по заказу к десятилетию революции: это фильм, который <strong>сама революция сделала о себе</strong> — и для своего нового зрителя.</p>
+        <p style="margin-top:6px">Вопрос лекции в чистом виде: может ли кино не отражать революцию, а быть её инструментом?</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Не «как смонтировано», а «зачем»: кино как машина по производству революционного сознания.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- OKTYABR mass hero -->
+  <section class="slide" data-toc="«Октябрь»: герой — масса">
+    <div class="eyebrow">Форма <span class="sep">/</span> <span class="tag">Исторический материализм как форма</span></div>
+    <h2>У фильма нет героя — есть класс</h2>
+    <p class="lead" style="max-width:82ch;margin:12px 0 16px">Самый марксистский ход «Октября» — не сюжетный, а структурный: в фильме <strong>нет главного героя</strong>. Протагонист — масса. Историю двигают не великие люди, а классы и их действие. Эйзенштейн переводит исторический материализм в саму форму повествования.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Буржуазное кино</span><p>Индивидуальный герой, его выбор и судьба — в центре. История — лишь фон для личности.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">«Октябрь»</span><p>Коллектив как субъект истории. Лица сменяются толпой; смысл — в массовом действии, а не в личности.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Снять марксизм «как форму» — значит и героя сделать классовым, а не индивидуальным.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- OKTYABR new spectator + myth -->
+  <section class="slide" data-toc="«Октябрь»: зритель и миф">
+    <div class="eyebrow">Форма <span class="sep">/</span> <span class="tag">Сила и опасность</span></div>
+    <h2>Кино, которое создаёт зрителя —<br>и создаёт миф</h2>
+    <p class="lead" style="max-width:84ch;margin:12px 0 16px">Эйзенштейн мечтал об «интеллектуальном кино»: «боги», Керенский-павлин — образы, заставляющие зрителя <em>думать</em> понятиями, а не сопереживать. Цель — выковать аналитического, революционного зрителя. Но есть и оборотная сторона: инсценированный штурм Зимнего <strong>стал</strong> официальным образом Октября — кино не отразило революцию, а сочинило её канон.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Сила</span><p>Кино как мышление: зритель не потребляет эмоцию, а собирает смысл. Новый, активный субъект.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Опасность</span><p>Тот же инструмент производит миф: реконструкция подменяет память. Форма служит и правде, и власти.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Авангард создавал нового зрителя — но та же машина умела отливать и государственный миф.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- FORM: limit -->
+  <section class="slide" data-toc="Предел авангарда">
+    <div class="eyebrow">Форма <span class="sep">/</span> <span class="tag">Сила и предел</span></div>
+    <h2>Авангард, раздавленный государством</h2>
+    <p class="lead" style="max-width:78ch;margin:12px 0 16px">Парадокс первой формы: радикальный киноязык расцвёл при революции — и был ею же удушен. В 1934-м социалистический реализм становится обязательным каноном, формальный эксперимент клеймят «формализмом».</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Сила</span><p>Самая глубокая попытка: марксизм не как тема, а как переустройство самого восприятия. Кино-машина для производства сознания.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Предел</span><p>«Новый зритель» оказался не нужен государству, которому требовался послушный. Авангард сменили парадные биографии вождей.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Первый урок лекции: даже победившая революция предпочла понятному кино — управляемое.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIVIDER 2: CONTENT -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Содержание · 02</div>
+      <h2>Марксизм<br>как классовый сюжет</h2>
+      <p class="sub">Здесь марксизм переезжает из монтажа в фабулу: историю прямо рассказывают как борьбу классов. Главный пример — грандиозный «Двадцатый век».</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Бертолуччи · Сен · Абрахам</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ CONTENT: BEFORE THE REVOLUTION ============ -->
+  <!-- BEFOREREV intro -->
+  <section class="slide" data-toc="«Перед революцией»">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Бертолуччи · 1964</span></div>
+    <div class="cols-poster">
+      <div class="pbox"><img src="img/Before_the_Revolution_poster.jpg" alt="«Перед революцией» (1964)"></div>
+      <div class="stack" style="align-self:center">
+        <div class="meta-row"><span><b>Реж.</b> Б. Бертолуччи</span><span><b>Год</b> 1964 · Италия</span><span><b>Дебют в 23 года</b></span></div>
+        <h2>Перед революцией</h2>
+        <div><span class="chip">Буржуа и марксизм</span><span class="chip">Сомнение</span></div>
+        <p style="margin-top:4px">Молодой буржуа из Пармы Фабрицио увлекается марксизмом и запретной любовью к тётке — а затем возвращается в свой класс, к удобному браку. Революция так и не наступает.</p>
+        <p style="margin-top:6px">Ранний Бертолуччи задаёт вопрос о <strong>самом себе</strong>: может ли буржуа по-настоящему встать на сторону революции?</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">За двенадцать лет до «Двадцатого века» — его камерная, личная предыстория.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BEFOREREV theme -->
+  <section class="slide" data-toc="«Перед революцией»: сладость до">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Невозможность обращения</span></div>
+    <h2>«Кто не жил до революции…»</h2>
+    <p class="lead" style="max-width:82ch;margin:12px 0 16px">Эпиграф из Талейрана: «Кто не жил до революции, не знает сладости жизни». В этом весь нерв фильма — герой влюблён в идею революции, но ещё больше в комфорт мира, который она должна снести. Марксизм для него — эстетика и страсть, а не разрыв.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Влечение</span><p>Революция как соблазн, молодость, бунт против отцов и их морали.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Возврат</span><p>Класс тянет обратно: брак, наследство, «сладость» прежней жизни побеждает.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Честный автопортрет интеллигента: сочувствовать революции — и не суметь ей принадлежать.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BEFOREREV bridge -->
+  <section class="slide thesis">
+    <div class="tlbl">От частного — к эпосу</div>
+    <div class="big">Сомнение одного —<br>и <span class="hl">борьба</span> миллионов</div>
+    <div class="tsub">«Перед революцией» — это марксизм как личная драма буржуа, который не смог. Через двенадцать лет Бертолуччи развернёт ту же тему до грандиозного полотна, где героем станет уже не сомневающийся индивид, а целый класс. Так мы переходим к «Двадцатому веку».</div>
+    <div class="slide-foot"><span>Дальше — «Двадцатый век»</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTENT: 1900 -->
+  <section class="slide" data-toc="«Двадцатый век» Бертолуччи">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Бернардо Бертолуччи · 1976</span></div>
+    <div class="cols-poster">
+      <div class="pbox"><img src="img/Novecento_1900_poster.jpg" alt="«Двадцатый век» (1976)"></div>
+      <div class="stack" style="align-self:center">
+        <div class="meta-row"><span><b>Реж.</b> Б. Бертолуччи</span><span><b>Год</b> 1976 · Италия</span><span><b>Хроно</b> ≈ 5 ч 17 мин</span></div>
+        <h2>Двадцатый век</h2>
+        <div><span class="chip">Классовая борьба</span><span class="chip">Эпос</span></div>
+        <p style="margin-top:4px">Олмо (Депардьё) и Альфредо (Де Ниро) рождаются в один день 1901 года — крестьянин и сын хозяина. Их судьбы — это весь итальянский XX век: батраки против падронов, рост фашизма, освобождение 1945-го.</p>
+        <p style="margin-top:6px">Бертолуччи, член Итальянской компартии, делает <strong>классовую борьбу прямым двигателем сюжета</strong> — не метафорой, а самой материей фильма.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">«Двадцатый век» — самая амбициозная попытка рассказать историю века марксистским языком фабулы.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTENT: 1900 contradiction -->
+  <section class="slide" data-toc="Противоречие «Двадцатого века»">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Зерно финала</span></div>
+    <h2>Марксистский эпос на голливудские деньги</h2>
+    <p class="lead" style="max-width:80ch;margin:12px 0 16px">И вот первое противоречие, к которому мы вернёмся в финале. Пятичасовой гимн классовой борьбе профинансировали <strong>голливудские студии</strong> (Paramount, 20th Century-Fox, United Artists), а играют его мировые звёзды — Де Ниро, Депардьё, Берт Ланкастер, Дональд Сазерленд.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Содержание</span><p>Радикально марксистское: история как борьба классов, симпатия отдана крестьянам и рабочим.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Форма производства</span><p>Капиталистическая до конца: студийные деньги, звёздные гонорары, прокат ради кассы.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Можно ли быть марксистским по сюжету и капиталистическим по способу производства одновременно? Запомним вопрос.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTENT: India -->
+  <section class="slide" data-toc="Индийское параллельное кино">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Индия · не Болливуд</span></div>
+    <div class="cols-poster">
+      <div class="pbox"><img src="img/Calcutta_71_poster.jpg" alt="«Калькутта 71» (1972)"></div>
+      <div class="stack" style="align-self:center">
+        <h2>Левое параллельное<br>кино Индии</h2>
+        <p style="margin-top:12px;max-width:52ch">Параллельно Болливуду в Индии росло политическое «параллельное кино». <strong>Мринал Сен</strong> в «Калькутте 71» (1972) проводит сквозь десятилетия один сюжет — нищету и классовый гнев, доведённые до наксалитского бунта.</p>
+        <p style="margin-top:8px">Корни — в <strong>IPTA</strong>, левом театральном фронте: это сердитое кино наксалитской эпохи, продолжение «трилогии о Калькутте» Сена. Целая школа, а не одиночки.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Но индийский левый кинематограф — это школа. Дальше два её полюса: трагический автопортрет Гхатака и народный фильм Джона Абрахама.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ INDIA: GHATAK ============ -->
+  <!-- JUKTI intro -->
+  <section class="slide" data-toc="Гхатак: «Jukti Takko Aar Gappo»">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Ритвик Гхатак · 1974</span></div>
+    <div class="cols-poster">
+      <div class="pbox"><img src="img/Jukti_Takko_poster.jpg" alt="«Jukti Takko Aar Gappo» (1974)"></div>
+      <div class="stack" style="align-self:center">
+        <div class="meta-row"><span><b>Реж.</b> Р. Гхатак</span><span><b>Год</b> 1974 · Индия</span><span><b>Бенгалия</b></span></div>
+        <h2>Доводы, споры<br>и сказка</h2>
+        <div><span class="chip">Автопортрет</span><span class="chip">Поражение левых</span></div>
+        <p style="margin-top:4px">Последний фильм Ритвика Гхатака. Он сам играет главного героя — Нилкантху Багчи, спившегося марксиста-интеллигента, который бредёт через Бенгалию, истерзанную наксалитским восстанием и расколом.</p>
+        <p style="margin-top:6px">Режиссёр буквально <strong>выводит себя на экран</strong> — как обломок революционной надежды.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Тот случай, когда фильм Гхатака — не «травма вообще», а программный, горький разговор о судьбе левых.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- JUKTI meaning -->
+  <section class="slide" data-toc="Гхатак: марксизм как самокритика">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Что значит играть себя</span></div>
+    <h2>Марксизм, обращённый на себя</h2>
+    <p class="lead" style="max-width:82ch;margin:12px 0 16px">Если Бертолуччи показывал буржуа, который не смог, то Гхатак показывает марксиста, который попытался — и надломился. Спор героя с молодыми наксалитами, с женой, с самим собой — это спор всего левого движения о собственном поражении. Содержание тут не лозунг, а <strong>беспощадная самокритика</strong>.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Герой</span><p>Пьющий, проигравший, но не отрёкшийся интеллигент — лицо целого поколения бенгальских левых.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Метод</span><p>Раздробленная форма, споры вместо сюжета: марксизм как незаконченный, мучительный спор.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Содержание-марксизм умеет не только утверждать, но и судить себя — это его взрослая, трагическая форма.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ INDIA: AMMA ARIYAN ============ -->
+  <!-- AMMA intro -->
+  <section class="slide" data-toc="«Amma Ariyan»">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Джон Абрахам · 1986</span></div>
+    <div class="cols-poster">
+      <div class="pbox"><img src="img/Amma_Ariyan_poster.jpg" alt="«Amma Ariyan» (1986)"></div>
+      <div class="stack" style="align-self:center">
+        <div class="meta-row"><span><b>Реж.</b> Джон Абрахам</span><span><b>Год</b> 1986 · Индия</span><span><b>Малаялам · Керала</b></span></div>
+        <h2>Amma Ariyan</h2>
+        <div><span class="chip">«Доклад матери»</span><span class="chip">Поколение левых</span></div>
+        <p style="margin-top:4px">«Доклад матери»: юноша по пути в Дели видит труп самоубийцы-барабанщика и пытается восстановить, кем тот был. Письмо-расследование собирает портрет целого радикального поколения Кералы.</p>
+        <p style="margin-top:6px">Фон постера не случаен — Мао и Че: это кино о тех, кто жил левой идеей.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Здесь содержание и практика сливаются: фильм о левых, снятый как левое действие.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AMMA practice -->
+  <section class="slide" data-toc="«Amma Ariyan»: кино без рынка">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Коллектив «Одесса»</span></div>
+    <h2>Фильм, оплаченный народом</h2>
+    <p class="lead" style="max-width:82ch;margin:12px 0 16px">Джон Абрахам отказался от продюсеров и студий. Его коллектив <strong>«Одесса»</strong> собирал деньги на фильм <em>пожертвованиями</em> — по деревням Кералы, и так же, с передвижного проектора, его потом и показывали. Кино полностью вне рынка: по содержанию, по способу производства и по способу показа.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Деньги</span><h3>Сбор по копейке</h3><p>Народные пожертвования вместо студийного бюджета.</p></div>
+      <div class="card ochre"><span class="k">Показ</span><h3>Проектор в деревне</h3><p>Не кинотеатр-касса, а сельский сход — как у Третьего кино.</p></div>
+      <div class="card"><span class="k">Итог</span><h3>Кино-кооператив</h3><p>Зритель — соучастник и соинвестор, а не потребитель.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Редчайший случай, когда марксистский фильм и правда вышел из-под власти капитала — пусть и ненадолго.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AMMA reading -->
+  <section class="slide" data-toc="«Amma Ariyan»: предел и память">
+    <div class="eyebrow">Содержание <span class="sep">/</span> <span class="tag">Сила и предел</span></div>
+    <h2>Самый чистый ответ — и его хрупкость</h2>
+    <p class="lead" style="max-width:82ch;margin:12px 0 16px">«Amma Ariyan» — едва ли не идеальный «марксистский фильм»: о левых, левыми, для народа и без капитала. Но именно его судьба показывает предел: Джон Абрахам вскоре погиб, коллектив распался, фильм почти не виден массовому зрителю. Чистота далась ценой охвата.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Сила</span><p>Полное слияние идеи, денег и показа вне рынка — мечта Третьего кинематографа, осуществлённая.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Предел</span><p>Вне индустрии фильм почти невидим. Та самая стена, к которой мы придём в финале.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Запомним и этот случай: цена выхода из рынка — почти полное исчезновение из поля зрения.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONTENT: thesis form vs content -->
+  <section class="slide thesis">
+    <div class="tlbl">Развилка</div>
+    <div class="big">Достаточно ли <span class="hl">сказать</span> правду?</div>
+    <div class="tsub">Содержание-марксизм говорит прямо: вот классы, вот эксплуатация, вот борьба. Но критики возражают: если форма и способ показа остаются голливудскими, не растворяется ли месседж в зрелище? Этот спор и рождает третий, самый радикальный ответ.</div>
+    <div class="slide-foot"><span>От сообщения — к действию</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIVIDER 3: PRACTICE -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Практика · 03</div>
+      <h2>Марксизм<br>как оружие</h2>
+      <p class="sub">Латинская Америка отвечает радикальнее всех: фильм — не рассказ о революции, а её часть. Так рождается Третий кинематограф.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Соланас · Хетино · Гусман</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PRACTICE: Third Cinema concept -->
+  <section class="slide" data-toc="Третий кинематограф">
+    <div class="eyebrow">Практика <span class="sep">/</span> <span class="tag">Манифест · 1969</span></div>
+    <h2>Три кинематографа</h2>
+    <p class="lead" style="max-width:78ch;margin:12px 0 16px">Аргентинцы <strong>Фернандо Соланас и Октавио Хетино</strong> в манифесте «К третьему кинематографу» (1969) делят всё кино на три типа — и только третий считают живым.</p>
+    <div class="cols-3">
+      <div class="card"><span class="k">Первый</span><h3>Голливуд</h3><p>Кино-товар. Зритель — пассивный потребитель, фильм — продукт индустрии.</p></div>
+      <div class="card ochre"><span class="k">Второй</span><h3>Авторское кино</h3><p>Европейский артхаус. Свободнее, но всё ещё индивидуалистично и вписано в рынок.</p></div>
+      <div class="card accent"><span class="k">Третий</span><h3>Кино-оружие</h3><p>Militant cinema: коллективное, антиимпериалистическое, часть борьбы. Зритель — соучастник.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Третий кинематограф — не стиль, а политическая программа: камера как инструмент освобождения.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PRACTICE: Hour of the Furnaces -->
+  <section class="slide" data-toc="«Час печей»">
+    <div class="eyebrow">Практика <span class="sep">/</span> <span class="tag">«Час печей» · 1968</span></div>
+    <h2>Фильм как политический акт</h2>
+    <div class="framebox" style="margin:10px 0;min-height:340px">
+      <img src="img/Hour_of_the_Furnaces.jpg" alt="«Час печей» (1968)">
+      <div class="fbcap">«La hora de los hornos» · Grupo Cine Liberación · Соланас и Хетино · 1968</div>
+    </div>
+    <p class="lead" style="max-width:84ch;margin:8px 0 0">Четырёхчасовой боевой документ об империализме в Латинской Америке показывали <strong>подпольно</strong> — в профсоюзах и на квартирах, с паузами на дискуссию. Сеанс превращался в собрание. Здесь кино не описывает действие, а само <em>является</em> действием.</p>
+    <div class="slide-foot"><span class="src">Самый прямой ответ на вопрос лекции: марксистский фильм — это фильм, встроенный в борьбу.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PRACTICE: Battle of Chile -->
+  <section class="slide" data-toc="«Битва за Чили»">
+    <div class="eyebrow">Практика <span class="sep">/</span> <span class="tag">Патрисио Гусман · 1975–79</span></div>
+    <div class="cols-poster">
+      <div class="pbox"><img src="img/Battle_of_Chile_poster.jpg" alt="«Битва за Чили»"></div>
+      <div class="stack" style="align-self:center">
+        <h2>Камера внутри<br>революции и переворота</h2>
+        <p style="margin-top:12px;max-width:52ch"><strong>Патрисио Гусман</strong> снимал «Битву за Чили» прямо в 1973-м — последний год правительства Альенде и военный переворот Пиночета. Плёнку вывозили из страны контрабандой; фильм монтировали уже в изгнании.</p>
+        <p style="margin-top:8px">Это кино-свидетельство: камера не реконструирует историю, а стоит в ней под огнём. Позже Гусман превратит это в работу <em>памяти</em> — мост к четвёртой форме.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Когда снимать — значит сопротивляться, граница между фильмом и политическим действием исчезает.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIVIDER 4: MEMORY -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Память · 04</div>
+      <h2>Марксизм<br>как память и критика</h2>
+      <p class="sub">Когда революции позади, остаётся четвёртая форма: не агитировать за социализм, а скорбно осмыслять, что с ним стало.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Цзя Чжанкэ</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ MEMORY: XIE JIN ============ -->
+  <!-- XIEJIN intro -->
+  <section class="slide" data-toc="Се Цзинь: «Сёстры по сцене»">
+    <div class="eyebrow">Память <span class="sep">/</span> <span class="tag">Се Цзинь · 1964</span></div>
+    <div class="cols-poster">
+      <div class="pbox"><img src="img/Two_Stage_Sisters_poster.jpg" alt="«Сёстры по сцене» (1964)"></div>
+      <div class="stack" style="align-self:center">
+        <div class="meta-row"><span><b>Реж.</b> Се Цзинь</span><span><b>Год</b> 1964 · КНР</span><span><b>До Цзя Чжанкэ</b></span></div>
+        <h2>Сёстры по сцене</h2>
+        <div><span class="chip">Соцреализм-классика</span><span class="chip">Эксплуатация артисток</span></div>
+        <p style="margin-top:4px">Две актрисы традиционной оперы проходят путь от 1930-х до освобождения: одну затягивает коммерческая слава, другая приходит к революционному сознанию. Классовое расслоение — прямо на подмостках.</p>
+        <p style="margin-top:6px">Се Цзинь — главный автор соцреалистической эпохи: не топорная агитка, а <strong>пышная мелодрама</strong> об угнетении и пробуждении.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Китайское «содержание-марксизм» высокого класса — то, что было до прихода рынка.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- XIEJIN arc -->
+  <section class="slide" data-toc="Китайская дуга: обещание и расплата">
+    <div class="eyebrow">Память <span class="sep">/</span> <span class="tag">Рифма через сорок лет</span></div>
+    <h2>От обещания — к расплате</h2>
+    <p class="lead" style="max-width:82ch;margin:12px 0 16px">«Сёстры по сцене» и «Платформа» Цзя Чжанкэ — об одном и том же: артисты и социалистический проект. Только Се Цзинь снимает <strong>обещание</strong> (пробуждение классового сознания в 1964-м), а Цзя — <strong>расплату</strong> (как сорок лет спустя те же подмостки поглотил рынок).</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Се Цзинь · 1964</span><p>Артистки идут к революции. Социализм как восходящая надежда, снятая изнутри.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Цзя Чжанкэ · 2000</span><p>Труппа дрейфует к поп-сцене. Социализм как утраченное прошлое, снятое как элегия.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Две «сцены», сорок лет порознь, — и вся история китайского социализма между ними.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- MEMORY: Jia Platform -->
+  <section class="slide" data-toc="Цзя Чжанкэ «Платформа»">
+    <div class="eyebrow">Память <span class="sep">/</span> <span class="tag">Цзя Чжанкэ · 2000</span></div>
+    <div class="cols-poster">
+      <div class="pbox"><img src="img/Platform_Jia_poster.jpg" alt="«Платформа» (2000)"></div>
+      <div class="stack" style="align-self:center">
+        <div class="meta-row"><span><b>Реж.</b> Цзя Чжанкэ</span><span><b>Год</b> 2000 · Китай</span><span><b>Провинция</b> Шаньси</span></div>
+        <h2>Платформа</h2>
+        <div><span class="chip">Переход к рынку</span><span class="chip">Элегия</span></div>
+        <p style="margin-top:4px">Государственная театральная труппа в 1980-е приватизируется и дрейфует от маоистских агитбригад к поп-концертам. На судьбе нескольких актёров Цзя показывает, как <strong>социализм тихо становится рынком</strong>.</p>
+        <p style="margin-top:6px">Это не пропаганда и не агитка, а критическая память: что обещал проект — и что от него осталось.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">«Платформа» и «Безмятежность» (2002) — марксизм как меланхолия по утраченному будущему.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- MEMORY: reflection -->
+  <section class="slide" data-toc="Самая современная форма">
+    <div class="eyebrow">Память <span class="sep">/</span> <span class="tag">Зачем это сегодня</span></div>
+    <h2>Критика изнутри поражения</h2>
+    <p class="lead" style="max-width:80ch;margin:12px 0 16px">Четвёртая форма — самая близкая нам. Когда великие революции стали историей, марксистское кино перестаёт обещать и начинает <strong>помнить и анализировать</strong>: чем обернулась индустриализация, приватизация, «реформа». Цзя снимает не лозунг, а социальный диагноз эпохи перемен.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Что ушло</span><p>Вера, что кино приближает революцию. Агитпропа больше нет.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Что осталось</span><p>Марксистская оптика как инструмент критики: видеть классы и потери там, где рынок видит «прогресс».</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Память — это марксизм, переживший своё поражение и сохранивший зрение.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS -->
+  <section class="slide" data-toc="Четыре ответа — один вопрос">
+    <div class="eyebrow">Развязка <span class="sep">/</span> <span class="tag">Карта пройденного</span></div>
+    <h2>Четыре ответа на один вопрос</h2>
+    <p class="lead" style="max-width:76ch;margin:12px 0 16px">«Снять марксистский фильм» можно минимум четырьмя способами — и каждый даёт свою эстетику, свою политику и свой риск.</p>
+    <div class="cols-4">
+      <div class="card accent"><span class="k">Форма</span><h3>Эйзенштейн, Вертов</h3><p>Новый зритель. Риск — государство задушит авангард.</p></div>
+      <div class="card ochre"><span class="k">Содержание</span><h3>Бертолуччи, Сен</h3><p>Классовый сюжет. Риск — раствориться в зрелище.</p></div>
+      <div class="card"><span class="k">Практика</span><h3>Соланас, Гусман</h3><p>Кино-оружие. Риск — остаться в подполье, без зрителя.</p></div>
+      <div class="card" style="border-top:4px solid var(--bone)"><span class="k">Память</span><h3>Цзя Чжанкэ</h3><p>Критика и элегия. Риск — меланхолия вместо действия.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Ни одна форма не «правильная» — вместе они и есть марксизм в кино во всей его сложности.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- FINAL QUESTION -->
+  <section class="slide" data-toc="Марксистский фильм внутри капитализма?">
+    <div class="eyebrow">Финал <span class="sep">/</span> <span class="tag">Стена, общая для всех</span></div>
+    <h2>Можно ли снять марксистский фильм<br>внутри капиталистической индустрии?</h2>
+    <p class="lead" style="max-width:82ch;margin:14px 0 16px">Все четыре формы упёрлись в одну стену. Чтобы фильм увидели, нужны деньги, плёнка, экраны, прокат — то есть индустрия, которую он критикует. «Двадцатый век» снят на голливудские деньги. Третий кинематограф ушёл в подполье и почти лишился зрителя. Цзя работает в зазорах китайского рынка и цензуры.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Дилемма</span><p>Внутри индустрии — тебя поглотит рынок. Вне её — тебя никто не увидит. Третьего пути почти нет.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Поэтому дальше</span><p>Чтобы понять эту стену, надо разобрать саму индустрию — её экономику, собственность и власть.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Это и есть мост к двум финальным лекциям курса.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- FINAL THESIS -->
+  <section class="slide thesis">
+    <div class="tlbl">Вывод лекции</div>
+    <div class="big">Снять марксизм <span class="hl">можно</span>.<br>Вопрос — где его покажут</div>
+    <div class="tsub">Режиссёры доказали: марксистский фильм возможен — как форма, как содержание, как практика, как память. Но каждый упёрся в политэкономию кинопроизводства. Поэтому курс завершают две лекции о том, кто владеет киноиндустрией и по каким законам она работает.</div>
+    <div class="slide-foot"><span>Дальше — капитализм и политэкономия кино</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WATCHLIST -->
+  <section class="slide" data-toc="К просмотру и чтению">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:76ch;margin:12px 0 2px">По одному фильму на каждую форму — смотрите их как четыре разных ответа на вопрос лекции.</p>
+    <div class="watchlist" style="margin-top:16px">
+      <div class="wfilm"><span class="wy">1927</span><span class="wt">Октябрь</span><span class="wd">С. Эйзенштейн · СССР</span><span class="wn">Форма: интеллектуальный монтаж и проект нового зрителя.</span></div>
+      <div class="wfilm"><span class="wy">1976</span><span class="wt">Двадцатый<br>век</span><span class="wd">Б. Бертолуччи · Италия</span><span class="wn">Содержание: классовая борьба как сюжет века — на студийные деньги.</span></div>
+      <div class="wfilm"><span class="wy">1968</span><span class="wt">Час печей</span><span class="wd">Соланас, Хетино · Аргентина</span><span class="wn">Практика: Третий кинематограф, фильм как политический акт.</span></div>
+      <div class="wfilm"><span class="wy">2000</span><span class="wt">Платформа</span><span class="wd">Цзя Чжанкэ · Китай</span><span class="wn">Память: тихий переход от социализма к рынку.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING + NEXT -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению и следующая лекция</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>К чтению</h3>
+        <div class="readlist" style="margin-top:4px">
+          <div class="r"><span class="n">01</span><span class="ttl"><b>Ф. Соланас, О. Хетино.</b> «К третьему кинематографу» (1969) — манифест</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">02</span><span class="ttl"><b>С. Эйзенштейн.</b> «Монтаж аттракционов» и о диалектическом подходе к форме</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">03</span><span class="ttl"><b>Мринал Сен.</b> Интервью и тексты о политическом кино Индии</span><span class="typ">Контекст</span></div>
+          <div class="r"><span class="n">04</span><span class="ttl"><b>О Цзя Чжанкэ:</b> кино перехода и «исчезающий» Китай</span><span class="typ">Контекст</span></div>
+        </div>
+      </div>
+      <div class="oxpanel" style="padding:26px 28px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Лекция 11 →</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Капитализм сегодня</h2>
+        <p style="margin-top:10px;color:rgba(255,255,255,.92)">Режиссёры упёрлись в стену индустрии. Следующая лекция показывает капитализм уже на самом экране — «Паразиты», «Сквозь снег», — а финальная вскроет его политэкономию.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 10 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+
+<button class="toc-btn" id="tocBtn" aria-label="Содержание лекции">☰ Содержание</button>
+<div class="toc-panel" id="tocPanel" role="dialog" aria-label="Содержание лекции">
+  <div class="toc-inner">
+    <div class="toc-head">
+      <span class="toc-title">Содержание</span>
+      <a class="toc-back" href="/lectures/">← Все лекции</a>
+    </div>
+    <div class="toc-list" id="tocList"></div>
+  </div>
+</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+/* оглавление лекции (собирается из data-toc) */
+(function(){
+  const btn=document.getElementById('tocBtn'), panel=document.getElementById('tocPanel'), list=document.getElementById('tocList');
+  if(!btn||!panel||!list) return;
+  const items=[];
+  slides.forEach((s,idx)=>{
+    const t=s.getAttribute('data-toc'); if(!t) return;
+    const b=document.createElement('button'); b.className='toc-item'; b.dataset.idx=idx;
+    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t+'</span>';
+    b.addEventListener('click',()=>{ show(idx); close(); });
+    list.appendChild(b); items.push(b);
+  });
+  function mark(){ items.forEach((b,k)=>{ const cur=+b.dataset.idx, next=items[k+1]?+items[k+1].dataset.idx:Infinity; b.classList.toggle('cur', i>=cur && i<next); }); }
+  function open(){ mark(); panel.classList.add('open'); }
+  function close(){ panel.classList.remove('open'); }
+  btn.addEventListener('click',()=>panel.classList.contains('open')?close():open());
+  panel.addEventListener('click',e=>{ if(e.target===panel) close(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+})();
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

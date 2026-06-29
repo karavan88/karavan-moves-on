@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 11 — Политэкономия кино | Марксистская теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+.deck{position:fixed;inset:0}
+.slide{position:absolute;inset:0;display:none;padding:46px 60px 60px calc(var(--rail) + 54px);opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .45s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--ink);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--ink) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--red),var(--red-deep));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.rail-top{position:relative;z-index:2;margin-top:22px;font-family:var(--display);font-weight:700;font-size:26px;color:var(--red)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--red);display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.eyebrow .sep{color:var(--slate)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:600;line-height:.96;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px);text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,1.6vw,22px);text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.5}
+.lead{font-size:clamp(16px,1.5vw,21px);line-height:1.46}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:62%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px}
+.bignum{font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(40px,7vw,92px);line-height:.8}
+.slash{position:absolute;right:-6%;top:-10%;width:62%;height:130%;background:var(--red);transform:skewX(-12deg);z-index:0;opacity:.96}
+.oxpanel{background:var(--oxblood);border-left:5px solid var(--red)}
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;opacity:.5;z-index:0}
+.cover .blockred{position:absolute;right:0;top:0;width:34%;height:100%;background:var(--red);transform:skewX(-9deg) translateX(22%);z-index:0;opacity:.92}
+.cover .blockoch{position:absolute;right:30%;bottom:8%;width:120px;height:120px;border:10px solid var(--ochre);border-radius:50%;z-index:0;opacity:.8}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:16px}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-size:clamp(15px,2vw,24px);margin-bottom:14px}
+.cover h1{font-size:clamp(44px,7.8vw,112px);text-transform:uppercase}
+.cover h1 .hl{color:var(--red)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.5vw,32px);margin-top:18px;color:var(--bone);line-height:1.08;max-width:24ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:18px 36px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:36px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.card h3{margin-bottom:2px}
+.card.accent{border-top:4px solid var(--red)}
+.card.ochre{border-top:4px solid var(--ochre)}.card.ochre .k{color:var(--ochre)}
+.deflist{display:flex;flex-direction:column;gap:12px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px}
+.quote{position:relative;padding:8px 0 8px 60px;align-self:center}
+.quote::before{content:"«";position:absolute;left:-6px;top:-22px;font-family:var(--display);font-weight:700;font-size:128px;color:var(--red);line-height:1;opacity:.9}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,30px);line-height:1.28;display:block}
+.quote .attr{margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre)}
+.schema{display:flex;flex-direction:column;gap:0;align-self:center;width:100%;max-width:520px}
+.schema .tier{padding:16px 20px;border:1px solid var(--line-strong);position:relative}
+.schema .super{background:var(--ink-2);border-bottom:none}
+.schema .arrowzone{display:flex;justify-content:center;gap:44px;padding:7px 0;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+.schema .base{background:var(--oxblood);border-color:var(--red-deep);border-left:5px solid var(--red)}
+.schema .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:5px}
+.schema .it{font-family:var(--serif);font-size:14.5px;color:var(--bone)}.schema .it b{color:#fff}
+.film{display:grid;grid-template-columns:1.02fr 1fr;gap:0;flex:1;align-items:stretch;border:1px solid var(--line-strong)}
+.film .still{position:relative;background:var(--ink-2);overflow:hidden;min-height:0}
+.film .still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.film .still.has-image img{opacity:1}.film .still.has-image .ph{opacity:0}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:opacity .4s;background:radial-gradient(120% 80% at 80% 10%,rgba(214,52,42,.34),transparent 60%),repeating-linear-gradient(135deg,rgba(236,230,218,.05) 0 2px,transparent 2px 22px),linear-gradient(160deg,var(--oxblood),var(--ink) 75%)}
+.ph .frame-tag{position:absolute;top:20px;left:24px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+.ph .frame-tag::before{content:"";width:10px;height:10px;background:var(--red);display:inline-block}
+.ph .yr{font-family:var(--display);font-weight:700;font-size:clamp(52px,6.5vw,98px);color:rgba(236,230,218,.16);line-height:.8;position:absolute;top:30%;left:22px}
+.ph .pt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(21px,2.3vw,32px);line-height:.98;color:var(--bone);position:relative;z-index:2}
+.ph .pd{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ochre);margin-top:9px;z-index:2}
+.film .info{background:var(--ink);padding:28px 30px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.film .info .meta-row{display:flex;flex-wrap:wrap;gap:7px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.film .info .meta-row b{color:var(--ochre);font-weight:500}
+.film .info h2{font-size:clamp(24px,2.8vw,38px)}.film .info p{font-size:15px}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid var(--red-deep);padding:4px 10px;border-radius:2px;margin-right:6px}
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:700;color:var(--red);font-size:clamp(22px,2.4vw,34px)}
+.qlist p{font-size:clamp(15px,1.4vw,18px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--red);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre)}
+.coursemap{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 11px;background:var(--ink-2);display:flex;flex-direction:column;gap:7px;min-height:112px}
+.coursemap .node .nn{font-family:var(--display);font-weight:700;color:var(--red);font-size:19px}
+.coursemap .node .nt{font-family:var(--display);font-weight:500;text-transform:uppercase;font-size:12px;line-height:1.05;color:var(--bone)}
+.coursemap .node.cur{background:var(--oxblood);border-color:var(--red);border-top:4px solid var(--red)}
+.coursemap .node.cur .nt{color:#fff}
+.divider{justify-content:center;position:relative;overflow:hidden}
+.divider-inner{position:relative;z-index:3;max-width:64%}
+.divider .bignum{color:#fff}
+.divider h2{font-size:clamp(32px,5.2vw,70px)}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);color:rgba(255,255,255,.92);margin-top:14px;max-width:30ch}
+.timeline{display:flex;flex-direction:column;gap:10px;align-self:center}
+.timeline .t{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px}
+.timeline .t .yr2{font-family:var(--mono);color:var(--red);font-size:12px;letter-spacing:.08em;white-space:nowrap}
+.timeline .t .ds{font-size:14.5px}.timeline .t .ds b{color:#fff}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red)}
+.wfilm .wy{font-family:var(--display);font-weight:700;font-size:52px;line-height:.8;color:rgba(236,230,218,.12);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:19px;line-height:1;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ochre)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.4}
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--red);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.nbtn:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--red);width:0;transition:width .4s ease}
+.help{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--slate);text-transform:uppercase}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.film,.coursemap{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .film{grid-template-rows:230px auto}
+  .cover-inner,.divider-inner{max-width:100%}
+  .cover .blockred{transform:skewX(-9deg) translateX(55%)}
+  .zone{width:24%}.progress{left:0}.help{display:none}.quote{padding-left:38px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.coursemap{grid-template-columns:repeat(2,1fr)}h2{font-size:25px}.watchlist{grid-template-columns:1fr}}
+
+/* ===== NEW SLIDE TYPES (v2 — перенос из лекции 1) ===== */
+/* Ключевой тезис / афоризм */
+.slide.thesis{justify-content:center}
+.thesis .tlbl{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ochre);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.thesis .tlbl::before{content:"";width:30px;height:2px;background:var(--red)}
+.thesis .big{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(38px,6.4vw,96px);line-height:.95;letter-spacing:-.01em;max-width:20ch}
+.thesis .big .hl{color:var(--red)}.thesis .big .oc{color:var(--ochre)}
+.thesis .tsub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,22px);color:var(--bone-dim);margin-top:24px;max-width:52ch}
+/* Полноэкранный кадр */
+.slide.framefull{justify-content:flex-end;overflow:hidden}
+.framefull .shot{position:absolute;inset:0;background:var(--ink-2);z-index:0}
+.framefull .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.framefull .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,17,15,.94),rgba(20,17,15,.20) 44%,rgba(20,17,15,.5))}
+.framefull .fcap{position:relative;z-index:2;max-width:66%}
+.framefull .fk{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.framefull .fcap h2{font-size:clamp(30px,4.4vw,62px)}
+.framefull .fcap p{margin-top:12px;font-size:clamp(15px,1.4vw,19px);max-width:54ch;color:var(--bone)}
+.framefull .slide-foot{color:var(--bone-dim);border-color:var(--line-strong)}
+.slide.thesis .slide-foot,.slide.framefull .slide-foot{position:absolute;left:calc(var(--rail) + 54px);right:60px;bottom:22px;margin-top:0}
+/* Крупный прозрачный красный год на полноэкранных кадрах-визитках */
+.framefull .fyear{position:absolute;z-index:2;font-family:var(--display);font-weight:700;font-size:clamp(96px,17vw,260px);line-height:.76;color:rgba(214,52,42,.42);letter-spacing:-.02em;pointer-events:none;right:50px;bottom:26px}
+.framefull .fyear.top{top:18px;bottom:auto;right:50px}
+.framefull .fyear.bl{left:calc(var(--rail) + 54px);right:auto;bottom:26px}
+/* Портреты теоретиков */
+.thinkers{display:flex;gap:14px;margin-top:16px}
+.thinkers figure{width:102px}
+.thinkers img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;border:1px solid var(--line-strong);filter:grayscale(1) contrast(1.05) brightness(1.02);display:block}
+.thinkers figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:6px;line-height:1.5}
+.thinkers figcaption b{color:var(--ochre);display:block;font-weight:500}
+/* Рамка-кадр внутри обычного слайда */
+.framebox{position:relative;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink-2);min-height:300px;align-self:stretch}
+.framebox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.framebox .fbcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);background:linear-gradient(transparent,rgba(20,17,15,.94))}
+/* Оглавление лекции */
+.toc-btn{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);background:var(--ink-2);border:1px solid var(--line-strong);padding:8px 12px;border-radius:2px;cursor:pointer;transition:.16s}
+.toc-btn:hover{border-color:var(--red);color:#fff}
+.toc-panel{position:fixed;inset:0;z-index:60;background:rgba(10,8,7,.74);display:none;opacity:0;transition:opacity .2s}
+.toc-panel.open{display:block;opacity:1}
+.toc-inner{position:absolute;left:0;top:0;bottom:0;width:min(430px,86vw);background:var(--ink-2);border-right:2px solid var(--red);padding:30px 26px;overflow:auto;box-shadow:0 0 60px rgba(0,0,0,.6)}
+.toc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:12px}
+.toc-title{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:22px;color:var(--bone)}
+.toc-back{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ochre);text-decoration:none}
+.toc-back:hover{color:var(--red)}
+.toc-list{display:flex;flex-direction:column}
+.toc-item{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:13px 4px;font-family:var(--serif);font-size:16px;color:var(--bone);cursor:pointer;transition:.14s}
+.toc-item:hover{color:var(--red);padding-left:10px}
+.toc-item.cur{color:var(--ochre)}
+.toc-item .tnum{font-family:var(--mono);font-size:12px;color:var(--red);min-width:24px}
+/* Контактный лист постеров */
+.contactrow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;align-self:center;width:100%;max-width:1040px;margin:0 auto}
+.pcard{position:relative;border:1px solid var(--line-strong);background:var(--ink-2);overflow:hidden;aspect-ratio:2/3}
+.pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pcard .pgrad{position:absolute;left:0;right:0;bottom:0;top:52%;background:linear-gradient(transparent,rgba(20,17,15,.95));z-index:1}
+.pcard .pcyr{position:absolute;left:11px;bottom:28px;z-index:2;font-family:var(--display);font-weight:700;font-size:21px;color:#fff}
+.pcard .pcname{position:absolute;left:11px;right:11px;bottom:10px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim)}
+/* Схема-поток */
+.flow{display:flex;align-items:stretch;align-self:center;width:100%;gap:0}
+.flow .fstep{flex:1;border:1px solid var(--line-strong);background:var(--ink-2);padding:18px 16px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.flow .fstep .fsk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.flow .fstep h3{font-size:clamp(15px,1.5vw,21px)}
+.flow .fstep p{font-size:12.5px;color:var(--bone-dim);line-height:1.4}
+.flow .fstep.eco{border-top:4px solid var(--red)}.flow .fstep.eco .fsk{color:var(--red)}
+.flow .fstep.ideo{border-top:4px solid var(--ochre);background:var(--oxblood)}.flow .fstep.ideo .fsk{color:var(--ochre)}
+.flow .farr{display:flex;align-items:center;padding:0 9px;color:var(--red);font-family:var(--display);font-weight:700;font-size:24px}
+/* Таймлайн с мини-постерами */
+.tline{display:flex;flex-direction:column;gap:8px;align-self:center;width:100%;max-width:960px}
+.tline .tl{display:grid;grid-template-columns:104px 46px 1fr auto;gap:16px;align-items:center;border-bottom:1px solid var(--line);padding:8px 6px}
+.tline .tl.star{background:var(--oxblood);border:1px solid var(--red);border-radius:2px;padding:10px 12px}
+.tline .ty{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--red)}
+.tline .tp{width:46px;aspect-ratio:2/3;object-fit:cover;border:1px solid var(--line-strong);display:block;background:var(--ink)}
+.tline .tt{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(14px,1.5vw,19px);color:var(--bone);line-height:1.05}
+.tline .tt span{display:block;font-family:var(--serif);font-weight:400;text-transform:none;font-size:12.5px;color:var(--bone-dim);margin-top:3px}
+.tline .tstar{font-family:var(--mono);font-size:11px;color:var(--ochre);letter-spacing:.08em;white-space:nowrap}
+.tline.tight{gap:5px}.tline.tight .tl{padding:5px 6px}.tline.tight .tl.star{padding:6px 12px}.tline.tight .tp{width:40px}
+@media (max-width:900px){.tline .tl{grid-template-columns:74px 38px 1fr;gap:10px}.tline .tstar{display:none}}
+/* Постеры в списке «К просмотру» */
+.watchlist.withposters .wfilm{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:start;padding:16px 18px 16px 16px}
+.watchlist.withposters .wfilm .wy{display:none}
+.watchlist.withposters .wpost{grid-row:span 4;aspect-ratio:2/3;border:1px solid var(--line-strong);overflow:hidden;background:var(--ink)}
+.watchlist.withposters .wpost img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:900px){
+  .contactrow{grid-template-columns:repeat(2,1fr);max-width:340px}
+  .flow{flex-direction:column}.flow .farr{transform:rotate(90deg);padding:6px 0;justify-content:center}
+  .framefull .fcap{max-width:100%}
+  .slide.thesis .slide-foot,.slide.framefull .slide-foot{left:18px;right:18px}
+  .flow .fstep{padding:13px 14px}.flow .fstep p{font-size:11.5px}
+}
+
+/* ===== PRINT / SAVE-AS-PDF: every slide on its own landscape page, dark colors preserved ===== */
+@media print{
+  @page{ size: A4 landscape; margin:0; }
+  html,body{ width:auto; height:auto; overflow:visible; background:var(--ink) !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  .nav,.help,.progress,.zone,.toc-btn,.toc-panel{ display:none !important; }
+  .deck{ position:static !important; }
+  .rail{ position:absolute !important; }
+  .slide{
+    position:relative !important; inset:auto !important; display:flex !important; opacity:1 !important;
+    width:100%; min-height:100vh; height:100vh; page-break-after:always; break-after:page;
+    animation:none !important; background:var(--ink) !important;
+  }
+  .slide:last-child{ page-break-after:auto; break-after:auto; }
+  .slide.cover, .slide.divider{ background:var(--ink) !important; }
+  .film{ min-height:62vh; }
+  img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+}
+</style>
+</head>
+<body>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">11</div>
+  <div class="rail-label">Марксистская теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- COVER -->
+  <section class="slide cover active">
+    <div class="grid-bg"></div><div class="blockred"></div><div class="blockoch"></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 11 / 11</div>
+      <div class="course-name">Марксистская теория кино</div>
+      <h1>Полит<span class="hl">·</span>экономия<br>кино</h1>
+      <div class="subt">Кто владеет, кто платит, кто трудится — и кто получает прибыль</div>
+      <div class="meta">
+        <span><b>Понятия:</b> аудитория-товар · внимание-труд · платформа-рента</span>
+        <span><b>Кейс:</b> «Ирландец» (Netflix, 2019)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLD OPEN -->
+  <section class="slide" data-toc="Введение">
+    <div class="eyebrow">Лекция 11 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
+    <h2>Вы заплатили за этот фильм дважды</h2>
+    <p class="lead" style="max-width:78ch;margin:14px 0 18px">Один раз — деньгами: билет, диск, подписка. Второй раз — собой: временем, вниманием и данными, которые кто-то продал дальше. Десять лекций мы разбирали, как кино <em>показывает</em> мир. Последняя — о том, как устроен сам бизнес, который это кино производит.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Чем вы платите · 1</span><h3>Деньгами</h3><p>Билет, прокат, подписка. Очевидная цена — но это лишь верхушка.</p></div>
+      <div class="card ochre"><span class="k">Чем вы платите · 2</span><h3>Вниманием</h3><p>Часы перед экраном — это произведённый ресурс. Его продают рекламодателю.</p></div>
+      <div class="card"><span class="k">Вопрос лекции</span><h3>Кому идёт прибыль?</h3><p>Студии, конгломерату, платформе. И всё реже — тем, кто фильм сделал.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Политэкономия спрашивает не «о чём фильм?», а «кто на нём зарабатывает и за чей счёт?».</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS: cinema is first an industry -->
+  <section class="slide thesis">
+    <div class="tlbl">Тезис лекции</div>
+    <div class="big">Кино — это прежде всего <span class="hl">индустрия</span></div>
+    <div class="tsub">Под формой, аурой, идеологией и гегемонией — всё, что мы изучали, — лежит фундамент: производство, труд и капитал. Политэкономия кино смотрит на этот фундамент прямо. Не «что кино говорит о капитализме», а «как капитализм делает кино».</div>
+    <div class="slide-foot"><span>База под всей надстройкой</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WHERE WE ARE: coursemap -->
+  <section class="slide">
+    <div class="eyebrow">Лекция 11 <span class="sep">/</span> <span class="tag">Карта курса</span></div>
+    <h2>Где мы в курсе</h2>
+    <p class="lead" style="max-width:70ch;margin:16px 0 22px">Десять лекций камера была направлена на экран: форма, монтаж, аура, очуждение, интерпелляция, аппарат, гегемония, постмодерн, капитализм на экране. Теперь камера разворачивается на саму индустрию. Это капстоун: всё, что мы разбирали как идеологию, держится на экономике, которую мы наконец рассмотрим.</p>
+    <div class="coursemap">
+      <div class="node"><span class="nn">01</span><span class="nt">Основания: товар и идеология</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Монтаж и спор о форме</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Культуриндустрия</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Беньямин: аура</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Брехт: очуждение</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Альтюссер: интерпелляция</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Теория аппарата · Screen</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Грамши и гегемония</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Джеймисон: постмодерн</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Капитализм сегодня</span></div>
+      <div class="node cur"><span class="nn">11</span><span class="nt">Политэкономия кино</span></div>
+    </div>
+    <div class="slide-foot"><span>Карта курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WHAT IS POLITICAL ECONOMY OF CINEMA -->
+  <section class="slide" data-toc="Что такое политэкономия кино">
+    <div class="eyebrow">Рамка <span class="sep">/</span> <span class="tag">Определение</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Что такое<br>политэкономия кино</h2>
+        <p style="margin-top:12px;max-width:50ch">Не эстетика и не история идей. Политэкономия коммуникаций (Гарнэм, Мёрдок и Голдинг, 1970-е) изучает кино как <strong>отрасль капитала</strong>: кто владеет средствами производства, как организован труд, по каким каналам идут деньги и кому достаётся прибыль.</p>
+        <p style="margin-top:8px">Вопрос смещается с «что значит фильм?» на «кто его финансирует, кто на нём работает и кто им торгует?».</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Собственность</span><p>Кому принадлежат студии, прокат, платформы.</p></div>
+        <div class="def"><span class="term">Труд</span><p>Сценаристы, актёры, монтажёры — и теперь зритель.</p></div>
+        <div class="def"><span class="term">Прибыль</span><p>Касса, подписка, реклама, рента, данные.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Отличие от лекции 3: там — эстетика товара (Адорно). Здесь — деньги, труд и власть внутри индустрии.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THREE QUESTIONS -->
+  <section class="slide" data-toc="Три вопроса лекции">
+    <div class="eyebrow">Лекция 11 <span class="sep">/</span> <span class="tag">Расследование</span></div>
+    <h2>Три вопроса лекции</h2>
+    <p class="lead" style="max-width:68ch;margin:14px 0 18px">Лекция движется от истории к настоящему. Каждый вопрос тянет за собой следующий — и приводит к развязке про ИИ.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Вопрос 01</span><h3>Как индустрия зарабатывала в разные эпохи?</h3><p>От никельодеона до платформы: студия-фабрика, блокбастер, стриминг.</p></div>
+      <div class="card ochre"><span class="k">Вопрос 02</span><h3>Кто настоящий товар медиа?</h3><p>Даллас Смайт: платформа продаёт не контент вам, а вас — рекламодателю.</p></div>
+      <div class="card"><span class="k">Вопрос 03</span><h3>Что ИИ делает с трудом и рентой?</h3><p>Забастовки 2023, генеративный ИИ, технофеодализм.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Сквозной нерв: вы думали, что вы зритель. А что, если вы — продукт?</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIVIDER: Act 1 -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Часть I</div>
+      <h2>Как кино делало деньги</h2>
+      <p class="sub">Сто лет индустрия меняла способ заработка — но не саму логику: снизить риск капитала и поставить зрелище на поток.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Эпохи политэкономии кино</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="slide" data-toc="Эпохи политэкономии кино">
+    <div class="eyebrow">Часть I <span class="sep">/</span> <span class="tag">Историзация · шесть эпох</span></div>
+    <h2>Шесть эпох киноэкономики</h2>
+    <p class="lead" style="max-width:82ch;margin:12px 0 14px">Способ заработка менялся — аттракцион, фабрика, блокбастер, франшиза, подписка. Каждая эпоха придумывала, как надёжнее извлечь прибыль из зрелища.</p>
+    <div class="tline tight">
+      <div class="tl"><span class="ty">1905–1915</span><img class="tp" src="img/The_Great_Train_Robbery_Edwin_S._Porter_Edison_Films_1903_Poster.jpg" alt="«Большое ограбление поезда»"><span class="tt">Никельодеоны<span>Кино — ярмарочный аттракцион за пять центов. Производство кустарное, прибыль с входа.</span></span><span class="tstar"></span></div>
+      <div class="tl"><span class="ty">1915–1927</span><img class="tp" src="img/w500_xW1pBLD4n8b71ThadZMNlcGJ0jj.jpg" alt="«Рождение нации»"><span class="tt">Вертикальная интеграция<span>Paramount, MGM, Fox: производство + прокат + кинотеатры в одних руках.</span></span><span class="tstar"></span></div>
+      <div class="tl star"><span class="ty">1930–1948</span><img class="tp" src="img/Poster_Gone_With_the_Wind_01.jpg" alt="«Унесённые ветром»"><span class="tt">Студийная фабрика<span>Контракты, конвейер жанров, фабрика звёзд. (Это и описывал Адорно.)</span></span><span class="tstar">★ пик системы</span></div>
+      <div class="tl"><span class="ty">1975 →</span><img class="tp" src="img/StarWarsMoviePoster1977.jpg" alt="«Звёздные войны»"><span class="tt">Блокбастер<span>«Челюсти» и «Звёздные войны»: широкий релиз + маркетинг + франшиза. Продают событие.</span></span><span class="tstar"></span></div>
+      <div class="tl"><span class="ty">2000-е →</span><img class="tp" src="img/w500_hj1xaEUGMiUxaFYoutlljtlkHSG.jpg" alt="«Мстители»"><span class="tt">Конгломераты и IP<span>Шесть студий → пять корпораций. Кино = франшиза интеллектуальной собственности.</span></span><span class="tstar"></span></div>
+      <div class="tl"><span class="ty">2013 →</span><img class="tp" src="img/The_Irishman_poster.jpg" alt="«Ирландец»"><span class="tt">Платформенный капитализм<span>От продажи копий к подписке-ренте. Метрика — не касса, а данные и удержание.</span></span><span class="tstar">→ финал лекции</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Одна логика сквозь все эпохи: стандарт снижает риск капитала, зрелище ставится на поток.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- HOLLYWOOD FACTORY -->
+  <section class="slide" data-toc="Голливуд как фабрика">
+    <div class="eyebrow">Часть I <span class="sep">/</span> <span class="tag">Студийная система</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Голливуд как фабрика</h2>
+        <p style="margin-top:12px;max-width:50ch">К 1930-м студии устроены как заводы Форда. <strong>Вертикальная интеграция</strong>: одна корпорация производит фильмы, владеет прокатом и сетью кинотеатров — и гонит зрителя по собственному конвейеру.</p>
+        <p style="margin-top:8px">Сценаристы, актёры и режиссёры — на семилетних контрактах, как наёмные рабочие. Жанры — это производственные линии. Звезда — бренд, амортизируемый актив.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Производство</span><p>Конвейер сценарных отделов и съёмочных павильонов.</p></div>
+        <div class="def"><span class="term">Прокат</span><p>Block booking: кинотеатр обязан брать пакет фильмов оптом.</p></div>
+        <div class="def"><span class="term">Показ</span><p>Студия владеет залами — рынок замкнут на себя.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Контроль над всей цепочкой — от сценария до кресла в зале.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- PARAMOUNT 1948 -->
+  <section class="slide" data-toc="Антитраст 1948">
+    <div class="eyebrow">Часть I <span class="sep">/</span> <span class="tag">Перелом · 1948</span></div>
+    <h2>Как государство разломало фабрику</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 18px">В 1948-м Верховный суд США по делу <em>United States v. Paramount Pictures</em> признал вертикальную интеграцию монополией и заставил студии продать кинотеатры. Замкнутая фабрика распалась.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Что было до</span><p>Пять мейджоров контролируют производство, прокат и показ. Конкуренция задушена, прибыль гарантирована системой.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Что стало после</span><p>Студии теряют залы, растёт телевидение, рушится контрактная система. Кризис 1950-х — и поиск новой модели заработка.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Антимонопольное право — напоминание: «свободный рынок» кино всегда тянулся к монополии.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- BLOCKBUSTER ECONOMICS -->
+  <section class="slide" data-toc="Экономика блокбастера">
+    <div class="eyebrow">Часть I <span class="sep">/</span> <span class="tag">1975 → новая модель</span></div>
+    <h2>Блокбастер продаёт не фильм, а событие</h2>
+    <p class="lead" style="max-width:76ch;margin:12px 0 16px">«Челюсти» (1975) и «Звёздные войны» (1977) изобретают новую экономику: одновременный широкий релиз, телереклама на десятки миллионов и франшиза с мерчем. Риск концентрируется в нескольких тэйт­полах, которые должны окупить всё.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Релиз</span><h3>Wide release</h3><p>Сразу тысячи экранов вместо медленного «расползания» из премьерных залов.</p></div>
+      <div class="card ochre"><span class="k">Маркетинг</span><h3>Событие</h3><p>ТВ-кампания превращает выход фильма в национальное событие.</p></div>
+      <div class="card"><span class="k">Франшиза</span><h3>Мерч и сиквелы</h3><p>«Звёздные войны» зарабатывают на игрушках больше, чем на билетах.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">С этого момента студия делает ставку не на много средних фильмов, а на несколько гигантов.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CONGLOMERATES -->
+  <section class="slide" data-toc="Пять конгломератов">
+    <div class="eyebrow">Часть I <span class="sep">/</span> <span class="tag">Концентрация · 2000-е</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Пять корпораций<br>владеют почти всем</h2>
+        <p style="margin-top:12px;max-width:50ch">К 2019-му Disney поглощает 21st Century Fox за ≈$71 млрд. Полдюжины конгломератов — Disney, Warner, Universal, Paramount, Sony — контролируют студии, библиотеки и франшизы. Кино превращается в управление <strong>интеллектуальной собственностью</strong>.</p>
+        <p style="margin-top:8px">Marvel, «Звёздные войны», Pixar — под одной крышей. Не художественные миры, а портфели активов, которые доят десятилетиями.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">IP</span><p>Ценность — не фильм, а право на вселенную и её серийную эксплуатацию.</p></div>
+        <div class="def"><span class="term">Слияния</span><p>Рост не съёмками, а скупкой конкурентов и их библиотек.</p></div>
+        <div class="def"><span class="term">Монополизация</span><p>Концентрация, против которой 1948-й боролся, вернулась в новой форме.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Маркс: капитал стремится к концентрации и централизации. Голливуд — наглядный пример.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS: standardization lowers capital risk -->
+  <section class="slide thesis">
+    <div class="tlbl">Вывод части I</div>
+    <div class="big">Стандарт снижает <span class="hl">риск капитала</span></div>
+    <div class="tsub">Конвейер жанров, франшиза, IP — всё это способы сделать прибыль предсказуемой. Адорно видел в этом гибель искусства; политэконом видит обычную логику капитала, который не любит неопределённость. А теперь — главный поворот: что, если предсказуемость стали извлекать не из фильмов, а из зрителей?</div>
+    <div class="slide-foot"><span>От зала — к платформе</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIVIDER: Act 2 -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Часть II</div>
+      <h2>Стриминг:<br>от копии к ренте</h2>
+      <p class="sub">Платформа перестаёт продавать вам фильм. Она сдаёт доступ в аренду — и считает не кассу, а ваше время.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Стриминг и кейс «Ирландец»</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- STREAMING MODEL -->
+  <section class="slide" data-toc="Стриминг: от копии к ренте">
+    <div class="eyebrow">Часть II <span class="sep">/</span> <span class="tag">Смена бизнес-модели</span></div>
+    <h2>Вы больше ничего не покупаете</h2>
+    <p class="lead" style="max-width:76ch;margin:12px 0 16px">Раньше зритель покупал копию: билет, кассету, диск. Стриминг отменяет покупку — вы платите ренту за доступ, который в любой момент могут отозвать. Это сдвиг от <strong>товара</strong> к <strong>ренте</strong>.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Раньше</span><h3>Собственность</h3><p>Купил диск — он твой навсегда. Разовая сделка, конечная цена.</p></div>
+      <div class="card ochre"><span class="k">Теперь</span><h3>Подписка-рента</h3><p>Платишь, пока платишь. Перестал — теряешь всё. Доход — поток, не сделка.</p></div>
+      <div class="card"><span class="k">Метрика</span><h3>Данные, не касса</h3><p>Платформа измеряет не сборы, а удержание: сколько вы смотрели и не ушли ли.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Подписка превращает разовую покупку в бесконечный денежный поток — мечта капитала.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ CASE: THE IRISHMAN ============ -->
+  <!-- VISITKA -->
+  <section class="slide framefull" data-toc="Кейс · Ирландец">
+    <div class="shot"><img src="img/w1280_1RDto0tLo8Fhq7OcwgDaM7nECb7.jpg" alt="Кадр из «Ирландца»"></div>
+    <span class="fyear bl">2019</span>
+    <div class="fcap"><div class="fk">Кейс · стриминг финансирует автора</div><h2>Ирландец</h2></div>
+    <div class="slide-foot"><span class="src">«Ирландец» · реж. Мартин Скорсезе · Netflix · 2019</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CASE INTRO 1/5 -->
+  <section class="slide">
+    <div class="eyebrow">Кейс · знакомство <span class="sep">/</span> <span class="tag">Фильм, который снял не Голливуд</span></div>
+    <div class="film">
+      <div class="still" data-tmdb="The Irishman" data-year="2019" data-idx="0">
+        <div class="ph"><span class="frame-tag">Кадр · TMDB</span><span class="yr">2019</span><span class="pt">Ирландец</span><span class="pd">реж. М. Скорсезе</span></div>
+        <img alt="Кадр из «Ирландца»" loading="lazy" src="img/w1280_1RDto0tLo8Fhq7OcwgDaM7nECb7.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+      <div class="info">
+        <div class="meta-row"><span><b>Реж.</b> Мартин Скорсезе</span><span><b>Год</b> 2019 · США</span><span><b>Хроно</b> 209 мин</span></div>
+        <h2>Ирландец</h2>
+        <div><span class="chip">Платформенное кино</span><span class="chip">Престиж как актив</span></div>
+        <p>Мечта Скорсезе: три с половиной часа, Де Ниро, Пачино, Пеши, дорогая технология омоложения. Классические студии отказались — слишком дорого и непрокатно.</p>
+        <p>Фильм оплатил и выпустил <strong>Netflix</strong>: ≈$159–200 млн бюджета, символический прокат на пару недель — и сразу в подписку.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс · 1 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CASE CONTEXT 2/5 -->
+  <section class="slide">
+    <div class="eyebrow">Кейс · контекст <span class="sep">/</span> <span class="tag">Зачем платформе авторское кино</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Netflix платит<br>не за кассу</h2>
+        <p style="margin-top:12px;max-width:50ch">Платформа не ждёт прибыли с билетов — их почти нет. «Ирландец» покупает другое: <strong>подписчиков, престиж и время</strong>. Имя Скорсезе и три звезды — приманка, удерживающая аудиторию в подписке.</p>
+        <p style="margin-top:8px">Окна проката схлопываются: кинотеатр становится не источником дохода, а маркетинговым жестом ради «Оскаров».</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Зачем</span><p>Не сборы, а привлечение и удержание подписчиков.</p></div>
+        <div class="def"><span class="term">Престиж</span><p>Автор и награды как актив бренда платформы.</p></div>
+        <div class="def"><span class="term">Данные</span><p>Кто досмотрел трёхчасовой фильм — ценная информация.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс · 2 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CASE SCENE 3/5 -->
+  <section class="slide">
+    <div class="eyebrow">Кейс · сцена <span class="sep">/</span> <span class="tag">Где смотрят «Ирландца»</span></div>
+    <div class="film">
+      <div class="info">
+        <div class="meta-row"><span><b>Формат</b> 209 минут</span><span><b>Экран</b> чаще домашний</span><span><b>Пауза</b> по кнопке</span></div>
+        <h2>Кино без зала</h2>
+        <div><span class="chip">Дробный просмотр</span><span class="chip">Второй экран</span></div>
+        <p>Трёхчасовую фреску о времени и вине большинство смотрело дома: с паузами, в несколько заходов, с телефоном в руке. Платформа не диктует ритм — его задаёт зритель и интерфейс.</p>
+        <p>Спор Скорсезе с Marvel («это не кино, а парк аттракционов») горько ироничен: его собственный фильм существует как иконка в ленте рекомендаций.</p>
+      </div>
+      <div class="still" data-tmdb="The Irishman" data-year="2019" data-idx="1">
+        <div class="ph"><span class="frame-tag">Кадр · сцена</span><span class="yr">2019</span><span class="pt">Ширан</span><span class="pd">«Ирландец»</span></div>
+        <img alt="Сцена из «Ирландца»" loading="lazy" src="img/w1280_aZ1ZqJ4uO1RK5gU5jRsO4qG7rJo.jpg" onload="this.closest('.still').classList.add('has-image')">
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс · 3 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CASE FORM 4/5 -->
+  <section class="slide">
+    <div class="eyebrow">Кейс · форма <span class="sep">/</span> <span class="tag">Как платформа меняет фильм</span></div>
+    <h2>Что стриминг делает с формой</h2>
+    <p class="lead" style="max-width:74ch;margin:12px 0 16px">Бизнес-модель просачивается в эстетику. Платформенное кино снимают с поправкой на домашний экран, паузу и алгоритмическую витрину.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Хронометраж</span><h3>Свобода длины</h3><p>Нет сеансов и оборота зала — можно и 209 минут. Длина больше не ограничена экономикой кинотеатра.</p></div>
+      <div class="card ochre"><span class="k">Внимание</span><h3>Борьба с паузой</h3><p>Громкие сцены в первые минуты, чтобы вы не переключились. Монтаж под «второй экран».</p></div>
+      <div class="card"><span class="k">Витрина</span><h3>Алгоритм и обложка</h3><p>Превью и постер подбираются под ваш профиль. Фильм — иконка в потоке контента.</p></div>
+    </div>
+    <div class="slide-foot"><span>Кейс · 4 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- CASE READING 5/5 -->
+  <section class="slide">
+    <div class="eyebrow">Кейс · чтение <span class="sep">/</span> <span class="tag">Что показывает «Ирландец»</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Автор, оплаченный<br>капиталом данных</h2>
+        <p style="margin-top:12px;max-width:52ch">«Ирландец» — не провал и не триумф «независимости». Это символ новой расстановки: большое авторское кино теперь возможно, но как <strong>убыточный актив платформы</strong>, который окупается не кассой, а вашим вниманием и подпиской.</p>
+        <p style="margin-top:8px">Скорсезе получил свободу — и одновременно стал инструментом удержания аудитории. Это и есть политэкономия стриминга в одном фильме.</p>
+      </div>
+      <div class="oxpanel" style="padding:24px 26px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Сила и предел</span>
+        <p style="color:rgba(255,255,255,.94)"><b>Сила:</b> платформа финансирует то, от чего отказался Голливуд.</p>
+        <p style="margin-top:10px;color:rgba(255,255,255,.94)"><b>Предел:</b> автор существует ради метрик удержания, а не ради зрителя в зале.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Кейс · 5 / 5</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DATA NOT BOX OFFICE -->
+  <section class="slide" data-toc="Данные вместо кассы">
+    <div class="eyebrow">Часть II <span class="sep">/</span> <span class="tag">Новая валюта</span></div>
+    <h2>Данные вместо кассы</h2>
+    <p class="lead" style="max-width:78ch;margin:12px 0 16px">Netflix десятилетиями не публиковал сборы, потому что сборов нет. Валюта платформы — поведение: что вы досмотрели, на чём бросили, в какой момент поставили паузу. Рекомендательный движок — не сервис для вас, а инструмент извлечения данных <em>из</em> вас.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Что считает студия</span><p>Кассовые сборы за уикенд — публичный, понятный, разовый показатель успеха.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Что считает платформа</span><p>Часы просмотра, удержание, отток. Закрытые данные, которые принадлежат только ей.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Кто владеет данными о внимании — владеет рынком. И это подводит нас к главному вопросу лекции.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIVIDER: Act 3 -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Часть III</div>
+      <h2>Кто здесь товар?</h2>
+      <p class="sub">Самый неочевидный ход марксистской теории медиа: товар — не фильм. Товар — это вы.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Аудитория-товар и экономика внимания</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DALLAS SMYTHE -->
+  <section class="slide" data-toc="Даллас Смайт: аудитория-товар">
+    <div class="eyebrow">Часть III <span class="sep">/</span> <span class="tag">Даллас Смайт · 1977</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Аудитория-товар</h2>
+        <p style="margin-top:12px;max-width:52ch">Канадский политэконом <strong>Даллас Смайт</strong> в статье «Communications: Blindspot of Western Marxism» (1977) задаёт вопрос, который проглядел весь западный марксизм: <em>что на самом деле продаёт коммерческое медиа?</em></p>
+        <p style="margin-top:8px">Ответ переворачивает оптику. Медиа продают не передачи зрителям. Они продают <strong>зрителей рекламодателям</strong>. Контент — лишь приманка, чтобы собрать и удержать аудиторию, которую затем оптом сбывают.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Приманка</span><p>Фильм, сериал, лента — то, что собирает вас перед экраном.</p></div>
+        <div class="def"><span class="term">Товар</span><p>Собранное и измеренное внимание аудитории.</p></div>
+        <div class="def"><span class="term">Покупатель</span><p>Рекламодатель, платящий за доступ к вашему вниманию.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">«Blindspot» — слепое пятно: марксисты анализировали идеологию медиа, но не замечали, что аудитория сама есть товар.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- AUDIENCE COMMODITY DIAGRAM -->
+  <section class="slide" data-toc="Вы — товар">
+    <div class="eyebrow">Часть III <span class="sep">/</span> <span class="tag">Как устроена сделка</span></div>
+    <h2>Если вы не платите за продукт —<br>продукт это вы</h2>
+    <div style="flex:1;display:flex;align-items:center;width:100%">
+      <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:0;width:100%">
+        <div class="card accent" style="border-radius:2px"><span class="k">Шаг 1</span><h3>Контент бесплатно или дёшево</h3><p>Платформа отдаёт зрелище почти даром — чтобы собрать вас.</p></div>
+        <div style="display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:40px;color:var(--red);padding:0 14px">→</div>
+        <div class="card ochre" style="border-radius:2px"><span class="k">Шаг 2</span><h3>Вы производите внимание и данные</h3><p>Каждый просмотр, пауза, клик — произведённый ресурс.</p></div>
+        <div style="display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:40px;color:var(--red);padding:0 14px">→</div>
+        <div class="card" style="border-radius:2px;border-top:4px solid var(--bone)"><span class="k">Шаг 3</span><h3>Вас продают рекламодателю</h3><p>Товар — это собранная и размеченная аудитория. То есть вы.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Старое правило цифровой экономики — и точная формула Смайта за полвека до TikTok.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WORK OF WATCHING -->
+  <section class="slide" data-toc="Беллер: внимание — это труд">
+    <div class="eyebrow">Часть III <span class="sep">/</span> <span class="tag">Джонатан Беллер · 2006</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Смотреть — значит<br>работать</h2>
+        <p style="margin-top:12px;max-width:52ch">Смайт назвал это «работой смотрения». <strong>Джонатан Беллер</strong> в «The Cinematic Mode of Production» (2006) доводит мысль до предела: внимание стало формой труда, а кино — фабрикой, которая этот труд организует.</p>
+        <p style="margin-top:8px">«Смотреть — значит трудиться»: глядя на экран, вы производите стоимость — внимание и данные, — которую присваивает платформа. Зритель встал к конвейеру, не заметив этого.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Внимание</span><p>Беллер: внимание — это труд, создающий стоимость.</p></div>
+        <div class="def"><span class="term">Терранова</span><p>«Free Labor» (2000): бесплатный цифровой труд аудитории и пользователей.</p></div>
+        <div class="def"><span class="term">Маркс</span><p>Труд создаёт стоимость — даже когда его не называют трудом и не оплачивают.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Лайки, отзывы, плейлисты, сам факт просмотра — неоплаченный труд, на котором стоит вся экономика платформ.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ATTENTION ECONOMY -->
+  <section class="slide" data-toc="Экономика внимания">
+    <div class="eyebrow">Часть III <span class="sep">/</span> <span class="tag">Лента вместо зала</span></div>
+    <h2>Экономика внимания</h2>
+    <p class="lead" style="max-width:78ch;margin:12px 0 16px">Когда товар — внимание, цель индустрии меняется: не рассказать историю, а удержать вас как можно дольше. Алгоритм оптимизирует не качество, а вовлечённость. Кино дробится на клипы, бесконечная лента вытесняет сеанс.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Зал</span><h3>Сеанс с началом и концом</h3><p>Вы пришли, посмотрели, ушли. Внимание ограничено во времени.</p></div>
+      <div class="card ochre"><span class="k">Лента</span><h3>Поток без дна</h3><p>TikTok, Shorts, Reels: автоплей спроектирован, чтобы вы не останавливались.</p></div>
+      <div class="card"><span class="k">Цель</span><h3>Максимум вовлечения</h3><p>Метрика успеха — не «понравилось ли», а «сколько ещё не ушёл».</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Внимание конечно, платформ много — отсюда «война за внимание» как буквальная борьба за ресурс.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- THESIS: you pay with yourself -->
+  <section class="slide thesis">
+    <div class="tlbl">Вывод части III</div>
+    <div class="big">Раньше вы платили за билет.<br>Теперь вы платите <span class="hl">собой</span></div>
+    <div class="tsub">Аудитория-товар (Смайт), внимание-труд (Беллер), бесплатный цифровой труд (Терранова) — три имени одного сдвига. Зритель из покупателя стал и продуктом, и неоплаченным работником индустрии. Осталось добавить машину, которая удешевит и тот труд, что ещё оплачивается.</div>
+    <div class="slide-foot"><span>Машины смотрят за вас</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIVIDER: Act 4 -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Часть IV</div>
+      <h2>ИИ, труд и рента</h2>
+      <p class="sub">2023 год: впервые искусственный интеллект стал предметом классового конфликта в Голливуде. Это не про технологию — это про то, кому она принадлежит.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Забастовки, генеративный ИИ, технофеодализм</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- STRIKES 2023 -->
+  <section class="slide" data-toc="Забастовки 2023">
+    <div class="eyebrow">Часть IV <span class="sep">/</span> <span class="tag">Голливуд останавливается</span></div>
+    <h2>2023: первый удар по ИИ</h2>
+    <p class="lead" style="max-width:78ch;margin:12px 0 16px">Впервые с 1960 года Гильдия сценаристов (WGA) и актёров (SAG-AFTRA) бастуют одновременно. Среди главных требований — не только доля от стриминга, но и защита от ИИ. Голливуд встал на полгода.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Сценаристы · WGA</span><h3>148 дней</h3><p>Требование: ИИ не пишет сценарии и не лишает авторов оплаты и кредита.</p></div>
+      <div class="card ochre"><span class="k">Актёры · SAG-AFTRA</span><h3>118 дней</h3><p>Требование: согласие и оплата за цифровой двойник. Студии хотели сканировать статистов навсегда за один день.</p></div>
+      <div class="card"><span class="k">Итог</span><h3>Гарантии</h3><p>Контракты впервые ограничили ИИ: согласие, оплата, прозрачность. Коллективный труд сработал.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Спор шёл не о «роботах против людей», а о том, кто контролирует средства производства — и кому достаётся выгода от автоматизации.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- STRIKE FRAMEBOX -->
+  <section class="slide framefull" data-toc="Труд против автоматизации">
+    <div class="shot"><img src="img/SAG-AFTRA_strike_2023.jpg" alt="Пикет SAG-AFTRA, 2023"></div>
+    <span class="fyear bl">2023</span>
+    <div class="fcap"><div class="fk">Пикет SAG-AFTRA · Нью-Йорк · лето 2023</div><h2>«ON STRIKE»</h2></div>
+    <div class="slide-foot"><span class="src">Старейший вопрос рабочего движения — кому принадлежит выгода от машины — вернулся на улицы Голливуда.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- GENERATIVE AI -->
+  <section class="slide" data-toc="Генеративный ИИ">
+    <div class="eyebrow">Часть IV <span class="sep">/</span> <span class="tag">Кто владеет машиной</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Генеративный ИИ<br>как средство производства</h2>
+        <p style="margin-top:12px;max-width:52ch">ИИ для кино — это не магия, а станок. И вопрос марксистский: <strong>кому он принадлежит?</strong> Не сценаристу и не актёру, а студии и владельцам модели. Машина не отменяет труд — она перераспределяет власть над ним.</p>
+        <p style="margin-top:8px">Маркс называл машины «мёртвым трудом». Генеративный ИИ обучен на труде миллионов сценаристов, художников и актёров прошлого — присвоенном бесплатно. Это мёртвый труд, оживший, чтобы удешевить живой.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Обучение</span><p>Модель построена на чужих фильмах, текстах, лицах — без оплаты.</p></div>
+        <div class="def"><span class="term">Деквалификация</span><p>Труд дешевеет: «доведи за ИИ» вместо «напиши».</p></div>
+        <div class="def"><span class="term">Собственность</span><p>Выгода от автоматизации идёт владельцу модели, не работнику.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">«Мёртвый труд, что, как вампир, оживает, лишь высасывая живой труд» — Маркс, «Капитал», т. 1.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- TECHNOFEUDALISM -->
+  <section class="slide" data-toc="Технофеодализм">
+    <div class="eyebrow">Часть IV <span class="sep">/</span> <span class="tag">Янис Варуфакис · 2023</span></div>
+    <h2>Платформа — не рынок, а феод</h2>
+    <p class="lead" style="max-width:80ch;margin:12px 0 16px">Экономист <strong>Янис Варуфакис</strong> («Технофеодализм», 2023) утверждает: капитализм мутировал. Прибыль с рынка сменяется <em>рентой</em> с платформы. Владелец «облачного капитала» — Netflix, Amazon, YouTube — не продаёт на рынке, а собирает оброк с тех, кто живёт на его земле.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Капитализм</span><h3>Прибыль с рынка</h3><p>Конкуренция, продажа товара, прибавочная стоимость в производстве.</p></div>
+      <div class="card ochre"><span class="k">Технофеод</span><h3>Рента с платформы</h3><p>Нет рынка — есть феод. Платишь за доступ к территории владельца.</p></div>
+      <div class="card"><span class="k">Мы</span><h3>Облачные крепостные</h3><p>Зрители и создатели бесплатно возделывают землю лорда — производят контент и данные.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Спорный, но яркий тезис: вы не клиент Netflix и не его рабочий — вы его крепостной, платящий рентой внимания.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- RESISTANCE / LIMITS -->
+  <section class="slide" data-toc="Можно ли сопротивляться">
+    <div class="eyebrow">Часть IV <span class="sep">/</span> <span class="tag">Сила и предел</span></div>
+    <h2>Можно ли этому сопротивляться?</h2>
+    <p class="lead" style="max-width:76ch;margin:12px 0 16px">Политэкономия не обязана заканчиваться отчаянием. Точки сопротивления реальны — но и пределы честны.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Что работает</span><p><b>Коллективный труд:</b> забастовки 2023-го вырвали гарантии у студий. <b>Общественное финансирование</b> и кооперативы выводят кино из-под чистой прибыли. <b>Регулирование</b> данных и монополий. <b>Гигиена внимания</b> как индивидуальная защита.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Где предел</span><p>Индивидуальный бойкот бессилен против инфраструктуры. «Цифровой детокс» — паллиатив. Реальный рычаг — там же, где у Маркса: организованный труд и собственность на средства производства, а не потребительский выбор.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Зрительская «осознанность» не отменяет ренту. Меняет расклад только организованная сила.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- DIVIDER: Synthesis -->
+  <section class="slide divider">
+    <div class="slash"></div>
+    <div class="divider-inner">
+      <div class="eyebrow" style="color:#fff">Развязка</div>
+      <h2>Одиннадцать лекций<br>сходятся в одну</h2>
+      <p class="sub">Форма, аура, идеология, гегемония — всё это надстройка. Под ней — то, что мы наконец назвали по имени: политэкономия.</p>
+    </div>
+    <div class="slide-foot" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2)"><span>Синтез курса</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- SYNTHESIS -->
+  <section class="slide" data-toc="Синтез: база и надстройка">
+    <div class="eyebrow">Развязка <span class="sep">/</span> <span class="tag">Зачем нужен был весь курс</span></div>
+    <h2>База под всей надстройкой</h2>
+    <p class="lead" style="max-width:80ch;margin:12px 0 16px">Каждая лекция вскрывала свой слой надстройки. Эта лекция показала фундамент, на котором все они стоят: производство, собственность, труд, прибыль. Базис не отменяет надстройку — он объясняет, откуда она растёт.</p>
+    <div class="cols">
+      <div class="card accent" style="gap:10px"><span class="k">Надстройка · лекции 1–10</span><p>Как кино <em>значит</em>: монтаж и форма, аура и воспроизводимость, очуждение, интерпелляция, аппарат, гегемония, постмодерн, образы капитализма.</p></div>
+      <div class="card ochre" style="gap:10px"><span class="k">Базис · лекция 11</span><p>Как кино <em>производится</em>: студия-фабрика, блокбастер, конгломерат, платформа, аудитория-товар, внимание-труд, рента и ИИ.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Марксистский метод и есть это движение: от того, что на экране, — к тому, кто платит, кто трудится и кто владеет.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- EPILOGUE -->
+  <section class="slide" data-toc="Если бы Маркс посмотрел Netflix">
+    <div class="eyebrow">Эпилог <span class="sep">/</span> <span class="tag">Мысленный эксперимент</span></div>
+    <h2>Если бы Маркс посмотрел Netflix?</h2>
+    <p class="lead" style="max-width:80ch;margin:14px 0 18px">Он узнал бы свою книгу. Бесконечная лента — товарный фетишизм в чистом виде: за «контентом» спрятаны труд и отношения власти. Подписка — рента. Алгоритм — машина, мёртвый труд, оживший за счёт живого. А зритель, считающий себя клиентом, — одновременно товар и неоплаченный рабочий.</p>
+    <div class="cols-3">
+      <div class="card accent"><span class="k">Зритель</span><h3>Товар и работник</h3><p>Вас продают рекламодателю — и вы же бесплатно трудитесь вниманием.</p></div>
+      <div class="card ochre"><span class="k">Платформа</span><h3>Феод и рента</h3><p>Не рынок, а территория, с которой собирают оброк временем и данными.</p></div>
+      <div class="card"><span class="k">ИИ</span><h3>Мёртвый труд</h3><p>Машина из присвоенного труда миллионов — чтобы удешевить труд живых.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Кино изменилось до неузнаваемости. Вопросы Маркса — кто владеет, кто трудится, кому прибыль — не устарели ни на день.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- FINAL THESIS -->
+  <section class="slide thesis">
+    <div class="tlbl">Финал курса</div>
+    <div class="big">Свет гаснет не только <span class="hl">в зале</span></div>
+    <div class="tsub">Смотреть кино марксистски — значит видеть сразу обе картины: ту, что на экране, и ту, что вокруг него. Производство, труд, капитал. На этом курс завершается — но привычка задавать эти вопросы остаётся с вами у каждого экрана.</div>
+    <div class="slide-foot"><span>Конец курса · спасибо</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- WATCHLIST -->
+  <section class="slide" data-toc="К просмотру и чтению">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К просмотру</span></div>
+    <h2>К просмотру</h2>
+    <p class="lead" style="max-width:76ch;margin:12px 0 2px">Не кейсы «про капитализм», а оптика на саму индустрию — смотрите, замечая бизнес за зрелищем.</p>
+    <div class="watchlist" style="margin-top:16px">
+      <div class="wfilm"><span class="wy">2019</span><span class="wt">Ирландец</span><span class="wd">реж. М. Скорсезе · Netflix</span><span class="wn">Кейс лекции: автор, оплаченный капиталом данных. Понятия — рента, престиж как актив, удержание.</span></div>
+      <div class="wfilm"><span class="wy">2020</span><span class="wt">Социальная<br>дилемма</span><span class="wd">док. · Netflix</span><span class="wn">Экономика внимания изнутри: инженеры платформ о том, как продаётся пользователь.</span></div>
+      <div class="wfilm"><span class="wy">1992</span><span class="wt">Игрок</span><span class="wd">реж. Р. Олтмен</span><span class="wn">Сатира на студийную экономику: как считают деньги те, кто зажигает зелёный свет фильму.</span></div>
+    </div>
+    <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- READING + COURSE END -->
+  <section class="slide">
+    <div class="eyebrow">Дальше <span class="sep">/</span> <span class="tag">К чтению · конец курса</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h3>К чтению</h3>
+        <div class="readlist" style="margin-top:4px">
+          <div class="r"><span class="n">01</span><span class="ttl"><b>Д. Смайт.</b> «Communications: Blindspot of Western Marxism» (1977) — аудитория-товар</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">02</span><span class="ttl"><b>Дж. Беллер.</b> «The Cinematic Mode of Production» (2006) — внимание как труд</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">03</span><span class="ttl"><b>Т. Терранова.</b> «Free Labor» (2000) — бесплатный цифровой труд</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">04</span><span class="ttl"><b>Я. Варуфакис.</b> «Технофеодализм» (2023) — рента вместо прибыли</span><span class="typ">Источник</span></div>
+          <div class="r"><span class="n">05</span><span class="ttl"><b>Контекст:</b> забастовки WGA и SAG-AFTRA 2023 года — труд против ИИ</span><span class="typ">Контекст</span></div>
+        </div>
+      </div>
+      <div class="oxpanel" style="padding:26px 28px;align-self:center">
+        <span class="eyebrow" style="color:#fff;margin-bottom:8px">Курс окончен</span>
+        <h2 style="font-size:clamp(24px,3vw,40px)">Одиннадцать лекций</h2>
+        <p style="margin-top:10px;color:rgba(255,255,255,.92)">От товара и идеологии — к политэкономии платформ. Спасибо, что прошли этот путь. Теперь у вас есть метод — а кино меняться не перестанет.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span>Конец лекции 11 · авторский курс Карена Аванесяна</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<div class="zone left" id="zoneL" aria-hidden="true"></div>
+<div class="zone right" id="zoneR" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Навигация по слайдам">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</nav>
+
+<button class="toc-btn" id="tocBtn" aria-label="Содержание лекции">☰ Содержание</button>
+<div class="toc-panel" id="tocPanel" role="dialog" aria-label="Содержание лекции">
+  <div class="toc-inner">
+    <div class="toc-head">
+      <span class="toc-title">Содержание</span>
+      <a class="toc-back" href="/lectures/">← Все лекции</a>
+    </div>
+    <div class="toc-list" id="tocList"></div>
+  </div>
+</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.still[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function show(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+/* оглавление лекции (собирается из data-toc) */
+(function(){
+  const btn=document.getElementById('tocBtn'), panel=document.getElementById('tocPanel'), list=document.getElementById('tocList');
+  if(!btn||!panel||!list) return;
+  const items=[];
+  slides.forEach((s,idx)=>{
+    const t=s.getAttribute('data-toc'); if(!t) return;
+    const b=document.createElement('button'); b.className='toc-item'; b.dataset.idx=idx;
+    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t+'</span>';
+    b.addEventListener('click',()=>{ show(idx); close(); });
+    list.appendChild(b); items.push(b);
+  });
+  function mark(){ items.forEach((b,k)=>{ const cur=+b.dataset.idx, next=items[k+1]?+items[k+1].dataset.idx:Infinity; b.classList.toggle('cur', i>=cur && i<next); }); }
+  function open(){ mark(); panel.classList.add('open'); }
+  function close(){ panel.classList.remove('open'); }
+  btn.addEventListener('click',()=>panel.classList.contains('open')?close():open());
+  panel.addEventListener('click',e=>{ if(e.target===panel) close(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+})();
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>
