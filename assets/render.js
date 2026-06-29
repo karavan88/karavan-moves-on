@@ -235,7 +235,6 @@ export function reviewsView(list){
 
 /* Бейджи «смотреть на …»: берём прямую ссылку из front-matter (letterboxd/kinopoisk),
    а если её нет — строим поиск по оригинальному названию, чтобы кнопки работали всегда. */
-const LB_ICON = `<svg class="ico ico-lb" viewBox="0 0 38 14" aria-hidden="true"><circle cx="7" cy="7" r="6.5" fill="#ff8000"/><circle cx="19" cy="7" r="6.5" fill="#00e054"/><circle cx="31" cy="7" r="6.5" fill="#40bcf4"/></svg>`;
 /* Letterboxd: прямая ссылка на страницу фильма через TMDB-id (letterboxd.com/tmdb/<id>
    редиректит на /film/<slug>/). Пока id не вычислен — мягкий фолбэк на поиск. */
 function extLinkRow(meta){
@@ -245,7 +244,7 @@ function extLinkRow(meta){
     || (id ? `https://letterboxd.com/tmdb/${id}/` : '')
     || (q ? `https://letterboxd.com/search/films/${q}/` : '');
   if(!lb) return '';
-  return `<div class="ext-links"><a class="ext lb" href="${esc(lb)}" target="_blank" rel="noopener">${LB_ICON}Letterboxd<span class="arr">↗</span></a></div>`;
+  return `<div class="ext-links"><a class="lb" href="${esc(lb)}" target="_blank" rel="noopener" aria-label="Letterboxd"></a></div>`;
 }
 
 export function reviewPageView(meta, bodyHtml){
