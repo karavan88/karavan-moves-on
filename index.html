@@ -489,8 +489,10 @@
   /* «Film Noir:» — латунный курсивный префикс в одной строке с названием */
   .scrolly-title .title-noir{color:var(--gold);font-style:italic}
   .scrolly-sub{color:#c8c3b8;font-size:clamp(16px,2vw,21px);line-height:1.5;margin:26px auto 0;max-width:620px}
-  /* оценка + Letterboxd на первом слайде (для историй про один фильм) */
-  .scrolly-filmmeta{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px;font-size:17px}
+  /* метаданные фильма одной строкой под названием (истории про один фильм):
+     режиссёр · год · оценка · Letterboxd */
+  .scrolly-filmmeta{margin-top:14px;font-size:16px;color:var(--muted)}
+  .scrolly-filmmeta .lb{margin-left:4px}
   /* «рассказывает Карен Аванесян» + рубрика «Скролл-история» на первом слайде */
   .scrolly-author{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:34px;
     color:var(--muted);font-size:16px;letter-spacing:.02em}

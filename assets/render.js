@@ -305,18 +305,27 @@ export function scrollyView(meta, bodyHtml, backHref, backLabel){
   const kicker = meta.kicker || '';
   const paged = meta.snap === 'page' || meta.snap === 'mandatory';
   const stills = meta.media === 'stills';  /* широкие кадры вместо постеров */
+  /* одна строка метаданных под названием (истории про один фильм):
+     режиссёр · год · ★ N/10 · Letterboxd */
+  const fmParts = [];
+  if(meta.director) fmParts.push(esc(meta.director));
+  if(meta.year) fmParts.push(esc(meta.year));
+  if(meta.rating) fmParts.push(`<span class="rate">★ ${esc(meta.rating)}/10</span>`);
+  let fm = fmParts.join(' · ');
+  if(meta.letterboxd) fm += (fm ? ' ' : '') + `<a class="lb" href="${esc(meta.letterboxd)}" target="_blank" rel="noopener" aria-label="Letterboxd"></a>`;
+  const filmMeta = fm ? `<div class="scrolly-filmmeta">${fm}</div>` : '';
   return `<main class="scrolly${paged ? ' scrolly--paged' : ''}${stills ? ' scrolly--stills' : ''}"${paged ? ' data-snap="mandatory"' : ''}>
     <a class="back scrolly-back" href="${backHref}">← ${esc(backLabel)}</a>
     <section class="scene scene-intro">
       <div class="scene-intro-inner">
         ${kicker ? `<div class="scrolly-kicker">${esc(kicker)}</div>` : ''}
         <h1 class="scrolly-title">${meta.overline ? `<span class="title-noir">${esc(meta.overline)}: </span>` : ''}${esc(meta.title || '')}</h1>
+        ${filmMeta}
         ${meta.subtitle ? `<p class="scrolly-sub">${esc(meta.subtitle)}</p>` : ''}
-        ${(meta.rating || meta.letterboxd) ? `<div class="scrolly-filmmeta">${meta.rating ? `<span class="rate">★ ${esc(meta.rating)}/10</span>` : ''}${meta.letterboxd ? `<a class="lb" href="${esc(meta.letterboxd)}" target="_blank" rel="noopener" aria-label="Letterboxd"></a>` : ''}</div>` : ''}
         <div class="scrolly-author">
+          <span class="scrolly-rubric">Скролл-история</span>
           <img class="scrolly-avatar" src="/assets/karen.jpg" alt="Карен Аванесян" decoding="async" onerror="this.style.display='none'">
           <span>рассказывает <b>Карен Аванесян</b></span>
-          <span class="scrolly-rubric">Скролл-история</span>
         </div>
         <div class="scroll-hint" aria-hidden="true"><span>прокрутите вниз</span><i></i></div>
       </div>
