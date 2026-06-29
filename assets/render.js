@@ -74,7 +74,7 @@ export function collectionCardHTML(c){
       ${c.count?`<div class="count-badge">${esc(c.count)} фильмов</div>`:''}
     </div>
     <div class="card-body">
-      <h3>${esc(c.title)}</h3>
+      <h3>${c.overline?`<span class="card-prefix">${esc(c.overline)}: </span>`:''}${esc(c.title)}</h3>
       ${c.excerpt?`<div class="card-excerpt">${esc(c.excerpt)}</div>`:''}
     </div>
   </a>`;
@@ -302,7 +302,7 @@ export function collectionPageView(meta, bodyHtml){
    и счётчик; без JS страница остаётся читаемой как обычный список. */
 export function scrollyView(meta, bodyHtml, backHref, backLabel){
   const count = (bodyHtml.match(/class="coll-entry"/g) || []).length;
-  const kicker = meta.kicker || (count ? `${count}` : '');
+  const kicker = meta.kicker || '';
   const paged = meta.snap === 'page' || meta.snap === 'mandatory';
   const stills = meta.media === 'stills';  /* широкие кадры вместо постеров */
   return `<main class="scrolly${paged ? ' scrolly--paged' : ''}${stills ? ' scrolly--stills' : ''}"${paged ? ' data-snap="mandatory"' : ''}>
@@ -310,12 +310,13 @@ export function scrollyView(meta, bodyHtml, backHref, backLabel){
     <section class="scene scene-intro">
       <div class="scene-intro-inner">
         ${kicker ? `<div class="scrolly-kicker">${esc(kicker)}</div>` : ''}
-        ${meta.overline ? `<div class="scrolly-overline">${esc(meta.overline)}</div>` : ''}
-        <h1 class="scrolly-title">${esc(meta.title || '')}</h1>
+        <h1 class="scrolly-title">${meta.overline ? `<span class="title-noir">${esc(meta.overline)}: </span>` : ''}${esc(meta.title || '')}</h1>
         ${meta.subtitle ? `<p class="scrolly-sub">${esc(meta.subtitle)}</p>` : ''}
+        ${(meta.rating || meta.letterboxd) ? `<div class="scrolly-filmmeta">${meta.rating ? `<span class="rate">★ ${esc(meta.rating)}/10</span>` : ''}${meta.letterboxd ? `<a class="lb" href="${esc(meta.letterboxd)}" target="_blank" rel="noopener" aria-label="Letterboxd"></a>` : ''}</div>` : ''}
         <div class="scrolly-author">
           <img class="scrolly-avatar" src="/assets/karen.jpg" alt="Карен Аванесян" decoding="async" onerror="this.style.display='none'">
           <span>рассказывает <b>Карен Аванесян</b></span>
+          <span class="scrolly-rubric">Скролл-история</span>
         </div>
         <div class="scroll-hint" aria-hidden="true"><span>прокрутите вниз</span><i></i></div>
       </div>

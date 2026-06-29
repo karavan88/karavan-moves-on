@@ -2,7 +2,7 @@
 title: Тёмная дюжина
 overline: Film Noir
 subtitle: Двенадцать моих любимых нуаров по годам — и, кажется, чем дальше, тем безнадёжнее
-kicker: Нуар · 10 классиков и 2 еретика
+kicker: 10 классиков и 2 еретика
 date: 28 июня 2026
 tag: Скролл-история
 image: https://image.tmdb.org/t/p/w780/rLLhOCgAjuvlKmjUqVb7P1UAbUI.jpg

@@ -249,6 +249,7 @@
     padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px)}
   .card-body{padding:16px 16px 18px}
   .card-body h3{font-size:17px;font-weight:700;line-height:1.3}
+  .card-body h3 .card-prefix{color:var(--gold)}
   .card-meta{color:var(--muted-warm);font-size:13px;margin-top:6px;letter-spacing:.01em}
   .card-excerpt{color:#c2c2cc;font-size:14px;margin-top:10px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
@@ -483,16 +484,18 @@
     padding:90px 6vw;scroll-snap-align:start;position:relative}
   .scene-intro-inner{max-width:780px}
   .scrolly-kicker{color:var(--gold);font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
-  /* «Film Noir» — латунный курсив-надзаголовок над названием истории */
-  .scrolly-overline{font-family:"Playfair Display",serif;font-style:italic;color:var(--gold);
-    font-size:clamp(20px,2.8vw,32px);letter-spacing:.03em;margin-bottom:4px}
   .scrolly-title{font-family:"Playfair Display",serif;font-weight:800;color:#fff;
     font-size:clamp(34px,6.4vw,68px);line-height:1.04;letter-spacing:-.01em}
+  /* «Film Noir:» — латунный курсивный префикс в одной строке с названием */
+  .scrolly-title .title-noir{color:var(--gold);font-style:italic}
   .scrolly-sub{color:#c8c3b8;font-size:clamp(16px,2vw,21px);line-height:1.5;margin:26px auto 0;max-width:620px}
-  /* «рассказывает Карен Аванесян» — круглое фото автора на первом слайде */
-  .scrolly-author{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:36px;
+  /* оценка + Letterboxd на первом слайде (для историй про один фильм) */
+  .scrolly-filmmeta{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:20px;font-size:17px}
+  /* «рассказывает Карен Аванесян» + рубрика «Скролл-история» на первом слайде */
+  .scrolly-author{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:34px;
     color:var(--muted);font-size:16px;letter-spacing:.02em}
   .scrolly-author b{color:var(--gold);font-weight:700}
+  .scrolly-rubric{color:var(--gold);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
   .scrolly-avatar{width:104px;height:104px;border-radius:50%;object-fit:cover;border:none;
     box-shadow:0 0 0 1px rgba(232,184,75,.25), 0 0 38px 6px rgba(232,184,75,.45), 0 8px 24px rgba(0,0,0,.3)}
   .scroll-hint{margin-top:38px;color:var(--muted);font-size:12px;letter-spacing:.18em;text-transform:uppercase;

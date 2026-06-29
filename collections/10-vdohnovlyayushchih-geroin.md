@@ -2,7 +2,7 @@
 title: 10 самых вдохновляющих женских персонажей в истории кино
 subtitle: Авторская подборка героинь, которые меняют правила игры — от классики немого кино до современности
 cover: https://image.tmdb.org/t/p/w1280/9yepEBnQNcKzWWyHdUiX8Mnqc6U.jpg
-kicker: 10 героинь · скролл-история
+kicker: 10 героинь
 layout: scrolly
 kind: characters
 ---
