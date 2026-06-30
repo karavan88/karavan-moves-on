@@ -1,5 +1,17 @@
 [
   {
+    "slug": "molodoy-frankenshtayn",
+    "film": "«Молодой Франкенштейн»",
+    "title": "Чудовище, которому позволили потанцевать",
+    "year": "1974",
+    "director": "Мел Брукс",
+    "original": "Young Frankenstein",
+    "rating": "9",
+    "festival": "Il Cinema Ritrovato 2026",
+    "poster": "https://image.tmdb.org/t/p/w500/3BvvVKPg9yucChlSvQtJxAbLmj9.jpg",
+    "excerpt": "Мел Брукс закрыл 40-й «Il Cinema Ritrovato» «Молодым Франкенштейном» — в день своего столетия. Чёрно-белая пародия, которая знает анатомию хоррора лучше иных фильмов ужасов и любит свой предмет нежнее, чем иные серьёзные картины."
+  },
+  {
     "slug": "genij-dzyudo",
     "film": "«Легенда о великом мастере дзюдо»",
     "title": "Дебют Куросавы возвращается целым",
