@@ -95,12 +95,12 @@ function renderLanding(subjects){
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;700;800&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@600&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;700;800&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
 <style>
 :root{
   --ink:#14110f;--ink-2:#1d1916;--oxblood:#3a1714;
   --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
-  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --red:#e8b84b;--red-deep:#b8912f;--ochre:#e8b84b;
   --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
   --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
 }
@@ -142,16 +142,18 @@ footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-fa
 @media (max-width:720px){.lecgrid{grid-template-columns:1fr}}
 /* ===== общая шапка сайта (как на основном сайте) ===== */
 :root{--bg:#0a0a0c;--border:#26262e;--text:#ececf1;--muted:#b0b0be;--accent:#e8b84b;--accent-2:#c8423a;--gold:#e8b84b;--maxw:1180px}
-header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(10,10,12,.80);border-bottom:1px solid var(--border);font-family:'Manrope',system-ui,sans-serif}
+header.site{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);font-family:'Manrope',system-ui,sans-serif;background:#0b0c10;border-bottom:1px solid transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 12px 30px -12px rgba(0,0,0,.78)}
+header.site::after{content:"";position:absolute;left:0;right:0;top:100%;height:74px;pointer-events:none;z-index:-1;background:radial-gradient(40% 155% at 0% 0%, rgba(232,184,75,.10), transparent 70%),radial-gradient(42% 155% at 100% 0%, rgba(232,184,75,.115), transparent 70%),radial-gradient(60% 120% at 50% 0%, rgba(232,184,75,.08), transparent 73%)}
 header.site .nav{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-header.site .brand{display:flex;align-items:center;gap:12px}
-header.site .brand .logo{width:44px;height:44px;border-radius:11px;display:block;object-fit:cover;border:1px solid var(--border);box-shadow:0 0 22px rgba(232,184,75,.16)}
-header.site .brand .logo-fallback{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#0a0a0c;font-size:22px}
-header.site .brand .name{font-weight:800;letter-spacing:.16em;font-size:16px;white-space:nowrap;color:var(--text)}
-header.site .brand .name span{color:var(--gold)}
+header.site .brand{display:flex;align-items:center;gap:13px}
+header.site .brand .logo{width:50px;height:50px;display:block;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px #CDA14A, 0 3px 12px rgba(0,0,0,.5)}
+header.site .brand .logo-fallback{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;color:#0a0a0c;font-size:22px}
+header.site .brand-text{display:flex;flex-direction:column;justify-content:center}
+header.site .brand-name{font-family:"Playfair Display",serif;font-weight:600;font-size:23px;letter-spacing:.03em;color:#F3E9CF;line-height:1;white-space:nowrap}
+header.site .brand-sub{font-weight:700;font-size:8.5px;letter-spacing:.30em;color:#CDA14A;margin-top:5px;white-space:nowrap}
 header.site .nav-right{display:flex;align-items:center;gap:22px}
 header.site .menu{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
-header.site .menu a{color:var(--muted);font-size:14px;letter-spacing:.02em;transition:color .2s;position:relative;padding:2px 0}
+header.site .menu a{color:#eef1f8;font-size:14px;font-weight:700;letter-spacing:.02em;transition:color .2s;position:relative;padding:2px 0}
 header.site .menu a:hover,header.site .menu a.active{color:var(--text)}
 header.site .menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
 header.site .nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:9px;width:42px;height:38px;color:var(--text);cursor:pointer;font-size:18px;line-height:1}
@@ -169,9 +171,12 @@ header.site .nav-toggle{display:none;background:none;border:1px solid var(--bord
 <header class="site">
   <div class="nav">
     <a class="brand" href="/" aria-label="Караван идёт — на главную">
-      <img class="logo" src="/assets/logo.png" alt="Караван идёт"
+      <img class="logo" src="/logo/karavan-avatar-notext.png" width="50" height="50" alt=""
            onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>К</div>'">
-      <div class="name">КАРАВАН <span>ИДЁТ</span></div>
+      <span class="brand-text">
+        <span class="brand-name">КАРАВАН ИДЁТ</span>
+        <span class="brand-sub">КИНОЖУРНАЛ</span>
+      </span>
     </a>
     <div class="nav-right">
       <nav class="menu" id="menu" aria-label="Основное меню">
@@ -197,7 +202,7 @@ header.site .nav-toggle{display:none;background:none;border:1px solid var(--bord
     ${subjects.map(s=>`<a href="#subj-${s.slug}">${esc(s.title)}</a>`).join('\n    ')}
   </nav>
   ${subjects.map(card).join('\n')}
-  <footer>Караван идёт · авторский сайт о кино Карена Аванесяна</footer>
+  <footer>Караван идёт · авторский сайт исследователя кино Карена Аванесяна</footer>
 </div>
 <script>
 (function(){var m=document.getElementById('menu'),t=document.getElementById('navToggle');if(t&&m)t.addEventListener('click',function(){var o=m.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});})();
