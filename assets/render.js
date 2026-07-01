@@ -270,6 +270,13 @@ export function reviewPageView(meta, bodyHtml){
     </div>
     ${headline?`<h2 class="review-headline">${esc(headline)}</h2>`:''}
     <div class="prose">${bodyHtml}</div>
+    <footer class="review-author">
+      <img class="review-author-pic" src="/assets/karen.jpg" alt="Карен Аванесян" decoding="async" onerror="this.style.display='none'">
+      <div class="review-author-text">
+        <span class="review-author-rubric">Автор</span>
+        <span class="review-author-name">Карен Аванесян</span>
+      </div>
+    </footer>
   </article></main>`;
 }
 
