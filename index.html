@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>try{if(localStorage.getItem('km-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
 <!-- PAGE_META_START -->
-<title>Караван идёт — авторский сайт о кино Карена Аванесяна</title>
+<title>Караван идёт — авторский сайт исследователя кино Карена Аванесяна</title>
 <meta name="description" content="Авторский сайт исследователя кино, кандидата социологических наук Карена Аванесяна. Рецензии, репортажи с кинофестивалей, публикации в СМИ.">
 <link rel="canonical" href="https://karavancinema.netlify.app/">
-<meta property="og:title" content="Караван идёт — авторский сайт о кино Карена Аванесяна">
+<meta property="og:title" content="Караван идёт — авторский сайт исследователя кино Карена Аванесяна">
 <meta property="og:description" content="Кино глазами социолога: рецензии, репортажи с кинофестивалей и публикации в СМИ.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://karavancinema.netlify.app/">
@@ -730,7 +730,7 @@ async function renderHome(){
   ]);
   if([reviews,feed,festivals,collections,press].every(x=>x===null)){ setApp(R.loadError()); return; }
   setApp(R.homeView({reviews,feed,festivals,collections,press,site}));
-  setTitle('Караван идёт — авторский сайт о кино Карена Аванесяна');
+  setTitle('Караван идёт — авторский сайт исследователя кино Карена Аванесяна');
 }
 
 async function renderReviews(){

@@ -216,7 +216,7 @@ export function homeView(data){
   const body = top + out;
   return `
     <section class="hero">
-      <div class="kicker">Авторский сайт о кино Карена Аванесяна</div>
+      <div class="kicker">Авторский сайт исследователя кино Карена Аванесяна</div>
       <h1>Кино глазами <em>социолога</em></h1>
       <p>${heroCopy}</p>
     </section>
