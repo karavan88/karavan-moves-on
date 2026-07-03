@@ -124,8 +124,17 @@
   [data-theme="light"] footer.site{background:linear-gradient(180deg,#1c87c4,#166ea6);
     border-top-color:rgba(255,255,255,.2);color:rgba(255,255,255,.88);box-shadow:none}
   [data-theme="light"] footer.site a{color:#ffd75e}
-  [data-theme="light"] header.site::after,
-  [data-theme="light"] footer.site::after{display:none}
+  /* тот же «парящий» свет из-под ленты, но лазурный (небо/море), не золотой */
+  [data-theme="light"] header.site::after{
+    background:
+      radial-gradient(42% 130% at 0% 0%, rgba(34,154,214,.22), transparent 70%),
+      radial-gradient(44% 130% at 100% 0%, rgba(34,154,214,.24), transparent 70%),
+      radial-gradient(60% 120% at 50% 0%, rgba(34,154,214,.16), transparent 73%)}
+  [data-theme="light"] footer.site::after{
+    background:
+      radial-gradient(42% 130% at 0% 100%, rgba(34,154,214,.18), transparent 70%),
+      radial-gradient(44% 130% at 100% 100%, rgba(34,154,214,.19), transparent 70%),
+      radial-gradient(60% 120% at 50% 100%, rgba(34,154,214,.15), transparent 73%)}
   /* кнопки «Обо мне»: белые пилюли, латунная рамка, чернила, синяя стрелка */
   [data-theme="light"] .about-hero .socials a{background:#ffffff;color:var(--text);
     border-color:#dccfa6;box-shadow:0 1px 2px rgba(21,23,30,.05)}
@@ -840,7 +849,7 @@
         <a class="head-ic" href="/search" title="Поиск по сайту" aria-label="Поиск по сайту">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2"/><line x1="15.2" y1="15.2" x2="20.5" y2="20.5"/></svg>
         </a>
-        <a class="head-ic" href="https://t.me/karavan_goes" target="_blank" rel="noopener" title="Telegram-канал" aria-label="Telegram-канал">
+        <a class="head-ic" href="https://t.me/karavan_moves_on" target="_blank" rel="noopener" title="Telegram-канал" aria-label="Telegram-канал">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.3 3.6 3.2 10.7c-.9.4-.9 1.6.1 1.9l4.5 1.4 1.7 5.2c.3.9 1.4 1 2 .3l2.3-2.9 4.6 3.3c.8.5 1.8.1 2-.9l2.5-13c.2-1-.7-1.8-1.6-1.4Z"/><path d="m9.4 13.9 8.4-7.8"/></svg>
         </a>
         <a class="head-ic" href="/rss.xml" target="_blank" title="RSS-лента" aria-label="RSS-лента">
@@ -878,7 +887,7 @@
     </div>
     <div class="sfoot-col">
       <h4>Связь</h4>
-      <a href="https://t.me/karavan_goes" target="_blank" rel="noopener">Telegram · @karavan_goes</a>
+      <a href="https://t.me/karavan_moves_on" target="_blank" rel="noopener">Telegram · @karavan_moves_on</a>
       <a href="mailto:karavan0788@yandex.com">karavan0788@yandex.com</a>
       <a href="/rss.xml" target="_blank">RSS-лента</a>
       <a href="https://letterboxd.com/karavan0788/" target="_blank" rel="noopener">Letterboxd</a>

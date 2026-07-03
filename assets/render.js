@@ -103,7 +103,7 @@ export function reviewCardHTML(r){
     </div>
     <div class="card-body">
       <h3>${esc(film)}</h3>
-      <div class="card-meta">${[r.year,r.director].filter(Boolean).map(esc).join(' · ')}${r.mins?` · <span class="mins">${esc(r.mins)} мин</span>`:''}</div>
+      <div class="card-meta">${[r.year,r.director].filter(Boolean).map(esc).join(' · ')}</div>
       ${r.title&&r.title!==film?`<div class="card-headline">${esc(r.title)}</div>`:''}
     </div>
   </a>`;
@@ -324,8 +324,8 @@ export function homeView(data){
   /* ряды разделов */
   let out='';
   if(reviews.length) out+=`${homeLabel('Рецензии','/reviews')}<div class="grid">${reviews.slice(0,4).map(reviewCardHTML).join('')}</div>`;
-  if(collections.length) out+=`${homeLabel('Подборки','/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
   if(courses.length) out+=`${homeLabel('Лекции · авторские курсы','/lectures/')}<div class="courses-grid">${courses.map(courseCardHTML).join('')}</div>`;
+  if(collections.length) out+=`${homeLabel('Подборки','/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
   const pressRow = press.slice(0,3);
   if(pressRow.length) out+=`${homeLabel('Публикации в СМИ','/press')}<div class="press-list" style="max-width:none;margin:0">${pressRow.map(pressItemHTML).join('')}</div>`;
   if(feed.length) out+=`${homeLabel('Заметки','/feed')}<div class="grid wide">${feed.slice(0,2).map(feedCardHTML).join('')}</div>`;
@@ -416,8 +416,7 @@ export function reviewPageView(meta, bodyHtml, extras={}){
       <div class="info">
         <h1>${esc(film||'Без названия')}</h1>
         ${meta.original?`<div class="review-orig">${esc(meta.original)}</div>`:''}
-        <div class="sub">${[meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).map(esc).join(' · ')}</div>
-        ${ratingHTML(meta.rating,'full')}
+        <div class="sub">${[meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).map(esc).join(' · ')}${(meta.rating||meta.rating===0)?` · <span class="rate">★ ${esc(meta.rating)}/10</span>`:''}</div>
         ${meta.festival?`<div><a class="fest-stamp" href="/festivals" title="Все материалы фестиваля">${esc(meta.festival)}</a></div>`:''}
         ${extLinkRow(meta)}
         ${tagChips(meta.tags)}
