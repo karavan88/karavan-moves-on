@@ -7,7 +7,7 @@ director: Аньес Варда
 country: Франция
 rating: 9
 poster: https://image.tmdb.org/t/p/w500/k6i46qdrSrChHzCBhxByxb9xkwk.jpg
-tags: драма, французская новая волна, Аньес Варда
+tags: драма, французская новая волна, Аньес Варда, кино о женщинах, феминистическая кинокритика
 tmdb: 499
 ---
 

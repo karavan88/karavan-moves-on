@@ -7,7 +7,7 @@ director: Стивен Долдри
 country: США, Великобритания
 rating: 8
 poster: https://image.tmdb.org/t/p/w500/4myDtowDJQPQnkEDB1IWGtJR1Fo.jpg
-tags: драма, экранизация, Николь Кидман
+tags: драма, экранизация, Николь Кидман, кино о женщинах, феминистическая кинокритика
 tmdb: 590
 ---
 

@@ -8,7 +8,7 @@ country: США
 rating: 7
 festival: Il Cinema Ritrovato 2026
 poster: https://image.tmdb.org/t/p/w500/zhGWvfuKUSeOZZaHJrIGyluGLZY.jpg
-tags: драма, мелодрама, Фриц Ланг
+tags: драма, мелодрама, Фриц Ланг, кино о женщинах, феминистическая кинокритика
 tmdb: 24003
 ---
 
