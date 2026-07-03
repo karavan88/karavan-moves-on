@@ -645,6 +645,8 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
 .wfilm .wy{font-size:64px;right:18px;top:20px}
 @media print{#irisem{display:none!important}}
 @media print{#gatefx,#irisfx{display:none!important}}
+.fs .win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block}
+.fs .win:after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(6,9,15,.94),rgba(6,9,15,.35) 55%,transparent)}
 </style>
 </head>
 <body>
@@ -704,12 +706,12 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <h2>Что роднит эти фильмы?</h2>
     <p class="lead" style="max-width:62ch;margin:14px 0 12px">Между крайними кадрами этой плёнки больше века. И всё же их держит вместе одно: каждый выводит на экран не событие, а его подспудную, вытесненную изнанку.</p>
     <div class="lighttable">
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 013A</span><div class="win w-prg"></div><span class="cy">1913</span><span class="cn">Пражский студент</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 020B</span><div class="win w-cal"></div><span class="cy">1920</span><span class="cn">Калигари</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 022A</span><div class="win w-nos"></div><span class="cy">1922</span><span class="cn">Носферату</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 026C</span><div class="win w-sec"></div><span class="cy">1926</span><span class="cn">Тайны одной души</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 001X</span><div class="win w-md"></div><span class="cy">2001</span><span class="cn">Малхолланд Драйв</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 017X</span><div class="win w-out"></div><span class="cy">2017</span><span class="cn">Прочь</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 013A</span><div class="win w-prg"><img src="img/poster_9AuM2gvdzcQcAqcj7tUV15NRiDP.jpg" alt="Постер «Пражский студент»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1913</span><span class="cn">Пражский студент</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 020B</span><div class="win w-cal"><img src="img/poster_bktNGUv8x54gMlgiTp6qUOHzVh5.jpg" alt="Постер «Калигари»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1920</span><span class="cn">Калигари</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 022A</span><div class="win w-nos"><img src="img/poster_zEzQTngP7F4qVmLDCWg5Hby6cgX.jpg" alt="Постер «Носферату»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1922</span><span class="cn">Носферату</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 026C</span><div class="win w-sec"><img src="img/poster_y5GPW5wYz3XIk1vlz0H2xlaQcxv.jpg" alt="Постер «Тайны одной души»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1926</span><span class="cn">Тайны одной души</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 001X</span><div class="win w-md"><img src="img/poster_x7A59t6ySylr1L7aubOQEA480vM.jpg" alt="Постер «Малхолланд Драйв»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">2001</span><span class="cn">Малхолланд Драйв</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 017X</span><div class="win w-out"><img src="img/poster_tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg" alt="Постер «Прочь»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">2017</span><span class="cn">Прочь</span></div>
     </div>
     <div class="slide-foot"><span class="src">Четыре кадра слева — фильмы этой лекции. Подсказка: ответ начинается не с того, о чём фильм, а с того, какое знание он держит за кадром.</span><span class="fpg"></span></div>
   </section>

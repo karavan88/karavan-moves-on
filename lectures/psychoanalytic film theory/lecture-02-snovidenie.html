@@ -555,6 +555,8 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
 .win.w-per{background:radial-gradient(80% 70% at 50% 34%,rgba(236,230,218,.32),transparent 60%),linear-gradient(150deg,#2a2f3a,#10131c 84%)}
 @media print{#irisem{display:none!important}}
 @media print{#gatefx,#irisfx{display:none!important}}
+.fs .win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block}
+.fs .win:after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(6,9,15,.94),rgba(6,9,15,.35) 55%,transparent)}
 </style>
 </head>
 <body>
@@ -616,12 +618,12 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <h2>Что общего у этих снов?</h2>
     <p class="lead" style="max-width:62ch;margin:14px 0 12px">Каждый кадр этой плёнки — сновидение. Но выведено оно тремя несовместимыми способами, и спор между ними — сюжет лекции.</p>
     <div class="lighttable">
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 029A</span><div class="win w-chien"></div><span class="cy">1929</span><span class="cn">Андалузский пёс</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 032B</span><div class="win w-vampyr"></div><span class="cy">1932</span><span class="cn">Вампир</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 039C</span><div class="win w-oz"></div><span class="cy">1939</span><span class="cn">Волшебник страны Оз</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 045D</span><div class="win w-spell"></div><span class="cy">1945</span><span class="cn">Завороженный</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 066E</span><div class="win w-per"></div><span class="cy">1966</span><span class="cn">Персона</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 001X</span><div class="win w-md"></div><span class="cy">2001</span><span class="cn">Малхолланд Драйв</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 029A</span><div class="win w-chien"><img src="img/poster_3Bond31VV0nRi5o1iL3i5r2s0HG.jpg" alt="Постер «Андалузский пёс»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1929</span><span class="cn">Андалузский пёс</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 032B</span><div class="win w-vampyr"><img src="img/poster_tgnL5gAI1iGmycmjyL2ytTXcrDX.jpg" alt="Постер «Вампир»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1932</span><span class="cn">Вампир</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 039C</span><div class="win w-oz"><img src="img/poster_uCC3j4pV9eOZwzDUWp2ilbcTf1f.jpg" alt="Постер «Волшебник страны Оз»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1939</span><span class="cn">Волшебник страны Оз</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 045D</span><div class="win w-spell"><img src="img/poster_dPAox7jGScLBvxKLeRptJIBF7v.jpg" alt="Постер «Завороженный»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1945</span><span class="cn">Завороженный</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 066E</span><div class="win w-per"><img src="img/poster_mAE4uwrXLlzo5AAxEorFvErdumq.jpg" alt="Постер «Персона»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1966</span><span class="cn">Персона</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 001X</span><div class="win w-md"><img src="img/poster_x7A59t6ySylr1L7aubOQEA480vM.jpg" alt="Постер «Малхолланд Драйв»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">2001</span><span class="cn">Малхолланд Драйв</span></div>
     </div>
     <div class="slide-foot"><span class="src">Бунюэль шифрует, Хичкок разгадывает, Дрейер растворяет; Линч ждёт в коде.</span><span class="fpg"></span></div>
   </section>
@@ -1012,7 +1014,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
 
   <!-- ============ КЕЙС 03: ВАМПИР ============ -->
   <section class="slide framefull" data-toc="Кейс 03 · Вампир">
-    <div class="shot s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="0"><img src="img/w1280_rg3hBiQbDet8uNQkgfbpk7306p8.jpg" alt="Кадр из «Вампира»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="shot s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="0"><img src="img/w1280_d1Z1VYyFXfcEa8RbOSwa4wM4Roc.jpg" alt="Кадр из «Вампира»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1932</span>
     <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Вампир</h2>
       <div class="kw"><span>Сон-онтология</span><span>Дымка</span><span>Двойник</span></div>
@@ -1029,13 +1031,13 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
         <p style="margin-top:12px">После «Страстей Жанны д’Арк» Дрейер снимает вольную вариацию на новеллы Ле Фаню. Финансирует картину барон Николя де Гунзбург, он же играет главную роль под псевдонимом Жюлиан Вест.</p>
         <p>Молочная пелена изображения — осознанный приём: оператор Рудольф Матэ снимал сквозь марлю, разложив свет до состояния дымки. Подзаголовок фильма честен: это сон Аллана Грея.</p>
       </div>
-      <div class="framebox s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="2"><img src="img/w500_m7BKgeW06cgW5512wukfGhLsWGL.jpg" alt="«Вампир»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Марля перед объективом · оператор Рудольф Матэ</div></div>
+      <div class="framebox s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="2"><img src="img/w1280_wTnO7c0CWhvvgLlcU0dAwANsKfz.jpg" alt="«Вампир»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     </div>
     <div class="slide-foot"><span class="src">По мотивам Дж. Ш. Ле Фаню, «In a Glass Darkly», 1872.</span><span class="fpg"></span></div>
   </section>
 
   <section class="slide framefull">
-    <div class="shot s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="1"><img src="img/w1280_5B7OZrNgGlSZMqcrDy3FBXR7sC6.jpg" alt="Взгляд из гроба" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="shot s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="1"><img src="img/w1280_eUYF47MCsbTFDda8LDY8GdhCTjr.jpg" alt="Взгляд из гроба" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · погребение наяву</div><h2>Невозможная точка зрения</h2>
       <p class="logline">Герой видит себя в гробу с оконцем и смотрит из него: своё лицо, свеча, плывущее небо. Камера занимает позицию, с которой не смотрит никто живой.</p>
     </div>
@@ -1118,7 +1120,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
 
   <!-- ============ КОДА-КЕЙС: МАЛХОЛЛАНД ДРАЙВ ============ -->
   <section class="slide framefull" data-toc="Кода-кейс · Малхолланд Драйв">
-    <div class="shot s-md" data-tmdb="Mulholland Drive" data-year="2001" data-idx="0"><img src="img/w1280_g9ClaS5EqU0Hk8WIbMNhld0Bk6f.jpg" alt="Кадр из «Малхолланд Драйв»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="shot s-md" data-tmdb="Mulholland Drive" data-year="2001" data-idx="0"><img src="img/w1280_4dZoc24v0cDgg5vbhqxqtQVatiw.jpg" alt="Кадр из «Малхолланд Драйв»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">2001</span>
     <div class="fcap"><div class="fk">Кода · к разбору</div><h2>Малхолланд Драйв</h2>
       <div class="kw"><span>Сон-фильм</span><span>Голливуд</span><span>Неразрешимый шов</span></div>
@@ -1135,7 +1137,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
         <p style="margin-top:12px">История начиналась как пилот сериала для ABC: канал посмотрел материал и отказался. Французские деньги StudioCanal позволили Линчу доснять финал и перемонтировать телевизионный черновик в полнометражную картину.</p>
         <p>Швы этой биографии остались в ткани ленты: оборванные линии персонажей, зависшие сюжеты. Каннская премьера принесла приз за режиссуру, а обломки нарратива обернулись логикой сна.</p>
       </div>
-      <div class="framebox s-md" data-tmdb="Mulholland Drive" data-year="2001" data-idx="2"><img src="img/w500_6XpAFxwhVZ2t30Qtn8Wz8koKlaN.jpg" alt="«Малхолланд Драйв»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Наоми Уоттс в двойной роли · Бетти и Диана</div></div>
+      <div class="framebox s-md" data-tmdb="Mulholland Drive" data-year="2001" data-idx="2"><img src="img/w1280_4K7zGRB4sv9SAnSaN0mL0QqbTlv.jpg" alt="«Малхолланд Драйв»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Наоми Уоттс в двойной роли · Бетти и Диана</div></div>
     </div>
     <div class="slide-foot"><span class="src">Пилот ABC, 1999 · StudioCanal · Канны-2001, приз за режиссуру.</span><span class="fpg"></span></div>
   </section>
