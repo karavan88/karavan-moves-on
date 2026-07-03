@@ -340,7 +340,7 @@ export function homeView(data){
       <p>${heroCopy}</p>
       <div class="home-author">
         <img src="/assets/karen.jpg" alt="Карен Аванесян" loading="lazy" decoding="async" onerror="this.style.display='none'">
-        <span class="q">«Кино для меня — документ эпохи. Каждый кадр хранит слепок общества и коллективного бессознательного.»</span>
+        <span class="q">«Кино для меня — документ эпохи. Каждый кадр хранит слепок общества и коллективного бессознательного»</span>
       </div>
     </section>
     <main id="home">${body || `<div class="state">Пока нет материалов.</div>`}</main>`;
