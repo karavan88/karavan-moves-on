@@ -7,7 +7,7 @@ director: Жан-Люк Годар
 country: Франция, Италия
 rating: 9
 poster: https://image.tmdb.org/t/p/w500/i124H6iQB4CawrgFW9aZaZs7OBO.jpg
-tags: драма, новая волна, роуд-муви
+tags: драма, французская новая волна, роуд-муви, Годар
 tmdb: 2786
 ---
 

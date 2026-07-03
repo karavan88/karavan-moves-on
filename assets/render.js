@@ -370,12 +370,9 @@ function extLinkRow(meta){
   return `<div class="ext-links"><a class="lb" href="${esc(lb)}" target="_blank" rel="noopener" aria-label="Letterboxd"></a></div>`;
 }
 
-function pubLine(dateISO, bodyHtml){
-  const mins = readMins(wordsFromHtml(bodyHtml));
-  const parts=[];
-  if(dateISO) parts.push(`Опубликовано ${ruDate(dateISO)}`);
-  parts.push(`${mins} мин чтения`);
-  return `<div class="pub-line">${parts.join(' · ')}</div>`;
+function pubLine(dateISO){
+  if(!dateISO) return '';
+  return `<div class="pub-line">Опубликовано ${ruDate(dateISO)}</div>`;
 }
 
 /* Мост «фильм → лекция»: связывает рецензию с курсом, где фильм в программе. */
@@ -404,6 +401,7 @@ function relatedHTML(list){
 export function reviewPageView(meta, bodyHtml, extras={}){
   const film = meta.film || meta.title;
   const headline = (meta.title && meta.title !== film) ? meta.title : '';
+  const mins = readMins(wordsFromHtml(bodyHtml));
   const poster = meta.poster
     ? `<img src="${esc(meta.poster)}" alt="${esc(film)}" decoding="async" onerror="this.parentNode.innerHTML='<div class=&quot;ph&quot;>${esc(film)}</div>'">`
     : `<div class="ph">${esc(film||'?')}</div>`;
@@ -414,6 +412,7 @@ export function reviewPageView(meta, bodyHtml, extras={}){
         <div class="poster">${poster}</div>
       </div>
       <div class="info">
+        <div class="review-mins">${mins} мин чтения</div>
         <h1>${esc(film||'Без названия')}</h1>
         ${meta.original?`<div class="review-orig">${esc(meta.original)}</div>`:''}
         <div class="sub">${[meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).map(esc).join(' · ')}${(meta.rating||meta.rating===0)?` · <span class="rate">★ ${esc(meta.rating)}/10</span>`:''}</div>
@@ -424,7 +423,7 @@ export function reviewPageView(meta, bodyHtml, extras={}){
     </div>
     ${headline?`<h2 class="review-headline">${esc(headline)}</h2>`:''}
     <div class="prose">${bodyHtml}</div>
-    ${pubLine(extras.date, bodyHtml)}
+    ${pubLine(extras.date)}
     ${bridgeHTML(extras.bridge)}
     ${collectionsLineHTML(extras.incollections)}
     ${relatedHTML(extras.related)}
