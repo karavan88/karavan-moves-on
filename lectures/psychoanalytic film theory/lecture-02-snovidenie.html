@@ -603,6 +603,10 @@ body[data-haunt="1"] .haunt{animation:hauntIn 6s 1.6s ease both}
 .slide.active[data-unveil] .lead,.slide.active[data-unveil] .card,.slide.active[data-cond] .cols>p,.slide.active[data-cond] .cols>.card{animation:none;opacity:1;filter:none;transform:none}
 .haunt{display:none}
 .haunt{display:none!important}
+/* CINE-EARLY: не-dream фазам — кинематографичный слайд-вход (blur+scale), а не плоский fade */
+body .slide.active[data-phase="real"]{animation:dis .95s cubic-bezier(.22,.75,.25,1) both}
+body .slide.active[data-phase="descent"]{animation:disDesc 1.3s cubic-bezier(.22,.75,.25,1) both}
+body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.25,1) both}
 </style>
 </head>
 <body>
