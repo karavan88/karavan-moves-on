@@ -49,6 +49,22 @@ const PLAN = {
     ['w-per','Персона','Persona',1966],
     ['w-md','Малхолланд Драйв','Mulholland Drive',2001],
   ],
+  'lecture-09-bezumie.html': [
+    ['w-cal','Кабинет доктора Калигари','The Cabinet of Dr. Caligari',1920],
+    ['w-snk','Змеиная яма','The Snake Pit',1948],
+    ['w-rep','Отвращение','Repulsion',1965],
+    ['w-cuk','Пролетая над гнездом кукушки',"One Flew Over the Cuckoo's Nest",1975],
+    ['w-pos','Одержимая','Possession',1981],
+    ['w-mel','Меланхолия','Melancholia',2011],
+  ],
+  'lecture-10-vzglyad-rebenka.html': [
+    ['w-kid','Малыш','The Kid',1921],
+    ['w-hun','Ночь охотника','The Night of the Hunter',1955],
+    ['w-bee','Дух улья','The Spirit of the Beehive',1973],
+    ['w-crw','Выкорми ворона','Cría Cuervos',1976],
+    ['w-cel','Селия','Celia',1989],
+    ['w-tid','Страна приливов','Tideland',2005],
+  ],
 };
 
 const imgDir = path.join(ROOT, 'img');

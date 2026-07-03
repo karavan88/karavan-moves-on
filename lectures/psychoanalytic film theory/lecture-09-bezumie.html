@@ -380,6 +380,8 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
 .slide.active .framebox{animation:fup .5s .34s both}
 .shot[data-tmdb]:not(.has-image)::before,.framebox[data-tmdb]:not(.has-image)::before{content:"Кадр · подтянется из TMDB";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate);border:1px dashed var(--line-strong);padding:9px 14px;border-radius:2px;background:rgba(7,13,24,.5);white-space:nowrap}
 @media print{.beam,.dust,.grain,.vignette,#irisfx,#irisem{display:none!important}}
+.fs .win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block}
+.fs .win:after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(6,9,15,.94),rgba(6,9,15,.35) 55%,transparent)}
 </style>
 </head>
 <body>
@@ -439,12 +441,12 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="eyebrow">Холодный опенер <span class="sep">/</span> <span class="tag">Шесть кадров на световом столе</span></div>
     <h2>Век экранного безумия</h2>
     <div class="lighttable">
-      <div class="fs"><span class="edge">KARAVAN · 5229 · 020A</span><div class="win w-cal"></div><span class="cy">1920</span><span class="cn">Кабинет доктора Калигари</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5229 · 048B</span><div class="win w-snk"></div><span class="cy">1948</span><span class="cn">Змеиная яма</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5229 · 065C</span><div class="win w-rep"></div><span class="cy">1965</span><span class="cn">Отвращение</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5229 · 075D</span><div class="win w-cuk"></div><span class="cy">1975</span><span class="cn">Пролетая над гнездом кукушки</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5229 · 081E</span><div class="win w-pos"></div><span class="cy">1981</span><span class="cn">Одержимая</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5229 · 011X</span><div class="win w-mel"></div><span class="cy">2011</span><span class="cn">Меланхолия</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5229 · 020A</span><div class="win w-cal"><img src="img/poster_bktNGUv8x54gMlgiTp6qUOHzVh5.jpg" alt="Постер «Кабинет доктора Калигари»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1920</span><span class="cn">Кабинет доктора Калигари</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5229 · 048B</span><div class="win w-snk"><img src="img/poster_wLO2TVjM4UUQUwOq7RqfS8PCdMC.jpg" alt="Постер «Змеиная яма»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1948</span><span class="cn">Змеиная яма</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5229 · 065C</span><div class="win w-rep"><img src="img/poster_dtyCKEPLqv9wxyVazL4b843vtUb.jpg" alt="Постер «Отвращение»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1965</span><span class="cn">Отвращение</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5229 · 075D</span><div class="win w-cuk"><img src="img/poster_kjWsMh72V6d8KRLV4EOoSJLT1H7.jpg" alt="Постер «Пролетая над гнездом кукушки»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1975</span><span class="cn">Пролетая над гнездом кукушки</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5229 · 081E</span><div class="win w-pos"><img src="img/poster_A9bnRn05riOKWftvQlLKa2gl51n.jpg" alt="Постер «Одержимая»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1981</span><span class="cn">Одержимая</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5229 · 011X</span><div class="win w-mel"><img src="img/poster_fMneszMiQuTKY8JUXrGGB5vwqJf.jpg" alt="Постер «Меланхолия»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">2011</span><span class="cn">Меланхолия</span></div>
     </div>
     <div class="slide-foot"><span class="src">Кино рисует безумие с первых лет — вопрос лекции в том, какой ценой.</span><span class="fpg"></span></div>
   </section>

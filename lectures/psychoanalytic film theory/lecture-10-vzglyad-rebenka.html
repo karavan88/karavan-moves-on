@@ -380,6 +380,8 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
 .slide.active .framebox{animation:fup .5s .34s both}
 .shot[data-tmdb]:not(.has-image)::before,.framebox[data-tmdb]:not(.has-image)::before{content:"Кадр · подтянется из TMDB";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate);border:1px dashed var(--line-strong);padding:9px 14px;border-radius:2px;background:rgba(7,13,24,.5);white-space:nowrap}
 @media print{.beam,.dust,.grain,.vignette,#irisfx,#irisem{display:none!important}}
+.fs .win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block}
+.fs .win:after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(6,9,15,.94),rgba(6,9,15,.35) 55%,transparent)}
 </style>
 </head>
 <body>
@@ -439,12 +441,12 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="eyebrow">Холодный опенер <span class="sep">/</span> <span class="tag">Шесть кадров на световом столе</span></div>
     <h2>Век детского взгляда</h2>
     <div class="lighttable">
-      <div class="fs"><span class="edge">KARAVAN · 5230 · 021A</span><div class="win w-kid"></div><span class="cy">1921</span><span class="cn">Малыш</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5230 · 055B</span><div class="win w-hun"></div><span class="cy">1955</span><span class="cn">Ночь охотника</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5230 · 073C</span><div class="win w-bee"></div><span class="cy">1973</span><span class="cn">Дух улья</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5230 · 076D</span><div class="win w-crw"></div><span class="cy">1976</span><span class="cn">Выкорми ворона</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5230 · 089E</span><div class="win w-cel"></div><span class="cy">1989</span><span class="cn">Селия</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5230 · 005X</span><div class="win w-tid"></div><span class="cy">2005</span><span class="cn">Страна приливов</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5230 · 021A</span><div class="win w-kid"><img src="img/poster_A9NWYyn7eX0H9XIjaOvfWJ9mCGA.jpg" alt="Постер «Малыш»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1921</span><span class="cn">Малыш</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5230 · 055B</span><div class="win w-hun"><img src="img/poster_rBka0nFWiHxabHRLr0KfIA8Yiaq.jpg" alt="Постер «Ночь охотника»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1955</span><span class="cn">Ночь охотника</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5230 · 073C</span><div class="win w-bee"><img src="img/poster_ueefcFKn9qoAQqjSWY6H9xjjLU2.jpg" alt="Постер «Дух улья»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1973</span><span class="cn">Дух улья</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5230 · 076D</span><div class="win w-crw"><img src="img/poster_kbe6KjerFbvXaQvLkwa8KCoUlDJ.jpg" alt="Постер «Выкорми ворона»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1976</span><span class="cn">Выкорми ворона</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5230 · 089E</span><div class="win w-cel"><img src="img/poster_vrhapMkOMjaX2sPGgAryxyH9S8L.jpg" alt="Постер «Селия»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1989</span><span class="cn">Селия</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5230 · 005X</span><div class="win w-tid"><img src="img/poster_mjCRfmxg7awp5kVIM1lHR0d7S4A.jpg" alt="Постер «Страна приливов»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">2005</span><span class="cn">Страна приливов</span></div>
     </div>
     <div class="slide-foot"><span class="src">Кино любит детей на экране; куда реже оно отдаёт им камеру.</span><span class="fpg"></span></div>
   </section>
