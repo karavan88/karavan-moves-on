@@ -44,9 +44,8 @@ const PLAN = {
   'lecture-02-snovidenie.html': [
     ['w-chien','Андалузский пёс','Un Chien Andalou',1929],
     ['w-vampyr','Вампир','Vampyr',1932],
-    ['w-oz','Волшебник страны Оз','The Wizard of Oz',1939],
+    /* w-oz и w-per — без постеров по решению автора: остаются декоративные окна */
     ['w-spell','Завороженный','Spellbound',1945],
-    ['w-per','Персона','Persona',1966],
     ['w-md','Малхолланд Драйв','Mulholland Drive',2001],
   ],
   'lecture-09-bezumie.html': [
