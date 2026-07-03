@@ -557,6 +557,52 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
 @media print{#gatefx,#irisfx{display:none!important}}
 .fs .win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block}
 .fs .win:after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(6,9,15,.94),rgba(6,9,15,.35) 55%,transparent)}
+/* CINE-TRANSITIONS: кино-режим фазовой драматургии (портировано) */
+@keyframes condL{from{opacity:0;transform:translateX(-52px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes condR{from{opacity:0;transform:translateX(52px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes disDesc{from{opacity:0;transform:scale(1.05);filter:blur(15px) brightness(1.1)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+@keyframes disDream{from{opacity:0;transform:scale(1.085) rotate(.35deg);filter:blur(24px) brightness(1.18)}55%{filter:blur(6px)}to{opacity:1;transform:scale(1) rotate(0);filter:blur(0) brightness(1)}}
+@keyframes disReal{from{opacity:0;filter:blur(5px)}to{opacity:1;filter:blur(0)}}
+@keyframes driftD{from{transform:scale(1)}to{transform:scale(1.012) translateY(-5px)}}
+@keyframes fogIn{from{opacity:0;filter:blur(16px);transform:translateY(10px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes hauntIn{0%{opacity:0;transform:rotate(0)}30%{opacity:.08}70%{opacity:.05}100%{opacity:0;transform:rotate(22deg)}}
+@keyframes unveil{from{opacity:.22;filter:blur(14px)}to{opacity:1;filter:blur(0)}}
+@keyframes wakeIn{from{opacity:0}to{opacity:1}}
+/* ===== КИНО-РЕЖИМ: ФАЗОВАЯ ДРАМАТУРГИЯ (Явь → Погружение → Сон → Пробуждение) ===== */
+.slide.active[data-phase="real"]{animation:disReal .7s ease both}
+.slide.active[data-phase="descent"]{animation:disDesc 1.6s cubic-bezier(.25,.8,.25,1) both}
+.slide.active[data-phase="dream"]{animation:disDream 2.3s cubic-bezier(.3,.7,.3,1) both,driftD 12s 2.5s ease-in-out infinite alternate}
+.slide.active[data-phase="wake"]{animation:wakeIn .55s ease both}
+.slide.active[data-phase="wake"]>*{animation:wakeIn .5s .08s both}
+body[data-phase="descent"] .beam{filter:blur(28px) brightness(1.25)}
+body[data-phase="dream"] .beam{filter:blur(28px) brightness(1.55)}
+body[data-phase="wake"] .beam{filter:blur(28px) brightness(.6)}
+body[data-phase="dream"] .grain{opacity:.085}
+body[data-phase="wake"] .grain{opacity:.032}
+.slide.active[data-phase="dream"] .framebox{animation:fogIn 1.5s .25s both}
+.slide.active[data-phase="dream"] .eyebrow{animation:fogIn 1.2s 1.35s both}
+.slide.active[data-phase="dream"] h2{animation:fogIn 1.5s 1.7s both}
+.slide.active[data-phase="dream"] .lead{animation:fogIn 1.7s 2.2s both}
+.slide.active[data-phase="dream"] .cols>p{animation:fogIn 1.6s 1.9s both}
+.slide.active[data-phase="dream"].framefull .fk{animation:fogIn 1.4s 1.5s both}
+.slide.active[data-phase="dream"].framefull .fcap h2{animation:fogIn 1.7s 1.9s both}
+.slide.active[data-phase="dream"].framefull .kw span{animation:fogIn 1.2s both}
+.slide.active[data-phase="dream"].framefull .kw span:nth-child(1){animation-delay:2.3s}
+.slide.active[data-phase="dream"].framefull .kw span:nth-child(2){animation-delay:2.4s}
+.slide.active[data-phase="dream"].framefull .kw span:nth-child(3){animation-delay:2.5s}
+.slide.active[data-phase="dream"].framefull .logline{animation:fogIn 1.6s 2.7s both}
+.slide.active[data-unveil] .lead{animation:unveil 2.4s .9s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-unveil] :is(.cols,.cols-3,.cols-wide,.stack)>.card:nth-child(1){animation:unveil 2.2s 1.6s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-unveil] :is(.cols,.cols-3,.cols-wide,.stack)>.card:nth-child(2){animation:unveil 2.2s 2.1s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-cond] .cols>p{animation:condL 2.2s .5s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-cond] .cols>.card{animation:condR 2.2s .9s cubic-bezier(.3,.6,.3,1) both}
+/* МЕХАНИЗМ 04 · возвращение вытесненного (спираль-призрак) */
+.haunt{position:fixed;right:8%;top:12%;width:150px;z-index:3;color:var(--violet);opacity:0;pointer-events:none}
+body[data-haunt="1"] .haunt{animation:hauntIn 6s 1.6s ease both}
+.slide.active[data-phase]{animation:fade .3s both}
+.slide.active[data-unveil] .lead,.slide.active[data-unveil] .card,.slide.active[data-cond] .cols>p,.slide.active[data-cond] .cols>.card{animation:none;opacity:1;filter:none;transform:none}
+.haunt{display:none}
+.haunt{display:none!important}
 </style>
 </head>
 <body>
@@ -566,6 +612,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
 <div class="dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <div class="grain"></div>
 <div class="vignette"></div>
+<svg class="haunt" viewBox="0 0 220 130" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.4" d="M110 65 a5 5 0 0 1 5 -5 a10 10 0 0 1 10 10 a15 15 0 0 1 -15 15 a20 20 0 0 1 -20 -20 a25 25 0 0 1 25 -25 a30 30 0 0 1 30 30 a35 35 0 0 1 -35 35 a40 40 0 0 1 -40 -40"/></svg>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="g-dbl" viewBox="0 0 120 170"><circle cx="47" cy="85" r="34" fill="none" stroke="currentColor" stroke-width="10"/><circle cx="73" cy="85" r="34" fill="none" stroke="currentColor" stroke-width="10" opacity=".55"/></symbol>
@@ -590,7 +637,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
 <main class="deck" id="deck">
 
   <!-- 01 COVER -->
-  <section class="slide cover active" id="cover">
+  <section class="slide cover active" data-phase="real" id="cover">
     <div class="grid-bg"></div>
     <div class="haze cover-haze"></div>
     <svg class="ap-hero eyehero" viewBox="0 0 220 130" aria-hidden="true">
@@ -613,7 +660,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 02 COLD OPEN · плёнка -->
-  <section class="slide" data-toc="Введение">
+  <section class="slide" data-phase="real" data-toc="Введение">
     <div class="eyebrow">Лекция 02 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
     <h2>Что общего у этих снов?</h2>
     <p class="lead" style="max-width:62ch;margin:14px 0 12px">Каждый кадр этой плёнки — сновидение. Но выведено оно тремя несовместимыми способами, и спор между ними — сюжет лекции.</p>
@@ -629,7 +676,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 03 THESIS A -->
-  <section class="slide thesis">
+  <section class="slide thesis" data-phase="real">
     <div class="haze"></div>
     <div class="tlbl">Тезис лекции</div>
     <div class="big">Сон думает <span class="hl">образами</span> — и потому так близок к <span class="oc">кино</span>.</div>
@@ -638,7 +685,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 04 ВОПРОС -->
-  <section class="slide" data-toc="Главный вопрос и метод">
+  <section class="slide" data-phase="real" data-toc="Главный вопрос и метод">
     <div class="eyebrow">Лекция 02 <span class="sep">/</span> <span class="tag">Рамка</span></div>
     <h2>Главный вопрос</h2>
     <div class="cols-wide" style="margin-top:8px">
@@ -656,7 +703,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 05 ЦАРСКАЯ ДОРОГА -->
-  <section class="slide">
+  <section class="slide" data-phase="real">
     <div class="eyebrow">Фрейд · 1900 <span class="sep">/</span> <span class="tag">Толкование сновидений</span></div>
     <h2>Царская дорога</h2>
     <div class="cols-wide">
@@ -674,7 +721,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 06 ЦЕНЗУРА -->
-  <section class="slide">
+  <section class="slide" data-phase="real" data-unveil>
     <div class="eyebrow">Зачем сон прячет <span class="sep">/</span> <span class="tag">Цензура</span></div>
     <h2>Маскировка как компромисс</h2>
     <p class="lead" style="max-width:66ch">Между желанием и сознанием стоит цензура. Прямо предъявить запретное нельзя — сон идёт на сделку.</p>
@@ -686,7 +733,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 07 DIVIDER I — РАБОТА СНА -->
-  <section class="slide divider poster" data-toc="Работа сновидения" data-act="I">
+  <section class="slide divider poster" data-phase="real" data-toc="Работа сновидения" data-act="I">
     <div class="haze"></div>
     <div class="poster-inner">
       <div class="knum">I</div>
@@ -697,7 +744,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 08 КОЛЬЦО -->
-  <section class="slide">
+  <section class="slide" data-phase="real">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Модель <span class="sep">/</span> <span class="tag">Петля, а не линия</span></div>
     <h2>Работа сновидения как кольцо</h2>
     <div class="ringwrap" style="margin-top:2px">
@@ -731,7 +778,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 09 ЧЕТЫРЕ МЕХАНИЗМА -->
-  <section class="slide">
+  <section class="slide" data-phase="real">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Аппарат <span class="sep">/</span> <span class="tag">Четыре операции</span></div>
     <h2>Механизмы работы сна</h2>
     <div class="cols-4" style="margin-top:4px">
@@ -744,7 +791,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 10 ИЗОБРАЗИМОСТЬ -->
-  <section class="slide">
+  <section class="slide" data-phase="real">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Мост к кино <span class="sep">/</span> <span class="tag">Изобразимость</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -758,7 +805,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 11 ЧЕТЫРЕ УРАВНЕНИЯ -->
-  <section class="slide">
+  <section class="slide" data-phase="real">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Перевод языков <span class="sep">/</span> <span class="tag">Сон ↔ киноформа</span></div>
     <h2>Четыре уравнения</h2>
     <div class="deflist eq" style="margin-top:12px">
@@ -772,7 +819,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 12 РЕБУС -->
-  <section class="slide">
+  <section class="slide" data-phase="real">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Образ предупреждения <span class="sep">/</span> <span class="tag">Сон как ребус</span></div>
     <h2>Не картинка, а загадка в картинках</h2>
     <div class="cols-wide">
@@ -786,7 +833,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 13 СОН ИЛИ СИМВОЛ -->
-  <section class="slide">
+  <section class="slide" data-phase="real">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Развилка <span class="sep">/</span> <span class="tag">Где кончается работа сна</span></div>
     <h2>Сон или символ?</h2>
     <div class="cols" style="margin-top:6px">
@@ -798,7 +845,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 14 THESIS B -->
-  <section class="slide thesis">
+  <section class="slide thesis" data-phase="real">
     <div class="haze l"></div>
     <div class="tlbl">Следствие</div>
     <div class="big">Толковать сон — значит <span class="hl">распустить</span> работу, что его <span class="oc">сложила</span>.</div>
@@ -807,7 +854,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 15 DIVIDER II — ЭКРАН КАК СОН -->
-  <section class="slide divider poster" data-toc="Экран как сон" data-act="II">
+  <section class="slide divider poster" data-phase="descent" data-toc="Экран как сон" data-act="II">
     <div class="haze"></div>
     <div class="poster-inner">
       <div class="knum">II</div>
@@ -818,7 +865,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 16 МЕТЦ / ЭКРАН СНА -->
-  <section class="slide">
+  <section class="slide" data-phase="descent">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>Метц и Бодри <span class="sep">/</span> <span class="tag">Состояние зрителя</span></div>
     <h2>Кинозал как полусон</h2>
     <div class="cols-wide">
@@ -832,7 +879,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 17 ПРЕДЕЛ -->
-  <section class="slide">
+  <section class="slide" data-phase="descent">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>Честный счёт <span class="sep">/</span> <span class="tag">Где аналогия ломается</span></div>
     <h2>Фильм похож на сон, но не сон</h2>
     <div class="cols">
@@ -843,7 +890,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 18 ФРЕЙД ПРОТИВ СЮРРЕАЛИСТОВ -->
-  <section class="slide">
+  <section class="slide" data-phase="descent">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>История <span class="sep">/</span> <span class="tag">Патрон, не признавший наследников</span></div>
     <h2>Фрейд против сюрреалистов</h2>
     <div class="cols-wide" style="margin-top:4px">
@@ -858,7 +905,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 19 THESIS C -->
-  <section class="slide thesis">
+  <section class="slide thesis" data-phase="descent">
     <div class="haze"></div>
     <div class="tlbl">К разборам</div>
     <div class="big">Со сном кино обходится <span class="hl">тремя</span> несовместимыми <span class="oc">способами</span>.</div>
@@ -867,7 +914,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 20 DIVIDER III — ТРИ СНА -->
-  <section class="slide divider poster" data-toc="Три сна" data-act="III">
+  <section class="slide divider poster" data-phase="dream" data-toc="Три сна" data-act="III">
     <div class="haze"></div>
     <div class="poster-inner">
       <div class="knum">III</div>
@@ -878,7 +925,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- ============ КЕЙС 01: АНДАЛУЗСКИЙ ПЁС ============ -->
-  <section class="slide framefull" data-toc="Кейс 01 · Андалузский пёс">
+  <section class="slide framefull" data-phase="dream" data-toc="Кейс 01 · Андалузский пёс">
     <div class="shot s-chien" data-tmdb="Un Chien Andalou" data-year="1929" data-idx="0"><img src="img/w1280_jQywhaFDVLPlFw864Bgw5eNtWfi.jpg" alt="Кадр из «Андалузского пса»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1929</span>
     <div class="fcap"><div class="fk">Кейс 01 · к разбору</div><h2>Андалузский пёс</h2>
@@ -888,7 +935,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">«Un chien andalou» · реж. Луис Бунюэль (с С. Дали) · Франция, 1929</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Сюрреализм и сон</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -901,7 +948,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">Сцен. Л. Бунюэль и С. Дали; манифест сюрреализма — 1924.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide framefull">
+  <section class="slide framefull" data-phase="dream" data-haunt>
     <div class="shot s-chien" data-tmdb="Un Chien Andalou" data-year="1929" data-idx="1"><img src="img/w1280_wFXAhs0bqjKrA35pjtc9gaGmVCE.jpg" alt="Луна и облако" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · облако и глаз</div><h2>Склейка, что запрещает буквальность</h2>
       <p class="logline">Тонкое облако пересекает полную луну — и следом лезвие проходит по глазу. Монтажный удар сразу отбивает у зрителя привычку читать изображение реалистически.</p>
@@ -909,7 +956,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span>Кейс 01 · сцена</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · форма <span class="sep">/</span> <span class="tag">Фильм как работа сна</span></div>
     <h2>Сам монтаж работает как сновидение</h2>
     <div class="cols">
@@ -919,7 +966,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">Бессвязные титры — пародия на вторичную обработку.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · прочтение <span class="sep">/</span> <span class="tag">Первый полюс</span></div>
     <h2>Кино, что снится</h2>
     <p class="lead" style="max-width:66ch">«Андалузский пёс» не изображает чей-то сон и не предлагает разгадки — он сам устроен как сновидение.</p>
@@ -930,7 +977,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span>Кейс 01 · прочтение · полюс «сон как монтаж»</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1929–2010</span></div>
     <h2>Как читали «Пса»</h2>
     <div class="dispute">
@@ -946,7 +993,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- ============ КЕЙС 02: ЗАВОРОЖЕННЫЙ ============ -->
-  <section class="slide framefull" data-toc="Кейс 02 · Завороженный">
+  <section class="slide framefull" data-phase="dream" data-toc="Кейс 02 · Завороженный">
     <div class="shot s-spell" data-tmdb="Spellbound" data-year="1945" data-idx="0"><img src="img/w1280_dYv4io2HcRMxFGgnErTbvpqSGXe.jpg" alt="Кадр из «Завороженного»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1945</span>
     <div class="fcap"><div class="fk">Кейс 02 · к разбору</div><h2>Завороженный</h2>
@@ -956,7 +1003,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">«Spellbound» · реж. Альфред Хичкок · США, 1945</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Голливуд открывает Фрейда</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -969,7 +1016,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">Прод. Д. Селзник; конс. М. Ромм; худож. сна — С. Дали.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide framefull">
+  <section class="slide framefull" data-phase="dream" data-haunt>
     <div class="shot s-spell" data-tmdb="Spellbound" data-year="1945" data-idx="1"><img src="img/w1280_rmAGTrBCBerz22aw6MqCu77P4sd.jpg" alt="Сон Дали" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · сон, рассказанный аналитику</div><h2>Сон, поданный как набор улик</h2>
       <p class="logline">Игорный зал с нарисованными глазами, человек без лица, наклонное колесо. Каждый образ — зашифрованная подсказка, что ждёт своего перевода.</p>
@@ -977,7 +1024,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span>Кейс 02 · сцена</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · форма <span class="sep">/</span> <span class="tag">Шифр с ключом</span></div>
     <h2>Один образ — один ответ</h2>
     <div class="cols">
@@ -987,7 +1034,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">Кросс: «сон или символ?» из акта I этой лекции.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · прочтение <span class="sep">/</span> <span class="tag">Второй полюс</span></div>
     <h2>Сон, прирученный детективом</h2>
     <p class="lead" style="max-width:66ch">«Завороженный» переводит работу сна на язык жанра: сновидение перестаёт сопротивляться и становится уликой.</p>
@@ -998,7 +1045,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span>Кейс 02 · прочтение · полюс «сон как разгадка»</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1966–1992</span></div>
     <h2>Как читали «Завороженного»</h2>
     <div class="dispute">
@@ -1013,7 +1060,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- ============ КЕЙС 03: ВАМПИР ============ -->
-  <section class="slide framefull" data-toc="Кейс 03 · Вампир">
+  <section class="slide framefull" data-phase="dream" data-toc="Кейс 03 · Вампир">
     <div class="shot s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="0"><img src="img/w1280_d1Z1VYyFXfcEa8RbOSwa4wM4Roc.jpg" alt="Кадр из «Вампира»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1932</span>
     <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Вампир</h2>
@@ -1023,7 +1070,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">«Vampyr — Der Traum des Allan Grey» · реж. Карл Теодор Дрейер · 1932</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Первый звук Дрейера</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -1036,7 +1083,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">По мотивам Дж. Ш. Ле Фаню, «In a Glass Darkly», 1872.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide framefull">
+  <section class="slide framefull" data-phase="dream">
     <div class="shot s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="1"><img src="img/w1280_eUYF47MCsbTFDda8LDY8GdhCTjr.jpg" alt="Взгляд из гроба" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · погребение наяву</div><h2>Невозможная точка зрения</h2>
       <p class="logline">Герой видит себя в гробу с оконцем и смотрит из него: своё лицо, свеча, плывущее небо. Камера занимает позицию, с которой не смотрит никто живой.</p>
@@ -1044,7 +1091,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span>Кейс 03 · сцена</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · форма <span class="sep">/</span> <span class="tag">Сон без границ эпизода</span></div>
     <h2>Сновидение разлито повсюду</h2>
     <div class="cols">
@@ -1054,7 +1101,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">Кросс: двойник и тень — Лекция 01, акт II.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · прочтение <span class="sep">/</span> <span class="tag">Третий полюс и контрапункт</span></div>
     <h2>Сон как воздух, а не шифр</h2>
     <div class="cols">
@@ -1064,7 +1111,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span>Кейс 03 · прочтение · полюс «сон как онтология»</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1976–2005</span></div>
     <h2>Как читали «Вампира»</h2>
     <div class="dispute">
@@ -1079,7 +1126,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 39 СИНТЕЗ -->
-  <section class="slide" data-toc="Синтез">
+  <section class="slide" data-phase="dream" data-toc="Синтез">
     <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Что собрали</span></div>
     <h2>Думает ли кино на языке сна?</h2>
     <div class="cols-3" style="margin-top:8px">
@@ -1092,7 +1139,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 40 DIVIDER IV — ВЕСЬ ФИЛЬМ КАК СОН -->
-  <section class="slide divider poster" data-toc="Кода: весь фильм как сон" data-act="IV">
+  <section class="slide divider poster" data-phase="dream" data-toc="Кода: весь фильм как сон" data-act="IV">
     <div class="haze"></div>
     <svg class="moonbig" viewBox="0 0 120 170" aria-hidden="true">
       <use href="#g-moon" opacity=".14" transform="translate(9 7)"/>
@@ -1107,7 +1154,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 41 РАМКА СНА -->
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода <span class="sep">/</span> <span class="tag">Честная и нечестная рамка</span></div>
     <h2>Рамка сна и её подделка</h2>
     <div class="cols" style="margin-top:6px">
@@ -1119,7 +1166,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- ============ КОДА-КЕЙС: МАЛХОЛЛАНД ДРАЙВ ============ -->
-  <section class="slide framefull" data-toc="Кода-кейс · Малхолланд Драйв">
+  <section class="slide framefull" data-phase="dream" data-toc="Кода-кейс · Малхолланд Драйв">
     <div class="shot s-md" data-tmdb="Mulholland Drive" data-year="2001" data-idx="0"><img src="img/w1280_4dZoc24v0cDgg5vbhqxqtQVatiw.jpg" alt="Кадр из «Малхолланд Драйв»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">2001</span>
     <div class="fcap"><div class="fk">Кода · к разбору</div><h2>Малхолланд Драйв</h2>
@@ -1129,7 +1176,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">«Mulholland Drive» · реж. Дэвид Линч · США/Франция, 2001</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода · контекст <span class="sep">/</span> <span class="tag">Судьба проекта</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -1142,7 +1189,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">Пилот ABC, 1999 · StudioCanal · Канны-2001, приз за режиссуру.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide framefull">
+  <section class="slide framefull" data-phase="dream" data-haunt>
     <div class="shot s-md" data-tmdb="Mulholland Drive" data-year="2001" data-idx="1"><img src="img/w1280_y1giivdsGLyo1LCvlsL6mLKyTZ7.jpg" alt="Club Silencio" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · Club Silencio</div><h2>No hay banda</h2>
       <p class="logline">Конферансье повторяет: оркестра нет, всё записано. Певица падает без чувств, голос продолжает звучать. Кадр вслух объявляет собственную иллюзорность — и ровно отсюда сон начинает рушиться.</p>
@@ -1150,7 +1197,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span>Кода · сцена</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream" data-cond>
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода · форма <span class="sep">/</span> <span class="tag">Работа сна на полной мощности</span></div>
     <h2>Сон, собранный по учебнику</h2>
     <div class="cols">
@@ -1160,7 +1207,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span class="src">Кросс: акт I, «Четыре уравнения».</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода · прочтение <span class="sep">/</span> <span class="tag">Ответ на вопрос акта</span></div>
     <h2>Сон, победивший рамку</h2>
     <p class="lead" style="max-width:66ch">Ответ коды: весь фильм способен быть сном — пока шов неразрешим и рамка никого не успокаивает.</p>
@@ -1171,7 +1218,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
     <div class="slide-foot"><span>Кода · прочтение · кросс: фантазия — Лекция 07</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода · поле спора <span class="sep">/</span> <span class="tag">Рецепция 2001–2009</span></div>
     <h2>Как читали «Малхолланд Драйв»</h2>
     <div class="dispute">
@@ -1187,7 +1234,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 43 СИЛА / ПРЕДЕЛ -->
-  <section class="slide">
+  <section class="slide" data-phase="wake">
     <div class="eyebrow">Честный счёт <span class="sep">/</span> <span class="tag">Сила и предел</span></div>
     <h2>Что метод даёт и где буксует</h2>
     <div class="cols">
@@ -1198,7 +1245,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 44 АКТУАЛЬНОСТЬ -->
-  <section class="slide">
+  <section class="slide" data-phase="wake">
     <div class="eyebrow">Актуальность <span class="sep">/</span> <span class="tag">Сон сегодня</span></div>
     <h2>Работа сна в новом кино</h2>
     <div class="cols-wide">
@@ -1215,7 +1262,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 45 COURSEMAP -->
-  <section class="slide">
+  <section class="slide" data-phase="wake">
     <div class="eyebrow">Карта курса <span class="sep">/</span> <span class="tag">Текущее место</span></div>
     <h2>Маршрут лекций</h2>
     <div class="coursemap" style="margin-top:6px">
@@ -1236,7 +1283,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 46 СЕМИНАР -->
-  <section class="slide" data-toc="К семинару">
+  <section class="slide" data-phase="wake" data-toc="К семинару">
     <div class="eyebrow">Практика <span class="sep">/</span> <span class="tag">Задания</span></div>
     <h2>К семинару</h2>
     <div class="cols-3" style="margin-top:8px">
@@ -1248,7 +1295,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 47 К ПРОСМОТРУ -->
-  <section class="slide" data-toc="К просмотру и чтению">
+  <section class="slide" data-phase="wake" data-toc="К просмотру и чтению">
     <div class="eyebrow">Фильмы лекции <span class="sep">/</span> <span class="tag">Обязательное и дополнительное</span></div>
     <h2>К просмотру</h2>
     <div class="watchlist" style="margin-top:6px">
@@ -1263,7 +1310,7 @@ svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
   </section>
 
   <!-- 48 К ЧТЕНИЮ -->
-  <section class="slide">
+  <section class="slide" data-phase="wake">
     <div class="eyebrow">К чтению <span class="sep">/</span> <span class="tag">Аппарат лекции</span></div>
     <h2>Источники</h2>
     <div class="readlist" style="margin-top:6px">
@@ -1349,6 +1396,8 @@ function apply(n){
   const pct=(i/(total-1))*100; if(bar) bar.style.width=pct+'%'; if(railFill) railFill.style.height=pct+'%';
   let act=null; for(let k=0;k<=i;k++){ if(slides[k].dataset.act) act=slides[k].dataset.act; }
   actEls.forEach(a=>a.classList.toggle('cur',a.dataset.a===act));
+  document.body.dataset.phase=slides[i].dataset.phase||'real';
+  document.body.dataset.haunt=slides[i].hasAttribute('data-haunt')?'1':'0';
   if(i===0) coverPlay();
   if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
 }
