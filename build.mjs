@@ -21,6 +21,7 @@ import * as R from './assets/render.js';
 import { loadToken, resolveMissing } from './tools/resolve-tmdb.mjs';
 import { gatherTmdbUrls, localizeImages, applyMap } from './tools/localize-images.mjs';
 import { buildLectures } from './tools/build-lectures.mjs';
+import { coursesSummary, filmLectureMap, SUBJECTS } from './tools/courses-data.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
@@ -159,16 +160,44 @@ async function main(){
   const pubCollections = R.published(collections);
   const pubPress       = R.published(press);
 
+  /* ---------- обогащение: минуты чтения, «мосты» к лекциям, подборки, related ---------- */
+  const courses = coursesSummary();
+  const lectureMap = filmLectureMap();
+  const collBodies = [];
+  for(const c of pubCollections){
+    const parsedC = await readMd(`collections/${c.slug}.md`);
+    if(parsedC) collBodies.push({ slug:c.slug, title:c.title||parsedC.meta.title||'',
+      text:(parsedC.meta.title||'')+'\n'+parsedC.body });
+  }
+  const reviewParsed = new Map();
+  for(const r of pubReviews){
+    const parsedR = await readMd(`reviews/${r.slug}.md`);
+    if(!parsedR) continue;
+    reviewParsed.set(r.slug, parsedR);
+    if(parsedR.meta.tags) r.tags = parsedR.meta.tags;
+    r.mins = R.readMins(R.wordsFromHtml(md(parsedR.body)));
+    const filmKey = (r.film||r.title||'').replace(/[«»]/g,'').trim();
+    const bridge = lectureMap.get(filmKey);
+    if(bridge) r.bridge = bridge;
+    const inColl = collBodies.filter(cb=>r.film && cb.text.includes(r.film)).map(cb=>({slug:cb.slug,title:cb.title}));
+    if(inColl.length) r.incollections = inColl;
+  }
+  for(const r of pubReviews) r.related = R.buildRelated(pubReviews, r).map(x=>x.slug);
+  const stats = { reviews: pubReviews.length, press: pubPress.length, courses: courses.filter(c=>c.total>0).length };
+  /* обогащённые данные — и клиентскому SPA (перекрываем копии в dist) */
+  await writeFile(path.join(OUT,'reviews','manifest.json'), JSON.stringify(reviews, null, 2));
+  await writeFile(path.join(OUT,'site-data.json'), JSON.stringify({courses, stats}, null, 2));
+
   const urls = []; // для sitemap
 
   /* HOME */
   await emit('/', renderPage({
     meta: buildMeta({
       title: 'Караван идёт — авторский сайт исследователя кино Карена Аванесяна',
-      description: 'Кино глазами социолога: рецензии, репортажи с кинофестивалей и публикации в СМИ. Авторский сайт Карена Аванесяна.',
+      description: 'Кино глазами социолога: рецензии, дневники фестивалей и лекционные курсы от марксизма до психоанализа. Авторский сайт Карена Аванесяна.',
       urlPath: '/',
     }),
-    appHtml: R.homeView({reviews,feed,festivals,collections,press,site}),
+    appHtml: R.homeView({reviews,feed,festivals,collections,press,site,courses,stats}),
     view: {view:'home', nav:'home'},
   }));
   urls.push({loc:'/', priority:'1.0'});
@@ -183,7 +212,7 @@ async function main(){
 
   /* РЕЦЕНЗИИ — страницы */
   for(const r of pubReviews){
-    const parsed = await readMd(`reviews/${r.slug}.md`);
+    const parsed = reviewParsed.get(r.slug);
     if(!parsed) continue;
     const { meta, body } = parsed;
     const film = meta.film || meta.title || r.film || r.title;
@@ -193,7 +222,7 @@ async function main(){
       'name': meta.title || r.title,
       'itemReviewed': {'@type':'Movie','name': (film||'').replace(/[«»]/g,''),
         ...(meta.director?{'director':{'@type':'Person','name':meta.director}}:{}) },
-      ...(meta.rating?{'reviewRating':{'@type':'Rating','ratingValue':meta.rating,'bestRating':'5','worstRating':'0'}}:{}) ,
+      ...(meta.rating?{'reviewRating':{'@type':'Rating','ratingValue':meta.rating,'bestRating':'10','worstRating':'0'}}:{}) ,
       'author': {'@type':'Person','name':'Карен Аванесян'},
       'reviewBody': excerptFromBody(body, 280),
     };
@@ -202,9 +231,12 @@ async function main(){
         title: `${(meta.title||r.title)} — ${film} — Караван идёт`,
         ogTitle: `${(meta.title||r.title)} · ${film}`,
         description: desc, urlPath:`/review/${r.slug}`, image: meta.poster||r.poster, type:'article', jsonld,
-        author:'Карен Аванесян', published: meta.date,
+        author:'Карен Аванесян', published: r.date || meta.date,
       }),
-      appHtml: R.reviewPageView(meta, md(body)),
+      appHtml: R.reviewPageView(meta, md(body), {
+        date: r.date, bridge: r.bridge, incollections: r.incollections,
+        related: (r.related||[]).map(s=>pubReviews.find(x=>x.slug===s)).filter(Boolean),
+      }),
       view: {view:'review', nav:'reviews', slug:r.slug},
     }));
     urls.push({loc:`/review/${r.slug}`, priority:'0.7'});
@@ -253,7 +285,7 @@ async function main(){
     if(!parsed) continue;
     const { meta, body } = parsed;
     await emit(`/festival/${d.slug}`, renderPage({
-      meta: buildMeta({ title:`${meta.title||d.title} — Кинофестивали — Караван идёт`, ogTitle: meta.title||d.title, description: d.excerpt||excerptFromBody(body), urlPath:`/festival/${d.slug}`, image: meta.poster||meta.image, type:'article', author:'Карен Аванесян', published: meta.date }),
+      meta: buildMeta({ title:`${meta.title||d.title} — Кинофестивали — Караван идёт`, ogTitle: meta.title||d.title, description: d.excerpt||excerptFromBody(body), urlPath:`/festival/${d.slug}`, image: meta.poster||meta.image, type:'article', author:'Карен Аванесян', published: d.dateISO || undefined }),
       appHtml: R.timelineItemView(meta, md(body), '/festivals', 'к фестивалям'),
       view: {view:'festival', nav:'festivals', slug:d.slug},
     }));
@@ -272,7 +304,7 @@ async function main(){
     if(!parsed) continue;
     const { meta, body } = parsed;
     await emit(`/feed/${f.slug}`, renderPage({
-      meta: buildMeta({ title:`${meta.title||f.title} — Заметки — Караван идёт`, ogTitle: meta.title||f.title, description: f.excerpt||excerptFromBody(body), urlPath:`/feed/${f.slug}`, image: meta.poster||meta.image, type:'article', author:'Карен Аванесян', published: meta.date }),
+      meta: buildMeta({ title:`${meta.title||f.title} — Заметки — Караван идёт`, ogTitle: meta.title||f.title, description: f.excerpt||excerptFromBody(body), urlPath:`/feed/${f.slug}`, image: meta.poster||meta.image, type:'article', author:'Карен Аванесян', published: f.dateISO || undefined }),
       appHtml: R.timelineItemView(meta, md(body), '/feed', 'в заметки'),
       view: {view:'feedItem', nav:'feed', slug:f.slug},
     }));
@@ -288,6 +320,28 @@ async function main(){
       view: {view:'about', nav:'about'},
     }));
     urls.push({loc:'/about', priority:'0.6'});
+  }
+
+  /* ПОИСК ПО САЙТУ */
+  await emit('/search', renderPage({
+    meta: buildMeta({ title:'Поиск — Караван идёт', description:'Поиск по рецензиям, подборкам, заметкам и публикациям в СМИ.', urlPath:'/search' }),
+    appHtml: R.searchView(),
+    view: {view:'search', nav:''},
+  }));
+  urls.push({loc:'/search', priority:'0.3'});
+
+  /* СТРАНИЦЫ МЕТОК — /tag/<slug> из тегов рецензий */
+  const tagIndex = new Map();
+  for(const r of pubReviews) for(const tg of R.splitTags(r.tags)){
+    const s = R.tagSlug(tg); if(!tagIndex.has(s)) tagIndex.set(s, tg);
+  }
+  for(const [slug, tag] of tagIndex){
+    await emit(`/tag/${slug}`, renderPage({
+      meta: buildMeta({ title:`#${tag} — Караван идёт`, description:`Материалы «Каравана» с меткой «${tag}».`, urlPath:`/tag/${slug}` }),
+      appHtml: R.tagView(tag, reviews),
+      view: {view:'tag', nav:'reviews', slug},
+    }));
+    urls.push({loc:`/tag/${slug}`, priority:'0.3'});
   }
 
   /* 404 — отдаётся Netlify со статусом 404; SPA не перерисовывает */
@@ -310,23 +364,31 @@ ${urls.map(u=>`  <url><loc>${SITE}${u.loc}</loc><priority>${u.priority}</priorit
   /* robots.txt */
   await writeFile(path.join(OUT,'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 
-  /* rss.xml — рецензии и заметки */
+  /* rss.xml — рецензии и заметки, свежие сверху, с pubDate */
+  const rfc822 = iso => iso ? new Date(iso+'T12:00:00Z').toUTCString() : '';
   const rssItems = [
-    ...pubReviews.map(r=>({ title:`${r.title} — ${r.film||r.title}`, link:`${SITE}/review/${r.slug}`, desc:r.excerpt||'' })),
-    ...pubFeed.map(f=>({ title:f.title, link:`${SITE}/feed/${f.slug}`, desc:f.excerpt||'' })),
-  ];
+    ...pubReviews.map(r=>({ title:`${r.title} — ${r.film||r.title}`, link:`${SITE}/review/${r.slug}`, desc:r.excerpt||'', date:r.date||'' })),
+    ...pubFeed.map(f=>({ title:f.title, link:`${SITE}/feed/${f.slug}`, desc:f.excerpt||'', date:f.dateISO||'' })),
+  ].sort((a,b)=>(b.date||'').localeCompare(a.date||''));
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
 <title>Караван идёт — рецензии и заметки</title>
 <link>${SITE}/</link>
-<description>Кино глазами социолога: рецензии, репортажи с кинофестивалей и заметки Карена Аванесяна.</description>
+<description>Кино глазами социолога: рецензии, заметки и лекционные курсы Карена Аванесяна.</description>
 <language>ru</language>
-${rssItems.map(i=>`<item><title>${xmlEsc(i.title)}</title><link>${i.link}</link><guid>${i.link}</guid><description>${xmlEsc(i.desc)}</description></item>`).join('\n')}
+${rssItems.map(i=>`<item><title>${xmlEsc(i.title)}</title><link>${i.link}</link><guid>${i.link}</guid>${i.date?`<pubDate>${rfc822(i.date)}</pubDate>`:''}<description>${xmlEsc(i.desc)}</description></item>`).join('\n')}
 </channel></rss>
 `;
   await writeFile(path.join(OUT,'rss.xml'), rss);
 
-  /* ЛЕКЦИИ — самодостаточные слайд-деки + лендинг /lectures/ */
+  /* ЛЕКЦИИ — лендинг /lectures/ как обычная страница сайта (общий шаблон),
+     плюс публикация самодостаточных слайд-деков (buildLectures копирует файлы). */
+  await emit('/lectures', renderPage({
+    meta: buildMeta({ title:'Лекции — авторские курсы Карена Аванесяна', description:'Авторские курсы о кино: марксистская теория кино, психоанализ и теория кино, социология кино.', urlPath:'/lectures/' }),
+    appHtml: R.lecturesView(SUBJECTS),
+    view: {view:'lectures', nav:'lectures'},
+  }));
+  urls.push({loc:'/lectures/', priority:'0.8'});
   await buildLectures({ ROOT, OUT, log:(m)=>console.log(m) });
 
   console.log(`✓ Собрано ${urls.length} страниц + sitemap.xml, rss.xml, robots.txt → dist/`);

@@ -6,7 +6,7 @@
    ========================================================================== */
 
 /* ---------- утилиты ---------- */
-export function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+export function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 export function parseFrontMatter(text){
   const m = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
@@ -45,6 +45,51 @@ export function ratingHTML(rating, mode='badge'){
 export function isPublished(x){ return !(x && (x.draft===true || x.draft==='true')); }
 export function published(list){ return (list||[]).filter(isPublished); }
 
+/* ---------- даты, чтение, теги ---------- */
+const RU_MONTHS=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+export function ruDate(iso){
+  const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(iso||''); if(!m) return iso||'';
+  return `${+m[3]} ${RU_MONTHS[+m[2]-1]} ${m[1]}`;
+}
+export function plural(n,[one,few,many]){
+  const a=Math.abs(n)%100, b=a%10;
+  if(a>10&&a<20) return many;
+  if(b>1&&b<5) return few;
+  if(b===1) return one;
+  return many;
+}
+export function wordsFromHtml(html){
+  const text=(html||'').replace(/<[^>]*>/g,' ');
+  return (text.match(/[A-Za-zА-Яа-яЁё0-9]+(?:-[A-Za-zА-Яа-яЁё0-9]+)*/g)||[]).length;
+}
+export function readMins(words){ return Math.max(1, Math.round(words/180)); }
+export function splitTags(s){ return (s||'').split(',').map(x=>x.trim()).filter(Boolean); }
+const TRANSLIT={'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'e','ж':'zh','з':'z','и':'i','й':'y','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'h','ц':'c','ч':'ch','ш':'sh','щ':'sch','ъ':'','ы':'y','ь':'','э':'e','ю':'yu','я':'ya'};
+export function tagSlug(tag){
+  return (tag||'').toLowerCase().replace(/[«»"']/g,'')
+    .split('').map(ch=>TRANSLIT[ch]!==undefined?TRANSLIT[ch]:ch).join('')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || 'tag';
+}
+export function tagChips(tagsStr){
+  const tags=splitTags(tagsStr);
+  if(!tags.length) return '';
+  return `<div class="pill-row tags-row">${tags.map(tg=>`<a class="pill tag-chip" href="/tag/${tagSlug(tg)}">#${esc(tg)}</a>`).join('')}</div>`;
+}
+
+/* «Читать дальше»: близость по меткам, режиссёру и фестивалю. */
+export function buildRelated(all, current, limit=3){
+  const cur=splitTags(current.tags);
+  const scored=published(all).filter(r=>r.slug!==current.slug).map(r=>{
+    let s=0;
+    const rt=splitTags(r.tags);
+    s += rt.filter(x=>cur.includes(x)).length*2;
+    if(current.director && r.director===current.director) s+=3;
+    if(current.festival && r.festival===current.festival) s+=1;
+    return {r,s};
+  }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,limit).map(x=>x.r);
+  return scored;
+}
+
 /* ---------- карточки и строки списков ---------- */
 export function reviewCardHTML(r){
   const film = r.film || r.title;
@@ -58,7 +103,7 @@ export function reviewCardHTML(r){
     </div>
     <div class="card-body">
       <h3>${esc(film)}</h3>
-      <div class="card-meta">${[r.year,r.director].filter(Boolean).map(esc).join(' · ')}</div>
+      <div class="card-meta">${[r.year,r.director].filter(Boolean).map(esc).join(' · ')}${r.mins?` · <span class="mins">${esc(r.mins)} мин</span>`:''}</div>
       ${r.title&&r.title!==film?`<div class="card-headline">${esc(r.title)}</div>`:''}
     </div>
   </a>`;
@@ -187,6 +232,76 @@ export function featuredReviewHTML(r){
   </a>`;
 }
 
+/* Полоса под hero: издания, для которых пишет автор, и счётчики сайта. */
+export function homeStripHTML(stats){
+  const s = stats || {};
+  const nums = [
+    s.reviews ? `${s.reviews} ${plural(s.reviews,['рецензия','рецензии','рецензий'])}` : '',
+    s.press ? `${s.press} ${plural(s.press,['публикация','публикации','публикаций'])}` : '',
+    s.courses ? `${s.courses} ${plural(s.courses,['курс','курса','курсов'])}` : '',
+  ].filter(Boolean).join(' · ');
+  return `<section class="home-strip" aria-label="Пишу для">
+    <span class="hs-label">Пишу для</span>
+    <a class="hs-mark hs-ik" href="/press">Искусство кино</a>
+    <a class="hs-mark hs-mf" href="/press">Мир фантастики</a>
+    <a class="hs-mark hs-fr" href="/press">Film<b>.</b>ru</a>
+    <a class="hs-mark hs-ka" href="/press">Киноафиша</a>
+    ${nums?`<span class="hs-nums">${nums}</span>`:''}
+  </section>`;
+}
+
+/* Карточка курса — в айдентике самого курса (конструктивизм / «Вена 1900»).
+   Три равных бокса в ряд; заглушка социологии — в том же формате, пунктиром. */
+export function courseCardHTML(c){
+  const isStub = !c.total;
+  const status = isStub ? 'план курса готовится'
+    : c.ready
+      ? `${c.total} ${plural(c.total,['лекция','лекции','лекций'])} · ${c.ready} ${plural(c.ready,['опубликована','опубликованы','опубликовано'])}`
+      : `${c.total} ${plural(c.total,['лекция','лекции','лекций'])} · готовится`;
+  const cta = isStub ? 'Подробнее →' : (c.ready ? 'Открыть курс →' : 'Программа →');
+  return `<a class="course-card ${esc(c.accent||'soc')}" href="${esc(c.href)}">
+    <span class="cc-kick">${esc(c.kicker||'Курс')}</span>
+    <h3>${esc(c.title)}</h3>
+    ${c.accent==='vie'?'<span class="cc-rule"></span>':''}
+    ${c.tagline?`<span class="cc-sub">${esc(c.tagline)}</span>`:''}
+    <span class="cc-bot"><span class="cc-status">${status}</span><span class="cc-cta">${cta}</span></span>
+  </a>`;
+}
+
+/* Страница /lectures/ — обычная страница сайта: шапка/футер/тема из общего шаблона. */
+export function lecturesView(subjects){
+  const list = subjects || [];
+  const card = (s)=>{
+    const lectures = s.lectures||[];
+    const items = lectures.map(l=>{
+      const href = (l.ready && l.file) ? `/lectures/${esc(s.slug)}/${esc(l.file)}` : null;
+      const tag = href ? '<span class="go">смотреть →</span>' : '<span class="soon">готовится</span>';
+      const inner = `<span class="ln">${esc(l.n)}</span><span class="lt">${esc(l.title)}</span>${l.sub?`<span class="ls">${esc(l.sub)}</span>`:''}${l.films?`<span class="lf"><b>Кейсы:</b> ${esc(l.films)}</span>`:''}${tag}`;
+      return href ? `<a class="lec ready" href="${href}">${inner}</a>` : `<div class="lec">${inner}</div>`;
+    }).join('');
+    const body = lectures.length ? `<div class="lecgrid">${items}</div>` : `<div class="empty">План курса готовится</div>`;
+    const prog = s.programme ? `<a class="prog" href="/lectures/${esc(s.slug)}/${esc(s.programme)}">Полная программа курса →</a>` : '';
+    return `<section class="subj acc-${esc(s.accent||'soc')}" id="subj-${esc(s.slug)}">
+      <div class="subj-head">
+        <div class="subj-kick">${esc(s.kicker||'Курс')}</div>
+        <h2>${esc(s.title)}</h2>
+        <p>${esc(s.blurb)}</p>
+        ${prog}
+      </div>
+      ${body}
+    </section>`;
+  };
+  return `<main class="lectures">
+    <header class="lect-masthead">
+      <div class="lect-kick">Авторские курсы · Карен Аванесян</div>
+      <h1>Лекции</h1>
+      <div class="lect-sub">Авторские курсы по теории кино — от социальной критики до психоанализа.</div>
+    </header>
+    <nav class="subjnav" aria-label="Предметы">${list.map(s=>`<a href="#subj-${esc(s.slug)}">${esc(s.title)}</a>`).join('')}</nav>
+    ${list.map(card).join('')}
+  </main>`;
+}
+
 /* ---------- ВИДЫ (содержимое #app) ---------- */
 export function homeView(data){
   const reviews = published(data.reviews);
@@ -201,14 +316,19 @@ export function homeView(data){
   const featured = site.featured ? reviews.find(r=>r.slug===site.featured) : null;
   if(featured) top += featuredReviewHTML(featured);
 
+  const courses = data.courses || [];
+  const stats = data.stats || {
+    reviews: reviews.length, press: press.length,
+    courses: courses.filter(c=>c.total>0).length,
+  };
+
   /* ряды разделов */
   let out='';
   if(reviews.length) out+=`${homeLabel('Рецензии','/reviews')}<div class="grid">${reviews.slice(0,4).map(reviewCardHTML).join('')}</div>`;
+  if(collections.length) out+=`${homeLabel('Подборки','/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
+  if(courses.length) out+=`${homeLabel('Лекции · авторские курсы','/lectures/')}<div class="courses-grid">${courses.map(courseCardHTML).join('')}</div>`;
   const pressRow = press.slice(0,3);
   if(pressRow.length) out+=`${homeLabel('Публикации в СМИ','/press')}<div class="press-list" style="max-width:none;margin:0">${pressRow.map(pressItemHTML).join('')}</div>`;
-  const festItems = homeFestItems({reviews,festivals,press});
-  if(festItems.length) out+=`${homeLabel('Кинофестивали','/festivals')}<div class="press-list" style="max-width:none;margin:0 0 8px">${festItems.slice(0,3).map(festivalItemHTML).join('')}</div>`;
-  if(collections.length) out+=`${homeLabel('Подборки','/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
   if(feed.length) out+=`${homeLabel('Заметки','/feed')}<div class="grid wide">${feed.slice(0,2).map(feedCardHTML).join('')}</div>`;
 
   const heroCopy = site.heroCopy
@@ -219,6 +339,10 @@ export function homeView(data){
       <div class="kicker">Авторский сайт исследователя кино Карена Аванесяна</div>
       <h1>Кино глазами <em>социолога</em></h1>
       <p>${heroCopy}</p>
+      <div class="home-author">
+        <img src="/assets/karen.jpg" alt="Карен Аванесян" loading="lazy" decoding="async" onerror="this.style.display='none'">
+        <span class="q">«Кино для меня — документ эпохи. Каждый кадр хранит слепок общества и коллективного бессознательного.»</span>
+      </div>
     </section>
     <main id="home">${body || `<div class="state">Пока нет материалов.</div>`}</main>`;
 }
@@ -247,7 +371,38 @@ function extLinkRow(meta){
   return `<div class="ext-links"><a class="lb" href="${esc(lb)}" target="_blank" rel="noopener" aria-label="Letterboxd"></a></div>`;
 }
 
-export function reviewPageView(meta, bodyHtml){
+function pubLine(dateISO, bodyHtml){
+  const mins = readMins(wordsFromHtml(bodyHtml));
+  const parts=[];
+  if(dateISO) parts.push(`Опубликовано ${ruDate(dateISO)}`);
+  parts.push(`${mins} мин чтения`);
+  return `<div class="pub-line">${parts.join(' · ')}</div>`;
+}
+
+/* Мост «фильм → лекция»: связывает рецензию с курсом, где фильм в программе. */
+function bridgeHTML(b){
+  if(!b) return '';
+  const soon = b.ready ? '' : ' <span class="bridge-soon">(готовится)</span>';
+  const cta  = b.ready ? 'Открыть лекцию →' : 'Программа курса →';
+  return `<aside class="bridge">
+    <span class="bridge-kicker">Из лекций</span>
+    <div class="bridge-text">Фильм разбирается в курсе «${esc(b.course)}»: лекция ${esc(b.n)} · «${esc(b.lecture)}»${soon}</div>
+    <a class="bridge-cta" href="${esc(b.href)}">${cta}</a>
+  </aside>`;
+}
+
+function collectionsLineHTML(list){
+  if(!list||!list.length) return '';
+  return `<div class="pill-row incoll-row">${list.map(c=>`<a class="fest-badge" href="/collection/${esc(c.slug)}">Из подборки «${esc(c.title)}»</a>`).join('')}</div>`;
+}
+
+function relatedHTML(list){
+  if(!list||!list.length) return '';
+  return `<div class="section-label" style="margin-top:44px">Читать дальше</div>
+    <div class="grid related-grid">${list.map(reviewCardHTML).join('')}</div>`;
+}
+
+export function reviewPageView(meta, bodyHtml, extras={}){
   const film = meta.film || meta.title;
   const headline = (meta.title && meta.title !== film) ? meta.title : '';
   const poster = meta.poster
@@ -264,12 +419,17 @@ export function reviewPageView(meta, bodyHtml){
         ${meta.original?`<div class="review-orig">${esc(meta.original)}</div>`:''}
         <div class="sub">${[meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).map(esc).join(' · ')}</div>
         ${ratingHTML(meta.rating,'full')}
-        ${meta.festival?`<div><a class="fest-badge" href="/festivals">#${esc(meta.festival)}</a></div>`:''}
+        ${meta.festival?`<div><a class="fest-stamp" href="/festivals" title="Все материалы фестиваля">${esc(meta.festival)}</a></div>`:''}
         ${extLinkRow(meta)}
+        ${tagChips(meta.tags)}
       </div>
     </div>
     ${headline?`<h2 class="review-headline">${esc(headline)}</h2>`:''}
     <div class="prose">${bodyHtml}</div>
+    ${pubLine(extras.date, bodyHtml)}
+    ${bridgeHTML(extras.bridge)}
+    ${collectionsLineHTML(extras.incollections)}
+    ${relatedHTML(extras.related)}
     <footer class="review-author">
       <img class="review-author-pic" src="/assets/karen.jpg" alt="Карен Аванесян" decoding="async" onerror="this.style.display='none'">
       <div class="review-author-text">
@@ -453,6 +613,25 @@ export function aboutView(meta, bodyHtml){
     </div>
     <article class="prose">${bodyHtml}</article>
   </div></main>`;
+}
+
+export function tagView(tag, list){
+  const items = published(list).filter(r=>splitTags(r.tags).includes(tag));
+  const grid = items.length ? items.map(reviewCardHTML).join('') : `<div class="state">С этой меткой пока пусто.</div>`;
+  return `<main>
+    <a class="back" href="/reviews">← ко всем рецензиям</a>
+    <div class="page-title">#${esc(tag)}</div>
+    <div class="page-sub">${items.length} ${plural(items.length,['материал','материала','материалов'])} с этой меткой.</div>
+    <div class="grid">${grid}</div></main>`;
+}
+
+export function searchView(){
+  return `<main>
+    <div class="page-title">Поиск</div>
+    <div class="page-sub">По рецензиям, подборкам, заметкам и публикациям в СМИ.</div>
+    <input id="siteSearch" class="search" type="search" placeholder="Название, режиссёр, тема…" aria-label="Поиск по сайту" autofocus>
+    <div id="sres"><div class="state">Начните вводить запрос.</div></div>
+  </main>`;
 }
 
 /* ---------- состояние ошибки ---------- */

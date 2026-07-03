@@ -22,7 +22,7 @@
 <link rel="alternate" type="application/rss+xml" title="Караван идёт — рецензии и заметки" href="/rss.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Oswald:wght@600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#080910;
@@ -196,14 +196,14 @@
     letter-spacing:.03em;color:#F3E9CF;line-height:1;white-space:nowrap}
   .brand-sub{font-family:"Manrope",sans-serif;font-weight:700;font-size:8.5px;
     letter-spacing:.30em;color:#CDA14A;margin-top:5px;white-space:nowrap}
-  .menu{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+  .menu{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
   .menu a{color:#eef1f8;font-size:14px;font-weight:700;letter-spacing:.02em;
     transition:color .2s;position:relative;padding:2px 0}
   .menu a:hover,.menu a.active{color:#fff}
   .menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
   .nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:9px;
     width:42px;height:38px;color:var(--text);cursor:pointer;font-size:18px;line-height:1}
-  .nav-right{display:flex;align-items:center;gap:22px}
+  .nav-right{display:flex;align-items:center;gap:14px}
   .theme-toggle{background:none;border:1px solid var(--border);border-radius:50%;
     width:38px;height:38px;display:grid;place-items:center;color:var(--text);cursor:pointer;
     flex-shrink:0;transition:color .2s,border-color .2s}
@@ -655,7 +655,184 @@
     .nav{padding:12px 16px;gap:12px}
     .review-head .poster-col{width:130px}
   }
-</style>
+
+  /* ============ НОВОЕ: связь в шапке ============ */
+  .head-links{display:flex;align-items:center;gap:9px}
+  .head-ic{width:36px;height:36px;border:1px solid var(--border);border-radius:50%;
+    display:grid;place-items:center;color:var(--text);transition:color .2s,border-color .2s;flex-shrink:0}
+  .head-ic:hover{color:var(--accent);border-color:var(--accent)}
+  .head-ic svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .head-ic svg .dot{fill:currentColor;stroke:none}
+  @media(max-width:760px){.head-ic{width:34px;height:34px}.head-links{gap:7px}}
+
+  /* ============ НОВОЕ: манифест-пилюля в hero ============ */
+  .home-author{margin:22px auto 0;display:inline-flex;align-items:center;gap:13px;
+    padding:9px 20px 9px 10px;border:1px solid rgba(232,184,75,.22);border-radius:999px;
+    background:rgba(23,28,44,.55)}
+  .home-author img{width:44px;height:44px;border-radius:50%;object-fit:cover;display:block;
+    box-shadow:0 0 0 1px rgba(232,184,75,.45)}
+  .home-author .q{font-family:"Playfair Display",serif;font-style:italic;font-size:15px;
+    color:var(--sand);text-align:left;max-width:46ch;line-height:1.45}
+  @media(max-width:560px){.home-author{padding:8px 14px 8px 8px}.home-author .q{font-size:13.5px}}
+  [data-theme="light"] .home-author{background:#ffffff;border-color:#dccfa6}
+  [data-theme="light"] .home-author .q{color:#6a6256}
+
+  /* ============ НОВОЕ: полоса «Пишу для» + счётчики ============ */
+  .home-strip{max-width:var(--maxw);margin:26px auto 0;padding:13px 24px;
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 24px;
+    border-top:1px solid rgba(232,184,75,.18);border-bottom:1px solid rgba(232,184,75,.18)}
+  .hs-label{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-warm)}
+  .hs-mark{color:var(--muted);transition:color .2s;white-space:nowrap}
+  .hs-mark:hover{color:var(--text)}
+  .hs-ik{font-family:"Playfair Display",serif;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+  .hs-mf{font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+  .hs-fr{font-weight:600;font-size:15px}
+  .hs-fr b{color:var(--gold);font-weight:600}
+  .hs-ka{font-family:"Oswald",sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.2em;text-transform:uppercase}
+  .hs-nums{font-size:12px;color:var(--muted-warm);padding-left:20px;border-left:1px solid var(--border);letter-spacing:.02em}
+  @media(max-width:640px){.hs-nums{border-left:none;padding-left:0;width:100%;text-align:center}}
+  [data-theme="light"] .home-strip{border-color:rgba(185,139,46,.30)}
+
+  /* ============ НОВОЕ: карточки курсов (айдентика самих деков) ============ */
+  .courses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:840px){.courses-grid{grid-template-columns:1fr}}
+  .course-card{position:relative;display:flex;flex-direction:column;min-height:158px;border-radius:14px;
+    padding:17px 17px 14px;overflow:hidden;transition:transform .22s;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+  .course-card:hover{transform:translateY(-4px)}
+  .cc-kick{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+  .course-card h3{margin:8px 0 6px;line-height:1.08}
+  .cc-sub{font-family:Georgia,"PT Serif",serif;font-size:12.5px;line-height:1.45}
+  .cc-bot{margin-top:auto;padding-top:11px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11.5px}
+  .cc-cta{font-weight:700;white-space:nowrap}
+  .course-card.mrx{background:#14110f;border:1px solid #2a231d;border-left:5px solid #d6342a}
+  .course-card.mrx::after{content:"";position:absolute;top:0;right:0;width:36px;height:36px;
+    background:#c9962b;clip-path:polygon(100% 0,30% 0,100% 70%);opacity:.9}
+  .course-card.mrx .cc-kick{color:#d6342a}
+  .course-card.mrx h3{font-family:"Oswald","Manrope",sans-serif;font-weight:600;text-transform:uppercase;font-size:20px;letter-spacing:.01em;color:#ece6da}
+  .course-card.mrx .cc-sub{color:#b7ad9d}
+  .course-card.mrx .cc-bot{border-top:1px solid rgba(236,230,218,.14)}
+  .course-card.mrx .cc-status{color:#b7ad9d}
+  .course-card.mrx .cc-cta{color:#d6342a}
+  .course-card.vie{background:#0b1220;border:1px solid rgba(201,161,74,.45)}
+  .course-card.vie::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;
+    background:repeating-linear-gradient(90deg,#c9a14a 0 7px,transparent 7px 14px);opacity:.85}
+  /* внутренняя золотая рамка: отдельным слоем со своим радиусом — углы больше не режутся */
+  .course-card.vie::after{content:"";position:absolute;inset:6px;border:1px solid rgba(201,161,74,.28);
+    border-radius:9px;pointer-events:none}
+  .course-card.vie .cc-kick{color:#c9a14a;margin-top:5px}
+  .course-card.vie h3{font-family:"Playfair Display",serif;font-weight:700;font-size:18.5px;color:#f0e8d8}
+  .cc-rule{width:44px;height:2px;background:#a23142;margin:1px 0 6px}
+  .course-card.vie .cc-sub{color:#c9c2b2}
+  .course-card.vie .cc-bot{border-top:1px solid rgba(201,161,74,.25)}
+  .course-card.vie .cc-status{color:#b7ad9d}
+  .course-card.vie .cc-cta{color:#c9a14a}
+  .course-card.soc{background:transparent;border:1px dashed var(--border);box-shadow:none}
+  .course-card.soc .cc-kick{color:var(--muted-warm)}
+  .course-card.soc h3{font-family:"Manrope",sans-serif;font-weight:800;font-size:18px;color:var(--sand)}
+  .course-card.soc .cc-sub{color:var(--muted)}
+  .course-card.soc .cc-bot{border-top:1px dashed var(--border)}
+  .course-card.soc .cc-status{color:var(--muted)}
+  .course-card.soc .cc-cta{color:var(--muted-warm)}
+  .course-card.soc:hover{transform:none;border-color:rgba(232,184,75,.45)}
+
+  /* ============ НОВОЕ: страница рецензии — подпись, теги, мост, «читать дальше» ============ */
+  .pub-line{margin:36px 0 0;font-size:12.5px;color:var(--muted-warm);letter-spacing:.04em}
+  .tags-row{margin-top:14px}
+  .tag-chip{transition:.2s}
+  .tag-chip:hover{border-color:var(--gold);color:var(--gold)}
+  .card-meta .mins{color:var(--muted-warm)}
+  .bridge{margin:40px 0 0;padding:16px 20px;border:1px solid rgba(232,184,75,.30);
+    border-left:4px solid var(--gold);border-radius:12px;background:rgba(232,184,75,.05)}
+  .bridge-kicker{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .bridge-text{margin:7px 0 10px;font-size:15px;color:var(--text);line-height:1.5}
+  .bridge-soon{color:var(--muted)}
+  .bridge-cta{color:var(--gold);font-weight:700;font-size:13.5px}
+  .bridge-cta:hover{text-decoration:underline}
+  /* «печать» фестиваля на странице рецензии */
+  .fest-stamp{display:inline-block;margin-top:18px;padding:8px 16px;border:1px solid rgba(232,184,75,.55);
+    border-radius:9px;position:relative;color:var(--gold);font-weight:700;font-size:11.5px;
+    letter-spacing:.16em;text-transform:uppercase;background:rgba(185,139,46,.06);
+    transform:rotate(-1.6deg);transition:transform .2s,background .2s}
+  .fest-stamp::after{content:"";position:absolute;inset:3px;border:1px solid rgba(232,184,75,.30);
+    border-radius:6px;pointer-events:none}
+  .fest-stamp:hover{transform:rotate(0deg);background:rgba(185,139,46,.12)}
+  .incoll-row{margin-top:18px}
+  .incoll-row .fest-badge{margin-top:0}
+  .related-grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px}
+  [data-theme="light"] .bridge{background:rgba(185,139,46,.07)}
+
+  /* ============ НОВОЕ: полноценный футер ============ */
+  footer.site{text-align:left;padding:38px 24px 26px}
+  .sfoot{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1.1fr;gap:26px}
+  @media(max-width:860px){.sfoot{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.sfoot{grid-template-columns:1fr}}
+  .sfoot-col h4{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-warm);margin:0 0 12px;font-weight:700}
+  .sfoot-name{font-weight:800;font-size:13.5px;letter-spacing:.16em;color:var(--heading);margin-bottom:9px}
+  .sfoot-brand p{margin:0;font-size:13px;color:var(--muted);max-width:30ch;line-height:1.6}
+  .sfoot-links{columns:2;column-gap:20px}
+  .sfoot-col a{display:block;color:#dfe3ef;font-size:13px;margin:0 0 8px;break-inside:avoid;transition:color .2s}
+  .sfoot-col a:hover{color:var(--accent)}
+  .sfoot-outlet{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
+  .sfoot-all{margin-top:2px;color:var(--accent)!important;font-size:12.5px!important}
+  .sfoot-bottom{max-width:var(--maxw);margin:26px auto 0;padding-top:16px;border-top:1px solid var(--border);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+  .sfoot-motto{font-family:"Playfair Display",serif;font-style:italic;color:var(--muted-warm)}
+  [data-theme="light"] .sfoot-col h4{color:rgba(255,255,255,.75)}
+  [data-theme="light"] .sfoot-col a{color:rgba(255,255,255,.92)}
+  [data-theme="light"] .sfoot-col a:hover{color:#ffd75e}
+  [data-theme="light"] .sfoot-outlet{color:rgba(255,255,255,.75)}
+  [data-theme="light"] .sfoot-brand p{color:rgba(255,255,255,.85)}
+  [data-theme="light"] .sfoot-name{color:#ffffff}
+  [data-theme="light"] .sfoot-bottom{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.85)}
+  [data-theme="light"] .sfoot-motto{color:#ffe08a}
+
+  /* ===== Страница /lectures/ (контент; шапка/футер/тема — общие из сайта) ===== */
+  :root{--mrx:#d6342a;--mrx-2:#c9962b;--vie:#c9a14a;--vie-2:#a23142;--card1:#1e2438;--card2:#141828}
+  :root[data-theme="light"]{--mrx:#c0281f;--mrx-2:#9c7a33;--vie:#9c7a33;--vie-2:#8a2f3e;--card1:#ffffff;--card2:#f6f4ee}
+  .lectures{max-width:var(--maxw);margin:0 auto;padding:10px 24px 20px}
+  .lect-masthead{border-bottom:1px solid rgba(232,184,75,.30);padding-bottom:26px;margin-bottom:10px;position:relative}
+  .lect-masthead::after{content:"";position:absolute;left:0;bottom:-1px;width:120px;height:2px;background:var(--gold)}
+  .lect-kick{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted-warm);margin-bottom:14px}
+  .lectures h1{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(40px,7vw,84px);line-height:1;letter-spacing:-.01em;color:var(--heading);margin:0}
+  .lect-sub{font-size:clamp(15px,1.6vw,18px);color:var(--muted);margin-top:12px;max-width:64ch}
+  .lectures .subjnav{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:8px;padding:14px 0 16px;margin-top:6px;background:linear-gradient(var(--bg) 72%,transparent)}
+  .lectures .subjnav a{font-size:12px;letter-spacing:.05em;color:var(--muted);border:1px solid var(--border);padding:8px 15px;border-radius:20px;background:var(--card);transition:.16s}
+  .lectures .subjnav a:hover{border-color:rgba(232,184,75,.55);color:var(--text)}
+  .lectures .subj{margin-top:54px;scroll-margin-top:72px}
+  .lectures .subj-kick{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:10px;color:var(--muted-warm)}
+  .lectures .subj-head h2{font-family:"Playfair Display",serif;font-weight:700;font-size:clamp(24px,3.2vw,38px);color:var(--heading);display:flex;align-items:center;gap:14px}
+  .lectures .subj-head h2::before{content:"";width:26px;height:13px;transform:skewX(-12deg);background:var(--gold);flex-shrink:0}
+  .lectures .subj-head p{max-width:74ch;margin:12px 0 22px;font-size:15px;line-height:1.6;color:var(--muted)}
+  .lectures .prog{display:inline-block;margin:0 0 20px;color:var(--gold);font-size:13px;letter-spacing:.02em;border-bottom:1px solid transparent;transition:border-color .2s}
+  .lectures .prog:hover{border-color:var(--gold)}
+  .lectures .lecgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .lectures .lec{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:18px;row-gap:2px;align-items:baseline;border:1px solid var(--border);background:linear-gradient(180deg,var(--card1),var(--card2));padding:18px 22px;border-radius:12px;box-shadow:0 12px 28px rgba(0,0,0,.35),inset 0 1px 0 rgba(160,185,245,.08)}
+  .lectures .lec .ln{grid-row:span 4;font-family:"Playfair Display",serif;font-weight:800;font-size:30px;line-height:.9;color:var(--gold)}
+  .lectures .lec .lt{font-weight:800;font-size:16px;letter-spacing:.01em;color:var(--heading)}
+  .lectures .lec .ls{font-size:13.5px;color:var(--muted);line-height:1.45}
+  .lectures .lec .lf{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;color:var(--muted);line-height:1.5;margin-top:8px}
+  .lectures .lec .lf b{color:var(--sand);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:9.5px;margin-right:5px}
+  .lectures .lec .go{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:8px}
+  .lectures .lec .soon{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#6f7690;margin-top:8px}
+  .lectures .lec.ready{transition:.18s;cursor:pointer}
+  .lectures .lec.ready::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:12px 0 0 12px;background:var(--gold);opacity:0;transition:.18s}
+  .lectures .lec.ready:hover{border-color:rgba(232,184,75,.55);transform:translateY(-2px)}
+  .lectures .lec.ready:hover::before{opacity:1}
+  .lectures .lec:not(.ready){opacity:.6}
+  .lectures .empty{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#6f7690;border:1px dashed var(--border);padding:22px 24px;border-radius:12px}
+  .lectures .acc-mrx .subj-kick,.lectures .acc-mrx .lec .ln,.lectures .acc-mrx .lec .go{color:var(--mrx)}
+  .lectures .acc-mrx .subj-head h2::before,.lectures .acc-mrx .lec.ready::before{background:var(--mrx)}
+  .lectures .acc-mrx .lec .lf b{color:var(--mrx-2)}
+  .lectures .acc-mrx .lec.ready:hover{border-color:rgba(214,52,42,.55)}
+  .lectures .acc-vie .subj-kick,.lectures .acc-vie .lec .ln,.lectures .acc-vie .lec .go{color:var(--vie)}
+  .lectures .acc-vie .subj-head h2::before{background:repeating-linear-gradient(90deg,var(--vie) 0 6px,transparent 6px 12px);transform:none;height:6px;width:38px}
+  .lectures .acc-vie .lec .lf b{color:var(--vie-2)}
+  .lectures .acc-vie .lec.ready::before{background:var(--vie)}
+  .lectures .acc-vie .lec.ready:hover{border-color:rgba(201,161,74,.6)}
+  .lectures .acc-soc .subj-head h2::before{background:var(--border)}
+  [data-theme="light"] .lectures .lec{box-shadow:0 1px 2px rgba(21,23,30,.05),0 12px 30px rgba(21,23,30,.09)}
+  @media(max-width:720px){.lectures .lecgrid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 <header class="site">
@@ -671,13 +848,24 @@
     <div class="nav-right">
       <nav class="menu" id="menu" aria-label="Основное меню">
         <a href="/reviews" data-nav="reviews">Рецензии</a>
-        <a href="/press" data-nav="press">Публикации в СМИ</a>
-        <a href="/festivals" data-nav="festivals">Кинофестивали</a>
-        <a href="/collections" data-nav="collections">Подборки</a>
-        <a href="/feed" data-nav="feed">Заметки</a>
         <a href="/lectures/">Лекции</a>
+        <a href="/collections" data-nav="collections">Подборки</a>
+        <a href="/festivals" data-nav="festivals">Кинофестивали</a>
+        <a href="/press" data-nav="press">Публикации в СМИ</a>
+        <a href="/feed" data-nav="feed">Заметки</a>
         <a href="/about" data-nav="about">Обо мне</a>
       </nav>
+      <div class="head-links" aria-label="Поиск и связь">
+        <a class="head-ic" href="/search" title="Поиск по сайту" aria-label="Поиск по сайту">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2"/><line x1="15.2" y1="15.2" x2="20.5" y2="20.5"/></svg>
+        </a>
+        <a class="head-ic" href="https://t.me/karavan_goes" target="_blank" rel="noopener" title="Telegram-канал" aria-label="Telegram-канал">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.3 3.6 3.2 10.7c-.9.4-.9 1.6.1 1.9l4.5 1.4 1.7 5.2c.3.9 1.4 1 2 .3l2.3-2.9 4.6 3.3c.8.5 1.8.1 2-.9l2.5-13c.2-1-.7-1.8-1.6-1.4Z"/><path d="m9.4 13.9 8.4-7.8"/></svg>
+        </a>
+        <a class="head-ic" href="/rss.xml" target="_blank" title="RSS-лента" aria-label="RSS-лента">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 11.2a8.3 8.3 0 0 1 8.3 8.3"/><path d="M4.5 4.8A14.7 14.7 0 0 1 19.2 19.5"/><circle class="dot" cx="5.6" cy="18.4" r="1.5"/></svg>
+        </a>
+      </div>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Светлая или тёмная тема" title="Светлая / тёмная тема">
         <svg class="ic ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><line x1="12" y1="1.7" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.3"/><line x1="1.7" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.3" y2="12"/><line x1="4.3" y1="4.3" x2="6" y2="6"/><line x1="18" y1="18" x2="19.7" y2="19.7"/><line x1="4.3" y1="19.7" x2="6" y2="18"/><line x1="18" y1="6" x2="19.7" y2="4.3"/></svg>
         <svg class="ic ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -690,7 +878,34 @@
 <div id="app"><!-- APP_CONTENT --></div>
 
 <footer class="site">
-  © <span id="year"></span> Караван идёт · Карен Аванесян — авторский сайт о кино.
+  <div class="sfoot">
+    <div class="sfoot-col sfoot-brand">
+      <div class="sfoot-name">КАРАВАН ИДЁТ</div>
+      <p>Тексты о кино, лекционные курсы и фестивальные дневники Карена Аванесяна.</p>
+    </div>
+    <div class="sfoot-col">
+      <h4>Разделы</h4>
+      <div class="sfoot-links">
+        <a href="/reviews">Рецензии</a>
+        <a href="/lectures/">Лекции</a>
+        <a href="/collections">Подборки</a>
+        <a href="/festivals">Кинофестивали</a>
+        <a href="/press">Публикации в СМИ</a>
+        <a href="/feed">Заметки</a>
+        <a href="/about">Обо мне</a>
+      </div>
+    </div>
+    <div class="sfoot-col">
+      <h4>Связь</h4>
+      <a href="https://t.me/karavan_goes" target="_blank" rel="noopener">Telegram · @karavan_goes</a>
+      <a href="mailto:karavan0788@yandex.com">karavan0788@yandex.com</a>
+      <a href="/rss.xml" target="_blank">RSS-лента</a>
+      <a href="https://letterboxd.com/karavan0788/" target="_blank" rel="noopener">Letterboxd</a>
+    </div>
+  </div>
+  <div class="sfoot-bottom">
+    <span>© <span id="year"></span> Караван идёт · Карен Аванесян</span>
+  </div>
 </footer>
 
 <!-- VIEW_FLAG -->
@@ -719,7 +934,8 @@ navToggle.addEventListener('click', ()=>{
 });
 
 /* переключатель темы (солнце/луна), запоминается в localStorage */
-document.getElementById('themeToggle').addEventListener('click', ()=>{
+const themeToggle = document.getElementById('themeToggle');
+if(themeToggle) themeToggle.addEventListener('click', ()=>{
   const toLight = document.documentElement.getAttribute('data-theme') !== 'light';
   if(toLight) document.documentElement.setAttribute('data-theme','light');
   else document.documentElement.removeAttribute('data-theme');
@@ -729,16 +945,18 @@ document.getElementById('themeToggle').addEventListener('click', ()=>{
 /* ---------- рендереры (фетч + сборка из общего модуля R) ---------- */
 async function renderHome(){
   setActive('home'); loading();
-  const [reviews,feed,festivals,collections,press,site] = await Promise.all([
+  const [reviews,feed,festivals,collections,press,site,sitedata] = await Promise.all([
     getJSON('/reviews/manifest.json').catch(()=>null),
     getJSON('/feed/manifest.json').catch(()=>null),
     getJSON('/festivals/manifest.json').catch(()=>null),
     getJSON('/collections/manifest.json').catch(()=>null),
     getJSON('/press.json').catch(()=>null),
-    getJSON('/site.json').catch(()=>null)
+    getJSON('/site.json').catch(()=>null),
+    getJSON('/site-data.json').catch(()=>null)
   ]);
   if([reviews,feed,festivals,collections,press].every(x=>x===null)){ setApp(R.loadError()); return; }
-  setApp(R.homeView({reviews,feed,festivals,collections,press,site}));
+  setApp(R.homeView({reviews,feed,festivals,collections,press,site,
+    courses:(sitedata&&sitedata.courses)||[], stats:sitedata&&sitedata.stats}));
   setTitle('Караван идёт — авторский сайт исследователя кино Карена Аванесяна');
 }
 
@@ -766,8 +984,19 @@ function wireReviewSearch(list){
 async function renderReview(slug){
   setActive('reviews'); loading();
   try{
-    const {meta,body} = R.parseFrontMatter(await getText(`/reviews/${slug}.md`));
-    setApp(R.reviewPageView(meta, md(body)));
+    const [txt, list] = await Promise.all([
+      getText(`/reviews/${slug}.md`),
+      getJSON('/reviews/manifest.json').catch(()=>[])
+    ]);
+    const {meta,body} = R.parseFrontMatter(txt);
+    const entry = (list||[]).find(r=>r.slug===slug) || {};
+    const extras = {
+      date: entry.date,
+      bridge: entry.bridge,
+      incollections: entry.incollections,
+      related: (entry.related||[]).map(s=>(list||[]).find(r=>r.slug===s)).filter(Boolean),
+    };
+    setApp(R.reviewPageView(meta, md(body), extras));
     setTitle(`${meta.title||meta.film||'Рецензия'}${meta.film&&meta.film!==meta.title?' — '+meta.film:''} — Караван идёт`);
     window.scrollTo(0,0);
   }catch(e){ setApp(R.notFoundView('Рецензия не найдена','/reviews','ко всем рецензиям')); }
@@ -832,6 +1061,56 @@ async function renderAbout(){
     setTitle('Обо мне — Карен Аванесян — Караван идёт');
     window.scrollTo(0,0);
   }catch(e){ setApp(R.loadError()); }
+}
+
+async function renderTag(slugParam){
+  setActive('reviews'); loading();
+  try{
+    const list = await getJSON('/reviews/manifest.json');
+    let tag = decodeURIComponent(slugParam);
+    for(const r of R.published(list)) for(const tg of R.splitTags(r.tags))
+      if(R.tagSlug(tg)===slugParam){ tag=tg; break; }
+    setApp(R.tagView(tag, list));
+    setTitle(`#${tag} — Караван идёт`);
+    window.scrollTo(0,0);
+  }catch(e){ setApp(R.loadError()); }
+}
+
+async function renderSearch(){
+  setActive(''); loading();
+  setApp(R.searchView());
+  setTitle('Поиск — Караван идёт');
+  wireSiteSearch();
+}
+async function wireSiteSearch(){
+  const inp = document.getElementById('siteSearch');
+  const res = document.getElementById('sres');
+  if(!inp||!res) return;
+  const [reviews,collections,feed,press] = await Promise.all([
+    getJSON('/reviews/manifest.json').catch(()=>[]),
+    getJSON('/collections/manifest.json').catch(()=>[]),
+    getJSON('/feed/manifest.json').catch(()=>[]),
+    getJSON('/press.json').catch(()=>[]),
+  ]);
+  const items = [
+    ...R.published(reviews).map(r=>({kind:'Рецензия', title:(r.film||r.title||''), date:[r.year,r.director].filter(Boolean).join(' · '), thumb:r.poster, href:'/review/'+r.slug, external:false,
+      q:[r.film,r.title,r.original,r.director,r.year,r.tags,r.festival].filter(Boolean).join(' ')})),
+    ...R.published(collections).map(c=>({kind:'Подборка', title:c.title, date:(c.count?c.count+' фильмов':''), thumb:c.cover, href:'/collection/'+c.slug, external:false,
+      q:[c.title,c.excerpt].filter(Boolean).join(' ')})),
+    ...R.published(feed).map(f=>({kind:f.tag||'Заметка', title:f.title, date:f.date, thumb:f.image, href:'/feed/'+f.slug, external:false,
+      q:[f.title,f.excerpt,f.tag].filter(Boolean).join(' ')})),
+    ...R.published(press).map(p=>({kind:'СМИ · '+(p.outlet||''), title:p.title, date:p.date, thumb:p.thumb, href:p.url, external:true,
+      q:[p.title,p.outlet,p.note,p.festival].filter(Boolean).join(' ')})),
+  ];
+  const show = ()=>{
+    const q = inp.value.trim().toLowerCase();
+    if(!q){ res.innerHTML = `<div class="state">Начните вводить запрос.</div>`; return; }
+    const hits = items.filter(i=>i.q.toLowerCase().includes(q)).slice(0,30);
+    res.innerHTML = hits.length
+      ? `<div class="press-list" style="margin:0">${hits.map(R.festivalItemHTML).join('')}</div>`
+      : `<div class="state">Ничего не найдено.</div>`;
+  };
+  inp.addEventListener('input', show);
 }
 
 /* ---------- скролл-история подборки ---------- */
@@ -900,6 +1179,8 @@ function route(){
   if(path==='/festivals') return renderFestivals();
   if(m=path.match(/^\/feed\/(.+)$/)) return renderTimelineItem('feed',decodeURIComponent(m[1]),'feed','/feed','в заметки');
   if(path==='/feed') return renderFeed();
+  if(m=path.match(/^\/tag\/(.+)$/)) return renderTag(decodeURIComponent(m[1]));
+  if(path==='/search') return renderSearch();
   if(path==='/press') return renderPress();
   if(path==='/about') return renderAbout();
   return renderHome();
@@ -920,6 +1201,7 @@ document.addEventListener('click', e=>{
   const href = a.getAttribute('href');
   if(!href || a.target==='_blank' || a.hasAttribute('download')) return;
   if(/^(https?:|mailto:|tel:)/.test(href)) return;
+  if(/\.xml$/.test(href)) return;
   /* /lectures — отдельные статические страницы (слайд-деки), не SPA-маршрут:
      не перехватываем, пусть браузер сделает обычный полный переход */
   if(href==='/lectures'||href.startsWith('/lectures/')) return;
@@ -952,6 +1234,7 @@ window.addEventListener('popstate', route);
     if(v.view==='reviews'){
       getJSON('/reviews/manifest.json').then(wireReviewSearch).catch(()=>{});
     }
+    if(v.view==='search'){ wireSiteSearch(); }
     enhanceScrolly(); /* пререндеренная скролл-подборка — довешиваем фон/анимации */
     return;
   }

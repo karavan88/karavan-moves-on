@@ -1,5 +1,9 @@
 {
-  "featured": "solaris",
-  "startHere": ["amma-ariyan", "zona-interesov", "greshniki"],
-  "heroCopy": "Рецензии, фестивальные заметки и публикации в СМИ."
+  "featured": "",
+  "startHere": [
+    "amma-ariyan",
+    "zona-interesov",
+    "greshniki"
+  ],
+  "heroCopy": "Рецензии, дневники фестивалей и лекционные курсы:<br>от социальной критики до психоанализа."
 }

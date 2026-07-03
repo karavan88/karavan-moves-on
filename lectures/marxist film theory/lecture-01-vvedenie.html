@@ -264,9 +264,151 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
   .film{ min-height:62vh; }
   img{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
 }
+
+/* ===== СВОД lecture-deck-builder: СВЕТ · НАПЛЫВ · ИРИС · ХОРЕОГРАФИЯ ===== */
+.beam{position:fixed;top:0;right:0;width:80vw;height:120vh;pointer-events:none;z-index:0;opacity:.5;background:linear-gradient(216deg,rgba(201,150,43,.15) 0%,rgba(201,150,43,.05) 26%,transparent 52%);clip-path:polygon(100% -6%,100% 18%,12% 106%,100% 106%);filter:blur(28px)}
+body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out infinite}
+@keyframes beamOn{0%{opacity:0}20%{opacity:.55}30%{opacity:.2}42%{opacity:.6}100%{opacity:.5}}
+@keyframes flick{0%,88%,100%{opacity:.5}91%{opacity:.4}94%{opacity:.55}}
+.dust{position:fixed;top:0;right:0;width:84%;height:100%;pointer-events:none;z-index:0}
+.dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(236,222,190,.85);filter:blur(1px);opacity:0;animation:dfloat 18s linear infinite}
+@keyframes dfloat{0%{transform:translate(0,0);opacity:0}8%{opacity:.5}55%{opacity:.32}100%{transform:translate(-42vw,52vh);opacity:0}}
+.dust i:nth-child(1){top:5%;right:9%;animation-duration:16s;animation-delay:.4s}
+.dust i:nth-child(2){top:13%;right:22%;animation-duration:21s;animation-delay:3s;width:2px;height:2px}
+.dust i:nth-child(3){top:3%;right:31%;animation-duration:14s;animation-delay:5.6s}
+.dust i:nth-child(4){top:21%;right:6%;animation-duration:24s;animation-delay:1.4s;width:2px;height:2px}
+.dust i:nth-child(5){top:9%;right:40%;animation-duration:19s;animation-delay:7.2s}
+.dust i:nth-child(6){top:28%;right:15%;animation-duration:22s;animation-delay:4.1s;width:4px;height:4px}
+.dust i:nth-child(7){top:1%;right:18%;animation-duration:18s;animation-delay:9s;width:2px;height:2px}
+.dust i:nth-child(8){top:34%;right:26%;animation-duration:20s;animation-delay:2.2s}
+.dust i:nth-child(9){top:16%;right:52%;animation-duration:23s;animation-delay:6.4s;width:2px;height:2px}
+.dust i:nth-child(10){top:7%;right:60%;animation-duration:18s;animation-delay:.9s}
+.dust i:nth-child(11){top:40%;right:44%;animation-duration:25s;animation-delay:4.8s;width:4px;height:4px}
+.dust i:nth-child(12){top:24%;right:70%;animation-duration:21s;animation-delay:8.1s;width:2px;height:2px}
+.dust i:nth-child(13){top:2%;right:47%;animation-duration:17s;animation-delay:11s}
+.dust i:nth-child(14){top:31%;right:8%;animation-duration:26s;animation-delay:5.5s;width:5px;height:5px}
+.grain{position:fixed;inset:-4%;pointer-events:none;z-index:0;opacity:.05;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px;animation:grainjit .6s steps(2) infinite}
+@keyframes grainjit{0%{transform:translate(0,0)}25%{transform:translate(-1.1%,.7%)}50%{transform:translate(.7%,-1.1%)}75%{transform:translate(-.5%,1%)}100%{transform:translate(0,0)}}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:34;background:radial-gradient(120% 105% at 50% 46%,transparent 58%,rgba(10,7,5,.42) 100%)}
+/* наплыв-расфокус */
+.slide.active{animation:dis .9s cubic-bezier(.22,.75,.25,1) both}
+.slide.divider.active{animation:disT 1.15s cubic-bezier(.25,.8,.25,1) both}
+@keyframes dis{from{opacity:0;transform:scale(1.045);filter:blur(12px) brightness(1.12)}60%{filter:blur(2px) brightness(1.03)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+@keyframes disT{from{opacity:0;transform:scale(1.07);filter:blur(16px) brightness(1.15)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+/* склейка и гипно-ирис */
+.cutfx{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;z-index:45}
+.cutfx.go{animation:cutb .45s ease both}
+@keyframes cutb{0%{opacity:0}18%{opacity:1}55%{opacity:1}100%{opacity:0}}
+#irisfx{position:fixed;left:50%;top:50%;width:245vmax;height:245vmax;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 200vmax #000;pointer-events:none;z-index:47;opacity:0}
+#irisfx.go{animation:irisgo2 3.2s cubic-bezier(.55,.05,.45,.95) both}
+@keyframes irisgo2{0%{opacity:1;width:245vmax;height:245vmax}36%{width:0;height:0}64%{width:0;height:0}100%{opacity:1;width:245vmax;height:245vmax}}
+#irisem{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:48;opacity:0}
+#irisem svg{width:min(34vh,300px);filter:drop-shadow(0 0 26px rgba(214,52,42,.4))}
+#irisem .mc{stroke-dasharray:470}
+#irisem .mb,#irisem .md{transform-box:fill-box;transform-origin:center}
+#irisem .mb{transform:rotate(-14deg)}
+#irisem.go{animation:iemF 3.2s both}
+#irisem.go svg{animation:irot 3.2s cubic-bezier(.4,0,.4,1) both}
+#irisem.go .mc{animation:drawM 1.1s .55s ease both}
+#irisem.go .mb{animation:barIn .6s 1.2s cubic-bezier(.2,.9,.3,1) both}
+#irisem.go .md{animation:mpop .4s 1.85s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes drawM{from{stroke-dashoffset:470}to{stroke-dashoffset:0}}
+@keyframes barIn{from{opacity:0;transform:rotate(-14deg) translateX(-170px)}to{opacity:1;transform:rotate(-14deg) translateX(0)}}
+@keyframes mpop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes iemF{0%,10%{opacity:0}26%,62%{opacity:1}80%,100%{opacity:0}}
+@keyframes irot{from{transform:rotate(-10deg) scale(.92)}to{transform:rotate(6deg) scale(1.02)}}
+/* хореография появления */
+@keyframes fup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+.slide.active .eyebrow{animation:fup .4s .04s both}
+.slide.active h2{animation:fup .45s .1s both}
+.slide.active .lead{animation:fup .5s .18s both}
+.slide.active .cols>p{animation:fup .5s .3s both}
+.slide.active :is(.cols,.cols-wide)+p{animation:fup .5s .7s both}
+.slide.active .stack>p{animation:fup .45s both}
+.slide.active .stack>p:nth-of-type(1){animation-delay:.28s}
+.slide.active .stack>p:nth-of-type(2){animation-delay:.42s}
+.slide.active .stack>p:nth-of-type(3){animation-delay:.56s}
+.slide.active :is(.cols,.cols-wide,.stack)>.card{animation:fup .45s both}
+.slide.active :is(.cols,.cols-wide,.stack)>.card:nth-child(1){animation-delay:.22s}
+.slide.active :is(.cols,.cols-wide,.stack)>.card:nth-child(2){animation-delay:.34s}
+.slide.active :is(.cols,.cols-wide,.stack)>.card:nth-child(3){animation-delay:.46s}
+.slide.active :is(.cols,.cols-wide,.stack)>.card:nth-child(4){animation-delay:.58s}
+.slide.active .def{animation:fup .4s both}
+.slide.active .def:nth-child(1){animation-delay:.18s}
+.slide.active .def:nth-child(2){animation-delay:.26s}
+.slide.active .def:nth-child(3){animation-delay:.34s}
+.slide.active .def:nth-child(4){animation-delay:.42s}
+.slide.active .def:nth-child(5){animation-delay:.5s}
+.slide.active .def:nth-child(6){animation-delay:.58s}
+.slide.active .def:nth-child(7){animation-delay:.66s}
+.slide.active .qlist li{animation:fup .45s both}
+.slide.active .qlist li:nth-child(1){animation-delay:.2s}
+.slide.active .qlist li:nth-child(2){animation-delay:.29s}
+.slide.active .qlist li:nth-child(3){animation-delay:.38s}
+.slide.active .qlist li:nth-child(4){animation-delay:.47s}
+.slide.active .qlist li:nth-child(5){animation-delay:.56s}
+.slide.active .qlist li:nth-child(6){animation-delay:.65s}
+.slide.active .coursemap .node{animation:fup .35s both}
+.slide.active .coursemap .node:nth-child(1){animation-delay:.1s}
+.slide.active .coursemap .node:nth-child(2){animation-delay:.15s}
+.slide.active .coursemap .node:nth-child(3){animation-delay:.2s}
+.slide.active .coursemap .node:nth-child(4){animation-delay:.25s}
+.slide.active .coursemap .node:nth-child(5){animation-delay:.3s}
+.slide.active .coursemap .node:nth-child(6){animation-delay:.35s}
+.slide.active .coursemap .node:nth-child(7){animation-delay:.4s}
+.slide.active .coursemap .node:nth-child(8){animation-delay:.45s}
+.slide.active .coursemap .node:nth-child(9){animation-delay:.5s}
+.slide.active .coursemap .node:nth-child(10){animation-delay:.55s}
+.slide.active .coursemap .node:nth-child(11){animation-delay:.6s}
+.slide.active .wfilm{animation:fup .45s both}
+.slide.active .wfilm:nth-child(1){animation-delay:.18s}
+.slide.active .wfilm:nth-child(2){animation-delay:.26s}
+.slide.active .wfilm:nth-child(3){animation-delay:.34s}
+.slide.active .wfilm:nth-child(4){animation-delay:.42s}
+.slide.active .wfilm:nth-child(5){animation-delay:.5s}
+.slide.active .wfilm:nth-child(6){animation-delay:.58s}
+.slide.active .pcard{animation:fup .45s both}
+.slide.active .pcard:nth-child(1){animation-delay:.22s}
+.slide.active .pcard:nth-child(2){animation-delay:.34s}
+.slide.active .pcard:nth-child(3){animation-delay:.46s}
+.slide.active .oxpanel{animation:fup .5s .3s both}
+.slide.active .film .still{animation:fup .5s .2s both}
+.slide.active .film .info>*{animation:fup .45s both}
+.slide.active .film .info>*:nth-child(1){animation-delay:.3s}
+.slide.active .film .info>*:nth-child(2){animation-delay:.4s}
+.slide.active .film .info>*:nth-child(3){animation-delay:.5s}
+.slide.active .film .info>*:nth-child(4){animation-delay:.6s}
+.slide.active .film .info>*:nth-child(5){animation-delay:.7s}
+.slide.active .fk{animation:fup .4s .28s both}
+.slide.active .fcap h2{animation:fup .5s .38s both}
+.slide.active .fyear{animation:fin .9s .2s both}
+.slide.active .slash{animation:slashIn .8s .05s both}
+@keyframes slashIn{from{opacity:0;transform:skewX(-12deg) translateX(34%)}to{opacity:.96;transform:skewX(-12deg) translateX(0)}}
+.slide.active .divider-inner .eyebrow{animation:fup .45s .45s both}
+.slide.active .divider-inner h2{animation:fup .55s .58s both}
+.slide.active .divider-inner .sub{animation:fup .55s .74s both}
+/* правило большого монитора */
+.divider-inner{margin-top:4vh}
+.coursemap{gap:14px;flex:1;align-content:center}
+.coursemap .node{padding:22px 20px;min-height:132px;gap:10px}
+.coursemap .node .nn{font-size:26px}
+.coursemap .node .nt{font-size:15px;line-height:1.22}
+.watchlist{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;flex:1;align-content:center}
+.wfilm{padding:30px 28px 26px;min-height:190px;gap:9px}
+.wfilm .wt{font-size:24px;line-height:1.02}
+.wfilm .wd{font-size:12.5px}
+.wfilm .wn{font-size:14.5px;line-height:1.5}
+.wfilm .wy{font-size:64px;right:18px;top:20px}
+@media print{.beam,.dust,.grain,.vignette,.cutfx,#irisfx,#irisem{display:none!important}}
 </style>
 </head>
 <body>
+
+<div class="beam"></div>
+<div class="dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="grain"></div>
+<div class="vignette"></div>
 
 <aside class="rail">
   <div class="rail-fill" id="railFill"></div>
@@ -1142,10 +1284,10 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
     <p class="lead" style="max-width:72ch;margin:12px 0 2px">Лекция построена на четырёх фильмах — посмотрите их целиком до семинара.</p>
     <div style="flex:1;display:flex;align-items:center;width:100%;margin-top:14px">
       <div class="watchlist withposters" style="width:100%">
-      <div class="wfilm"><div class="wpost"><img src="img/w500_74MfDraK1Ro8k6wAgSyPLvgtZaP.jpg" alt="Постер «Новые времена»"></div><span class="wy">1936</span><span class="wt">Новые<br>времена</span><span class="wd">Чарли Чаплин · США · 87 мин</span><span class="wn">Сцены: конвейер · «кормящая машина». Категория — отчуждённый труд.</span></div>
       <div class="wfilm"><div class="wpost"><img src="img/w500_b9IVtOO89Ays4v0eWfADQ4Lq3wZ.jpg" alt="Постер «Метрополис»"></div><span class="wy">1927</span><span class="wt">Метрополис</span><span class="wd">Фриц Ланг · Германия · 153 мин (реставрация 2010)</span><span class="wn">Сцены: Молох · ложная Мария · «сердце-посредник». Категория — класс.</span></div>
-      <div class="wfilm"><div class="wpost"><img src="img/w500_qZEuNUlUWzzaVpSgnHDtxYZJH7g.jpg" alt="Постер «Чужие среди нас»"></div><span class="wy">1988</span><span class="wt">Чужие<br>среди нас</span><span class="wd">Джон Карпентер · США · 94 мин</span><span class="wn">Сцены: очки · драка из-за очков. Категория — идеология.</span></div>
-      <div class="wfilm"><div class="wpost"><img src="img/w500_2eH78Nz708yFVrcaZAE2bspY5q5.jpg" alt="Постер «Нефть»"></div><span class="wy">2007</span><span class="wt">Нефть</span><span class="wd">Пол Томас Андерсон · США · 158 мин</span><span class="wn">Сцены: крещение · финал с Илаем. Категория — первоначальное накопление, религия.</span></div>
+<div class="wfilm"><div class="wpost"><img src="img/w500_74MfDraK1Ro8k6wAgSyPLvgtZaP.jpg" alt="Постер «Новые времена»"></div><span class="wy">1936</span><span class="wt">Новые<br>времена</span><span class="wd">Чарли Чаплин · США · 87 мин</span><span class="wn">Сцены: конвейер · «кормящая машина». Категория — отчуждённый труд.</span></div>
+<div class="wfilm"><div class="wpost"><img src="img/w500_qZEuNUlUWzzaVpSgnHDtxYZJH7g.jpg" alt="Постер «Чужие среди нас»"></div><span class="wy">1988</span><span class="wt">Чужие<br>среди нас</span><span class="wd">Джон Карпентер · США · 94 мин</span><span class="wn">Сцены: очки · драка из-за очков. Категория — идеология.</span></div>
+<div class="wfilm"><div class="wpost"><img src="img/w500_2eH78Nz708yFVrcaZAE2bspY5q5.jpg" alt="Постер «Нефть»"></div><span class="wy">2007</span><span class="wt">Нефть</span><span class="wd">Пол Томас Андерсон · США · 158 мин</span><span class="wn">Сцены: крещение · финал с Илаем. Категория — первоначальное накопление, религия.</span></div>
       </div>
     </div>
     <div class="slide-foot"><span>Фильмография лекции</span><span class="fpg"></span></div>
@@ -1175,6 +1317,13 @@ strong{color:#fff}em{color:var(--ochre);font-style:italic}
 
 </main>
 
+<div class="cutfx" id="cutfx"></div>
+<div id="irisfx"></div>
+<div id="irisem" aria-hidden="true"><svg viewBox="0 0 200 200">
+  <circle class="mc" cx="100" cy="100" r="74" fill="none" stroke="#c9962b" stroke-width="10"/>
+  <rect class="mb" x="-24" y="86" width="248" height="26" fill="#d6342a"/>
+  <circle class="md" cx="100" cy="100" r="12" fill="#ece6da"/>
+</svg></div>
 <div class="zone left" id="zoneL" aria-hidden="true"></div>
 <div class="zone right" id="zoneR" aria-hidden="true"></div>
 
@@ -1225,12 +1374,32 @@ const cur=document.getElementById('cur'),bar=document.getElementById('bar'),rail
 // dynamic numbering
 document.getElementById('tot').textContent=String(total).padStart(2,'0');
 slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
-function show(n){
-  i=Math.max(0,Math.min(total-1,n));
+const cutfx=document.getElementById('cutfx'),irisfx=document.getElementById('irisfx'),irisem=document.getElementById('irisem');
+const reduceM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let pend=null;
+document.body.classList.add('boot');
+function apply(n){
+  i=n;
   slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
   cur.textContent=String(i+1).padStart(2,'0');
   const pct=(i/(total-1))*100; bar.style.width=pct+'%'; railFill.style.height=pct+'%';
   if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function show(n){
+  n=Math.max(0,Math.min(total-1,n));
+  const t=slides[n];
+  if(pend){clearTimeout(pend);pend=null;}
+  if(reduceM){apply(n);return;}
+  if(t.classList.contains('divider')){
+    irisfx.classList.remove('go');void irisfx.offsetWidth;irisfx.classList.add('go');
+    irisem.classList.remove('go');void irisem.offsetWidth;irisem.classList.add('go');
+    pend=setTimeout(()=>{apply(n);pend=null;},1600);
+  } else if(t.classList.contains('framefull')){
+    cutfx.classList.remove('go');void cutfx.offsetWidth;cutfx.classList.add('go');
+    apply(n);
+  } else {
+    apply(n);
+  }
 }
 function nextS(){show(i+1)} function prevS(){show(i-1)}
 document.getElementById('next').addEventListener('click',nextS);

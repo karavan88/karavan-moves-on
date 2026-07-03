@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Социология кино — программа курса | авторский курс Карена Аванесяна</title>
+<meta name="description" content="Учебный план авторского курса «Социология кино» Карена Аванесяна: хронология дисциплины от Альтенло и Кракауэра до платформ; марксизм, теории культуры, Бурдьё, феминизм, постколониализм, production studies, культурная легитимация и отечественная школа (Жабский, Ярская-Смирнова). 14 лекций магистерского уровня.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#14110f;--ink-2:#1d1916;--panel:#241f1b;--oxblood:#3a1714;
+  --bone:#ece6da;--bone-dim:#b7ad9d;--slate:#857c6e;
+  --red:#d6342a;--red-deep:#a8261d;--ochre:#c9962b;
+  --line:rgba(236,230,218,.14);--line-strong:rgba(236,230,218,.28);
+  --display:'Oswald',system-ui,sans-serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --toc:296px;--maxw:900px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);-webkit-font-smoothing:antialiased;line-height:1.5}
+::selection{background:var(--red);color:#fff}
+a{color:inherit;text-decoration:none}
+strong{color:#fff}em{color:var(--ochre);font-style:italic}
+
+/* ——— оболочка: липкое оглавление слева + контент ——— */
+.shell{display:grid;grid-template-columns:var(--toc) minmax(0,1fr);max-width:calc(var(--toc) + var(--maxw) + 130px);margin:0 auto;align-items:start}
+
+/* ——— оглавление-киноплёнка ——— */
+.toc{position:sticky;top:0;height:100vh;overflow-y:auto;overscroll-behavior:contain;background:var(--ink-2);border-right:2px solid var(--ink);padding:24px 18px 40px;display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:var(--red-deep) transparent}
+.toc::-webkit-scrollbar{width:6px}
+.toc::-webkit-scrollbar-track{background:transparent}
+.toc::-webkit-scrollbar-thumb{background:var(--red-deep);border-radius:3px}
+.toc-top{display:flex;align-items:center;gap:11px;padding:0 12px;margin-bottom:2px}
+.toc-mark{font-family:var(--display);font-weight:700;font-size:24px;color:var(--red);letter-spacing:.04em;line-height:1}
+.toc-course{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim);line-height:1.4}
+.backlink{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);display:inline-block;transition:.18s;padding:0 12px}
+.toc .backlink{margin:10px 0 16px}
+.backlink:hover{color:var(--red)}
+.toc-nav{display:flex;flex-direction:column;gap:1px}
+.toc-nav a{color:var(--bone-dim);text-decoration:none;transition:color .16s,background .16s,border-color .16s;border-left:2px solid transparent;line-height:1.28}
+.toc-nav a:hover{color:var(--bone);background:rgba(236,230,218,.045)}
+.toc-nav a.active{color:#fff;background:var(--panel);border-left-color:var(--red)}
+.t-sec{display:block;font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.02em;font-size:13px;padding:8px 12px}
+.t-part{margin-top:15px;display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:baseline;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:13px;letter-spacing:.01em;color:var(--ochre);padding:8px 12px}
+.t-part .t-rn{font-family:var(--mono);color:var(--red);font-size:12px;font-weight:700}
+.t-part:hover{color:#fff;background:rgba(236,230,218,.045)}
+.t-part.active{color:#fff;background:var(--panel);border-left-color:var(--ochre)}
+.t-lec{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:baseline;font-size:12.5px;padding:5px 12px 5px 20px}
+.t-lec b{font-family:var(--mono);color:var(--red);font-weight:500;font-size:11px}
+
+/* ——— контейнер контента ——— */
+.page{min-width:0}
+.inner{padding:34px clamp(22px,4vw,60px) 90px;max-width:calc(var(--maxw) + 40px)}
+.section,.divider,.lec,#biblio{scroll-margin-top:24px}
+
+h1{font-family:var(--display);font-weight:600;line-height:.94;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;line-height:1.0;text-transform:uppercase}
+h3{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.02em;color:var(--ochre)}
+p{font-size:clamp(15px,1.15vw,17px)}
+.lead{font-size:clamp(16.5px,1.5vw,20px);line-height:1.5;color:var(--bone)}
+
+/* ——— обложка: собственный мотив (аудитория/рябь), НЕ как в марксистском цикле ——— */
+.cover{position:relative;overflow:hidden;border:1px solid var(--line-strong);background:radial-gradient(135% 150% at 100% 0%, rgba(201,150,43,.13), transparent 52%), var(--ink-2);padding:clamp(38px,5vw,66px) clamp(30px,5vw,64px);margin-bottom:14px}
+.cover::before{content:"";position:absolute;left:0;top:0;height:4px;width:190px;background:var(--ochre);z-index:2}
+.cover .dots{position:absolute;inset:0;z-index:0;background-image:radial-gradient(rgba(236,230,218,.14) 1.3px, transparent 1.5px);background-size:22px 22px;opacity:.6;-webkit-mask-image:linear-gradient(105deg,#000 30%,transparent 78%);mask-image:linear-gradient(105deg,#000 30%,transparent 78%)}
+.cover .rings{position:absolute;right:-72px;top:50%;transform:translateY(-50%);width:360px;height:360px;z-index:0}
+.cover .rings i{position:absolute;border-radius:50%;border:2px solid var(--ochre);inset:0;opacity:.42}
+.cover .rings i:nth-child(2){inset:52px;opacity:.32}
+.cover .rings i:nth-child(3){inset:112px;border-color:var(--red);opacity:.6}
+.cover .rings i:nth-child(4){inset:164px;background:var(--red);border:none;opacity:.92;box-shadow:0 0 46px rgba(214,52,42,.5)}
+.cover-inner{position:relative;z-index:3;max-width:76%}
+.kicker{font-family:var(--mono);letter-spacing:.26em;text-transform:uppercase;color:var(--bone-dim);font-size:12px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:11px;height:11px;background:var(--red);display:inline-block}
+.course-name{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--ochre);font-size:clamp(14px,1.8vw,20px);margin-bottom:12px}
+.cover h1{font-size:clamp(46px,8.4vw,116px);text-transform:uppercase}
+.cover h1 .hl{color:var(--ochre)}
+.cover .subt{font-family:var(--display);font-weight:300;font-size:clamp(18px,2.4vw,30px);margin-top:18px;color:var(--bone);line-height:1.14;max-width:27ch}
+.cover .meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:16px 34px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--ochre);font-weight:500}
+
+/* ——— крупные разделители блоков ——— */
+.divider{position:relative;overflow:hidden;background:var(--oxblood);border-left:5px solid var(--red);padding:26px clamp(24px,4vw,44px);margin:52px 0 26px}
+.divider .bignum{font-family:var(--display);font-weight:700;color:#fff;font-size:clamp(30px,4.5vw,52px);line-height:.8;opacity:.5}
+.divider h2{font-size:clamp(26px,3.8vw,46px);color:#fff;margin-top:6px}
+.divider .sub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,21px);color:rgba(255,255,255,.9);margin-top:10px;max-width:64ch}
+
+/* ——— секции текста ——— */
+.section{margin:30px 0}
+.section > h2.stitle{font-size:clamp(22px,3vw,34px);color:var(--bone);letter-spacing:-.005em;margin-bottom:6px}
+.section > h2.stitle::before{content:"";display:inline-block;width:24px;height:12px;background:var(--red);margin-right:13px;transform:skewX(-12deg)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.prose p+p{margin-top:13px}
+.prose p{color:var(--bone-dim)}
+.prose p strong{color:var(--bone)}
+
+/* ——— карточки, дефлисты, сетки ——— */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.card{background:var(--ink-2);border:1px solid var(--line-strong);padding:20px 22px;border-radius:2px;border-top:4px solid var(--red)}
+.card.ochre{border-top-color:var(--ochre)}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:8px}
+.card.ochre .k{color:var(--ochre)}
+.card h3{font-size:clamp(16px,1.5vw,20px);margin-bottom:7px}
+.card p{font-size:14.5px;color:var(--bone-dim)}
+.deflist{display:flex;flex-direction:column;gap:0;margin-top:16px}
+.def{display:grid;grid-template-columns:210px 1fr;gap:22px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:600;text-transform:uppercase;color:var(--ochre);font-size:clamp(14px,1.3vw,17px);line-height:1.05}
+.def p{font-size:14.5px;color:var(--bone-dim)}
+
+/* ——— карточки лекций ——— */
+.block-lecs{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+.lec{border:1px solid var(--line-strong);background:var(--ink-2);border-radius:2px;overflow:hidden;position:relative}
+.lec::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);opacity:.85}
+.lec.new::before{background:linear-gradient(var(--ochre),var(--red))}
+.lec-h{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;padding:20px 24px 14px;border-bottom:1px solid var(--line)}
+.lec-n{font-family:var(--display);font-weight:700;font-size:clamp(34px,4vw,52px);line-height:.75;color:var(--red)}
+.lec-t{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(18px,1.9vw,25px);letter-spacing:.005em;color:var(--bone);line-height:1.02}
+.lec-t .badge{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--ochre);border:1px solid var(--ochre);border-radius:2px;padding:2px 6px;margin-left:10px;vertical-align:middle;white-space:nowrap}
+.lec-s{font-size:14px;color:var(--bone-dim);margin-top:4px;font-style:italic}
+.lec-body{padding:16px 24px 22px}
+.threads{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:13px}
+.thread{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ochre);border:1px dashed var(--ochre);padding:3px 9px;border-radius:2px}
+.lec-an{font-size:15px;color:var(--bone-dim);line-height:1.52}
+.lec-an b{color:var(--bone)}
+.mrow{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+.mrow:last-child{border-bottom:none}
+.mrow.gen{background:rgba(201,150,43,.05)}
+.mrow.optics{background:rgba(214,52,42,.05)}
+.mk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre);padding-top:2px}
+.mrow.optics .mk{color:var(--red)}
+.mv{font-size:14px;color:var(--bone-dim);line-height:1.5}
+.mv b{color:var(--bone);font-weight:700}
+.mv.films{color:var(--bone)}
+.mv.optic{font-style:italic;color:var(--bone)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);border:1px solid var(--line-strong);padding:4px 9px;border-radius:2px}
+.chip.f{color:var(--red);border-color:var(--red-deep)}
+ol.q{list-style:none;counter-reset:q;display:flex;flex-direction:column;gap:7px}
+ol.q li{display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:14px;color:var(--bone-dim)}
+ol.q li::before{counter-increment:q;content:counter(q,decimal-leading-zero);font-family:var(--mono);color:var(--red);font-size:12px;padding-top:2px}
+
+/* ——— библиография ——— */
+.biblio{margin-top:16px}
+.biblio h3{color:var(--ochre);font-size:16px;margin:22px 0 10px}
+.reflist{display:flex;flex-direction:column;gap:0}
+.ref{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--bone-dim)}
+.ref .rn{font-family:var(--mono);color:var(--red);font-size:12px}
+.ref b{color:var(--bone)}
+
+footer{border-top:2px solid var(--line-strong);margin-top:60px;padding:22px clamp(24px,5vw,72px);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+footer .sep{color:var(--red)}
+
+@media (max-width:980px){
+  .shell{grid-template-columns:1fr}
+  .toc{position:sticky;top:0;height:auto;max-height:none;overflow:visible;flex-direction:column;border-right:none;border-bottom:2px solid var(--ink);padding:12px 14px 12px;z-index:40}
+  .toc-top{margin-bottom:8px}
+  .toc .backlink{display:none}
+  .toc-nav{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;gap:6px;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+  .toc-nav a,.t-part{border-left:none;border:1px solid var(--line-strong);border-radius:2px;padding:6px 11px;white-space:nowrap;margin-top:0}
+  .toc-nav a.active,.t-part.active{border-left:none;border-color:var(--red)}
+  .t-part{display:inline-flex;gap:7px}
+  .t-lec{display:none}
+  .section,.divider,.lec,#biblio{scroll-margin-top:84px}
+}
+@media (max-width:820px){
+  .cover-inner{max-width:100%}
+  .cover .rings{opacity:.5;right:-140px}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .def{grid-template-columns:1fr;gap:4px}
+  .lec-h{grid-template-columns:auto 1fr;gap:14px}
+  .mrow{grid-template-columns:1fr;gap:5px}
+  .mk{padding-top:0}
+}
+@media print{
+  .toc,.backlink{display:none}
+  .shell{display:block}
+  body{background:#fff;color:#111}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+<aside class="toc" aria-label="Содержание программы">
+  <div class="toc-top">
+    <span class="toc-mark">СК</span>
+    <span class="toc-course">Социология кино · программа курса</span>
+  </div>
+  <a class="backlink" href="/lectures/">← Ко всем лекциям</a>
+  <nav class="toc-nav">
+    <a href="#about" class="t-sec">О дисциплине</a>
+    <a href="#comp" class="t-sec">Компетенции</a>
+    <a href="#control" class="t-sec">Формы контроля</a>
+
+    <a href="#s1" class="t-part"><span class="t-rn">I</span><span>Становление дисциплины</span></a>
+    <a href="#l1" class="t-lec"><b>01</b><span>Как родилась социология кино</span></a>
+    <a href="#l2" class="t-lec"><b>02</b><span>Оптика и метод</span></a>
+
+    <a href="#s2" class="t-part"><span class="t-rn">II</span><span>Теоретические традиции</span></a>
+    <a href="#l3" class="t-lec"><b>03</b><span>Марксистская традиция</span></a>
+    <a href="#l4" class="t-lec"><b>04</b><span>Теории культуры</span></a>
+    <a href="#l5" class="t-lec"><b>05</b><span>Пьер Бурдьё</span></a>
+    <a href="#l6" class="t-lec"><b>06</b><span>Феминистская оптика</span></a>
+    <a href="#l7" class="t-lec"><b>07</b><span>Постколониальная критика</span></a>
+
+    <a href="#s3" class="t-part"><span class="t-rn">III</span><span>Производство, ценность, аудитории</span></a>
+    <a href="#l8" class="t-lec"><b>08</b><span>Кино как социальный институт</span></a>
+    <a href="#l9" class="t-lec"><b>09</b><span>Production studies</span></a>
+    <a href="#l10" class="t-lec"><b>10</b><span>Культурная легитимация</span></a>
+    <a href="#l11" class="t-lec"><b>11</b><span>Аудитория и рецепция</span></a>
+    <a href="#l12" class="t-lec"><b>12</b><span>Звёзды, жанр, воображаемое</span></a>
+    <a href="#l13" class="t-lec"><b>13</b><span>Кино как документ эпохи</span></a>
+
+    <a href="#s4" class="t-part"><span class="t-rn">IV</span><span>Отечественная традиция</span></a>
+    <a href="#l14" class="t-lec"><b>14</b><span>Национальная социология кино?</span></a>
+
+    <a href="#biblio" class="t-sec" style="margin-top:15px">Библиография</a>
+  </nav>
+</aside>
+
+<main class="page">
+<div class="inner">
+
+  <!-- ОБЛОЖКА -->
+  <header class="cover">
+    <div class="dots"></div>
+    <div class="rings"><i></i><i></i><i></i><i></i></div>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс · Карен Аванесян</div>
+      <div class="course-name">Учебный план дисциплины</div>
+      <h1>Социология <span class="hl">кино</span></h1>
+      <div class="subt">Кино как социальный институт, текст и практика: производство, аудитория, власть и вкус.</div>
+      <div class="meta">
+        <span><b>14</b> лекций</span>
+        <span><b>4</b> раздела</span>
+        <span>Построен <b>хронологически</b></span>
+        <span>Уровень — <b>магистратура</b></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- О ДИСЦИПЛИНЕ -->
+  <section class="section" id="about">
+    <div class="eyebrow">Пролог</div>
+    <h2 class="stitle">О дисциплине</h2>
+    <div class="prose" style="margin-top:14px;max-width:70ch">
+      <p class="lead">Социология кино — молодая и одновременно старая дисциплина. Старая, потому что кинематограф заинтересовал социологов почти сразу: первой работой считается диссертация <strong>Эмили Альтенло «К социологии кино»</strong> (1914), опросившая 2400 зрителей Мангейма. Молодая, потому что как самостоятельная субдисциплина со своим методом она оформляется лишь в 1950–1970-е — у Фридмана и Морена, Джарви, Ловелла, Тюдора и в отечественной школе «изучения кинозрителя».</p>
+      <p>В системе знания это <strong>раздел социологии искусства и социологии культуры</strong>, связанный с социологией медиа и полем визуальных исследований. Курс построен <strong>хронологически</strong>: студент видит, как одна школа вырастает из другой — от аудиторных обследований к анализу самих фильмов, затем киноиндустрии, а сегодня — платформ и алгоритмов.</p>
+      <p>Особую роль в курсе играет <strong>Зигфрид Кракауэр</strong> — по образованию и мышлению социолог (его «Служащие», 1930, — классический социологический очерк веймарского общества). Кракауэр одним из первых прочитал кино как <em>воспроизводство социальной реальности</em>: экран показывает не только сюжет, но и коллективные фантазии, страхи и структуры эпохи. Поэтому он вводится с первой лекции и проходит <strong>сквозной нитью</strong> через весь курс — наравне с Бурдьё.</p>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <span class="k">Объект</span>
+        <h3>Кинематограф</h3>
+        <p>Кино как социальное явление и институт: производство, прокат, потребление, публичный киносеанс.</p>
+      </div>
+      <div class="card ochre">
+        <span class="k">Предмет</span>
+        <h3>Социальные отношения кино</h3>
+        <p>Закономерности создания, распространения и потребления фильма; функции кино в обществе; взаимодействие институтов кинопроцесса.</p>
+      </div>
+      <div class="card">
+        <span class="k">Что изучает</span>
+        <h3>Три уровня</h3>
+        <p>Производство (индустрия, профессии), текст (репрезентации, идеология), рецепция (аудитория, вкус, влияние).</p>
+      </div>
+    </div>
+
+    <div class="deflist">
+      <div class="def"><div class="term">Метод</div><p>Анкетный опрос (наследие Альтенло), контент-анализ репрезентаций, включённое наблюдение в зале, глубинное интервью и фокус-группа, визуальная социология, вторичный анализ статистики проката, а также «симптоматическое» чтение фильма как социального документа (метод Кракауэра).</p></div>
+      <div class="def"><div class="term">Две сквозные нити</div><p><b>Кракауэр</b> — фильм как воспроизводство/симптом социальной реальности (Л01 → Л04 → Л13). <b>Бурдьё</b> — вкус, капитал и поле как язык анализа культуры (Л05 → Л10 → Л11).</p></div>
+      <div class="def"><div class="term">Что даёт теории кино</div><p>Смещает вопрос с «что значит фильм» на «кто, для кого и в каких условиях его делает и смотрит». Каждая лекция заканчивается строкой «оптика социолога» — что он видит там, где формалист, психоаналитик или семиотик предложат другое объяснение.</p></div>
+    </div>
+  </section>
+
+  <!-- РЕЗУЛЬТАТЫ И КОМПЕТЕНЦИИ -->
+  <section class="section" id="comp">
+    <div class="eyebrow">Результаты обучения</div>
+    <h2 class="stitle">Компетенции</h2>
+    <div class="grid3">
+      <div class="card"><span class="k">Знать</span><p>Хронологию и метод дисциплины; ключевые традиции — марксизм, теории культуры, Бурдьё, феминизм, постколониальную критику, production studies, отечественную школу.</p></div>
+      <div class="card ochre"><span class="k">Уметь</span><p>Различать три уровня анализа; проводить контент-анализ репрезентаций класса, гендера и расы; читать фильм как документ эпохи и как продукт индустрии.</p></div>
+      <div class="card"><span class="k">Владеть</span><p>Понятийным аппаратом социологии кино; навыком социологического разбора фильма; основами визуальной социологии и работы с данными о киноаудитории.</p></div>
+    </div>
+  </section>
+
+  <!-- ФОРМЫ КОНТРОЛЯ -->
+  <section class="section" id="control">
+    <div class="eyebrow">Оценивание</div>
+    <h2 class="stitle">Формы контроля</h2>
+    <div class="deflist">
+      <div class="def"><div class="term">Текущий контроль</div><p>Работа на семинарах, участие в дискуссии по кейсам, устный разбор фильма через заданную теоретическую рамку.</p></div>
+      <div class="def"><div class="term">Промежуточный</div><p>Контент-аналитическое эссе: репрезентация класса / гендера / расы в выбранном фильме (с элементарной кодировкой и количественной опорой).</p></div>
+      <div class="def"><div class="term">Итоговый</div><p>Социологический анализ одного фильма «до самого дна»: институт производства, текст-репрезентация, аудитория и рецепция — с устной защитой.</p></div>
+      <div class="def"><div class="term">Критерии</div><p>Корректность понятий; уместность рамки; работа с эмпирикой (данные проката, опросы, кодировка); самостоятельность интерпретации; академическая честность (границы «рефлекционизма»).</p></div>
+    </div>
+  </section>
+
+  <!-- ============ РАЗДЕЛ I ============ -->
+  <div class="divider" id="s1">
+    <div class="bignum">I</div>
+    <h2>Становление дисциплины</h2>
+    <div class="sub">Как родилась социология кино и как социолог смотрит фильм. Здесь же вводятся обе сквозные нити — Кракауэр и Бурдьё.</div>
+  </div>
+
+  <div class="block-lecs">
+
+    <article class="lec" id="l1">
+      <div class="lec-h"><div class="lec-n">01</div><div>
+        <div class="lec-t">Как родилась социология кино</div>
+        <div class="lec-s">Хронология дисциплины: Альтенло → Блумер → Кракауэр → Фридман и Морен → Ловелл</div>
+      </div></div>
+      <div class="lec-body">
+        <div class="threads"><span class="thread">здесь вводится нить: Кракауэр</span></div>
+        <p class="lec-an">Кино сразу становится <b>социальным фактом</b>: публичный киносеанс — новый институт досуга. Прослеживаем рождение дисциплины по шагам: аудиторные обследования (Альтенло 1914, Блумер и Пейн-фонд 1933) → веймарская критика <b>Кракауэра</b>, читающего фильм как воспроизводство социальной реальности → programmatic-тексты Фридмана и Морена (1952–1955) → первая систематизация предметного поля (Ловелл 1971) и англоязычные синтезаторы (Джарви, Тюдор).</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Точка отсчёта. Из аудиторных обследований и веймарской критики вырастает всё остальное — сначала интерес к зрителю, потом к фильму, затем к индустрии.</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">социальный факт</span><span class="chip">массовое искусство</span><span class="chip">киноаудитория</span><span class="chip">воспроизводство соц. реальности</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">Э. Альтенло, «К социологии кино» (1914); Г. Блумер, «Movies and Conduct» (Пейн-фонд, 1933); З. Кракауэр, «Орнамент массы» (1927), «Служащие» (1930); Ж. Фридман и Э. Морен, «Sociologie du cinéma» (1952), «De la méthode…» (1955); Т. Ловелл, «Sociology and the Cinema» // Screen (1971).</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Прибытие поезда…» · 1896</span><span class="chip f">«Новый кинотеатр „Парадизо“» · 1988</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Почему социология сначала изучала зрителя, а не фильм?</li><li>Что значит «кино как воспроизводство социальной реальности» у Кракауэра?</li><li>Чем предмет социологии кино отличается от киноведения?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Там, где историк кино видит «первый сеанс», социолог видит рождение нового социального института.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Кракауэр З., «Орнамент массы»; Жабский М., «Социология кино» (2015), гл. 1; Lovell T., «Sociology and the Cinema» (1971).</div></div>
+      </div>
+    </article>
+
+    <article class="lec" id="l2">
+      <div class="lec-h"><div class="lec-n">02</div><div>
+        <div class="lec-t">Оптика и метод</div>
+        <div class="lec-s">Как социолог смотрит фильм — и что он даёт теории кино</div>
+      </div></div>
+      <div class="lec-body">
+        <div class="threads"><span class="thread">нить: Кракауэр (симптоматическое чтение)</span></div>
+        <p class="lec-an">Методологический аппарат: три уровня анализа (<b>производство — текст — рецепция</b>) и методы от анкеты Альтенло до визуальной социологии. Отдельно — <b>симптоматическое чтение</b> Кракауэра: фильм как след коллективного бессознательного эпохи. Показываем, что социологическая рамка добавляет к семиотике и психоанализу — институт, класс, аудиторию.</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Задаёт инструментарий, которым пользуются все последующие лекции; превращает нить Кракауэра из идеи в метод.</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">уровни анализа</span><span class="chip">контент-анализ</span><span class="chip">симптоматическое чтение</span><span class="chip">репрезентация</span><span class="chip">рефлексивность</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">А. Тюдор, «Image and Influence» (1974); П. Сорлен, «Sociologie du cinéma» (1977); Д. Харпер (визуальная социология); З. Кракауэр как метод.</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Человек с киноаппаратом» · 1929</span><span class="chip f">«Расёмон» · 1950</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Как один фильм читают автор, семиотик и социолог?</li><li>Где границы контент-анализа: что он видит и чего не видит?</li><li>Что значит читать фильм «симптоматически»?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где формалист спрашивает «как это сделано», социолог — «чей social order это делает возможным».</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Tudor A., «Image and Influence» (1974); Романов П., Ярская-Смирнова Е., «Визуальная антропология: настройка оптики» (2009).</div></div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ============ РАЗДЕЛ II ============ -->
+  <div class="divider" id="s2">
+    <div class="bignum">II</div>
+    <h2>Теоретические традиции</h2>
+    <div class="sub">Хронологически: марксизм (корень) → теории культуры (неомарксистский виток) → Бурдьё → критические повороты (гендер, империя).</div>
+  </div>
+
+  <div class="block-lecs">
+
+    <article class="lec" id="l3">
+      <div class="lec-h"><div class="lec-n">03</div><div>
+        <div class="lec-t">Марксистская традиция</div>
+        <div class="lec-s">Корень критической традиции: класс, капитал, идеология</div>
+      </div></div>
+      <div class="lec-body">
+        <p class="lec-an">Начинаем с корня. Кино и общественные отношения: <b>базис/надстройка</b>, идеология, товарность культурной формы; Грамши (гегемония), Альтюссер (интерпелляция) — пунктиром, как язык, из которого затем вырастут и теории культуры, и теория аппарата. Здесь марксизм работает как <b>социологическая</b> рамка классового анализа; аппаратно-эстетическая линия подробно разобрана в отдельном курсе «Марксистская теория кино».</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Исторический и логический корень. Из него вырастают Франкфурт и Бирмингем (Л04), а во многом и Бурдьё (Л05) — как ответ Марксу и Веберу.</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">класс</span><span class="chip">идеология</span><span class="chip">гегемония</span><span class="chip">интерпелляция</span><span class="chip">товарный фетишизм</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">К. Маркс и Ф. Энгельс (об идеологии); А. Грамши («Тюремные тетради»); Л. Альтюссер, «Идеология и идеологические аппараты государства» (1970). Спор о реализме — отсылка к Лукачу.</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Метрополис» · 1927</span><span class="chip f">«Сквозь снег» · 2013</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Как фильм «интерпеллирует» зрителя в классовый субъект?</li><li>Гегемония vs прямая пропаганда: в чём социологическая разница?</li><li>Может ли кассовый блокбастер быть идеологически критическим?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где автор видит «личную драму героя», социолог видит классовую позицию, говорящую его устами.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Альтюссер Л., «Идеология и идеологические аппараты…»; Грамши А. (избранное); ср. курс «Марксистская теория кино».</div></div>
+      </div>
+    </article>
+
+    <article class="lec" id="l4">
+      <div class="lec-h"><div class="lec-n">04</div><div>
+        <div class="lec-t">Теории культуры</div>
+        <div class="lec-s">Франкфурт и Бирмингем; производство культуры</div>
+      </div></div>
+      <div class="lec-body">
+        <div class="threads"><span class="thread">нить: Кракауэр («орнамент массы»)</span></div>
+        <p class="lec-an">Неомарксистский виток. <b>Франкфуртская школа</b> (культуриндустрия Адорно и Хоркхаймера; сюда же ранний <b>Кракауэр</b> с «орнаментом массы» — геометрия тел как форма капиталистической рациональности), затем <b>Бирмингемская школа</b> (кодирование/декодирование Холла), перспектива «<b>производства культуры</b>» Петерсона и <b>ДиМаджио</b> (институционализация культурной ценности).</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Мост от Маркса (Л03) к Бурдьё (Л05): 1930–40-е — Франкфурт, 1960–70-е — Бирмингем, 1980-е — социология производства культуры.</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">культуриндустрия</span><span class="chip">орнамент массы</span><span class="chip">кодирование / декодирование</span><span class="chip">производство культуры</span><span class="chip">институционализация</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">Т. Адорно и М. Хоркхаймер, «Диалектика Просвещения» (1947); З. Кракауэр, «Орнамент массы» (1927); С. Холл, «Encoding/Decoding» (1973); Р. Петерсон («производство культуры»); П. ДиМаджио, «Cultural Entrepreneurship…» (1982).</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Золотоискатели 1933» · Беркли</span><span class="chip f">«Белоснежка и семь гномов» · 1937</span><span class="chip f">«Матрица» · 1999</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>«Орнамент массы»: как геометрия тел Беркли говорит о капитализме?</li><li>«Культуриндустрия» Адорно — приговор или диагноз?</li><li>Что значит декодировать фильм оппозиционно — и кто способен на это?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где эстет видит «зрелищный номер», социолог видит рациональность фабрики, перенесённую на сцену.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Адорно Т., Хоркхаймер М., «Диалектика Просвещения»; Кракауэр З., «Орнамент массы»; DiMaggio P., «Cultural Entrepreneurship in Nineteenth-Century Boston» (1982).</div></div>
+      </div>
+    </article>
+
+    <article class="lec" id="l5">
+      <div class="lec-h"><div class="lec-n">05</div><div>
+        <div class="lec-t">Пьер Бурдьё</div>
+        <div class="lec-s">Габитус, капитал, поле и социальная критика вкуса</div>
+      </div></div>
+      <div class="lec-body">
+        <div class="threads"><span class="thread">здесь вводится нить: Бурдьё</span></div>
+        <p class="lec-an">Синтез после Маркса и Вебера. <b>Габитус, капитал</b> (экономический, культурный, социальный, символический), <b>поле</b>; «<b>Различение</b>» (1979) — вкус как классовый маркер. Ранние работы о фотографии («Средний вкус», 1965) и музеях («Любовь к искусству», 1966) — прямой мост от социологии визуальных искусств к кино. Концепты Бурдьё дальше работают в Л10 (легитимация) и Л11 (аудитория).</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Один из трёх опорных языков курса (наряду с марксизмом и производством культуры). Не «истина в последней инстанции»: в Л10–Л11 сталкивается с критикой (тезис о «всеядном», Лаир).</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">габитус</span><span class="chip">культурный капитал</span><span class="chip">поле</span><span class="chip">символическая власть</span><span class="chip">дистинкция</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">П. Бурдьё: «Различение» (1979), «Поле культурного производства», «Un art moyen / Фотография» (1965), «Любовь к искусству» (1966).</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Паразиты» · 2019</span><span class="chip f">«Квадрат» · 2017</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Почему «вкус к артхаусу» распределён по классам — и как это показывает «Паразиты»?</li><li>Как культурный капитал конвертируется в символическую власть?</li><li>Где пределы Бурдьё — что упускает жёсткая гомология «класс = вкус»?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где критик говорит «это дело вкуса», социолог показывает, чей это вкус и какую границу он охраняет.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Бурдьё П., «Различение»; «Любовь к искусству» (1966); «Поле культурного производства».</div></div>
+      </div>
+    </article>
+
+    <article class="lec" id="l6">
+      <div class="lec-h"><div class="lec-n">06</div><div>
+        <div class="lec-t">Феминистская оптика</div>
+        <div class="lec-s">Гендер, взгляд, репрезентация — и неравенство индустрии</div>
+      </div></div>
+      <div class="lec-body">
+        <p class="lec-an">Критический поворот 1970-х. <b>Текст</b>: «мужской взгляд» Малви, женское/контр-кино Джонстон, «оппозиционный взгляд» bell hooks. <b>Институт</b>: гендерное неравенство производства — «целлулоидный потолок» Лаузен, Институт Джины Дэвис, тест Бекдел как инструмент контент-анализа.</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Первый из «критических поворотов»: переносит фокус с класса на гендер, соединяя текстуальный анализ с социологией индустрии.</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">мужской взгляд</span><span class="chip">объективация</span><span class="chip">репрезентация</span><span class="chip">целлулоидный потолок</span><span class="chip">интерсекциональность</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">Л. Малви, «Визуальное удовольствие и нарративное кино» (Screen, 1975); М. Хаскелл, «From Reverence to Rape» (1974); К. Джонстон (1973); b. hooks, «The Oppositional Gaze» (1992); М. Лаузен, «The Celluloid Ceiling».</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Головокружение» · 1958</span><span class="chip f">«Жанна Дильман» · 1975</span><span class="chip f">«Барби» · 2023</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Как устроен «мужской взгляд» и можно ли его развернуть?</li><li>Что даёт тест Бекдел — и в чём его пределы как метрики?</li><li>«Барби»: критика индустрии или её самый прибыльный продукт?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где психоанализ объясняет взгляд структурой желания, социолог — гендерным порядком индустрии.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Малви Л., «Визуальное удовольствие…»; hooks b., «The Oppositional Gaze»; Lauzen M., «The Celluloid Ceiling» (annual).</div></div>
+      </div>
+    </article>
+
+    <article class="lec" id="l7">
+      <div class="lec-h"><div class="lec-n">07</div><div>
+        <div class="lec-t">Колониализм и постколониальная критика</div>
+        <div class="lec-s">Ориентализм, раса, Третий кинематограф</div>
+      </div></div>
+      <div class="lec-body">
+        <p class="lec-an">Второй критический поворот. Кино как машина имперской репрезентации — и как оружие деколонизации. <b>Ориентализм</b> Саида, <b>Фанон</b> (взгляд, кожа, деколонизация), «<b>Третий кинематограф</b>» Соланаса и Хетино (1969), критика евроцентризма Шохат и Стама.</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Расширяет критику с класса и гендера на расу и империю; готовит вопрос о «национальной» социологии кино (Л14).</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">ориентализм</span><span class="chip">Другой</span><span class="chip">колониальный взгляд</span><span class="chip">евроцентризм</span><span class="chip">Третий кинематограф</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">Э. Саид, «Ориентализм» (1978); Ф. Фанон, «Чёрная кожа, белые маски» (1952); Ф. Соланас и О. Хетино, «К вопросу о Третьем кинематографе» (1969); Э. Шохат и Р. Стам, «Unthinking Eurocentrism» (1994).</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Битва за Алжир» · 1966</span><span class="chip f">«Чёрная Пантера» · 2018</span><span class="chip f">«Прочь» · 2017</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Как «колониальный взгляд» строит образ Другого?</li><li>Третий кинематограф: эстетика или политическая практика?</li><li>Может ли голливудский блокбастер быть постколониальным высказыванием?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где семиотик разбирает знак «экзотики», социолог видит геополитику производства этого знака.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Саид Э., «Ориентализм»; Shohat E., Stam R., «Unthinking Eurocentrism»; Solanas F., Getino O., «Towards a Third Cinema».</div></div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ============ РАЗДЕЛ III ============ -->
+  <div class="divider" id="s3">
+    <div class="bignum">III</div>
+    <h2>Производство, ценность, аудитории</h2>
+    <div class="sub">Кто делает фильм, кто назначает его «великим» и кто его смотрит — вплоть до платформ и алгоритмов.</div>
+  </div>
+
+  <div class="block-lecs">
+
+    <article class="lec" id="l8">
+      <div class="lec-h"><div class="lec-n">08</div><div>
+        <div class="lec-t">Кино как социальный институт</div>
+        <div class="lec-s">Индустрия и «миры искусства»</div>
+      </div></div>
+      <div class="lec-body">
+        <p class="lec-an">Фильм создаёт не автор, а кооперативная сеть. <b>«Миры искусства»</b> Беккера, Голливуд как студийная система, профессии и конвенции, <b>гейткиперы</b> и продюсерская власть. Учредительная лекция для двух следующих — про труд (Л09) и про ценность (Л10).</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Беккер (1982) — классический фундамент социологии производства; отсюда вырастают современные production studies (Л09).</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">мир искусства</span><span class="chip">конвенция</span><span class="chip">гейткипер</span><span class="chip">студийная система</span><span class="chip">разделение труда</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">Х. Беккер, «Art Worlds» (1982); Дж. Уако, «The Sociology of Film Art» (1965); И. Джарви, «Towards a Sociology of the Cinema» (1970).</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Бульвар Сансет» · 1950</span><span class="chip f">«Игрок» · 1992</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Кто автор фильма с точки зрения «мира искусства»?</li><li>Что делает гейткипер и как он влияет на то, что мы видим?</li><li>Студийная система: фабрика или творческая среда?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где критик хвалит «авторское видение», социолог видит труд сотен людей и конвенции ремесла.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Becker H., «Art Worlds» (1982); Huaco G., «The Sociology of Film Art» (1965).</div></div>
+      </div>
+    </article>
+
+    <article class="lec new" id="l9">
+      <div class="lec-h"><div class="lec-n">09</div><div>
+        <div class="lec-t">Production studies <span class="badge">новая</span></div>
+        <div class="lec-s">Как на самом деле делается фильм: труд, организация, «ниже линии»</div>
+      </div></div>
+      <div class="lec-body">
+        <p class="lec-an">Современное этнографическое крыло социологии производства. Не «кто автор», а <b>как устроен труд</b>: индустриальная рефлексивность (Колдуэлл), работники «ниже линии» (Майер), креативный труд и его прекарность (Хесмондалг и Бейкер). Сюда же — платформенное производство: как Netflix меняет то, что и как снимается.</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Продолжает Беккера (Л08) в его сегодняшней, полевой форме; поставляет эмпирику для разговора о платформах (Л11).</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">production studies</span><span class="chip">индустриальная рефлексивность</span><span class="chip">«ниже линии»</span><span class="chip">креативный труд</span><span class="chip">прекарность</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">Дж. Колдуэлл, «Production Culture» (2008); В. Майер, «Below the Line» (2011); Майер, Бэнкс, Колдуэлл (ред.), «Production Studies» (2009); Д. Хесмондалг и С. Бейкер, «Creative Labour» (2011).</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Американская ночь» · 1973</span><span class="chip f">«Сердца тьмы» · 1991 (док)</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Кто такие работники «ниже линии» и почему их труд невидим?</li><li>Что «Американская ночь» показывает о коллективной природе съёмки?</li><li>Как платформа меняет условия креативного труда?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где зритель видит готовый фильм, социолог видит организацию труда и её конфликты.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Caldwell J., «Production Culture» (2008); Mayer V., «Below the Line» (2011); Hesmondhalgh D., Baker S., «Creative Labour» (2011).</div></div>
+      </div>
+    </article>
+
+    <article class="lec new" id="l10">
+      <div class="lec-h"><div class="lec-n">10</div><div>
+        <div class="lec-t">Культурная легитимация <span class="badge">новая</span></div>
+        <div class="lec-s">«Кто делает фильмы великими?» Фестивали, критика, канон</div>
+      </div></div>
+      <div class="lec-body">
+        <div class="threads"><span class="thread">нить: Бурдьё (поле, символический капитал)</span></div>
+        <p class="lec-an">Один из центральных вопросов современной социологии искусства: почему одни фильмы становятся классикой, а другие исчезают? Инстанции легитимации: <b>фестивали, кинокритика, университет, Criterion, Sight&nbsp;&amp;&nbsp;Sound, Letterboxd, премии, канон</b>. Как символический капитал производится и присуждается.</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Соединяет Бурдьё (поле, символическая власть) с ДиМаджио (институционализация ценности) и Беккером; поворот от «производства» к «оценке».</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">легитимация</span><span class="chip">символический капитал</span><span class="chip">канон</span><span class="chip">гейткиперы вкуса</span><span class="chip">консекрация</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">П. Бурдьё («Поле культурного производства»); П. ДиМаджио («Classification in Art», 1987); Х. Беккер; исследования фестивалей и кинокритики.</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Бёрдмэн» · 2014</span><span class="chip f">«Жизнь сама по себе» · 2014 (док)</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Кто присуждает фильму статус «великого» — и на каком основании?</li><li>Как Letterboxd и алгоритмы меняют старую систему легитимации?</li><li>Чем канон Sight&nbsp;&amp;&nbsp;Sound отличается от кассовых рейтингов?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где критик выносит «объективный вердикт», социолог видит институт, производящий этот вердикт.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Бурдьё П., «Поле культурного производства»; DiMaggio P., «Classification in Art» (1987); Becker H., «Art Worlds».</div></div>
+      </div>
+    </article>
+
+    <article class="lec" id="l11">
+      <div class="lec-h"><div class="lec-n">11</div><div>
+        <div class="lec-t">Аудитория и рецепция</div>
+        <div class="lec-s">От анкеты Альтенло до цифрового зрителя и алгоритма</div>
+      </div></div>
+      <div class="lec-body">
+        <div class="threads"><span class="thread">нить: Бурдьё (капитал, потребление)</span></div>
+        <p class="lec-an">Зритель как объект и субъект. Ранние обследования → <b>активная аудитория</b> (Холл, Морли) → синефилия и фанатские сообщества (Дженкинс, Самутина) → <b>цифровой зритель</b>: платформы, рекомендательные алгоритмы, датафикация вкуса и платформенный капитализм (Лобато, Лотц). Сюда стянут «цифровой» сюжет вместо отдельного капстоуна.</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Замыкает аудиторную линию, открытую в Л01 (Альтенло), и доводит её до платформ; проверяет Бурдьё вопросом об алгоритмическом вкусе.</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">активная аудитория</span><span class="chip">синефилия</span><span class="chip">фандом</span><span class="chip">рекомендательный алгоритм</span><span class="chip">датафикация вкуса</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">С. Холл; Д. Морли, «The Nationwide Audience» (1980); Г. Дженкинс, «Convergence Culture» (2006); Р. Лобато, «Netflix Nations» (2019); А. Лотц, «Portals» (2017); Н. Самутина; И. Полуэхтова.</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Пурпурная роза Каира» · 1985</span><span class="chip f">«В поисках галактики» · 1999</span><span class="chip f">«Социальная дилемма» · 2020</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Насколько «активен» зритель — и где границы его свободы декодирования?</li><li>Рекомендательный алгоритм — это новый «легитимный вкус» по Бурдьё?</li><li>Как менялась постсоветская киноаудитория?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где индустрия видит «просмотры», социолог видит социальную практику и распределение капитала.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Полуэхтова И., «Кино в оценках… постсоветского зрителя» (1996); Jenkins H., «Convergence Culture» (2006); Lobato R., «Netflix Nations» (2019).</div></div>
+      </div>
+    </article>
+
+    <article class="lec" id="l12">
+      <div class="lec-h"><div class="lec-n">12</div><div>
+        <div class="lec-t">Звёзды, жанр и социальное воображаемое</div>
+        <div class="lec-s">Звезда как социальный тип, жанр как коллективный контракт</div>
+      </div></div>
+      <div class="lec-body">
+        <p class="lec-an"><b>Звезда</b> как социальный тип и экономический актив (Морен, Дайер); <b>жанр</b> как коллективная конвенция и «общественный сон»; кино как социальное воображаемое эпохи, где типажи и жанры кодируют коллективные страхи и желания.</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Продолжает линию Морена из Л01; звёздная социология — предок нынешних celebrity- и influencer-studies.</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">звезда</span><span class="chip">звёздный образ</span><span class="chip">харизма</span><span class="chip">жанр как контракт</span><span class="chip">социальное воображаемое</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">Э. Морен, «Звёзды» (1957); Р. Дайер, «Stars» (1979), «Heavenly Bodies»; социология жанра.</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Всё о Еве» · 1950</span><span class="chip f">«Искатели» · 1956</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Из чего складывается «звёздный образ» и кому он принадлежит?</li><li>Почему жанр — это социальный контракт со зрителем?</li><li>Вестерн как миф нации: что он говорит об американском обществе?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где фанат любит «саму звезду», социолог видит коллективно произведённый образ и его рынок.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Морен Э., «Звёзды»; Dyer R., «Stars» (1979).</div></div>
+      </div>
+    </article>
+
+    <article class="lec" id="l13">
+      <div class="lec-h"><div class="lec-n">13</div><div>
+        <div class="lec-t">Кино как документ эпохи</div>
+        <div class="lec-s">Кульминация нити Кракауэра: рефлекционизм и его пределы</div>
+      </div></div>
+      <div class="lec-body">
+        <div class="threads"><span class="thread">кульминация нити: Кракауэр</span></div>
+        <p class="lec-an">Собираем нить Кракауэра. Фильм как <b>симптом коллективной психеи</b> («От Калигари до Гитлера», 1947); Уако — социальная детерминация киностилей; Сорлен — кино и историческое воображение. И честный разбор <b>пределов «рефлекционизма»</b>: кино не столько отражает общество, сколько преломляет его.</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Замыкает кракауэровскую нить, начатую в Л01–Л02; переводит «симптоматическое чтение» из метода в отдельную проблему.</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">рефлекционизм</span><span class="chip">симптом</span><span class="chip">коллективная ментальность</span><span class="chip">детерминация формы</span><span class="chip">историческое воображаемое</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">З. Кракауэр, «От Калигари до Гитлера» (1947), «Орнамент массы» (1927); Дж. Уако, «The Sociology of Film Art» (1965); П. Сорлен, «The Film in History» (1980).</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Кабинет доктора Калигари» · 1920</span><span class="chip f">«Рим, открытый город» · 1945</span><span class="chip f">«Джокер» · 2019</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Что значит читать «Калигари» как симптом веймарской тревоги?</li><li>Каковы пределы рефлекционизма — где «зеркало» обманывает?</li><li>«Джокер» как социальный барометр 2010-х: что он преломляет?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Где формалист видит стиль, социолог видит симптом эпохи — и спорит о том, где кончается это чтение.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Кракауэр З., «От Калигари до Гитлера»; Sorlin P., «The Film in History» (1980).</div></div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ============ РАЗДЕЛ IV ============ -->
+  <div class="divider" id="s4">
+    <div class="bignum">IV</div>
+    <h2>Отечественная традиция</h2>
+    <div class="sub">Финал курса: русская линия от «изучения кинозрителя» до сегодняшней визуальной социологии — как самостоятельная традиция.</div>
+  </div>
+
+  <div class="block-lecs">
+
+    <article class="lec" id="l14">
+      <div class="lec-h"><div class="lec-n">14</div><div>
+        <div class="lec-t">Можно ли создать национальную социологию кино? <span class="badge">объединённая</span></div>
+        <div class="lec-s">Отечественная школа от Жабского до визуальной социологии Ярской-Смирновой</div>
+      </div></div>
+      <div class="lec-body">
+        <p class="lec-an">Итоговая лекция. Русская линия как <b>самостоятельная традиция</b>, а не «региональное приложение»: «изучение кинозрителя» 1920-х (Трояновский, Гельмонт) → запрет социологии → возрождение 1960-х → <b>Жабский</b> (функции кино, коммуникативная перспектива, «Социокультурная драма кинематографа»), Хренов, Фохт-Бабушкин → современная <b>визуальная социология</b> (Ярская-Смирнова и Романов, «настройка оптики»; репрезентация «атипичности»; постсоветская аудитория — Полуэхтова). Чем отечественная традиция отличается от французской и американской?</p>
+        <div class="mrow gen"><div class="mk">Место в дисциплине</div><div class="mv">Синтез курса: прогоняет весь пройденный инструментарий через один национальный материал и ставит вопрос о культурном суверенитете дисциплины.</div></div>
+        <div class="mrow"><div class="mk">Понятия</div><div class="mv"><div class="chips"><span class="chip">изучение кинозрителя</span><span class="chip">функции кино</span><span class="chip">визуальная социология</span><span class="chip">атипичность</span><span class="chip">национальная традиция</span></div></div></div>
+        <div class="mrow"><div class="mk">Теоретики / тексты</div><div class="mv">М. Жабский, «Социокультурная драма кинематографа» (2009), «Социология кино» (2015); Н. Хренов, «Публика в истории культуры» (2002); Ю. Фохт-Бабушкин, «Искусство в жизни людей» (2001); Е. Ярская-Смирнова и П. Романов, «Визуальная антропология: настройка оптики» (2009); И. Полуэхтова.</div></div>
+        <div class="mrow"><div class="mk">Фильмы-кейсы</div><div class="mv films"><div class="chips"><span class="chip f">«Чапаев» · 1934</span><span class="chip f">«Москва слезам не верит» · 1979</span><span class="chip f">«Класс коррекции» · 2014</span></div></div></div>
+        <div class="mrow"><div class="mk">Вопросы</div><div class="mv"><ol class="q"><li>Чем отечественная школа отличается от французской и американской?</li><li>Что такое «функции кино» по Жабскому?</li><li>Как визуальная социология читает репрезентацию «атипичности»?</li></ol></div></div>
+        <div class="mrow optics"><div class="mk">Оптика социолога</div><div class="mv optic">Там, где западная теория видит «универсальные» законы кино, отечественная традиция настаивает на национальном контексте.</div></div>
+        <div class="mrow"><div class="mk">Литература</div><div class="mv">Жабский М., «Социокультурная драма кинематографа» (2009); Хренов Н., «Публика в истории культуры» (2002); Романов П., Ярская-Смирнова Е., «Визуальная антропология» (2009).</div></div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- БИБЛИОГРАФИЯ -->
+  <section class="section" id="biblio">
+    <div class="divider" style="margin-top:52px">
+      <div class="bignum">§</div>
+      <h2>Библиография</h2>
+      <div class="sub">Опорный корпус: классика социологии кино и искусства, современные культурные индустрии, отечественная школа.</div>
+    </div>
+
+    <div class="biblio">
+      <h3>Основная — переводная и зарубежная</h3>
+      <div class="reflist">
+        <div class="ref"><span class="rn">01</span><div><b>Альтенло Э.</b> К социологии кино. — 1914.</div></div>
+        <div class="ref"><span class="rn">02</span><div><b>Blumer H.</b> Movies and Conduct (Payne Fund Studies). — 1933.</div></div>
+        <div class="ref"><span class="rn">03</span><div><b>Кракауэр З.</b> Орнамент массы (1927); Служащие (1930); От Калигари до Гитлера (1947).</div></div>
+        <div class="ref"><span class="rn">04</span><div><b>Lovell T.</b> Sociology and the Cinema // Screen 12 (1). — 1971.</div></div>
+        <div class="ref"><span class="rn">05</span><div><b>Бурдьё П.</b> Различение (1979); Любовь к искусству (1966); Поле культурного производства.</div></div>
+        <div class="ref"><span class="rn">06</span><div><b>Адорно Т., Хоркхаймер М.</b> Диалектика Просвещения (гл. «Культуриндустрия»). — 1947.</div></div>
+        <div class="ref"><span class="rn">07</span><div><b>DiMaggio P.</b> Cultural Entrepreneurship in Nineteenth-Century Boston (1982); Classification in Art (1987).</div></div>
+        <div class="ref"><span class="rn">08</span><div><b>Becker H.</b> Art Worlds (1982); <b>Caldwell J.</b> Production Culture (2008); <b>Mayer V.</b> Below the Line (2011).</div></div>
+        <div class="ref"><span class="rn">09</span><div><b>Малви Л.</b> Визуальное удовольствие и нарративное кино // Screen (1975); <b>Саид Э.</b> Ориентализм (1978).</div></div>
+        <div class="ref"><span class="rn">10</span><div><b>Морен Э.</b> Звёзды (1957); <b>Sorlin P.</b> Sociologie du cinéma (1977); <b>Jarvie I.</b> (1970), <b>Tudor A.</b> (1974).</div></div>
+        <div class="ref"><span class="rn">11</span><div><b>Lobato R.</b> Netflix Nations (2019); <b>Lotz A.</b> Portals (2017); <b>Jenkins H.</b> Convergence Culture (2006); <b>Hesmondhalgh D.</b> The Cultural Industries.</div></div>
+      </div>
+
+      <h3>Основная — отечественная</h3>
+      <div class="reflist">
+        <div class="ref"><span class="rn">12</span><div><b>Жабский М. И.</b> Социология кино. — М.: Канон+, 2015; Социокультурная драма кинематографа. — 2009.</div></div>
+        <div class="ref"><span class="rn">13</span><div><b>Хренов Н. А.</b> Публика в истории культуры. — 2002; <b>Фохт-Бабушкин Ю. У.</b> Искусство в жизни людей. — 2001.</div></div>
+        <div class="ref"><span class="rn">14</span><div><b>Романов П. В., Ярская-Смирнова Е. Р.</b> (ред.) Визуальная антропология: настройка оптики. — 2009.</div></div>
+        <div class="ref"><span class="rn">15</span><div><b>Полуэхтова И. А.</b> Кино в оценках и представлениях постсоветского зрителя // СоцИс. — 1996.</div></div>
+      </div>
+
+      <h3>Дополнительная и периодика</h3>
+      <div class="reflist">
+        <div class="ref"><span class="rn">16</span><div><b>Charters W. W.</b> Motion Pictures and Youth: A Summary (1933); <b>Friedmann G., Morin E.</b> Sociologie du cinéma (1952).</div></div>
+        <div class="ref"><span class="rn">17</span><div><b>Холл С.</b> Encoding/Decoding (1973/1980); <b>Бергер Дж.</b> Искусство видеть (1972); <b>Dyer R.</b> Stars (1979).</div></div>
+        <div class="ref"><span class="rn">18</span><div>Журналы: «Социологические исследования» (СоцИс); «Искусство кино»; «Логос» (кинономера); Screen.</div></div>
+        <div class="ref"><span class="rn">19</span><div>Справочное: «Социология кино и театра» // Большая российская энциклопедия.</div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+</div><!-- /.shell -->
+
+<footer>
+  Караван идёт <span class="sep">·</span> авторский курс «Социология кино» <span class="sep">·</span> Карен Аванесян <span class="sep">·</span> учебный план
+</footer>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc-nav a[href^="#"]'));
+  if(!links.length) return;
+  var map={}, ids=[];
+  links.forEach(function(a){
+    var id=a.getAttribute('href').slice(1);
+    var el=document.getElementById(id);
+    if(el){ map[id]={a:a,el:el}; ids.push(id); }  // ids stay in DOM order
+  });
+  if(!ids.length) return;
+  var cur=null;
+  function activate(id){
+    if(id===cur) return; cur=id;
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+id); });
+    var a=map[id].a, box=a.closest('.toc');           // keep the active item visible inside the sticky ToC
+    if(box && box.scrollHeight>box.clientHeight+4){
+      var ar=a.getBoundingClientRect(), br=box.getBoundingClientRect();
+      if(ar.top<br.top+8) box.scrollTop-=(br.top+8-ar.top);
+      else if(ar.bottom>br.bottom-8) box.scrollTop+=(ar.bottom-(br.bottom-8));
+    }
+  }
+  function vh(){ return window.innerHeight||document.documentElement.clientHeight||800; }
+  function update(){
+    var line=vh()*0.30;                                // activation line, 30% down the viewport
+    var chosen=ids[0];
+    for(var i=0;i<ids.length;i++){
+      if(map[ids[i]].el.getBoundingClientRect().top<=line) chosen=ids[i]; else break;
+    }
+    // near the very bottom, force the last item (short trailing sections never cross the line)
+    if(vh()+window.scrollY>=document.documentElement.scrollHeight-4) chosen=ids[ids.length-1];
+    activate(chosen);
+  }
+  var raf=0;
+  function onScroll(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; update(); }); }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  update();
+})();
+</script>
+
+</body>
+</html>

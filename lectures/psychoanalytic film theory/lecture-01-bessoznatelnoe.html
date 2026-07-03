@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 1 — Кино и бессознательное | Психоаналитическая теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b1220;--ink-2:#121a2c;--panel:#18223a;--abyss:#070d18;
+  --bone:#ece6da;--bone-dim:#b4b0a4;--slate:#7e8597;
+  --gold:#c9a14a;--gold-soft:#d8be86;--gold-deep:#8a6d28;
+  --bordeaux:#a23142;--bordeaux-soft:#c25667;
+  --violet:#8a78c8;--violet-soft:#b3a6e0;
+  --line:rgba(236,230,218,.10);--line-strong:rgba(236,230,218,.20);
+  --display:'Playfair Display',Georgia,serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+
+/* ===== СВЕТ: луч, пыль, зерно, виньетка ===== */
+.beam{position:fixed;top:0;right:0;width:82vw;height:122vh;pointer-events:none;z-index:1;opacity:.6;
+  background:linear-gradient(216deg,rgba(201,161,74,.15) 0%,rgba(201,161,74,.05) 24%,transparent 50%);
+  clip-path:polygon(100% -6%,100% 17%,10% 106%,100% 106%);filter:blur(28px)}
+.beam::after{content:"";position:absolute;top:-6%;right:-4%;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(216,190,134,.28),transparent 70%);filter:blur(8px)}
+body.boot .beam{animation:beamOn 1.2s .2s ease both,flick 6.5s 1.8s ease-in-out infinite}
+@keyframes beamOn{0%{opacity:0}18%{opacity:.62}26%{opacity:.2}38%{opacity:.7}52%{opacity:.45}100%{opacity:.6}}
+@keyframes flick{0%,88%,100%{opacity:.6}91%{opacity:.48}93%{opacity:.65}96%{opacity:.54}}
+.dust{position:fixed;top:0;right:0;width:62%;height:100%;pointer-events:none;z-index:1}
+.dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(232,211,154,.8);filter:blur(1px);opacity:0;animation:dfloat 16s linear infinite}
+@keyframes dfloat{0%{transform:translate(0,0);opacity:0}8%{opacity:.6}55%{opacity:.4}100%{transform:translate(-44vw,54vh);opacity:0}}
+.dust i:nth-child(1){top:5%;right:9%;animation-duration:15s;animation-delay:.4s}
+.dust i:nth-child(2){top:13%;right:22%;animation-duration:20s;animation-delay:3s;width:2px;height:2px}
+.dust i:nth-child(3){top:3%;right:31%;animation-duration:13s;animation-delay:5.6s}
+.dust i:nth-child(4){top:21%;right:6%;animation-duration:23s;animation-delay:1.4s;width:2px;height:2px}
+.dust i:nth-child(5){top:9%;right:40%;animation-duration:18s;animation-delay:7.2s}
+.dust i:nth-child(6){top:28%;right:15%;animation-duration:21s;animation-delay:4.1s;width:4px;height:4px}
+.dust i:nth-child(7){top:1%;right:18%;animation-duration:17s;animation-delay:9s;width:2px;height:2px}
+.grain{position:fixed;inset:-4%;pointer-events:none;z-index:1;opacity:.05;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;animation:grainjit .6s steps(2) infinite}
+@keyframes grainjit{0%{transform:translate(0,0)}25%{transform:translate(-1.1%,.7%)}50%{transform:translate(.7%,-1.1%)}75%{transform:translate(-.5%,1%)}100%{transform:translate(0,0)}}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:2;background:radial-gradient(120% 105% at 50% 46%,transparent 58%,rgba(4,7,13,.4) 100%)}
+
+.deck{position:fixed;inset:0;z-index:3}
+.slide{position:absolute;inset:0;padding:50px 62px 62px calc(var(--rail) + 56px);display:none;opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .5s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.slide.thesis.active,.slide.poster.active{animation:breath .55s ease both}
+@keyframes breath{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* ===== RAIL ===== */
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--abyss);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--abyss) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--gold),var(--bordeaux) 70%,var(--abyss));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-mark{position:relative;z-index:2;margin-top:16px;width:30px;height:30px;color:var(--gold);opacity:.92}
+.rail-top{position:relative;z-index:2;margin-top:7px;font-family:var(--display);font-weight:800;font-size:22px;color:var(--gold)}
+.rail .acts{position:relative;z-index:2;display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:20px}
+.rail .a{font-family:var(--mono);font-size:9px;color:var(--slate);border:1px solid var(--line);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.25s}
+.rail .a.cur{color:var(--ink);background:var(--gold);border-color:var(--gold);box-shadow:0 0 12px rgba(201,161,74,.5)}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:var(--slate);text-transform:uppercase;white-space:nowrap}
+.aperture{display:block}.aperture line,.aperture polygon,.aperture circle{vector-effect:non-scaling-stroke}
+
+/* ===== ТИПОГРАФИКА ===== */
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--slate);display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);flex:none}
+.eyebrow .eg{width:14px;height:19px;color:var(--gold);flex:none}
+.eyebrow .sep{color:var(--gold)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:800;line-height:1.0;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:700;line-height:1.04;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px)}
+h3{font-family:var(--display);font-weight:600;font-size:clamp(17px,1.6vw,22px);letter-spacing:.01em;color:var(--bone)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.56}
+.lead{font-size:clamp(17px,1.55vw,22px);line-height:1.5}
+strong{color:#fff;font-weight:700}em{color:var(--gold);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:64%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px;line-height:1.4}
+
+/* ===== COVER + ПУСК ПРОЕКТОРА ===== */
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:66px 66px;opacity:.45;z-index:0}
+.cover .ap-hero{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:min(60vh,630px);color:var(--gold);opacity:.5;z-index:0;filter:drop-shadow(0 0 50px rgba(201,161,74,.13))}
+.ap-hero .apc{stroke-dasharray:300}
+.ap-hero .apl{stroke-dasharray:120}
+.ap-hero .apg{stroke-dasharray:200}
+.cover.play .apc{animation:drawc 1.1s .5s ease both}
+.cover.play .apl{animation:drawl .8s ease both}
+.cover.play line.apl:nth-of-type(1){animation-delay:.85s}
+.cover.play line.apl:nth-of-type(2){animation-delay:.95s}
+.cover.play line.apl:nth-of-type(3){animation-delay:1.05s}
+.cover.play line.apl:nth-of-type(4){animation-delay:1.15s}
+.cover.play line.apl:nth-of-type(5){animation-delay:1.25s}
+.cover.play line.apl:nth-of-type(6){animation-delay:1.35s}
+.cover.play .apg{animation:drawg 1s .95s ease both}
+.cover.play .app{animation:pupil .5s 1.5s cubic-bezier(.2,1.4,.4,1) both;transform-origin:50% 50%}
+@keyframes drawc{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+@keyframes drawl{from{stroke-dashoffset:120}to{stroke-dashoffset:0}}
+@keyframes drawg{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes pupil{from{transform:scale(0)}to{transform:scale(1)}}
+.cover.play .kicker{animation:rise .6s 1.65s ease both}
+.cover.play .course-name{animation:rise .6s 1.8s ease both}
+.cover.play h1{animation:rise .7s 1.95s ease both}
+.cover.play .subt{animation:rise .7s 2.15s ease both}
+.cover.play .meta{animation:rise .7s 2.3s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:18px}
+.course-name{font-family:var(--mono);font-weight:500;font-style:normal;text-transform:uppercase;letter-spacing:.26em;color:var(--gold);font-size:clamp(15px,1.7vw,21px);margin-bottom:16px}
+.cover h1{font-size:clamp(42px,7.4vw,106px)}
+.cover h1 .hl{color:var(--gold)}
+.cover .subt{font-family:var(--display);font-weight:500;font-size:clamp(19px,2.4vw,31px);margin-top:20px;color:var(--bone);line-height:1.14;max-width:26ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:16px 34px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--bordeaux-soft);font-weight:500}
+
+/* ===== POSTER ===== */
+.poster{justify-content:center;position:relative;overflow:hidden}
+.poster-inner{position:relative;z-index:3}
+.poster .knum{font-family:var(--display);font-weight:800;color:var(--gold);font-size:clamp(40px,6vw,84px);line-height:.8;opacity:.92}
+.poster .word{font-family:var(--display);font-weight:800;line-height:.92;letter-spacing:-.02em;font-size:clamp(64px,13vw,184px);margin:.04em 0 .12em;white-space:nowrap}
+.poster .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,27px);color:var(--bone-dim);max-width:31ch;line-height:1.22}
+.emblem{display:block}
+.emblem circle,.emblem path{vector-effect:non-scaling-stroke}
+.poster .kh{position:absolute;right:3%;top:50%;transform:translateY(-50%);height:78vh;width:auto;color:var(--gold);opacity:.92;z-index:0;filter:drop-shadow(0 0 46px rgba(201,161,74,.16))}
+.poster .cone{position:absolute;right:calc(3% + 58px);top:25%;width:56%;height:52%;pointer-events:none;z-index:0;
+  background:linear-gradient(262deg,rgba(232,211,154,.26),rgba(232,211,154,.05) 55%,transparent 78%);
+  clip-path:polygon(100% 36%,100% 52%,0 100%,0 20%);filter:blur(16px);opacity:.85}
+.poster .blot{position:absolute;right:5%;top:50%;transform:translateY(-50%);height:74vh;width:auto;color:var(--gold);opacity:.85;z-index:0;filter:drop-shadow(0 0 44px rgba(201,161,74,.14))}
+.poster .apbig{position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:66vh;color:var(--gold);opacity:.42;z-index:0}
+.mirror .axis{position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(transparent,var(--line-strong) 30%,var(--line-strong) 70%,transparent);z-index:0}
+.reflectword{position:relative;display:inline-block;color:var(--bone)}
+.reflectword .refl{position:absolute;left:0;top:99%;transform:scaleY(-1);color:var(--bone);opacity:.13;-webkit-mask:linear-gradient(#000,transparent 72%);mask:linear-gradient(#000,transparent 72%)}
+
+/* ===== THESIS ===== */
+.slide.thesis{justify-content:center;position:relative;overflow:hidden}
+.thesis .tlbl{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--bordeaux-soft);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.thesis .tlbl::before{content:"";width:30px;height:2px;background:var(--gold)}
+.thesis .big{font-family:var(--display);font-weight:800;font-size:clamp(34px,5.9vw,90px);line-height:1.0;letter-spacing:-.012em;max-width:21ch}
+.thesis .big .hl{color:var(--gold)}.thesis .big .oc{color:var(--bordeaux-soft)}
+.thesis .tsub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,22px);color:var(--bone-dim);margin-top:26px;max-width:54ch}
+
+/* ===== CINEMA (framefull) + ЦВЕТОКОР + КЕН БЁРНС ===== */
+.slide.framefull{justify-content:flex-end;overflow:hidden;padding-right:60px}
+.framefull .shot{position:absolute;inset:0;z-index:0;overflow:hidden;
+  background:radial-gradient(120% 92% at 80% 10%,rgba(201,161,74,.22),transparent 58%),linear-gradient(150deg,var(--panel),var(--abyss) 80%);
+  box-shadow:inset 0 0 220px 60px rgba(7,13,24,.9)}
+.framefull .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .7s ease}
+.framefull .shot.has-image img{opacity:1;animation:kb 26s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.06)}}
+.framefull .shot::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(7,13,24,.96),rgba(7,13,24,.16) 50%,rgba(7,13,24,.55))}
+.gr{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s;z-index:1}
+.gr.g1{background:rgba(11,18,32,.4);mix-blend-mode:multiply}
+.gr.g2{background:radial-gradient(66% 58% at 66% 26%,rgba(201,161,74,.3),transparent 62%);mix-blend-mode:soft-light}
+.shot.has-image .gr,.framebox.has-image .gr{opacity:1}
+.shot.has-image img,.framebox.has-image img{filter:grayscale(.82) contrast(1.08) brightness(.88) sepia(.14) hue-rotate(178deg) saturate(1.12)}
+.framefull .fcap{position:relative;z-index:3;max-width:74%}
+.framefull .fk{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.framefull .fcap h2{font-size:clamp(34px,5.2vw,76px);text-shadow:0 2px 40px rgba(7,13,24,.7)}
+.framefull .kw{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.framefull .kw span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-deep);padding:5px 11px;border-radius:2px;background:rgba(11,18,32,.45)}
+.framefull .logline{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.5vw,20px);color:var(--bone);max-width:46ch}
+.framefull .slide-foot{color:var(--bone-dim);border-color:var(--line-strong)}
+.slide.thesis .slide-foot,.slide.framefull .slide-foot{position:absolute;left:calc(var(--rail) + 56px);right:60px;bottom:24px;margin-top:0;z-index:3}
+.framefull .fyear{position:absolute;z-index:1;font-family:var(--display);font-weight:800;font-size:clamp(110px,18vw,300px);line-height:.74;color:rgba(201,161,74,.16);letter-spacing:-.02em;pointer-events:none;right:40px;top:8px}
+
+/* ===== ФОНЫ-ЗАГЛУШКИ ПО ФИЛЬМАМ ===== */
+.shot.s-cal,.framebox.s-cal{background:repeating-linear-gradient(57deg,rgba(236,230,218,.05) 0 2px,transparent 2px 24px),linear-gradient(150deg,#1b2842,#070d18 82%)}
+.shot.s-nos,.framebox.s-nos{background:radial-gradient(85% 105% at 16% 102%,rgba(0,0,0,.62),transparent 58%),linear-gradient(150deg,#111c2b,#05080f 84%)}
+.shot.s-prg,.framebox.s-prg{background:linear-gradient(90deg,transparent 49.3%,rgba(216,190,134,.26) 49.9%,transparent 50.5%),linear-gradient(150deg,#1d2640,#0a0f1c 82%)}
+.shot.s-sec,.framebox.s-sec{background:repeating-radial-gradient(circle at 70% 38%,rgba(201,161,74,.09) 0 2px,transparent 2px 28px),radial-gradient(120% 95% at 70% 35%,rgba(201,161,74,.18),transparent 60%),linear-gradient(150deg,#1c2338,#0a0f1c 82%)}
+.framebox.s-mel{background:radial-gradient(circle 44px at 28% 40%,rgba(236,230,218,.26),transparent 62%),radial-gradient(circle 44px at 53% 37%,rgba(236,230,218,.2),transparent 62%),radial-gradient(circle 44px at 78% 41%,rgba(236,230,218,.15),transparent 62%),linear-gradient(150deg,#1a2136,#0a0f1c 82%)}
+.framebox.s-wat{background:radial-gradient(38% 50% at 40% 46%,#14161c 0 30%,transparent 42%),radial-gradient(38% 50% at 60% 46%,#14161c 0 30%,transparent 42%),linear-gradient(150deg,#d7d2c4,#b3ab9b)}
+
+/* ===== CALM primitives ===== */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:42px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.22fr .88fr;gap:50px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.card{background:rgba(255,255,255,.022);border:1px solid var(--line);border-top:3px solid var(--gold);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 30px -20px rgba(0,0,0,.6)}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.card h3{margin-bottom:2px}
+.card.bord{border-top-color:var(--bordeaux)}.card.bord .k{color:var(--bordeaux-soft)}
+.deflist{display:flex;flex-direction:column;gap:13px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:13px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:700;color:var(--bordeaux-soft);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px;line-height:1.46}
+.quote{position:relative;padding:8px 0 8px 64px;align-self:center;margin-left:-16px}
+.quote::before{content:"«";position:absolute;left:-28px;top:-56px;font-family:var(--display);font-weight:800;font-size:180px;color:var(--gold);line-height:1;opacity:.5}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,31px);line-height:1.3;display:block}
+.quote .attr{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bordeaux-soft)}
+.framebox{position:relative;border:1px solid var(--line-strong);overflow:hidden;min-height:300px;align-self:stretch;
+  background:radial-gradient(120% 90% at 80% 10%,rgba(201,161,74,.16),transparent 60%),linear-gradient(150deg,var(--panel),var(--abyss) 82%)}
+.framebox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .6s}
+.framebox.has-image img{opacity:1}
+.framebox .fbcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px 16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);background:linear-gradient(transparent,rgba(7,13,24,.92))}
+
+/* ===== СХЕМЫ: айсберг, поток, шесть шагов, хронолента ===== */
+.iceberg{position:relative;align-self:center;width:100%;max-width:740px;border:1px solid var(--line-strong);display:flex;flex-direction:column;min-height:380px;overflow:hidden}
+.iceberg .ib-above{flex:0 0 33%;padding:22px 28px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:linear-gradient(160deg,rgba(236,230,218,.07),transparent)}
+.iceberg .ib-water{height:0;border-top:2px dashed var(--gold);position:relative}
+.iceberg .ib-water span{position:absolute;right:18px;top:-9px;background:var(--ink);padding:0 9px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.iceberg .ib-below{flex:1;padding:24px 28px;display:flex;flex-direction:column;justify-content:center;gap:18px;background:linear-gradient(180deg,rgba(24,34,58,.85),var(--abyss) 94%)}
+.iceberg .ib-zone{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.iceberg .ib-above .ib-zone{color:var(--bone-dim)}.iceberg .ib-below .ib-zone{color:var(--bordeaux-soft)}
+.iceberg .ib-it b{font-family:var(--display);font-weight:600;color:#fff;font-size:15px;display:block}
+.iceberg .ib-it span{font-size:13.5px;color:var(--bone-dim)}
+.flow{display:flex;align-items:stretch;align-self:center;width:100%;gap:0}
+.flow .fstep{flex:1;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:20px 18px;display:flex;flex-direction:column;gap:7px;min-width:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.flow .fstep .fsk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.flow .fstep h3{font-size:clamp(15px,1.5vw,21px)}
+.flow .fstep p{font-size:12.5px;color:var(--bone-dim);line-height:1.42}
+.flow .fstep.a{border-top:3px solid var(--gold)}.flow .fstep.a .fsk{color:var(--gold)}
+.flow .fstep.b{border-top:3px solid var(--bordeaux)}.flow .fstep.b .fsk{color:var(--bordeaux-soft)}
+.flow .farr{display:flex;align-items:center;padding:0 10px;color:var(--gold);font-family:var(--display);font-weight:700;font-size:24px}
+.steps6{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 24px;align-self:center;width:100%;max-width:1100px;margin-left:auto;margin-right:auto;flex:1;align-content:center}
+.st6{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.022);padding:24px 26px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 30px -22px rgba(0,0,0,.6)}
+.st6 .n{font-family:var(--display);font-weight:800;color:var(--gold);font-size:36px;line-height:.85}
+.st6 h3{font-size:clamp(17px,1.7vw,23px)}
+.st6 p{font-size:13.5px;color:var(--bone-dim);line-height:1.5}
+.st6:not(:nth-child(3)):not(:last-child)::after{content:"→";position:absolute;right:-20px;top:50%;transform:translateY(-50%);color:var(--gold);font-family:var(--display);font-weight:700;font-size:19px;z-index:2}
+.st6.hot{border-top:3px solid var(--bordeaux)}.st6.hot .n{color:var(--bordeaux-soft)}
+.method-result{margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.timeline{position:relative;width:100%;align-self:center;padding:4px 0}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line-strong)}
+.timeline .row{display:grid;grid-template-columns:repeat(13,1fr);position:relative}
+.tli{display:grid;grid-template-rows:96px 14px 96px;justify-items:center;align-items:center}
+.tli .dot{grid-row:2;width:9px;height:9px;border-radius:50%;background:var(--slate)}
+.tli .dot.g{background:var(--gold);box-shadow:0 0 12px rgba(201,161,74,.55)}
+.tli .dot.b{background:var(--bordeaux);box-shadow:0 0 12px rgba(162,49,66,.5)}
+.tli .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;color:var(--bone-dim);text-align:center;line-height:1.35;max-width:94px;text-transform:uppercase}
+.tli .lab b{display:block;font-size:12px;color:var(--gold);letter-spacing:.1em;margin-bottom:3px;font-weight:500}
+.tli:nth-child(odd) .lab{grid-row:1;align-self:end;padding-bottom:10px}
+.tli:nth-child(even) .lab{grid-row:3;align-self:start;padding-top:10px}
+
+/* ===== ПОЛЕ СПОРА ===== */
+.dispute{width:100%;align-self:center}
+.spine{position:relative;padding:42px 0}
+.spine::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line-strong)}
+.voices{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.voice{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:14px 15px 12px;border-top:3px solid var(--gold);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.voice.f2{border-top-color:var(--bordeaux)}
+.voice.f3{border-top-color:var(--slate)}
+.voice.f4{border-top-color:var(--violet)}
+.voice::before{content:"";position:absolute;left:50%;width:1px;height:26px;background:var(--line-strong)}
+.voice:nth-child(odd){transform:translateY(-32px)}
+.voice:nth-child(odd)::before{bottom:-27px}
+.voice:nth-child(even){transform:translateY(32px)}
+.voice:nth-child(even)::before{top:-27px}
+.voice .vy{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--gold)}
+.voice.f2 .vy{color:var(--bordeaux-soft)}.voice.f3 .vy{color:var(--slate)}.voice.f4 .vy{color:var(--violet-soft)}
+.voice .vn{font-family:var(--display);font-weight:700;font-size:16.5px;margin:4px 0 5px;color:#fff}
+.voice .vp{font-size:12.5px;color:var(--bone-dim);line-height:1.42}
+.dq{margin-top:24px;font-family:var(--serif);font-style:italic;color:var(--bone);font-size:clamp(14px,1.35vw,17px)}
+.dq b{color:var(--gold);font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-right:10px}
+
+/* ===== СПИСКИ / КАРТА / ПЛЁНКА ===== */
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist.q2{counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:800;color:var(--gold);font-size:clamp(22px,2.4vw,32px)}
+.qlist p{font-size:clamp(14.5px,1.35vw,17.5px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--gold);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bordeaux-soft)}
+.coursemap{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 12px;background:rgba(255,255,255,.018);display:flex;flex-direction:column;gap:7px;min-height:88px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.coursemap .node .nn{font-family:var(--display);font-weight:800;color:var(--gold);font-size:18px}
+.coursemap .node .nt{font-family:var(--display);font-weight:600;font-size:12.5px;line-height:1.1;color:var(--bone-dim)}
+.coursemap .node.cur{background:var(--panel);border-color:var(--gold);border-top:4px solid var(--gold)}
+.coursemap .node.cur .nt{color:#fff}
+.coursemap .node.spec{border-style:dashed}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
+.wfilm.pro::before{background:var(--bordeaux)}
+.wfilm .wy{font-family:var(--display);font-weight:800;font-size:52px;line-height:.8;color:rgba(236,230,218,.1);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.04;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--bordeaux-soft)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.42}
+.lighttable{width:100%;align-self:center;padding:32px 26px;background:linear-gradient(160deg,#1a2338,#0e1524);border:1px solid var(--line-strong);display:flex;gap:18px;justify-content:center;align-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.fs{position:relative;width:15%;background:#080c15;padding:21px 7px;border:1px solid rgba(0,0,0,.6);box-shadow:0 8px 26px rgba(0,0,0,.45)}
+.fs::before,.fs::after{content:"";position:absolute;left:7px;right:7px;height:9px;background:repeating-linear-gradient(90deg,transparent 0 7px,#232c42 7px 13px,transparent 13px 21px)}
+.fs::before{top:6px}.fs::after{bottom:6px}
+.fs .edge{position:absolute;top:21px;left:9px;right:9px;font-family:var(--mono);font-size:6.5px;letter-spacing:.26em;color:#5a6478;white-space:nowrap;overflow:hidden}
+.fs .win{position:relative;aspect-ratio:2/2.7;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.fs .cy{position:absolute;left:9px;bottom:25px;font-family:var(--display);font-weight:800;font-size:18px;color:var(--bone);z-index:2}
+.fs .cn{position:absolute;left:9px;right:9px;bottom:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--bone-dim);z-index:2}
+.fs:nth-child(1){transform:rotate(-1.5deg)}
+.fs:nth-child(2){transform:rotate(.8deg) translateY(6px)}
+.fs:nth-child(3){transform:rotate(-.6deg)}
+.fs:nth-child(4){transform:rotate(1.3deg) translateY(-5px)}
+.fs:nth-child(5){transform:rotate(-.9deg) translateY(4px)}
+.fs:nth-child(6){transform:rotate(1.1deg)}
+.win.w-prg{background:linear-gradient(90deg,transparent 49%,rgba(216,190,134,.24) 49.7%,transparent 50.5%),linear-gradient(150deg,#1d2640,#0a0f1c 82%)}
+.win.w-cal{background:repeating-linear-gradient(57deg,rgba(236,230,218,.05) 0 2px,transparent 2px 20px),linear-gradient(150deg,#1a2740,#070d18 82%)}
+.win.w-nos{background:radial-gradient(85% 105% at 16% 102%,rgba(0,0,0,.5),transparent 58%),linear-gradient(150deg,#111c2b,#06090f 84%)}
+.win.w-sec{background:radial-gradient(120% 95% at 70% 30%,rgba(201,161,74,.16),transparent 60%),linear-gradient(150deg,#1c2338,#0a0f1c 82%)}
+.win.w-md{background:linear-gradient(150deg,#241a33,#0a0f1c 82%)}
+.win.w-out{background:linear-gradient(150deg,#2a1822,#0a0f1c 82%)}
+
+/* ===== NAV / СКЛЕЙКА / TOC ===== */
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--gold);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.nbtn:focus-visible{outline:3px solid var(--bordeaux);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--gold);width:0;transition:width .4s ease}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer;background:transparent;border:0;padding:0;margin:0;-webkit-appearance:none;appearance:none;font:inherit;color:inherit;outline:none}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+.cutfx{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;z-index:45}
+.cutfx.go{animation:cutb .45s ease both}
+@keyframes cutb{0%{opacity:0}18%{opacity:1}55%{opacity:1}100%{opacity:0}}
+.reeldot{position:fixed;top:16px;right:18px;width:15px;height:15px;border-radius:50%;background:radial-gradient(circle,rgba(236,230,218,.9),rgba(236,230,218,.22) 70%);opacity:0;pointer-events:none;z-index:46;filter:blur(.4px)}
+.reeldot.blink{animation:reelb .7s steps(2) 1}
+@keyframes reelb{0%,40%{opacity:0}50%,90%{opacity:.9}100%{opacity:0}}
+.toc-btn{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);background:var(--ink-2);border:1px solid var(--line-strong);padding:8px 12px;border-radius:2px;cursor:pointer;transition:.16s}
+.toc-btn:hover{border-color:var(--gold);color:#fff}
+.toc-panel{position:fixed;inset:0;z-index:60;background:rgba(7,13,24,.82);display:none;opacity:0;transition:opacity .2s}
+.toc-panel.open{display:block;opacity:1}
+.toc-inner{position:absolute;left:0;top:0;bottom:0;width:min(440px,86vw);background:var(--ink-2);border-right:2px solid var(--gold);padding:30px 26px;overflow:auto;box-shadow:0 0 60px rgba(0,0,0,.6)}
+.toc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:12px}
+.toc-title{font-family:var(--display);font-weight:700;font-size:22px;color:var(--bone)}
+.toc-back{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bordeaux-soft);text-decoration:none}
+.toc-list{display:flex;flex-direction:column}
+.toc-item{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:13px 4px;font-family:var(--serif);font-size:16px;color:var(--bone);cursor:pointer;transition:.14s}
+.toc-item:hover{color:var(--gold);padding-left:10px}
+.toc-item.cur{color:var(--bordeaux-soft)}
+.toc-item .tnum{font-family:var(--mono);font-size:12px;color:var(--gold);min-width:24px}
+
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.voices{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .coursemap{grid-template-columns:repeat(2,1fr)}
+  .steps6{grid-template-columns:1fr 1fr}.st6::after{display:none}
+  .timeline::before{display:none}
+  .timeline .row{grid-template-columns:repeat(3,1fr);gap:10px}
+  .tli{grid-template-rows:auto}.tli .dot{display:none}
+  .tli .lab,.tli:nth-child(odd) .lab,.tli:nth-child(even) .lab{grid-row:auto;padding:6px;border:1px solid var(--line)}
+  .voice:nth-child(odd),.voice:nth-child(even){transform:none}
+  .voice::before,.spine::before{display:none}
+  .spine{padding:8px 0}
+  .lighttable{flex-wrap:wrap}.fs{width:30%}
+  .cover-inner,.poster-inner{max-width:100%}
+  .cover .ap-hero,.poster .kh,.poster .blot,.poster .apbig{opacity:.25}
+  .poster .word{white-space:normal;font-size:clamp(46px,15vw,84px)}
+  .flow{flex-direction:column}.flow .farr{transform:rotate(90deg);padding:6px 0;justify-content:center}
+  .framefull .fcap{max-width:100%}
+  .zone{width:24%}.progress{left:0}
+  .slide.thesis .slide-foot,.slide.framefull .slide-foot{left:18px;right:18px}
+  .quote{padding-left:40px;margin-left:0}.quote::before{font-size:120px;left:-8px;top:-30px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.watchlist,.steps6,.lighttable{grid-template-columns:1fr}.fs{width:46%}h2{font-size:25px}}
+
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{width:auto;height:auto;overflow:visible;background:var(--ink)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;animation:none!important}
+  .nav,.progress,.zone,.toc-btn,.toc-panel,.cutfx,.reeldot,.dust,.vignette{display:none!important}
+  .beam,.grain{position:absolute!important}
+  .deck{position:static!important}.rail{position:absolute!important}
+  .slide{position:relative!important;inset:auto!important;display:flex!important;opacity:1!important;width:100%;min-height:100vh;height:100vh;page-break-after:always;break-after:page}
+  .slide:last-child{page-break-after:auto;break-after:auto}
+}
+
+/* ===== АПГРЕЙД: ПРОТЯЖКА · ИРИС · ХОРЕОГРАФИЯ · ГЛАЗ ===== */
+@keyframes advance{0%{transform:translateY(30px);opacity:0}60%{transform:translateY(-4px);opacity:1}100%{transform:none;opacity:1}}
+#gatefx{position:fixed;left:0;right:0;top:-18vh;height:16vh;pointer-events:none;z-index:44;opacity:0;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.6),rgba(0,0,0,0))}
+#gatefx.go{animation:gatego .38s ease both}
+@keyframes gatego{0%{opacity:1;transform:translateY(0)}100%{opacity:1;transform:translateY(125vh)}}
+#irisfx{position:fixed;left:50%;top:50%;width:245vmax;height:245vmax;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 200vmax #000;pointer-events:none;z-index:47;opacity:0}
+#irisfx.go{animation:irisgo .74s ease-in-out both}
+@keyframes irisgo{0%{opacity:1;width:245vmax;height:245vmax}44%{width:0;height:0}56%{width:0;height:0}100%{opacity:1;width:245vmax;height:245vmax}}
+@keyframes fup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+@keyframes land{from{opacity:0;transform:translateY(-34px) rotate(4deg) scale(1.05)}}
+@keyframes vT{from{opacity:0;transform:translateY(-58px)}}
+@keyframes vB{from{opacity:0;transform:translateY(58px)}}
+@keyframes npop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes breathe{to{transform:scale(1.09)}}
+@keyframes drawL{from{stroke-dashoffset:280}to{stroke-dashoffset:0}}
+@keyframes drawS{from{stroke-dashoffset:780}to{stroke-dashoffset:0}}
+@keyframes drawR{from{stroke-dasharray:1660;stroke-dashoffset:1660}to{stroke-dasharray:1660;stroke-dashoffset:0}}
+.slide.active .eyebrow{animation:fup .4s .04s both}
+.slide.active h2{animation:fup .45s .1s both}
+.slide.active .lead{animation:fup .5s .18s both}
+.slide.active .cols>p{animation:fup .5s .3s both}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide)+p{animation:fup .5s .7s both}
+.slide.active .stack>p{animation:fup .45s both}
+.slide.active .stack>p:nth-of-type(1){animation-delay:.28s}
+.slide.active .stack>p:nth-of-type(2){animation-delay:.42s}
+.slide.active .stack>p:nth-of-type(3){animation-delay:.56s}
+.slide.active .tlbl{animation:fup .45s .3s both}
+.slide.active .big{animation:fup .55s .42s both}
+.slide.active .tsub{animation:fup .55s .6s both}
+.slide.active .knum{animation:fup .5s .45s both}
+.slide.active .word{animation:fup .6s .58s both}
+.slide.active .poster .sub{animation:fup .6s .74s both}
+.slide.active .fk{animation:fup .4s .28s both}
+.slide.active .fcap h2{animation:fup .5s .38s both}
+.slide.active .kw span{animation:fup .4s both}
+.slide.active .kw span:nth-child(1){animation-delay:.48s}
+.slide.active .kw span:nth-child(2){animation-delay:.56s}
+.slide.active .kw span:nth-child(3){animation-delay:.64s}
+.slide.active .logline{animation:fup .5s .72s both}
+.slide.active .fyear{animation:fin .9s .2s both}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card{animation:fup .45s both}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(1){animation-delay:.22s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(2){animation-delay:.34s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(3){animation-delay:.46s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(4){animation-delay:.58s}
+.slide.active .def{animation:fup .4s both}
+.slide.active .def:nth-child(1){animation-delay:.18s}
+.slide.active .def:nth-child(2){animation-delay:.26s}
+.slide.active .def:nth-child(3){animation-delay:.34s}
+.slide.active .def:nth-child(4){animation-delay:.42s}
+.slide.active .def:nth-child(5){animation-delay:.5s}
+.slide.active .def:nth-child(6){animation-delay:.58s}
+.slide.active .st6{animation:fup .45s both}
+.slide.active .st6:nth-child(1){animation-delay:.2s}
+.slide.active .st6:nth-child(2){animation-delay:.29s}
+.slide.active .st6:nth-child(3){animation-delay:.38s}
+.slide.active .st6:nth-child(4){animation-delay:.47s}
+.slide.active .st6:nth-child(5){animation-delay:.56s}
+.slide.active .st6:nth-child(6){animation-delay:.65s}
+.slide.active .qlist li{animation:fup .45s both}
+.slide.active .qlist li:nth-child(1){animation-delay:.2s}
+.slide.active .qlist li:nth-child(2){animation-delay:.29s}
+.slide.active .qlist li:nth-child(3){animation-delay:.38s}
+.slide.active .qlist li:nth-child(4){animation-delay:.47s}
+.slide.active .qlist li:nth-child(5){animation-delay:.56s}
+.slide.active .qlist li:nth-child(6){animation-delay:.65s}
+.slide.active .coursemap .node{animation:fup .35s both}
+.slide.active .coursemap .node:nth-child(1){animation-delay:.1s}
+.slide.active .coursemap .node:nth-child(2){animation-delay:.15s}
+.slide.active .coursemap .node:nth-child(3){animation-delay:.2s}
+.slide.active .coursemap .node:nth-child(4){animation-delay:.25s}
+.slide.active .coursemap .node:nth-child(5){animation-delay:.3s}
+.slide.active .coursemap .node:nth-child(6){animation-delay:.35s}
+.slide.active .coursemap .node:nth-child(7){animation-delay:.4s}
+.slide.active .coursemap .node:nth-child(8){animation-delay:.45s}
+.slide.active .coursemap .node:nth-child(9){animation-delay:.5s}
+.slide.active .coursemap .node:nth-child(10){animation-delay:.55s}
+.slide.active .coursemap .node:nth-child(11){animation-delay:.6s}
+.slide.active .coursemap .node:nth-child(12){animation-delay:.65s}
+.slide.active .wfilm{animation:fup .45s both}
+.slide.active .wfilm:nth-child(1){animation-delay:.18s}
+.slide.active .wfilm:nth-child(2){animation-delay:.26s}
+.slide.active .wfilm:nth-child(3){animation-delay:.34s}
+.slide.active .wfilm:nth-child(4){animation-delay:.42s}
+.slide.active .wfilm:nth-child(5){animation-delay:.5s}
+.slide.active .wfilm:nth-child(6){animation-delay:.58s}
+.slide.active .readlist .r{animation:fup .35s both}
+.slide.active .readlist .r:nth-child(1){animation-delay:.14s}
+.slide.active .readlist .r:nth-child(2){animation-delay:.2s}
+.slide.active .readlist .r:nth-child(3){animation-delay:.26s}
+.slide.active .readlist .r:nth-child(4){animation-delay:.32s}
+.slide.active .readlist .r:nth-child(5){animation-delay:.38s}
+.slide.active .readlist .r:nth-child(6){animation-delay:.44s}
+.slide.active .readlist .r:nth-child(7){animation-delay:.5s}
+.slide.active .readlist .r:nth-child(8){animation-delay:.56s}
+.slide.active .flow .fstep{animation:fup .5s both}
+.slide.active .flow .fstep:nth-of-type(1){animation-delay:.25s}
+.slide.active .flow .fstep:nth-of-type(2){animation-delay:.45s}
+.slide.active .flow .fstep:nth-of-type(3){animation-delay:.65s}
+.slide.active .flow .farr{animation:fin .4s both}
+.slide.active .flow .farr:nth-of-type(1){animation-delay:.42s}
+.slide.active .flow .farr:nth-of-type(2){animation-delay:.62s}
+.slide.active .tli{animation:fup .4s both}
+.slide.active .tli:nth-child(1){animation-delay:.12s}
+.slide.active .tli:nth-child(2){animation-delay:.17s}
+.slide.active .tli:nth-child(3){animation-delay:.22s}
+.slide.active .tli:nth-child(4){animation-delay:.27s}
+.slide.active .tli:nth-child(5){animation-delay:.32s}
+.slide.active .tli:nth-child(6){animation-delay:.37s}
+.slide.active .tli:nth-child(7){animation-delay:.42s}
+.slide.active .tli:nth-child(8){animation-delay:.47s}
+.slide.active .tli:nth-child(9){animation-delay:.52s}
+.slide.active .tli:nth-child(10){animation-delay:.57s}
+.slide.active .tli:nth-child(11){animation-delay:.62s}
+.slide.active .tli:nth-child(12){animation-delay:.67s}
+.slide.active .tli:nth-child(13){animation-delay:.72s}
+.slide.active .lighttable .fs{animation:land .55s cubic-bezier(.2,.9,.3,1.1) both}
+.slide.active .lighttable .fs:nth-child(1){animation-delay:.25s}
+.slide.active .lighttable .fs:nth-child(2){animation-delay:.37s}
+.slide.active .lighttable .fs:nth-child(3){animation-delay:.49s}
+.slide.active .lighttable .fs:nth-child(4){animation-delay:.61s}
+.slide.active .lighttable .fs:nth-child(5){animation-delay:.73s}
+.slide.active .lighttable .fs:nth-child(6){animation-delay:.85s}
+.slide.active .voice{animation:vT .5s both}
+.slide.active .voice:nth-child(even){animation-name:vB}
+.slide.active .voice:nth-child(1){animation-delay:.25s}
+.slide.active .voice:nth-child(2){animation-delay:.38s}
+.slide.active .voice:nth-child(3){animation-delay:.51s}
+.slide.active .voice:nth-child(4){animation-delay:.64s}
+.slide.active .dq{animation:fup .45s .82s both}
+.slide.active .quote{animation:fup .5s .24s both}
+.slide.active .framebox{animation:fup .5s .34s both}
+.slide.active .iceberg .ib-above{animation:fup .45s .2s both}
+.slide.active .iceberg .ib-water{animation:fin .4s .45s both}
+.slide.active .iceberg .ib-below{animation:fup .5s .55s both}
+.slide.active .method-result{animation:fup .4s .85s both}
+.slide.active .ringwrap ellipse:nth-of-type(1){animation:drawR 1s .3s ease both}
+.slide.active .ringwrap ellipse:nth-of-type(2){animation:fin .5s 1.1s both}
+.slide.active .ringwrap circle{transform-box:fill-box;transform-origin:center;animation:npop .3s both}
+.slide.active .ringwrap circle:nth-of-type(1){animation-delay:.48s}
+.slide.active .ringwrap circle:nth-of-type(2){animation-delay:.57s}
+.slide.active .ringwrap circle:nth-of-type(3){animation-delay:.66s}
+.slide.active .ringwrap circle:nth-of-type(4){animation-delay:.75s}
+.slide.active .ringwrap circle:nth-of-type(5){animation-delay:.84s}
+.slide.active .ringwrap circle:nth-of-type(6){animation-delay:.93s}
+.slide.active .ringwrap circle:nth-of-type(7){animation-delay:1.02s}
+.slide.active .ringwrap circle:nth-of-type(8){animation-delay:1.11s}
+.slide.active .ringwrap text{animation:fin .45s 1.3s both}
+.slide.active .ringwrap polygon{animation:fin .4s 1.55s both}
+/* глаз-спираль */
+.eyehero .lid{stroke-dasharray:280}
+.eyehero .spir{stroke-dasharray:780}
+.cover.play .lid{animation:drawL .8s .3s ease both}
+.cover.play .lid:nth-of-type(2){animation-delay:.45s}
+.cover.play .spir{animation:drawS 1.15s .75s ease both}
+.cover.play .pupil{transform-box:fill-box;transform-origin:center;animation:pupil .45s 1.55s cubic-bezier(.2,1.5,.4,1) both,breathe 5s 2.4s ease-in-out infinite alternate}
+.rail-mark{width:38px;height:24px}
+svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
+/* SVG-заглушки */
+.win.w-cal{background:repeating-linear-gradient(57deg,rgba(236,230,218,.05) 0 2px,transparent 2px 24px),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%230b1322'/%3E%3Cpath d='M0 112 L22 58 L38 100 L58 42 L76 92 L94 34 L116 88 L134 54 L160 100 L160 160 L0 160 Z' fill='%23141d31' stroke='%23232c42' stroke-width='1'/%3E%3Cpath d='M34 160 L60 88 L88 160 Z' fill='%23d8be86' opacity='.13'/%3E%3Cpath d='M50 112 l8 -3 v12 l-8 3 Z' fill='%23c9a14a' opacity='.5'/%3E%3Cpath d='M100 102 l8 -3 v12 l-8 3 Z' fill='%23c9a14a' opacity='.35'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-nos{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%230c1420'/%3E%3Ccircle cx='132' cy='24' r='14' fill='%23d8be86' opacity='.16'/%3E%3Cpath d='M10 146 h30 v-18 h28 v-18 h28 v-18 h28 v-18 h26' fill='none' stroke='%234a5468' stroke-width='2'/%3E%3Cpath d='M52 146 Q50 106 58 88 L55 52 L62 86 L64 44 L69 86 L74 38 L76 86 L84 50 L80 90 Q90 106 88 146 Z' fill='%2304060b' opacity='.92'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-prg{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%230f1626'/%3E%3Crect x='79' y='6' width='2' height='148' fill='%23d8be86' opacity='.4'/%3E%3Ccircle cx='52' cy='84' r='13' fill='%23070c16'/%3E%3Cpath d='M30 150 q0 -30 22 -34 q22 4 22 34 Z' fill='%23070c16'/%3E%3Ccircle cx='108' cy='84' r='13' fill='%23aeb6c8' opacity='.14'/%3E%3Cpath d='M86 150 q0 -30 22 -34 q22 4 22 34 Z' fill='%23aeb6c8' opacity='.12'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-sec{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%2310182b'/%3E%3Cpath d='M80 78 a24 24 0 0 1 24 24 a34 34 0 0 1 -34 34 a44 44 0 0 1 -44 -44 a54 54 0 0 1 54 -54' fill='none' stroke='%23c9a14a' stroke-width='1.4' opacity='.32'/%3E%3Cpath d='M118 150 v-64 l8 -14 l8 14 v64 Z' fill='%230a0f1c' stroke='%233a4458' stroke-width='1'/%3E%3Cpath d='M22 46 L64 30 L62 37 L24 52 Z' fill='%23cfd6e4' opacity='.8'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-md{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%23171226'/%3E%3Cpath d='M0 62 Q40 46 80 58 Q120 70 160 52' stroke='%233a3354' fill='none' stroke-width='1.5'/%3E%3Cpath d='M20 160 L74 60 L86 60 L140 160 Z' fill='%230d0a18'/%3E%3Cpath d='M80 150 L80 138 M80 126 L80 116 M80 106 L80 98 M80 90 L80 84 M80 77 L80 72' stroke='%23d8be86' stroke-width='3' opacity='.7'/%3E%3Ccircle cx='120' cy='40' r='10' fill='%23b3a6e0' opacity='.35'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-out{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%23150a10'/%3E%3Crect x='66' y='14' width='28' height='20' fill='%23e8e2d4' opacity='.9'/%3E%3Crect x='66' y='14' width='28' height='20' fill='none' stroke='%23a23142' stroke-width='1'/%3E%3Ccircle cx='82' cy='72' r='4' fill='%23ece6da' opacity='.6'/%3E%3Cpath d='M82 76 l-6 10 M82 76 l7 9 M82 76 l-2 14 l-6 8 M80 90 l8 8' stroke='%23ece6da' stroke-width='2' opacity='.55' fill='none'/%3E%3C/svg%3E") center/cover no-repeat}
+/* плейсхолдеры TMDB */
+.shot[data-tmdb]:not(.has-image)::before,.framebox[data-tmdb]:not(.has-image)::before{content:"Кадр · подтянется из TMDB";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate);border:1px dashed var(--line-strong);padding:9px 14px;border-radius:2px;background:rgba(7,13,24,.5);white-space:nowrap}
+/* больше пыли в луче */
+.dust{width:84%}
+.dust i:nth-child(8){top:34%;right:26%;animation-duration:20s;animation-delay:2.2s}
+.dust i:nth-child(9){top:16%;right:52%;animation-duration:23s;animation-delay:6.4s;width:2px;height:2px}
+.dust i:nth-child(10){top:7%;right:60%;animation-duration:18s;animation-delay:.9s}
+.dust i:nth-child(11){top:40%;right:44%;animation-duration:25s;animation-delay:4.8s;width:4px;height:4px}
+.dust i:nth-child(12){top:24%;right:70%;animation-duration:21s;animation-delay:8.1s;width:2px;height:2px}
+.dust i:nth-child(13){top:2%;right:47%;animation-duration:17s;animation-delay:11s}
+.dust i:nth-child(14){top:31%;right:8%;animation-duration:26s;animation-delay:5.5s;width:5px;height:5px}
+/* айсберг */
+.icewrap{width:100%;max-width:900px;align-self:center;flex:1;display:flex;align-items:center}
+.icewrap svg{width:100%;height:auto;display:block}
+.iw-tag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;fill:var(--gold);text-transform:uppercase}
+.iw-lab{font-family:var(--mono);font-size:15px;letter-spacing:.1em;fill:var(--bone-dim);text-transform:uppercase}
+.iw-lab.b{fill:var(--bone)}
+.iw-sub{font-family:var(--serif);font-size:14px;fill:var(--slate)}
+@keyframes drawI{from{stroke-dasharray:900;stroke-dashoffset:900}to{stroke-dasharray:900;stroke-dashoffset:0}}
+.slide.active .iw-sea{animation:fin .6s .1s both}
+.slide.active .iw-line{animation:drawI .9s .2s ease both}
+.slide.active .iw-tip,.slide.active .iw-tipl{animation:fup .55s .5s both}
+.slide.active .iw-mass,.slide.active .iw-massl{animation:fin .7s .75s both}
+.slide.active .iw-ld,.slide.active .iw-lab,.slide.active .iw-sub,.slide.active .iw-tag{animation:fin .5s 1.05s both}
+/* ===== ПЕРЕХОДЫ: КИНО-НАПЛЫВ И ГИПНО-ИРИС ===== */
+.slide.active{animation:dis .9s cubic-bezier(.22,.75,.25,1) both}
+.slide.thesis.active,.slide.poster.active{animation:disT 1.15s cubic-bezier(.25,.8,.25,1) both}
+@keyframes dis{from{opacity:0;transform:scale(1.045);filter:blur(12px) brightness(1.12)}60%{filter:blur(2px) brightness(1.03)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+@keyframes disT{from{opacity:0;transform:scale(1.07);filter:blur(16px) brightness(1.15)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+#irisfx.go{animation:irisgo2 3.2s cubic-bezier(.55,.05,.45,.95) both}
+@keyframes irisgo2{0%{opacity:1;width:245vmax;height:245vmax}36%{width:0;height:0}64%{width:0;height:0}100%{opacity:1;width:245vmax;height:245vmax}}
+#irisem{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:48;opacity:0}
+#irisem svg{width:min(36vh,320px);color:var(--gold);filter:drop-shadow(0 0 26px rgba(201,161,74,.4))}
+#irisem .ilid{fill:none;stroke:currentColor;stroke-width:1.6;stroke-dasharray:280;stroke-dashoffset:280}
+#irisem .ispir{fill:none;stroke:currentColor;stroke-width:1.5;stroke-dasharray:780;stroke-dashoffset:780}
+#irisem .ipup{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+#irisem.go{animation:iemF 3.2s both}
+#irisem.go svg{animation:irot 3.2s cubic-bezier(.4,0,.4,1) both}
+#irisem.go .ilid{animation:drawL .9s .55s ease both}
+#irisem.go .ilid:nth-of-type(2){animation-delay:.68s}
+#irisem.go .ispir{animation:drawS 1.35s .9s ease both}
+#irisem.go .ipup{animation:pupil .45s 1.85s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes iemF{0%,10%{opacity:0}26%,62%{opacity:1}80%,100%{opacity:0}}
+@keyframes irot{from{transform:rotate(-16deg) scale(.9)}to{transform:rotate(8deg) scale(1.02)}}
+/* ===== КРУПНОЕ ПОЛЕ СПОРА ===== */
+.dispute{max-width:1240px;margin:0 auto}
+.spine{padding:56px 0}
+.voices{gap:22px}
+.voice{padding:22px 22px 18px;border-top-width:4px}
+.voice .vy{font-size:12.5px}
+.voice .vn{font-size:21px;margin:6px 0 8px}
+.voice .vp{font-size:14.5px;line-height:1.5}
+.voice:nth-child(odd){transform:translateY(-38px)}
+.voice:nth-child(even){transform:translateY(38px)}
+.voice:nth-child(odd)::before{bottom:-33px;height:32px}
+.voice:nth-child(even)::before{top:-33px;height:32px}
+.dq{font-size:clamp(16px,1.6vw,21px);margin-top:34px}
+/* каталог жуткого */
+.ci{width:36px;height:36px;color:var(--gold);flex:none}
+.card.bord .ci{color:var(--bordeaux-soft)}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(5){animation-delay:.7s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(6){animation-delay:.82s}
+/* ===== ДИВАЙДЕРЫ КРУПНЕЕ · ЗЕРКАЛО СИЛЬНЕЕ ===== */
+.poster-inner{margin-top:5vh}
+.poster .knum{font-size:clamp(46px,7vw,96px)}
+.poster .word{font-size:clamp(64px,13.5vw,196px)}
+.poster .sub{font-size:clamp(19px,2.3vw,30px);max-width:36ch}
+.mirror .axis{width:2px;background:linear-gradient(transparent,rgba(201,161,74,.55) 30%,rgba(201,161,74,.55) 70%,transparent);box-shadow:0 0 20px rgba(201,161,74,.3)}
+.reflectword .refl{opacity:.32;filter:blur(1.2px);-webkit-mask:linear-gradient(#000,transparent 84%);mask:linear-gradient(#000,transparent 84%)}
+.slide.active .refl{animation:shim 4.5s 1.2s ease-in-out infinite alternate}
+@keyframes shim{from{opacity:.22}to{opacity:.4}}
+/* слайд 20: крупный flow */
+.flow{gap:26px;max-width:1200px;margin-left:auto;margin-right:auto;width:100%}
+.fstep{padding:28px 28px 24px}
+.fstep h3{font-size:clamp(19px,2vw,26px)}
+.fstep p{font-size:14.5px;line-height:1.5}
+.fstep .fsk{font-size:12px}
+.farr{font-size:30px}
+/* айсберг крупнее */
+.icewrap{max-width:1140px}
+.iw-lab{font-size:17px}
+.iw-lab.b{font-size:18px}
+.iw-sub{font-size:15.5px}
+.iw-tag{font-size:12px}
+@keyframes drawI{from{stroke-dasharray:1100;stroke-dashoffset:1100}to{stroke-dasharray:1100;stroke-dashoffset:0}}
+/* слайд 20: боксы больше */
+.fstep{padding:34px 30px 30px;min-height:240px;justify-content:center}
+.fstep h3{font-size:clamp(21px,2.2vw,29px)}
+.fstep p{font-size:15.5px;line-height:1.55}
+.fstep .fsk{font-size:12.5px}
+/* слайд 50: карта курса крупнее */
+.coursemap{gap:14px;flex:1;align-content:center}
+.coursemap .node{padding:22px 20px;min-height:132px;gap:10px}
+.coursemap .node .nn{font-size:26px}
+.coursemap .node .nt{font-size:15px;line-height:1.22}
+/* слайд 52: фильмы крупнее */
+.watchlist{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;flex:1;align-content:center}
+.wfilm{padding:30px 28px 26px;min-height:190px;gap:9px}
+.wfilm .wt{font-size:24px}
+.wfilm .wd{font-size:12.5px}
+.wfilm .wn{font-size:14.5px;line-height:1.5}
+.wfilm .wy{font-size:64px;right:18px;top:20px}
+@media print{#irisem{display:none!important}}
+@media print{#gatefx,#irisfx{display:none!important}}
+</style>
+</head>
+<body>
+
+<div class="beam"></div>
+<div class="dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="g-key" viewBox="0 0 120 170"><path d="M22 84 L62 38 L100 88 L94 150 L28 146 Z" fill="none" stroke="currentColor" stroke-width="10"/><path d="M52 148 L54 112 L72 114 L70 150" fill="none" stroke="currentColor" stroke-width="8"/></symbol>
+<symbol id="g-mir" viewBox="0 0 120 170"><line x1="60" y1="12" x2="60" y2="158" stroke="currentColor" stroke-width="8"/><path d="M42 62 L20 85 L42 108" fill="none" stroke="currentColor" stroke-width="11"/><path d="M78 62 L100 85 L78 108" fill="none" stroke="currentColor" stroke-width="11"/></symbol>
+<symbol id="g-ap" viewBox="0 0 220 130"><path d="M14 65 Q110 -6 206 65 Q110 136 14 65 Z" fill="none" stroke="currentColor" stroke-width="14"/><circle cx="110" cy="65" r="32" fill="none" stroke="currentColor" stroke-width="10"/><circle cx="110" cy="65" r="10" fill="currentColor"/></symbol>
+<symbol id="g-blot" viewBox="0 0 120 170"><path d="M60 22 C47 38 54 52 40 62 C25 73 27 97 44 105 C54 110 52 124 60 142 C68 124 66 110 76 105 C93 97 95 73 80 62 C66 52 73 38 60 22 Z" fill="currentColor"/></symbol>
+</defs></svg>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <svg class="rail-mark" viewBox="0 0 220 130" aria-hidden="true">
+    <path d="M14 65 Q110 -6 206 65 Q110 136 14 65 Z" fill="none" stroke="currentColor" stroke-width="12"/>
+    <circle cx="110" cy="65" r="32" fill="none" stroke="currentColor" stroke-width="9"/>
+    <circle cx="110" cy="65" r="9" fill="currentColor"/>
+  </svg>
+  <div class="rail-top">01</div>
+  <div class="acts"><span class="a" data-a="I">I</span><span class="a" data-a="II">II</span><span class="a" data-a="III">III</span><span class="a" data-a="IV">IV</span></div>
+  <div class="rail-label">Психоаналитическая теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- 01 COVER · пуск проектора -->
+  <section class="slide cover active" id="cover">
+    <div class="grid-bg"></div>
+    <svg class="ap-hero eyehero" viewBox="0 0 220 130" aria-hidden="true">
+      <path class="lid" d="M14 65 Q110 -6 206 65" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path class="lid" d="M14 65 Q110 136 206 65" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path class="spir" fill="none" stroke="currentColor" stroke-width="1.4" d="M110 65 a5 5 0 0 1 5 -5 a10 10 0 0 1 10 10 a15 15 0 0 1 -15 15 a20 20 0 0 1 -20 -20 a25 25 0 0 1 25 -25 a30 30 0 0 1 30 30 a35 35 0 0 1 -35 35 a40 40 0 0 1 -40 -40"/>
+      <circle class="pupil" cx="110" cy="65" r="7" fill="currentColor"/>
+    </svg>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 01 / 12</div>
+      <div class="course-name">Психоаналитическая теория кино</div>
+      <h1>Кино и <span class="hl">бессознательное</span></h1>
+      <div class="subt">Жуткое, двойник и рождение психоанализа на экране</div>
+      <div class="meta">
+        <span><b>Понятия:</b> жуткое · двойник · явное/скрытое</span>
+        <span><b>Кейсы:</b> Вине · Мурнау · Веген · Пабст</span>
+        <span><b>Кода:</b> Юнг и Тень</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 COLD OPEN · плёнка на световом столе -->
+  <section class="slide" data-toc="Введение">
+    <div class="eyebrow">Лекция 01 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
+    <h2>Что роднит эти фильмы?</h2>
+    <p class="lead" style="max-width:62ch;margin:14px 0 12px">Между крайними кадрами этой плёнки больше века. И всё же их держит вместе одно: каждый выводит на экран не событие, а его подспудную, вытесненную изнанку.</p>
+    <div class="lighttable">
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 013A</span><div class="win w-prg"></div><span class="cy">1913</span><span class="cn">Пражский студент</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 020B</span><div class="win w-cal"></div><span class="cy">1920</span><span class="cn">Калигари</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 022A</span><div class="win w-nos"></div><span class="cy">1922</span><span class="cn">Носферату</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 026C</span><div class="win w-sec"></div><span class="cy">1926</span><span class="cn">Тайны одной души</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 001X</span><div class="win w-md"></div><span class="cy">2001</span><span class="cn">Малхолланд Драйв</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 017X</span><div class="win w-out"></div><span class="cy">2017</span><span class="cn">Прочь</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Четыре кадра слева — фильмы этой лекции. Подсказка: ответ начинается не с того, о чём фильм, а с того, какое знание он держит за кадром.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 03 THESIS A -->
+  <section class="slide thesis">
+    <div class="tlbl">Тезис лекции</div>
+    <div class="big">Кино научилось показывать <span class="hl">душевное</span> прежде, чем психоанализ научился его <span class="oc">описывать</span>.</div>
+    <div class="tsub">Аппарат Люмьеров и кушетка Брейера — ровесники. Оба метода берут видимую поверхность за шифр, под которым работает «другая сцена».</div>
+    <div class="slide-foot"><span class="src">Родство не биографическое, а методологическое.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 04 ВОПРОС -->
+  <section class="slide" data-toc="Главный вопрос и метод">
+    <div class="eyebrow">Лекция 01 <span class="sep">/</span> <span class="tag">Рамка курса</span></div>
+    <h2>Главный вопрос</h2>
+    <div class="cols-wide" style="margin-top:8px">
+      <div class="stack">
+        <p class="lead">Психоаналитическая теория кино спрашивает не «что чувствует герой», а как фильм устроен так, чтобы затрагивать бессознательное зрителя и текста.</p>
+        <p>Курс движется от оснований к спорам: сновидение и симптом, аппарат и зеркало, взгляд и желание, фантазм, Реальное и его критики. Эта лекция закладывает три первичные фигуры — <em>жуткое</em>, <em>двойник</em> и первый показ самого анализа — и выдаёт рабочий инструмент: шесть шагов чтения.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Явное</span><p>Видимая фабула: то, что фильм рассказывает напрямую.</p></div>
+        <div class="def"><span class="term">Скрытое</span><p>Подспудная логика образов, повторов и умолчаний.</p></div>
+        <div class="def"><span class="term">Чтение</span><p>Симптоматичный разбор формы, а не диагноз персонажу.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Оптика разбора, а не психотерапия экрана.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 05 ХРОНОЛЕНТА -->
+  <section class="slide" data-toc="Хронология родства">
+    <div class="eyebrow">1895–1926 <span class="sep">/</span> <span class="tag">Одна шкала</span></div>
+    <h2>Родство на одной шкале</h2>
+    <p style="max-width:64ch;margin:10px 0 4px;color:var(--bone-dim)">Кино и психоанализ росли рядом: на каждую веху теории экран отвечает своей. Два золотых узла в начале — рождение обоих в один год.</p>
+    <div class="timeline"><div class="row">
+      <div class="tli"><span class="lab"><b>1895</b>Гран-кафе Люмьеров</span><span class="dot g"></span></div>
+      <div class="tli"><span class="lab"><b>1895</b>«Исследования истерии»</span><span class="dot b"></span></div>
+      <div class="tli"><span class="lab"><b>1896</b>Горький: «царство теней»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1898</b>Мельес: трюк и двойник</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1900</b>«Толкование сновидений»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1913</b>«Пражский студент»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1914</b>Ранк: «Der Doppelgänger»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1916</b>Мюнстерберг: «The Photoplay»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1919</b>Фрейд: «Das Unheimliche»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1920</b>«Калигари»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1922</b>«Носферату»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1925</b>Отказ Голдвину</span><span class="dot b"></span></div>
+      <div class="tli"><span class="lab"><b>1926</b>«Тайны одной души»</span><span class="dot"></span></div>
+    </div></div>
+    <div class="slide-foot"><span class="src">Совпадение года само по себе не доказывает связи, но оба изобретения читают поверхность как шифр.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 06 ГОРЬКИЙ -->
+  <section class="slide">
+    <div class="eyebrow">1896 <span class="sep">/</span> <span class="tag">Первый свидетель · Нижний Новгород</span></div>
+    <h2>Царство теней</h2>
+    <div class="cols-wide">
+      <div class="quote"><q>Вчера я был в царстве теней.</q><div class="attr">М. Горький · «Нижегородский листок» · 4 июля 1896</div></div>
+      <div class="stack" style="align-self:center">
+        <p>Очерк о сеансе Люмьеров на ярмарке описывает не аттракцион, а загробный мир: серое беззвучное пространство, где движутся не люди, а их призраки.</p>
+        <p>Первый большой отклик на кино говорит языком жуткого. До эссе Фрейда остаётся двадцать три года, а словарь уже готов.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Подпись «M. Pacatus»; второй очерк вышел в «Одесских новостях». Кросс: акт I этой лекции.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 07 МЕЛЬЕС -->
+  <section class="slide">
+    <div class="eyebrow">1896–1902 <span class="sep">/</span> <span class="tag">До Калигари · ярмарочный иллюзион</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Фокусник открывает киноязык</h2>
+        <p style="margin-top:10px">Стоп-трюк Мельеса делает исчезновение, замену и умножение базовыми жестами экрана. В «Четырёх беспокойных головах» (1898) иллюзионист трижды снимает собственную голову, и все четыре поют хором.</p>
+        <p>Инвентарь будущего киноужаса — оживший предмет, отделившаяся часть тела, двойник — собран на ярмарке, задолго до встречи с теорией.</p>
+      </div>
+      <div class="framebox s-mel" data-tmdb="The Four Troublesome Heads" data-year="1898" data-idx="0"><img src="img/w1280_g67r1eiQD3ERSEQFCFkSn7TeGw5.jpg" alt="Кадр Мельеса" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">«Un homme de têtes» · Мельес умножает себя маскированием кадра</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Жорж Мельес, театр «Робер-Уден»; трюковая склейка, каше, двойная экспозиция.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 08 АЙСБЕРГ -->
+  <section class="slide">
+    <div class="eyebrow">Модель <span class="sep">/</span> <span class="tag">Что под поверхностью</span></div>
+    <h2>Другая сцена</h2>
+    <div class="icewrap" style="margin-top:6px">
+      <svg viewBox="0 0 1060 470" aria-hidden="true">
+        <defs><linearGradient id="ibw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#131f38"/><stop offset="1" stop-color="#05080f"/></linearGradient></defs>
+        <rect class="iw-sea" x="0" y="150" width="1060" height="320" fill="url(#ibw)"/>
+        <line class="iw-line" x1="0" y1="150" x2="1060" y2="150" stroke="#c9a14a" stroke-width="1.4"/>
+        <text class="iw-tag" x="1038" y="136" text-anchor="end">порог вытеснения</text>
+        <path class="iw-tip" d="M400 150 L444 74 L478 106 L514 58 L552 112 L586 150 Z" fill="#dfe6f2"/>
+        <path class="iw-tipl" d="M478 106 L492 150 M514 58 L506 150" stroke="#9fb0c8" stroke-width="1" opacity=".6" fill="none"/>
+        <path class="iw-mass" d="M392 152 L346 250 L382 372 L492 436 L602 356 L636 232 L594 152 Z" fill="rgba(170,190,222,.14)" stroke="rgba(190,206,236,.55)" stroke-width="1.2" stroke-dasharray="7 6"/>
+        <path class="iw-massl" d="M392 152 L492 300 L594 152 M492 300 L492 436" stroke="rgba(190,206,236,.22)" stroke-width="1" fill="none"/>
+        <line class="iw-ld" x1="552" y1="90" x2="700" y2="90" stroke="#8a6d28" stroke-width="1"/>
+        <text class="iw-lab" x="712" y="95">Явное · фабула</text>
+        <text class="iw-sub" x="712" y="117">событие, поступок, реплика</text>
+        <line class="iw-ld" x1="602" y1="300" x2="716" y2="300" stroke="#7c3140" stroke-width="1"/>
+        <text class="iw-lab b" x="728" y="296">Скрытое · желание и страх</text>
+        <text class="iw-sub" x="728" y="318">то, что нельзя признать прямо</text>
+        <text class="iw-sub" x="728" y="340">повторы и оговорки формы</text>
+        <line class="iw-ld" x1="346" y1="250" x2="216" y2="250" stroke="#7c3140" stroke-width="1"/>
+        <text class="iw-lab b" x="206" y="246" text-anchor="end">Девять десятых</text>
+        <text class="iw-sub" x="206" y="268" text-anchor="end">под поверхностью</text>
+      </svg>
+    </div>
+    <div class="slide-foot"><span class="src">Бессознательное говорит из «другой сцены» (ein anderer Schauplatz) — формула Фрейда из «Толкования сновидений», 1900.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 09 ПОЧЕМУ ИМЕННО КИНО -->
+  <section class="slide" data-toc="Почему именно кино">
+    <div class="eyebrow">Медиум <span class="sep">/</span> <span class="tag">Условия сеанса</span></div>
+    <h2>Почему именно кино</h2>
+    <div class="cols-wide" style="margin-top:6px">
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Темнота</span><p>Зал отрезает внешний мир; остаётся один источник света.</p></div>
+        <div class="def"><span class="term">Неподвижность</span><p>Тело обездвижено, почти как у спящего.</p></div>
+        <div class="def"><span class="term">Гипноз движения</span><p>Мерцающий поток держит взгляд без усилия воли.</p></div>
+        <div class="def"><span class="term">Идентификация</span><p>Глаз автоматически совпадает с камерой и героем.</p></div>
+        <div class="def"><span class="term">Снятие контроля</span><p>Критическая проверка отступает перед потоком образов.</p></div>
+      </div>
+      <div class="card" style="align-self:center"><div class="k">Мюнстерберг · 1916</div><h3>Первая теория кино</h3><p style="font-size:14px;color:var(--bone-dim)">«The Photoplay: A Psychological Study»: фильм собран законами внимания, памяти и воображения — экран повторяет устройство сознания. Психология заметила кино раньше, чем психоанализ.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Феноменологический вход; полный разбор аппарата — в Лекции 03.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 10 ФРЕЙД ПРОТИВ КИНО -->
+  <section class="slide">
+    <div class="eyebrow">1925 <span class="sep">/</span> <span class="tag">Отказ основателя</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Фрейд против кино</h2>
+        <p style="margin-top:10px">В 1925 году Сэмюэл Голдвин едет в Вену с гонораром в сто тысяч долларов: пресса титулует Фрейда «величайшим специалистом по любви», студии нужен консультант «великих любовных историй экрана». Фрейд отказывает, даже не приняв гостя.</p>
+        <p>Тем же летом, в письме Карлу Абрахаму о готовящихся «Тайнах одной души», он объясняет мотив: пластическое изображение абстракций анализа кажется ему невозможным.</p>
+      </div>
+      <div class="stack" style="align-self:center">
+        <div class="card"><div class="k">Почти ни строчки</div><p style="font-size:14px;color:var(--bone-dim)">О кино в корпусе Фрейда единичные обмолвки; систематического текста нет.</p></div>
+        <div class="card bord"><div class="k">Следствие</div><p style="font-size:14px;color:var(--bone-dim)">Психоаналитическая теория кино рождается лишь в 1970-е, у Бодри и Метца, без благословения основателя.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Отказ Голдвину — по газетным сообщениям 1925 года. Кросс: кейс 04 (Пабст) и Лекция 09 (безумие на экране).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 11 МЕТОД: ШЕСТЬ ШАГОВ -->
+  <section class="slide" data-toc="Метод: шесть шагов">
+    <div class="eyebrow">Инструмент <span class="sep">/</span> <span class="tag">Симптоматичное чтение</span></div>
+    <h2>Метод: шесть шагов</h2>
+    <div class="steps6" style="margin-top:14px">
+      <div class="st6"><span class="n">01</span><h3>Вопрос</h3><p>Фабула откладывается; предмет разбора — устройство фильма.</p></div>
+      <div class="st6"><span class="n">02</span><h3>Симптом</h3><p>Где форма сбоит: странность, избыток, шов.</p></div>
+      <div class="st6"><span class="n">03</span><h3>Повтор</h3><p>Что возвращается помимо нужд сюжета.</p></div>
+      <div class="st6"><span class="n">04</span><h3>Желание</h3><p>Чью нехватку обслуживает сцена; куда поставлен зритель.</p></div>
+      <div class="st6"><span class="n">05</span><h3>Отсутствие</h3><p>Чего в кадре нет, хотя логика его требует.</p></div>
+      <div class="st6 hot"><span class="n">06</span><h3>Скрытое</h3><p>Какую мысль текст прячет от самого себя.</p></div>
+    </div>
+    <div class="method-result">Результат лекции: различать явное и скрытое · вести симптоматичное чтение · удерживать границы метода</div>
+    <div class="slide-foot"><span class="src">Запреты в силе: без диагноза персонажу, без словаря символов, без готовой схемы.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 12 МЕТОД В ДЕЙСТВИИ -->
+  <section class="slide">
+    <div class="eyebrow">Разминка <span class="sep">/</span> <span class="tag">«Носферату», 1922</span></div>
+    <h2>Шесть шагов на одном фильме</h2>
+    <ul class="qlist q2" style="margin-top:6px">
+      <li><p><strong>Вопрос.</strong> Фабула вампира откладывается; предмет разбора — устройство кадра, тени и монтажа.</p></li>
+      <li><p><strong>Симптом.</strong> Тень живёт отдельно от тела: форма отделяет силуэт от носителя раньше всякого сюжета.</p></li>
+      <li><p><strong>Повтор.</strong> Пороги, окна, арки: действие снова и снова упирается в границу дома.</p></li>
+      <li><p><strong>Желание.</strong> Эллен ждёт ночного гостя помимо воли; жертва и влечение совпадают в одном жесте.</p></li>
+      <li><p><strong>Отсутствие.</strong> Насилие отдано тени и эллипсису: рука-силуэт сжимается над сердцем вместо раны.</p></li>
+      <li><p><strong>Скрытое.</strong> Дневной порядок брака держится на вытесненном, и оно возвращается ночью.</p></li>
+    </ul>
+    <div class="slide-foot"><span class="src">Полный кейс — в акте III. Здесь запуск инструмента.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 13 DIVIDER I — ЖУТКОЕ -->
+  <section class="slide divider poster" data-toc="Жуткое (das Unheimliche)" data-act="I">
+    <svg class="emblem kh" viewBox="0 0 120 170" aria-hidden="true">
+      <g opacity=".16" transform="translate(9 7)">
+        <path d="M22 84 L62 38 L100 88 L94 150 L28 146 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+      <path d="M78 56 l3 -16 l11 2 l-2 16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M22 84 L62 38 L100 88" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M28 84 L26 148 L96 152 L94 86" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M52 150 L54 112 L72 114 L70 151" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M36 100 l16 2 l-1 15 l-16 -2 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M74 100 l14 2 l-1 14 l-14 -2 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="62" cy="70" r="5" fill="currentColor" opacity=".8"/>
+    </svg>
+    <div class="poster-inner">
+      <div class="knum">I</div>
+      <div class="word" style="color:var(--bone)">Жуткое</div>
+      <div class="sub">das Unheimliche — знакомое, ставшее чужим. Двигатель ужаса задолго до любого монстра.</div>
+    </div>
+    <div class="slide-foot"><span class="src">З. Фрейд, «Das Unheimliche», 1919.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 14 ЖУТКОЕ: ПОНЯТИЕ -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-key"/></svg>Фрейд · 1919 <span class="sep">/</span> <span class="tag">Понятие</span></div>
+    <h2>Знакомое, ставшее чужим</h2>
+    <div class="cols-wide">
+      <div class="stack">
+        <p class="lead">Жуткое — не просто страшное. Это особый испуг, что ведёт назад, к давно знакомому и вытесненному.</p>
+        <p>Фрейд отталкивается от немецкого <em>heimlich</em> («домашнее, родное», но и «тайное») и показывает, что слово исподволь переходит в свою противоположность, <em>unheimlich</em>. Жуть рождается, когда привычное внезапно открывает скрытую изнанку.</p>
+      </div>
+      <div class="quote"><q>Жуткое есть тот род пугающего, что восходит к давно известному, издавна привычному.</q><div class="attr">З. Фрейд · «Das Unheimliche» · 1919</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">heimlich ↔ unheimlich: язык сам хранит переход от родного к жуткому.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 15 ЙЕНЧ VS ФРЕЙД -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-key"/></svg>Спор об источнике <span class="sep">/</span> <span class="tag">Йенч и Фрейд</span></div>
+    <h2>Откуда берётся жуть</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Эрнст Йенч · 1906</div><h3>Неуверенность ума</h3><p>Жуть — от сомнения, живое перед нами или нет: восковая фигура, автомат, кукла. Так пугает Олимпия из «Песочного человека» Гофмана.</p></div>
+      <div class="card bord"><div class="k">Фрейд · 1919</div><h3>Возврат вытесненного</h3><p>Глубже неуверенности лежит возвращение подавленного: детский страх, инфантильная вера, потаённое желание, что считалось преодолённым.</p></div>
+    </div>
+    <p style="max-width:64ch;margin-top:22px">Фрейд не отменяет Йенча, а углубляет: автомат жуток не сам по себе, а потому что будит давно вытесненное. Кинокамера получает оба источника готовыми.</p>
+    <div class="slide-foot"><span class="src">Э. Йенч, «Zur Psychologie des Unheimlichen», 1906 · Э.Т.А. Гофман, «Der Sandmann», 1816.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 16 КАТАЛОГ ЖУТКОГО -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-key"/></svg>Инвентарь <span class="sep">/</span> <span class="tag">Фигуры жуткого</span></div>
+    <h2>Чем оживает жуть</h2>
+    <div class="cols-3" style="margin-top:8px">
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><circle cx="15" cy="20" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="25" cy="20" r="9" fill="none" stroke="currentColor" stroke-width="2.4" opacity=".5"/></svg><div class="k">Фигура 01</div><h3>Двойник</h3><p>Отделившееся подобие: тень, отражение, второе «я».</p></div>
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 a14 14 0 1 1 -13.4 10" fill="none" stroke="currentColor" stroke-width="2.6"/><polygon points="2,17 8,9 11,19" fill="currentColor"/></svg><div class="k">Фигура 02</div><h3>Повтор</h3><p>Навязчивое возвращение одного и того же помимо воли.</p></div>
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 6 H32" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M14 6 V13 M26 6 V15" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="20" r="5.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 26 V33 M13 33 H27" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><div class="k">Фигура 03</div><h3>Автомат</h3><p>Кукла, манекен, оживший механизм на грани живого.</p></div>
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><path d="M12 34 V16 a8 8 0 0 1 16 0 V34 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 21 H24 M20 17 V27" fill="none" stroke="currentColor" stroke-width="2"/></svg><div class="k">Фигура 04</div><h3>Мёртвое</h3><p>Возвращение умерших, нежить, преждевременное погребение.</p></div>
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 20 Q20 6 36 20 Q20 34 4 20 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="20" cy="20" r="4.5" fill="currentColor"/></svg><div class="k">Фигура 05</div><h3>Взгляд</h3><p>Дурной глаз, утрата глаз, отделённый смотрящий орган.</p></div>
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34 L20 20" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M27 5 l2.5 6.5 L36 14 l-6.5 2.5 L27 23 l-2.5 -6.5 L18 14 l6.5 -2.5 Z" fill="currentColor"/></svg><div class="k">Фигура 06</div><h3>Судьба</h3><p>Всевластие мысли: слово или желание, что вдруг сбывается.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Фрейд разводит два источника: ожившие преодолённые верования и возврат вытесненных комплексов. Каталог 1919 года совпадает с реквизитом немецкого киноужаса.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 17 THESIS B -->
+  <section class="slide thesis">
+    <div class="tlbl">Следствие</div>
+    <div class="big">Ужас пугает <span class="hl">не монстром</span>, а возвратом того, что считалось <span class="oc">похороненным</span>.</div>
+    <div class="tsub">Немое немецкое кино первым обнаружило: достаточно тени, отражения и косой декорации, чтобы поднять вытесненное на поверхность кадра.</div>
+    <div class="slide-foot"><span class="src">От жуткого — прямой ход к двойнику.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 18 DIVIDER II — ДВОЙНИК -->
+  <section class="slide divider poster mirror" data-toc="Двойник (Doppelgänger)" data-act="II">
+    <span class="axis"></span>
+    <div class="poster-inner" style="text-align:left">
+      <div class="knum">II</div>
+      <h2 class="word reflectword">Двойник<span class="refl" aria-hidden="true">Двойник</span></h2>
+      <div class="sub" style="margin-top:.5em">Doppelgänger — отделившееся «я», что из обещания бессмертия становится вестником смерти.</div>
+    </div>
+    <div class="slide-foot"><span class="src">О. Ранк, «Der Doppelgänger», 1914.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 19 РАНК -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-mir"/></svg>Отто Ранк · 1914 <span class="sep">/</span> <span class="tag">Двойник</span></div>
+    <h2>От бессмертия к смерти</h2>
+    <div class="cols-wide">
+      <div class="stack">
+        <p class="lead">Отто Ранк, ближайший ученик Фрейда, посвящает двойнику отдельное исследование — и берёт примером именно кино.</p>
+        <p>Сначала двойник — тень, отражение, изваяние — служил гарантией бессмертия: душа, что переживёт тело. С распадом этой веры фигура переворачивается и становится зловещим предвестником гибели. Корень двойника Ранк видит в первичном нарциссизме.</p>
+      </div>
+      <div class="card" style="align-self:center"><div class="k">Парадокс</div><h3>Страж жизни → знак конца</h3><p>То, что должно было спасти «я» от смерти, в новое время несёт смерть тому, кто его породил.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">O. Rank, «Der Doppelgänger», 1914; расширенное изд. 1925. Фрейд ссылается на Ранка в эссе о жутком.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 20 ДВОЙНИК НА ЭКРАНЕ -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-mir"/></svg>Чтение формы <span class="sep">/</span> <span class="tag">Как снять двойника</span></div>
+    <h2>Двойник на экране</h2>
+    <div class="flow" style="margin-top:7vh">
+      <div class="fstep a"><div class="fsk">Отражение</div><h3>Зеркало</h3><p>Образ, что вдруг живёт отдельно от того, кто в него смотрит.</p></div>
+      <div class="farr">→</div>
+      <div class="fstep"><div class="fsk">Свет</div><h3>Тень</h3><p>Силуэт обретает волю и опережает тело на стене.</p></div>
+      <div class="farr">→</div>
+      <div class="fstep b"><div class="fsk">Трюк</div><h3>Двойная экспозиция</h3><p>Один актёр в двух ролях в одном кадре, наложение плёнки.</p></div>
+    </div>
+    <p class="lead" style="max-width:70ch;margin-top:28px">Кинематограф будто создан для двойника: отражение, тень и наложение — его собственные средства. Эта фигура вернётся как зеркальное «я» у Лакана и как Тень в коде лекции.</p>
+    <div class="slide-foot"><span class="src">Кросс-ссылки: Лекция 04 (стадия зеркала) · кода (Юнг и Тень).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 21 DIVIDER III — ЧЕТЫРЕ ПЕРВОНАЧАЛА -->
+  <section class="slide divider poster" data-toc="Четыре первоначала" data-act="III">
+    <svg class="apbig eyehero" viewBox="0 0 220 130" aria-hidden="true">
+      <path class="lid" d="M14 65 Q110 -6 206 65" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path class="lid" d="M14 65 Q110 136 206 65" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path class="spir" fill="none" stroke="currentColor" stroke-width="1" d="M110 65 a5 5 0 0 1 5 -5 a10 10 0 0 1 10 10 a15 15 0 0 1 -15 15 a20 20 0 0 1 -20 -20 a25 25 0 0 1 25 -25 a30 30 0 0 1 30 30 a35 35 0 0 1 -35 35 a40 40 0 0 1 -40 -40"/>
+      <circle cx="110" cy="65" r="7" fill="currentColor"/>
+    </svg>
+    <div class="poster-inner">
+      <div class="knum">III</div>
+      <div class="word" style="font-size:clamp(48px,8.2vw,128px);white-space:normal;max-width:14ch;color:var(--bone)">Четыре первоначала</div>
+      <div class="sub">Калигари · Носферату · Пражский студент · Тайны одной души.</div>
+    </div>
+    <div class="slide-foot"><span class="src">Каждый кейс: кадр-заставка, контекст, сцена, форма, поле спора.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 01: КАЛИГАРИ ============ -->
+  <section class="slide framefull" data-toc="Кейс 01 · Калигари">
+    <div class="shot s-cal" data-tmdb="The Cabinet of Dr. Caligari" data-year="1920" data-idx="0"><img src="img/w1280_diOdVlwLqtwDarNt5lQqTCuZon6.jpg" alt="Кадр из «Кабинета доктора Калигари»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1920</span>
+    <div class="fcap"><div class="fk">Кейс 01 · к разбору</div><h2>Кабинет доктора Калигари</h2>
+      <div class="kw"><span>Жуткое</span><span>Экспрессионизм</span><span>Ненадёжный рассказчик</span></div>
+      <p class="logline">Доктор с ярмарки поднимает сомнамбулу, чтобы тот убивал во сне. Косой город сам оказывается симптомом.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Das Cabinet des Dr. Caligari» · реж. Роберт Вине · Германия, 1920</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Веймар и художники</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Бедность студии,<br>радикальная форма</h2>
+        <p style="margin-top:12px">Картину выпускает «Декла» в обескровленной поражением Германии 1919–1920 годов. Мир строят кистью, а не плотницким реквизитом: дефицит материалов оборачивается стилем. Прямой угол изгнан из кадра почти полностью.</p>
+        <p>Студия добавила пролог и эпилог, сместив политический замысел сценаристов к истории частного бреда.</p>
+      </div>
+      <div class="framebox s-cal" data-tmdb="The Cabinet of Dr. Caligari" data-year="1920" data-idx="2"><img src="img/w1280_iNNNkYuUU365LhnPwQqfzBvKnsg.jpg" alt="Декорация «Калигари»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Писаные тени и косые фасады · художники круга «Der Sturm»</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Сцен. К. Майер и Г. Яновиц; худож. Г. Варм, В. Райман, В. Рёриг.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull">
+    <div class="shot s-cal" data-tmdb="The Cabinet of Dr. Caligari" data-year="1920" data-idx="1"><img src="img/w1280_A291ofGZZMc1LdiIeOMDIWrU65g.jpg" alt="Чезаре" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · пробуждение Чезаре</div><h2>Тело между сном и явью</h2>
+      <p class="logline">Сомнамбула открывает глаза по приказу: скольжение вдоль стены, застывший взгляд, лицо-маска. Чистая фигура автомата из каталога жуткого — живое и неживое разом.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · форма <span class="sep">/</span> <span class="tag">Рамка и поворот</span></div>
+    <h2>Кто здесь безумен</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Эпилог открывает: сад принадлежит лечебнице, а рассказчик — её пациент. Искажённый город оказывается субъективной проекцией больного сознания. Косая декорация получает мотивировку задним числом: глаз зрителя весь фильм смотрел изнутри бреда.</p>
+      <div class="card bord" style="align-self:center"><div class="k">Приём</div><h3>Ненадёжный рассказчик</h3><p>Рамочный нарратив переназначает безумие и заставляет пересобрать всё увиденное. Доверие к изображению подорвано.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Именно вокруг рамки развернётся главный спор — на следующем слайде.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1947–2000</span></div>
+    <h2>Как читали «Калигари»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices">
+        <div class="voice"><span class="vy">1947</span><div class="vn">Кракауэр</div><p class="vp">Симптом эпохи: рамка оправдывает власть — репетиция подчинения тирану.</p></div>
+        <div class="voice f2"><span class="vy">1952</span><div class="vn">Айзнер</div><p class="vp">Демонический экран: корни в романтизме и светотени Рейнхардта, политика тут ни при чём.</p></div>
+        <div class="voice f3"><span class="vy">1997</span><div class="vn">Робинсон</div><p class="vp">Архивная ревизия: найденный сценарий рушит легенды создателей о замысле и «краже» смысла рамкой.</p></div>
+        <div class="voice f4"><span class="vy">2000</span><div class="vn">Элзессер</div><p class="vp">Историческое воображаемое: сам спор о «Калигари» сконструирован взглядом после катастрофы.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Чей «Калигари» убедительнее — и что каждая оптика вынуждена не замечать?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Kracauer 1947 · Eisner 1952 · Robinson (BFI) 1997 · Elsaesser, «Weimar Cinema and After», 2000.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 02: НОСФЕРАТУ ============ -->
+  <section class="slide framefull" data-toc="Кейс 02 · Носферату">
+    <div class="shot s-nos" data-tmdb="Nosferatu" data-year="1922" data-idx="0"><img src="img/w1280_cA9iGtvjRGJHzDBfrq48l0eyCvA.jpg" alt="Кадр из «Носферату»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1922</span>
+    <div class="fcap"><div class="fk">Кейс 02 · к разбору</div><h2>Носферату</h2>
+      <div class="kw"><span>Жуткое</span><span>Нежить</span><span>Тень-двойник</span></div>
+      <p class="logline">Граф Орлок везёт в немецкий город чуму и крыс. Ужас держится не на гриме, а на возвращении того, чему положено быть мёртвым.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Nosferatu, eine Symphonie des Grauens» · реж. Ф. В. Мурнау · Германия, 1922</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Контрабандный «Дракула»</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Фильм вне закона</h2>
+        <p style="margin-top:12px">«Прана-фильм» экранизировала «Дракулу» Брэма Стокера без прав, сменив имена. Вдова писателя выиграла суд, и в 1925 году было предписано уничтожить все копии. Картина выжила случайно, по разрозненным отпечаткам.</p>
+        <p>Мурнау снимал на натуре — в Висмаре, Любеке и в карпатском замке, — отчего нежить ещё неуместнее среди реальных пейзажей.</p>
+      </div>
+      <div class="framebox s-nos" data-tmdb="Nosferatu" data-year="1922" data-idx="2"><img src="img/w1280_u06SympEEMb7pLhR9W3tvydHT9L.jpg" alt="Орлок" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Орлок · Макс Шрек: крысиные черты вместо обаятельного графа</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Судебный запрет 1925 г. едва не стёр фильм из истории кино. Продюсер А. Грау — оккультист.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull">
+    <div class="shot s-nos" data-tmdb="Nosferatu" data-year="1922" data-idx="1"><img src="img/w1280_qhr1KvBNMqpKWC0kN7MDMb2PMNN.jpg" alt="Тень Орлока" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · тень на лестнице</div><h2>Тень, что живёт отдельно</h2>
+      <p class="logline">По стене поднимается не сам Орлок, а его исполинская тень, и когтистая рука сжимается над сердцем Эллен. Тень — двойник по Ранку: отделившееся подобие, что несёт смерть.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · форма <span class="sep">/</span> <span class="tag">Свет, что убивает</span></div>
+    <h2>Светотень как закон мира</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Мурнау строит фильм на борьбе света и тьмы: вампир принадлежит ночи и гибнет от первого луча. Свет здесь не открывает мир, а размечает границу между живым и нежитью. Негатив и ускоренная съёмка в карпатских сценах делают саму материю кадра чужой.</p>
+      <div class="card bord" style="align-self:center"><div class="k">Жуткое в действии</div><h3>Нежить</h3><p>Орлок воплощает возврат умершего. Зритель боится не облика, а нарушенной границы жизни и смерти.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Свет = закон: вампир есть то, что не должно длиться при дневном свете.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · прочтение <span class="sep">/</span> <span class="tag">Что вернулось</span></div>
+    <h2>Возврат вытесненного</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Желание</div><h3>Запретное влечение</h3><p>Связь Эллен и Орлока несёт подавленную эротику: вампир приходит к той, кто ждёт его помимо воли.</p></div>
+      <div class="card bord"><div class="k">Чужое</div><h3>Зараза и иной</h3><p>Орлок — фигура чужака и эпидемии; читать её стоит осторожно, помня о позднейших ксенофобских присвоениях образа.</p></div>
+    </div>
+    <p style="max-width:64ch;margin-top:20px">Вампир работает как чистый возврат вытесненного: влечение, смерть и чужое, изгнанные из дневного порядка, возвращаются ночью.</p>
+    <div class="slide-foot"><span>Кейс 02 · прочтение</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1947–2009</span></div>
+    <h2>Как читали «Носферату»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices">
+        <div class="voice"><span class="vy">1947</span><div class="vn">Кракауэр</div><p class="vp">В галерее тиранов: вампир в одном ряду с Калигари и Мабузе — предчувствие покорности.</p></div>
+        <div class="voice f2"><span class="vy">1952</span><div class="vn">Айзнер</div><p class="vp">Романтический Stimmung: светотень и одушевлённый пейзаж важнее политики.</p></div>
+        <div class="voice f3"><span class="vy">1998</span><div class="vn">Перез</div><p class="vp">«Материальный призрак»: реальная натура Висмара делает нежить проблемой самого изображения — пустоты и закадровое.</p></div>
+        <div class="voice f4"><span class="vy">2009</span><div class="vn">Элзессер</div><p class="vp">«No End to Nosferatu»: жизнь фильма после фильма — суд, оккультный круг Грау, бесконечные возвращения образа.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Политический симптом, романтическое наследие или онтология кадра — что выдерживает пересмотр?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Kracauer 1947 · Eisner 1952 · Perez, «The Material Ghost», 1998 · Elsaesser в сб. Isenberg, 2009. Кросс: абъекция — Лекция 08.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 03: ПРАЖСКИЙ СТУДЕНТ ============ -->
+  <section class="slide framefull" data-toc="Кейс 03 · Пражский студент">
+    <div class="shot s-prg" data-tmdb="The Student of Prague" data-year="1913" data-idx="0"><img src="img/w1280_7LQl2QloGfpgPBB0GTMzXxKWmgZ.jpg" alt="Кадр из «Пражского студента»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1913</span>
+    <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Пражский студент</h2>
+      <div class="kw"><span>Двойник</span><span>Зеркало</span><span>Авторский фильм</span></div>
+      <p class="logline">Бедный студент продаёт чародею своё отражение — и оно выходит из зеркала, чтобы погубить хозяина. Прямой пример из исследования Ранка.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Der Student von Prag» · реж. Стеллан Рийе и Пауль Веген · Германия, 1913</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Кино становится искусством</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Один из первых<br>авторских фильмов</h2>
+        <p style="margin-top:12px">Сценарий написал Ханс Хайнц Эверс, главную роль сыграл Пауль Веген. Картина заявила, что кино способно на серьёзную литературную тему, а не только на ярмарочный аттракцион.</p>
+        <p>Двойную роль обеспечивала съёмка с маскированием кадра: один актёр встречается с самим собой в пределах одного плана.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Ранк</span><p>Именно этот фильм Отто Ранк сделал главным примером в работе «Der Doppelgänger» 1914 года.</p></div>
+        <div class="def"><span class="term">Ремейк</span><p>В 1926 году вышла новая версия Хенрика Галеена с Конрадом Фейдтом в роли студента.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Сцен. Х. Х. Эверс; в гл. роли Пауль Веген.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull">
+    <div class="shot s-prg" data-tmdb="The Student of Prague" data-year="1913" data-idx="1"><img src="img/w1280_pSrl9LPOKVGLh9DAvEaAwlpZAYz.jpg" alt="Двойник выходит из зеркала" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · отражение выходит из зеркала</div><h2>Сделка у зеркала</h2>
+      <p class="logline">Отражение Балдуина спокойно выступает из стекла, пока сам студент стоит перед пустой рамой. Зеркало впервые отказывается возвращать образ владельцу.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · форма <span class="sep">/</span> <span class="tag">Отчуждённое «я»</span></div>
+    <h2>Убить двойника — убить себя</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Доведённый до отчаяния, Балдуин стреляет в двойника — и падает замертво сам: разорвать связь с отделившимся образом нельзя, не уничтожив себя. Сделка с зеркалом оказалась продажей собственной души.</p>
+      <div class="card bord" style="align-self:center"><div class="k">Ранк буквально</div><h3>Двойник как смерть</h3><p>Образ, что обещал умножить «я», становится тем, кто его убивает. Нарциссическая опора оборачивается гибелью.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Точная инсценировка тезиса Ранка о двойнике-вестнике смерти.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · прочтение <span class="sep">/</span> <span class="tag">Два голоса о зеркале</span></div>
+    <h2>Зеркало, что не возвращает</h2>
+    <p class="lead" style="max-width:66ch">Балдуин теряет себя ровно там, где зеркало перестаёт возвращать образ. Сцена собрала вокруг себя два сильных прочтения:</p>
+    <div class="cols" style="margin-top:20px">
+      <div class="card"><div class="k">Психоанализ · мост к Лакану</div><h3>Учредительный момент — наоборот</h3><p>Спустя десятилетия Лакан опишет обратную сцену: ребёнок впервые узнаёт себя в отражении и строит «я» на этом чужом образе. Фильм 1913 года показывает распад той же опоры.</p></div>
+      <div class="card bord"><div class="k">Медиатеория · Киттлер, 1986</div><h3>Двойник — эффект техники</h3><p>«Граммофон — кино — пишущая машинка»: оптическая запись отбирает у человека его подобие; сцена у зеркала читается как манифест самого медиума.</p></div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · прочтение · кросс: Лекция 04 (стадия зеркала)</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 04: ТАЙНЫ ОДНОЙ ДУШИ ============ -->
+  <section class="slide framefull" data-toc="Кейс 04 · Тайны одной души">
+    <div class="shot s-sec" data-tmdb="Secrets of a Soul" data-year="1926" data-idx="0"><img src="img/w1280_9gQG8NeRTY43uqDngfAvpCfXnJ3.jpg" alt="Кадр из «Тайн одной души»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1926</span>
+    <div class="fcap"><div class="fk">Кейс 04 · к разбору</div><h2>Тайны одной души</h2>
+      <div class="kw"><span>Психоанализ</span><span>Сновидение</span><span>Лечение речью</span></div>
+      <p class="logline">Первый игровой фильм, снятый, чтобы показать на экране сам психоанализ. В главной роли — Вернер Краусс, тот самый Калигари.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Geheimnisse einer Seele» · реж. Г. В. Пабст · Германия, 1926</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 04 · контекст <span class="sep">/</span> <span class="tag">Фрейд отказался</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Фильм при участии<br>круга Фрейда</h2>
+        <p style="margin-top:12px">Картину выпустила студия UFA как просветительский проект о психоанализе. Консультантами выступили аналитики из ближайшего круга Фрейда — Ханс Сакс и Карл Абрахам.</p>
+        <p>Самого Фрейда приглашали участвовать, но он отказался: пластическое изображение абстракций анализа казалось ему невозможным — тот же довод, что и в истории с Голдвином.</p>
+      </div>
+      <div class="framebox s-sec" data-tmdb="Secrets of a Soul" data-year="1926" data-idx="2"><img src="img/w500_j4aEY255ZGw0V65DrblT0kGmnzv.jpg" alt="«Тайны одной души»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Оператор Г. Зеебер · техническая магия сна: наложения и каше</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Консультанты: H. Sachs, K. Abraham (ум. 1925 во время работы над фильмом).</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull">
+    <div class="shot s-sec" data-tmdb="Secrets of a Soul" data-year="1926" data-idx="1"><img src="img/w1280_9gQG8NeRTY43uqDngfAvpCfXnJ3.jpg" alt="Сон из «Тайн одной души»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · сон профессора</div><h2>Как снять сновидение</h2>
+      <p class="logline">Башни, поезда, ножи и лодка наплывают друг на друга в двойной экспозиции. Образы не иллюстрируют тревогу, а шифруют её по логике сгущения и смещения.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 04 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 04 · форма <span class="sep">/</span> <span class="tag">Лечение речью на экране</span></div>
+    <h2>Симптом, разгаданный речью</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Фильм драматизирует сам метод: аналитик расспрашивает, толкует сон и детское воспоминание, и фобия ножей раскрывается как замаскированный страх и ревность. Лечение совпадает с разгадкой — удобная драматургия, что упрощает кропотливую клиническую работу до детективной развязки.</p>
+      <div class="card bord" style="align-self:center"><div class="k">Двойная природа</div><h3>Просвещение и упрощение</h3><p>Картина впервые делает анализ зрелищем — и тем же ходом приглаживает его до сюжета с быстрым исцелением.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Лечение-как-разгадка вернётся в Лекции 02 на примере «Завороженного».</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 04 · прочтение <span class="sep">/</span> <span class="tag">Психоанализ о себе</span></div>
+    <h2>Когда анализ смотрит в зеркало</h2>
+    <p class="lead" style="max-width:66ch">«Тайны одной души» — редкий случай, когда психоанализ не инструмент разбора, а прямой предмет фильма. Столетию двух изобретений посвящён сборник «Endless Night» (ред. Бергстром, 1999) — оттуда два голоса:</p>
+    <div class="cols" style="margin-top:20px">
+      <div class="card"><div class="k">Стивен Хит</div><h3>Проблема фигуративности</h3><p>Из отказа Фрейда выводится главный урок: бессознательное не даётся изображению — кадр показывает всё, кроме него.</p></div>
+      <div class="card bord"><div class="k">Энн Фридберг</div><h3>«Жуткий манёвр»</h3><p>Картина Пабста лавирует между кушеткой и камерой: перевод анализа в зрелище оборачивается его упрощением.</p></div>
+    </div>
+    <div class="slide-foot"><span>Кейс 04 · прочтение · кросс: Лекция 09 (безумие на экране)</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 43 СИНТЕЗ -->
+  <section class="slide" data-toc="Синтез и итоги">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Что собрали</span></div>
+    <h2>Три первичные фигуры</h2>
+    <div class="cols-3" style="margin-top:8px">
+      <div class="card"><div class="k">Жуткое</div><h3>Калигари · Носферату</h3><p>Знакомое, ставшее чужим; возврат вытесненного через тень, нежить и косую декорацию.</p></div>
+      <div class="card"><div class="k">Двойник</div><h3>Пражский студент</h3><p>Отделившееся «я» из зеркала: нарциссическая опора, что оборачивается смертью.</p></div>
+      <div class="card bord"><div class="k">Анализ на экране</div><h3>Тайны одной души</h3><p>Психоанализ как предмет фильма и первый разрыв между клиникой и кадром.</p></div>
+    </div>
+    <p style="max-width:66ch;margin-top:22px">Немое немецкое кино выстроило грамматику бессознательного раньше, чем теория описала её. Тень, отражение, автомат и сон стали готовыми средствами показывать то, для чего у психики нет слов.</p>
+    <div class="slide-foot"><span class="src">Эти средства вернутся во всех частях курса.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 44 DIVIDER IV — ТЕНЬ (кода) -->
+  <section class="slide divider poster" data-toc="Кода: Юнг и Тень" data-act="IV">
+    <svg class="emblem blot" viewBox="0 0 120 170" aria-hidden="true">
+      <use href="#g-blot" opacity=".14" transform="translate(9 7)"/>
+      <use href="#g-blot" opacity=".9"/>
+    </svg>
+    <div class="poster-inner">
+      <div class="knum">IV</div>
+      <div class="word" style="color:var(--bone)">Тень</div>
+      <div class="sub">Кода: другое бессознательное. Юнг, архетип и развилка, где курс выбирает дорогу.</div>
+    </div>
+    <div class="slide-foot"><span class="src">К. Г. Юнг; разрыв с Фрейдом — 1913.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 45 ФРЕЙД ↔ ЮНГ -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-blot"/></svg>Кода · 1913 <span class="sep">/</span> <span class="tag">Раскол</span></div>
+    <h2>Два бессознательных</h2>
+    <div class="cols" style="margin-top:6px">
+      <div class="card"><div class="k">Фрейд · личное</div><h3>Осадок вытесненного</h3><p>Бессознательное складывается из подавленного; его язык — конфликт, желание, цензура; путь к нему — толкование.</p></div>
+      <div class="card bord"><div class="k">Юнг · коллективное</div><h3>Общий слой архетипов</h3><p>Под личным лежит наследуемое: Тень, Анима, Самость; дорога к нему — индивидуация, а речь его — миф.</p></div>
+    </div>
+    <p style="max-width:66ch;margin-top:20px">Переписка обрывается в 1913 году, после юнговских «Метаморфоз и символов либидо»: школы расходятся навсегда. Для этой лекции важен мост: <strong>Тень наследует Двойнику</strong> — фигуру, описанную Ранком клинически, Юнг переписывает как всеобщую.</p>
+    <div class="slide-foot"><span class="src">C. G. Jung, «Wandlungen und Symbole der Libido», 1912. Кросс: акт II.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 46 ХРАНИТЕЛИ -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-blot"/></svg>Кода <span class="sep">/</span> <span class="tag">Архетип в нарративе</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Тень выходит в масскульт</h2>
+        <p style="margin-top:10px">Архетип живёт в рассказе: массовая культура строит героев по юнговским лекалам и умеет их же разбирать. «Хранители» деконструируют супергероя, а Роршах носит маску-пятно — подвижный инкблот, в котором каждый видит своё.</p>
+        <p>Психоанализ здесь работает как теория нарратива; о болезни персонажа речь не идёт.</p>
+      </div>
+      <div class="framebox s-wat" data-tmdb="Watchmen" data-year="2009" data-idx="0"><img src="img/w1280_dH7ia3vtkYCa3CBvDnvVjqm9uiQ.jpg" alt="Роршах, «Хранители»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Роршах · живой тест на проекцию · реж. З. Снайдер, 2009</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">А. Мур и Д. Гиббонс, комикс 1986–87. Кросс: двойник → Тень.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 47 ПОЧЕМУ МАССКУЛЬТ ВЫБРАЛ ЮНГА -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-blot"/></svg>Кода · дискуссия <span class="sep">/</span> <span class="tag">Развилка курса</span></div>
+    <h2>Почему масскульт выбрал Юнга</h2>
+    <div class="cols" style="margin-top:6px">
+      <div class="card"><div class="k">Голливуд → Юнг</div><h3>Архетип как конструктор</h3><p>Кэмпбелл сводит мифы к единой формуле («Тысячеликий герой», 1949), Воглер превращает её в сценарное пособие (1992). Архетип продаётся: из него собирают истории.</p></div>
+      <div class="card bord"><div class="k">Film studies → Фрейд</div><h3>Инструмент вскрытия</h3><p>Теории нужен скальпель, а не рецепт успеха: вытеснение, желание и взгляд показывают, как текст работает и что прячет.</p></div>
+    </div>
+    <p style="max-width:66ch;margin-top:20px">Предел коды: мифокритика тянется к универсализму и стирает историю. Дальше курс идёт фрейдо-лакановской линией; Юнг остаётся собеседником на полях.</p>
+    <div class="slide-foot"><span class="src">Дж. Кэмпбелл, 1949 · К. Воглер, «The Writer’s Journey», 1992. Тема эссе к семинару.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 48 СИЛА / ПРЕДЕЛ -->
+  <section class="slide">
+    <div class="eyebrow">Честный счёт <span class="sep">/</span> <span class="tag">Сила и предел</span></div>
+    <h2>Что метод даёт и где буксует</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Сила</div><h3>Родное сродство</h3><p>Кино и психоанализ работают с поверхностью как с шифром. Понятия жуткого и двойника точно ложатся на средства немого кадра.</p></div>
+      <div class="card bord"><div class="k">Предел</div><h3>Три риска</h3><p>Анахронизм: эссе о жутком — 1919-й, фильмы — 1913–1926-й. Соблазн читать любую тень как «бессознательное». И опасность скатиться в диагноз персонажу или эпохе.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Интеллектуальная честность структурна: рамка помечает свои границы сама.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 49 АКТУАЛЬНОСТЬ -->
+  <section class="slide">
+    <div class="eyebrow">Актуальность <span class="sep">/</span> <span class="tag">Жуткое сегодня</span></div>
+    <h2>Двойник в цифровую эпоху</h2>
+    <div class="cols-wide">
+      <div class="stack">
+        <p class="lead">Каталог жуткого не устарел, а получил новые носители.</p>
+        <p>Зловещая долина роботов и анимации, дипфейк и синтетический голос, аватар и цифровой двойник умершего, нейросеть, что говорит чужими словами, — всё это новые формы отделившегося подобия и ожившего автомата.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Долина</span><p>«Uncanny valley» Мори (1970) — прямое продолжение спора Йенча о живом и неживом.</p></div>
+        <div class="def"><span class="term">Возврат</span><p>Вампир и зомби возвращаются в каждом кризисе как фигура вытесненного.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Кросс: финальная часть курса — лаканианский поворот, Лекция 11.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 50 COURSEMAP -->
+  <section class="slide">
+    <div class="eyebrow">Карта курса <span class="sep">/</span> <span class="tag">Текущее место</span></div>
+    <h2>Маршрут лекций</h2>
+    <div class="coursemap" style="margin-top:6px">
+      <div class="node cur"><span class="nn">01</span><span class="nt">Жуткое и двойник</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Сновидение и сюрреализм</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Аппарат и шов</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Лакан: стадия зеркала</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Малви: мужской взгляд</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Эдип и Имя-Отца</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Фантазм и желание</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Абъекция и чудовищное</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Безумие на экране</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Взгляд ребёнка</span></div>
+      <div class="node"><span class="nn">11</span><span class="nt">Лаканианский поворот</span></div>
+      <div class="node"><span class="nn">12</span><span class="nt">«Правила игры»: капстоун</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Двенадцать лекций: от жуткого и двойника до капстоуна по „Правилам игры“. Части: основания · зритель и взгляд · желание · безумие и современность.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 51 СЕМИНАР -->
+  <section class="slide" data-toc="К семинару">
+    <div class="eyebrow">Практика <span class="sep">/</span> <span class="tag">Задания</span></div>
+    <h2>К семинару</h2>
+    <div class="cols-3" style="margin-top:8px">
+      <div class="card"><div class="k">01 · Разбор — обязательно</div><h3>Сцена × шесть шагов</h3><p>Одна сцена из фильмов лекции, проведённая через алгоритм; 300–400 слов, без пересказа фабулы.</p></div>
+      <div class="card"><div class="k">02 · Эссе — по выбору</div><h3>Один из двух вопросов</h3><p>«Почему масскульт выбрал Юнга, а теория — Фрейда?» либо «Чей „Калигари“ убедительнее: Кракауэр, Айзнер, Робинсон, Элзессер?» 800–1000 слов.</p></div>
+      <div class="card bord"><div class="k">03 · К следующей встрече</div><h3>Просмотр</h3><p>«Андалузский пёс» (21 мин) и «Завороженный». Держать в уме вопрос: где сон работает, а где его только показывают.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Оформление ссылок — Chicago.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 52 К ПРОСМОТРУ -->
+  <section class="slide" data-toc="К просмотру и чтению">
+    <div class="eyebrow">Фильмы лекции <span class="sep">/</span> <span class="tag">Обязательное и дополнительное</span></div>
+    <h2>К просмотру</h2>
+    <div class="watchlist" style="margin-top:6px">
+      <div class="wfilm"><span class="wy">1920</span><span class="wt">Калигари</span><span class="wd">Р. Вине · Германия</span><span class="wn">Мизансцена симптома и ненадёжный рассказчик.</span></div>
+      <div class="wfilm"><span class="wy">1922</span><span class="wt">Носферату</span><span class="wd">Ф. В. Мурнау · Германия</span><span class="wn">Тень-двойник и возврат мёртвого.</span></div>
+      <div class="wfilm"><span class="wy">1913</span><span class="wt">Пражский студент</span><span class="wd">С. Рийе · Германия</span><span class="wn">Чистый случай двойника по Ранку.</span></div>
+      <div class="wfilm"><span class="wy">1926</span><span class="wt">Тайны одной души</span><span class="wd">Г. В. Пабст · Германия</span><span class="wn">Психоанализ как предмет фильма.</span></div>
+      <div class="wfilm"><span class="wy">1920</span><span class="wt">Голем</span><span class="wd">П. Веген · доп.</span><span class="wn">Оживший автомат из глины — жуткое творение.</span></div>
+      <div class="wfilm pro"><span class="wy">1898</span><span class="wt">Четыре беспокойные головы</span><span class="wd">Ж. Мельес · пролог</span><span class="wn">Трюк-двойник до всякой теории.</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Подсказка для разбора: ищите тень, отражение, автомат и сон.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 53 К ЧТЕНИЮ -->
+  <section class="slide">
+    <div class="eyebrow">К чтению <span class="sep">/</span> <span class="tag">Аппарат лекции</span></div>
+    <h2>Источники</h2>
+    <div class="readlist" style="margin-top:6px">
+      <div class="r"><span class="n">01</span><span class="ttl"><b>Freud, S.</b> Das Unheimliche. 1919.</span><span class="typ">первоисточник</span></div>
+      <div class="r"><span class="n">02</span><span class="ttl"><b>Rank, O.</b> Der Doppelgänger. 1914 / 1925.</span><span class="typ">первоисточник</span></div>
+      <div class="r"><span class="n">03</span><span class="ttl"><b>Breuer, J. &amp; Freud, S.</b> Studien über Hysterie. 1895.</span><span class="typ">первоисточник</span></div>
+      <div class="r"><span class="n">04</span><span class="ttl"><b>Münsterberg, H.</b> The Photoplay: A Psychological Study. 1916.</span><span class="typ">первая теория</span></div>
+      <div class="r"><span class="n">05</span><span class="ttl"><b>Kracauer, S.</b> From Caligari to Hitler. 1947.</span><span class="typ">контекст</span></div>
+      <div class="r"><span class="n">06</span><span class="ttl"><b>Eisner, L.</b> The Haunted Screen. 1952 / 1969.</span><span class="typ">контекст</span></div>
+      <div class="r"><span class="n">07</span><span class="ttl"><b>Elsaesser, T.</b> Weimar Cinema and After. 2000.</span><span class="typ">ревизия</span></div>
+      <div class="r"><span class="n">08</span><span class="ttl"><b>Royle, N.</b> The Uncanny. 2003.</span><span class="typ">современное</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Следующая лекция — «Работа сновидения»: думает ли кино на языке сна.</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<button class="zone left" id="zoneL" aria-label="Назад"></button>
+<button class="zone right" id="zoneR" aria-label="Вперёд"></button>
+<div class="cutfx" id="cutfx"></div>
+<div id="gatefx"></div>
+<div id="irisfx"></div>
+<div id="irisem" aria-hidden="true"><svg viewBox="0 0 220 130">
+  <path class="ilid" d="M14 65 Q110 -6 206 65"/>
+  <path class="ilid" d="M14 65 Q110 136 206 65"/>
+  <path class="ispir" d="M110 65 a5 5 0 0 1 5 -5 a10 10 0 0 1 10 10 a15 15 0 0 1 -15 15 a20 20 0 0 1 -20 -20 a25 25 0 0 1 25 -25 a30 30 0 0 1 30 30 a35 35 0 0 1 -35 35 a40 40 0 0 1 -40 -40"/>
+  <circle class="ipup" cx="110" cy="65" r="7" fill="currentColor"/>
+</svg></div>
+<div class="reeldot" id="reeldot"></div>
+<div class="nav">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</div>
+<button class="toc-btn" id="tocBtn">☰ Оглавление</button>
+<div class="toc-panel" id="tocPanel">
+  <div class="toc-inner">
+    <div class="toc-head"><span class="toc-title">Оглавление</span><a class="toc-back" id="tocClose" href="#">закрыть ✕</a></div>
+    <div class="toc-list" id="tocList"></div>
+  </div>
+</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.shot[data-tmdb], .framebox[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); if(!img) continue;
+      img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+const cover=document.getElementById('cover'),cutfx=document.getElementById('cutfx'),reeldot=document.getElementById('reeldot');
+const actEls=Array.from(document.querySelectorAll('.rail .a'));
+const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function coverPlay(){if(!cover||reduce)return;cover.classList.remove('play');void cover.offsetWidth;cover.classList.add('play');}
+const gatefx=document.getElementById('gatefx'),irisfx=document.getElementById('irisfx'),irisem=document.getElementById('irisem');
+let pend=null;
+function apply(n){
+  i=n;
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; if(bar) bar.style.width=pct+'%'; if(railFill) railFill.style.height=pct+'%';
+  let act=null; for(let k=0;k<=i;k++){ if(slides[k].dataset.act) act=slides[k].dataset.act; }
+  actEls.forEach(a=>a.classList.toggle('cur',a.dataset.a===act));
+  if(i===0) coverPlay();
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function show(n){
+  n=Math.max(0,Math.min(total-1,n));
+  const t=slides[n];
+  if(pend){clearTimeout(pend);pend=null;}
+  if(reduce){apply(n);return;}
+  if(t.classList.contains('divider')){
+    irisfx.classList.remove('go');void irisfx.offsetWidth;irisfx.classList.add('go');
+    irisem.classList.remove('go');void irisem.offsetWidth;irisem.classList.add('go');
+    pend=setTimeout(()=>{apply(n);
+      if(t.dataset.act){reeldot.classList.remove('blink');void reeldot.offsetWidth;reeldot.classList.add('blink');}
+      pend=null;},1600);
+  } else if(t.classList.contains('framefull')){
+    cutfx.classList.remove('go');void cutfx.offsetWidth;cutfx.classList.add('go');
+    apply(n);
+  } else {
+    apply(n);
+  }
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+(function(){
+  const btn=document.getElementById('tocBtn'), panel=document.getElementById('tocPanel'), list=document.getElementById('tocList'), close=document.getElementById('tocClose');
+  if(!btn||!panel||!list) return;
+  const items=[];
+  slides.forEach((s,idx)=>{
+    const t=s.getAttribute('data-toc'); if(!t) return;
+    const b=document.createElement('button'); b.className='toc-item'; b.dataset.idx=idx;
+    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t+'</span>';
+    b.addEventListener('click',()=>{ show(idx); shut(); });
+    list.appendChild(b); items.push(b);
+  });
+  function mark(){ items.forEach((b,k)=>{ const c=+b.dataset.idx, next=items[k+1]?+items[k+1].dataset.idx:Infinity; b.classList.toggle('cur', i>=c && i<next); }); }
+  function open(){ mark(); panel.classList.add('open'); }
+  function shut(){ panel.classList.remove('open'); }
+  btn.addEventListener('click',()=>panel.classList.contains('open')?shut():open());
+  if(close) close.addEventListener('click',e=>{e.preventDefault();shut();});
+  panel.addEventListener('click',e=>{ if(e.target===panel) shut(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') shut(); });
+})();
+document.body.classList.add('boot');
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>

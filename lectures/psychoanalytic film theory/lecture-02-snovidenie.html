@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 2 — Работа сновидения | Психоаналитическая теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b1220;--ink-2:#121a2c;--panel:#18223a;--abyss:#070d18;
+  --bone:#ece6da;--bone-dim:#b4b0a4;--slate:#7e8597;
+  --gold:#c9a14a;--gold-soft:#d8be86;--gold-deep:#8a6d28;
+  --violet:#8a78c8;--violet-soft:#b3a6e0;--violet-deep:#4a3f78;
+  --bordeaux:#a23142;--bordeaux-soft:#c25667;
+  --line:rgba(236,230,218,.10);--line-strong:rgba(236,230,218,.20);
+  --display:'Playfair Display',Georgia,serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+
+/* ===== СВЕТ: луч, дымка сна, пыль, зерно, виньетка ===== */
+.beam{position:fixed;top:0;right:0;width:82vw;height:122vh;pointer-events:none;z-index:1;opacity:.55;
+  background:linear-gradient(216deg,rgba(201,161,74,.13) 0%,rgba(201,161,74,.045) 24%,transparent 50%);
+  clip-path:polygon(100% -6%,100% 17%,10% 106%,100% 106%);filter:blur(30px)}
+.beam::after{content:"";position:absolute;top:-6%;right:-4%;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(216,190,134,.24),transparent 70%);filter:blur(9px)}
+body.boot .beam{animation:beamOn 1.2s .2s ease both,flick 6.5s 1.8s ease-in-out infinite}
+@keyframes beamOn{0%{opacity:0}18%{opacity:.58}26%{opacity:.18}38%{opacity:.66}52%{opacity:.42}100%{opacity:.55}}
+@keyframes flick{0%,88%,100%{opacity:.55}91%{opacity:.44}93%{opacity:.6}96%{opacity:.5}}
+.haze-bg{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;filter:blur(62px);
+  background:radial-gradient(38% 42% at 22% 30%,rgba(138,120,200,.22),transparent 70%),radial-gradient(34% 38% at 80% 66%,rgba(138,120,200,.18),transparent 72%),radial-gradient(30% 30% at 60% 16%,rgba(201,161,74,.1),transparent 72%)}
+.dust{position:fixed;top:0;right:0;width:62%;height:100%;pointer-events:none;z-index:1}
+.dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(216,200,240,.8);filter:blur(1px);opacity:0;animation:dfloat 17s linear infinite}
+@keyframes dfloat{0%{transform:translate(0,0);opacity:0}8%{opacity:.55}55%{opacity:.35}100%{transform:translate(-44vw,54vh);opacity:0}}
+.dust i:nth-child(1){top:5%;right:9%;animation-duration:16s;animation-delay:.4s}
+.dust i:nth-child(2){top:13%;right:22%;animation-duration:21s;animation-delay:3s;width:2px;height:2px}
+.dust i:nth-child(3){top:3%;right:31%;animation-duration:14s;animation-delay:5.6s}
+.dust i:nth-child(4){top:21%;right:6%;animation-duration:24s;animation-delay:1.4s;width:2px;height:2px}
+.dust i:nth-child(5){top:9%;right:40%;animation-duration:19s;animation-delay:7.2s}
+.dust i:nth-child(6){top:28%;right:15%;animation-duration:22s;animation-delay:4.1s;width:4px;height:4px}
+.dust i:nth-child(7){top:1%;right:18%;animation-duration:18s;animation-delay:9s;width:2px;height:2px}
+.grain{position:fixed;inset:-4%;pointer-events:none;z-index:1;opacity:.05;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;animation:grainjit .6s steps(2) infinite}
+@keyframes grainjit{0%{transform:translate(0,0)}25%{transform:translate(-1.1%,.7%)}50%{transform:translate(.7%,-1.1%)}75%{transform:translate(-.5%,1%)}100%{transform:translate(0,0)}}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:2;background:radial-gradient(120% 105% at 50% 46%,transparent 58%,rgba(4,7,13,.4) 100%)}
+
+.deck{position:fixed;inset:0;z-index:3}
+.slide{position:absolute;inset:0;padding:50px 62px 62px calc(var(--rail) + 56px);display:none;opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .5s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.slide.thesis.active,.slide.poster.active{animation:breath .55s ease both}
+@keyframes breath{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* ===== RAIL ===== */
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:2px solid var(--abyss);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--abyss) 14px 30px)}
+.rail::before{left:6px}.rail::after{right:6px}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--gold),var(--violet) 70%,var(--abyss));opacity:.18;transition:height .45s ease;z-index:0}
+.rail-mark{position:relative;z-index:2;margin-top:16px;width:30px;height:30px;color:var(--gold);opacity:.92}
+.rail-top{position:relative;z-index:2;margin-top:7px;font-family:var(--display);font-weight:800;font-size:22px;color:var(--gold)}
+.rail .acts{position:relative;z-index:2;display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:20px}
+.rail .a{font-family:var(--mono);font-size:9px;color:var(--slate);border:1px solid var(--line);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.25s}
+.rail .a.cur{color:var(--ink);background:var(--violet);border-color:var(--violet);box-shadow:0 0 12px rgba(138,120,200,.55)}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:var(--slate);text-transform:uppercase;white-space:nowrap}
+.aperture{display:block}.aperture line,.aperture polygon,.aperture circle{vector-effect:non-scaling-stroke}
+
+/* ===== ТИПОГРАФИКА ===== */
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--slate);display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--violet);flex:none}
+.eyebrow .eg{width:14px;height:19px;color:var(--violet-soft);flex:none}
+.eyebrow .sep{color:var(--violet)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:800;line-height:1.0;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:700;line-height:1.04;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px)}
+h3{font-family:var(--display);font-weight:600;font-size:clamp(17px,1.6vw,22px);letter-spacing:.01em;color:var(--bone)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.56}
+.lead{font-size:clamp(17px,1.55vw,22px);line-height:1.5}
+strong{color:#fff;font-weight:700}em{color:var(--violet-soft);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:64%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px;line-height:1.4}
+
+/* ===== COVER + ПУСК ===== */
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:66px 66px;opacity:.4;z-index:0}
+.haze{filter:blur(36px);opacity:.7;background:radial-gradient(40% 48% at 32% 38%,rgba(138,120,200,.5),transparent 70%),radial-gradient(44% 40% at 66% 56%,rgba(201,161,74,.24),transparent 72%),radial-gradient(38% 46% at 50% 74%,rgba(138,120,200,.42),transparent 70%)}
+.cover-haze{position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:60%;height:96%;z-index:0;pointer-events:none}
+body.boot .cover-haze{animation:fadeh 1.6s .3s ease both}
+@keyframes fadeh{from{opacity:0}to{opacity:.7}}
+.cover .ap-hero{position:absolute;left:55%;top:50%;transform:translate(-50%,-50%);width:min(62vh,650px);color:var(--gold);opacity:.14;z-index:0}
+.ap-hero .apc{stroke-dasharray:300}
+.ap-hero .apl{stroke-dasharray:120}
+.ap-hero .apg{stroke-dasharray:200}
+.cover.play .apc{animation:drawc 1.1s .5s ease both}
+.cover.play .apl{animation:drawl .8s ease both}
+.cover.play line.apl:nth-of-type(1){animation-delay:.85s}
+.cover.play line.apl:nth-of-type(2){animation-delay:.95s}
+.cover.play line.apl:nth-of-type(3){animation-delay:1.05s}
+.cover.play line.apl:nth-of-type(4){animation-delay:1.15s}
+.cover.play line.apl:nth-of-type(5){animation-delay:1.25s}
+.cover.play line.apl:nth-of-type(6){animation-delay:1.35s}
+.cover.play .apg{animation:drawg 1s .95s ease both}
+.cover.play .app{animation:pupil .5s 1.5s cubic-bezier(.2,1.4,.4,1) both;transform-origin:50% 50%}
+@keyframes drawc{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+@keyframes drawl{from{stroke-dashoffset:120}to{stroke-dashoffset:0}}
+@keyframes drawg{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes pupil{from{transform:scale(0)}to{transform:scale(1)}}
+.cover.play .kicker{animation:rise .6s 1.65s ease both}
+.cover.play .course-name{animation:rise .6s 1.8s ease both}
+.cover.play h1{animation:rise .7s 1.95s ease both}
+.cover.play .subt{animation:rise .7s 2.15s ease both}
+.cover.play .meta{animation:rise .7s 2.3s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:18px}
+.course-name{font-family:var(--mono);font-weight:500;font-style:normal;text-transform:uppercase;letter-spacing:.26em;color:var(--gold);font-size:clamp(15px,1.7vw,21px);margin-bottom:16px}
+.cover h1{font-size:clamp(42px,7.4vw,106px)}
+.cover h1 .hl{color:var(--gold)}
+.cover .subt{font-family:var(--display);font-weight:500;font-size:clamp(19px,2.4vw,31px);margin-top:20px;color:var(--bone);line-height:1.14;max-width:26ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:16px 34px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--violet-soft);font-weight:500}
+
+/* ===== POSTER: дымка + двойная экспозиция слова ===== */
+.poster{justify-content:center;position:relative;overflow:hidden}
+.poster .haze{position:absolute;right:-4%;top:50%;transform:translateY(-50%);width:62%;height:92%;z-index:0;pointer-events:none}
+.poster-inner{position:relative;z-index:3}
+.poster .knum{font-family:var(--display);font-weight:800;color:var(--violet-soft);font-size:clamp(40px,6vw,84px);line-height:.8;opacity:.92}
+.poster .word{font-family:var(--display);font-weight:800;line-height:.92;letter-spacing:-.02em;font-size:clamp(58px,12vw,168px);margin:.04em 0 .12em}
+.poster .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,27px);color:var(--bone-dim);max-width:32ch;line-height:1.22}
+.dword{position:relative;display:inline-block;color:var(--bone)}
+.dword .gh{position:absolute;left:0;top:0;color:var(--violet-soft);opacity:.5;filter:blur(7px);transform:translate(13px,9px);z-index:-1}
+.poster .moonbig{position:absolute;right:6%;top:50%;transform:translateY(-50%);height:70vh;width:auto;color:var(--gold);opacity:.8;z-index:0;filter:drop-shadow(0 0 44px rgba(201,161,74,.15))}
+
+/* ===== THESIS ===== */
+.slide.thesis{justify-content:center;position:relative;overflow:hidden}
+.thesis .haze{position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:54%;height:90%;z-index:0;pointer-events:none}
+.thesis .haze.l{right:auto;left:-10%}
+.thesis .tlbl{position:relative;z-index:3;font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--violet-soft);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.thesis .tlbl::before{content:"";width:30px;height:2px;background:var(--gold)}
+.thesis .big{position:relative;z-index:3;font-family:var(--display);font-weight:800;font-size:clamp(34px,5.9vw,90px);line-height:1.0;letter-spacing:-.012em;max-width:21ch}
+.thesis .big .hl{color:var(--gold)}.thesis .big .oc{color:var(--violet-soft)}
+.thesis .tsub{position:relative;z-index:3;font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,22px);color:var(--bone-dim);margin-top:26px;max-width:54ch}
+
+/* ===== CINEMA + ЦВЕТОКОР Л2 (фиолетовая вуаль) + КЕН БЁРНС ===== */
+.slide.framefull{justify-content:flex-end;overflow:hidden;padding-right:60px}
+.framefull .shot{position:absolute;inset:0;z-index:0;overflow:hidden;
+  background:radial-gradient(120% 92% at 70% 30%,rgba(138,120,200,.2),transparent 60%),linear-gradient(150deg,var(--panel),var(--abyss) 82%);
+  box-shadow:inset 0 0 220px 60px rgba(7,13,24,.9)}
+.framefull .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .7s ease}
+.framefull .shot.has-image img{opacity:1;animation:kb 26s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.06)}}
+.framefull .shot::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(7,13,24,.95),rgba(7,13,24,.14) 50%,rgba(74,63,120,.3))}
+.gr{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s;z-index:1}
+.gr.g1{background:rgba(96,80,160,.38);mix-blend-mode:color}
+.gr.g2{background:radial-gradient(66% 58% at 62% 30%,rgba(179,166,224,.28),transparent 62%);mix-blend-mode:soft-light}
+.shot.has-image .gr,.framebox.has-image .gr{opacity:1}
+.shot.has-image img,.framebox.has-image img{filter:grayscale(.72) contrast(1.05) brightness(.84) sepia(.28) hue-rotate(210deg) saturate(1.45)}
+.framefull .fcap{position:relative;z-index:3;max-width:74%}
+.framefull .fk{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--violet-soft);margin-bottom:14px}
+.framefull .fcap h2{font-size:clamp(34px,5.2vw,76px);text-shadow:0 2px 40px rgba(7,13,24,.7)}
+.framefull .kw{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.framefull .kw span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet-soft);border:1px solid var(--violet-deep);padding:5px 11px;border-radius:2px;background:rgba(11,18,32,.45)}
+.framefull .logline{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.5vw,20px);color:var(--bone);max-width:46ch}
+.framefull .slide-foot{color:var(--bone-dim);border-color:var(--line-strong)}
+.slide.thesis .slide-foot,.slide.framefull .slide-foot{position:absolute;left:calc(var(--rail) + 56px);right:60px;bottom:24px;margin-top:0;z-index:3}
+.framefull .fyear{position:absolute;z-index:1;font-family:var(--display);font-weight:800;font-size:clamp(110px,18vw,300px);line-height:.74;color:rgba(138,120,200,.14);letter-spacing:-.02em;pointer-events:none;right:40px;top:8px}
+
+/* ===== ФОНЫ-ЗАГЛУШКИ ===== */
+.shot.s-chien,.framebox.s-chien{background:radial-gradient(circle 72px at 80% 20%,rgba(236,230,218,.55),rgba(236,230,218,.06) 42%,transparent 60%),linear-gradient(150deg,#10131f,#05070d 82%)}
+.shot.s-spell,.framebox.s-spell{background:repeating-linear-gradient(90deg,rgba(138,120,200,.1) 0 1px,transparent 1px 46px),radial-gradient(120% 90% at 60% 30%,rgba(138,120,200,.22),transparent 62%),linear-gradient(150deg,#161427,#0a0a16 84%)}
+.shot.s-vampyr,.framebox.s-vampyr{background:radial-gradient(130% 110% at 50% 42%,rgba(236,230,218,.2),rgba(236,230,218,.04) 45%,transparent 72%),linear-gradient(150deg,#1b2230,#0c1018 84%)}
+.framebox.s-ews{background:radial-gradient(60% 70% at 62% 38%,rgba(178,58,74,.3),transparent 60%),radial-gradient(90% 90% at 30% 80%,rgba(138,120,200,.16),transparent 60%),linear-gradient(150deg,#241322,#0a0a14 84%)}
+
+/* ===== CALM primitives ===== */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:42px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;flex:1;align-content:center}
+.cols-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.22fr .88fr;gap:50px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.card{background:rgba(255,255,255,.022);border:1px solid var(--line);border-top:3px solid var(--violet);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 30px -20px rgba(0,0,0,.6)}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--violet-soft)}
+.card h3{margin-bottom:2px}
+.card.gold{border-top-color:var(--gold)}.card.gold .k{color:var(--gold)}
+.card.bord{border-top-color:var(--bordeaux)}.card.bord .k{color:var(--bordeaux-soft)}
+.card.mini{padding:16px 18px}.card.mini h3{font-size:clamp(15px,1.5vw,19px)}.card.mini p{font-size:13px;color:var(--bone-dim)}
+.deflist{display:flex;flex-direction:column;gap:13px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:13px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:700;color:var(--violet-soft);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px;line-height:1.46}
+.quote{position:relative;padding:8px 0 8px 64px;align-self:center;margin-left:-16px}
+.quote::before{content:"«";position:absolute;left:-28px;top:-56px;font-family:var(--display);font-weight:800;font-size:180px;color:var(--violet);line-height:1;opacity:.42}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,31px);line-height:1.3;display:block}
+.quote .attr{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet-soft)}
+.framebox{position:relative;border:1px solid var(--line-strong);overflow:hidden;min-height:300px;align-self:stretch;
+  background:radial-gradient(120% 90% at 70% 30%,rgba(138,120,200,.18),transparent 60%),linear-gradient(150deg,var(--panel),var(--abyss) 82%)}
+.framebox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .6s}
+.framebox.has-image img{opacity:1}
+.framebox .fbcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px 16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);background:linear-gradient(transparent,rgba(7,13,24,.92))}
+
+/* ===== КОЛЬЦО РАБОТЫ СНА ===== */
+.ringwrap{width:100%;max-width:960px;align-self:center}
+.ringwrap svg{width:100%;height:auto;display:block}
+.ring-node{fill:var(--ink-2);stroke:var(--gold-deep);stroke-width:1.4}
+.ring-node.hot{fill:var(--violet-deep);stroke:var(--violet)}
+.ring-lab{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;fill:var(--bone-dim);text-transform:uppercase}
+.ring-lab.b{fill:var(--bone)}
+.ring-core{font-family:'Playfair Display',serif;font-weight:700;font-size:25px;fill:var(--bone)}
+.ring-core2{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;fill:var(--gold);text-transform:uppercase}
+.ring-rev{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;fill:var(--violet-soft);text-transform:uppercase}
+
+/* ===== ПОЛЕ СПОРА ===== */
+.dispute{width:100%;align-self:center}
+.spine{position:relative;padding:42px 0}
+.spine::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line-strong)}
+.voices{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.voices.v3{grid-template-columns:repeat(3,1fr)}
+.voice{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:14px 15px 12px;border-top:3px solid var(--gold);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.voice.f2{border-top-color:var(--violet)}
+.voice.f3{border-top-color:var(--slate)}
+.voice.f4{border-top-color:var(--bordeaux)}
+.voice::before{content:"";position:absolute;left:50%;width:1px;height:26px;background:var(--line-strong)}
+.voice:nth-child(odd){transform:translateY(-32px)}
+.voice:nth-child(odd)::before{bottom:-27px}
+.voice:nth-child(even){transform:translateY(32px)}
+.voice:nth-child(even)::before{top:-27px}
+.voice .vy{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--gold)}
+.voice.f2 .vy{color:var(--violet-soft)}.voice.f3 .vy{color:var(--slate)}.voice.f4 .vy{color:var(--bordeaux-soft)}
+.voice .vn{font-family:var(--display);font-weight:700;font-size:16.5px;margin:4px 0 5px;color:#fff}
+.voice .vp{font-size:12.5px;color:var(--bone-dim);line-height:1.42}
+.dq{margin-top:24px;font-family:var(--serif);font-style:italic;color:var(--bone);font-size:clamp(14px,1.35vw,17px)}
+.dq b{color:var(--gold);font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-right:10px}
+
+/* ===== СПИСКИ / КАРТА / ПЛЁНКА ===== */
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:800;color:var(--gold);font-size:clamp(22px,2.4vw,32px)}
+.qlist p{font-size:clamp(14.5px,1.35vw,17.5px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--gold);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet-soft)}
+.coursemap{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 12px;background:rgba(255,255,255,.018);display:flex;flex-direction:column;gap:7px;min-height:88px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.coursemap .node .nn{font-family:var(--display);font-weight:800;color:var(--gold);font-size:18px}
+.coursemap .node .nt{font-family:var(--display);font-weight:600;font-size:12.5px;line-height:1.1;color:var(--bone-dim)}
+.coursemap .node.cur{background:var(--violet-deep);border-color:var(--violet);border-top:4px solid var(--violet)}
+.coursemap .node.cur .nt{color:#fff}.coursemap .node.cur .nn{color:var(--violet-soft)}
+.coursemap .node.spec{border-style:dashed}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet)}
+.wfilm.doc::before{background:var(--gold)}
+.wfilm .wy{font-family:var(--display);font-weight:800;font-size:52px;line-height:.8;color:rgba(236,230,218,.1);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.04;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--violet-soft)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.42}
+.lighttable{width:100%;align-self:center;padding:32px 26px;background:linear-gradient(160deg,#1a2338,#0e1524);border:1px solid var(--line-strong);display:flex;gap:18px;justify-content:center;align-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.fs{position:relative;width:15%;background:#080c15;padding:21px 7px;border:1px solid rgba(0,0,0,.6);box-shadow:0 8px 26px rgba(0,0,0,.45)}
+.fs::before,.fs::after{content:"";position:absolute;left:7px;right:7px;height:9px;background:repeating-linear-gradient(90deg,transparent 0 7px,#232c42 7px 13px,transparent 13px 21px)}
+.fs::before{top:6px}.fs::after{bottom:6px}
+.fs .edge{position:absolute;top:21px;left:9px;right:9px;font-family:var(--mono);font-size:6.5px;letter-spacing:.26em;color:#5a6478;white-space:nowrap;overflow:hidden}
+.fs .win{position:relative;aspect-ratio:2/2.7;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.fs .cy{position:absolute;left:9px;bottom:25px;font-family:var(--display);font-weight:800;font-size:18px;color:var(--bone);z-index:2}
+.fs .cn{position:absolute;left:9px;right:9px;bottom:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--bone-dim);z-index:2}
+.fs:nth-child(1){transform:rotate(-1.5deg)}
+.fs:nth-child(2){transform:rotate(.8deg) translateY(6px)}
+.fs:nth-child(3){transform:rotate(-.6deg)}
+.fs:nth-child(4){transform:rotate(1.3deg) translateY(-5px)}
+.fs:nth-child(5){transform:rotate(-.9deg) translateY(4px)}
+.fs:nth-child(6){transform:rotate(1.1deg)}
+.win.w-chien{background:radial-gradient(circle 30px at 74% 20%,rgba(236,230,218,.42),transparent 55%),linear-gradient(150deg,#10131f,#06090f 84%)}
+.win.w-vampyr{background:radial-gradient(130% 110% at 50% 40%,rgba(236,230,218,.16),transparent 70%),linear-gradient(150deg,#1b2230,#0c1018 84%)}
+.win.w-spell{background:repeating-linear-gradient(90deg,rgba(138,120,200,.1) 0 1px,transparent 1px 26px),linear-gradient(150deg,#161427,#0a0a16 84%)}
+.win.w-8h{background:linear-gradient(150deg,#2b2a24,#0d0d0a 84%)}
+.win.w-ews{background:radial-gradient(70% 70% at 60% 36%,rgba(178,58,74,.28),transparent 60%),linear-gradient(150deg,#241322,#0a0a14 84%)}
+.win.w-md{background:linear-gradient(150deg,#241a33,#0a0f1c 82%)}
+
+/* ===== NAV / СКЛЕЙКА / TOC ===== */
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--gold);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--violet);border-color:var(--violet);color:var(--ink)}
+.nbtn:focus-visible{outline:3px solid var(--violet);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--gold);width:0;transition:width .4s ease}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer;background:transparent;border:0;padding:0;margin:0;-webkit-appearance:none;appearance:none;font:inherit;color:inherit;outline:none}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+.cutfx{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;z-index:45}
+.cutfx.go{animation:cutb .45s ease both}
+@keyframes cutb{0%{opacity:0}18%{opacity:1}55%{opacity:1}100%{opacity:0}}
+.reeldot{position:fixed;top:16px;right:18px;width:15px;height:15px;border-radius:50%;background:radial-gradient(circle,rgba(236,230,218,.9),rgba(236,230,218,.22) 70%);opacity:0;pointer-events:none;z-index:46;filter:blur(.4px)}
+.reeldot.blink{animation:reelb .7s steps(2) 1}
+@keyframes reelb{0%,40%{opacity:0}50%,90%{opacity:.9}100%{opacity:0}}
+.toc-btn{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);background:var(--ink-2);border:1px solid var(--line-strong);padding:8px 12px;border-radius:2px;cursor:pointer;transition:.16s}
+.toc-btn:hover{border-color:var(--violet);color:#fff}
+.toc-panel{position:fixed;inset:0;z-index:60;background:rgba(7,13,24,.82);display:none;opacity:0;transition:opacity .2s}
+.toc-panel.open{display:block;opacity:1}
+.toc-inner{position:absolute;left:0;top:0;bottom:0;width:min(440px,86vw);background:var(--ink-2);border-right:2px solid var(--violet);padding:30px 26px;overflow:auto;box-shadow:0 0 60px rgba(0,0,0,.6)}
+.toc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:12px}
+.toc-title{font-family:var(--display);font-weight:700;font-size:22px;color:var(--bone)}
+.toc-back{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet-soft);text-decoration:none}
+.toc-list{display:flex;flex-direction:column}
+.toc-item{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:13px 4px;font-family:var(--serif);font-size:16px;color:var(--bone);cursor:pointer;transition:.14s}
+.toc-item:hover{color:var(--violet-soft);padding-left:10px}
+.toc-item.cur{color:var(--violet-soft)}
+.toc-item .tnum{font-family:var(--mono);font-size:12px;color:var(--gold);min-width:24px}
+
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.voices,.voices.v3{grid-template-columns:1fr;gap:16px}
+  .cols-3,.cols-4{grid-template-columns:1fr}
+  .coursemap{grid-template-columns:repeat(2,1fr)}
+  .voice:nth-child(odd),.voice:nth-child(even){transform:none}
+  .voice::before,.spine::before{display:none}
+  .spine{padding:8px 0}
+  .lighttable{flex-wrap:wrap}.fs{width:30%}
+  .cover-inner,.poster-inner{max-width:100%}
+  .cover-haze,.poster .haze,.poster .moonbig{opacity:.35}
+  .poster .word{font-size:clamp(44px,14vw,80px)}
+  .framefull .fcap{max-width:100%}
+  .zone{width:24%}.progress{left:0}
+  .slide.thesis .slide-foot,.slide.framefull .slide-foot{left:18px;right:18px}
+  .quote{padding-left:40px;margin-left:0}.quote::before{font-size:120px;left:-8px;top:-30px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.watchlist,.lighttable{grid-template-columns:1fr}.fs{width:46%}h2{font-size:25px}}
+
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{width:auto;height:auto;overflow:visible;background:var(--ink)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;animation:none!important}
+  .nav,.progress,.zone,.toc-btn,.toc-panel,.cutfx,.reeldot,.dust,.vignette{display:none!important}
+  .beam,.grain,.haze-bg{position:absolute!important}
+  .deck{position:static!important}.rail{position:absolute!important}
+  .slide{position:relative!important;inset:auto!important;display:flex!important;opacity:1!important;width:100%;min-height:100vh;height:100vh;page-break-after:always;break-after:page}
+  .slide:last-child{page-break-after:auto;break-after:auto}
+}
+
+/* ===== АПГРЕЙД: ПРОТЯЖКА · ИРИС · ХОРЕОГРАФИЯ · ГЛАЗ ===== */
+@keyframes advance{0%{transform:translateY(30px);opacity:0}60%{transform:translateY(-4px);opacity:1}100%{transform:none;opacity:1}}
+#gatefx{position:fixed;left:0;right:0;top:-18vh;height:16vh;pointer-events:none;z-index:44;opacity:0;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.6),rgba(0,0,0,0))}
+#gatefx.go{animation:gatego .38s ease both}
+@keyframes gatego{0%{opacity:1;transform:translateY(0)}100%{opacity:1;transform:translateY(125vh)}}
+#irisfx{position:fixed;left:50%;top:50%;width:245vmax;height:245vmax;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 200vmax #000;pointer-events:none;z-index:47;opacity:0}
+#irisfx.go{animation:irisgo .74s ease-in-out both}
+@keyframes irisgo{0%{opacity:1;width:245vmax;height:245vmax}44%{width:0;height:0}56%{width:0;height:0}100%{opacity:1;width:245vmax;height:245vmax}}
+@keyframes fup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+@keyframes land{from{opacity:0;transform:translateY(-34px) rotate(4deg) scale(1.05)}}
+@keyframes vT{from{opacity:0;transform:translateY(-58px)}}
+@keyframes vB{from{opacity:0;transform:translateY(58px)}}
+@keyframes npop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes breathe{to{transform:scale(1.09)}}
+@keyframes drawL{from{stroke-dashoffset:280}to{stroke-dashoffset:0}}
+@keyframes drawS{from{stroke-dashoffset:780}to{stroke-dashoffset:0}}
+@keyframes drawR{from{stroke-dasharray:1660;stroke-dashoffset:1660}to{stroke-dasharray:1660;stroke-dashoffset:0}}
+.slide.active .eyebrow{animation:fup .4s .04s both}
+.slide.active h2{animation:fup .45s .1s both}
+.slide.active .lead{animation:fup .5s .18s both}
+.slide.active .cols>p{animation:fup .5s .3s both}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide)+p{animation:fup .5s .7s both}
+.slide.active .stack>p{animation:fup .45s both}
+.slide.active .stack>p:nth-of-type(1){animation-delay:.28s}
+.slide.active .stack>p:nth-of-type(2){animation-delay:.42s}
+.slide.active .stack>p:nth-of-type(3){animation-delay:.56s}
+.slide.active .tlbl{animation:fup .45s .3s both}
+.slide.active .big{animation:fup .55s .42s both}
+.slide.active .tsub{animation:fup .55s .6s both}
+.slide.active .knum{animation:fup .5s .45s both}
+.slide.active .word{animation:fup .6s .58s both}
+.slide.active .poster .sub{animation:fup .6s .74s both}
+.slide.active .fk{animation:fup .4s .28s both}
+.slide.active .fcap h2{animation:fup .5s .38s both}
+.slide.active .kw span{animation:fup .4s both}
+.slide.active .kw span:nth-child(1){animation-delay:.48s}
+.slide.active .kw span:nth-child(2){animation-delay:.56s}
+.slide.active .kw span:nth-child(3){animation-delay:.64s}
+.slide.active .logline{animation:fup .5s .72s both}
+.slide.active .fyear{animation:fin .9s .2s both}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card{animation:fup .45s both}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(1){animation-delay:.22s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(2){animation-delay:.34s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(3){animation-delay:.46s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(4){animation-delay:.58s}
+.slide.active .def{animation:fup .4s both}
+.slide.active .def:nth-child(1){animation-delay:.18s}
+.slide.active .def:nth-child(2){animation-delay:.26s}
+.slide.active .def:nth-child(3){animation-delay:.34s}
+.slide.active .def:nth-child(4){animation-delay:.42s}
+.slide.active .def:nth-child(5){animation-delay:.5s}
+.slide.active .def:nth-child(6){animation-delay:.58s}
+.slide.active .qlist li{animation:fup .45s both}
+.slide.active .qlist li:nth-child(1){animation-delay:.2s}
+.slide.active .qlist li:nth-child(2){animation-delay:.29s}
+.slide.active .qlist li:nth-child(3){animation-delay:.38s}
+.slide.active .qlist li:nth-child(4){animation-delay:.47s}
+.slide.active .qlist li:nth-child(5){animation-delay:.56s}
+.slide.active .qlist li:nth-child(6){animation-delay:.65s}
+.slide.active .coursemap .node{animation:fup .35s both}
+.slide.active .coursemap .node:nth-child(1){animation-delay:.1s}
+.slide.active .coursemap .node:nth-child(2){animation-delay:.15s}
+.slide.active .coursemap .node:nth-child(3){animation-delay:.2s}
+.slide.active .coursemap .node:nth-child(4){animation-delay:.25s}
+.slide.active .coursemap .node:nth-child(5){animation-delay:.3s}
+.slide.active .coursemap .node:nth-child(6){animation-delay:.35s}
+.slide.active .coursemap .node:nth-child(7){animation-delay:.4s}
+.slide.active .coursemap .node:nth-child(8){animation-delay:.45s}
+.slide.active .coursemap .node:nth-child(9){animation-delay:.5s}
+.slide.active .coursemap .node:nth-child(10){animation-delay:.55s}
+.slide.active .coursemap .node:nth-child(11){animation-delay:.6s}
+.slide.active .coursemap .node:nth-child(12){animation-delay:.65s}
+.slide.active .wfilm{animation:fup .45s both}
+.slide.active .wfilm:nth-child(1){animation-delay:.18s}
+.slide.active .wfilm:nth-child(2){animation-delay:.26s}
+.slide.active .wfilm:nth-child(3){animation-delay:.34s}
+.slide.active .wfilm:nth-child(4){animation-delay:.42s}
+.slide.active .wfilm:nth-child(5){animation-delay:.5s}
+.slide.active .wfilm:nth-child(6){animation-delay:.58s}
+.slide.active .readlist .r{animation:fup .35s both}
+.slide.active .readlist .r:nth-child(1){animation-delay:.14s}
+.slide.active .readlist .r:nth-child(2){animation-delay:.2s}
+.slide.active .readlist .r:nth-child(3){animation-delay:.26s}
+.slide.active .readlist .r:nth-child(4){animation-delay:.32s}
+.slide.active .readlist .r:nth-child(5){animation-delay:.38s}
+.slide.active .readlist .r:nth-child(6){animation-delay:.44s}
+.slide.active .readlist .r:nth-child(7){animation-delay:.5s}
+.slide.active .readlist .r:nth-child(8){animation-delay:.56s}
+.slide.active .lighttable .fs{animation:land .55s cubic-bezier(.2,.9,.3,1.1) both}
+.slide.active .lighttable .fs:nth-child(1){animation-delay:.25s}
+.slide.active .lighttable .fs:nth-child(2){animation-delay:.37s}
+.slide.active .lighttable .fs:nth-child(3){animation-delay:.49s}
+.slide.active .lighttable .fs:nth-child(4){animation-delay:.61s}
+.slide.active .lighttable .fs:nth-child(5){animation-delay:.73s}
+.slide.active .lighttable .fs:nth-child(6){animation-delay:.85s}
+.slide.active .voice{animation:vT .5s both}
+.slide.active .voice:nth-child(even){animation-name:vB}
+.slide.active .voice:nth-child(1){animation-delay:.25s}
+.slide.active .voice:nth-child(2){animation-delay:.38s}
+.slide.active .voice:nth-child(3){animation-delay:.51s}
+.slide.active .voice:nth-child(4){animation-delay:.64s}
+.slide.active .dq{animation:fup .45s .82s both}
+.slide.active .quote{animation:fup .5s .24s both}
+.slide.active .framebox{animation:fup .5s .34s both}
+.slide.active .ringwrap ellipse:nth-of-type(1){animation:drawR 1s .3s ease both}
+.slide.active .ringwrap ellipse:nth-of-type(2){animation:fin .5s 1.1s both}
+.slide.active .ringwrap circle{transform-box:fill-box;transform-origin:center;animation:npop .3s both}
+.slide.active .ringwrap circle:nth-of-type(1){animation-delay:.48s}
+.slide.active .ringwrap circle:nth-of-type(2){animation-delay:.57s}
+.slide.active .ringwrap circle:nth-of-type(3){animation-delay:.66s}
+.slide.active .ringwrap circle:nth-of-type(4){animation-delay:.75s}
+.slide.active .ringwrap circle:nth-of-type(5){animation-delay:.84s}
+.slide.active .ringwrap circle:nth-of-type(6){animation-delay:.93s}
+.slide.active .ringwrap circle:nth-of-type(7){animation-delay:1.02s}
+.slide.active .ringwrap circle:nth-of-type(8){animation-delay:1.11s}
+.slide.active .ringwrap text{animation:fin .45s 1.3s both}
+.slide.active .ringwrap polygon{animation:fin .4s 1.55s both}
+/* глаз-спираль */
+.eyehero .lid{stroke-dasharray:280}
+.eyehero .spir{stroke-dasharray:780}
+.cover.play .lid{animation:drawL .8s .3s ease both}
+.cover.play .lid:nth-of-type(2){animation-delay:.45s}
+.cover.play .spir{animation:drawS 1.15s .75s ease both}
+.cover.play .pupil{transform-box:fill-box;transform-origin:center;animation:pupil .45s 1.55s cubic-bezier(.2,1.5,.4,1) both,breathe 5s 2.4s ease-in-out infinite alternate}
+.rail-mark{width:38px;height:24px}
+svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
+/* SVG-заглушки */
+.win.w-chien{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%230a0f1c'/%3E%3Ccircle cx='112' cy='40' r='20' fill='%23e8e2d4'/%3E%3Cellipse cx='112' cy='40' rx='42' ry='5' fill='%230a0f1c' stroke='%23565f75' stroke-width='.6'/%3E%3Cpath d='M20 116 L66 132 L63 140 L17 124 Z' fill='%23cfd6e4'/%3E%3Cpath d='M10 120 L20 116 L17 124 L8 127 Z' fill='%232a3346'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-vampyr{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%2318202e'/%3E%3Cellipse cx='80' cy='98' rx='86' ry='52' fill='%23ece6da' opacity='.08'/%3E%3Crect x='58' y='26' width='44' height='34' fill='%23060a12' stroke='%238f97ab' stroke-width='1.5'/%3E%3Cline x1='80' y1='26' x2='80' y2='60' stroke='%238f97ab' stroke-width='1'/%3E%3Cline x1='58' y1='43' x2='102' y2='43' stroke='%238f97ab' stroke-width='1'/%3E%3Ccircle cx='70' cy='52' r='3' fill='%23e8d39a'/%3E%3Ccircle cx='70' cy='52' r='8' fill='%23e8d39a' opacity='.25'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-spell{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%23141126'/%3E%3Cpath d='M16 0 v160 M40 0 v160 M64 0 v160 M88 0 v160 M112 0 v160 M136 0 v160' stroke='%238a78c8' stroke-width='1' opacity='.28' fill='none'/%3E%3Cpath d='M30 70 Q52 52 74 70 Q52 88 30 70 Z' fill='none' stroke='%23ece6da' stroke-width='2'/%3E%3Ccircle cx='52' cy='70' r='6' fill='%23ece6da'/%3E%3Cpath d='M84 44 Q100 32 116 44 Q100 56 84 44 Z' fill='none' stroke='%23ece6da' stroke-width='1.6'/%3E%3Ccircle cx='100' cy='44' r='4' fill='%23ece6da'/%3E%3Cpath d='M92 106 Q110 92 128 106 Q110 120 92 106 Z' fill='none' stroke='%23ece6da' stroke-width='1.6'/%3E%3Ccircle cx='110' cy='106' r='5' fill='%23ece6da'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-ews{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%231c1020'/%3E%3Ccircle cx='96' cy='58' r='46' fill='%23a23142' opacity='.22'/%3E%3Cpath d='M36 78 Q80 46 124 78 Q118 108 80 108 Q42 108 36 78 Z' fill='%230d0812' stroke='%23d8be86' stroke-width='1.6'/%3E%3Cpath d='M56 80 Q66 72 76 80 Q66 88 56 80 Z' fill='%231c1020'/%3E%3Cpath d='M84 80 Q94 72 104 80 Q94 88 84 80 Z' fill='%231c1020'/%3E%3Cpath d='M36 78 L14 66 M124 78 L146 66' stroke='%23d8be86' stroke-width='1' opacity='.5'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-md{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%23171226'/%3E%3Cpath d='M0 62 Q40 46 80 58 Q120 70 160 52' stroke='%233a3354' fill='none' stroke-width='1.5'/%3E%3Cpath d='M20 160 L74 60 L86 60 L140 160 Z' fill='%230d0a18'/%3E%3Cpath d='M80 150 L80 138 M80 126 L80 116 M80 106 L80 98 M80 90 L80 84 M80 77 L80 72' stroke='%23d8be86' stroke-width='3' opacity='.7'/%3E%3Ccircle cx='120' cy='40' r='10' fill='%23b3a6e0' opacity='.35'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-8h{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%23262218'/%3E%3Ccircle cx='80' cy='30' r='40' fill='%23d8be86' opacity='.14'/%3E%3Crect y='96' width='160' height='10' fill='%23e8e2d4' opacity='.5'/%3E%3Cg stroke='%23120f0a' stroke-width='2.5' fill='%23120f0a'%3E%3Ccircle cx='32' cy='88' r='3'/%3E%3Cpath d='M32 90 v8'/%3E%3Ccircle cx='56' cy='88' r='3'/%3E%3Cpath d='M56 90 v8'/%3E%3Ccircle cx='80' cy='88' r='3'/%3E%3Cpath d='M80 90 v8'/%3E%3Ccircle cx='104' cy='88' r='3'/%3E%3Cpath d='M104 90 v8'/%3E%3Ccircle cx='128' cy='88' r='3'/%3E%3Cpath d='M128 90 v8'/%3E%3Cpath d='M32 94 H128' stroke-width='1.2' opacity='.7'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat}
+/* ===== ПЕРЕХОДЫ: КИНО-НАПЛЫВ И ГИПНО-ИРИС ===== */
+.slide.active{animation:dis .9s cubic-bezier(.22,.75,.25,1) both}
+.slide.thesis.active,.slide.poster.active{animation:disT 1.15s cubic-bezier(.25,.8,.25,1) both}
+@keyframes dis{from{opacity:0;transform:scale(1.045);filter:blur(12px) brightness(1.12)}60%{filter:blur(2px) brightness(1.03)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+@keyframes disT{from{opacity:0;transform:scale(1.07);filter:blur(16px) brightness(1.15)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+#irisfx.go{animation:irisgo2 3.2s cubic-bezier(.55,.05,.45,.95) both}
+@keyframes irisgo2{0%{opacity:1;width:245vmax;height:245vmax}36%{width:0;height:0}64%{width:0;height:0}100%{opacity:1;width:245vmax;height:245vmax}}
+#irisem{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:48;opacity:0}
+#irisem svg{width:min(36vh,320px);color:var(--gold);filter:drop-shadow(0 0 26px rgba(201,161,74,.4))}
+#irisem .ilid{fill:none;stroke:currentColor;stroke-width:1.6;stroke-dasharray:280;stroke-dashoffset:280}
+#irisem .ispir{fill:none;stroke:currentColor;stroke-width:1.5;stroke-dasharray:780;stroke-dashoffset:780}
+#irisem .ipup{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+#irisem.go{animation:iemF 3.2s both}
+#irisem.go svg{animation:irot 3.2s cubic-bezier(.4,0,.4,1) both}
+#irisem.go .ilid{animation:drawL .9s .55s ease both}
+#irisem.go .ilid:nth-of-type(2){animation-delay:.68s}
+#irisem.go .ispir{animation:drawS 1.35s .9s ease both}
+#irisem.go .ipup{animation:pupil .45s 1.85s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes iemF{0%,10%{opacity:0}26%,62%{opacity:1}80%,100%{opacity:0}}
+@keyframes irot{from{transform:rotate(-16deg) scale(.9)}to{transform:rotate(8deg) scale(1.02)}}
+/* ===== ДИВАЙДЕРЫ КРУПНЕЕ ===== */
+.poster-inner{margin-top:5vh}
+.poster .knum{font-size:clamp(46px,7vw,96px)}
+.poster .word{font-size:clamp(64px,13.5vw,196px)}
+.poster .sub{font-size:clamp(19px,2.3vw,30px);max-width:36ch}
+/* ===== КРУПНОЕ ПОЛЕ СПОРА ===== */
+.dispute{max-width:1240px;margin:0 auto}
+.spine{padding:56px 0}
+.voices{gap:22px}
+.voice{padding:22px 22px 18px;border-top-width:4px}
+.voice .vy{font-size:12.5px}
+.voice .vn{font-size:21px;margin:6px 0 8px}
+.voice .vp{font-size:14.5px;line-height:1.5}
+.voice:nth-child(odd){transform:translateY(-38px)}
+.voice:nth-child(even){transform:translateY(38px)}
+.voice:nth-child(odd)::before{bottom:-33px;height:32px}
+.voice:nth-child(even)::before{top:-33px;height:32px}
+.dq{font-size:clamp(16px,1.6vw,21px);margin-top:34px}
+/* ===== КОЛЬЦО КРУПНЕЕ ===== */
+.ringwrap{max-width:1100px}
+.ring-lab{font-size:15px}
+.ring-core{font-size:28px}
+.ring-core2{font-size:11.5px}
+.ring-rev{font-size:11.5px}
+/* ===== КАРТА И ФИЛЬМЫ КРУПНЕЕ ===== */
+.coursemap{gap:14px;flex:1;align-content:center}
+.coursemap .node{padding:22px 20px;min-height:132px;gap:10px}
+.coursemap .node .nn{font-size:26px}
+.coursemap .node .nt{font-size:15px;line-height:1.22}
+.watchlist{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;flex:1;align-content:center}
+.wfilm{padding:30px 28px 26px;min-height:190px;gap:9px}
+.wfilm .wt{font-size:24px}
+.wfilm .wd{font-size:12.5px}
+.wfilm .wn{font-size:14.5px;line-height:1.5}
+.wfilm .wy{font-size:64px;right:18px;top:20px}
+/* ===== ПЛЕЙСХОЛДЕРЫ TMDB ===== */
+.shot[data-tmdb]:not(.has-image)::before,.framebox[data-tmdb]:not(.has-image)::before{content:"Кадр · подтянется из TMDB";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate);border:1px dashed var(--line-strong);padding:9px 14px;border-radius:2px;background:rgba(7,13,24,.5);white-space:nowrap}
+/* ===== БОЛЬШЕ ПЫЛИ ===== */
+.dust{width:84%}
+.dust i:nth-child(8){top:34%;right:26%;animation-duration:20s;animation-delay:2.2s}
+.dust i:nth-child(9){top:16%;right:52%;animation-duration:23s;animation-delay:6.4s;width:2px;height:2px}
+.dust i:nth-child(10){top:7%;right:60%;animation-duration:18s;animation-delay:.9s}
+.dust i:nth-child(11){top:40%;right:44%;animation-duration:25s;animation-delay:4.8s;width:4px;height:4px}
+.dust i:nth-child(12){top:24%;right:70%;animation-duration:21s;animation-delay:8.1s;width:2px;height:2px}
+.dust i:nth-child(13){top:2%;right:47%;animation-duration:17s;animation-delay:11s}
+.dust i:nth-child(14){top:31%;right:8%;animation-duration:26s;animation-delay:5.5s;width:5px;height:5px}
+/* уравнения: выравнивание и крупный размер */
+.deflist.eq{max-width:1120px;width:100%;flex:1;justify-content:center;gap:22px}
+.deflist.eq .def{grid-template-columns:290px 1fr;gap:26px;padding-bottom:20px}
+.deflist.eq .term{font-size:clamp(18px,1.9vw,25px);white-space:normal}
+.deflist.eq .def p{font-size:clamp(15px,1.4vw,18px);line-height:1.5}
+/* слоты и окна коды */
+.shot.s-md,.framebox.s-md{background:radial-gradient(120% 90% at 70% 30%,rgba(138,120,200,.22),transparent 60%),linear-gradient(150deg,#1c1430,#0a0f1c 84%)}
+.win.w-oz{background:radial-gradient(60% 50% at 50% 68%,rgba(90,200,140,.24),transparent 65%),linear-gradient(150deg,#12291c,#07130c 84%)}
+.win.w-per{background:radial-gradient(80% 70% at 50% 34%,rgba(236,230,218,.32),transparent 60%),linear-gradient(150deg,#2a2f3a,#10131c 84%)}
+@media print{#irisem{display:none!important}}
+@media print{#gatefx,#irisfx{display:none!important}}
+</style>
+</head>
+<body>
+
+<div class="beam"></div>
+<div class="haze-bg"></div>
+<div class="dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="g-dbl" viewBox="0 0 120 170"><circle cx="47" cy="85" r="34" fill="none" stroke="currentColor" stroke-width="10"/><circle cx="73" cy="85" r="34" fill="none" stroke="currentColor" stroke-width="10" opacity=".55"/></symbol>
+<symbol id="g-scr" viewBox="0 0 120 170"><rect x="18" y="55" width="84" height="60" fill="none" stroke="currentColor" stroke-width="9"/><path d="M8 30 L60 85 L8 140 Z" fill="currentColor" opacity=".35"/></symbol>
+<symbol id="g-ap" viewBox="0 0 220 130"><path d="M14 65 Q110 -6 206 65 Q110 136 14 65 Z" fill="none" stroke="currentColor" stroke-width="14"/><circle cx="110" cy="65" r="32" fill="none" stroke="currentColor" stroke-width="10"/><circle cx="110" cy="65" r="10" fill="currentColor"/></symbol>
+<symbol id="g-moon" viewBox="0 0 120 170"><path d="M78 30 A55 55 0 1 0 78 140 A44 44 0 1 1 78 30 Z" fill="currentColor"/></symbol>
+</defs></svg>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <svg class="rail-mark" viewBox="0 0 220 130" aria-hidden="true">
+    <path d="M14 65 Q110 -6 206 65 Q110 136 14 65 Z" fill="none" stroke="currentColor" stroke-width="12"/>
+    <circle cx="110" cy="65" r="32" fill="none" stroke="currentColor" stroke-width="9"/>
+    <circle cx="110" cy="65" r="9" fill="currentColor"/>
+  </svg>
+  <div class="rail-top">02</div>
+  <div class="acts"><span class="a" data-a="I">I</span><span class="a" data-a="II">II</span><span class="a" data-a="III">III</span><span class="a" data-a="IV">IV</span></div>
+  <div class="rail-label">Психоаналитическая теория кино · авторский курс Карена Аванесяна</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- 01 COVER -->
+  <section class="slide cover active" id="cover">
+    <div class="grid-bg"></div>
+    <div class="haze cover-haze"></div>
+    <svg class="ap-hero eyehero" viewBox="0 0 220 130" aria-hidden="true">
+      <path class="lid" d="M14 65 Q110 -6 206 65" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path class="lid" d="M14 65 Q110 136 206 65" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path class="spir" fill="none" stroke="currentColor" stroke-width="1.4" d="M110 65 a5 5 0 0 1 5 -5 a10 10 0 0 1 10 10 a15 15 0 0 1 -15 15 a20 20 0 0 1 -20 -20 a25 25 0 0 1 25 -25 a30 30 0 0 1 30 30 a35 35 0 0 1 -35 35 a40 40 0 0 1 -40 -40"/>
+      <circle class="pupil" cx="110" cy="65" r="7" fill="currentColor"/>
+    </svg>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 02 / 12</div>
+      <div class="course-name">Психоаналитическая теория кино</div>
+      <h1>Работа <span class="hl">сновидения</span></h1>
+      <div class="subt">Думает ли кино на языке сна?</div>
+      <div class="meta">
+        <span><b>Понятия:</b> сгущение · смещение · изобразимость</span>
+        <span><b>Кейсы:</b> Бунюэль · Хичкок · Дрейер</span>
+        <span><b>Кода:</b> Линч</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 COLD OPEN · плёнка -->
+  <section class="slide" data-toc="Введение">
+    <div class="eyebrow">Лекция 02 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
+    <h2>Что общего у этих снов?</h2>
+    <p class="lead" style="max-width:62ch;margin:14px 0 12px">Каждый кадр этой плёнки — сновидение. Но выведено оно тремя несовместимыми способами, и спор между ними — сюжет лекции.</p>
+    <div class="lighttable">
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 029A</span><div class="win w-chien"></div><span class="cy">1929</span><span class="cn">Андалузский пёс</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 032B</span><div class="win w-vampyr"></div><span class="cy">1932</span><span class="cn">Вампир</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 039C</span><div class="win w-oz"></div><span class="cy">1939</span><span class="cn">Волшебник страны Оз</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 045D</span><div class="win w-spell"></div><span class="cy">1945</span><span class="cn">Завороженный</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 066E</span><div class="win w-per"></div><span class="cy">1966</span><span class="cn">Персона</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 001X</span><div class="win w-md"></div><span class="cy">2001</span><span class="cn">Малхолланд Драйв</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Бунюэль шифрует, Хичкок разгадывает, Дрейер растворяет; Линч ждёт в коде.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 03 THESIS A -->
+  <section class="slide thesis">
+    <div class="haze"></div>
+    <div class="tlbl">Тезис лекции</div>
+    <div class="big">Сон думает <span class="hl">образами</span> — и потому так близок к <span class="oc">кино</span>.</div>
+    <div class="tsub">Оба превращают мысль в зримое и оба требуют чтения, а не буквального взгляда. Первая лекция назвала это «другой сценой»; сон — её царская дорога.</div>
+    <div class="slide-foot"><span class="src">З. Фрейд: сновидение — via regia к бессознательному.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 04 ВОПРОС -->
+  <section class="slide" data-toc="Главный вопрос и метод">
+    <div class="eyebrow">Лекция 02 <span class="sep">/</span> <span class="tag">Рамка</span></div>
+    <h2>Главный вопрос</h2>
+    <div class="cols-wide" style="margin-top:8px">
+      <div class="stack">
+        <p class="lead">Если сон превращает скрытую мысль в образ, то умеет ли кино делать то же — и где проходит граница между сходством и подменой?</p>
+        <p>Лекция разбирает механизм сновидения у Фрейда, прикладывает его к киноформе и проверяет на трёх фильмах, каждый из которых обходится со сном по-своему: один его воспроизводит, другой расшифровывает, третий им дышит.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Явный сон</span><p>То, что спящий видит и наутро пересказывает.</p></div>
+        <div class="def"><span class="term">Скрытые мысли</span><p>Желание и материал дня, спрятанные за образом.</p></div>
+        <div class="def"><span class="term">Работа</span><p>Процесс, что переводит первое во второе.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Опора лекции 01: явное и скрытое, шесть шагов чтения.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 05 ЦАРСКАЯ ДОРОГА -->
+  <section class="slide">
+    <div class="eyebrow">Фрейд · 1900 <span class="sep">/</span> <span class="tag">Толкование сновидений</span></div>
+    <h2>Царская дорога</h2>
+    <div class="cols-wide">
+      <div class="stack">
+        <p class="lead">В «Толковании сновидений» сон объявлен главным путём к бессознательному и исполнением вытесненного желания.</p>
+        <p>Сон не бессмыслица и не пророчество. Это работа психики, что под покровом образов проводит запретное желание мимо внутренней цензуры.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Via regia</span><p>«Царская дорога к бессознательному» — статус сна в системе Фрейда.</p></div>
+        <div class="def"><span class="term">Tagesreste</span><p>Остаток дня: дневные впечатления, из которых сон берёт строительный материал.</p></div>
+        <div class="def"><span class="term">Желание</span><p>Двигатель, что этот материал использует; даже тревожный сон окольно исполняет влечение.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">S. Freud, «Die Traumdeutung», 1900.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 06 ЦЕНЗУРА -->
+  <section class="slide">
+    <div class="eyebrow">Зачем сон прячет <span class="sep">/</span> <span class="tag">Цензура</span></div>
+    <h2>Маскировка как компромисс</h2>
+    <p class="lead" style="max-width:66ch">Между желанием и сознанием стоит цензура. Прямо предъявить запретное нельзя — сон идёт на сделку.</p>
+    <div class="cols" style="margin-top:20px">
+      <div class="card"><div class="k">Ход сна</div><h3>Пропустить в маске</h3><p>Желание проходит на сцену, но в зашифрованном виде. Искажение не помеха, а сам смысл операции: чем сильнее сопротивление, тем причудливее образ.</p></div>
+      <div class="card bord"><div class="k">Следствие для чтения</div><h3>Разбирать работу, не словарь</h3><p>Толковать сон — значит распутывать проделанное искажение, а не подставлять значения из справочника символов.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Цензура и компромиссное образование — ядро фрейдовской модели сна.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 07 DIVIDER I — РАБОТА СНА -->
+  <section class="slide divider poster" data-toc="Работа сновидения" data-act="I">
+    <div class="haze"></div>
+    <div class="poster-inner">
+      <div class="knum">I</div>
+      <div class="word dword">Работа сна<span class="gh" aria-hidden="true">Работа сна</span></div>
+      <div class="sub">Traumarbeit — операция, что переводит скрытую мысль в зримый образ.</div>
+    </div>
+    <div class="slide-foot"><span class="src">Четыре механизма: сгущение, смещение, изобразимость, вторичная обработка.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 08 КОЛЬЦО -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Модель <span class="sep">/</span> <span class="tag">Петля, а не линия</span></div>
+    <h2>Работа сновидения как кольцо</h2>
+    <div class="ringwrap" style="margin-top:2px">
+      <svg viewBox="0 0 1100 470" aria-hidden="true">
+        <ellipse cx="550" cy="235" rx="330" ry="168" fill="none" stroke="rgba(201,161,74,.55)" stroke-width="1.3"/>
+        <polygon points="550,60 540,74 560,74" fill="#c9a14a"/>
+        <ellipse cx="550" cy="235" rx="222" ry="104" fill="none" stroke="rgba(138,120,200,.6)" stroke-width="1" stroke-dasharray="5 6"/>
+        <polygon points="550,346 562,334 540,332" fill="#8a78c8" opacity=".9"/>
+        <text class="ring-rev" x="550" y="368" text-anchor="middle">толкование — вспять</text>
+        <circle class="ring-node" cx="550" cy="67" r="7"/>
+        <text class="ring-lab b" x="550" y="42" text-anchor="middle">Желание</text>
+        <circle class="ring-node" cx="783" cy="116" r="7"/>
+        <text class="ring-lab" x="802" y="112" text-anchor="start">Остаток дня</text>
+        <circle class="ring-node" cx="880" cy="235" r="7"/>
+        <text class="ring-lab" x="900" y="240" text-anchor="start">Латентные мысли</text>
+        <circle class="ring-node hot" cx="783" cy="354" r="7"/>
+        <text class="ring-lab b" x="802" y="382" text-anchor="start">Сгущение · Смещение</text>
+        <circle class="ring-node hot" cx="550" cy="403" r="7"/>
+        <text class="ring-lab b" x="550" y="434" text-anchor="middle">Цензура</text>
+        <circle class="ring-node" cx="317" cy="354" r="7"/>
+        <text class="ring-lab" x="298" y="382" text-anchor="end">Явное содержание</text>
+        <circle class="ring-node" cx="220" cy="235" r="7"/>
+        <text class="ring-lab" x="200" y="240" text-anchor="end">Вторичная обработка</text>
+        <circle class="ring-node" cx="317" cy="116" r="7"/>
+        <text class="ring-lab" x="298" y="112" text-anchor="end">Толкование ↩</text>
+        <text class="ring-core" x="550" y="228" text-anchor="middle">Работа сновидения</text>
+        <text class="ring-core2" x="550" y="256" text-anchor="middle">Traumarbeit · Фрейд 1900</text>
+      </svg>
+    </div>
+    <div class="slide-foot"><span class="src">Разбор фильма пойдёт тем же обратным ходом. Кольцо рифмуется с диафрагмой — знаком курса.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 09 ЧЕТЫРЕ МЕХАНИЗМА -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Аппарат <span class="sep">/</span> <span class="tag">Четыре операции</span></div>
+    <h2>Механизмы работы сна</h2>
+    <div class="cols-4" style="margin-top:4px">
+      <div class="card mini"><div class="k">Verdichtung</div><h3>Сгущение</h3><p>Один образ несёт сразу несколько мыслей; лица и места сливаются в составную фигуру.</p></div>
+      <div class="card mini"><div class="k">Verschiebung</div><h3>Смещение</h3><p>Значимость съезжает с важного на пустяк, и аффект цепляется к неважной детали.</p></div>
+      <div class="card mini gold"><div class="k">Darstellbarkeit</div><h3>Изобразимость</h3><p>Отвлечённая мысль переводится в конкретный зримый образ. Здесь и проходит мост к кино.</p></div>
+      <div class="card mini"><div class="k">Bearbeitung</div><h3>Вторичная обработка</h3><p>Наутро сон причёсывается в подобие связного рассказа.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Сгущение и смещение — ядро шифровки; изобразимость роднит сон с экраном.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 10 ИЗОБРАЗИМОСТЬ -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Мост к кино <span class="sep">/</span> <span class="tag">Изобразимость</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Сон не говорит,<br>а показывает</h2>
+        <p style="margin-top:12px">Учёт изобразимости заставляет сон отказаться от слов и связок и думать пластически: причину, отрицание, «потому что» приходится передавать сменой образа, наложением, монтажным соседством.</p>
+        <p>Ровно этим занят и кинематограф. Немой экран решал ту же задачу теми же средствами — и решает до сих пор.</p>
+      </div>
+      <div class="card gold" style="align-self:center"><div class="k">Rücksicht auf Darstellbarkeit</div><h3>Учёт пригодности к изображению</h3><p style="font-size:14px;color:var(--bone-dim)">Третий механизм работы сна — и точка, где словарь Фрейда становится словарём киноформы.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Дальше — четыре точных уравнения перевода.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 11 ЧЕТЫРЕ УРАВНЕНИЯ -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Перевод языков <span class="sep">/</span> <span class="tag">Сон ↔ киноформа</span></div>
+    <h2>Четыре уравнения</h2>
+    <div class="deflist eq" style="margin-top:12px">
+      <div class="def"><span class="term">Монтажная склейка</span><p><strong>Смещение.</strong> Акцент съезжает с одного образа на соседний; смысл рождается из стыка, а не из кадра.</p></div>
+      <div class="def"><span class="term">Наплыв, растворение</span><p><strong>Сгущение.</strong> Два изображения занимают одно место; составная фигура на экране буквальна.</p></div>
+      <div class="def"><span class="term">Эллипсис</span><p><strong>Цензура.</strong> Решающее вырезано; пропуск и есть сообщение.</p></div>
+      <div class="def"><span class="term">Навязчивый повтор</span><p><strong>По ту сторону*.</strong> Сцена возвращается помимо нужд сюжета — фильм не может отпустить собственный образ.</p></div>
+    </div>
+    <p style="max-width:74ch;margin-top:16px;font-size:13.5px;color:var(--slate)">*Повтор выводит за пределы работы сна: это Wiederholungszwang из «По ту сторону принципа удовольствия» (1920). Честная сноска — и мостик к финальным лекциям курса.</p>
+    <div class="slide-foot"><span class="src">Уравнения — рабочие гипотезы для разбора, а не тождества.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 12 РЕБУС -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Образ предупреждения <span class="sep">/</span> <span class="tag">Сон как ребус</span></div>
+    <h2>Не картинка, а загадка в картинках</h2>
+    <div class="cols-wide">
+      <div class="quote"><q>Сон — это ребус, и прежние толкователи принимали его за рисунок.</q><div class="attr">по З. Фрейду · «Толкование сновидений»</div></div>
+      <div class="stack" style="align-self:center">
+        <p>Ребус нельзя прочесть как изображение: лодка над домом не значит «лодка над домом». Каждый элемент стоит за слогом иной мысли, и смысл собирается лишь в переводе.</p>
+        <p>Отсюда первое предостережение лекции: значение образа задаёт сеть ассоциаций сновидца, а не справочник.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Против «сонников»: один и тот же образ означает разное у разных людей.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 13 СОН ИЛИ СИМВОЛ -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-dbl"/></svg>Развилка <span class="sep">/</span> <span class="tag">Где кончается работа сна</span></div>
+    <h2>Сон или символ?</h2>
+    <div class="cols" style="margin-top:6px">
+      <div class="card gold"><div class="k">Метод-ребус · 1900</div><h3>Ассоциация решает</h3><p>Значение образа собирается из сети ассоциаций сновидца. Словарь символов методу противоречит.</p></div>
+      <div class="card bord"><div class="k">Типическая символика · поздние издания</div><h3>Уступка словарю</h3><p>Сам Фрейд позднее дописывает главу о типических символах — компромисс, которым щедро злоупотребили эпигоны и киноведы.</p></div>
+    </div>
+    <p style="max-width:70ch;margin-top:18px">Правило курса: ассоциация и контекст прежде словаря. «Типическое» допускается лишь как гипотеза, которую обязана подтвердить форма самого фильма.</p>
+    <div class="slide-foot"><span class="src">Эту развилку студенты путают чаще всего — отсюда отдельный слайд.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 14 THESIS B -->
+  <section class="slide thesis">
+    <div class="haze l"></div>
+    <div class="tlbl">Следствие</div>
+    <div class="big">Толковать сон — значит <span class="hl">распустить</span> работу, что его <span class="oc">сложила</span>.</div>
+    <div class="tsub">То же касается фильма: разбор идёт не к «морали», а вспять по швам монтажа и мизансцены, к тому, что форма прячет.</div>
+    <div class="slide-foot"><span class="src">От механизма сна — к экрану.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 15 DIVIDER II — ЭКРАН КАК СОН -->
+  <section class="slide divider poster" data-toc="Экран как сон" data-act="II">
+    <div class="haze"></div>
+    <div class="poster-inner">
+      <div class="knum">II</div>
+      <div class="word dword" style="font-size:clamp(48px,9.4vw,132px)">Экран как сон<span class="gh" aria-hidden="true">Экран как сон</span></div>
+      <div class="sub">Тёмный зал, неподвижность, поток образов — состояние, родственное сну.</div>
+    </div>
+    <div class="slide-foot"><span class="src">К. Метц, Ж.-Л. Бодри, Б. Левин.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 16 МЕТЦ / ЭКРАН СНА -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>Метц и Бодри <span class="sep">/</span> <span class="tag">Состояние зрителя</span></div>
+    <h2>Кинозал как полусон</h2>
+    <div class="cols-wide">
+      <div class="stack">
+        <p class="lead">Кристиан Метц сближает просмотр с грёзой наяву: обездвиженность, темнота и отказ от действия вводят зрителя в регрессивное, сноподобное состояние.</p>
+        <p>Жан-Луи Бодри добавляет сам аппарат: устройство показа провоцирует ту же регрессию, что и сон. Бертрам Левин ещё раньше описал «экран сновидения» — белую поверхность, на которую проецируется сон; теория переносит её на полотно кинозала.</p>
+      </div>
+      <div class="card" style="align-self:center"><div class="k">Дрёма наяву</div><h3>Сходство</h3><p style="color:var(--bone-dim);font-size:14px">Поток образов накатывает на пассивного, полусонного зрителя, как сновидение на спящего.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">C. Metz, «Le signifiant imaginaire», 1977 · J.-L. Baudry, 1975 · B. Lewin, 1946.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 17 ПРЕДЕЛ -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>Честный счёт <span class="sep">/</span> <span class="tag">Где аналогия ломается</span></div>
+    <h2>Фильм похож на сон, но не сон</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Сходство</div><h3>Образ вместо мысли</h3><p style="color:var(--bone-dim);font-size:14.5px">И сон, и фильм отказываются от слов, думают зримым и обращаются к зрителю в обход рассудка.</p></div>
+      <div class="card gold"><div class="k">Различие</div><h3>Кто автор и кто верит</h3><p style="color:var(--bone-dim);font-size:14.5px">Спящий галлюцинирует сон как явь и сам его сочиняет. Зритель бодрствует, знает о вымысле и смотрит чужое. Метц предупреждает: близость не равна тождеству.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Аналогия сна и кино — инструмент, а не знак равенства.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 18 ФРЕЙД ПРОТИВ СЮРРЕАЛИСТОВ -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>История <span class="sep">/</span> <span class="tag">Патрон, не признавший наследников</span></div>
+    <h2>Фрейд против сюрреалистов</h2>
+    <div class="cols-wide" style="margin-top:4px">
+      <div class="stack">
+        <p><strong>1921.</strong> Бретон добивается визита на Берггассе, 19. Встреча выходит холодной; в «Les pas perdus» поэт мстит ироничным портретом усталого доктора.</p>
+        <p><strong>1932.</strong> Обмен письмами вокруг «Сообщающихся сосудов»: Фрейд вежливо признаётся, что цели движения ему непонятны.</p>
+        <p><strong>1938.</strong> Цвейг приводит Дали в Лондон. После встречи Фрейд пишет, что прежде числил сюрреалистов «на 95 процентов, как спирт» дураками, но техника молодого испанца заставила пересмотреть счёт.</p>
+      </div>
+      <div class="card gold" style="align-self:center"><div class="k">Асимметрия</div><h3>Одностороннее родство</h3><p style="font-size:14px;color:var(--bone-dim)">Движение объявило Фрейда святым патроном; патрон наследников так и не признал. Кино сюрреалистов выросло из этого безответного чувства.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">A. Breton, «Les pas perdus», 1924 · переписка 1932 · письмо С. Цвейгу, 20.07.1938.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 19 THESIS C -->
+  <section class="slide thesis">
+    <div class="haze"></div>
+    <div class="tlbl">К разборам</div>
+    <div class="big">Со сном кино обходится <span class="hl">тремя</span> несовместимыми <span class="oc">способами</span>.</div>
+    <div class="tsub">Воспроизвести его механику. Разложить его на шифр с ключом. Или сделать сном самоё ткань фильма. Три фильма — три позиции.</div>
+    <div class="slide-foot"><span class="src">Бунюэль · Хичкок · Дрейер.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 20 DIVIDER III — ТРИ СНА -->
+  <section class="slide divider poster" data-toc="Три сна" data-act="III">
+    <div class="haze"></div>
+    <div class="poster-inner">
+      <div class="knum">III</div>
+      <div class="word dword">Три сна<span class="gh" aria-hidden="true">Три сна</span></div>
+      <div class="sub">Сон как монтаж · сон как разгадка · сон как воздух фильма.</div>
+    </div>
+    <div class="slide-foot"><span class="src">Каждый кейс: заставка, контекст, сцена, форма, прочтение, поле спора.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 01: АНДАЛУЗСКИЙ ПЁС ============ -->
+  <section class="slide framefull" data-toc="Кейс 01 · Андалузский пёс">
+    <div class="shot s-chien" data-tmdb="Un Chien Andalou" data-year="1929" data-idx="0"><img src="img/w1280_jQywhaFDVLPlFw864Bgw5eNtWfi.jpg" alt="Кадр из «Андалузского пса»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1929</span>
+    <div class="fcap"><div class="fk">Кейс 01 · к разбору</div><h2>Андалузский пёс</h2>
+      <div class="kw"><span>Сюрреализм</span><span>Свободная ассоциация</span><span>Сгущение</span></div>
+      <p class="logline">Бритва, луна, муравьи в ладони. Фильм, собранный из снов и отказавшийся от всякой логической связи.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Un chien andalou» · реж. Луис Бунюэль (с С. Дали) · Франция, 1929</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Сюрреализм и сон</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Сделано из двух снов</h2>
+        <p style="margin-top:12px">Бунюэль и Дали сложили короткометражку из двух сновидений: облако, рассекающее луну, и кисть руки, кишащая муравьями. Авторы условились вычёркивать всякий образ, которому находилось рассудочное объяснение.</p>
+        <p>Так в кино вошёл сюрреалистический автоматизм: метод, прямо опертый на сон и свободную ассоциацию из круга Бретона.</p>
+      </div>
+      <div class="framebox s-chien" data-tmdb="Un Chien Andalou" data-year="1929" data-idx="2"><img src="img/w500_3Bond31VV0nRi5o1iL3i5r2s0HG.jpg" alt="«Андалузский пёс»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Париж, 1929 · премьера, встреченная кругом Бретона восторженно</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Сцен. Л. Бунюэль и С. Дали; манифест сюрреализма — 1924.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull">
+    <div class="shot s-chien" data-tmdb="Un Chien Andalou" data-year="1929" data-idx="1"><img src="img/w1280_wFXAhs0bqjKrA35pjtc9gaGmVCE.jpg" alt="Луна и облако" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · облако и глаз</div><h2>Склейка, что запрещает буквальность</h2>
+      <p class="logline">Тонкое облако пересекает полную луну — и следом лезвие проходит по глазу. Монтажный удар сразу отбивает у зрителя привычку читать изображение реалистически.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · форма <span class="sep">/</span> <span class="tag">Фильм как работа сна</span></div>
+    <h2>Сам монтаж работает как сновидение</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Титры «Восемь лет спустя» и «Около трёх часов утра» не отмеряют времени, а пародируют связность — вторичную обработку. Образы сгущаются и смещаются по логике сна: рука с муравьями, книги, обернувшиеся револьверами, рояли с тушами. Причинности нет, есть ассоциативное скольжение.</p>
+      <div class="card" style="align-self:center"><div class="k">Автор против трактовок</div><h3>«Ничто не символизирует»</h3><p style="font-size:14px;color:var(--bone-dim)">Бунюэль настаивал: в фильме ничто ничего не символизирует; охоту за смыслами он презирал и высмеивал.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Бессвязные титры — пародия на вторичную обработку.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · прочтение <span class="sep">/</span> <span class="tag">Первый полюс</span></div>
+    <h2>Кино, что снится</h2>
+    <p class="lead" style="max-width:66ch">«Андалузский пёс» не изображает чей-то сон и не предлагает разгадки — он сам устроен как сновидение.</p>
+    <div class="cols" style="margin-top:20px">
+      <div class="card"><div class="k">Что это значит</div><h3>Сопротивление переводу</h3><p>Картина не сводится к связной мысли, ровно как настоящий сон сопротивляется полному толкованию. Разбору достаются механизмы, а не «мораль».</p></div>
+      <div class="card gold"><div class="k">Полюс 01</div><h3>Воспроизводит работу сна</h3><p>Первая из трёх позиций лекции: фильм повторяет саму механику сновидения, а не рассказывает о ней.</p></div>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · прочтение · полюс «сон как монтаж»</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1929–2010</span></div>
+    <h2>Как читали «Пса»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices">
+        <div class="voice"><span class="vy">1929</span><div class="vn">Бунюэль</div><p class="vp">Сам автор: «отчаянный призыв к убийству», протест — и ярость на публику, встретившую фильм эстетским восторгом.</p></div>
+        <div class="voice f2"><span class="vy">1930</span><div class="vn">Виго</div><p class="vp">«К социальному кино»: защищал картину как образец кинематографа, который будит, а не убаюкивает.</p></div>
+        <div class="voice f3"><span class="vy">1981</span><div class="vn">Уильямс</div><p class="vp">«Figures of Desire»: лакановское чтение — фильм ставит само движение желания, метонимию, а не шифр со значениями.</p></div>
+        <div class="voice f4"><span class="vy">2010</span><div class="vn">Адамович</div><p class="vp">Монография BFI: производственная и рецептивная история против накопившихся легенд.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Если автор запрещает толкование — обязан ли разбор слушаться?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Buñuel 1929 · Vigo 1930 · Williams, «Figures of Desire», 1981 · Adamowicz (BFI), 2010.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 02: ЗАВОРОЖЕННЫЙ ============ -->
+  <section class="slide framefull" data-toc="Кейс 02 · Завороженный">
+    <div class="shot s-spell" data-tmdb="Spellbound" data-year="1945" data-idx="0"><img src="img/w1280_dYv4io2HcRMxFGgnErTbvpqSGXe.jpg" alt="Кадр из «Завороженного»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1945</span>
+    <div class="fcap"><div class="fk">Кейс 02 · к разбору</div><h2>Завороженный</h2>
+      <div class="kw"><span>Сон-разгадка</span><span>Дали</span><span>Анализ-детектив</span></div>
+      <p class="logline">Аналитик расшифровывает сон пациента, чтобы раскрыть убийство и снять амнезию. Психоанализ впервые играет главную роль в голливудском жанре.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Spellbound» · реж. Альфред Хичкок · США, 1945</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Голливуд открывает Фрейда</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Психоанализ как мода</h2>
+        <p style="margin-top:12px">Продюсер Дэвид Селзник сам проходил анализ и нанял консультантом собственного терапевта Мэй Ромм. Кушетка входила в американский быт, и студия спешила превратить её в жанр.</p>
+        <p>Эпизод сновидения заказали Сальвадору Дали: остроугольные декорации, разрезанные глаза на занавесях, гигантские игральные карты. Сон получил статус аттракциона.</p>
+      </div>
+      <div class="framebox s-spell" data-tmdb="Spellbound" data-year="1945" data-idx="2"><img src="img/w500_gheys83aGN4SJyW2VfZdgdQpKca.jpg" alt="«Завороженный»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Эпизод сна оформил Дали · И. Бергман и Г. Пек</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Прод. Д. Селзник; конс. М. Ромм; худож. сна — С. Дали.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull">
+    <div class="shot s-spell" data-tmdb="Spellbound" data-year="1945" data-idx="1"><img src="img/w1280_rmAGTrBCBerz22aw6MqCu77P4sd.jpg" alt="Сон Дали" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · сон, рассказанный аналитику</div><h2>Сон, поданный как набор улик</h2>
+      <p class="logline">Игорный зал с нарисованными глазами, человек без лица, наклонное колесо. Каждый образ — зашифрованная подсказка, что ждёт своего перевода.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · форма <span class="sep">/</span> <span class="tag">Шифр с ключом</span></div>
+    <h2>Один образ — один ответ</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Фильм разгадывает сон, как криминалист улику: параллельные линии оказываются лыжнёй, колесо — револьвером, бородатый хозяин зала — конкретным доктором. Каждой картинке назначен один ответ; когда перевод завершён, память возвращается и убийца назван. Разгадка совпадает с излечением.</p>
+      <div class="card gold" style="align-self:center"><div class="k">Что делает фильм</div><h3>Раскладывает на шифр</h3><p style="font-size:14px;color:var(--bone-dim)">Сон здесь — ребус со словарём: жёсткие однозначные соответствия. Ровно та модель, от которой предостерегал Фрейд.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Кросс: «сон или символ?» из акта I этой лекции.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · прочтение <span class="sep">/</span> <span class="tag">Второй полюс</span></div>
+    <h2>Сон, прирученный детективом</h2>
+    <p class="lead" style="max-width:66ch">«Завороженный» переводит работу сна на язык жанра: сновидение перестаёт сопротивляться и становится уликой.</p>
+    <div class="cols" style="margin-top:20px">
+      <div class="card"><div class="k">Что осталось от механизма</div><h3>Ключ вместо ассоциации</h3><p>Сгущение и смещение на месте, но каждому образу назначен твёрдый ответ. Анализ превращается в следствие со счастливым концом.</p></div>
+      <div class="card gold"><div class="k">Полюс 02</div><h3>Расшифровывает и приручает</h3><p>Драматургически безупречно, аналитически наивно — идеальный учебный контрапример для семинара.</p></div>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · прочтение · полюс «сон как разгадка»</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1966–1992</span></div>
+    <h2>Как читали «Завороженного»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices v3">
+        <div class="voice"><span class="vy">1966</span><div class="vn">Хичкок</div><p class="vp">Сам режиссёр в беседах с Трюффо отмахнулся: очередная погоня за человеком, завёрнутая в псевдопсихоанализ.</p></div>
+        <div class="voice f2"><span class="vy">1987</span><div class="vn">Лефф</div><p class="vp">«Hitchcock and Selznick»: на площадке консультант Ромм билась за клиническую точность, продюсер — за мелодраму. Победила мелодрама.</p></div>
+        <div class="voice f4"><span class="vy">1992</span><div class="vn">Жижек</div><p class="vp">Голливудский Фрейд как симптом: ключ-разгадка закрывает желание вместо того, чтобы его вскрыть.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Портит ли фильм плохой психоанализ — или именно он делает «Завороженного» документом эпохи?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Truffaut/Hitchcock, 1966 · Leff, «Hitchcock and Selznick», 1987 · Žižek (ред.), сб. о Хичкоке, 1992.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 03: ВАМПИР ============ -->
+  <section class="slide framefull" data-toc="Кейс 03 · Вампир">
+    <div class="shot s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="0"><img src="img/w1280_rg3hBiQbDet8uNQkgfbpk7306p8.jpg" alt="Кадр из «Вампира»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1932</span>
+    <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Вампир</h2>
+      <div class="kw"><span>Сон-онтология</span><span>Дымка</span><span>Двойник</span></div>
+      <p class="logline">Молодой оккультист приезжает в деревню, где явь расползается, как туман. Вероятно, самый сновидческий фильм классического кино — без единого объяснения.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Vampyr — Der Traum des Allan Grey» · реж. Карл Теодор Дрейер · 1932</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Первый звук Дрейера</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Туман как метод</h2>
+        <p style="margin-top:12px">После «Страстей Жанны д’Арк» Дрейер снимает вольную вариацию на новеллы Ле Фаню. Финансирует картину барон Николя де Гунзбург, он же играет главную роль под псевдонимом Жюлиан Вест.</p>
+        <p>Молочная пелена изображения — осознанный приём: оператор Рудольф Матэ снимал сквозь марлю, разложив свет до состояния дымки. Подзаголовок фильма честен: это сон Аллана Грея.</p>
+      </div>
+      <div class="framebox s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="2"><img src="img/w500_m7BKgeW06cgW5512wukfGhLsWGL.jpg" alt="«Вампир»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Марля перед объективом · оператор Рудольф Матэ</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">По мотивам Дж. Ш. Ле Фаню, «In a Glass Darkly», 1872.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull">
+    <div class="shot s-vampyr" data-tmdb="Vampyr" data-year="1932" data-idx="1"><img src="img/w1280_5B7OZrNgGlSZMqcrDy3FBXR7sC6.jpg" alt="Взгляд из гроба" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · погребение наяву</div><h2>Невозможная точка зрения</h2>
+      <p class="logline">Герой видит себя в гробу с оконцем и смотрит из него: своё лицо, свеча, плывущее небо. Камера занимает позицию, с которой не смотрит никто живой.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · форма <span class="sep">/</span> <span class="tag">Сон без границ эпизода</span></div>
+    <h2>Сновидение разлито повсюду</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">У Хичкока сон отгорожен занавесом эпизода; у Дрейера границы нет. Тени пляшут отдельно от тел, душа героя бродит рядом с его же телом, пространство не сходится в карту. Логика сна не показана, а стала законом самого изображения.</p>
+      <div class="card" style="align-self:center"><div class="k">Ход Дрейера</div><h3>Становится сном</h3><p style="font-size:14px;color:var(--bone-dim)">Фильм не изображает сновидение и не разгадывает его. Он им дышит. Тень-двойник кланяется первой лекции.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Кросс: двойник и тень — Лекция 01, акт II.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · прочтение <span class="sep">/</span> <span class="tag">Третий полюс и контрапункт</span></div>
+    <h2>Сон как воздух, а не шифр</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(15.5px,1.35vw,18px)">Третий полюс: сновидение как онтология фильма. Для контраста — «Сны» Куросавы (1990): восемь новелл честно иллюстрируют сны автора, но остаются рассказами о снах; работа сновидения в них не работает. Различие «показывать сон» и «быть сном» — главный урок кейса.</p>
+      <div class="card gold" style="align-self:center"><div class="k">Итог спора полюсов</div><h3>Четыре глагола</h3><p style="font-size:14px;color:var(--bone-dim)">Бунюэль воспроизводит · Хичкок расшифровывает · Дрейер растворяет · Куросава иллюстрирует.</p></div>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · прочтение · полюс «сон как онтология»</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1976–2005</span></div>
+    <h2>Как читали «Вампира»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices v3">
+        <div class="voice"><span class="vy">1976</span><div class="vn">Нэш</div><p class="vp">Статья в Screen: фантастическое по Тодорову и психоаналитическое чтение — фильм держит зрителя в колебании между объяснениями.</p></div>
+        <div class="voice f3"><span class="vy">1981</span><div class="vn">Бордуэлл</div><p class="vp">Формалист: странность «Вампира» — система повествования и стиля; никакие глубины для её описания не нужны.</p></div>
+        <div class="voice f2"><span class="vy">2005</span><div class="vn">Рудкин</div><p class="vp">Монография BFI: визионерская поэма, материя света и звука; поэтика важнее диагноза.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Нужен ли «Вампиру» психоанализ — или довольно формы?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Nash, «Vampyr and the Fantastic», Screen 17.3, 1976 · Bordwell, 1981 · Rudkin (BFI), 2005.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 39 СИНТЕЗ -->
+  <section class="slide" data-toc="Синтез">
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Что собрали</span></div>
+    <h2>Думает ли кино на языке сна?</h2>
+    <div class="cols-3" style="margin-top:8px">
+      <div class="card"><div class="k">Воспроизводит</div><h3>Бунюэль</h3><p>Монтаж сам работает как сновидение: сгущение, смещение, пародия на связность.</p></div>
+      <div class="card gold"><div class="k">Расшифровывает</div><h3>Хичкок</h3><p>Сон разложен на улики со словарём; работа сна приручена жанром.</p></div>
+      <div class="card"><div class="k">Растворяет</div><h3>Дрейер</h3><p>Логика сна стала законом изображения; границы эпизода нет.</p></div>
+    </div>
+    <p style="max-width:66ch;margin-top:22px">Ответ лекции: кино умеет говорить на языке сна по-разному, и различать эти случаи — сама задача разбора. Уравнения из акта I работают инструментом различения, а не универсальной отмычкой.</p>
+    <div class="slide-foot"><span class="src">Куросава остаётся контрапунктом: иллюстрация сна ещё не работа сна.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 40 DIVIDER IV — ВЕСЬ ФИЛЬМ КАК СОН -->
+  <section class="slide divider poster" data-toc="Кода: весь фильм как сон" data-act="IV">
+    <div class="haze"></div>
+    <svg class="moonbig" viewBox="0 0 120 170" aria-hidden="true">
+      <use href="#g-moon" opacity=".14" transform="translate(9 7)"/>
+      <use href="#g-moon" opacity=".85"/>
+    </svg>
+    <div class="poster-inner">
+      <div class="knum">IV</div>
+      <div class="word dword" style="font-size:clamp(42px,7vw,96px);white-space:normal;max-width:16ch">Может ли весь фильм быть сном?<span class="gh" aria-hidden="true">Может ли весь фильм быть сном?</span></div>
+      <div class="sub">Кода: рамка, шов и один венский роман.</div>
+    </div>
+    <div class="slide-foot"><span class="src">Оз · Бергман · Линч.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 41 РАМКА СНА -->
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода <span class="sep">/</span> <span class="tag">Честная и нечестная рамка</span></div>
+    <h2>Рамка сна и её подделка</h2>
+    <div class="cols" style="margin-top:6px">
+      <div class="card gold"><div class="k">Сон-рамка · «Волшебник страны Оз», 1939</div><h3>Всё было сном</h3><p>Финал объявляет пережитое сновидением: вторичная обработка в чистом виде. Рассказ причёсан задним числом, тревога снята, мир цел.</p></div>
+      <div class="card bord"><div class="k">Неразрешимый шов · Линч, Бергман</div><h3>Граница не проведена</h3><p>«Малхолланд Драйв», «Шоссе в никуда», «Персона»: где кончается сон, установить нельзя, и успокоение не наступает. Шов остаётся открытым.</p></div>
+    </div>
+    <p style="max-width:70ch;margin-top:18px">Тест на честность рамки: успокаивает ли она текст или взламывает его. Первое — приём драматургии, второе — работа сна, захватившая весь фильм.</p>
+    <div class="slide-foot"><span class="src">Кросс: «Персона» — Лекция 04; фантазм — Лекция 07.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КОДА-КЕЙС: МАЛХОЛЛАНД ДРАЙВ ============ -->
+  <section class="slide framefull" data-toc="Кода-кейс · Малхолланд Драйв">
+    <div class="shot s-md" data-tmdb="Mulholland Drive" data-year="2001" data-idx="0"><img src="img/w1280_g9ClaS5EqU0Hk8WIbMNhld0Bk6f.jpg" alt="Кадр из «Малхолланд Драйв»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">2001</span>
+    <div class="fcap"><div class="fk">Кода · к разбору</div><h2>Малхолланд Драйв</h2>
+      <div class="kw"><span>Сон-фильм</span><span>Голливуд</span><span>Неразрешимый шов</span></div>
+      <p class="logline">Ночная авария, потеря памяти, сияющая новенькая актриса берётся раскрыть чужую тайну. Двухчасовое счастье оборачивается сном на дне отчаяния — либо не оборачивается.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Mulholland Drive» · реж. Дэвид Линч · США/Франция, 2001</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода · контекст <span class="sep">/</span> <span class="tag">Судьба проекта</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Из отвергнутого пилота</h2>
+        <p style="margin-top:12px">История начиналась как пилот сериала для ABC: канал посмотрел материал и отказался. Французские деньги StudioCanal позволили Линчу доснять финал и перемонтировать телевизионный черновик в полнометражную картину.</p>
+        <p>Швы этой биографии остались в ткани ленты: оборванные линии персонажей, зависшие сюжеты. Каннская премьера принесла приз за режиссуру, а обломки нарратива обернулись логикой сна.</p>
+      </div>
+      <div class="framebox s-md" data-tmdb="Mulholland Drive" data-year="2001" data-idx="2"><img src="img/w500_6XpAFxwhVZ2t30Qtn8Wz8koKlaN.jpg" alt="«Малхолланд Драйв»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Наоми Уоттс в двойной роли · Бетти и Диана</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Пилот ABC, 1999 · StudioCanal · Канны-2001, приз за режиссуру.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull">
+    <div class="shot s-md" data-tmdb="Mulholland Drive" data-year="2001" data-idx="1"><img src="img/w1280_y1giivdsGLyo1LCvlsL6mLKyTZ7.jpg" alt="Club Silencio" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · Club Silencio</div><h2>No hay banda</h2>
+      <p class="logline">Конферансье повторяет: оркестра нет, всё записано. Певица падает без чувств, голос продолжает звучать. Кадр вслух объявляет собственную иллюзорность — и ровно отсюда сон начинает рушиться.</p>
+    </div>
+    <div class="slide-foot"><span>Кода · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода · форма <span class="sep">/</span> <span class="tag">Работа сна на полной мощности</span></div>
+    <h2>Сон, собранный по учебнику</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Первые два часа устроены как исполнение желания: люди из яви Дианы переставлены в новые роли (сгущение), вина за заказанное убийство съезжает на заговор и случай (смещение), жанровая гладкость детектива причёсывает целое (вторичная обработка). Синяя коробка открывается и срабатывает порогом пробуждения: эллипсис, вырезающий переход.</p>
+      <div class="card gold" style="align-self:center"><div class="k">Четыре уравнения в деле</div><h3>Проверка аппарата</h3><p style="font-size:14px;color:var(--bone-dim)">Склейка, наплыв, эллипсис и навязчивый повтор из акта I читают картину без остатка — редкий случай полной применимости.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Кросс: акт I, «Четыре уравнения».</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода · прочтение <span class="sep">/</span> <span class="tag">Ответ на вопрос акта</span></div>
+    <h2>Сон, победивший рамку</h2>
+    <p class="lead" style="max-width:66ch">Ответ коды: весь фильм способен быть сном — пока шов неразрешим и рамка никого не успокаивает.</p>
+    <div class="cols" style="margin-top:20px">
+      <div class="card"><div class="k">Рифма с Бунюэлем</div><h3>Автор снова молчит</h3><p>Линч отказался объяснять картину и выпустил к DVD десять издевательских «подсказок». Запрет на толкование из первого кейса возвращается семьдесят лет спустя.</p></div>
+      <div class="card gold"><div class="k">Против Оза</div><h3>Пробуждение страшнее грёзы</h3><p>Сон-рамка обещает утешение; здесь его нет: явь Дианы беднее и безнадёжнее сновидения, и финал не закрывает счёт.</p></div>
+    </div>
+    <div class="slide-foot"><span>Кода · прочтение · кросс: фантазия — Лекция 07</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-moon"/></svg>Кода · поле спора <span class="sep">/</span> <span class="tag">Рецепция 2001–2009</span></div>
+    <h2>Как читали «Малхолланд Драйв»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices">
+        <div class="voice"><span class="vy">2001</span><div class="vn">Линч</div><p class="vp">Отказ от ключа: десять «подсказок» к DVD пародируют охоту за разгадкой; картину предлагается переживать, решать её никто не обещал.</p></div>
+        <div class="voice f2"><span class="vy">2004</span><div class="vn">Макгоуэн</div><p class="vp">Cinema Journal: первая часть устроена как фантазия, вторая отдана желанию; это различие важнее вопроса «сон или явь».</p></div>
+        <div class="voice f3"><span class="vy">2005</span><div class="vn">Синнербринк</div><p class="vp">Film-Philosophy: лента сама производит мысль средствами звука и света; Club Silencio — образцовая «кинематографическая идея».</p></div>
+        <div class="voice f4"><span class="vy">2009</span><div class="vn">Элзессер</div><p class="vp">Mind-game film: загадка без гарантированного решения как новый контракт со зрителем эпохи пересмотров.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Формула «это сон Дианы» исчерпывает фильм — или впервые его запускает?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Lynch, DVD 2002 · McGowan, Cinema Journal 43.2, 2004 · Sinnerbrink, Film-Philosophy 9.34, 2005 · Elsaesser, в сб. «Puzzle Films» (ред. Buckland), 2009.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 43 СИЛА / ПРЕДЕЛ -->
+  <section class="slide">
+    <div class="eyebrow">Честный счёт <span class="sep">/</span> <span class="tag">Сила и предел</span></div>
+    <h2>Что метод даёт и где буксует</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Сила</div><h3>Точная оптика формы</h3><p>Сгущение, смещение и изобразимость ложатся прямо на наплыв, монтажный акцент и мизансцену. Метод читает приём, а не пересказ.</p></div>
+      <div class="card gold"><div class="k">Предел</div><h3>Аналогия не тождество</h3><p>Не всякий киносон — работа сна: бывают иллюстрация и аттракцион. Словарь символов искажает Фрейда. И зритель, в отличие от спящего, бодрствует.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Рамка снова помечает свои границы сама.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 44 АКТУАЛЬНОСТЬ -->
+  <section class="slide">
+    <div class="eyebrow">Актуальность <span class="sep">/</span> <span class="tag">Сон сегодня</span></div>
+    <h2>Работа сна в новом кино</h2>
+    <div class="cols-wide">
+      <div class="stack">
+        <p class="lead">Словарь лекции живёт в современном экране без скидок на возраст.</p>
+        <p>Фильмы-головоломки строят сюжет на неразрешимом шве сна и яви; цифровой морфинг делает сгущение базовым спецэффектом; нейросетевое видео галлюцинирует наплывы и подмены, неотличимые от логики сновидения.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Головоломка</span><p>«Малхолланд Драйв», «Начало», «Помни»: зритель поставлен в позицию толкователя.</p></div>
+        <div class="def"><span class="term">Морфинг</span><p>Плавное перетекание лиц и тел — сгущение, ставшее технологией.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Кросс: фантазия — Лекция 07; лаканианский поворот — Лекция 11.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 45 COURSEMAP -->
+  <section class="slide">
+    <div class="eyebrow">Карта курса <span class="sep">/</span> <span class="tag">Текущее место</span></div>
+    <h2>Маршрут лекций</h2>
+    <div class="coursemap" style="margin-top:6px">
+      <div class="node"><span class="nn">01</span><span class="nt">Жуткое и двойник</span></div>
+      <div class="node cur"><span class="nn">02</span><span class="nt">Сновидение и сюрреализм</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Аппарат и шов</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Лакан: стадия зеркала</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Малви: мужской взгляд</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Эдип и Имя-Отца</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Фантазм и желание</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Абъекция и чудовищное</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Безумие на экране</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Взгляд ребёнка</span></div>
+      <div class="node"><span class="nn">11</span><span class="nt">Лаканианский поворот</span></div>
+      <div class="node"><span class="nn">12</span><span class="nt">«Правила игры»: капстоун</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Двенадцать лекций: от жуткого и двойника до капстоуна по „Правилам игры“. Части: основания · зритель и взгляд · желание · безумие и современность.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 46 СЕМИНАР -->
+  <section class="slide" data-toc="К семинару">
+    <div class="eyebrow">Практика <span class="sep">/</span> <span class="tag">Задания</span></div>
+    <h2>К семинару</h2>
+    <div class="cols-3" style="margin-top:8px">
+      <div class="card"><div class="k">01 · Разбор — обязательно</div><h3>Склейка × уравнения</h3><p>Одна склейка или наплыв из любого фильма лекции: какое из четырёх уравнений здесь работает и что оно прячет. 300–400 слов.</p></div>
+      <div class="card"><div class="k">02 · Эссе — по выбору</div><h3>Один из двух вопросов</h3><p>«Прав ли Бунюэль, запрещая трактовки собственного фильма?» либо «Сон-рамка против неразрешимого шва: почему Оз успокаивает, а Линч нет». 800–1000 слов.</p></div>
+      <div class="card bord"><div class="k">03 · К следующей встрече</div><h3>Просмотр</h3><p>«Окно во двор» и «Шерлок-младший». Держать в уме вопрос: откуда смотрит камера и кто сшивает взгляд.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Оформление ссылок — Chicago.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 47 К ПРОСМОТРУ -->
+  <section class="slide" data-toc="К просмотру и чтению">
+    <div class="eyebrow">Фильмы лекции <span class="sep">/</span> <span class="tag">Обязательное и дополнительное</span></div>
+    <h2>К просмотру</h2>
+    <div class="watchlist" style="margin-top:6px">
+      <div class="wfilm"><span class="wy">1929</span><span class="wt">Андалузский пёс</span><span class="wd">Л. Бунюэль · Франция</span><span class="wn">Монтаж как работа сна; 21 минута.</span></div>
+      <div class="wfilm"><span class="wy">1932</span><span class="wt">Вампир</span><span class="wd">К. Т. Дрейер</span><span class="wn">Сон как онтология изображения.</span></div>
+      <div class="wfilm doc"><span class="wy">1939</span><span class="wt">Волшебник страны Оз</span><span class="wd">В. Флеминг · доп.</span><span class="wn">Сон-рамка в чистом виде: вторичная обработка финалом.</span></div>
+      <div class="wfilm"><span class="wy">1945</span><span class="wt">Завороженный</span><span class="wd">А. Хичкок · США</span><span class="wn">Сон-шифр с ключом и сновидение Дали.</span></div>
+      <div class="wfilm doc"><span class="wy">1990</span><span class="wt">Сны</span><span class="wd">А. Куросава · контрапункт</span><span class="wn">Иллюстрация снов вместо работы сна.</span></div>
+      <div class="wfilm"><span class="wy">2001</span><span class="wt">Малхолланд Драйв</span><span class="wd">Д. Линч · кода</span><span class="wn">Весь фильм как сон: неразрешимый шов.</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Подсказка для разбора: ищите склейку, наплыв, эллипсис и повтор.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 48 К ЧТЕНИЮ -->
+  <section class="slide">
+    <div class="eyebrow">К чтению <span class="sep">/</span> <span class="tag">Аппарат лекции</span></div>
+    <h2>Источники</h2>
+    <div class="readlist" style="margin-top:6px">
+      <div class="r"><span class="n">01</span><span class="ttl"><b>Freud, S.</b> Die Traumdeutung. 1900.</span><span class="typ">первоисточник</span></div>
+      <div class="r"><span class="n">02</span><span class="ttl"><b>Breton, A.</b> Manifeste du surréalisme. 1924.</span><span class="typ">первоисточник</span></div>
+      <div class="r"><span class="n">03</span><span class="ttl"><b>Lewin, B.</b> Sleep, the Mouth, and the Dream Screen. 1946.</span><span class="typ">клиника</span></div>
+      <div class="r"><span class="n">04</span><span class="ttl"><b>Baudry, J.-L.</b> Le dispositif. 1975.</span><span class="typ">теория</span></div>
+      <div class="r"><span class="n">05</span><span class="ttl"><b>Metz, C.</b> Le signifiant imaginaire. 1977.</span><span class="typ">теория</span></div>
+      <div class="r"><span class="n">06</span><span class="ttl"><b>Nash, M.</b> Vampyr and the Fantastic. Screen 17.3. 1976.</span><span class="typ">кейс</span></div>
+      <div class="r"><span class="n">07</span><span class="ttl"><b>Williams, L.</b> Figures of Desire. 1981.</span><span class="typ">кейс</span></div>
+      <div class="r"><span class="n">08</span><span class="ttl"><b>Eberwein, R.</b> Film and the Dream Screen. 1984.</span><span class="typ">современное</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Следующая лекция — «Аппарат и шов»: кто смотрит, когда смотрит камера.</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<button class="zone left" id="zoneL" aria-label="Назад"></button>
+<button class="zone right" id="zoneR" aria-label="Вперёд"></button>
+<div class="cutfx" id="cutfx"></div>
+<div id="gatefx"></div>
+<div id="irisfx"></div>
+<div id="irisem" aria-hidden="true"><svg viewBox="0 0 220 130">
+  <path class="ilid" d="M14 65 Q110 -6 206 65"/>
+  <path class="ilid" d="M14 65 Q110 136 206 65"/>
+  <path class="ispir" d="M110 65 a5 5 0 0 1 5 -5 a10 10 0 0 1 10 10 a15 15 0 0 1 -15 15 a20 20 0 0 1 -20 -20 a25 25 0 0 1 25 -25 a30 30 0 0 1 30 30 a35 35 0 0 1 -35 35 a40 40 0 0 1 -40 -40"/>
+  <circle class="ipup" cx="110" cy="65" r="7" fill="currentColor"/>
+</svg></div>
+<div class="reeldot" id="reeldot"></div>
+<div class="nav">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</div>
+<button class="toc-btn" id="tocBtn">☰ Оглавление</button>
+<div class="toc-panel" id="tocPanel">
+  <div class="toc-inner">
+    <div class="toc-head"><span class="toc-title">Оглавление</span><a class="toc-back" id="tocClose" href="#">закрыть ✕</a></div>
+    <div class="toc-list" id="tocList"></div>
+  </div>
+</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.shot[data-tmdb], .framebox[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); if(!img) continue;
+      img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+const cover=document.getElementById('cover'),cutfx=document.getElementById('cutfx'),reeldot=document.getElementById('reeldot');
+const actEls=Array.from(document.querySelectorAll('.rail .a'));
+const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function coverPlay(){if(!cover||reduce)return;cover.classList.remove('play');void cover.offsetWidth;cover.classList.add('play');}
+const gatefx=document.getElementById('gatefx'),irisfx=document.getElementById('irisfx'),irisem=document.getElementById('irisem');
+let pend=null;
+function apply(n){
+  i=n;
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; if(bar) bar.style.width=pct+'%'; if(railFill) railFill.style.height=pct+'%';
+  let act=null; for(let k=0;k<=i;k++){ if(slides[k].dataset.act) act=slides[k].dataset.act; }
+  actEls.forEach(a=>a.classList.toggle('cur',a.dataset.a===act));
+  if(i===0) coverPlay();
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function show(n){
+  n=Math.max(0,Math.min(total-1,n));
+  const t=slides[n];
+  if(pend){clearTimeout(pend);pend=null;}
+  if(reduce){apply(n);return;}
+  if(t.classList.contains('divider')){
+    irisfx.classList.remove('go');void irisfx.offsetWidth;irisfx.classList.add('go');
+    irisem.classList.remove('go');void irisem.offsetWidth;irisem.classList.add('go');
+    pend=setTimeout(()=>{apply(n);
+      if(t.dataset.act){reeldot.classList.remove('blink');void reeldot.offsetWidth;reeldot.classList.add('blink');}
+      pend=null;},1600);
+  } else if(t.classList.contains('framefull')){
+    cutfx.classList.remove('go');void cutfx.offsetWidth;cutfx.classList.add('go');
+    apply(n);
+  } else {
+    apply(n);
+  }
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+(function(){
+  const btn=document.getElementById('tocBtn'), panel=document.getElementById('tocPanel'), list=document.getElementById('tocList'), close=document.getElementById('tocClose');
+  if(!btn||!panel||!list) return;
+  const items=[];
+  slides.forEach((s,idx)=>{
+    const t=s.getAttribute('data-toc'); if(!t) return;
+    const b=document.createElement('button'); b.className='toc-item'; b.dataset.idx=idx;
+    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t+'</span>';
+    b.addEventListener('click',()=>{ show(idx); shut(); });
+    list.appendChild(b); items.push(b);
+  });
+  function mark(){ items.forEach((b,k)=>{ const c=+b.dataset.idx, next=items[k+1]?+items[k+1].dataset.idx:Infinity; b.classList.toggle('cur', i>=c && i<next); }); }
+  function open(){ mark(); panel.classList.add('open'); }
+  function shut(){ panel.classList.remove('open'); }
+  btn.addEventListener('click',()=>panel.classList.contains('open')?shut():open());
+  if(close) close.addEventListener('click',e=>{e.preventDefault();shut();});
+  panel.addEventListener('click',e=>{ if(e.target===panel) shut(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') shut(); });
+})();
+document.body.classList.add('boot');
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>
