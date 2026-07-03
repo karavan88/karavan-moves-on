@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Психоанализ и теория кино · Лекция 09 · Безумие на экране</title>
+<title>Психоаналитическая теория кино · Лекция 09 · Безумие на экране</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -454,6 +454,11 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
 .slide.active[data-phase="real"] h2{animation:fogIn 1.1s .65s both}
 .slide.active[data-phase="real"] .lead{animation:fogIn 1.2s .9s both}
 @media (prefers-reduced-motion: reduce){body .slide.active[data-phase="real"]{animation:fade .3s both}.slide.active[data-phase="real"] .eyebrow,.slide.active[data-phase="real"] h2,.slide.active[data-phase="real"] .lead{animation:none;opacity:1;filter:none}}
+/* перфорация киноленты по краям рейки (возврат из старой версии) */
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--abyss) 14px 30px);pointer-events:none;z-index:1}
+.rail::before{left:6px}
+.rail::after{right:6px}
+@media print{.rail::before,.rail::after{display:none}}
 </style>
 </head>
 <body>
@@ -482,7 +487,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
     <circle cx="110" cy="65" r="32" fill="none" stroke="currentColor" stroke-width="9"/>
     <circle cx="110" cy="65" r="9" fill="currentColor"/>
   </svg>
-  <div class="rail-label">Психоанализ и теория кино</div>
+  <div class="rail-label">Психоаналитическая теория кино</div>
 </aside>
 <div class="progress"><div class="bar" id="bar"></div></div>
 
@@ -498,7 +503,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
     </svg>
     <div class="cover-inner">
       <div class="kicker">Авторский курс Карена Аванесяна · Лекция 09 / 12</div>
-      <div class="course-name">Психоанализ и теория кино</div>
+      <div class="course-name">Психоаналитическая теория кино</div>
       <h1>Безумие<br>на экране</h1>
       <div class="subt">Можно ли показать безумие, не предав его?</div>
       <div class="meta">
@@ -1022,7 +1027,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
     <h2>Карта курса</h2>
     <div class="coursemap" style="margin-top:8px">
       <div class="node"><span class="nn">01</span><span class="nt">Жуткое и двойник</span></div>
-      <div class="node"><span class="nn">02</span><span class="nt">Сновидение и сюрреализм</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Работа сновидения</span></div>
       <div class="node"><span class="nn">03</span><span class="nt">Аппарат и шов</span></div>
       <div class="node"><span class="nn">04</span><span class="nt">Лакан: стадия зеркала</span></div>
       <div class="node"><span class="nn">05</span><span class="nt">Мужской и женский взгляд</span></div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Лекция 2 — Работа сновидения | Психоанализ и теория кино · авторский курс Карена Аванесяна</title>
+<title>Лекция 2 — Работа сновидения | Психоаналитическая теория кино · авторский курс Карена Аванесяна</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
@@ -615,6 +615,11 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
 .slide.active[data-phase="real"] h2{animation:fogIn 1.1s .65s both}
 .slide.active[data-phase="real"] .lead{animation:fogIn 1.2s .9s both}
 @media (prefers-reduced-motion: reduce){body .slide.active[data-phase="real"]{animation:fade .3s both}.slide.active[data-phase="real"] .eyebrow,.slide.active[data-phase="real"] h2,.slide.active[data-phase="real"] .lead{animation:none;opacity:1;filter:none}}
+/* перфорация киноленты по краям рейки (возврат из старой версии) */
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--abyss) 14px 30px);pointer-events:none;z-index:1}
+.rail::before{left:6px}
+.rail::after{right:6px}
+@media print{.rail::before,.rail::after{display:none}}
 </style>
 </head>
 <body>
@@ -638,7 +643,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   <div class="rail-top">02</div>
   <div class="rail-acts"><span class="a" data-a="I">I</span><span class="a" data-a="II">II</span><span class="a" data-a="III">III</span><span class="a" data-a="IV">IV</span></div>
   <svg class="rail-mark" viewBox="0 0 220 130" aria-hidden="true"><path d="M14 65 Q110 -6 206 65 Q110 136 14 65 Z" fill="none" stroke="currentColor" stroke-width="12"/><circle cx="110" cy="65" r="32" fill="none" stroke="currentColor" stroke-width="9"/><circle cx="110" cy="65" r="9" fill="currentColor"/></svg>
-  <div class="rail-label">Психоанализ и теория кино</div>
+  <div class="rail-label">Психоаналитическая теория кино</div>
 </aside>
 <div class="progress"><div class="bar" id="bar"></div></div>
 
@@ -656,7 +661,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
     </svg>
     <div class="cover-inner">
       <div class="kicker">Авторский курс Карена Аванесяна · Лекция 02 / 12</div>
-      <div class="course-name">Психоанализ и теория кино</div>
+      <div class="course-name">Психоаналитическая теория кино</div>
       <h1>Работа <span class="hl">сновидения</span></h1>
       <div class="subt">Думает ли кино на языке сна?</div>
       <div class="meta">
@@ -675,9 +680,9 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
     <div class="lighttable">
       <div class="fs"><span class="edge">KARAVAN · 5222 · 029A</span><div class="win w-chien"><img src="img/poster_3Bond31VV0nRi5o1iL3i5r2s0HG.jpg" alt="Постер «Андалузский пёс»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1929</span><span class="cn">Андалузский пёс</span></div>
       <div class="fs"><span class="edge">KARAVAN · 5222 · 032B</span><div class="win w-vampyr"><img src="img/poster_tgnL5gAI1iGmycmjyL2ytTXcrDX.jpg" alt="Постер «Вампир»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1932</span><span class="cn">Вампир</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 039C</span><div class="win w-oz"><img src="img/poster_uCC3j4pV9eOZwzDUWp2ilbcTf1f.jpg" alt="Постер «Волшебник страны Оз»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1939</span><span class="cn">Волшебник страны Оз</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 039C</span><div class="win w-oz"></div><span class="cy">1939</span><span class="cn">Волшебник страны Оз</span></div>
       <div class="fs"><span class="edge">KARAVAN · 5222 · 045D</span><div class="win w-spell"><img src="img/poster_dPAox7jGScLBvxKLeRptJIBF7v.jpg" alt="Постер «Завороженный»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1945</span><span class="cn">Завороженный</span></div>
-      <div class="fs"><span class="edge">KARAVAN · 5222 · 066E</span><div class="win w-per"><img src="img/poster_mAE4uwrXLlzo5AAxEorFvErdumq.jpg" alt="Постер «Персона»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">1966</span><span class="cn">Персона</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 066E</span><div class="win w-per"></div><span class="cy">1966</span><span class="cn">Персона</span></div>
       <div class="fs"><span class="edge">KARAVAN · 5222 · 001X</span><div class="win w-md"><img src="img/poster_x7A59t6ySylr1L7aubOQEA480vM.jpg" alt="Постер «Малхолланд Драйв»" loading="lazy" onload="this.closest('.win').classList.add('has-image')"></div><span class="cy">2001</span><span class="cn">Малхолланд Драйв</span></div>
     </div>
     <div class="slide-foot"><span class="src">Бунюэль шифрует, Хичкок разгадывает, Дрейер растворяет; Линч ждёт в коде.</span><span class="fpg"></span></div>
@@ -1275,7 +1280,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
     <h2>Карта курса</h2>
     <div class="coursemap" style="margin-top:6px">
       <div class="node"><span class="nn">01</span><span class="nt">Жуткое и двойник</span></div>
-      <div class="node cur"><span class="nn">02</span><span class="nt">Сновидение и сюрреализм</span></div>
+      <div class="node cur"><span class="nn">02</span><span class="nt">Работа сновидения</span></div>
       <div class="node"><span class="nn">03</span><span class="nt">Аппарат и шов</span></div>
       <div class="node"><span class="nn">04</span><span class="nt">Лакан: стадия зеркала</span></div>
       <div class="node"><span class="nn">05</span><span class="nt">Мужской и женский взгляд</span></div>
