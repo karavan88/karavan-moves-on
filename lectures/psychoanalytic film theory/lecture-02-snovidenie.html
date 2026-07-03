@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Лекция 2 — Работа сновидения | Психоаналитическая теория кино · авторский курс Карена Аванесяна</title>
+<title>Лекция 2 — Работа сновидения | Психоанализ и теория кино · авторский курс Карена Аванесяна</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
@@ -131,8 +131,10 @@ body.boot .cover-haze{animation:fadeh 1.6s .3s ease both}
 .poster .knum{font-family:var(--display);font-weight:800;color:var(--violet-soft);font-size:clamp(40px,6vw,84px);line-height:.8;opacity:.92}
 .poster .word{font-family:var(--display);font-weight:800;line-height:.92;letter-spacing:-.02em;font-size:clamp(58px,12vw,168px);margin:.04em 0 .12em}
 .poster .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,27px);color:var(--bone-dim);max-width:32ch;line-height:1.22}
-.dword{position:relative;display:inline-block;color:var(--bone)}
-.dword .gh{position:absolute;left:0;top:0;color:var(--violet-soft);opacity:.5;filter:blur(7px);transform:translate(13px,9px);z-index:-1}
+.reflectword{position:relative;display:inline-block;color:var(--bone)}
+.reflectword .refl{position:absolute;left:0;top:99%;transform:scaleY(-1);color:var(--bone);opacity:.32;filter:blur(1.2px);-webkit-mask:linear-gradient(#000,transparent 84%);mask:linear-gradient(#000,transparent 84%)}
+.refl{animation:shim 4.5s 1.2s ease-in-out infinite alternate}
+@keyframes shim{from{opacity:.22}to{opacity:.4}}
 .poster .moonbig{position:absolute;right:6%;top:50%;transform:translateY(-50%);height:70vh;width:auto;color:var(--gold);opacity:.8;z-index:0;filter:drop-shadow(0 0 44px rgba(201,161,74,.15))}
 
 /* ===== THESIS ===== */
@@ -634,7 +636,7 @@ body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.2
   </svg>
   <div class="rail-top">02</div>
   <div class="acts"><span class="a" data-a="I">I</span><span class="a" data-a="II">II</span><span class="a" data-a="III">III</span><span class="a" data-a="IV">IV</span></div>
-  <div class="rail-label">Психоаналитическая теория кино · авторский курс Карена Аванесяна</div>
+  <div class="rail-label">Психоанализ и теория кино · авторский курс Карена Аванесяна</div>
 </aside>
 <div class="progress"><div class="bar" id="bar"></div></div>
 
@@ -652,7 +654,7 @@ body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.2
     </svg>
     <div class="cover-inner">
       <div class="kicker">Авторский курс Карена Аванесяна · Лекция 02 / 12</div>
-      <div class="course-name">Психоаналитическая теория кино</div>
+      <div class="course-name">Психоанализ и теория кино</div>
       <h1>Работа <span class="hl">сновидения</span></h1>
       <div class="subt">Думает ли кино на языке сна?</div>
       <div class="meta">
@@ -741,7 +743,7 @@ body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.2
     <div class="haze"></div>
     <div class="poster-inner">
       <div class="knum">I</div>
-      <div class="word dword">Работа сна<span class="gh" aria-hidden="true">Работа сна</span></div>
+      <div class="word reflectword">Работа сна<span class="refl" aria-hidden="true">Работа сна</span></div>
       <div class="sub">Traumarbeit — операция, что переводит скрытую мысль в зримый образ.</div>
     </div>
     <div class="slide-foot"><span class="src">Четыре механизма: сгущение, смещение, изобразимость, вторичная обработка.</span><span class="fpg"></span></div>
@@ -862,7 +864,7 @@ body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.2
     <div class="haze"></div>
     <div class="poster-inner">
       <div class="knum">II</div>
-      <div class="word dword" style="font-size:clamp(48px,9.4vw,132px)">Экран как сон<span class="gh" aria-hidden="true">Экран как сон</span></div>
+      <div class="word reflectword" style="font-size:clamp(48px,9.4vw,132px)">Экран как сон<span class="refl" aria-hidden="true">Экран как сон</span></div>
       <div class="sub">Тёмный зал, неподвижность, поток образов — состояние, родственное сну.</div>
     </div>
     <div class="slide-foot"><span class="src">К. Метц, Ж.-Л. Бодри, Б. Левин.</span><span class="fpg"></span></div>
@@ -922,7 +924,7 @@ body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.2
     <div class="haze"></div>
     <div class="poster-inner">
       <div class="knum">III</div>
-      <div class="word dword">Три сна<span class="gh" aria-hidden="true">Три сна</span></div>
+      <div class="word reflectword">Три сна<span class="refl" aria-hidden="true">Три сна</span></div>
       <div class="sub">Сон как монтаж · сон как разгадка · сон как воздух фильма.</div>
     </div>
     <div class="slide-foot"><span class="src">Каждый кейс: заставка, контекст, сцена, форма, прочтение, поле спора.</span><span class="fpg"></span></div>
@@ -1151,7 +1153,7 @@ body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.2
     </svg>
     <div class="poster-inner">
       <div class="knum">IV</div>
-      <div class="word dword" style="font-size:clamp(42px,7vw,96px);white-space:normal;max-width:16ch">Может ли весь фильм быть сном?<span class="gh" aria-hidden="true">Может ли весь фильм быть сном?</span></div>
+      <div class="word reflectword" style="font-size:clamp(42px,7vw,96px);white-space:normal;max-width:16ch">Может ли весь фильм быть сном?<span class="refl" aria-hidden="true">Может ли весь фильм быть сном?</span></div>
       <div class="sub">Кода: рамка, шов и один венский роман.</div>
     </div>
     <div class="slide-foot"><span class="src">Оз · Бергман · Линч.</span><span class="fpg"></span></div>
@@ -1267,8 +1269,8 @@ body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.2
 
   <!-- 45 COURSEMAP -->
   <section class="slide" data-phase="wake">
-    <div class="eyebrow">Карта курса <span class="sep">/</span> <span class="tag">Текущее место</span></div>
-    <h2>Маршрут лекций</h2>
+    <div class="eyebrow">Маршрут <span class="sep">/</span> <span class="tag">Место лекции в курсе</span></div>
+    <h2>Карта курса</h2>
     <div class="coursemap" style="margin-top:6px">
       <div class="node"><span class="nn">01</span><span class="nt">Жуткое и двойник</span></div>
       <div class="node cur"><span class="nn">02</span><span class="nt">Сновидение и сюрреализм</span></div>
@@ -1281,9 +1283,9 @@ body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.2
       <div class="node"><span class="nn">09</span><span class="nt">Безумие на экране</span></div>
       <div class="node"><span class="nn">10</span><span class="nt">Взгляд ребёнка</span></div>
       <div class="node"><span class="nn">11</span><span class="nt">Лаканианский поворот</span></div>
-      <div class="node"><span class="nn">12</span><span class="nt">Мабузе: кино как гипноз</span></div>
+      <div class="node"><span class="nn">12</span><span class="nt">Гипноз и внушение</span></div>
     </div>
-    <div class="slide-foot"><span class="src">Двенадцать лекций: от жуткого и двойника до Мабузе и власти внушения. Части: основания · зритель и взгляд · желание · безумие и современность.</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span class="src">Двенадцать лекций: от жуткого и двойника до гипноза и внушения. Части: основания · зритель и взгляд · желание · безумие и современность.</span><span class="fpg"></span></div>
   </section>
 
   <!-- 46 СЕМИНАР -->
@@ -1315,8 +1317,8 @@ body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.2
 
   <!-- 48 К ЧТЕНИЮ -->
   <section class="slide" data-phase="wake">
-    <div class="eyebrow">К чтению <span class="sep">/</span> <span class="tag">Аппарат лекции</span></div>
-    <h2>Источники</h2>
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Восемь опор лекции</span></div>
+    <h2>К чтению</h2>
     <div class="readlist" style="margin-top:6px">
       <div class="r"><span class="n">01</span><span class="ttl"><b>Freud, S.</b> Die Traumdeutung. 1900.</span><span class="typ">первоисточник</span></div>
       <div class="r"><span class="n">02</span><span class="ttl"><b>Breton, A.</b> Manifeste du surréalisme. 1924.</span><span class="typ">первоисточник</span></div>

@@ -34,12 +34,12 @@ async function download(file_path, name, dir){
 // deck → [winClass, russianName, query, year]
 const PLAN = {
   'lecture-01-bessoznatelnoe.html': [
+    ['w-tet','Четыре беспокойные головы','The Four Troublesome Heads',1898],
     ['w-prg','Пражский студент','The Student of Prague',1913],
     ['w-cal','Калигари','The Cabinet of Dr. Caligari',1920],
+    ['w-gol','Голем','The Golem: How He Came into the World',1920],
     ['w-nos','Носферату','Nosferatu',1922],
     ['w-sec','Тайны одной души','Secrets of a Soul',1926],
-    ['w-md','Малхолланд Драйв','Mulholland Drive',2001],
-    ['w-out','Прочь','Get Out',2017],
   ],
   'lecture-02-snovidenie.html': [
     ['w-chien','Андалузский пёс','Un Chien Andalou',1929],

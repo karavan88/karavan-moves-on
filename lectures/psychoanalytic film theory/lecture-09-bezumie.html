@@ -94,16 +94,16 @@ p{font-size:clamp(14.5px,1.3vw,17.5px);line-height:1.55;color:var(--bone-dim)}
 .tli:nth-child(even){transform:translateY(56px)}
 .tli.hot::before{background:var(--bordeaux);border-color:var(--bordeaux-soft)}
 .tli.hot .y{color:var(--bordeaux-soft)}
-.shot{position:absolute;inset:0;z-index:0;background:#0d1420;overflow:hidden}
-.shot img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease;filter:grayscale(.35) contrast(1.05)}
-.shot.has-image img{opacity:.62;animation:kb 26s ease-in-out infinite alternate}
+.shot{position:absolute;inset:0;z-index:0;background:#0d1420;overflow:hidden;box-shadow:inset 0 0 220px 60px rgba(7,13,24,.9)}
+.shot img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease;filter:grayscale(.75) contrast(1.08) brightness(.88)}
+.shot.has-image img{opacity:1;animation:kb 26s ease-in-out infinite alternate}
 @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.1) translateX(-1.4%)}}
-.shot::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(75deg,rgba(7,13,24,.94) 22%,rgba(7,13,24,.55) 46%,rgba(7,13,24,.18) 70%)}
+.shot::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(7,13,24,.96),rgba(7,13,24,.16) 50%,rgba(7,13,24,.55))}
 .shot .gr{position:absolute;inset:0;z-index:1;pointer-events:none}
 .shot .gr.g1{background:rgba(157,185,143,.16);mix-blend-mode:color}
 .shot .gr.g2{background:radial-gradient(90% 90% at 78% 30%,rgba(201,161,74,.14),transparent 60%);mix-blend-mode:screen}
 .framefull{position:relative}
-.framefull .fcap{position:relative;z-index:3;margin-top:auto;max-width:56%}
+.framefull .fcap{position:relative;z-index:3;margin-top:auto;max-width:74%}
 .framefull .fk{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
 .framefull h2{font-size:clamp(34px,4.6vw,66px)}
 .framefull .kw{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
@@ -382,6 +382,70 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
 @media print{.beam,.dust,.grain,.vignette,#irisfx,#irisem{display:none!important}}
 .fs .win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block}
 .fs .win:after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(6,9,15,.94),rgba(6,9,15,.35) 55%,transparent)}
+
+/* ===== КИНО-РЕЖИМ: ФАЗОВАЯ ДРАМАТУРГИЯ (Явь → Погружение → Сон → Пробуждение) ===== */
+.slide.active[data-phase="real"]{animation:disReal .7s ease both}
+@keyframes disReal{from{opacity:0;filter:blur(5px)}to{opacity:1;filter:blur(0)}}
+.slide.active[data-phase="descent"]{animation:disDesc 1.6s cubic-bezier(.25,.8,.25,1) both}
+@keyframes disDesc{from{opacity:0;transform:scale(1.05);filter:blur(15px) brightness(1.1)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+.slide.active[data-phase="dream"]{animation:disDream 2.3s cubic-bezier(.3,.7,.3,1) both,driftD 12s 2.5s ease-in-out infinite alternate}
+@keyframes disDream{from{opacity:0;transform:scale(1.085) rotate(.35deg);filter:blur(24px) brightness(1.18)}55%{filter:blur(6px)}to{opacity:1;transform:scale(1) rotate(0);filter:blur(0) brightness(1)}}
+@keyframes driftD{from{transform:scale(1)}to{transform:scale(1.012) translateY(-5px)}}
+.slide.active[data-phase="wake"]{animation:wakeIn .55s ease both}
+.slide.active[data-phase="wake"]>*{animation:wakeIn .5s .08s both}
+@keyframes wakeIn{from{opacity:0}to{opacity:1}}
+.beam{transition:filter 2.5s ease}.grain{transition:opacity 2s ease}
+body[data-phase="descent"] .beam{filter:blur(28px) brightness(1.25)}
+body[data-phase="dream"] .beam{filter:blur(28px) brightness(1.55)}
+body[data-phase="wake"] .beam{filter:blur(28px) brightness(.6)}
+body[data-phase="dream"] .grain{opacity:.085}
+body[data-phase="wake"] .grain{opacity:.032}
+@keyframes fogIn{from{opacity:0;filter:blur(16px);transform:translateY(10px)}to{opacity:1;filter:blur(0);transform:none}}
+.slide.active[data-phase="dream"] .framebox{animation:fogIn 1.5s .25s both}
+.slide.active[data-phase="dream"] .eyebrow{animation:fogIn 1.2s 1.35s both}
+.slide.active[data-phase="dream"] h2{animation:fogIn 1.5s 1.7s both}
+.slide.active[data-phase="dream"] .lead{animation:fogIn 1.7s 2.2s both}
+.slide.active[data-phase="dream"] .cols>p{animation:fogIn 1.6s 1.9s both}
+.slide.active[data-phase="dream"].framefull .fk{animation:fogIn 1.4s 1.5s both}
+.slide.active[data-phase="dream"].framefull .fcap h2{animation:fogIn 1.7s 1.9s both}
+.slide.active[data-phase="dream"].framefull .kw span{animation:fogIn 1.2s both}
+.slide.active[data-phase="dream"].framefull .kw span:nth-child(1){animation-delay:2.3s}
+.slide.active[data-phase="dream"].framefull .kw span:nth-child(2){animation-delay:2.4s}
+.slide.active[data-phase="dream"].framefull .kw span:nth-child(3){animation-delay:2.5s}
+.slide.active[data-phase="dream"].framefull .logline{animation:fogIn 1.6s 2.7s both}
+/* МЕХАНИЗМ 01 · вытеснение → проявление (жуткое = знакомое, прошедшее вытеснение) */
+@keyframes unveil{from{opacity:.22;filter:blur(14px)}to{opacity:1;filter:blur(0)}}
+.slide.active[data-unveil] .lead{animation:unveil 2.4s .9s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-unveil] :is(.cols,.cols-3,.cols-wide,.stack)>.card:nth-child(1){animation:unveil 2.2s 1.6s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-unveil] :is(.cols,.cols-3,.cols-wide,.stack)>.card:nth-child(2){animation:unveil 2.2s 2.1s cubic-bezier(.3,.6,.3,1) both}
+/* МЕХАНИЗМ 03 · сгущение (Ранк: хранитель и вестник смерти в одном) */
+@keyframes condL{from{opacity:0;transform:translateX(-52px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes condR{from{opacity:0;transform:translateX(52px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.slide.active[data-cond] .cols>p{animation:condL 2.2s .5s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-cond] .cols>.card{animation:condR 2.2s .9s cubic-bezier(.3,.6,.3,1) both}
+/* МЕХАНИЗМ 04 · возвращение вытесненного (глаз, смотрящий в ответ) */
+.haunt{position:fixed;right:8%;top:12%;width:170px;z-index:3;color:var(--gold);opacity:0;pointer-events:none}
+body[data-haunt="1"] .haunt{animation:hauntIn 6s 1.6s ease both}
+@keyframes hauntIn{0%{opacity:0;transform:rotate(0)}30%{opacity:.08}70%{opacity:.05}100%{opacity:0;transform:rotate(-6deg)}}
+@media (prefers-reduced-motion: reduce){
+.slide.active[data-phase]{animation:fade .3s both}
+.slide.active[data-unveil] .lead,.slide.active[data-unveil] .card,.slide.active[data-cond] .cols>p,.slide.active[data-cond] .cols>.card{animation:none;opacity:1;filter:none;transform:none}
+.haunt{display:none}}
+@media print{.haunt{display:none!important}}
+/* CINE-EARLY: не-dream фазам — кинематографичный слайд-вход (blur+scale), а не плоский fade */
+body .slide.active[data-phase="real"]{animation:dis .95s cubic-bezier(.22,.75,.25,1) both}
+body .slide.active[data-phase="descent"]{animation:disDesc 1.3s cubic-bezier(.22,.75,.25,1) both}
+body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.25,1) both}
+.slide.active[data-cond] .deflist>.def:nth-child(odd){animation:condL 2.2s .5s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-cond] .deflist>.def:nth-child(even){animation:condR 2.2s .9s cubic-bezier(.3,.6,.3,1) both}
+
+
+/* ===== ДИВАЙДЕРЫ: ЗЕРКАЛЬНОЕ СЛОВО (стандарт курса) ===== */
+.reflectword{position:relative;display:inline-block;color:var(--bone)}
+.reflectword .refl{position:absolute;left:0;top:99%;transform:scaleY(-1);color:var(--bone);opacity:.32;filter:blur(1.2px);-webkit-mask:linear-gradient(#000,transparent 84%);mask:linear-gradient(#000,transparent 84%)}
+.refl{animation:shim 4.5s 1.2s ease-in-out infinite alternate}
+@keyframes shim{from{opacity:.22}to{opacity:.4}}
+@media (prefers-reduced-motion: reduce){.refl{animation:none}}
 </style>
 </head>
 <body>
@@ -390,6 +454,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
 <div class="dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <div class="grain"></div>
 <div class="vignette"></div>
+<svg class="haunt" viewBox="0 0 220 130" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.4" d="M14 65 Q110 -6 206 65"/><path fill="none" stroke="currentColor" stroke-width="1.4" d="M14 65 Q110 136 206 65"/><circle cx="110" cy="65" r="26" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="110" cy="65" r="7" fill="currentColor"/></svg>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="g-peep" viewBox="0 0 120 170"><rect x="30" y="18" width="60" height="134" fill="none" stroke="currentColor" stroke-width="9"/><circle cx="60" cy="62" r="14" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="60" cy="62" r="4" fill="currentColor"/></symbol>
@@ -416,7 +481,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
 <main class="deck">
 
   <!-- 01 ОБЛОЖКА -->
-  <section class="slide cover active" id="cover" data-toc="Титул">
+  <section class="slide cover active" id="cover" data-toc="Титул" data-phase="real">
     <svg class="ap-hero eyehero" viewBox="0 0 220 130" aria-hidden="true">
       <path class="lid" d="M14 65 Q110 -6 206 65" fill="none" stroke="currentColor" stroke-width="1.6"/>
       <path class="lid" d="M14 65 Q110 136 206 65" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -437,7 +502,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 02 ПЛЁНКА -->
-  <section class="slide" data-toc="Плёнка лекции">
+  <section class="slide" data-toc="Плёнка лекции" data-phase="real">
     <div class="eyebrow">Холодный опенер <span class="sep">/</span> <span class="tag">Шесть кадров на световом столе</span></div>
     <h2>Век экранного безумия</h2>
     <div class="lighttable">
@@ -452,7 +517,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 03 THESIS A -->
-  <section class="slide thesis" data-toc="Тезис лекции">
+  <section class="slide thesis" data-toc="Тезис лекции" data-phase="real">
     <div class="tlbl">Тезис лекции</div>
     <div class="big">Экран веками показывал безумие <span class="hl">снаружи</span> — как зрелище. Настоящий спор начинается, когда камера пробует встать <span class="oc">внутрь</span>.</div>
     <div class="tsub">Четыре фильма лекции — четыре разных ответа: перцепция, подмена, эксцесс и целая планета.</div>
@@ -460,7 +525,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 04 ВОПРОС -->
-  <section class="slide">
+  <section class="slide" data-phase="real">
     <div class="eyebrow">Постановка <span class="sep">/</span> <span class="tag">Что значит «не предать»</span></div>
     <h2>Три ловушки репрезентации</h2>
     <ul class="qlist" style="margin-top:6px">
@@ -473,7 +538,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 05 ХРОНОЛЕНТА -->
-  <section class="slide" data-toc="Хроника: 1906–2019">
+  <section class="slide" data-toc="Хроника: 1906–2019" data-phase="real">
     <div class="eyebrow">Карта столетия <span class="sep">/</span> <span class="tag">Безумие в кино · 1906–2019</span></div>
     <h2>От аттракциона к спору</h2>
     <div class="timeline">
@@ -498,7 +563,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 06 DIVIDER I — КЛЕЙМО -->
-  <section class="slide divider poster" data-toc="Акт I · Клеймо" data-act="I">
+  <section class="slide divider poster" data-toc="Акт I · Клеймо" data-act="I" data-phase="descent">
     <svg class="emblem" viewBox="0 0 120 170" aria-hidden="true">
       <g opacity=".16" transform="translate(9 7)"><rect x="30" y="18" width="60" height="134" fill="none" stroke="currentColor" stroke-width="1"/></g>
       <rect x="30" y="18" width="60" height="134" fill="none" stroke="currentColor" stroke-width="1.5"/>
@@ -508,14 +573,14 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     </svg>
     <div class="poster-inner">
       <div class="knum">I</div>
-      <div class="word">Клеймо</div>
+      <div class="word reflectword">Клеймо<span class="refl" aria-hidden="true">Клеймо</span></div>
       <div class="sub">Прежде чем камера входит в безумие, она столетие смотрит на него через глазок палаты.</div>
     </div>
     <div class="slide-foot"><span class="src">Фуко · Гилман · Шнайдер · Уол.</span><span class="fpg"></span></div>
   </section>
 
   <!-- 07 ФУКО -->
-  <section class="slide">
+  <section class="slide" data-phase="descent" data-unveil>
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-peep"/></svg>Акт I · рамка <span class="sep">/</span> <span class="tag">Историзация понятия</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -529,7 +594,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 08 ГИЛМАН -->
-  <section class="slide">
+  <section class="slide" data-phase="descent">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-peep"/></svg>Акт I · иконография <span class="sep">/</span> <span class="tag">Гилман, 1982</span></div>
     <h2>Безумие узнают по картинке</h2>
     <div class="cols-3" style="margin-top:8px">
@@ -544,7 +609,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 09 ШНАЙДЕР: ТРИ МАСКИ -->
-  <section class="slide">
+  <section class="slide" data-phase="descent">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-peep"/></svg>Акт I · фигура врача <span class="sep">/</span> <span class="tag">Шнайдер, 1987</span></div>
     <h2>Три маски экранного психиатра</h2>
     <div class="cols-3" style="margin-top:8px">
@@ -557,7 +622,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 10 УОЛ: СТИГМА -->
-  <section class="slide">
+  <section class="slide" data-phase="descent">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-peep"/></svg>Акт I · ставки <span class="sep">/</span> <span class="tag">Почему это не только эстетика</span></div>
     <h2>Клеймо работает за пределами зала</h2>
     <div class="cols">
@@ -569,7 +634,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 11 МЕТОД: ДВОЙНАЯ АННОТАЦИЯ -->
-  <section class="slide" data-toc="Метод: двойная аннотация">
+  <section class="slide" data-toc="Метод: двойная аннотация" data-phase="descent" data-cond>
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-peep"/></svg>Инструмент <span class="sep">/</span> <span class="tag">Метод лекции</span></div>
     <h2>Двойная аннотация</h2>
     <div class="deflist eq" style="margin-top:12px">
@@ -582,7 +647,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 12 THESIS B -->
-  <section class="slide thesis">
+  <section class="slide thesis" data-phase="descent">
     <div class="tlbl">Следствие акта I</div>
     <div class="big">Показать безумие честно — значит сперва <span class="hl">разучиться</span> готовым знакам, которыми его показывали <span class="oc">сто лет</span>.</div>
     <div class="tsub">Дальше — четыре фильма, которые ищут форму заново: изнутри, через подмену, через тело и через целый мир.</div>
@@ -590,7 +655,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 13 DIVIDER II — ИЗНУТРИ -->
-  <section class="slide divider poster" data-toc="Акт II · Изнутри" data-act="II">
+  <section class="slide divider poster" data-toc="Акт II · Изнутри" data-act="II" data-phase="dream">
     <svg class="emblem" viewBox="0 0 120 170" aria-hidden="true">
       <g opacity=".16" transform="translate(9 7)"><path d="M60 10 L64 52 L50 84 L70 118 L56 160" fill="none" stroke="currentColor" stroke-width="1"/></g>
       <path d="M24 10 v150 M96 10 v150" stroke="currentColor" stroke-width="1.5" fill="none"/>
@@ -599,14 +664,14 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     </svg>
     <div class="poster-inner">
       <div class="knum">II</div>
-      <div class="word">Изнутри</div>
+      <div class="word reflectword">Изнутри<span class="refl" aria-hidden="true">Изнутри</span></div>
       <div class="sub">Полански дважды ставит камеру внутрь распадающегося сознания — и стена даёт трещину.</div>
     </div>
     <div class="slide-foot"><span class="src">«Отвращение», 1965 · «Жилец», 1976.</span><span class="fpg"></span></div>
   </section>
 
   <!-- ============ КЕЙС 01: ОТВРАЩЕНИЕ ============ -->
-  <section class="slide framefull" data-toc="Кейс 01 · Отвращение">
+  <section class="slide framefull" data-toc="Кейс 01 · Отвращение" data-phase="dream">
     <div class="shot s-rep" data-tmdb="Repulsion" data-year="1965" data-idx="0"><img src="img/w1280_5rbPwIdEZTyLTkpAgvGdacgCr7T.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Отвращения»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1965</span>
     <div class="fcap"><div class="fk">Кейс 01 · к разбору</div><h2>Отвращение</h2>
@@ -616,7 +681,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">«Repulsion» · реж. Роман Полански · Великобритания, 1965</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-crack"/></svg>Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Хоррор на чужие деньги</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -629,7 +694,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">Сцен. Полански и Браш · Compton Films · Берлинале-1965: Серебряный медведь (внеочередной приз жюри) + ФИПРЕССИ.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide framefull">
+  <section class="slide framefull" data-phase="dream">
     <div class="shot s-rep" data-tmdb="Repulsion" data-year="1965" data-idx="1"><img src="img/w1280_9Idzn3i92fhWej5ybNiIXYduQks.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Коридор рук" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · квартира оживает</div><h2>Стены дают трещину</h2>
       <p class="logline">Трещина раскалывает стену со звуком выстрела; из коридора тянутся руки; кролик на блюде гниёт, отмеряя время. Ни одно из событий не объявлено галлюцинацией — зритель заперт в перцепции Кэрол.</p>
@@ -637,7 +702,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span>Кейс 01 · сцена</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-crack"/></svg>Кейс 01 · форма <span class="sep">/</span> <span class="tag">Дорожка «кино»</span></div>
     <h2>Психоз как перцепция</h2>
     <div class="cols">
@@ -647,7 +712,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">Дорожка «репрезентация»: каталог Гилмана почти не задействован — ни палаты, ни врача, ни диагноза.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-crack"/></svg>Кейс 01 · прочтение <span class="sep">/</span> <span class="tag">Первый полюс</span></div>
     <h2>Изнутри, без переводчика</h2>
     <p class="lead" style="max-width:66ch">«Отвращение» ставит зрителя в перцепцию психоза и отказывает ему в безопасной дистанции диагноза.</p>
@@ -658,7 +723,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span>Кейс 01 · прочтение · полюс «изнутри»</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-crack"/></svg>Кейс 01 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1965–2012</span></div>
     <h2>Как читали «Отвращение»</h2>
     <div class="dispute">
@@ -673,7 +738,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- ============ КЕЙС 02: ЖИЛЕЦ ============ -->
-  <section class="slide framefull" data-toc="Кейс 02 · Жилец">
+  <section class="slide framefull" data-toc="Кейс 02 · Жилец" data-phase="dream">
     <div class="shot s-ten" data-tmdb="The Tenant" data-year="1976" data-idx="0"><img src="img/w1280_foS1hXCMagcl3GnK0hJHslNw9Ne.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Жильца»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1976</span>
     <div class="fcap"><div class="fk">Кейс 02 · к разбору</div><h2>Жилец</h2>
@@ -683,7 +748,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">«Le Locataire» · реж. Роман Полански · Франция, 1976 · по роману Р. Топора, 1964</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-crack"/></svg>Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Финал квартирной трилогии</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -696,7 +761,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">Канны-1976, официальная программа · R. Topor, «Le Locataire chimérique», 1964.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide framefull">
+  <section class="slide framefull" data-phase="dream" data-haunt>
     <div class="shot s-ten" data-tmdb="The Tenant" data-year="1976" data-idx="1"><img src="img/w1280_w2jKdLXZXz93X9ynjHs9MoR3UKF.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Окно во двор" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · двор-театр</div><h2>Соседи стоят и смотрят</h2>
       <p class="logline">В туалете напротив окна неподвижно стоят жильцы и глядят через двор — часами. Камера плывёт по фасаду, как в «Окне во двор», только смотрят здесь на самого смотрящего.</p>
@@ -704,7 +769,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span>Кейс 02 · сцена · кросс: аппарат и вуайеризм — Лекция 03</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-crack"/></svg>Кейс 02 · форма <span class="sep">/</span> <span class="tag">Дорожка «кино»</span></div>
     <h2>Паранойя от первого лица</h2>
     <div class="cols">
@@ -714,7 +779,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">Кросс: двойник — Лекция 01; петля повтора — Лекция 02.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-crack"/></svg>Кейс 02 · прочтение <span class="sep">/</span> <span class="tag">Второй полюс</span></div>
     <h2>Безумие под чужим взглядом</h2>
     <p class="lead" style="max-width:66ch">«Жилец» переносит источник безумия наружу: не психика ломается — среда лепит из человека того, кем ему положено быть.</p>
@@ -725,7 +790,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span>Кейс 02 · прочтение · полюс «подмена»</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-crack"/></svg>Кейс 02 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1976–2012</span></div>
     <h2>Как читали «Жильца»</h2>
     <div class="dispute">
@@ -741,21 +806,21 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 26 DIVIDER III — ЭКСЦЕСС -->
-  <section class="slide divider poster" data-toc="Акт III · Эксцесс" data-act="III">
+  <section class="slide divider poster" data-toc="Акт III · Эксцесс" data-act="III" data-phase="dream">
     <svg class="emblem" viewBox="0 0 120 170" aria-hidden="true">
       <g opacity=".16" transform="translate(9 7)"><path d="M8 118 h20 l12 -34 l16 74 l18 -128 l14 88 h24" fill="none" stroke="currentColor" stroke-width="1"/></g>
       <path d="M8 118 h20 l12 -34 l16 74 l18 -128 l14 88 h24" fill="none" stroke="currentColor" stroke-width="1.6"/>
     </svg>
     <div class="poster-inner">
       <div class="knum">III</div>
-      <div class="word">Эксцесс</div>
+      <div class="word reflectword">Эксцесс<span class="refl" aria-hidden="true">Эксцесс</span></div>
       <div class="sub">Жулавски выводит безумие из головы наружу — в тело, в пару, в разделённый город.</div>
     </div>
     <div class="slide-foot"><span class="src">«Одержимая», 1981.</span><span class="fpg"></span></div>
   </section>
 
   <!-- ============ КЕЙС 03: ОДЕРЖИМАЯ ============ -->
-  <section class="slide framefull" data-toc="Кейс 03 · Одержимая">
+  <section class="slide framefull" data-toc="Кейс 03 · Одержимая" data-phase="dream">
     <div class="shot s-pos" data-tmdb="Possession" data-year="1981" data-idx="0"><img src="img/w1280_4PQeAYAag6gjG4fUTVCq91Xccel.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Одержимой»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1981</span>
     <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Одержимая</h2>
@@ -765,7 +830,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">«Possession» · реж. Анджей Жулавски · Франция/ФРГ, 1981</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-spike"/></svg>Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Автобиография катастрофы</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -778,7 +843,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">Канны-1981 · существо — Карло Рамбальди · опер. Брюно Нюйттен.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide framefull">
+  <section class="slide framefull" data-phase="dream" data-haunt>
     <div class="shot s-pos" data-tmdb="Possession" data-year="1981" data-idx="1"><img src="img/w1280_zfw3fcF7d4KcWYEvps4zUfl303b.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Переход метро" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · переход U-Bahn</div><h2>Припадок как танец</h2>
       <p class="logline">Пятиминутный одиночный припадок Аджани в пустом переходе: тело бьётся о стены, смех переходит в вой. Ни монтажной страховки, ни музыки — только камера, не решающаяся отвернуться.</p>
@@ -786,7 +851,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span>Кейс 03 · сцена · Аджани позже: на такую роль соглашаются только в молодости</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-spike"/></svg>Кейс 03 · форма <span class="sep">/</span> <span class="tag">Дорожка «кино»</span></div>
     <h2>Безумие, вынесенное наружу</h2>
     <div class="cols">
@@ -796,7 +861,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">Кросс: двойники — Лекция 01; существо и абъекция — Лекция 08.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-spike"/></svg>Кейс 03 · прочтение <span class="sep">/</span> <span class="tag">Третий полюс</span></div>
     <h2>Эксцесс против объяснения</h2>
     <p class="lead" style="max-width:66ch">«Одержимая» отказывает безумию в психологии: ни диагноза, ни травмы-разгадки — только интенсивность, которую нельзя пересказать.</p>
@@ -807,7 +872,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span>Кейс 03 · прочтение · полюс «тело»</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-spike"/></svg>Кейс 03 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1981–2021</span></div>
     <h2>Как читали «Одержимую»</h2>
     <div class="dispute">
@@ -823,7 +888,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 33 DIVIDER IV — ПЛАНЕТА -->
-  <section class="slide divider poster" data-toc="Акт IV · Планета" data-act="IV">
+  <section class="slide divider poster" data-toc="Акт IV · Планета" data-act="IV" data-phase="dream">
     <svg class="emblem" viewBox="0 0 120 170" aria-hidden="true">
       <g opacity=".16" transform="translate(9 7)"><circle cx="82" cy="52" r="34" fill="currentColor"/></g>
       <circle cx="46" cy="112" r="26" fill="none" stroke="currentColor" stroke-width="1.5"/>
@@ -832,14 +897,14 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     </svg>
     <div class="poster-inner">
       <div class="knum">IV</div>
-      <div class="word">Планета</div>
+      <div class="word reflectword">Планета<span class="refl" aria-hidden="true">Планета</span></div>
       <div class="sub">Триер выносит депрессию за пределы психики — размером с небесное тело.</div>
     </div>
     <div class="slide-foot"><span class="src">«Меланхолия», 2011.</span><span class="fpg"></span></div>
   </section>
 
   <!-- ============ КЕЙС 04: МЕЛАНХОЛИЯ ============ -->
-  <section class="slide framefull" data-toc="Кейс 04 · Меланхолия">
+  <section class="slide framefull" data-toc="Кейс 04 · Меланхолия" data-phase="dream">
     <div class="shot s-mel" data-tmdb="Melancholia" data-year="2011" data-idx="0"><img src="img/w1280_qzrS5ShZZPsPdhM5ZbcQKG7fwFo.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Меланхолии»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">2011</span>
     <div class="fcap"><div class="fk">Кейс 04 · к разбору</div><h2>Меланхолия</h2>
@@ -849,7 +914,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">«Melancholia» · реж. Ларс фон Триер · Дания и др., 2011</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · контекст <span class="sep">/</span> <span class="tag">Из собственной депрессии</span></div>
     <div class="cols-wide">
       <div class="stack">
@@ -862,7 +927,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">Канны-2011: приз за женскую роль (Данст).</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide framefull">
+  <section class="slide framefull" data-phase="dream" data-haunt>
     <div class="shot s-mel" data-tmdb="Melancholia" data-year="2011" data-idx="1"><img src="img/w1280_cRR7N8WzOkby776y6I4vW0GQXrJ.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Пролог" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · увертюра</div><h2>Конец света заранее</h2>
       <p class="logline">Восьмиминутный пролог под Вагнера: сверхзамедленные живые картины, падающие птицы, Жюстин в путах шерсти — и столкновение планет. Финал показан до начала: тревога снята, остаётся вглядываться.</p>
@@ -870,7 +935,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span>Кейс 04 · сцена · прелюдия к «Тристану и Изольде»</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · форма <span class="sep">/</span> <span class="tag">Дорожка «кино»</span></div>
     <h2>Депрессия как устройство мира</h2>
     <div class="cols">
@@ -880,7 +945,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span class="src">Дорожка «репрезентация»: свадьба части I — точный каталог того, как среда не слышит депрессию.</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · прочтение <span class="sep">/</span> <span class="tag">Четвёртый полюс</span></div>
     <h2>Правота больной</h2>
     <p class="lead" style="max-width:66ch">«Меланхолия» переворачивает иерархию: депрессия перестаёт быть искажением взгляда и становится точным зрением.</p>
@@ -891,7 +956,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
     <div class="slide-foot"><span>Кейс 04 · прочтение · полюс «мир»</span><span class="fpg"></span></div>
   </section>
 
-  <section class="slide">
+  <section class="slide" data-phase="dream">
     <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 2011–2012</span></div>
     <h2>Как читали «Меланхолию»</h2>
     <div class="dispute">
@@ -906,7 +971,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 40 СИНТЕЗ -->
-  <section class="slide" data-toc="Синтез: четыре полюса">
+  <section class="slide" data-toc="Синтез: четыре полюса" data-phase="wake">
     <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Четыре ответа на один вопрос</span></div>
     <h2>Можно — если форма несёт состояние</h2>
     <div class="cols" style="grid-template-columns:repeat(4,1fr);gap:18px">
@@ -920,7 +985,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 41 СИЛА / ПРЕДЕЛ -->
-  <section class="slide" data-toc="Сила и предел">
+  <section class="slide" data-toc="Сила и предел" data-phase="wake">
     <div class="eyebrow">Честная оптика <span class="sep">/</span> <span class="tag">Что этот подход умеет и где ломается</span></div>
     <h2>Сила и предел</h2>
     <div class="cols">
@@ -931,7 +996,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 42 АКТУАЛЬНОСТЬ -->
-  <section class="slide" data-toc="Актуальность: Джокер и после">
+  <section class="slide" data-toc="Актуальность: Джокер и после" data-phase="wake">
     <div class="eyebrow">Зачем сегодня <span class="sep">/</span> <span class="tag">Спор не закрыт</span></div>
     <h2>Проверка на современности</h2>
     <div class="deflist" style="margin-top:10px;max-width:1060px">
@@ -944,7 +1009,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 43 КАРТА КУРСА -->
-  <section class="slide" data-toc="Карта курса">
+  <section class="slide" data-toc="Карта курса" data-phase="wake">
     <div class="eyebrow">Маршрут <span class="sep">/</span> <span class="tag">Место лекции в курсе</span></div>
     <h2>Карта курса</h2>
     <div class="coursemap" style="margin-top:8px">
@@ -959,13 +1024,13 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
       <div class="node cur"><span class="nn">09</span><span class="nt">Безумие на экране</span></div>
       <div class="node"><span class="nn">10</span><span class="nt">Взгляд ребёнка</span></div>
       <div class="node"><span class="nn">11</span><span class="nt">Лаканианский поворот</span></div>
-      <div class="node"><span class="nn">12</span><span class="nt">«Правила игры»: капстоун</span></div>
+      <div class="node"><span class="nn">12</span><span class="nt">Гипноз и внушение</span></div>
     </div>
-    <div class="slide-foot"><span class="src">Двенадцать лекций: от жуткого и двойника до капстоуна по „Правилам игры“. Части: основания · зритель и взгляд · желание · безумие и современность.</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span class="src">Двенадцать лекций: от жуткого и двойника до гипноза и внушения. Части: основания · зритель и взгляд · желание · безумие и современность.</span><span class="fpg"></span></div>
   </section>
 
   <!-- 44 СЕМИНАР -->
-  <section class="slide" data-toc="К семинару">
+  <section class="slide" data-toc="К семинару" data-phase="wake">
     <div class="eyebrow">К семинару <span class="sep">/</span> <span class="tag">Задания недели</span></div>
     <h2>К семинару</h2>
     <div class="cols-3" style="margin-top:8px">
@@ -977,7 +1042,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 45 К ПРОСМОТРУ -->
-  <section class="slide" data-toc="К просмотру">
+  <section class="slide" data-toc="К просмотру" data-phase="wake">
     <div class="eyebrow">Фильмы лекции <span class="sep">/</span> <span class="tag">Обязательное и дополнительное</span></div>
     <h2>К просмотру</h2>
     <div class="watchlist" style="margin-top:6px">
@@ -992,7 +1057,7 @@ body.boot .beam{animation:beamOn 1.2s .15s ease both,flick 7s 2s ease-in-out inf
   </section>
 
   <!-- 46 К ЧТЕНИЮ -->
-  <section class="slide" data-toc="К чтению">
+  <section class="slide" data-toc="К чтению" data-phase="wake">
     <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Восемь опор лекции</span></div>
     <h2>К чтению</h2>
     <div class="readlist" style="margin-top:4px">
@@ -1057,6 +1122,8 @@ function apply(n){
   let act=null;
   for(let k=0;k<=i;k++){const a=slides[k].dataset.act;if(a)act=a;}
   actEls.forEach(el=>el.classList.toggle('cur',el.dataset.a===act));
+  document.body.dataset.phase=slides[i].dataset.phase||'real';
+  document.body.dataset.haunt=slides[i].hasAttribute('data-haunt')?'1':'0';
   if(i===0)coverPlay();
   if(location.hash!=='#'+(i+1))history.replaceState(null,'','#'+(i+1));
   document.querySelectorAll('.toc-item').forEach(t=>t.classList.toggle('cur',+t.dataset.n===i));
