@@ -696,44 +696,25 @@
   /* ============ НОВОЕ: карточки курсов (айдентика самих деков) ============ */
   .courses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   @media(max-width:840px){.courses-grid{grid-template-columns:1fr}}
+  /* Карточка курса — в токенах сайта (обе темы); курс отличает только цвет акцента --cc. */
   .course-card{position:relative;display:flex;flex-direction:column;min-height:158px;border-radius:14px;
-    padding:17px 17px 14px;overflow:hidden;transition:transform .22s;box-shadow:0 14px 34px rgba(0,0,0,.5)}
-  .course-card:hover{transform:translateY(-4px)}
-  .cc-kick{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
-  .course-card h3{margin:8px 0 6px;line-height:1.08}
-  .cc-sub{font-family:Georgia,"PT Serif",serif;font-size:12.5px;line-height:1.45}
-  .cc-bot{margin-top:auto;padding-top:11px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11.5px}
-  .cc-cta{font-weight:700;white-space:nowrap}
-  .course-card.mrx{background:#14110f;border:1px solid #2a231d;border-left:5px solid #d6342a}
-  .course-card.mrx::after{content:"";position:absolute;top:0;right:0;width:36px;height:36px;
-    background:#c9962b;clip-path:polygon(100% 0,30% 0,100% 70%);opacity:.9}
-  .course-card.mrx .cc-kick{color:#d6342a}
-  .course-card.mrx h3{font-family:"Oswald","Manrope",sans-serif;font-weight:600;text-transform:uppercase;font-size:20px;letter-spacing:.01em;color:#ece6da}
-  .course-card.mrx .cc-sub{color:#b7ad9d}
-  .course-card.mrx .cc-bot{border-top:1px solid rgba(236,230,218,.14)}
-  .course-card.mrx .cc-status{color:#b7ad9d}
-  .course-card.mrx .cc-cta{color:#d6342a}
-  .course-card.vie{background:#0b1220;border:1px solid rgba(201,161,74,.45)}
-  .course-card.vie::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;
-    background:repeating-linear-gradient(90deg,#c9a14a 0 7px,transparent 7px 14px);opacity:.85}
-  /* внутренняя золотая рамка: отдельным слоем со своим радиусом — углы больше не режутся */
-  .course-card.vie::after{content:"";position:absolute;inset:6px;border:1px solid rgba(201,161,74,.28);
-    border-radius:9px;pointer-events:none}
-  .course-card.vie .cc-kick{color:#c9a14a;margin-top:5px}
-  .course-card.vie h3{font-family:"Playfair Display",serif;font-weight:700;font-size:18.5px;color:#f0e8d8}
-  .cc-rule{width:44px;height:2px;background:#a23142;margin:1px 0 6px}
-  .course-card.vie .cc-sub{color:#c9c2b2}
-  .course-card.vie .cc-bot{border-top:1px solid rgba(201,161,74,.25)}
-  .course-card.vie .cc-status{color:#b7ad9d}
-  .course-card.vie .cc-cta{color:#c9a14a}
-  .course-card.soc{background:transparent;border:1px dashed var(--border);box-shadow:none}
-  .course-card.soc .cc-kick{color:var(--muted-warm)}
-  .course-card.soc h3{font-family:"Manrope",sans-serif;font-weight:800;font-size:18px;color:var(--sand)}
-  .course-card.soc .cc-sub{color:var(--muted)}
-  .course-card.soc .cc-bot{border-top:1px dashed var(--border)}
-  .course-card.soc .cc-status{color:var(--muted)}
-  .course-card.soc .cc-cta{color:var(--muted-warm)}
-  .course-card.soc:hover{transform:none;border-color:rgba(232,184,75,.45)}
+    padding:18px 18px 14px;overflow:hidden;background:var(--card);border:1px solid var(--border);
+    box-shadow:0 10px 26px rgba(0,0,0,.35);transition:transform .22s,box-shadow .22s;--cc:var(--gold)}
+  .course-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--cc);opacity:.85}
+  .course-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.42)}
+  .cc-kick{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--cc)}
+  .course-card h3{margin:9px 0 6px;line-height:1.15;font-family:"Manrope",sans-serif;font-weight:800;font-size:18px;color:var(--sand)}
+  .cc-sub{font-family:Georgia,"PT Serif",serif;font-size:13px;line-height:1.45;color:var(--muted)}
+  .cc-bot{margin-top:auto;padding-top:11px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11.5px;border-top:1px solid var(--border)}
+  .cc-status{color:var(--muted)}
+  .cc-cta{font-weight:700;white-space:nowrap;color:var(--cc)}
+  .course-card.mrx{--cc:var(--mrx)}
+  .course-card.vie{--cc:var(--vie)}
+  .course-card.soc{--cc:var(--gold)}
+  /* светлая тема: белый бокс на бумаге держит форму мягкой тёплой тенью, не чернотой */
+  [data-theme="light"] .course-card{box-shadow:0 6px 18px rgba(46,58,82,.10)}
+  [data-theme="light"] .course-card:hover{box-shadow:0 12px 26px rgba(46,58,82,.16)}
+  [data-theme="light"] .course-card h3{color:#4a4030}
 
   /* ============ НОВОЕ: страница рецензии — подпись, теги, мост, «читать дальше» ============ */
   .pub-line{margin:36px 0 0;font-size:12.5px;color:var(--muted-warm);letter-spacing:.04em}

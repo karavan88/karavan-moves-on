@@ -250,8 +250,8 @@ export function homeStripHTML(stats){
   </section>`;
 }
 
-/* Карточка курса — в айдентике самого курса (конструктивизм / «Вена 1900»).
-   Три равных бокса в ряд; заглушка социологии — в том же формате, пунктиром. */
+/* Карточка курса — в токенах сайта (работает в обеих темах);
+   курс отличает только акцентный цвет --cc (класс mrx/vie/soc). */
 export function courseCardHTML(c){
   const isStub = !c.total;
   const status = isStub ? 'план курса готовится'
@@ -262,7 +262,6 @@ export function courseCardHTML(c){
   return `<a class="course-card ${esc(c.accent||'soc')}" href="${esc(c.href)}">
     <span class="cc-kick">${esc(c.kicker||'Курс')}</span>
     <h3>${esc(c.title)}</h3>
-    ${c.accent==='vie'?'<span class="cc-rule"></span>':''}
     ${c.tagline?`<span class="cc-sub">${esc(c.tagline)}</span>`:''}
     <span class="cc-bot"><span class="cc-status">${status}</span><span class="cc-cta">${cta}</span></span>
   </a>`;

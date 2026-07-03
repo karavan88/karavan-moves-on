@@ -88,8 +88,9 @@ for(const [deck, plan] of Object.entries(DECKS)){
       if(!r.ok){ console.log('  ! download', r.status, name); missing++; continue; }
       await writeFile(dest, Buffer.from(await r.arrayBuffer()));
     }
+    // onload обязателен: CSS дека держит img в opacity:0, пока контейнер не получит .has-image
     const needle = `<img alt="${alt}"`;
-    if(html.includes(needle)){ html = html.split(needle).join(`<img src="img/${name}" alt="${alt}"`); filled++; }
+    if(html.includes(needle)){ html = html.split(needle).join(`<img src="img/${name}" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="${alt}"`); filled++; }
     else console.log('  ! alt не найден в HTML:', alt);
   }
   await writeFile(deck, html);
