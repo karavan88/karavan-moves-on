@@ -48,6 +48,22 @@ const PLAN = {
     ['w-spell','Завороженный','Spellbound',1945],
     ['w-md','Малхолланд Драйв','Mulholland Drive',2001],
   ],
+  'lecture-04-zerkalo.html': [
+    ['w-lady','Дама из Шанхая','The Lady from Shanghai',1947],
+    ['w-eyes','Глаза без лица','Eyes Without a Face',1960],
+    ['w-per','Персона','Persona',1966],
+    ['w-tax','Таксист','Taxi Driver',1976],
+    ['w-swan','Чёрный лебедь','Black Swan',2010],
+    ['w-jok','Джокер','Joker',2019],
+  ],
+  'lecture-11-trevoga.html': [
+    ['w-vrt','Головокружение','Vertigo',1958],
+    ['w-brd','Птицы','The Birds',1963],
+    ['w-jaw','Челюсти','Jaws',1975],
+    ['w-shn','Сияние','The Shining',1980],
+    ['w-safe','Спасение','Safe',1995],
+    ['w-shl','Укрытие','Take Shelter',2011],
+  ],
   'lecture-09-bezumie.html': [
     ['w-cal','Кабинет доктора Калигари','The Cabinet of Dr. Caligari',1920],
     ['w-snk','Змеиная яма','The Snake Pit',1948],

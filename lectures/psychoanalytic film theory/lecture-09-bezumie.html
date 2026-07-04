@@ -86,7 +86,7 @@ p{font-size:clamp(14.5px,1.3vw,17.5px);line-height:1.55;color:var(--bone-dim)}
 .qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:800;color:var(--gold);font-size:22px}
 .timeline{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center}
 .tl-line{position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line-strong)}
-.tl-items{display:grid;grid-template-columns:repeat(13,1fr);gap:6px}
+.tl-items{display:grid;grid-template-columns:repeat(14,1fr);gap:6px}
 .tli{position:relative;display:flex;flex-direction:column;gap:6px;font-family:var(--mono)}
 .tli .y{font-size:12.5px;color:var(--gold);font-weight:700}
 .tli .t{font-size:10.5px;color:var(--bone-dim);line-height:1.3;letter-spacing:.02em}
@@ -138,7 +138,6 @@ p{font-size:clamp(14.5px,1.3vw,17.5px);line-height:1.55;color:var(--bone-dim)}
 .shot.s-rep,.framebox.s-rep{background:radial-gradient(110% 90% at 30% 20%,rgba(236,230,218,.14),transparent 55%),linear-gradient(150deg,#161d29,#080d16 84%)}
 .shot.s-ten,.framebox.s-ten{background:radial-gradient(80% 90% at 70% 40%,rgba(157,185,143,.16),transparent 60%),linear-gradient(150deg,#141b28,#070c14 84%)}
 .shot.s-pos,.framebox.s-pos{background:radial-gradient(70% 80% at 60% 35%,rgba(162,49,66,.22),transparent 60%),linear-gradient(150deg,#141220,#0a0d16 84%)}
-.shot.s-mel,.framebox.s-mel{background:radial-gradient(circle 120px at 70% 26%,rgba(157,184,216,.3),transparent 62%),linear-gradient(150deg,#0e1626,#070b14 84%)}
 .watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;flex:1;align-content:center}
 .wfilm{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:30px 28px 26px;min-height:190px;display:flex;flex-direction:column;gap:9px;overflow:hidden}
 .wfilm .wy{position:absolute;right:18px;top:20px;font-family:var(--display);font-weight:800;font-size:64px;color:rgba(236,230,218,.07);line-height:1}
@@ -459,6 +458,9 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
 .rail::before{left:6px}
 .rail::after{right:6px}
 @media print{.rail::before,.rail::after{display:none}}
+
+/* Кейс 04 · «Остров проклятых»: слот-плейсхолдер */
+.shot.s-shu,.framebox.s-shu{background:linear-gradient(90deg,transparent 0 63%,rgba(236,230,218,.10) 66%,transparent 70%),radial-gradient(120% 80% at 72% 16%,rgba(163,183,196,.13),transparent 56%),linear-gradient(150deg,#14202e,#070d18 84%)}
 </style>
 </head>
 <body>
@@ -507,9 +509,9 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
       <h1>Безумие<br>на экране</h1>
       <div class="subt">Можно ли показать безумие, не предав его?</div>
       <div class="meta">
-        <span><b>Кейсы:</b> Полански ×2 · Жулавски · Триер</span>
-        <span><b>Аппарат:</b> Фуко · Гилман · Шнайдер · Уол</span>
-        <span><b>Части:</b> клеймо · изнутри · эксцесс · планета</span>
+        <span><b>Кейсы:</b> Полански ×2 · Жулавски · Скорсезе</span>
+        <span><b>Аппарат:</b> Фрейд · Лакан · Фуко · Гилман</span>
+        <span><b>Части:</b> клеймо · изнутри · эксцесс · фантазм</span>
       </div>
     </div>
   </section>
@@ -568,7 +570,8 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
         <div class="tli hot"><span class="y">1981</span><span class="t">«Одержимая» — безумие как эксцесс тела</span></div>
         <div class="tli"><span class="y">1998</span><span class="t">«Пи» — мания в зерне 16-мм</span></div>
         <div class="tli"><span class="y">2001</span><span class="t">«Игры разума» — Оскар за сглаживание</span></div>
-        <div class="tli hot"><span class="y">2011</span><span class="t">«Меланхолия» — депрессия размером с планету</span></div>
+        <div class="tli hot"><span class="y">2010</span><span class="t">«Остров проклятых» — бред как мир-конструкция</span></div>
+        <div class="tli"><span class="y">2011</span><span class="t">«Меланхолия» — депрессия размером с планету</span></div>
         <div class="tli"><span class="y">2019</span><span class="t">«Джокер» — новый спор о стигме</span></div>
       </div>
     </div>
@@ -644,6 +647,33 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
     </div>
     <p style="max-width:70ch;margin-top:18px">Отсюда двойная ответственность разбора: эстетическая удача фильма не отменяет вопроса о том, что он делает со зрительскими представлениями.</p>
     <div class="slide-foot"><span class="src">O. Wahl, «Media Madness: Public Images of Mental Illness», 1995.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ТЕОРИЯ: КЛИНИЧЕСКИЕ СТРУКТУРЫ -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-peep"/></svg>Акт I · оптика психоанализа <span class="sep">/</span> <span class="tag">Лакан · 1955–56</span></div>
+    <h2>Три клинические структуры</h2>
+    <div class="cols-3" style="margin-top:8px">
+      <div class="card"><div class="k">Невроз</div><h3>Вытеснение</h3><p>Конфликт похоронен, но возвращается симптомом — компромиссом между желанием и запретом. Мир при этом остаётся общим.</p></div>
+      <div class="card bord"><div class="k">Психоз</div><h3>Форклюзия</h3><p>Ключевое означающее не вытеснено, а отброшено; исключённое из символического возвращается извне — голосами, взглядами, знаками. Мир перестраивается целиком.</p></div>
+      <div class="card clin"><div class="k">Перверсия</div><h3>Отклонение</h3><p>Запрет признан и одновременно обойдён: «я знаю, и всё же…». В этой лекции остаётся за кадром.</p></div>
+    </div>
+    <p style="max-width:72ch;margin-top:18px">Психоанализ различает структуры, а не «степени тяжести» — и это сетка для кейсов: Полански и Жулавски снимают психоз изнутри и снаружи, Скорсезе — фантазм-защиту. Смешение регистров — самая частая ошибка «фильмов о безумии».</p>
+    <div class="slide-foot"><span class="src">J. Lacan, Séminaire III «Les psychoses», 1955–56. Дополнение к рамке Фуко: история задаёт взгляд, структура — устройство.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ТЕОРИЯ: ШРЕБЕР -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-peep"/></svg>Акт I · случай <span class="sep">/</span> <span class="tag">Фрейд · 1911</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Шребер: бред как самоизлечение</h2>
+        <p style="margin-top:10px">Саксонский судья Даниэль Пауль Шребер издаёт «Мемуары нервнобольного» (1903); Фрейд анализирует случай по книге, ни разу не встретив пациента. Главный переворот: бред — не разрушение психики, а её отчаянная стройка.</p>
+        <p>Когда привычный мир рухнул, бредовая система возводит новый — со своей логикой, космологией и местом для субъекта. Фрейд называет это «попыткой выздоровления»: бред склеивает то, что распалось.</p>
+      </div>
+      <div class="card gold" style="align-self:center"><div class="k">Следствие для кино</div><h3>Показать стройку, не поломку</h3><p>Честный фильм о психозе показывает не «сумасшедшего», а работу мира, который человек строит, чтобы выжить. Прямой кейс этой оптики — «Остров проклятых» в акте IV.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">S. Freud, «Psychoanalytische Bemerkungen über einen Fall von Paranoia», 1911 · D. P. Schreber, «Denkwürdigkeiten…», 1903.</span><span class="fpg"></span></div>
   </section>
 
   <!-- 11 МЕТОД: ДВОЙНАЯ АННОТАЦИЯ -->
@@ -901,7 +931,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- 33 DIVIDER IV — ПЛАНЕТА -->
-  <section class="slide divider poster" data-toc="Акт IV · Планета" data-act="IV" data-phase="dream">
+  <section class="slide divider poster" data-toc="Акт IV · Фантазм" data-act="IV" data-phase="dream">
     <svg class="emblem" viewBox="0 0 120 170" aria-hidden="true">
       <g opacity=".16" transform="translate(9 7)"><circle cx="82" cy="52" r="34" fill="currentColor"/></g>
       <circle cx="46" cy="112" r="26" fill="none" stroke="currentColor" stroke-width="1.5"/>
@@ -910,80 +940,81 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
     </svg>
     <div class="poster-inner">
       <div class="knum">IV</div>
-      <div class="word reflectword">Планета<span class="refl" aria-hidden="true">Планета</span></div>
-      <div class="sub">Триер выносит депрессию за пределы психики — размером с небесное тело.</div>
+      <div class="word reflectword">Фантазм<span class="refl" aria-hidden="true">Фантазм</span></div>
+      <div class="sub">Бред строит мир: остров-конструкция, которую надо прожить до конца.</div>
     </div>
-    <div class="slide-foot"><span class="src">«Меланхолия», 2011.</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span class="src">«Остров проклятых», 2010.</span><span class="fpg"></span></div>
   </section>
 
-  <!-- ============ КЕЙС 04: МЕЛАНХОЛИЯ ============ -->
-  <section class="slide framefull" data-toc="Кейс 04 · Меланхолия" data-phase="dream">
-    <div class="shot s-mel" data-tmdb="Melancholia" data-year="2011" data-idx="0"><img src="img/w1280_qzrS5ShZZPsPdhM5ZbcQKG7fwFo.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Меланхолии»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
-    <span class="fyear">2011</span>
-    <div class="fcap"><div class="fk">Кейс 04 · к разбору</div><h2>Меланхолия</h2>
-      <div class="kw"><span>Депрессия</span><span>Свадьба и конец света</span><span>Вагнер</span></div>
-      <p class="logline">Жюстин разваливает собственную свадьбу, не умея объяснить почему; к Земле тем временем летит планета. Две катастрофы оказываются одной.</p>
+  <!-- ============ КЕЙС 04: ОСТРОВ ПРОКЛЯТЫХ ============ -->
+  <section class="slide framefull" data-toc="Кейс 04 · Остров проклятых" data-phase="dream">
+    <div class="shot s-shu" data-tmdb="Shutter Island" data-year="2010" data-idx="0"><img alt="Кадр из «Острова проклятых»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">2010</span>
+    <div class="fcap"><div class="fk">Кейс 04 · к разбору</div><h2>Остров проклятых</h2>
+      <div class="kw"><span>Вытеснение</span><span>Защитный фантазм</span><span>Ненадёжный рассказчик</span></div>
+      <p class="logline">Судебный пристав расследует исчезновение пациентки в лечебнице на острове — и расследование оказывается декорацией, выстроенной вокруг него самого.</p>
     </div>
-    <div class="slide-foot"><span class="src">«Melancholia» · реж. Ларс фон Триер · Дания и др., 2011</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span class="src">«Shutter Island» · реж. Мартин Скорсезе · США, 2010</span><span class="fpg"></span></div>
   </section>
 
   <section class="slide" data-phase="dream">
-    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · контекст <span class="sep">/</span> <span class="tag">Из собственной депрессии</span></div>
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · контекст <span class="sep">/</span> <span class="tag">Скорсезе и жанр</span></div>
     <div class="cols-wide">
       <div class="stack">
-        <h2>Фильм после палаты</h2>
-        <p style="margin-top:12px">Триер задумывает картину, выходя из тяжёлой депрессии; отправной точкой он называл замечание терапевта о том, что депрессивные люди в катастрофе действуют спокойнее прочих — им уже нечего терять из иллюзий.</p>
-        <p>Канны-2011 запомнились двойным исходом: приз за женскую роль Кирстен Данст — и статус persona non grata для самого режиссёра после провальной шутки на пресс-конференции. Фильм и скандал заслонили друг друга.</p>
+        <h2>Готика с историей болезни</h2>
+        <p style="margin-top:12px">Экранизация романа Денниса Лихейна (2003). Скорсезе упаковывает материал в жанры 1950-х — нуар, готический хоррор, параноидальный триллер холодной войны: ураган, скалы, маяк, зловещие врачи.</p>
+        <p>Развязка переворачивает жанр в терапию: «расследование» — ролевая инсценировка, последний шанс клиники вернуть пациента к знанию о себе. Весь фильм, который зритель смотрел, был чужим фантазмом.</p>
       </div>
-      <div class="framebox s-mel" data-tmdb="Melancholia" data-year="2011" data-idx="2"><img src="img/w1280_pHs6YIRIPEHnnersHlvObtJ1y6U.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="«Меланхолия»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Кирстен Данст — Жюстин · Шарлотта Генсбур — Клэр</div></div>
+      <div class="framebox s-shu" data-tmdb="Shutter Island" data-year="2010" data-idx="2"><img alt="Тедди на острове" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Леонардо ДиКаприо · остров как замкнутый мир-декорация</div></div>
     </div>
-    <div class="slide-foot"><span class="src">Канны-2011: приз за женскую роль (Данст).</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span class="src">По роману D. Lehane, 2003; опер. Р. Ричардсон. Кросс: ненадёжный рассказчик — «Калигари», Лекция 01.</span><span class="fpg"></span></div>
   </section>
 
   <section class="slide framefull" data-phase="dream" data-haunt>
-    <div class="shot s-mel" data-tmdb="Melancholia" data-year="2011" data-idx="1"><img src="img/w1280_cRR7N8WzOkby776y6I4vW0GQXrJ.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Пролог" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
-    <div class="fcap"><div class="fk">Сцена · увертюра</div><h2>Конец света заранее</h2>
-      <p class="logline">Восьмиминутный пролог под Вагнера: сверхзамедленные живые картины, падающие птицы, Жюстин в путах шерсти — и столкновение планет. Финал показан до начала: тревога снята, остаётся вглядываться.</p>
+    <div class="shot s-shu" data-tmdb="Shutter Island" data-year="2010" data-idx="1"><img alt="Сон о Долорес" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · сон о Долорес</div><h2>Вода просачивается в фантазм</h2>
+      <p class="logline">Жена рассыпается пеплом в руках; с потолка течёт вода. Вытесненное не исчезло — оно сочится в сны героя через одну и ту же стихию: вода, в которой погибли дети, размывает выстроенный мир изнутри.</p>
     </div>
-    <div class="slide-foot"><span>Кейс 04 · сцена · прелюдия к «Тристану и Изольде»</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span>Кейс 04 · сцена</span><span class="fpg"></span></div>
   </section>
 
   <section class="slide" data-phase="dream">
-    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · форма <span class="sep">/</span> <span class="tag">Дорожка «кино»</span></div>
-    <h2>Депрессия как устройство мира</h2>
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · форма <span class="sep">/</span> <span class="tag">Ошибка как симптом</span></div>
+    <h2>Фильм врёт вместе с героем</h2>
     <div class="cols">
-      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Триер идёт противоположным Полански путём: не внутрь психики, а наружу. Депрессия материализована планетой; две части фильма отдают точку зрения сначала больной Жюстин, потом «здоровой» Клэр — и во второй части правой оказывается больная: она единственная спокойна перед концом. «Земля зла. О ней не стоит горевать» — приговор, который фильм не опровергает.</p>
-      <div class="card clin" style="align-self:center"><div class="k">Ход фильма</div><h3>Метафора-планета</h3><p style="font-size:14px;color:var(--bone-dim)">Состояние вынесено в космос: не героиня видит мир мрачным — сам мир подтверждает её правоту.</p></div>
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Скорсезе встраивает «брак» в изображение: стакан воды исчезает из руки пациентки между кадрами, пластыри мигрируют по лицу, монтаж флешбэков нарочно не сходится. Ошибки непрерывности — не небрежность, а симптомы: там, где фантазм трещит, трещит и киноформа. Зритель заперт в оптике Тедди так же, как в «Отвращении» — в перцепции Кароль.</p>
+      <div class="card bord" style="align-self:center"><div class="k">Приём</div><h3>Швы наружу</h3><p>Классическое кино прячет склейки; здесь они выставлены — как оговорки речи, выдающие вытесненное. Форма проговаривается раньше сюжета.</p></div>
     </div>
-    <div class="slide-foot"><span class="src">Дорожка «репрезентация»: свадьба части I — точный каталог того, как среда не слышит депрессию.</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span class="src">Двойная аннотация метода: кадр героя против кадра мира — зазор и есть диагноз конструкции.</span><span class="fpg"></span></div>
   </section>
 
   <section class="slide" data-phase="dream">
-    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · прочтение <span class="sep">/</span> <span class="tag">Четвёртый полюс</span></div>
-    <h2>Правота больной</h2>
-    <p class="lead" style="max-width:66ch">«Меланхолия» переворачивает иерархию: депрессия перестаёт быть искажением взгляда и становится точным зрением.</p>
-    <div class="cols" style="margin-top:20px">
-      <div class="card"><div class="k">Цена хода · линза Сонтаг</div><h3>Болезнь как метафора</h3><p>По Сонтаг (1978), превращение болезни в метафору всегда опасно: планетарная депрессия величественна — а реальная лишает и величия, и Вагнера.</p></div>
-      <div class="card gold"><div class="k">Полюс 04</div><h3>Онтология</h3><p>Четвёртый ответ лекции: показать состояние как закон целого мира — и проверить зрителя его логикой.</p></div>
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · прочтение <span class="sep">/</span> <span class="tag">Фантазм как защита</span></div>
+    <h2>Мир, построенный, чтобы выжить</h2>
+    <div class="cols">
+      <div class="card gold"><div class="k">По Шреберу</div><h3>Бред-стройка</h3><p>Эндрю Лэддис не «потерял рассудок» — он возвёл систему: имя-анаграмму, миссию, заговор. Конструкция держит непереносимое знание на расстоянии; фильм показывает именно стройку мира, как требовал слайд о Шребере.</p></div>
+      <div class="card clin"><div class="k">Финальный выбор</div><h3>«Умереть хорошим человеком»</h3><p>Последняя фраза переворачивает диагноз в этику: герой, кажется, знает правду — и выбирает фантазм с его ценой. Безумие впервые в лекции показано не состоянием, а решением субъекта.</p></div>
     </div>
-    <div class="slide-foot"><span>Кейс 04 · прочтение · полюс «мир»</span><span class="fpg"></span></div>
+    <p style="max-width:70ch;margin-top:18px">Оговорка рамки Фуко остаётся в силе: клиника здесь — одновременно терапия и надзор, и фильм сознательно не даёт развести эти роли.</p>
+    <div class="slide-foot"><span>Кейс 04 · прочтение · кросс: Шребер (акт I) · защитный фантазм — Лекция 07</span><span class="fpg"></span></div>
   </section>
 
   <section class="slide" data-phase="dream">
-    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 2011–2012</span></div>
-    <h2>Как читали «Меланхолию»</h2>
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-orb"/></svg>Кейс 04 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 2010-х</span></div>
+    <h2>Как читали «Остров проклятых»</h2>
     <div class="dispute">
-      <div class="spine"><div class="voices v3">
-        <div class="voice"><span class="vy">2011</span><div class="vn">Триер</div><p class="vp">Само-чтение: фильм вырос из личной депрессии; спокойствие депрессивного в катастрофе — клинически подсмотренная деталь, а не поэтическая вольность.</p></div>
-        <div class="voice f2"><span class="vy">2012</span><div class="vn">Шавиро</div><p class="vp">«Романтическое анти-возвышенное»: картина разворачивает вагнеровскую красоту против неё самой — восторг гибели дан без утешения и катарсиса.</p></div>
-        <div class="voice f4"><span class="vy">1978→</span><div class="vn">Контрголос Сонтаг</div><p class="vp">Линза «Болезни как метафоры»: эстетизация страдания рискует подменить реальный опыт болезни её красивым образом.</p></div>
+      <div class="spine"><div class="voices">
+        <div class="voice"><span class="vy">2010</span><div class="vn">Пресса</div><p class="vp">Раскол: виртуозный оммаж нуару и Хичкоку — или дорогой трюк, где твист обесценивает два часа расследования?</p></div>
+        <div class="voice f2"><span class="vy">2010</span><div class="vn">Жанровое чтение</div><p class="vp">Каталог цитат — от «Из прошлого» до «Головокружения»: безумие как повод пересобрать историю параноидального кино.</p></div>
+        <div class="voice f3"><span class="vy">2010-е</span><div class="vn">Психоаналитическое</div><p class="vp">Хрестоматия защитного фантазма: бред как самоизлечение, ролевая терапия как вход аналитика в чужой мир.</p></div>
+        <div class="voice f4"><span class="vy">2010-е</span><div class="vn">Клиника</div><p class="vp">Спор о правдоподобии: инсценировка-«последний шанс» — терапевтическая утопия или изощрённая форма надзора?</p></div>
       </div></div>
-      <div class="dq"><b>Спор продолжается</b>Планета-депрессия — самое точное изображение болезни или самое красивое бегство от неё?</div>
+      <div class="dq"><b>Спор продолжается</b>Финальная фраза — просветление, оговорка фантазма или вежливость перед лоботомией?</div>
     </div>
-    <div class="slide-foot"><span class="src">Интервью фон Триера, 2011 · S. Shaviro, «MELANCHOLIA, or The Romantic Anti-Sublime», Sequence 1.1, 2012 · S. Sontag, «Illness as Metaphor», 1978.</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span class="src">Рецензии 2010 (Ebert · Dargis) · жанровые и психоаналитические разборы 2010-х — состав сверить при чистке.</span><span class="fpg"></span></div>
   </section>
 
-  <!-- 40 СИНТЕЗ -->
+    <!-- 40 СИНТЕЗ -->
   <section class="slide" data-toc="Синтез: четыре полюса" data-phase="wake">
     <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Четыре ответа на один вопрос</span></div>
     <h2>Можно — если форма несёт состояние</h2>
@@ -991,8 +1022,8 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
       <div class="card gold"><div class="k">Полюс 01 · 1965</div><h3>Изнутри</h3><p>Полански перестраивает перцепцию: зритель заперт в оптике и акустике психоза.</p></div>
       <div class="card clin"><div class="k">Полюс 02 · 1976</div><h3>Подмена</h3><p>«Жилец»: безумие приходит снаружи — взгляд среды лепит человека под чужое имя.</p></div>
       <div class="card bord"><div class="k">Полюс 03 · 1981</div><h3>Эксцесс</h3><p>Жулавски отдаёт истину телу: конвульсия вместо диагноза, интенсивность вместо объяснения.</p></div>
-      <div class="card"><div class="k">Полюс 04 · 2011</div><h3>Онтология</h3><p>Триер делает состояние законом мира: депрессия равна планете, и больная оказывается права.</p></div>
-    </div>
+      <div class="card gold"><div class="k">Полюс 04 · 2010</div><h3>Фантазм</h3><p>Скорсезе строит безумие как мир-конструкцию: бред-самоизлечение, который надо прожить, а не разгадать.</p></div>
+          </div>
     <p style="max-width:74ch;margin-top:16px">Общий знаменатель четырёх удач: ни один фильм не объясняет безумие диагнозом и не превращает его в аттракцион чужого. Предательство начинается там, где состояние сводят к разгадке или к зрелищу.</p>
     <div class="slide-foot"><span class="src">Ответ лекции на рабочий вопрос — условный: можно, но каждый способ платит свою цену.</span><span class="fpg"></span></div>
   </section>
@@ -1029,17 +1060,17 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
       <div class="node"><span class="nn">01</span><span class="nt">Жуткое и двойник</span></div>
       <div class="node"><span class="nn">02</span><span class="nt">Работа сновидения</span></div>
       <div class="node"><span class="nn">03</span><span class="nt">Аппарат и шов</span></div>
-      <div class="node"><span class="nn">04</span><span class="nt">Лакан: стадия зеркала</span></div>
+      <div class="node"><span class="nn">04</span><span class="nt">Зеркало и идентификация</span></div>
       <div class="node"><span class="nn">05</span><span class="nt">Мужской и женский взгляд</span></div>
       <div class="node"><span class="nn">06</span><span class="nt">Эдип и Электра</span></div>
       <div class="node"><span class="nn">07</span><span class="nt">Фантазм и желание</span></div>
       <div class="node"><span class="nn">08</span><span class="nt">Абъекция и чудовищное</span></div>
       <div class="node cur"><span class="nn">09</span><span class="nt">Безумие на экране</span></div>
       <div class="node"><span class="nn">10</span><span class="nt">Взгляд ребёнка</span></div>
-      <div class="node"><span class="nn">11</span><span class="nt">Экран смотрит в ответ</span></div>
-      <div class="node"><span class="nn">12</span><span class="nt">Гипноз, суггестия и внушение</span></div>
+      <div class="node"><span class="nn">11</span><span class="nt">Тревога, страх и фобия</span></div>
+      <div class="node"><span class="nn">12</span><span class="nt">Экран смотрит в ответ</span></div>
     </div>
-    <div class="slide-foot"><span class="src">Двенадцать лекций: от жуткого и двойника до гипноза и суггестии. Части: основания · зритель и взгляд · желание · безумие и современность.</span><span class="fpg"></span></div>
+    <div class="slide-foot"><span class="src">Двенадцать лекций: от жуткого и двойника до экрана, который смотрит в ответ. Части: основания · зритель и взгляд · желание · безумие и современность.</span><span class="fpg"></span></div>
   </section>
 
   <!-- 44 СЕМИНАР -->
@@ -1064,24 +1095,25 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
       <div class="wfilm doc"><span class="wy">1975</span><span class="wt">Пролетая над гнездом кукушки</span><span class="wd">М. Форман · доп.</span><span class="wn">Клиника как машина власти; фон для Фуко.</span></div>
       <div class="wfilm"><span class="wy">1976</span><span class="wt">Жилец</span><span class="wd">Р. Полански · кейс 02</span><span class="wn">Паранойя и подмена идентичности от первого лица.</span></div>
       <div class="wfilm"><span class="wy">1981</span><span class="wt">Одержимая</span><span class="wd">А. Жулавски · кейс 03</span><span class="wn">Безумие как эксцесс тела; переход U-Bahn.</span></div>
-      <div class="wfilm"><span class="wy">2011</span><span class="wt">Меланхолия</span><span class="wd">Л. фон Триер · кейс 04</span><span class="wn">Депрессия как устройство мира; правота больной.</span></div>
+      <div class="wfilm pro"><span class="wy">2011</span><span class="wt">Меланхолия</span><span class="wd">Л. фон Триер · доп.</span><span class="wn">Депрессия, не психоз: соседняя территория — рамка Фрейда 1917 года.</span></div>
     </div>
     <div class="slide-foot"><span class="src">Порядок просмотра — хронологический.</span><span class="fpg"></span></div>
   </section>
 
   <!-- 46 К ЧТЕНИЮ -->
   <section class="slide" data-toc="К чтению" data-phase="wake">
-    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Восемь опор лекции</span></div>
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Девять опор лекции</span></div>
     <h2>К чтению</h2>
     <div class="readlist" style="margin-top:4px">
-      <div class="r"><span class="n">01</span><span class="ttl"><b>M. Foucault</b> · «Histoire de la folie à l’âge classique» · безумие как исторический конструкт</span><span class="typ">1961 · рамка</span></div>
-      <div class="r"><span class="n">02</span><span class="ttl"><b>S. Sontag</b> · «Illness as Metaphor» · опасность болезни, ставшей образом</span><span class="typ">1978 · контрголос</span></div>
-      <div class="r"><span class="n">03</span><span class="ttl"><b>S. Gilman</b> · «Seeing the Insane» · визуальный архив безумия</span><span class="typ">1982 · иконография</span></div>
-      <div class="r"><span class="n">04</span><span class="ttl"><b>I. Schneider</b> · «The Theory and Practice of Movie Psychiatry» · Am. J. Psychiatry · три маски врача</span><span class="typ">1987 · типология</span></div>
-      <div class="r"><span class="n">05</span><span class="ttl"><b>G. & K. Gabbard</b> · «Psychiatry and the Cinema» · психиатрия и Голливуд</span><span class="typ">1987 · обзор</span></div>
-      <div class="r"><span class="n">06</span><span class="ttl"><b>O. Wahl</b> · «Media Madness: Public Images of Mental Illness» · стигма и её цена</span><span class="typ">1995 · ставки</span></div>
-      <div class="r"><span class="n">07</span><span class="ttl"><b>E. Mazierska</b> · «Roman Polanski: The Cinema of a Cultural Traveller» · эмигрант и идентичность</span><span class="typ">2007 · кейсы 01–02</span></div>
-      <div class="r"><span class="n">08</span><span class="ttl"><b>S. Shaviro</b> · «MELANCHOLIA, or The Romantic Anti-Sublime» · Sequence 1.1</span><span class="typ">2012 · кейс 04</span></div>
+      <div class="r"><span class="n">01</span><span class="ttl"><b>S. Freud</b> · «Психоаналитические заметки об одном случае паранойи» (Шребер) · бред как самоизлечение</span><span class="typ">1911 · структура</span></div>
+      <div class="r"><span class="n">02</span><span class="ttl"><b>J. Lacan</b> · Séminaire III «Les psychoses» · форклюзия и три структуры</span><span class="typ">1955–56 · структура</span></div>
+      <div class="r"><span class="n">03</span><span class="ttl"><b>M. Foucault</b> · «Histoire de la folie à l’âge classique» · безумие как исторический конструкт</span><span class="typ">1961 · рамка</span></div>
+      <div class="r"><span class="n">04</span><span class="ttl"><b>S. Sontag</b> · «Illness as Metaphor» · опасность болезни, ставшей образом</span><span class="typ">1978 · контрголос</span></div>
+      <div class="r"><span class="n">05</span><span class="ttl"><b>S. Gilman</b> · «Seeing the Insane» · визуальный архив безумия</span><span class="typ">1982 · иконография</span></div>
+      <div class="r"><span class="n">06</span><span class="ttl"><b>I. Schneider</b> · «The Theory and Practice of Movie Psychiatry» · Am. J. Psychiatry · три маски врача</span><span class="typ">1987 · типология</span></div>
+      <div class="r"><span class="n">07</span><span class="ttl"><b>G. &amp; K. Gabbard</b> · «Psychiatry and the Cinema» · психиатрия и Голливуд</span><span class="typ">1987 · обзор</span></div>
+      <div class="r"><span class="n">08</span><span class="ttl"><b>O. Wahl</b> · «Media Madness: Public Images of Mental Illness» · стигма и её цена</span><span class="typ">1995 · ставки</span></div>
+      <div class="r"><span class="n">09</span><span class="ttl"><b>E. Mazierska</b> · «Roman Polanski: The Cinema of a Cultural Traveller» · эмигрант и идентичность</span><span class="typ">2007 · кейсы 01–02</span></div>
     </div>
     <div class="slide-foot"><span class="src">Капуто («Polanski and Perception», 2012) — дополнительно к кейсам 01–02.</span><span class="fpg"></span></div>
   </section>
