@@ -753,6 +753,11 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
 .mode p{font-size:13px;color:var(--bone-dim);line-height:1.42}
 .mode.b{border-left-color:var(--bordeaux)}.mode.b .mk{color:var(--bordeaux-soft)}
 @media (prefers-reduced-motion:reduce){.slide.active[data-cond] .syn .half.l,.slide.active[data-cond] .syn .half.r,.slide.active .ms-anim,.slide.active .ms-fade{animation:none;opacity:1;transform:none;filter:none}}
+/* ФОТО-ИРИС: заставки кейсов раскрываются расширяющимся ирисом (не склейка из черноты) */
+.slide.photo-iris .shot img{opacity:1;clip-path:circle(0% at 50% 46%)}
+.slide.photo-iris.active .shot img{animation:photoIris 2.9s 3s cubic-bezier(.34,.08,.24,1) both}
+@keyframes photoIris{from{clip-path:circle(0% at 50% 46%)}to{clip-path:circle(80% at 50% 46%)}}
+@media (prefers-reduced-motion: reduce){.slide.photo-iris .shot img{clip-path:none;animation:none}}
 </style>
 </head>
 <body>
@@ -1124,7 +1129,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 01: ГЛАЗА БЕЗ ЛИЦА ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 01 · Глаза без лица">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 01 · Глаза без лица">
     <div class="shot s-eyes" data-tmdb="Eyes Without a Face" data-year="1960" data-idx="0"><img src="img/w1280_pZVrDhIPF30JTRSkal2Lfk7NwrI.jpg" alt="Кадр из «Глаз без лица»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1960</span>
     <div class="fcap"><div class="fk">Кейс 01 · утрата образа</div><h2>Глаза без лица</h2>
@@ -1192,7 +1197,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 02: ПЕРСОНА ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 02 · Персона">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 02 · Персона">
     <div class="shot s-per" data-tmdb="Persona" data-year="1966" data-idx="0"><img src="img/w1280_amr72SENYz7AM4Hq5WBXxFBJEY6.jpg" alt="Кадр из «Персоны»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1966</span>
     <div class="fcap"><div class="fk">Кейс 02 · слияние образов</div><h2>Персона</h2>
@@ -1259,7 +1264,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 03: ТАКСИСТ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 03 · Таксист">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 03 · Таксист">
     <div class="shot s-tax" data-tmdb="Taxi Driver" data-year="1976" data-idx="0"><img src="img/w1280_9uddYYTNcLWpzUkl5iw1RUYhLhY.jpg" alt="Кадр из «Таксиста»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1976</span>
     <div class="fcap"><div class="fk">Кейс 03 · сборка образа</div><h2>Таксист</h2>
@@ -1327,7 +1332,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 04: ЧЁРНЫЙ ЛЕБЕДЬ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 04 · Чёрный лебедь">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 04 · Чёрный лебедь">
     <div class="shot s-swan" data-tmdb="Black Swan" data-year="2010" data-idx="0"><img src="img/w1280_eDLp4uFdqP1gpy9oMrutwH6Q64I.jpg" alt="Кадр из «Чёрного лебедя»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">2010</span>
     <div class="fcap"><div class="fk">Кейс 04 · идеал, который убивает</div><h2>Чёрный лебедь</h2>
@@ -1427,7 +1432,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- 49 КОДА · ДЖОКЕР: ЗАСТАВКА -->
-  <section class="slide framefull" data-phase="dream">
+  <section class="slide framefull photo-iris" data-phase="dream">
     <div class="shot s-jok" data-tmdb="Joker" data-year="2019" data-idx="0"><img src="img/w1280_rlay2M5QYvi6igbGcFjq8jxeusY.jpg" alt="Кадр из «Джокера»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">2019</span>
     <div class="fcap"><div class="fk">Кода-кейс · масскульт</div><h2>Джокер</h2>

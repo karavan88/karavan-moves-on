@@ -751,6 +751,11 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
 .slide.active .ld-f3{animation:ldfade .7s 1s both}
 .slide.active .ld-f4{animation:ldfade .7s 1.25s both}
 @media (prefers-reduced-motion:reduce){.slide.active .ld-anim,.slide.active .ld-f1,.slide.active .ld-f2,.slide.active .ld-f3,.slide.active .ld-f4{animation:none;opacity:1}}
+/* ЭКСПЕРИМЕНТ · ФОТО-ИРИС: кадр не склеивается из черноты, а раскрывается расширяющимся ирисом */
+.slide.photo-iris .shot img{opacity:1;clip-path:circle(0% at 50% 46%)}
+.slide.photo-iris.active .shot img{animation:photoIris 2.9s 3s cubic-bezier(.34,.08,.24,1) both}
+@keyframes photoIris{from{clip-path:circle(0% at 50% 46%)}to{clip-path:circle(80% at 50% 46%)}}
+@media (prefers-reduced-motion: reduce){.slide.photo-iris .shot img{clip-path:none;animation:none}}
 </style>
 </head>
 <body>
@@ -990,7 +995,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 01: ПТИЦЫ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 01 · Птицы">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 01 · Птицы">
     <div class="shot s-brd" data-tmdb="The Birds" data-year="1963" data-idx="0"><img src="img/w1280_il5zDHC5sGe3ZHLhVi3tNFZ9Tt5.jpg" alt="Кадр из «Птиц»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1963</span>
     <div class="fcap"><div class="fk">Кейс 01 · страх без объяснения</div><h2>Птицы</h2>
@@ -1058,7 +1063,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 02: ЧЕЛЮСТИ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 02 · Челюсти">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 02 · Челюсти">
     <div class="shot s-jaw" data-tmdb="Jaws" data-year="1975" data-idx="0"><img src="img/w1280_i1yf91svRHX45l9BXL8rVFzLoPH.jpg" alt="Кадр из «Челюстей»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1975</span>
     <div class="fcap"><div class="fk">Кейс 02 · страх, сделанный из тревоги</div><h2>Челюсти</h2>
@@ -1143,7 +1148,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 03: ГОЛОВОКРУЖЕНИЕ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 03 · Головокружение">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 03 · Головокружение">
     <div class="shot s-vrt" data-tmdb="Vertigo" data-year="1958" data-idx="0"><img src="img/w1280_rtVwkTqllcmyY4TVOycgVBHppWf.jpg" alt="Кадр из «Головокружения»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1958</span>
     <div class="fcap"><div class="fk">Кейс 03 · фобия как влечение</div><h2>Головокружение</h2>
@@ -1211,7 +1216,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 04: УКРЫТИЕ (+ СПАСЕНИЕ) ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 04 · Укрытие и Спасение">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 04 · Укрытие и Спасение">
     <div class="shot s-shl" data-tmdb="Take Shelter" data-year="2011" data-idx="0"><img src="img/w1280_7HtE5hLVTEvFKQC33wK7XAnIdFk.jpg" alt="Кадр из «Укрытия»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">2011</span>
     <div class="fcap"><div class="fk">Кейс 04 · фобия без гарантии</div><h2>Укрытие</h2>
@@ -1308,7 +1313,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 05: СИЯНИЕ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 05 · Сияние">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 05 · Сияние">
     <div class="shot s-shn" data-tmdb="The Shining" data-year="1980" data-idx="0"><img src="img/w1280_mmd1HnuvAzFc4iuVJcnBrhDNEKr.jpg" alt="Кадр из «Сияния»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1980</span>
     <div class="fcap"><div class="fk">Кейс 05 · тревога пространства</div><h2>Сияние</h2>

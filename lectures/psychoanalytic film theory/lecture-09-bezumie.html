@@ -461,6 +461,11 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
 
 /* Кейс 04 · «Остров проклятых»: слот-плейсхолдер */
 .shot.s-shu,.framebox.s-shu{background:linear-gradient(90deg,transparent 0 63%,rgba(236,230,218,.10) 66%,transparent 70%),radial-gradient(120% 80% at 72% 16%,rgba(163,183,196,.13),transparent 56%),linear-gradient(150deg,#14202e,#070d18 84%)}
+/* ФОТО-ИРИС: заставки кейсов раскрываются расширяющимся ирисом (не склейка из черноты) */
+.slide.photo-iris .shot img{opacity:1;clip-path:circle(0% at 50% 46%)}
+.slide.photo-iris.active .shot img{animation:photoIris 2.9s 3s cubic-bezier(.34,.08,.24,1) both}
+@keyframes photoIris{from{clip-path:circle(0% at 50% 46%)}to{clip-path:circle(80% at 50% 46%)}}
+@media (prefers-reduced-motion: reduce){.slide.photo-iris .shot img{clip-path:none;animation:none}}
 </style>
 </head>
 <body>
@@ -714,7 +719,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 01: ОТВРАЩЕНИЕ ============ -->
-  <section class="slide framefull" data-toc="Кейс 01 · Отвращение" data-phase="dream">
+  <section class="slide framefull photo-iris" data-toc="Кейс 01 · Отвращение" data-phase="dream">
     <div class="shot s-rep" data-tmdb="Repulsion" data-year="1965" data-idx="0"><img src="img/w1280_5rbPwIdEZTyLTkpAgvGdacgCr7T.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Отвращения»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1965</span>
     <div class="fcap"><div class="fk">Кейс 01 · к разбору</div><h2>Отвращение</h2>
@@ -781,7 +786,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 02: ЖИЛЕЦ ============ -->
-  <section class="slide framefull" data-toc="Кейс 02 · Жилец" data-phase="dream">
+  <section class="slide framefull photo-iris" data-toc="Кейс 02 · Жилец" data-phase="dream">
     <div class="shot s-ten" data-tmdb="The Tenant" data-year="1976" data-idx="0"><img src="img/w1280_foS1hXCMagcl3GnK0hJHslNw9Ne.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Жильца»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1976</span>
     <div class="fcap"><div class="fk">Кейс 02 · к разбору</div><h2>Жилец</h2>
@@ -863,7 +868,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 03: ОДЕРЖИМАЯ ============ -->
-  <section class="slide framefull" data-toc="Кейс 03 · Одержимая" data-phase="dream">
+  <section class="slide framefull photo-iris" data-toc="Кейс 03 · Одержимая" data-phase="dream">
     <div class="shot s-pos" data-tmdb="Possession" data-year="1981" data-idx="0"><img src="img/w1280_4PQeAYAag6gjG4fUTVCq91Xccel.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Одержимой»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1981</span>
     <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Одержимая</h2>
@@ -947,8 +952,8 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 04: ОСТРОВ ПРОКЛЯТЫХ ============ -->
-  <section class="slide framefull" data-toc="Кейс 04 · Остров проклятых" data-phase="dream">
-    <div class="shot s-shu" data-tmdb="Shutter Island" data-year="2010" data-idx="0"><img alt="Кадр из «Острова проклятых»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+  <section class="slide framefull photo-iris" data-toc="Кейс 04 · Остров проклятых" data-phase="dream">
+    <div class="shot s-shu" data-tmdb="Shutter Island" data-year="2010" data-idx="0"><img src="img/w1280_U8QRD7jvTXEYsUXq74IFKaSiL5.jpg" alt="Кадр из «Острова проклятых»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">2010</span>
     <div class="fcap"><div class="fk">Кейс 04 · к разбору</div><h2>Остров проклятых</h2>
       <div class="kw"><span>Вытеснение</span><span>Защитный фантазм</span><span>Ненадёжный рассказчик</span></div>
@@ -965,13 +970,13 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
         <p style="margin-top:12px">Экранизация романа Денниса Лихейна (2003). Скорсезе упаковывает материал в жанры 1950-х — нуар, готический хоррор, параноидальный триллер холодной войны: ураган, скалы, маяк, зловещие врачи.</p>
         <p>Развязка переворачивает жанр в терапию: «расследование» — ролевая инсценировка, последний шанс клиники вернуть пациента к знанию о себе. Весь фильм, который зритель смотрел, был чужим фантазмом.</p>
       </div>
-      <div class="framebox s-shu" data-tmdb="Shutter Island" data-year="2010" data-idx="2"><img alt="Тедди на острове" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Леонардо ДиКаприо · остров как замкнутый мир-декорация</div></div>
+      <div class="framebox s-shu" data-tmdb="Shutter Island" data-year="2010" data-idx="2"><img src="img/w1280_lavdyiJWciCJvyLG37ZOs6HJijg.jpg" alt="Тедди на острове" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Леонардо ДиКаприо · остров как замкнутый мир-декорация</div></div>
     </div>
     <div class="slide-foot"><span class="src">По роману D. Lehane, 2003; опер. Р. Ричардсон. Кросс: ненадёжный рассказчик — «Калигари», Лекция 01.</span><span class="fpg"></span></div>
   </section>
 
   <section class="slide framefull" data-phase="dream" data-haunt>
-    <div class="shot s-shu" data-tmdb="Shutter Island" data-year="2010" data-idx="1"><img alt="Сон о Долорес" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="shot s-shu" data-tmdb="Shutter Island" data-year="2010" data-idx="1"><img src="img/w1280_rbZvGN1A1QyZuoKzhCw8QPmf2q0.jpg" alt="Сон о Долорес" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <div class="fcap"><div class="fk">Сцена · сон о Долорес</div><h2>Вода просачивается в фантазм</h2>
       <p class="logline">Жена рассыпается пеплом в руках; с потолка течёт вода. Вытесненное не исчезло — оно сочится в сны героя через одну и ту же стихию: вода, в которой погибли дети, размывает выстроенный мир изнутри.</p>
     </div>

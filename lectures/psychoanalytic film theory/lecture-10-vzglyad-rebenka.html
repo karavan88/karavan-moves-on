@@ -459,6 +459,11 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
 .rail::before{left:6px}
 .rail::after{right:6px}
 @media print{.rail::before,.rail::after{display:none}}
+/* ФОТО-ИРИС: заставки кейсов раскрываются расширяющимся ирисом (не склейка из черноты) */
+.slide.photo-iris .shot img{opacity:1;clip-path:circle(0% at 50% 46%)}
+.slide.photo-iris.active .shot img{animation:photoIris 2.9s 3s cubic-bezier(.34,.08,.24,1) both}
+@keyframes photoIris{from{clip-path:circle(0% at 50% 46%)}to{clip-path:circle(80% at 50% 46%)}}
+@media (prefers-reduced-motion: reduce){.slide.photo-iris .shot img{clip-path:none;animation:none}}
 </style>
 </head>
 <body>
@@ -712,7 +717,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 01: ДУХ УЛЬЯ ============ -->
-  <section class="slide framefull" data-toc="Кейс 01 · Дух улья" data-phase="dream">
+  <section class="slide framefull photo-iris" data-toc="Кейс 01 · Дух улья" data-phase="dream">
     <div class="shot s-bee" data-tmdb="The Spirit of the Beehive" data-year="1973" data-idx="0"><img src="img/w1280_4vbL72K9uVaMLhnvmdg1So7kqex.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Духа улья»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1973</span>
     <div class="fcap"><div class="fk">Кейс 01 · к разбору</div><h2>Дух улья</h2>
@@ -779,7 +784,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 02: ВЫКОРМИ ВОРОНА ============ -->
-  <section class="slide framefull" data-toc="Кейс 02 · Выкорми ворона" data-phase="dream">
+  <section class="slide framefull photo-iris" data-toc="Кейс 02 · Выкорми ворона" data-phase="dream">
     <div class="shot s-crw" data-tmdb="Cria Cuervos" data-year="1976" data-idx="0"><img src="img/w1280_sc600L1efonWcAm1HDA6WMAAmn0.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Выкорми ворона»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1976</span>
     <div class="fcap"><div class="fk">Кейс 02 · к разбору</div><h2>Выкорми ворона</h2>
@@ -862,7 +867,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 03: СЕЛИЯ ============ -->
-  <section class="slide framefull" data-toc="Кейс 03 · Селия" data-phase="dream">
+  <section class="slide framefull photo-iris" data-toc="Кейс 03 · Селия" data-phase="dream">
     <div class="shot s-cel" data-tmdb="Celia" data-year="1989" data-idx="0"><img src="img/w1280_kCsepbJ5vF9KK4orEIq11b2Auek.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Селии»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1989</span>
     <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Селия</h2>
@@ -945,7 +950,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 04: СТРАНА ПРИЛИВОВ ============ -->
-  <section class="slide framefull" data-toc="Кейс 04 · Страна приливов" data-phase="dream">
+  <section class="slide framefull photo-iris" data-toc="Кейс 04 · Страна приливов" data-phase="dream">
     <div class="shot s-tid" data-tmdb="Tideland" data-year="2005" data-idx="0"><img src="img/w1280_w4bRVvptwS5i2GJpvQkiPhlZqF0.jpg" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="Кадр из «Страны приливов»" loading="lazy"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">2005</span>
     <div class="fcap"><div class="fk">Кейс 04 · к разбору</div><h2>Страна приливов</h2>

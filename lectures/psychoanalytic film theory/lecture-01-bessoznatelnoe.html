@@ -716,6 +716,11 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
 .rail::before{left:6px}
 .rail::after{right:6px}
 @media print{.rail::before,.rail::after{display:none}}
+/* ФОТО-ИРИС: заставки кейсов раскрываются расширяющимся ирисом (не склейка из черноты) */
+.slide.photo-iris .shot img{opacity:1;clip-path:circle(0% at 50% 46%)}
+.slide.photo-iris.active .shot img{animation:photoIris 2.9s 3s cubic-bezier(.34,.08,.24,1) both}
+@keyframes photoIris{from{clip-path:circle(0% at 50% 46%)}to{clip-path:circle(80% at 50% 46%)}}
+@media (prefers-reduced-motion: reduce){.slide.photo-iris .shot img{clip-path:none;animation:none}}
 </style>
 </head>
 <body>
@@ -1081,7 +1086,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 01: КАЛИГАРИ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 01 · Калигари">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 01 · Калигари">
     <div class="shot s-cal" data-tmdb="The Cabinet of Dr. Caligari" data-year="1920" data-idx="0"><img src="img/w1280_diOdVlwLqtwDarNt5lQqTCuZon6.jpg" alt="Кадр из «Кабинета доктора Калигари»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1920</span>
     <div class="fcap"><div class="fk">Кейс 01 · к разбору</div><h2>Кабинет доктора Калигари</h2>
@@ -1149,7 +1154,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 02: НОСФЕРАТУ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 02 · Носферату">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 02 · Носферату">
     <div class="shot s-nos" data-tmdb="Nosferatu" data-year="1922" data-idx="0"><img src="img/w1280_cA9iGtvjRGJHzDBfrq48l0eyCvA.jpg" alt="Кадр из «Носферату»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1922</span>
     <div class="fcap"><div class="fk">Кейс 02 · к разбору</div><h2>Носферату</h2>
@@ -1217,7 +1222,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 03: ПРАЖСКИЙ СТУДЕНТ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 03 · Пражский студент">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 03 · Пражский студент">
     <div class="shot s-prg" data-tmdb="The Student of Prague" data-year="1913" data-idx="0"><img src="img/w1280_7LQl2QloGfpgPBB0GTMzXxKWmgZ.jpg" alt="Кадр из «Пражского студента»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1913</span>
     <div class="fcap"><div class="fk">Кейс 03 · к разбору</div><h2>Пражский студент</h2>
@@ -1273,7 +1278,7 @@ body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75
   </section>
 
   <!-- ============ КЕЙС 04: ТАЙНЫ ОДНОЙ ДУШИ ============ -->
-  <section class="slide framefull" data-phase="dream" data-toc="Кейс 04 · Тайны одной души">
+  <section class="slide framefull photo-iris" data-phase="dream" data-toc="Кейс 04 · Тайны одной души">
     <div class="shot s-sec" data-tmdb="Secrets of a Soul" data-year="1926" data-idx="0"><img src="img/w1280_9gQG8NeRTY43uqDngfAvpCfXnJ3.jpg" alt="Кадр из «Тайн одной души»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
     <span class="fyear">1926</span>
     <div class="fcap"><div class="fk">Кейс 04 · к разбору</div><h2>Тайны одной души</h2>
