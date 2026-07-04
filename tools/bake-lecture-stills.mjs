@@ -32,8 +32,8 @@ async function backdrops(id){
   return b.length ? b : (j.stills||[]);
 }
 
-// фрейм с data-* сразу за которым идёт пустой <img alt="…" loading="lazy">
-const FRAME_RE = /(<div class="(?:shot|framebox)[^"]*" data-tmdb="([^"]*)" data-year="([^"]*)" data-idx="(\d+)">)(<img alt="([^"]*)" loading="lazy">)/g;
+// фрейм с data-* сразу за которым идёт пустой <img …> (с onload или без; но без src)
+const FRAME_RE = /(<div class="(?:shot|framebox)[^"]*" data-tmdb="([^"]*)" data-year="([^"]*)" data-idx="(\d+)">)(<img (?![^>]*\bsrc=)([^>]*)>)/g;
 
 let totalFilled = 0, totalMiss = 0;
 for(const deck of decks){
@@ -46,7 +46,10 @@ for(const deck of decks){
 
   // собрать список замен (regex не может быть async внутри replace)
   const jobs = [];
-  html.replace(FRAME_RE, (m, open, tmdb, year, idx, imgTag, alt)=>{ jobs.push({ m, open, tmdb, year, idx:+idx, imgTag, alt }); return m; });
+  html.replace(FRAME_RE, (m, open, tmdb, year, idx, imgTag, attrs)=>{
+    const alt = (attrs.match(/alt="([^"]*)"/)||[])[1] || '';
+    jobs.push({ m, open, tmdb, year, idx:+idx, imgTag, attrs, alt }); return m;
+  });
 
   for(const job of jobs){
     const key = job.tmdb + job.year;
@@ -65,7 +68,10 @@ for(const deck of decks){
       if(!r.ok){ console.log('  ! download', r.status, name); miss++; continue; }
       await writeFile(dest, Buffer.from(await r.arrayBuffer()));
     }
-    const filledImg = `<img src="img/${name}" onload="this.closest('.shot,.framebox').classList.add('has-image')" alt="${job.alt}" loading="lazy">`;
+    // сохраняем существующие атрибуты (alt/loading/onload); onload добавляем, если его нет
+    let attrs = job.attrs;
+    if(!/\bonload=/.test(attrs)) attrs += ` onload="this.closest('.shot,.framebox').classList.add('has-image')"`;
+    const filledImg = `<img src="img/${name}" ${attrs}>`;
     html = html.replace(job.open + job.imgTag, job.open + filledImg);
     filled++;
   }
