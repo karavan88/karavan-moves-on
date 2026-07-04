@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лекция 4 — Зеркало и идентификация | Психоаналитическая теория кино · авторский курс Карена Аванесяна</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b1220;--ink-2:#121a2c;--panel:#18223a;--abyss:#070d18;
+  --bone:#ece6da;--bone-dim:#b4b0a4;--slate:#7e8597;
+  --gold:#c9a14a;--gold-soft:#d8be86;--gold-deep:#8a6d28;
+  --bordeaux:#a23142;--bordeaux-soft:#c25667;
+  --violet:#8a78c8;--violet-soft:#b3a6e0;
+  --steel:#9db8cc;--steel-soft:#c6d8e6;--steel-deep:#5f7f96;
+  --line:rgba(236,230,218,.10);--line-strong:rgba(236,230,218,.20);
+  --display:'Playfair Display',Georgia,serif;--serif:'PT Serif',Georgia,serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased}
+
+/* ===== СВЕТ: луч, пыль, зерно, виньетка ===== */
+.beam{position:fixed;top:0;right:0;width:82vw;height:122vh;pointer-events:none;z-index:1;opacity:.6;
+  background:linear-gradient(216deg,rgba(201,161,74,.15) 0%,rgba(201,161,74,.05) 24%,transparent 50%);
+  clip-path:polygon(100% -6%,100% 17%,10% 106%,100% 106%);filter:blur(28px)}
+.beam::after{content:"";position:absolute;top:-6%;right:-4%;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(216,190,134,.28),transparent 70%);filter:blur(8px)}
+body.boot .beam{animation:beamOn 1.2s .2s ease both,flick 6.5s 1.8s ease-in-out infinite}
+@keyframes beamOn{0%{opacity:0}18%{opacity:.62}26%{opacity:.2}38%{opacity:.7}52%{opacity:.45}100%{opacity:.6}}
+@keyframes flick{0%,88%,100%{opacity:.6}91%{opacity:.48}93%{opacity:.65}96%{opacity:.54}}
+.dust{position:fixed;top:0;right:0;width:62%;height:100%;pointer-events:none;z-index:1}
+.dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(232,211,154,.8);filter:blur(1px);opacity:0;animation:dfloat 16s linear infinite}
+@keyframes dfloat{0%{transform:translate(0,0);opacity:0}8%{opacity:.6}55%{opacity:.4}100%{transform:translate(-44vw,54vh);opacity:0}}
+.dust i:nth-child(1){top:5%;right:9%;animation-duration:15s;animation-delay:.4s}
+.dust i:nth-child(2){top:13%;right:22%;animation-duration:20s;animation-delay:3s;width:2px;height:2px}
+.dust i:nth-child(3){top:3%;right:31%;animation-duration:13s;animation-delay:5.6s}
+.dust i:nth-child(4){top:21%;right:6%;animation-duration:23s;animation-delay:1.4s;width:2px;height:2px}
+.dust i:nth-child(5){top:9%;right:40%;animation-duration:18s;animation-delay:7.2s}
+.dust i:nth-child(6){top:28%;right:15%;animation-duration:21s;animation-delay:4.1s;width:4px;height:4px}
+.dust i:nth-child(7){top:1%;right:18%;animation-duration:17s;animation-delay:9s;width:2px;height:2px}
+.grain{position:fixed;inset:-4%;pointer-events:none;z-index:1;opacity:.05;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;animation:grainjit .6s steps(2) infinite}
+@keyframes grainjit{0%{transform:translate(0,0)}25%{transform:translate(-1.1%,.7%)}50%{transform:translate(.7%,-1.1%)}75%{transform:translate(-.5%,1%)}100%{transform:translate(0,0)}}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:2;background:radial-gradient(120% 105% at 50% 46%,transparent 58%,rgba(4,7,13,.4) 100%)}
+
+.deck{position:fixed;inset:0;z-index:3}
+.slide{position:absolute;inset:0;padding:50px 62px 62px calc(var(--rail) + 56px);display:none;opacity:0;flex-direction:column}
+.slide.active{display:flex;opacity:1;animation:fade .5s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.slide.thesis.active,.slide.poster.active{animation:breath .55s ease both}
+@keyframes breath{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* ===== RAIL ===== */
+.rail{position:fixed;top:0;left:0;bottom:0;width:var(--rail);background:var(--ink-2);border-right:1px solid var(--line);z-index:40;display:flex;flex-direction:column;align-items:center}
+.rail-fill{position:absolute;left:0;right:0;top:0;background:linear-gradient(var(--gold),var(--bordeaux) 70%,var(--abyss));opacity:.16;transition:height .45s ease;z-index:0}
+.rail-mark{position:relative;z-index:2;margin-top:18px;width:38px;height:24px;color:var(--gold);opacity:.92}
+.rail-top{position:relative;z-index:2;margin-top:20px;font-family:var(--display);font-weight:700;font-size:24px;color:var(--gold)}
+.rail-acts{position:relative;z-index:2;display:flex;flex-direction:column;gap:14px;align-items:center;margin-top:26px}
+.rail-acts .a{font-family:var(--mono);font-size:10px;color:var(--slate);border:1px solid var(--line-strong);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.25s}
+.rail-acts .a.cur{border-color:var(--gold);color:var(--gold)}
+.rail-label{position:relative;z-index:2;margin-top:auto;margin-bottom:22px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:var(--bone-dim);text-transform:uppercase;white-space:nowrap}
+.aperture{display:block}.aperture line,.aperture polygon,.aperture circle{vector-effect:non-scaling-stroke}
+
+/* ===== ТИПОГРАФИКА ===== */
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--slate);display:flex;gap:12px;align-items:center;margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);flex:none}
+.eyebrow .eg{width:14px;height:19px;color:var(--gold);flex:none}
+.eyebrow .sep{color:var(--gold)}.eyebrow .tag{color:var(--bone-dim)}
+h1{font-family:var(--display);font-weight:800;line-height:1.0;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:700;line-height:1.04;letter-spacing:-.005em;font-size:clamp(28px,3.8vw,50px)}
+h3{font-family:var(--display);font-weight:600;font-size:clamp(17px,1.6vw,22px);letter-spacing:.01em;color:var(--bone)}
+p{font-size:clamp(15px,1.2vw,17.5px);line-height:1.56}
+.lead{font-size:clamp(17px,1.55vw,22px);line-height:1.5}
+strong{color:#fff;font-weight:700}em{color:var(--gold);font-style:italic}
+.slide-foot{margin-top:auto;padding-top:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;border-top:1px solid var(--line)}
+.slide-foot .src{max-width:64%;color:var(--bone-dim);text-transform:none;letter-spacing:.02em;font-size:11.5px;line-height:1.4}
+
+/* ===== COVER + ПУСК ПРОЕКТОРА ===== */
+.cover{justify-content:center;position:relative;overflow:hidden}
+.cover .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:66px 66px;opacity:.45;z-index:0}
+.cover .ap-hero{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:min(60vh,630px);color:var(--gold);opacity:.5;z-index:0;filter:drop-shadow(0 0 50px rgba(201,161,74,.13))}
+.ap-hero .apc{stroke-dasharray:300}
+.ap-hero .apl{stroke-dasharray:120}
+.ap-hero .apg{stroke-dasharray:200}
+.cover.play .apc{animation:drawc 1.1s .5s ease both}
+.cover.play .apl{animation:drawl .8s ease both}
+.cover.play line.apl:nth-of-type(1){animation-delay:.85s}
+.cover.play line.apl:nth-of-type(2){animation-delay:.95s}
+.cover.play line.apl:nth-of-type(3){animation-delay:1.05s}
+.cover.play line.apl:nth-of-type(4){animation-delay:1.15s}
+.cover.play line.apl:nth-of-type(5){animation-delay:1.25s}
+.cover.play line.apl:nth-of-type(6){animation-delay:1.35s}
+.cover.play .apg{animation:drawg 1s .95s ease both}
+.cover.play .app{animation:pupil .5s 1.5s cubic-bezier(.2,1.4,.4,1) both;transform-origin:50% 50%}
+@keyframes drawc{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+@keyframes drawl{from{stroke-dashoffset:120}to{stroke-dashoffset:0}}
+@keyframes drawg{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes pupil{from{transform:scale(0)}to{transform:scale(1)}}
+.cover.play .kicker{animation:rise .6s 1.65s ease both}
+.cover.play .course-name{animation:rise .6s 1.8s ease both}
+.cover.play h1{animation:rise .7s 1.95s ease both}
+.cover.play .subt{animation:rise .7s 2.15s ease both}
+.cover.play .meta{animation:rise .7s 2.3s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.cover-inner{position:relative;z-index:3;max-width:80%}
+.cover .kicker{font-family:var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);font-size:12.5px;margin-bottom:18px}
+.course-name{font-family:var(--mono);font-weight:500;font-style:normal;text-transform:uppercase;letter-spacing:.26em;color:var(--gold);font-size:clamp(15px,1.7vw,21px);margin-bottom:16px}
+.cover h1{font-size:clamp(42px,7.4vw,106px)}
+.cover h1 .hl{color:var(--gold)}
+.cover .subt{font-family:var(--display);font-weight:500;font-size:clamp(19px,2.4vw,31px);margin-top:20px;color:var(--bone);line-height:1.14;max-width:26ch}
+.cover .meta{margin-top:38px;display:flex;flex-wrap:wrap;gap:16px 34px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.cover .meta b{color:var(--bordeaux-soft);font-weight:500}
+
+/* ===== POSTER ===== */
+.poster{justify-content:center;position:relative;overflow:hidden}
+.poster-inner{position:relative;z-index:3}
+.poster .knum{font-family:var(--display);font-weight:800;color:var(--gold);font-size:clamp(40px,6vw,84px);line-height:.8;opacity:.92}
+.poster .word{font-family:var(--display);font-weight:800;line-height:.92;letter-spacing:-.02em;font-size:clamp(64px,13vw,184px);margin:.04em 0 .12em;white-space:nowrap}
+.poster .sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,27px);color:var(--bone-dim);max-width:31ch;line-height:1.22}
+.emblem{display:block}
+.emblem circle,.emblem path{vector-effect:non-scaling-stroke}
+.poster .kh{position:absolute;right:3%;top:50%;transform:translateY(-50%);height:78vh;width:auto;color:var(--gold);opacity:.92;z-index:0;filter:drop-shadow(0 0 46px rgba(201,161,74,.16))}
+.poster .cone{position:absolute;right:calc(3% + 58px);top:25%;width:56%;height:52%;pointer-events:none;z-index:0;
+  background:linear-gradient(262deg,rgba(232,211,154,.26),rgba(232,211,154,.05) 55%,transparent 78%);
+  clip-path:polygon(100% 36%,100% 52%,0 100%,0 20%);filter:blur(16px);opacity:.85}
+.poster .blot{position:absolute;right:5%;top:50%;transform:translateY(-50%);height:74vh;width:auto;color:var(--gold);opacity:.85;z-index:0;filter:drop-shadow(0 0 44px rgba(201,161,74,.14))}
+.poster .apbig{position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:66vh;color:var(--gold);opacity:.42;z-index:0}
+.mirror .axis{position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(transparent,var(--line-strong) 30%,var(--line-strong) 70%,transparent);z-index:0}
+.reflectword{position:relative;display:inline-block;color:var(--bone)}
+.reflectword .refl{position:absolute;left:0;top:99%;transform:scaleY(-1);color:var(--bone);opacity:.13;-webkit-mask:linear-gradient(#000,transparent 72%);mask:linear-gradient(#000,transparent 72%)}
+
+/* ===== THESIS ===== */
+.slide.thesis{justify-content:center;position:relative;overflow:hidden}
+.thesis .tlbl{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--bordeaux-soft);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.thesis .tlbl::before{content:"";width:30px;height:2px;background:var(--gold)}
+.thesis .big{font-family:var(--display);font-weight:800;font-size:clamp(34px,5.9vw,90px);line-height:1.0;letter-spacing:-.012em;max-width:21ch}
+.thesis .big .hl{color:var(--gold)}.thesis .big .oc{color:var(--bordeaux-soft)}
+.thesis .tsub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.7vw,22px);color:var(--bone-dim);margin-top:26px;max-width:54ch}
+
+/* ===== CINEMA (framefull) + ЦВЕТОКОР + КЕН БЁРНС ===== */
+.slide.framefull{justify-content:flex-end;overflow:hidden;padding-right:60px}
+.framefull .shot{position:absolute;inset:0;z-index:0;overflow:hidden;
+  background:radial-gradient(120% 92% at 80% 10%,rgba(201,161,74,.22),transparent 58%),linear-gradient(150deg,var(--panel),var(--abyss) 80%);
+  box-shadow:inset 0 0 220px 60px rgba(7,13,24,.9)}
+.framefull .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .7s ease}
+.framefull .shot.has-image img{opacity:1;animation:kb 26s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.06)}}
+.framefull .shot::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(7,13,24,.96),rgba(7,13,24,.16) 50%,rgba(7,13,24,.55))}
+.gr{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s;z-index:1}
+.gr.g1{background:rgba(11,18,32,.4);mix-blend-mode:multiply}
+.gr.g2{background:radial-gradient(66% 58% at 66% 26%,rgba(157,184,204,.3),transparent 62%);mix-blend-mode:soft-light}
+.shot.has-image .gr,.framebox.has-image .gr{opacity:1}
+.shot.has-image img,.framebox.has-image img{filter:grayscale(.86) contrast(1.07) brightness(.9) sepia(.12) hue-rotate(190deg) saturate(1.0)}
+.framefull .fcap{position:relative;z-index:3;max-width:74%}
+.framefull .fk{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.framefull .fcap h2{font-size:clamp(34px,5.2vw,76px);text-shadow:0 2px 40px rgba(7,13,24,.7)}
+.framefull .kw{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.framefull .kw span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-deep);padding:5px 11px;border-radius:2px;background:rgba(11,18,32,.45)}
+.framefull .logline{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.5vw,20px);color:var(--bone);max-width:46ch}
+.framefull .slide-foot{color:var(--bone-dim);border-color:var(--line-strong)}
+.slide.thesis .slide-foot,.slide.framefull .slide-foot{position:absolute;left:calc(var(--rail) + 56px);right:60px;bottom:24px;margin-top:0;z-index:3}
+.framefull .fyear{position:absolute;z-index:1;font-family:var(--display);font-weight:800;font-size:clamp(110px,18vw,300px);line-height:.74;color:rgba(201,161,74,.16);letter-spacing:-.02em;pointer-events:none;right:40px;top:8px}
+
+/* ===== ФОНЫ-ЗАГЛУШКИ ПО ФИЛЬМАМ ===== */
+.shot.s-cal,.framebox.s-cal{background:repeating-linear-gradient(57deg,rgba(236,230,218,.05) 0 2px,transparent 2px 24px),linear-gradient(150deg,#1b2842,#070d18 82%)}
+.shot.s-nos,.framebox.s-nos{background:radial-gradient(85% 105% at 16% 102%,rgba(0,0,0,.62),transparent 58%),linear-gradient(150deg,#111c2b,#05080f 84%)}
+.shot.s-prg,.framebox.s-prg{background:linear-gradient(90deg,transparent 49.3%,rgba(216,190,134,.26) 49.9%,transparent 50.5%),linear-gradient(150deg,#1d2640,#0a0f1c 82%)}
+.shot.s-sec,.framebox.s-sec{background:repeating-radial-gradient(circle at 70% 38%,rgba(201,161,74,.09) 0 2px,transparent 2px 28px),radial-gradient(120% 95% at 70% 35%,rgba(201,161,74,.18),transparent 60%),linear-gradient(150deg,#1c2338,#0a0f1c 82%)}
+.framebox.s-mel{background:radial-gradient(circle 44px at 28% 40%,rgba(236,230,218,.26),transparent 62%),radial-gradient(circle 44px at 53% 37%,rgba(236,230,218,.2),transparent 62%),radial-gradient(circle 44px at 78% 41%,rgba(236,230,218,.15),transparent 62%),linear-gradient(150deg,#1a2136,#0a0f1c 82%)}
+.framebox.s-wat{background:radial-gradient(38% 50% at 40% 46%,#14161c 0 30%,transparent 42%),radial-gradient(38% 50% at 60% 46%,#14161c 0 30%,transparent 42%),linear-gradient(150deg,#d7d2c4,#b3ab9b)}
+
+/* ===== CALM primitives ===== */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:42px;flex:1;align-content:center}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;flex:1;align-content:center}
+.cols-wide{display:grid;grid-template-columns:1.22fr .88fr;gap:50px;flex:1;align-content:center}
+.stack{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.card{background:rgba(255,255,255,.022);border:1px solid var(--line);border-top:3px solid var(--gold);padding:22px 24px;border-radius:2px;display:flex;flex-direction:column;gap:9px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 30px -20px rgba(0,0,0,.6)}
+.card .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.card h3{margin-bottom:2px}
+.card.bord{border-top-color:var(--bordeaux)}.card.bord .k{color:var(--bordeaux-soft)}
+.deflist{display:flex;flex-direction:column;gap:13px}
+.def{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:13px;border-bottom:1px solid var(--line)}
+.def .term{font-family:var(--display);font-weight:700;color:var(--bordeaux-soft);font-size:clamp(14px,1.35vw,18px);white-space:nowrap}
+.def p{font-size:14.5px;line-height:1.46}
+.quote{position:relative;padding:8px 0 8px 64px;align-self:center;margin-left:-16px}
+.quote::before{content:"«";position:absolute;left:-28px;top:-56px;font-family:var(--display);font-weight:800;font-size:180px;color:var(--gold);line-height:1;opacity:.5}
+.quote q{quotes:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,31px);line-height:1.3;display:block}
+.quote .attr{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bordeaux-soft)}
+.framebox{position:relative;border:1px solid var(--line-strong);overflow:hidden;min-height:300px;align-self:stretch;
+  background:radial-gradient(120% 90% at 80% 10%,rgba(201,161,74,.16),transparent 60%),linear-gradient(150deg,var(--panel),var(--abyss) 82%)}
+.framebox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .6s}
+.framebox.has-image img{opacity:1}
+.framebox .fbcap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px 16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bone-dim);background:linear-gradient(transparent,rgba(7,13,24,.92))}
+
+/* ===== СХЕМЫ: айсберг, поток, шесть шагов, хронолента ===== */
+.iceberg{position:relative;align-self:center;width:100%;max-width:740px;border:1px solid var(--line-strong);display:flex;flex-direction:column;min-height:380px;overflow:hidden}
+.iceberg .ib-above{flex:0 0 33%;padding:22px 28px;display:flex;flex-direction:column;justify-content:center;gap:6px;background:linear-gradient(160deg,rgba(236,230,218,.07),transparent)}
+.iceberg .ib-water{height:0;border-top:2px dashed var(--gold);position:relative}
+.iceberg .ib-water span{position:absolute;right:18px;top:-9px;background:var(--ink);padding:0 9px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.iceberg .ib-below{flex:1;padding:24px 28px;display:flex;flex-direction:column;justify-content:center;gap:18px;background:linear-gradient(180deg,rgba(24,34,58,.85),var(--abyss) 94%)}
+.iceberg .ib-zone{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.iceberg .ib-above .ib-zone{color:var(--bone-dim)}.iceberg .ib-below .ib-zone{color:var(--bordeaux-soft)}
+.iceberg .ib-it b{font-family:var(--display);font-weight:600;color:#fff;font-size:15px;display:block}
+.iceberg .ib-it span{font-size:13.5px;color:var(--bone-dim)}
+.flow{display:flex;align-items:stretch;align-self:center;width:100%;gap:0}
+.flow .fstep{flex:1;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:20px 18px;display:flex;flex-direction:column;gap:7px;min-width:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.flow .fstep .fsk{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.flow .fstep h3{font-size:clamp(15px,1.5vw,21px)}
+.flow .fstep p{font-size:12.5px;color:var(--bone-dim);line-height:1.42}
+.flow .fstep.a{border-top:3px solid var(--gold)}.flow .fstep.a .fsk{color:var(--gold)}
+.flow .fstep.b{border-top:3px solid var(--bordeaux)}.flow .fstep.b .fsk{color:var(--bordeaux-soft)}
+.flow .farr{display:flex;align-items:center;padding:0 10px;color:var(--gold);font-family:var(--display);font-weight:700;font-size:24px}
+.steps6{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 24px;align-self:center;width:100%;max-width:1100px;margin-left:auto;margin-right:auto;flex:1;align-content:center}
+.st6{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.022);padding:24px 26px 20px;display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 30px -22px rgba(0,0,0,.6)}
+.st6 .n{font-family:var(--display);font-weight:800;color:var(--gold);font-size:36px;line-height:.85}
+.st6 h3{font-size:clamp(17px,1.7vw,23px)}
+.st6 p{font-size:13.5px;color:var(--bone-dim);line-height:1.5}
+.st6:not(:nth-child(3)):not(:last-child)::after{content:"→";position:absolute;right:-20px;top:50%;transform:translateY(-50%);color:var(--gold);font-family:var(--display);font-weight:700;font-size:19px;z-index:2}
+.st6.hot{border-top:3px solid var(--bordeaux)}.st6.hot .n{color:var(--bordeaux-soft)}
+.method-result{margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.timeline{position:relative;width:100%;align-self:center;padding:4px 0}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line-strong)}
+.timeline .row{display:grid;grid-template-columns:repeat(13,1fr);position:relative}
+.tli{display:grid;grid-template-rows:96px 14px 96px;justify-items:center;align-items:center}
+.tli .dot{grid-row:2;width:9px;height:9px;border-radius:50%;background:var(--slate)}
+.tli .dot.g{background:var(--gold);box-shadow:0 0 12px rgba(201,161,74,.55)}
+.tli .dot.b{background:var(--bordeaux);box-shadow:0 0 12px rgba(162,49,66,.5)}
+.tli .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;color:var(--bone-dim);text-align:center;line-height:1.35;max-width:94px;text-transform:uppercase}
+.tli .lab b{display:block;font-size:12px;color:var(--gold);letter-spacing:.1em;margin-bottom:3px;font-weight:500}
+.tli:nth-child(odd) .lab{grid-row:1;align-self:end;padding-bottom:10px}
+.tli:nth-child(even) .lab{grid-row:3;align-self:start;padding-top:10px}
+
+/* ===== ПОЛЕ СПОРА ===== */
+.dispute{width:100%;align-self:center}
+.spine{position:relative;padding:42px 0}
+.spine::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line-strong)}
+.voices{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.voice{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:14px 15px 12px;border-top:3px solid var(--gold);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.voice.f2{border-top-color:var(--bordeaux)}
+.voice.f3{border-top-color:var(--slate)}
+.voice.f4{border-top-color:var(--violet)}
+.voice::before{content:"";position:absolute;left:50%;width:1px;height:26px;background:var(--line-strong)}
+.voice:nth-child(odd){transform:translateY(-32px)}
+.voice:nth-child(odd)::before{bottom:-27px}
+.voice:nth-child(even){transform:translateY(32px)}
+.voice:nth-child(even)::before{top:-27px}
+.voice .vy{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--gold)}
+.voice.f2 .vy{color:var(--bordeaux-soft)}.voice.f3 .vy{color:var(--slate)}.voice.f4 .vy{color:var(--violet-soft)}
+.voice .vn{font-family:var(--display);font-weight:700;font-size:16.5px;margin:4px 0 5px;color:#fff}
+.voice .vp{font-size:12.5px;color:var(--bone-dim);line-height:1.42}
+.dq{margin-top:24px;font-family:var(--serif);font-style:italic;color:var(--bone);font-size:clamp(14px,1.35vw,17px)}
+.dq b{color:var(--gold);font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-right:10px}
+
+/* ===== СПИСКИ / КАРТА / ПЛЁНКА ===== */
+.qlist{display:flex;flex-direction:column;gap:16px;align-self:center;width:100%;counter-reset:q}
+.qlist.q2{counter-reset:q}
+.qlist li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:22px;padding-bottom:14px;border-bottom:1px solid var(--line);align-items:baseline}
+.qlist li::before{counter-increment:q;content:"0" counter(q);font-family:var(--display);font-weight:800;color:var(--gold);font-size:clamp(22px,2.4vw,32px)}
+.qlist p{font-size:clamp(14.5px,1.35vw,17.5px)}
+.readlist{display:flex;flex-direction:column;gap:0}
+.readlist .r{display:grid;grid-template-columns:46px 1fr auto;gap:16px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.readlist .r .n{font-family:var(--mono);color:var(--gold);font-size:13px}
+.readlist .r .ttl b{color:#fff}
+.readlist .r .typ{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bordeaux-soft)}
+.coursemap{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;align-self:center;width:100%}
+.coursemap .node{border:1px solid var(--line);padding:13px 12px;background:rgba(255,255,255,.018);display:flex;flex-direction:column;gap:7px;min-height:88px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.coursemap .node .nn{font-family:var(--display);font-weight:800;color:var(--gold);font-size:18px}
+.coursemap .node .nt{font-family:var(--display);font-weight:600;font-size:12.5px;line-height:1.1;color:var(--bone-dim)}
+.coursemap .node.cur{background:var(--panel);border-color:var(--gold);border-top:4px solid var(--gold)}
+.coursemap .node.cur .nt{color:#fff}
+.coursemap .node.spec{border-style:dashed}
+.watchlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;align-self:center;width:100%}
+.wfilm{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:22px 22px 20px;display:flex;flex-direction:column;gap:7px;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.wfilm::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
+.wfilm.pro::before{background:var(--bordeaux)}
+.wfilm .wy{font-family:var(--display);font-weight:800;font-size:52px;line-height:.8;color:rgba(236,230,218,.1);position:absolute;right:14px;top:16px}
+.wfilm .wt{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.04;position:relative;z-index:2}
+.wfilm .wd{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--bordeaux-soft)}
+.wfilm .wn{font-size:12.5px;color:var(--bone-dim);margin-top:3px;line-height:1.42}
+.lighttable{width:100%;align-self:center;padding:32px 26px;background:linear-gradient(160deg,#1a2338,#0e1524);border:1px solid var(--line-strong);display:flex;gap:18px;justify-content:center;align-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.fs{position:relative;width:15%;background:#080c15;padding:21px 7px;border:1px solid rgba(0,0,0,.6);box-shadow:0 8px 26px rgba(0,0,0,.45)}
+.fs::before,.fs::after{content:"";position:absolute;left:7px;right:7px;height:9px;background:repeating-linear-gradient(90deg,transparent 0 7px,#232c42 7px 13px,transparent 13px 21px)}
+.fs::before{top:6px}.fs::after{bottom:6px}
+.fs .edge{position:absolute;top:21px;left:9px;right:9px;font-family:var(--mono);font-size:6.5px;letter-spacing:.26em;color:#5a6478;white-space:nowrap;overflow:hidden}
+.fs .win{position:relative;aspect-ratio:2/2.7;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.fs .cy{position:absolute;left:9px;bottom:25px;font-family:var(--display);font-weight:800;font-size:18px;color:var(--bone);z-index:2}
+.fs .cn{position:absolute;left:9px;right:9px;bottom:9px;font-family:var(--mono);font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--bone-dim);z-index:2}
+.fs:nth-child(1){transform:rotate(-1.5deg)}
+.fs:nth-child(2){transform:rotate(.8deg) translateY(6px)}
+.fs:nth-child(3){transform:rotate(-.6deg)}
+.fs:nth-child(4){transform:rotate(1.3deg) translateY(-5px)}
+.fs:nth-child(5){transform:rotate(-.9deg) translateY(4px)}
+.fs:nth-child(6){transform:rotate(1.1deg)}
+.win.w-prg{background:linear-gradient(90deg,transparent 49%,rgba(216,190,134,.24) 49.7%,transparent 50.5%),linear-gradient(150deg,#1d2640,#0a0f1c 82%)}
+.win.w-cal{background:repeating-linear-gradient(57deg,rgba(236,230,218,.05) 0 2px,transparent 2px 20px),linear-gradient(150deg,#1a2740,#070d18 82%)}
+.win.w-nos{background:radial-gradient(85% 105% at 16% 102%,rgba(0,0,0,.5),transparent 58%),linear-gradient(150deg,#111c2b,#06090f 84%)}
+.win.w-sec{background:radial-gradient(120% 95% at 70% 30%,rgba(201,161,74,.16),transparent 60%),linear-gradient(150deg,#1c2338,#0a0f1c 82%)}
+.win.w-tet{background:repeating-linear-gradient(90deg,rgba(216,190,134,.09) 0 6px,transparent 6px 18px),linear-gradient(150deg,#241f33,#0a0f1c 82%)}
+.win.w-gol{background:radial-gradient(80% 90% at 50% 88%,rgba(151,116,74,.26),transparent 62%),linear-gradient(150deg,#251f2e,#0a0f1c 82%)}
+
+/* ===== NAV / СКЛЕЙКА / TOC ===== */
+.nav{position:fixed;right:24px;bottom:20px;z-index:50;display:flex;align-items:center;gap:14px}
+.counter{font-family:var(--mono);font-size:13px;letter-spacing:.18em;color:var(--bone-dim)}
+.counter .cur{color:var(--gold);font-weight:700}
+.nbtn{width:42px;height:42px;border:1px solid var(--line-strong);background:var(--ink-2);color:var(--bone);font-size:18px;cursor:pointer;border-radius:2px;display:flex;align-items:center;justify-content:center;transition:.18s}
+.nbtn:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.nbtn:focus-visible{outline:3px solid var(--bordeaux);outline-offset:2px}
+.progress{position:fixed;top:0;left:var(--rail);right:0;height:3px;background:transparent;z-index:50}
+.progress .bar{height:100%;background:var(--gold);width:0;transition:width .4s ease}
+.zone{position:fixed;top:0;bottom:0;width:16%;z-index:30;cursor:pointer;background:transparent;border:0;padding:0;margin:0;-webkit-appearance:none;appearance:none;font:inherit;color:inherit;outline:none}
+.zone.left{left:var(--rail)}.zone.right{right:0}
+.cutfx{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;z-index:45}
+.cutfx.go{animation:cutb .45s ease both}
+@keyframes cutb{0%{opacity:0}18%{opacity:1}55%{opacity:1}100%{opacity:0}}
+.reeldot{position:fixed;top:16px;right:18px;width:15px;height:15px;border-radius:50%;background:radial-gradient(circle,rgba(236,230,218,.9),rgba(236,230,218,.22) 70%);opacity:0;pointer-events:none;z-index:46;filter:blur(.4px)}
+.reeldot.blink{animation:reelb .7s steps(2) 1}
+@keyframes reelb{0%,40%{opacity:0}50%,90%{opacity:.9}100%{opacity:0}}
+.toc-btn{position:fixed;left:calc(var(--rail) + 14px);bottom:16px;z-index:50;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);background:var(--ink-2);border:1px solid var(--line-strong);padding:8px 12px;border-radius:2px;cursor:pointer;transition:.16s}
+.toc-btn:hover{border-color:var(--gold);color:#fff}
+.toc-panel{position:fixed;inset:0;z-index:60;background:rgba(7,13,24,.82);display:none;opacity:0;transition:opacity .2s}
+.toc-panel.open{display:block;opacity:1}
+.toc-inner{position:absolute;left:0;top:0;bottom:0;width:min(440px,86vw);background:var(--ink-2);border-right:2px solid var(--gold);padding:30px 26px;overflow:auto;box-shadow:0 0 60px rgba(0,0,0,.6)}
+.toc-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:12px}
+.toc-title{font-family:var(--display);font-weight:700;font-size:22px;color:var(--bone)}
+.toc-back{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bordeaux-soft);text-decoration:none}
+.toc-list{display:flex;flex-direction:column}
+.toc-item{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:13px 4px;font-family:var(--serif);font-size:16px;color:var(--bone);cursor:pointer;transition:.14s}
+.toc-item:hover{color:var(--gold);padding-left:10px}
+.toc-item.cur{color:var(--bordeaux-soft)}
+.toc-item .tnum{font-family:var(--mono);font-size:12px;color:var(--gold);min-width:24px}
+
+@media (max-width:900px){
+  :root{--rail:0px}
+  .rail{display:none}
+  .slide{padding:28px 18px 66px}
+  .cols,.cols-wide,.voices{grid-template-columns:1fr;gap:16px}
+  .cols-3{grid-template-columns:1fr}
+  .coursemap{grid-template-columns:repeat(2,1fr)}
+  .steps6{grid-template-columns:1fr 1fr}.st6::after{display:none}
+  .timeline::before{display:none}
+  .timeline .row{grid-template-columns:repeat(3,1fr);gap:10px}
+  .tli{grid-template-rows:auto}.tli .dot{display:none}
+  .tli .lab,.tli:nth-child(odd) .lab,.tli:nth-child(even) .lab{grid-row:auto;padding:6px;border:1px solid var(--line)}
+  .voice:nth-child(odd),.voice:nth-child(even){transform:none}
+  .voice::before,.spine::before{display:none}
+  .spine{padding:8px 0}
+  .lighttable{flex-wrap:wrap}.fs{width:30%}
+  .cover-inner,.poster-inner{max-width:100%}
+  .cover .ap-hero,.poster .kh,.poster .blot,.poster .apbig{opacity:.25}
+  .poster .word{white-space:normal;font-size:clamp(46px,15vw,84px)}
+  .flow{flex-direction:column}.flow .farr{transform:rotate(90deg);padding:6px 0;justify-content:center}
+  .framefull .fcap{max-width:100%}
+  .zone{width:24%}.progress{left:0}
+  .slide.thesis .slide-foot,.slide.framefull .slide-foot{left:18px;right:18px}
+  .quote{padding-left:40px;margin-left:0}.quote::before{font-size:120px;left:-8px;top:-30px}
+  .watchlist{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){.watchlist,.steps6,.lighttable{grid-template-columns:1fr}.fs{width:46%}h2{font-size:25px}}
+
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{width:auto;height:auto;overflow:visible;background:var(--ink)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;animation:none!important}
+  .nav,.progress,.zone,.toc-btn,.toc-panel,.cutfx,.reeldot,.dust,.vignette{display:none!important}
+  .beam,.grain{position:absolute!important}
+  .deck{position:static!important}.rail{position:absolute!important}
+  .slide{position:relative!important;inset:auto!important;display:flex!important;opacity:1!important;width:100%;min-height:100vh;height:100vh;page-break-after:always;break-after:page}
+  .slide:last-child{page-break-after:auto;break-after:auto}
+}
+
+/* ===== АПГРЕЙД: ПРОТЯЖКА · ИРИС · ХОРЕОГРАФИЯ · ГЛАЗ ===== */
+@keyframes advance{0%{transform:translateY(30px);opacity:0}60%{transform:translateY(-4px);opacity:1}100%{transform:none;opacity:1}}
+#gatefx{position:fixed;left:0;right:0;top:-18vh;height:16vh;pointer-events:none;z-index:44;opacity:0;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.6),rgba(0,0,0,0))}
+#gatefx.go{animation:gatego .38s ease both}
+@keyframes gatego{0%{opacity:1;transform:translateY(0)}100%{opacity:1;transform:translateY(125vh)}}
+#irisfx{position:fixed;left:50%;top:50%;width:245vmax;height:245vmax;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 200vmax #000;pointer-events:none;z-index:47;opacity:0}
+#irisfx.go{animation:irisgo .74s ease-in-out both}
+@keyframes irisgo{0%{opacity:1;width:245vmax;height:245vmax}44%{width:0;height:0}56%{width:0;height:0}100%{opacity:1;width:245vmax;height:245vmax}}
+@keyframes fup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+@keyframes land{from{opacity:0;transform:translateY(-34px) rotate(4deg) scale(1.05)}}
+@keyframes vT{from{opacity:0;transform:translateY(-58px)}}
+@keyframes vB{from{opacity:0;transform:translateY(58px)}}
+@keyframes npop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes breathe{to{transform:scale(1.09)}}
+@keyframes drawL{from{stroke-dashoffset:280}to{stroke-dashoffset:0}}
+@keyframes drawS{from{stroke-dashoffset:780}to{stroke-dashoffset:0}}
+@keyframes drawR{from{stroke-dasharray:1660;stroke-dashoffset:1660}to{stroke-dasharray:1660;stroke-dashoffset:0}}
+.slide.active .eyebrow{animation:fup .4s .04s both}
+.slide.active h2{animation:fup .45s .1s both}
+.slide.active .lead{animation:fup .5s .18s both}
+.slide.active .cols>p{animation:fup .5s .3s both}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide)+p{animation:fup .5s .7s both}
+.slide.active .stack>p{animation:fup .45s both}
+.slide.active .stack>p:nth-of-type(1){animation-delay:.28s}
+.slide.active .stack>p:nth-of-type(2){animation-delay:.42s}
+.slide.active .stack>p:nth-of-type(3){animation-delay:.56s}
+.slide.active .tlbl{animation:fup .45s .3s both}
+.slide.active .big{animation:fup .55s .42s both}
+.slide.active .tsub{animation:fup .55s .6s both}
+.slide.active .knum{animation:fup .5s .45s both}
+.slide.active .word{animation:fup .6s .58s both}
+.slide.active .poster .sub{animation:fup .6s .74s both}
+.slide.active .fk{animation:fup .4s .28s both}
+.slide.active .fcap h2{animation:fup .5s .38s both}
+.slide.active .kw span{animation:fup .4s both}
+.slide.active .kw span:nth-child(1){animation-delay:.48s}
+.slide.active .kw span:nth-child(2){animation-delay:.56s}
+.slide.active .kw span:nth-child(3){animation-delay:.64s}
+.slide.active .logline{animation:fup .5s .72s both}
+.slide.active .fyear{animation:fin .9s .2s both}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card{animation:fup .45s both}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(1){animation-delay:.22s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(2){animation-delay:.34s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(3){animation-delay:.46s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(4){animation-delay:.58s}
+.slide.active .def{animation:fup .4s both}
+.slide.active .def:nth-child(1){animation-delay:.18s}
+.slide.active .def:nth-child(2){animation-delay:.26s}
+.slide.active .def:nth-child(3){animation-delay:.34s}
+.slide.active .def:nth-child(4){animation-delay:.42s}
+.slide.active .def:nth-child(5){animation-delay:.5s}
+.slide.active .def:nth-child(6){animation-delay:.58s}
+.slide.active .st6{animation:fup .45s both}
+.slide.active .st6:nth-child(1){animation-delay:.2s}
+.slide.active .st6:nth-child(2){animation-delay:.29s}
+.slide.active .st6:nth-child(3){animation-delay:.38s}
+.slide.active .st6:nth-child(4){animation-delay:.47s}
+.slide.active .st6:nth-child(5){animation-delay:.56s}
+.slide.active .st6:nth-child(6){animation-delay:.65s}
+.slide.active .qlist li{animation:fup .45s both}
+.slide.active .qlist li:nth-child(1){animation-delay:.2s}
+.slide.active .qlist li:nth-child(2){animation-delay:.29s}
+.slide.active .qlist li:nth-child(3){animation-delay:.38s}
+.slide.active .qlist li:nth-child(4){animation-delay:.47s}
+.slide.active .qlist li:nth-child(5){animation-delay:.56s}
+.slide.active .qlist li:nth-child(6){animation-delay:.65s}
+.slide.active .coursemap .node{animation:fup .35s both}
+.slide.active .coursemap .node:nth-child(1){animation-delay:.1s}
+.slide.active .coursemap .node:nth-child(2){animation-delay:.15s}
+.slide.active .coursemap .node:nth-child(3){animation-delay:.2s}
+.slide.active .coursemap .node:nth-child(4){animation-delay:.25s}
+.slide.active .coursemap .node:nth-child(5){animation-delay:.3s}
+.slide.active .coursemap .node:nth-child(6){animation-delay:.35s}
+.slide.active .coursemap .node:nth-child(7){animation-delay:.4s}
+.slide.active .coursemap .node:nth-child(8){animation-delay:.45s}
+.slide.active .coursemap .node:nth-child(9){animation-delay:.5s}
+.slide.active .coursemap .node:nth-child(10){animation-delay:.55s}
+.slide.active .coursemap .node:nth-child(11){animation-delay:.6s}
+.slide.active .coursemap .node:nth-child(12){animation-delay:.65s}
+.slide.active .wfilm{animation:fup .45s both}
+.slide.active .wfilm:nth-child(1){animation-delay:.18s}
+.slide.active .wfilm:nth-child(2){animation-delay:.26s}
+.slide.active .wfilm:nth-child(3){animation-delay:.34s}
+.slide.active .wfilm:nth-child(4){animation-delay:.42s}
+.slide.active .wfilm:nth-child(5){animation-delay:.5s}
+.slide.active .wfilm:nth-child(6){animation-delay:.58s}
+.slide.active .readlist .r{animation:fup .35s both}
+.slide.active .readlist .r:nth-child(1){animation-delay:.14s}
+.slide.active .readlist .r:nth-child(2){animation-delay:.2s}
+.slide.active .readlist .r:nth-child(3){animation-delay:.26s}
+.slide.active .readlist .r:nth-child(4){animation-delay:.32s}
+.slide.active .readlist .r:nth-child(5){animation-delay:.38s}
+.slide.active .readlist .r:nth-child(6){animation-delay:.44s}
+.slide.active .readlist .r:nth-child(7){animation-delay:.5s}
+.slide.active .readlist .r:nth-child(8){animation-delay:.56s}
+.slide.active .flow .fstep{animation:fup .5s both}
+.slide.active .flow .fstep:nth-of-type(1){animation-delay:.25s}
+.slide.active .flow .fstep:nth-of-type(2){animation-delay:.45s}
+.slide.active .flow .fstep:nth-of-type(3){animation-delay:.65s}
+.slide.active .flow .farr{animation:fin .4s both}
+.slide.active .flow .farr:nth-of-type(1){animation-delay:.42s}
+.slide.active .flow .farr:nth-of-type(2){animation-delay:.62s}
+.slide.active .tli{animation:fup .4s both}
+.slide.active .tli:nth-child(1){animation-delay:.12s}
+.slide.active .tli:nth-child(2){animation-delay:.17s}
+.slide.active .tli:nth-child(3){animation-delay:.22s}
+.slide.active .tli:nth-child(4){animation-delay:.27s}
+.slide.active .tli:nth-child(5){animation-delay:.32s}
+.slide.active .tli:nth-child(6){animation-delay:.37s}
+.slide.active .tli:nth-child(7){animation-delay:.42s}
+.slide.active .tli:nth-child(8){animation-delay:.47s}
+.slide.active .tli:nth-child(9){animation-delay:.52s}
+.slide.active .tli:nth-child(10){animation-delay:.57s}
+.slide.active .tli:nth-child(11){animation-delay:.62s}
+.slide.active .tli:nth-child(12){animation-delay:.67s}
+.slide.active .tli:nth-child(13){animation-delay:.72s}
+.slide.active .lighttable .fs{animation:land .55s cubic-bezier(.2,.9,.3,1.1) both}
+.slide.active .lighttable .fs:nth-child(1){animation-delay:.25s}
+.slide.active .lighttable .fs:nth-child(2){animation-delay:.37s}
+.slide.active .lighttable .fs:nth-child(3){animation-delay:.49s}
+.slide.active .lighttable .fs:nth-child(4){animation-delay:.61s}
+.slide.active .lighttable .fs:nth-child(5){animation-delay:.73s}
+.slide.active .lighttable .fs:nth-child(6){animation-delay:.85s}
+.slide.active .voice{animation:vT .5s both}
+.slide.active .voice:nth-child(even){animation-name:vB}
+.slide.active .voice:nth-child(1){animation-delay:.25s}
+.slide.active .voice:nth-child(2){animation-delay:.38s}
+.slide.active .voice:nth-child(3){animation-delay:.51s}
+.slide.active .voice:nth-child(4){animation-delay:.64s}
+.slide.active .dq{animation:fup .45s .82s both}
+.slide.active .quote{animation:fup .5s .24s both}
+.slide.active .framebox{animation:fup .5s .34s both}
+.slide.active .iceberg .ib-above{animation:fup .45s .2s both}
+.slide.active .iceberg .ib-water{animation:fin .4s .45s both}
+.slide.active .iceberg .ib-below{animation:fup .5s .55s both}
+.slide.active .method-result{animation:fup .4s .85s both}
+.slide.active .ringwrap ellipse:nth-of-type(1){animation:drawR 1s .3s ease both}
+.slide.active .ringwrap ellipse:nth-of-type(2){animation:fin .5s 1.1s both}
+.slide.active .ringwrap circle{transform-box:fill-box;transform-origin:center;animation:npop .3s both}
+.slide.active .ringwrap circle:nth-of-type(1){animation-delay:.48s}
+.slide.active .ringwrap circle:nth-of-type(2){animation-delay:.57s}
+.slide.active .ringwrap circle:nth-of-type(3){animation-delay:.66s}
+.slide.active .ringwrap circle:nth-of-type(4){animation-delay:.75s}
+.slide.active .ringwrap circle:nth-of-type(5){animation-delay:.84s}
+.slide.active .ringwrap circle:nth-of-type(6){animation-delay:.93s}
+.slide.active .ringwrap circle:nth-of-type(7){animation-delay:1.02s}
+.slide.active .ringwrap circle:nth-of-type(8){animation-delay:1.11s}
+.slide.active .ringwrap text{animation:fin .45s 1.3s both}
+.slide.active .ringwrap polygon{animation:fin .4s 1.55s both}
+/* глаз-спираль */
+.eyehero .lid{stroke-dasharray:280}
+.eyehero .spir{stroke-dasharray:780}
+.cover.play .lid{animation:drawL .8s .3s ease both}
+.cover.play .lid:nth-of-type(2){animation-delay:.45s}
+.cover.play .spir{animation:drawS 1.15s .75s ease both}
+.cover.play .pupil{transform-box:fill-box;transform-origin:center;animation:pupil .45s 1.55s cubic-bezier(.2,1.5,.4,1) both,breathe 5s 2.4s ease-in-out infinite alternate}
+.rail-mark{width:38px;height:24px}
+svg.eg:has(use[href="#g-ap"]){width:22px;height:14px}
+/* SVG-заглушки */
+.win.w-cal{background:repeating-linear-gradient(57deg,rgba(236,230,218,.05) 0 2px,transparent 2px 24px),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%230b1322'/%3E%3Cpath d='M0 112 L22 58 L38 100 L58 42 L76 92 L94 34 L116 88 L134 54 L160 100 L160 160 L0 160 Z' fill='%23141d31' stroke='%23232c42' stroke-width='1'/%3E%3Cpath d='M34 160 L60 88 L88 160 Z' fill='%23d8be86' opacity='.13'/%3E%3Cpath d='M50 112 l8 -3 v12 l-8 3 Z' fill='%23c9a14a' opacity='.5'/%3E%3Cpath d='M100 102 l8 -3 v12 l-8 3 Z' fill='%23c9a14a' opacity='.35'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-nos{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%230c1420'/%3E%3Ccircle cx='132' cy='24' r='14' fill='%23d8be86' opacity='.16'/%3E%3Cpath d='M10 146 h30 v-18 h28 v-18 h28 v-18 h28 v-18 h26' fill='none' stroke='%234a5468' stroke-width='2'/%3E%3Cpath d='M52 146 Q50 106 58 88 L55 52 L62 86 L64 44 L69 86 L74 38 L76 86 L84 50 L80 90 Q90 106 88 146 Z' fill='%2304060b' opacity='.92'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-prg{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%230f1626'/%3E%3Crect x='79' y='6' width='2' height='148' fill='%23d8be86' opacity='.4'/%3E%3Ccircle cx='52' cy='84' r='13' fill='%23070c16'/%3E%3Cpath d='M30 150 q0 -30 22 -34 q22 4 22 34 Z' fill='%23070c16'/%3E%3Ccircle cx='108' cy='84' r='13' fill='%23aeb6c8' opacity='.14'/%3E%3Cpath d='M86 150 q0 -30 22 -34 q22 4 22 34 Z' fill='%23aeb6c8' opacity='.12'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-sec{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%2310182b'/%3E%3Cpath d='M80 78 a24 24 0 0 1 24 24 a34 34 0 0 1 -34 34 a44 44 0 0 1 -44 -44 a54 54 0 0 1 54 -54' fill='none' stroke='%23c9a14a' stroke-width='1.4' opacity='.32'/%3E%3Cpath d='M118 150 v-64 l8 -14 l8 14 v64 Z' fill='%230a0f1c' stroke='%233a4458' stroke-width='1'/%3E%3Cpath d='M22 46 L64 30 L62 37 L24 52 Z' fill='%23cfd6e4' opacity='.8'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-tet{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%23171123'/%3E%3Cpath d='M10 0 Q16 40 10 80 Q16 120 10 160' stroke='%233a3354' stroke-width='1.5' fill='none'/%3E%3Cpath d='M150 0 Q144 40 150 80 Q144 120 150 160' stroke='%233a3354' stroke-width='1.5' fill='none'/%3E%3Cpath d='M24 118 L136 118' stroke='%233a3354' stroke-width='1.5'/%3E%3Ccircle cx='52' cy='54' r='11' fill='%23e8e2d4' opacity='.82'/%3E%3Ccircle cx='84' cy='40' r='13' fill='%23e8e2d4' opacity='.9'/%3E%3Ccircle cx='116' cy='56' r='11' fill='%23e8e2d4' opacity='.78'/%3E%3Ccircle cx='84' cy='104' r='12' fill='%23d8be86' opacity='.85'/%3E%3C/svg%3E") center/cover no-repeat}
+.win.w-gol{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='160' height='160' fill='%23141020'/%3E%3Cpath d='M28 160 V72 Q80 24 132 72 V160' stroke='%233a3354' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='80' cy='62' r='14' fill='%23271c12'/%3E%3Cpath d='M60 160 V98 Q60 80 80 80 Q100 80 100 98 V160 Z' fill='%23271c12'/%3E%3Cpath d='M62 100 V150' stroke='%238a6a44' stroke-width='2' opacity='.5'/%3E%3Cpath d='M80 94 l2.4 5 5.4 .6 -4 3.6 1.1 5.3 -4.9 -2.6 -4.9 2.6 1.1 -5.3 -4 -3.6 5.4 -.6 Z' fill='%23d8be86' opacity='.9'/%3E%3C/svg%3E") center/cover no-repeat}
+/* плейсхолдеры TMDB */
+.shot[data-tmdb]:not(.has-image)::before,.framebox[data-tmdb]:not(.has-image)::before{content:"Кадр · подтянется из TMDB";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate);border:1px dashed var(--line-strong);padding:9px 14px;border-radius:2px;background:rgba(7,13,24,.5);white-space:nowrap}
+/* больше пыли в луче */
+.dust{width:84%}
+.dust i:nth-child(8){top:34%;right:26%;animation-duration:20s;animation-delay:2.2s}
+.dust i:nth-child(9){top:16%;right:52%;animation-duration:23s;animation-delay:6.4s;width:2px;height:2px}
+.dust i:nth-child(10){top:7%;right:60%;animation-duration:18s;animation-delay:.9s}
+.dust i:nth-child(11){top:40%;right:44%;animation-duration:25s;animation-delay:4.8s;width:4px;height:4px}
+.dust i:nth-child(12){top:24%;right:70%;animation-duration:21s;animation-delay:8.1s;width:2px;height:2px}
+.dust i:nth-child(13){top:2%;right:47%;animation-duration:17s;animation-delay:11s}
+.dust i:nth-child(14){top:31%;right:8%;animation-duration:26s;animation-delay:5.5s;width:5px;height:5px}
+/* айсберг */
+.icewrap{width:100%;max-width:900px;align-self:center;flex:1;display:flex;align-items:center}
+.icewrap svg{width:100%;height:auto;display:block}
+.iw-tag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;fill:var(--gold);text-transform:uppercase}
+.iw-lab{font-family:var(--mono);font-size:15px;letter-spacing:.1em;fill:var(--bone-dim);text-transform:uppercase}
+.iw-lab.b{fill:var(--bone)}
+.iw-sub{font-family:var(--serif);font-size:14px;fill:var(--slate)}
+@keyframes drawI{from{stroke-dasharray:900;stroke-dashoffset:900}to{stroke-dasharray:900;stroke-dashoffset:0}}
+.slide.active .iw-sea{animation:fin .6s .1s both}
+.slide.active .iw-line{animation:drawI .9s .2s ease both}
+.slide.active .iw-tip,.slide.active .iw-tipl{animation:fup .55s .5s both}
+.slide.active .iw-mass,.slide.active .iw-massl{animation:fin .7s .75s both}
+.slide.active .iw-ld,.slide.active .iw-lab,.slide.active .iw-sub,.slide.active .iw-tag{animation:fin .5s 1.05s both}
+/* ===== ПЕРЕХОДЫ: КИНО-НАПЛЫВ И ГИПНО-ИРИС ===== */
+.slide.active{animation:dis .9s cubic-bezier(.22,.75,.25,1) both}
+.slide.thesis.active,.slide.poster.active{animation:disT 1.15s cubic-bezier(.25,.8,.25,1) both}
+@keyframes dis{from{opacity:0;transform:scale(1.045);filter:blur(12px) brightness(1.12)}60%{filter:blur(2px) brightness(1.03)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+@keyframes disT{from{opacity:0;transform:scale(1.07);filter:blur(16px) brightness(1.15)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+#irisfx.go{animation:irisgo2 3.2s cubic-bezier(.55,.05,.45,.95) both}
+@keyframes irisgo2{0%{opacity:1;width:245vmax;height:245vmax}36%{width:0;height:0}64%{width:0;height:0}100%{opacity:1;width:245vmax;height:245vmax}}
+#irisem{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:48;opacity:0}
+#irisem svg{width:min(36vh,320px);color:var(--gold);filter:drop-shadow(0 0 26px rgba(201,161,74,.4))}
+#irisem .ilid{fill:none;stroke:currentColor;stroke-width:1.6;stroke-dasharray:280;stroke-dashoffset:280}
+#irisem .ispir{fill:none;stroke:currentColor;stroke-width:1.5;stroke-dasharray:780;stroke-dashoffset:780}
+#irisem .ipup{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+#irisem.go{animation:iemF 3.2s both}
+#irisem.go svg{animation:irot 3.2s cubic-bezier(.4,0,.4,1) both}
+#irisem.go .ilid{animation:drawL .9s .55s ease both}
+#irisem.go .ilid:nth-of-type(2){animation-delay:.68s}
+#irisem.go .ispir{animation:drawS 1.35s .9s ease both}
+#irisem.go .ipup{animation:pupil .45s 1.85s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes iemF{0%,10%{opacity:0}26%,62%{opacity:1}80%,100%{opacity:0}}
+@keyframes irot{from{transform:rotate(-16deg) scale(.9)}to{transform:rotate(8deg) scale(1.02)}}
+/* ===== КРУПНОЕ ПОЛЕ СПОРА ===== */
+.dispute{max-width:1240px;margin:0 auto}
+.spine{padding:56px 0}
+.voices{gap:22px}
+.voice{padding:22px 22px 18px;border-top-width:4px}
+.voice .vy{font-size:12.5px}
+.voice .vn{font-size:21px;margin:6px 0 8px}
+.voice .vp{font-size:14.5px;line-height:1.5}
+.voice:nth-child(odd){transform:translateY(-38px)}
+.voice:nth-child(even){transform:translateY(38px)}
+.voice:nth-child(odd)::before{bottom:-33px;height:32px}
+.voice:nth-child(even)::before{top:-33px;height:32px}
+.dq{font-size:clamp(16px,1.6vw,21px);margin-top:34px}
+/* каталог жуткого */
+.ci{width:36px;height:36px;color:var(--gold);flex:none}
+.card.bord .ci{color:var(--bordeaux-soft)}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(5){animation-delay:.7s}
+.slide.active :is(.cols,.cols-3,.cols-4,.cols-wide,.stack)>.card:nth-child(6){animation-delay:.82s}
+/* ===== ДИВАЙДЕРЫ КРУПНЕЕ · ЗЕРКАЛО СИЛЬНЕЕ ===== */
+.poster-inner{margin-top:5vh}
+.poster .knum{font-size:clamp(46px,7vw,96px)}
+.poster .word{font-size:clamp(64px,13.5vw,196px)}
+.poster .sub{font-size:clamp(19px,2.3vw,30px);max-width:36ch}
+.mirror .axis{width:2px;background:linear-gradient(transparent,rgba(201,161,74,.55) 30%,rgba(201,161,74,.55) 70%,transparent);box-shadow:0 0 20px rgba(201,161,74,.3)}
+.reflectword .refl{opacity:.32;filter:blur(1.2px);-webkit-mask:linear-gradient(#000,transparent 84%);mask:linear-gradient(#000,transparent 84%)}
+.slide.active .refl{animation:shim 4.5s 1.2s ease-in-out infinite alternate}
+@keyframes shim{from{opacity:.22}to{opacity:.4}}
+/* слайд 20: крупный flow */
+.flow{gap:26px;max-width:1200px;margin-left:auto;margin-right:auto;width:100%}
+.fstep{padding:28px 28px 24px}
+.fstep h3{font-size:clamp(19px,2vw,26px)}
+.fstep p{font-size:14.5px;line-height:1.5}
+.fstep .fsk{font-size:12px}
+.farr{font-size:30px}
+/* айсберг крупнее */
+.icewrap{max-width:1140px}
+.iw-lab{font-size:17px}
+.iw-lab.b{font-size:18px}
+.iw-sub{font-size:15.5px}
+.iw-tag{font-size:12px}
+@keyframes drawI{from{stroke-dasharray:1100;stroke-dashoffset:1100}to{stroke-dasharray:1100;stroke-dashoffset:0}}
+/* слайд 20: боксы больше */
+.fstep{padding:34px 30px 30px;min-height:240px;justify-content:center}
+.fstep h3{font-size:clamp(21px,2.2vw,29px)}
+.fstep p{font-size:15.5px;line-height:1.55}
+.fstep .fsk{font-size:12.5px}
+/* слайд 50: карта курса крупнее */
+.coursemap{gap:14px;flex:1;align-content:center}
+.coursemap .node{padding:22px 20px;min-height:132px;gap:10px}
+.coursemap .node .nn{font-size:26px}
+.coursemap .node .nt{font-size:15px;line-height:1.22}
+/* слайд 52: фильмы крупнее */
+.watchlist{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;flex:1;align-content:center}
+.wfilm{padding:30px 28px 26px;min-height:190px;gap:9px}
+.wfilm .wt{font-size:24px}
+.wfilm .wd{font-size:12.5px}
+.wfilm .wn{font-size:14.5px;line-height:1.5}
+.wfilm .wy{font-size:64px;right:18px;top:20px}
+@media print{#irisem{display:none!important}}
+@media print{#gatefx,#irisfx{display:none!important}}
+.fs .win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block}
+.fs .win:after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(6,9,15,.94),rgba(6,9,15,.35) 55%,transparent)}
+
+/* ===== КИНО-РЕЖИМ: ФАЗОВАЯ ДРАМАТУРГИЯ (Явь → Погружение → Сон → Пробуждение) ===== */
+.slide.active[data-phase="real"]{animation:disReal .7s ease both}
+@keyframes disReal{from{opacity:0;filter:blur(5px)}to{opacity:1;filter:blur(0)}}
+.slide.active[data-phase="descent"]{animation:disDesc 1.6s cubic-bezier(.25,.8,.25,1) both}
+@keyframes disDesc{from{opacity:0;transform:scale(1.05);filter:blur(15px) brightness(1.1)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+.slide.active[data-phase="dream"]{animation:disDream 2.3s cubic-bezier(.3,.7,.3,1) both,driftD 12s 2.5s ease-in-out infinite alternate}
+@keyframes disDream{from{opacity:0;transform:scale(1.085) rotate(.35deg);filter:blur(24px) brightness(1.18)}55%{filter:blur(6px)}to{opacity:1;transform:scale(1) rotate(0);filter:blur(0) brightness(1)}}
+@keyframes driftD{from{transform:scale(1)}to{transform:scale(1.012) translateY(-5px)}}
+.slide.active[data-phase="wake"]{animation:wakeIn .55s ease both}
+.slide.active[data-phase="wake"]>*{animation:wakeIn .5s .08s both}
+@keyframes wakeIn{from{opacity:0}to{opacity:1}}
+.beam{transition:filter 2.5s ease}.grain{transition:opacity 2s ease}
+body[data-phase="descent"] .beam{filter:blur(28px) brightness(1.25)}
+body[data-phase="dream"] .beam{filter:blur(28px) brightness(1.55)}
+body[data-phase="wake"] .beam{filter:blur(28px) brightness(.6)}
+body[data-phase="dream"] .grain{opacity:.085}
+body[data-phase="wake"] .grain{opacity:.032}
+@keyframes fogIn{from{opacity:0;filter:blur(16px);transform:translateY(10px)}to{opacity:1;filter:blur(0);transform:none}}
+.slide.active[data-phase="dream"] .framebox{animation:fogIn 1.5s .25s both}
+.slide.active[data-phase="dream"] .eyebrow{animation:fogIn 1.2s 1.35s both}
+.slide.active[data-phase="dream"] h2{animation:fogIn 1.5s 1.7s both}
+.slide.active[data-phase="dream"] .lead{animation:fogIn 1.7s 2.2s both}
+.slide.active[data-phase="dream"] .cols>p{animation:fogIn 1.6s 1.9s both}
+.slide.active[data-phase="dream"].framefull .fk{animation:fogIn 1.4s 1.5s both}
+.slide.active[data-phase="dream"].framefull .fcap h2{animation:fogIn 1.7s 1.9s both}
+.slide.active[data-phase="dream"].framefull .kw span{animation:fogIn 1.2s both}
+.slide.active[data-phase="dream"].framefull .kw span:nth-child(1){animation-delay:2.3s}
+.slide.active[data-phase="dream"].framefull .kw span:nth-child(2){animation-delay:2.4s}
+.slide.active[data-phase="dream"].framefull .kw span:nth-child(3){animation-delay:2.5s}
+.slide.active[data-phase="dream"].framefull .logline{animation:fogIn 1.6s 2.7s both}
+/* МЕХАНИЗМ 01 · вытеснение → проявление (жуткое = знакомое, прошедшее вытеснение) */
+@keyframes unveil{from{opacity:.22;filter:blur(14px)}to{opacity:1;filter:blur(0)}}
+.slide.active[data-unveil] .lead{animation:unveil 2.4s .9s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-unveil] :is(.cols,.cols-3,.cols-wide,.stack)>.card:nth-child(1){animation:unveil 2.2s 1.6s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-unveil] :is(.cols,.cols-3,.cols-wide,.stack)>.card:nth-child(2){animation:unveil 2.2s 2.1s cubic-bezier(.3,.6,.3,1) both}
+/* МЕХАНИЗМ 03 · сгущение (Ранк: хранитель и вестник смерти в одном) */
+@keyframes condL{from{opacity:0;transform:translateX(-52px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes condR{from{opacity:0;transform:translateX(52px);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+.slide.active[data-cond] .cols>p{animation:condL 2.2s .5s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-cond] .cols>.card{animation:condR 2.2s .9s cubic-bezier(.3,.6,.3,1) both}
+/* МЕХАНИЗМ 04 · возвращение вытесненного (глаз, смотрящий в ответ) */
+.haunt{position:fixed;right:8%;top:12%;width:170px;z-index:3;color:var(--gold);opacity:0;pointer-events:none}
+body[data-haunt="1"] .haunt{animation:hauntIn 6s 1.6s ease both}
+@keyframes hauntIn{0%{opacity:0;transform:rotate(0)}30%{opacity:.08}70%{opacity:.05}100%{opacity:0;transform:rotate(-6deg)}}
+@media (prefers-reduced-motion: reduce){
+.slide.active[data-phase]{animation:fade .3s both}
+.slide.active[data-unveil] .lead,.slide.active[data-unveil] .card,.slide.active[data-cond] .cols>p,.slide.active[data-cond] .cols>.card{animation:none;opacity:1;filter:none;transform:none}
+.haunt{display:none}}
+@media print{.haunt{display:none!important}}
+/* CINE-EARLY: не-dream фазам — кинематографичный слайд-вход (blur+scale), а не плоский fade */
+body .slide.active[data-phase="real"]{animation:dis .95s cubic-bezier(.22,.75,.25,1) both}
+body .slide.active[data-phase="descent"]{animation:disDesc 1.3s cubic-bezier(.22,.75,.25,1) both}
+body .slide.active[data-phase="wake"]{animation:dis .85s cubic-bezier(.22,.75,.25,1) both}
+
+/* Первая часть — тоже кино: глубокий наплыв и проявление свода в яви */
+body .slide.active[data-phase="real"]{animation:disR2 1.15s cubic-bezier(.22,.75,.25,1) both}
+@keyframes disR2{from{opacity:0;transform:scale(1.05);filter:blur(14px) brightness(1.12)}60%{filter:blur(3px) brightness(1.03)}to{opacity:1;transform:scale(1);filter:blur(0) brightness(1)}}
+.slide.active[data-phase="real"] .eyebrow{animation:fogIn .9s .5s both}
+.slide.active[data-phase="real"] h2{animation:fogIn 1.1s .65s both}
+.slide.active[data-phase="real"] .lead{animation:fogIn 1.2s .9s both}
+@media (prefers-reduced-motion: reduce){body .slide.active[data-phase="real"]{animation:fade .3s both}.slide.active[data-phase="real"] .eyebrow,.slide.active[data-phase="real"] h2,.slide.active[data-phase="real"] .lead{animation:none;opacity:1;filter:none}}
+/* fb-contain: кадр целиком, без обрезки — тёмный кашет вместо кропа; бокс крупнее */
+.framebox.fb-contain{min-height:440px}
+.framebox.fb-contain img{object-fit:contain;background:linear-gradient(150deg,#0e1524,#070d18)}
+
+/* перфорация киноленты по краям рейки (возврат из старой версии) */
+.rail::before,.rail::after{content:"";position:absolute;top:0;bottom:0;width:14px;background-image:repeating-linear-gradient(to bottom,transparent 0 14px,var(--abyss) 14px 30px);pointer-events:none;z-index:1}
+.rail::before{left:6px}
+.rail::after{right:6px}
+@media print{.rail::before,.rail::after{display:none}}
+
+/* ===== Л04 · «Зеркало и идентификация»: слоты, схема, синтез ===== */
+.shot.s-eyes,.framebox.s-eyes{background:radial-gradient(40% 52% at 50% 38%,rgba(236,230,218,.13),transparent 64%),linear-gradient(150deg,#151f33,#070d18 84%)}
+.shot.s-per,.framebox.s-per{background:linear-gradient(90deg,rgba(236,230,218,.06) 0 49.6%,transparent 50.4%),linear-gradient(150deg,#182136,#0a0f1c 82%)}
+.shot.s-tax,.framebox.s-tax{background:repeating-linear-gradient(115deg,rgba(162,49,66,.11) 0 3px,transparent 3px 26px),linear-gradient(150deg,#1b1f31,#070d18 82%)}
+.shot.s-swan,.framebox.s-swan{background:radial-gradient(70% 58% at 50% 102%,rgba(236,230,218,.11),transparent 58%),linear-gradient(150deg,#131a2c,#05080f 84%)}
+.shot.s-jok,.framebox.s-jok{background:repeating-linear-gradient(0deg,rgba(201,161,74,.06) 0 14px,transparent 14px 30px),linear-gradient(150deg,#1c1a2c,#0a0f1c 82%)}
+.win.w-lady{background:repeating-conic-gradient(from 20deg at 50% 46%,rgba(157,184,204,.13) 0 9deg,transparent 9deg 24deg),linear-gradient(150deg,#16202f,#0a0f1c 82%)}
+.win.w-eyes{background:radial-gradient(38% 46% at 50% 40%,rgba(236,230,218,.16),transparent 62%),linear-gradient(150deg,#151f33,#070d18 84%)}
+.win.w-per{background:linear-gradient(90deg,rgba(236,230,218,.08) 0 49.4%,transparent 50.6%),linear-gradient(150deg,#182136,#0a0f1c 82%)}
+.win.w-tax{background:repeating-linear-gradient(115deg,rgba(162,49,66,.14) 0 2px,transparent 2px 18px),linear-gradient(150deg,#1b1f31,#070d18 82%)}
+.win.w-swan{background:radial-gradient(70% 50% at 50% 100%,rgba(236,230,218,.14),transparent 58%),linear-gradient(150deg,#131a2c,#05080f 84%)}
+.win.w-jok{background:repeating-linear-gradient(0deg,rgba(201,161,74,.08) 0 9px,transparent 9px 20px),linear-gradient(150deg,#1c1a2c,#0a0f1c 82%)}
+/* Зеркальная сцена (SVG-композиция) */
+.mswrap{flex:1;display:flex;align-items:center}
+.mswrap svg{width:100%;max-height:66vh}
+.ms-lab{font-family:var(--mono);font-size:15px;fill:var(--bone);letter-spacing:.04em}
+.ms-lab.g{fill:#c9a14a}
+.ms-sub{font-family:var(--mono);font-size:12px;fill:#8b93a6;letter-spacing:.02em}
+.ms-tag{font-family:var(--mono);font-size:11px;fill:#9db8cc;letter-spacing:.22em}
+@keyframes msdraw{from{stroke-dasharray:900;stroke-dashoffset:900}to{stroke-dasharray:900;stroke-dashoffset:0}}
+.slide.active .ms-anim{animation:msdraw 1.2s .25s ease both}
+@keyframes msglow{from{opacity:0}to{opacity:1}}
+.slide.active .ms-fade{animation:msglow .9s .8s ease both}
+/* Синтез: половины съезжаются (рифма со склейкой лиц «Персоны») */
+.syn{display:grid;grid-template-columns:1fr 1fr;gap:0;flex:1;align-content:center;position:relative}
+.syn::before{content:"";position:absolute;left:50%;top:6%;bottom:6%;width:1px;background:linear-gradient(transparent,var(--gold) 28%,var(--gold) 72%,transparent);opacity:.75}
+.syn .half{display:flex;flex-direction:column;gap:16px;padding:0 36px;justify-content:center}
+.slide.active[data-cond] .syn .half.l{animation:condL 2.2s .4s cubic-bezier(.3,.6,.3,1) both}
+.slide.active[data-cond] .syn .half.r{animation:condR 2.2s .4s cubic-bezier(.3,.6,.3,1) both}
+.mode{border:1px solid var(--line);border-left:3px solid var(--gold);background:rgba(255,255,255,.02);padding:17px 19px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.mode .mk{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.mode h3{margin:5px 0 4px}
+.mode p{font-size:13px;color:var(--bone-dim);line-height:1.42}
+.mode.b{border-left-color:var(--bordeaux)}.mode.b .mk{color:var(--bordeaux-soft)}
+@media (prefers-reduced-motion:reduce){.slide.active[data-cond] .syn .half.l,.slide.active[data-cond] .syn .half.r,.slide.active .ms-anim,.slide.active .ms-fade{animation:none;opacity:1;transform:none;filter:none}}
+</style>
+</head>
+<body>
+
+<div class="beam"></div>
+<div class="dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="grain"></div>
+<div class="vignette"></div>
+<svg class="haunt" viewBox="0 0 220 130" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.4" d="M14 65 Q110 -6 206 65"/><path fill="none" stroke="currentColor" stroke-width="1.4" d="M14 65 Q110 136 206 65"/><circle cx="110" cy="65" r="26" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="110" cy="65" r="7" fill="currentColor"/></svg>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="g-mirr" viewBox="0 0 120 170"><ellipse cx="60" cy="85" rx="36" ry="54" fill="none" stroke="currentColor" stroke-width="8"/><line x1="60" y1="31" x2="60" y2="139" stroke="currentColor" stroke-width="4" opacity=".55"/><circle cx="45" cy="72" r="8" fill="currentColor"/><path d="M34 116 q0 -20 11 -22 q11 2 11 22 Z" fill="currentColor"/><circle cx="75" cy="72" r="8" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M64 116 q0 -20 11 -22 q11 2 11 22 Z" fill="none" stroke="currentColor" stroke-width="3.5"/></symbol>
+<symbol id="g-scr" viewBox="0 0 120 170"><rect x="16" y="42" width="88" height="60" fill="none" stroke="currentColor" stroke-width="8"/><path d="M60 146 L28 106 M60 146 L92 106 M60 146 L60 102" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="60" cy="146" r="6" fill="currentColor"/></symbol>
+<symbol id="g-ap" viewBox="0 0 220 130"><path d="M14 65 Q110 -6 206 65 Q110 136 14 65 Z" fill="none" stroke="currentColor" stroke-width="14"/><circle cx="110" cy="65" r="32" fill="none" stroke="currentColor" stroke-width="10"/><circle cx="110" cy="65" r="10" fill="currentColor"/></symbol>
+<symbol id="g-id" viewBox="0 0 120 170"><circle cx="46" cy="60" r="14" fill="currentColor"/><path d="M24 132 q0 -34 22 -37 q22 3 22 37 Z" fill="currentColor"/><circle cx="74" cy="60" r="14" fill="none" stroke="currentColor" stroke-width="5"/><path d="M52 132 q0 -34 22 -37 q22 3 22 37 Z" fill="none" stroke="currentColor" stroke-width="5"/></symbol>
+</defs></svg>
+
+<aside class="rail">
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-top">04</div>
+  <div class="rail-acts"><span class="a" data-a="I">I</span><span class="a" data-a="II">II</span><span class="a" data-a="III">III</span><span class="a" data-a="IV">IV</span></div>
+  <svg class="rail-mark" viewBox="0 0 220 130" aria-hidden="true"><path d="M14 65 Q110 -6 206 65 Q110 136 14 65 Z" fill="none" stroke="currentColor" stroke-width="12"/><circle cx="110" cy="65" r="32" fill="none" stroke="currentColor" stroke-width="9"/><circle cx="110" cy="65" r="9" fill="currentColor"/></svg>
+  <div class="rail-label">Психоаналитическая теория кино</div>
+</aside>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<main class="deck" id="deck">
+
+  <!-- 01 COVER · пуск проектора -->
+  <section class="slide cover active" data-phase="real" id="cover">
+    <div class="grid-bg"></div>
+    <svg class="ap-hero eyehero" viewBox="0 0 220 130" aria-hidden="true">
+      <path class="lid" d="M14 65 Q110 -6 206 65" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path class="lid" d="M14 65 Q110 136 206 65" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path class="spir" fill="none" stroke="currentColor" stroke-width="1.4" d="M110 65 a5 5 0 0 1 5 -5 a10 10 0 0 1 10 10 a15 15 0 0 1 -15 15 a20 20 0 0 1 -20 -20 a25 25 0 0 1 25 -25 a30 30 0 0 1 30 30 a35 35 0 0 1 -35 35 a40 40 0 0 1 -40 -40"/>
+      <circle class="pupil" cx="110" cy="65" r="7" fill="currentColor"/>
+    </svg>
+    <div class="cover-inner">
+      <div class="kicker">Авторский курс Карена Аванесяна · Лекция 04 / 12</div>
+      <div class="course-name">Психоаналитическая теория кино</div>
+      <h1>Зеркало и<br><span class="hl">идентификация</span></h1>
+      <div class="subt">Лакан, стадия зеркала и кино как машина идентификации</div>
+      <div class="meta">
+        <span><b>Понятия:</b> стадия зеркала · идеальное-я · méconnaissance</span>
+        <span><b>Кейсы:</b> Франжю · Бергман · Скорсезе · Аронофски</span>
+        <span><b>Кода:</b> «Джокер»</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 COLD OPEN · плёнка на световом столе -->
+  <section class="slide" data-phase="real" data-toc="Введение">
+    <div class="eyebrow">Лекция 04 <span class="sep">/</span> <span class="tag">С чего начнём</span></div>
+    <h2>Что роднит эти отражения?</h2>
+    <p class="lead" style="max-width:62ch;margin:14px 0 12px">Между крайними кадрами этой плёнки — семь десятилетий: от нуара Уэллса до комикс-трагедии. Держит их вместе один сюжетный узел: герой встречает собственный образ — в зеркале, в гриме, в чужом лице — и образ оказывается сильнее хозяина.</p>
+    <div class="lighttable">
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 947A</span><div class="win w-lady"></div><span class="cy">1947</span><span class="cn">Дама из Шанхая</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 960B</span><div class="win w-eyes"></div><span class="cy">1960</span><span class="cn">Глаза без лица</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 966A</span><div class="win w-per"></div><span class="cy">1966</span><span class="cn">Персона</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 976C</span><div class="win w-tax"></div><span class="cy">1976</span><span class="cn">Таксист</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 010D</span><div class="win w-swan"></div><span class="cy">2010</span><span class="cn">Чёрный лебедь</span></div>
+      <div class="fs"><span class="edge">KARAVAN · 5222 · 019E</span><div class="win w-jok"></div><span class="cy">2019</span><span class="cn">Джокер</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Шесть кадров слева — фильмы этой лекции. Подсказка: ответ даст понятие, которому Лакан посвятил девять страниц — самых цитируемых в теории кино.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 03 THESIS A -->
+  <section class="slide thesis" data-phase="real">
+    <div class="tlbl">Тезис лекции</div>
+    <div class="big">«Я» приходит <span class="hl">снаружи</span> — как чужой образ, взятый <span class="oc">напрокат</span>.</div>
+    <div class="tsub">Стадия зеркала: младенец узнаёт себя в отражении раньше, чем овладевает собственным телом. Идентичность начинается с идентификации.</div>
+    <div class="slide-foot"><span class="src">Ж. Лакан, «Стадия зеркала как образующая функцию Я», 1949.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 04 ВОПРОС + ТРИ СЛЕДСТВИЯ -->
+  <section class="slide" data-phase="real" data-toc="Главный вопрос и метод">
+    <div class="eyebrow">Лекция 04 <span class="sep">/</span> <span class="tag">Рамка</span></div>
+    <h2>Главный вопрос</h2>
+    <div class="cols-wide" style="margin-top:8px">
+      <div class="stack">
+        <p class="lead">Почему зритель узнаёт себя в чужом лице? Почему тёмный зал так легко превращает наблюдателя в участника?</p>
+        <p>Ответ этой лекции — понятие идентификации: механизм, которым «я» вообще возникает. Дорога пройдёт от Фрейда через зеркальную сцену Лакана к Метцу — и к четырём фильмам, где сборка «я» показана как сюжет.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Осадок</span><p>«Я» складывается из идентификаций — слепков с тех, кем человек хотел быть.</p></div>
+        <div class="def"><span class="term">Образ</span><p>Первая идентификация — не с человеком, а с отражением: целостным и чужим.</p></div>
+        <div class="def"><span class="term">Экран</span><p>Кино воспроизводит зеркальную сцену и потому работает как машина идентификации.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Три следствия — три акта лекции: понятие · экран · отражения.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 05 МЕТОД: ТРИ ВОПРОСА ЗЕРКАЛА -->
+  <section class="slide" data-phase="real">
+    <div class="eyebrow">Инструмент <span class="sep">/</span> <span class="tag">Три вопроса зеркала</span></div>
+    <h2>Метод: три вопроса зеркала</h2>
+    <div class="steps6" style="margin-top:14px">
+      <div class="st6"><span class="n">01</span><h3>Какой образ собран?</h3><p>С чем герой себя отождествляет: отражение, маска, роль, вырезка из газеты.</p></div>
+      <div class="st6"><span class="n">02</span><h3>Кто его признаёт?</h3><p>Чей взгляд удерживает образ: мать, толпа, пресса, камера. Образ без свидетеля рассыпается.</p></div>
+      <div class="st6 hot"><span class="n">03</span><h3>Где трещина?</h3><p>Момент, когда образ перестаёт совпадать с телом, — там сюжет и решается.</p></div>
+    </div>
+    <div class="method-result">Результат лекции: видеть в фильме не героя, а сборку его образа — и цену этой сборки</div>
+    <div class="slide-foot"><span class="src">Каждый кейс акта III завершается этими тремя вопросами.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 06 СИНХРОНИЯ 1947/1949 -->
+  <section class="slide" data-phase="real" data-toc="Синхрония: 1947 ↔ 1949">
+    <div class="eyebrow">1931–1975 <span class="sep">/</span> <span class="tag">Одна шкала</span></div>
+    <h2>Кино разбило зеркало первым</h2>
+    <p style="max-width:64ch;margin:10px 0 4px;color:var(--bone-dim)">Теория зеркала и зеркальный сюжет кино растут параллельно. Два узла в центре шкалы: Уэллс расстреливает зеркальный лабиринт за два года до того, как Лакан читает в Цюрихе канонический текст о зеркале.</p>
+    <div class="timeline"><div class="row">
+      <div class="tli"><span class="lab"><b>1913</b>«Пражский студент»: зеркало-двойник</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1921</b>Фрейд: глава «Идентификация»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1923</b>«Я и Оно»: я — осадок</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1931</b>Валлон: зеркальная проба</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1936</b>Мариенбад: доклад утерян</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1947</b>«Дама из Шанхая»: лабиринт расстрелян</span><span class="dot g"></span></div>
+      <div class="tli"><span class="lab"><b>1948</b>«Агрессивность в психоанализе»</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1949</b>Цюрих: «Стадия зеркала»</span><span class="dot b"></span></div>
+      <div class="tli"><span class="lab"><b>1953</b>Римская речь: возвращение к Фрейду</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1966</b>Écrits — и «Персона»</span><span class="dot g"></span></div>
+      <div class="tli"><span class="lab"><b>1970</b>Бодри: аппарат</span><span class="dot"></span></div>
+      <div class="tli"><span class="lab"><b>1975</b>Метц и Малви</span><span class="dot b"></span></div>
+    </div></div>
+    <div class="slide-foot"><span class="src">Совпадение дат — не причинность, а общий воздух: середина века думает о человеке через его отражение.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 07 КТО ТАКОЙ ЛАКАН -->
+  <section class="slide" data-phase="real">
+    <div class="eyebrow">Фигура <span class="sep">/</span> <span class="tag">Жак Лакан · 1901–1981</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Возвращение к Фрейду</h2>
+        <p style="margin-top:10px">Психиатр по образованию, Лакан входит в психоанализ через диссертацию о паранойе (1932) и дружбу с сюрреалистами. Его лозунг — «возвращение к Фрейду»: не смягчать открытие бессознательного, а читать его буквально, через язык.</p>
+        <p>С 1953 года — публичный семинар, который четверть века собирает философов, лингвистов и будущих теоретиков кино. Стиль намеренно тёмный: текст сопротивляется читателю, как бессознательное — сознанию.</p>
+      </div>
+      <div class="card" style="align-self:center"><div class="k">Почему кинотеория выбрала его</div><h3>Понятия, готовые к экрану</h3><p style="font-size:14px;color:var(--bone-dim)">Зеркало, взгляд, желание, воображаемое — словарь Лакана словно создан для тёмного зала. В 1970-е Метц, Бодри и Малви строят на нём целую дисциплину: экран и есть зеркало, вопрос лишь — чьё.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Ж. Лакан, «О параноическом психозе…», 1932 · Римская речь, 1953 · Écrits, 1966.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 08 DIVIDER I — ЗЕРКАЛО -->
+  <section class="slide divider poster" data-phase="descent" data-toc="Зеркальная стадия" data-act="I">
+    <svg class="emblem kh" viewBox="0 0 120 170" aria-hidden="true">
+      <g opacity=".16" transform="translate(9 7)"><ellipse cx="60" cy="85" rx="36" ry="54" fill="none" stroke="currentColor" stroke-width="1"/></g>
+      <ellipse cx="60" cy="85" rx="36" ry="54" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <line x1="60" y1="31" x2="60" y2="139" stroke="currentColor" stroke-width="1" opacity=".6"/>
+      <circle cx="45" cy="72" r="8" fill="currentColor" opacity=".85"/>
+      <path d="M34 116 q0 -20 11 -22 q11 2 11 22 Z" fill="currentColor" opacity=".85"/>
+      <circle cx="75" cy="72" r="8" fill="none" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M64 116 q0 -20 11 -22 q11 2 11 22 Z" fill="none" stroke="currentColor" stroke-width="1.3"/>
+    </svg>
+    <div class="poster-inner">
+      <div class="knum">I</div>
+      <div class="word reflectword" style="color:var(--bone)">Зеркало<span class="refl" aria-hidden="true">Зеркало</span></div>
+      <div class="sub">Стадия зеркала: сцена, в которой «я» рождается из чужого образа.</div>
+    </div>
+    <div class="slide-foot"><span class="src">Ж. Лакан: доклад 1936 года (Мариенбад) · канонический текст 1949 года (Цюрих).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 09 ИДЕНТИФИКАЦИЯ ДО ЛАКАНА -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-mirr"/></svg>Фрейд · 1921–1923 <span class="sep">/</span> <span class="tag">Идентификация до Лакана</span></div>
+    <h2>«Я» — осадок идентификаций</h2>
+    <div class="cols" style="margin-top:6px">
+      <div class="card"><div class="k">1921 · Массовая психология</div><h3>«Быть как», а не «иметь»</h3><p>Идентификация — самая ранняя эмоциональная связь с другим: ребёнок не хочет обладать отцом, он хочет быть отцом. Выбор объекта отвечает на вопрос «кого любить», идентификация — «кем быть».</p></div>
+      <div class="card bord"><div class="k">1923 · Я и Оно</div><h3>Слепки оставленных связей</h3><p>Характер «я» — история его привязанностей: утраченный объект не исчезает, а встраивается внутрь. Личность оказывается архивом тех, кем человек когда-то хотел стать.</p></div>
+    </div>
+    <p style="max-width:66ch;margin-top:20px">Лакан делает следующий шаг и радикализует схему: первая идентификация происходит ещё раньше — и не с человеком, а <strong>с образом</strong>.</p>
+    <div class="slide-foot"><span class="src">З. Фрейд, «Массовая психология и анализ Я», 1921, гл. VII · «Я и Оно», 1923.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 10 ЗЕРКАЛЬНАЯ СЦЕНА (SVG) -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-mirr"/></svg>Сцена <span class="sep">/</span> <span class="tag">6–18 месяцев</span></div>
+    <h2>Зеркальная сцена</h2>
+    <div class="mswrap">
+      <svg viewBox="0 0 1060 470" aria-hidden="true">
+        <defs><linearGradient id="msml" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22314e"/><stop offset="1" stop-color="#0c1424"/></linearGradient></defs>
+        <line x1="40" y1="400" x2="1020" y2="400" stroke="rgba(190,206,236,.35)" stroke-width="1.2"/>
+        <rect x="520" y="88" width="14" height="312" fill="url(#msml)" stroke="rgba(198,216,230,.6)" stroke-width="1"/>
+        <text class="ms-tag" x="527" y="72" text-anchor="middle">ПЛОСКОСТЬ ЗЕРКАЛА</text>
+        <g>
+          <circle cx="360" cy="210" r="26" fill="none" stroke="#ece6da" stroke-width="2"/>
+          <path class="ms-anim" d="M360 236 q-30 10 -34 64 q20 26 34 26 q14 0 34 -26 q-4 -54 -34 -64" fill="none" stroke="#ece6da" stroke-width="2"/>
+          <path d="M330 300 q-16 22 -8 52 M390 300 q16 22 8 52" fill="none" stroke="#ece6da" stroke-width="2" stroke-linecap="round"/>
+          <path d="M336 258 q-30 -10 -44 -34 M384 258 q30 -14 40 -40" fill="none" stroke="#ece6da" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <g class="ms-fade" opacity=".9">
+          <circle cx="700" cy="196" r="30" fill="none" stroke="#c6d8e6" stroke-width="1.6" stroke-dasharray="5 5"/>
+          <path d="M700 226 q-34 12 -38 78 q22 30 38 30 q16 0 38 -30 q-4 -66 -38 -78" fill="none" stroke="#c6d8e6" stroke-width="1.6" stroke-dasharray="5 5"/>
+          <circle cx="700" cy="230" r="86" fill="rgba(157,184,204,.07)"/>
+        </g>
+        <path class="ms-anim" d="M392 196 Q530 96 664 176" fill="none" stroke="#c9a14a" stroke-width="1.6"/>
+        <polygon class="ms-fade" points="664,176 646,164 650,182" fill="#c9a14a"/>
+        <g class="ms-fade">
+          <path d="M170 420 l30 -12 M226 428 l26 -18 M290 418 l20 -16 M150 442 l34 -6 M250 446 l30 -10" stroke="rgba(236,230,218,.5)" stroke-width="2" stroke-dasharray="4 5" fill="none"/>
+        </g>
+        <line class="ms-fade" x1="392" y1="150" x2="238" y2="120" stroke="#8a6d28" stroke-width="1"/>
+        <text class="ms-lab g" x="226" y="112" text-anchor="end">ликующее узнавание</text>
+        <text class="ms-sub" x="226" y="132" text-anchor="end">jubilation: «это — я»</text>
+        <line class="ms-fade" x1="742" y1="140" x2="856" y2="118" stroke="#8a6d28" stroke-width="1"/>
+        <text class="ms-lab" x="866" y="112">образ целостности</text>
+        <text class="ms-sub" x="866" y="132">Gestalt: собранное тело-картинка</text>
+        <line class="ms-fade" x1="290" y1="436" x2="418" y2="452" stroke="#7c3140" stroke-width="1"/>
+        <text class="ms-lab" x="430" y="448">раздробленное тело</text>
+        <text class="ms-sub" x="430" y="466">corps morcelé: моторика отстаёт от картинки</text>
+      </svg>
+    </div>
+    <div class="slide-foot"><span class="src">Опора Лакана — зеркальная проба Анри Валлона (1931); у шимпанзе интерес к отражению гаснет, у ребёнка — ликование.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 11 PRÉMATURATION -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-mirr"/></svg>Понятие <span class="sep">/</span> <span class="tag">Prématuration</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Образу веришь больше,<br>чем телу</h2>
+        <p style="margin-top:12px">Человеческий детёныш рождается «недоношенным»: в полгода он не ходит, не сидит уверенно, не управляет руками. Его телесный опыт — разрозненные куски: голод здесь, боль там, рука — отдельный гость.</p>
+        <p>И вот в зеркале этот раздробленный опыт встречает картинку: собранную, симметричную, послушную. Картинка опережает возможности тела — потому она и торжествует. «Я» строится не изнутри, из ощущений, а снаружи, по лекалу образа.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Prématuration</span><p>Незрелость при рождении: моторика догонит образ лишь через годы.</p></div>
+        <div class="def"><span class="term">Gestalt</span><p>Целостная форма в зеркале — первый «проект» будущего «я».</p></div>
+        <div class="def"><span class="term">Идеальное-я</span><p>Образ, с которым «я» отныне сверяется — и никогда не совпадает.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Отсюда драма: идентичность всегда «впереди» тела — как обещание, которое телу не сдержать.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 12 MÉCONNAISSANCE (unveil) -->
+  <section class="slide" data-phase="descent" data-unveil>
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-mirr"/></svg>Понятие <span class="sep">/</span> <span class="tag">Méconnaissance</span></div>
+    <h2>Узнавание — это ошибка узнавания</h2>
+    <p class="lead" style="max-width:64ch;margin:12px 0 10px">В самом радостном «это — я» спрятано «это — не я»: ребёнок отождествляется с тем, чем не является, — с плоской, зеркально перевёрнутой, внешней картинкой.</p>
+    <div class="cols" style="margin-top:8px">
+      <div class="card"><div class="k">Узнавание</div><h3>Reconnaissance</h3><p>Образ дарит единство: впервые можно сказать «я» и указать на что-то целое. Без этой сцены субъект не собрался бы вовсе.</p></div>
+      <div class="card bord"><div class="k">Не-узнавание</div><h3>Méconnaissance</h3><p>Плата за единство — самообман: «я» отныне ищет себя там, где его нет, — в образах, ролях и чужих взглядах. Ошибка не поломка системы, а её фундамент.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Слайд проявляется из размытия не для красоты: механика повторяет тезис — ясность скрывает ошибку.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 13 ИДЕАЛЬНОЕ-Я VS Я-ИДЕАЛ -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-mirr"/></svg>Различение <span class="sep">/</span> <span class="tag">Два идеала</span></div>
+    <h2>Идеальное-я и я-идеал</h2>
+    <div class="cols" style="margin-top:6px">
+      <div class="card"><div class="k">Идеальное-я · Idealich</div><h3>Каким себя вижу</h3><p>Образ из зеркала: целостный, любимый, всемогущий. Живёт в регистре воображаемого; питает нарциссизм и требует постоянного подтверждения.</p></div>
+      <div class="card bord"><div class="k">Я-идеал · Ich-Ideal</div><h3>Откуда на себя смотрю</h3><p>Точка взгляда, из которой образ оценивается: родительская, социальная, символическая. Не «каким хочу быть», а «чьим глазам должен понравиться».</p></div>
+    </div>
+    <p style="max-width:66ch;margin-top:20px">Пара понятий станет рабочей в кейсах: у героя всегда есть образ — и всегда есть инстанция, чьё признание он выпрашивает. Кино умеет показывать обе стороны: лицо в зеркале и взгляд, который его судит.</p>
+    <div class="slide-foot"><span class="src">Различение восходит к Фрейду (1914, 1921); у Лакана разведено по регистрам воображаемого и символического.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 14 СЛОВАРЬ: В · С · Р -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-mirr"/></svg>Минимальный словарь <span class="sep">/</span> <span class="tag">Три регистра</span></div>
+    <h2>Воображаемое · Символическое · Реальное</h2>
+    <div class="cols-3" style="margin-top:8px">
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="20" rx="11" ry="16" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="16" cy="16" r="3.4" fill="currentColor"/><circle cx="25" cy="16" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><div class="k">Воображаемое</div><h3>Регистр образа</h3><p>Зеркало, подобие, целостность. Здесь живут идентификация, нарциссизм и вся оптика этой лекции.</p></div>
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 12 H32 M8 20 H32 M8 28 H32 M14 6 V34 M26 6 V34" fill="none" stroke="currentColor" stroke-width="2"/></svg><div class="k">Символическое</div><h3>Регистр языка</h3><p>Имена, законы, родство — сеть, в которую субъект вписан до рождения. Отсюда смотрит я-идеал.</p></div>
+      <div class="card bord"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32 L15 18 L20 26 L26 10 L33 24" fill="none" stroke="currentColor" stroke-width="2.6"/></svg><div class="k">Реальное</div><h3>Регистр невозможного</h3><p>То, что не отражается и не называется; прорывается травмой. Понадобится в Лекции 12 — «Экран смотрит в ответ».</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Курс идёт по нарастающей: эта лекция — воображаемое; символическое вступит с Эдипом (Л06), Реальное — в финале.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 15 АГРЕССИВНОСТЬ -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-mirr"/></svg>Лакан · 1948 <span class="sep">/</span> <span class="tag">Изнанка зеркала</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Соперник — мой образ<br>в чужом теле</h2>
+        <p style="margin-top:12px">Годом раньше цюрихского доклада Лакан описывает обратную сторону зеркальной сборки: агрессивность. Если «я» держится на внешнем образе, всякий, кто на этот образ похож или на него претендует, — угроза самому существованию.</p>
+        <p>Детский транзитивизм — готовая иллюстрация: ребёнок бьёт товарища и искренне жалуется, что ударили его. Граница между «я» и подобным ещё не проведена — и охраняется кулаками.</p>
+      </div>
+      <div class="card" style="align-self:center"><div class="k">Для кейсов</div><h3>Насилие у зеркала</h3><p style="font-size:14px;color:var(--bone-dim)">Трэвис с револьвером перед отражением, Нина против двойника в репетиционном зале: агрессия в этих сценах направлена не на другого — на соперника-образ.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Ж. Лакан, «Агрессивность в психоанализе», 1948. Транзитивизм — по наблюдениям Ш. Бюлер.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 16 THESIS B -->
+  <section class="slide thesis" data-phase="descent">
+    <div class="tlbl">Следствие</div>
+    <div class="big">Идентичность — не данность, а <span class="hl">сборка</span>. И у сборки всегда есть <span class="oc">цена</span>.</div>
+    <div class="tsub">Четыре фильма акта III покажут четыре сметы: утрату образа, слияние с чужим, самосборку из осколков и идеал, который требует смерти тела.</div>
+    <div class="slide-foot"><span class="src">Но сначала — главный ход теории кино: перенести зеркало в кинозал.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 17 DIVIDER II — ЭКРАН -->
+  <section class="slide divider poster mirror" data-phase="descent" data-toc="Экран как зеркало" data-act="II">
+    <span class="axis"></span>
+    <div class="poster-inner" style="text-align:left">
+      <div class="knum">II</div>
+      <h2 class="word reflectword">Экран<span class="refl" aria-hidden="true">Экран</span></h2>
+      <div class="sub" style="margin-top:.5em">Зеркало, в котором нет моего тела. Метц переносит сцену Лакана в кинозал.</div>
+    </div>
+    <div class="slide-foot"><span class="src">К. Метц, «Воображаемое означающее», 1975.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 18 КИНОЗАЛ КАК ВТОРАЯ СЦЕНА -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>Сеанс <span class="sep">/</span> <span class="tag">Вторая зеркальная сцена</span></div>
+    <h2>Кинозал повторяет сцену у зеркала</h2>
+    <div class="cols-wide" style="margin-top:6px">
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Неподвижность</span><p>Тело обездвижено в кресле — как младенец, ещё не владеющий собой.</p></div>
+        <div class="def"><span class="term">Темнота</span><p>Собственное тело исчезает из виду; остаётся один светящийся прямоугольник.</p></div>
+        <div class="def"><span class="term">Сверхвосприятие</span><p>Глаз всевластен: видит всё, отовсюду, монтаж дарит невозможные точки зрения.</p></div>
+        <div class="def"><span class="term">Ликование</span><p>Удовольствие сеанса сродни радости у зеркала: мир собран, целостен и послушен взгляду.</p></div>
+      </div>
+      <div class="card" style="align-self:center"><div class="k">Бодри · 1970 · кросс Л03</div><h3>Аппарат уже готовил ответ</h3><p style="font-size:14px;color:var(--bone-dim)">Тёмный зал, неподвижный зритель, проекция за спиной — «Идеологические эффекты базового киноаппарата» описали устройство сцены. Лекция 03 разбирает сам аппарат; здесь важно, кого он в этой сцене производит.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Ж.-Л. Бодри, 1970. Условия сеанса — не фон, а участник сборки.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 19 МЕТЦ -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>Кристиан Метц · 1975 <span class="sep">/</span> <span class="tag">Поправка</span></div>
+    <h2>Зеркало без моего тела</h2>
+    <div class="cols-wide">
+      <div class="quote"><q>Фильм похож на зеркало. Но есть одна вещь, и только одна, которая в нём никогда не отражается: тело самого зрителя.</q><div class="attr">К. Метц · «Воображаемое означающее» · 1975</div></div>
+      <div class="stack" style="align-self:center">
+        <p>Экран — зеркало, из которого изъят смотрящий. Значит, буквального самоузнавания в кино нет — и тем не менее зритель «влипает» в фильм. С кем же он отождествляется, если его самого в кадре нет?</p>
+        <p>Ответ Метца — на следующем слайде: идентификаций две, и главная из них — вовсе не с героем.</p>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">C. Metz, «Le signifiant imaginaire», Communications № 23, 1975.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 20 ПЕРВИЧНАЯ / ВТОРИЧНАЯ -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>Механизм <span class="sep">/</span> <span class="tag">Две идентификации</span></div>
+    <h2>С кем совпадает зритель</h2>
+    <div class="flow" style="margin-top:7vh">
+      <div class="fstep a"><div class="fsk">Первичная</div><h3>С камерой</h3><p>Зритель отождествляется с самим актом видения: с точкой, из которой мир дан. Незаметная, тотальная, работает в любом фильме — даже без героев.</p></div>
+      <div class="farr">→</div>
+      <div class="fstep b"><div class="fsk">Вторичная</div><h3>С персонажем</h3><p>Знакомое «болею за героя»: совпадение с лицом, телом, положением в сюжете. Надстраивается над первичной и без неё невозможна.</p></div>
+    </div>
+    <p class="lead" style="max-width:70ch;margin-top:28px">Сильный ход Метца: главное отождествление — не эмоциональное, а оптическое. Прежде чем полюбить героя, зритель уже занял его мир как собственный взгляд. Кто владеет этой оптикой — вопрос следующей лекции.</p>
+    <div class="slide-foot"><span class="src">Кросс: Лекция 05 — «Мужской и женский взгляд» (Малви, 1975).</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 21 УРОВЕНЬ КАДРА -->
+  <section class="slide" data-phase="descent">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-scr"/></svg>Чтение формы <span class="sep">/</span> <span class="tag">Где искать в кадре</span></div>
+    <h2>Идентификация на уровне кадра</h2>
+    <div class="cols-3" style="margin-top:8px">
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 20 Q20 8 34 20 Q20 32 6 20 Z" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="20" cy="20" r="4" fill="currentColor"/></svg><div class="k">Приём 01</div><h3>Субъективная камера</h3><p>Кадр от первого лица: оптика героя выдана зрителю напрокат — идентификация в чистом виде.</p></div>
+      <div class="card"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 12 H20 V28 H6 Z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 12 H34 V28 H20 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity=".5"/><path d="M10 20 H16 M24 20 H30" stroke="currentColor" stroke-width="2"/></svg><div class="k">Приём 02</div><h3>Взгляд + ответный кадр</h3><p>Герой смотрит — монтаж показывает что. Зритель вшивается в цепочку взглядов (шов, кросс Л03).</p></div>
+      <div class="card bord"><svg class="ci" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="16" r="8" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M8 34 q0 -12 12 -12 q12 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><div class="k">Приём 03</div><h3>Крупный план лица</h3><p>Лицо во весь экран — зеркальная поверхность фильма: на него проецируется то, чего кадр не показывает.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Три приёма — три места, где сборка зрителя видна невооружённым глазом. Дальше — фильмы.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 22 DIVIDER III — ОТРАЖЕНИЯ -->
+  <section class="slide divider poster" data-phase="dream" data-toc="Четыре отражения" data-act="III">
+    <svg class="apbig eyehero" viewBox="0 0 220 130" aria-hidden="true">
+      <path class="lid" d="M14 65 Q110 -6 206 65" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path class="lid" d="M14 65 Q110 136 206 65" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path class="spir" fill="none" stroke="currentColor" stroke-width="1" d="M110 65 a5 5 0 0 1 5 -5 a10 10 0 0 1 10 10 a15 15 0 0 1 -15 15 a20 20 0 0 1 -20 -20 a25 25 0 0 1 25 -25 a30 30 0 0 1 30 30 a35 35 0 0 1 -35 35 a40 40 0 0 1 -40 -40"/>
+      <circle cx="110" cy="65" r="7" fill="currentColor"/>
+    </svg>
+    <div class="poster-inner">
+      <div class="knum">III</div>
+      <div class="word reflectword" style="font-size:clamp(52px,9vw,150px);color:var(--bone)">Отражения<span class="refl" aria-hidden="true">Отражения</span></div>
+      <div class="sub">Глаза без лица · Персона · Таксист · Чёрный лебедь: четыре режима идентификации.</div>
+    </div>
+    <div class="slide-foot"><span class="src">Каждый кейс: кадр-заставка, контекст, сцена, форма, прочтение, поле спора.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 01: ГЛАЗА БЕЗ ЛИЦА ============ -->
+  <section class="slide framefull" data-phase="dream" data-toc="Кейс 01 · Глаза без лица">
+    <div class="shot s-eyes" data-tmdb="Eyes Without a Face" data-year="1960" data-idx="0"><img alt="Кадр из «Глаз без лица»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1960</span>
+    <div class="fcap"><div class="fk">Кейс 01 · утрата образа</div><h2>Глаза без лица</h2>
+      <div class="kw"><span>Лицо-маска</span><span>Зеркала под запретом</span><span>Поэтический хоррор</span></div>
+      <p class="logline">Хирург крадёт лица чужих девушек, чтобы вернуть дочери её собственное. Стадия зеркала, прочитанная от противного: что остаётся от «я», когда образ отнят.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Les Yeux sans visage» · реж. Жорж Франжю · Франция–Италия, 1960</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · контекст <span class="sep">/</span> <span class="tag">Франжю и запреты</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Ужас, снятый как сказка</h2>
+        <p style="margin-top:12px">Сооснователь Французской синематеки берётся за «низкий» жанр и обходит сразу три цензуры: французскую (кровь), немецкую (безумные хирурги) и английскую (жестокость к животным). Сценарий адаптируют Буало и Нарсежак — авторы романа, из которого выросло «Головокружение».</p>
+        <p>На Эдинбургском фестивале 1960 года зрители теряют сознание на сцене пересадки лица; английская критика фильм громит. Реабилитация займёт десятилетия.</p>
+      </div>
+      <div class="framebox s-eyes" data-tmdb="Eyes Without a Face" data-year="1960" data-idx="2"><img alt="Кристиана в маске" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Кристиана · Эдит Скоб: маска неподвижна, живут только глаза</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Сцен. П. Буало и Т. Нарсежак по роману Ж. Редона; опер. Э. Шюфтан. Кросс: «Головокружение» — Лекции 05 и 11.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull" data-phase="dream" data-haunt>
+    <div class="shot s-eyes" data-tmdb="Eyes Without a Face" data-year="1960" data-idx="1"><img alt="Кристиана бродит по дому" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · дом без зеркал</div><h2>Лицо, которого нет</h2>
+      <p class="logline">Отец убрал из дома все зеркала; Кристиана скользит по комнатам в белой маске, и блестящие поверхности — нож, стекло шкафа — дразнят её обрывками отражения. Каждая дверь — рама без портрета.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 01 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · форма <span class="sep">/</span> <span class="tag">Маска и документ</span></div>
+    <h2>Анти-лицо крупным планом</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Франжю сталкивает две фактуры: сказочную — маска, голуби, музыка Жарра, — и документальную: операция снята с хирургической невозмутимостью, без единой монтажной уловки. Маска Эдит Скоб гладка настолько, что крупный план перестаёт работать: лицо есть, а выражения нет — экран лишается своей «зеркальной поверхности».</p>
+      <div class="card bord" style="align-self:center"><div class="k">Приём</div><h3>Отнятый крупный план</h3><p>Кино держится на лице; фильм последовательно его изымает. Зрителю некуда проецировать — идентификация буксует вместе с героиней.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Опер. Эжен Шюфтан — тот самый изобретатель «эффекта Шюфтана» с зеркалами.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · прочтение <span class="sep">/</span> <span class="tag">Режим: утрата</span></div>
+    <h2>«Я» без образа</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Стадия зеркала наоборот</div><h3>Разборка вместо сборки</h3><p>Лакан описал, как образ учреждает «я»; Франжю показывает обратный ход: без отражения Кристиана перестаёт быть кем-то — остаётся голос и глаза. Финал с голубями — не освобождение, а уход из мира людей: вне образа социального «я» нет.</p></div>
+      <div class="card bord"><div class="k">Чей идеал</div><h3>Маска как чужой проект</h3><p>Новое лицо шьёт отец — по своему образу дочери. Идеальное-я здесь буквально изготавливается другим человеком; отторжение трансплантата читается как бунт тела против навязанного образа.</p></div>
+    </div>
+    <p style="max-width:70ch;margin-top:18px"><strong>Образ:</strong> отнят и заменён маской · <strong>Признание:</strong> взгляд отца, что видит «проект», а не дочь · <strong>Трещина:</strong> тело отторгает пересаженное лицо.</p>
+    <div class="slide-foot"><span>Кейс 01 · прочтение · кросс: абъекция и тело — Лекция 08</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 01 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1960–2005</span></div>
+    <h2>Как читали «Глаза без лица»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices">
+        <div class="voice"><span class="vy">1960</span><div class="vn">Первая пресса</div><p class="vp">Скандал и обмороки в Эдинбурге; британская критика клеймит фильм как безвкусицу на грани допустимого.</p></div>
+        <div class="voice f2"><span class="vy">1967</span><div class="vn">Дюрнья</div><p class="vp">Первая монография о Франжю: не хоррор, а чёрная поэзия — наследница сюрреализма и Кокто.</p></div>
+        <div class="voice f3"><span class="vy">2000</span><div class="vn">Хокинс</div><p class="vp">Art-horror: фильм живёт на границе высокого и низкого, и сила его — именно в отказе выбирать.</p></div>
+        <div class="voice f4"><span class="vy">2005</span><div class="vn">Ловенстайн</div><p class="vp">Шок как свидетельство: изувеченное лицо несёт память войны и оккупации — травму, о которой Франция молчала.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Сказка, поэма или исторический симптом — и почему маска пугает сильнее раны?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Durgnat, «Franju», 1967 · Hawkins, «Cutting Edge», 2000 · Lowenstein, «Shocking Representation», 2005.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 02: ПЕРСОНА ============ -->
+  <section class="slide framefull" data-phase="dream" data-toc="Кейс 02 · Персона">
+    <div class="shot s-per" data-tmdb="Persona" data-year="1966" data-idx="0"><img alt="Кадр из «Персоны»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1966</span>
+    <div class="fcap"><div class="fk">Кейс 02 · слияние образов</div><h2>Персона</h2>
+      <div class="kw"><span>Крупный план</span><span>Молчание</span><span>Два лица — один образ</span></div>
+      <p class="logline">Актриса замолкает посреди спектакля; болтливая сиделка увозит её на остров. К финалу непонятно, где кончается одна женщина и начинается другая.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Persona» · реж. Ингмар Бергман · Швеция, 1966</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · контекст <span class="sep">/</span> <span class="tag">Фильм из больницы</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Замысел на больничной койке</h2>
+        <p style="margin-top:12px">Бергман пишет сценарий, восстанавливаясь после пневмонии, и позже назовёт картину фильмом, который спас ему жизнь. Название взято у Юнга: persona — социальная маска, повёрнутая к миру.</p>
+        <p>Пролог напоминает, из чего сделано кино: угольная дуга проектора, обрывки немой комедии, гвоздь в ладони — и мальчик, гладящий гигантское размытое лицо на экране. Фильм о слиянии начинается с ребёнка перед образом.</p>
+      </div>
+      <div class="framebox s-per" data-tmdb="Persona" data-year="1966" data-idx="2"><img alt="Альма и Элисабет" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Биби Андерссон и Лив Ульман · опер. Свен Нюквист</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Юнговский термин — редкий гость в фрейдо-лакановском курсе: маска здесь важнее школы. Кросс: кода Лекции 01.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull" data-phase="dream" data-haunt>
+    <div class="shot s-per" data-tmdb="Persona" data-year="1966" data-idx="1"><img alt="Совмещённые половины лиц" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · склейка лиц</div><h2>Пол-лица плюс пол-лица</h2>
+      <p class="logline">Монолог Альмы о материнстве Элисабет звучит дважды: сначала камера смотрит на слушающую, затем — на говорящую. На третьем заходе экран складывает половины двух лиц в одно — и это одно лицо не принадлежит никому.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 02 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · форма <span class="sep">/</span> <span class="tag">Крупный план как ландшафт</span></div>
+    <h2>Разрыв плёнки посередине</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Нюквист снимает лица как местность: свет делит их на освещённую и тёмную половины задолго до финальной склейки — композиция готовит слияние исподволь. В середине фильма, на пике жестокости, кадр вспыхивает и плёнка «рвётся»: медиум не выдерживает и напоминает о себе. Иллюзия рушится — и собирается заново.</p>
+      <div class="card bord" style="align-self:center"><div class="k">Приём</div><h3>Композиция-предсказание</h3><p>Задолго до спецэффекта героини делят кадр так, что зритель уже видел их одним лицом — просто не отдавал себе отчёта.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Разрыв плёнки — рифма к прологу: фильм помнит, что он фильм.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · прочтение <span class="sep">/</span> <span class="tag">Режим: слияние</span></div>
+    <h2>Идентификация без остатка</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Кто с кем сливается</div><h3>Речь входит в молчание</h3><p>Альма говорит за двоих — и постепенно занимает место молчащей: носит её халат, отвечает за неё мужу, рассказывает её биографию как свою. Молчание Элисабет работает как зеркальная гладь: в неё можно поместить что угодно.</p></div>
+      <div class="card bord"><div class="k">Цена</div><h3>Растворение границы</h3><p>Идентификация, доведённая до предела, съедает идентифицирующегося: «я» Альмы не обогащается чужим образом, а замещается им. Финальное «ничего» Элисабет — единственное слово, которое ещё различает двоих.</p></div>
+    </div>
+    <p style="max-width:70ch;margin-top:18px"><strong>Образ:</strong> чужое лицо на месте своего · <strong>Признание:</strong> молчание, что принимает всё · <strong>Трещина:</strong> склейка половин, не принадлежащая никому.</p>
+    <div class="slide-foot"><span>Кейс 02 · прочтение · кросс: безумие и граница — Лекция 09</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 02 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1967–1978</span></div>
+    <h2>Как читали «Персону»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices">
+        <div class="voice"><span class="vy">1967</span><div class="vn">Сонтаг</div><p class="vp">Против интерпретации: фильм не ребус о «настоящем» сюжете, а вариации на тему удвоения; сила его — в непрозрачности.</p></div>
+        <div class="voice f2"><span class="vy">1969</span><div class="vn">Вуд</div><p class="vp">Этическое чтение: молчание Элисабет — отказ от лжи ролей; Альма гибнет, потому что честность заразительна и невыносима.</p></div>
+        <div class="voice f3"><span class="vy">1978</span><div class="vn">Кавин</div><p class="vp">Mindscreen: экран показывает не события, а работу сознания; склейка лиц — грамматика от первого лица, у которого нет имени.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Слияние случилось на острове, в голове одной из женщин — или только на экране?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Sontag, «Persona», 1967 · Wood, «Ingmar Bergman», 1969 · Kawin, «Mindscreen», 1978.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 03: ТАКСИСТ ============ -->
+  <section class="slide framefull" data-phase="dream" data-toc="Кейс 03 · Таксист">
+    <div class="shot s-tax" data-tmdb="Taxi Driver" data-year="1976" data-idx="0"><img alt="Кадр из «Таксиста»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">1976</span>
+    <div class="fcap"><div class="fk">Кейс 03 · сборка образа</div><h2>Таксист</h2>
+      <div class="kw"><span>Зеркало-репетиция</span><span>Дневник</span><span>Признание прессы</span></div>
+      <p class="logline">Бессонный ветеран возит ночной Нью-Йорк и собирает себе «я» из осколков: армейская куртка, дневник, револьвер, чужая избирательная кампания. Город признает его героем — по ошибке.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Taxi Driver» · реж. Мартин Скорсезе · США, 1976 · Золотая пальмовая ветвь Канна</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · контекст <span class="sep">/</span> <span class="tag">Шрейдер и одиночество</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Сценарий из запертой машины</h2>
+        <p style="margin-top:12px">Пол Шрейдер пишет «Таксиста» на дне собственной жизни — без дома, с язвой, в кинотеатрах на ночь. Он называет источники прямо: дневники Артура Бремера, «Записки из подполья» Достоевского и формула «одинокий человек Бога».</p>
+        <p>Трэвис — рассказчик-дневник: город дан через его лобовое стекло и его закадровый голос. Зритель заперт в той же оптике — первичная идентификация работает на полную мощность.</p>
+      </div>
+      <div class="framebox s-tax" data-tmdb="Taxi Driver" data-year="1976" data-idx="2"><img alt="Трэвис в такси" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Роберт Де Ниро · ночной Нью-Йорк сквозь мокрое стекло</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Сцен. П. Шрейдер; опер. М. Чэпмен; музыка Б. Херрманна — последняя работа композитора.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull" data-phase="dream">
+    <div class="shot s-tax" data-tmdb="Taxi Driver" data-year="1976" data-idx="1"><img alt="Трэвис перед зеркалом" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · «You talkin' to me?»</div><h2>Репетиция себя</h2>
+      <p class="logline">Трэвис выхватывает револьвер перед зеркалом и заговаривает с отражением: «Ты мне говоришь?» В сценарии стояла ремарка «смотрит в зеркало» — монолог Де Ниро импровизирует. Герой репетирует того, кем хочет быть, — и соперник у него один: собственный образ.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 03 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · форма <span class="sep">/</span> <span class="tag">Зеркала и отстранение</span></div>
+    <h2>Камера отводит взгляд</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Фильм смотрит на мир глазами Трэвиса — но в решающие моменты камера отстраняется: медленный отъезд в пустой коридор во время телефонного разговора, взгляд сверху на бойню в финале. Оптика, которую зритель обжил, вдруг отказывается сопровождать героя — идентификация даёт зазор ровно там, где Трэвис теряет себя.</p>
+      <div class="card bord" style="align-self:center"><div class="k">Приём</div><h3>Зеркало заднего вида</h3><p>Глаза Трэвиса в узкой полосе зеркала — лейтмотив фильма и его последний кадр: тревожный взгляд, брошенный на самого себя.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Финальный взгляд в зеркало — незакрытая скобка: сборка героя не завершена.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · прочтение <span class="sep">/</span> <span class="tag">Режим: сборка</span></div>
+    <h2>Идеальное-я из газетных вырезок</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Сборка</div><h3>Морпех → мститель → герой</h3><p>Трэвис примеряет образы, как куртки: солдат, жених, спаситель девочки. Каждый собирается перед зеркалом и проверяется на чужом взгляде — Бетси, пассажирах, экране порнозала. Агрессия 1948 года тут как по учебнику: револьвер направлен в отражение.</p></div>
+      <div class="card bord"><div class="k">Признание</div><h3>Большой Другой читает газеты</h3><p>Финальная стена вырезок и письмо родителей Айрис — признание пришло: город назвал Трэвиса героем. Случайность этой развязки — самая жуткая мысль фильма: тот же человек с тем же револьвером мог войти в историю убийцей сенатора.</p></div>
+    </div>
+    <p style="max-width:70ch;margin-top:18px"><strong>Образ:</strong> мститель-спаситель, собранный перед зеркалом · <strong>Признание:</strong> пресса и родительское письмо · <strong>Трещина:</strong> последний взгляд в зеркало заднего вида.</p>
+    <div class="slide-foot"><span>Кейс 03 · прочтение · кросс: взгляд и город — Лекция 05</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 03 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 1976–2000</span></div>
+    <h2>Как читали «Таксиста»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices">
+        <div class="voice"><span class="vy">1976</span><div class="vn">Кейл</div><p class="vp">«Underground Man»: городской ад глазами подпольного человека; фильм-лихорадка, где отвращение и влечение неразличимы.</p></div>
+        <div class="voice f2"><span class="vy">1976</span><div class="vn">Шрейдер</div><p class="vp">Автокомментарий: история самоспасения через насилие — про одиночество, а не про город; финал сознательно двусмыслен.</p></div>
+        <div class="voice f3"><span class="vy">1986</span><div class="vn">Вуд</div><p class="vp">Идеологическое чтение: «героизация» Трэвиса — симптом Америки, которой нужен миф об очищающем насилии.</p></div>
+        <div class="voice f4"><span class="vy">2000</span><div class="vn">Таубин</div><p class="vp">Ревизия BFI: белая мужская паника, расовый подтекст и вопрос, чей взгляд фильм на самом деле обслуживает.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Финал — награда герою, галлюцинация умирающего или зеркало, подставленное зрителю?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Kael, New Yorker, 1976 · Schrader, интервью 1976 · Wood, «Hollywood from Vietnam to Reagan», 1986 · Taubin, BFI, 2000.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- ============ КЕЙС 04: ЧЁРНЫЙ ЛЕБЕДЬ ============ -->
+  <section class="slide framefull" data-phase="dream" data-toc="Кейс 04 · Чёрный лебедь">
+    <div class="shot s-swan" data-tmdb="Black Swan" data-year="2010" data-idx="0"><img alt="Кадр из «Чёрного лебедя»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">2010</span>
+    <div class="fcap"><div class="fk">Кейс 04 · идеал, который убивает</div><h2>Чёрный лебедь</h2>
+      <div class="kw"><span>Система зеркал</span><span>Двойник</span><span>Perfect</span></div>
+      <p class="logline">Балерина получает партию, требующую стать двумя лебедями сразу. Репетиционные зеркала множат её, пока отражение не начинает жить само.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Black Swan» · реж. Даррен Аронофски · США, 2010 · «Оскар» Натали Портман</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 04 · контекст <span class="sep">/</span> <span class="tag">Балет и Достоевский</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Профессия как машина идеала</h2>
+        <p style="margin-top:12px">Аронофски скрещивает «Лебединое озеро» с «Двойником» Достоевского и помещает действие в мир, где зеркало — рабочий инструмент: балерина проводит жизнь между станком и собственным отражением, а «идеальная форма» — прямое производственное требование.</p>
+        <p>Мать-художница дорисовывает картину: стены комнаты Нины увешаны её портретами — образ дочери изготавливается семьёй так же буквально, как маска у Франжю.</p>
+      </div>
+      <div class="framebox s-swan" data-tmdb="Black Swan" data-year="2010" data-idx="2"><img alt="Нина в репетиционном зале" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Натали Портман · репетиционный зал как зеркальный лабиринт</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Рифма с «Красными башмачками» (1948) заявлена самим фильмом: искусство, требующее всей жизни.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide framefull" data-phase="dream" data-haunt>
+    <div class="shot s-swan" data-tmdb="Black Swan" data-year="2010" data-idx="1"><img alt="Отражение живёт само" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · отражение опаздывает</div><h2>Зеркало срывается с поводка</h2>
+      <p class="logline">В ночной репетиции отражение Нины на долю секунды отстаёт от её движений — потом оборачивается, когда она стоит спиной. Двойники множатся: попутчица в метро, лицо соперницы в зеркале гримёрки, чёрный лебедь в собственных зрачках.</p>
+    </div>
+    <div class="slide-foot"><span>Кейс 04 · сцена</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 04 · форма <span class="sep">/</span> <span class="tag">Камера-преследователь</span></div>
+    <h2>Затылок героини, глаза зрителя</h2>
+    <div class="cols">
+      <p style="align-self:center;font-size:clamp(16px,1.4vw,19px)">Камера ходит за Ниной след в след, как в документальной хронике, — и этот же приём делает каждое зеркало ловушкой: в кадре с затылком героини любое отражение может оказаться «неправильным». Цифровая ретушь встроена в бытовые планы, поэтому граница между галлюцинацией и репортажем неотличима технически.</p>
+      <div class="card bord" style="align-self:center"><div class="k">Приём</div><h3>Зеркало как монтажный шов</h3><p>Каждая подмена спрятана в отражении: фильм врёт зрителю ровно теми поверхностями, которым героиня привыкла верить.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Опер. М. Либатик; хореография Б. Мийепье; дублёрша — солистка ABT Сара Лейн.</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 04 · прочтение <span class="sep">/</span> <span class="tag">Режим: идеал</span></div>
+    <h2>«I was perfect»</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Идеальное-я</div><h3>Форма, что требует всё</h3><p>Белый лебедь — идеал, изготовленный матерью и балетной школой; чёрный — идеал, заказанный балетмейстером. Нина не выбирает между ними: оба — чужие проекты, и оба требуют исчезновения её собственного тела — через голод, боль и кровь.</p></div>
+      <div class="card bord"><div class="k">Развязка</div><h3>Совпасть с образом = умереть</h3><p>Финальное «я была совершенна» — предельная méconnaissance: полное совпадение с идеалом достигается в момент смертельной раны. Лакан предупреждал: образ всегда «впереди» тела; догнать его можно только перестав быть телом.</p></div>
+    </div>
+    <p style="max-width:70ch;margin-top:18px"><strong>Образ:</strong> лебедь, белый и чёрный разом · <strong>Признание:</strong> аплодисменты, мать в зале, «little princess» балетмейстера · <strong>Трещина:</strong> осколок зеркала в животе.</p>
+    <div class="slide-foot"><span>Кейс 04 · прочтение · кросс: граница с психозом — Лекция 09</span><span class="fpg"></span></div>
+  </section>
+
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-ap"/></svg>Кейс 04 · поле спора <span class="sep">/</span> <span class="tag">Рецепция 2010–2011</span></div>
+    <h2>Как читали «Чёрного лебедя»</h2>
+    <div class="dispute">
+      <div class="spine"><div class="voices">
+        <div class="voice"><span class="vy">2010</span><div class="vn">Пресса</div><p class="vp">Восторг с оговорками: наследник «Красных башмачков» и «Отвращения» — или мелодрама, наряженная в артхаус?</p></div>
+        <div class="voice f2"><span class="vy">2010</span><div class="vn">Балетный цех</div><p class="vp">Критика изнутри профессии: фильм романтизирует истязание тела и продаёт миф о безумии как цене искусства.</p></div>
+        <div class="voice f3"><span class="vy">2011</span><div class="vn">Спор о теле</div><p class="vp">Скандал с дублёршей Сарой Лейн: чьё тело танцует «идеал» на экране — вопрос фильма, повторившийся в его производстве.</p></div>
+        <div class="voice f4"><span class="vy">2010-е</span><div class="vn">Академия</div><p class="vp">Лакановские чтения: хрестоматия воображаемого — идеальное-я, двойник, агрессия к сопернице-образу.</p></div>
+      </div></div>
+      <div class="dq"><b>Спор продолжается</b>Фильм критикует машину идеала — или сам ею любуется?</div>
+    </div>
+    <div class="slide-foot"><span class="src">Рецензии 2010 (NYT, «Ballet Review») · полемика А. Маколея · история С. Лейн, 2011.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 47 СИНТЕЗ (cond) -->
+  <section class="slide" data-phase="dream" data-toc="Синтез" data-cond>
+    <div class="eyebrow">Синтез <span class="sep">/</span> <span class="tag">Что собрали</span></div>
+    <h2>Четыре режима идентификации</h2>
+    <div class="syn" style="margin-top:8px">
+      <div class="half l">
+        <div class="mode"><div class="mk">01 · Утрата</div><h3>Глаза без лица</h3><p>Образ отнят — «я» выпадает из мира людей. Идентичность держится на отражении.</p></div>
+        <div class="mode b"><div class="mk">02 · Слияние</div><h3>Персона</h3><p>Чужой образ поглощает собственный: идентификация без остатка стирает границу.</p></div>
+      </div>
+      <div class="half r">
+        <div class="mode"><div class="mk">03 · Сборка</div><h3>Таксист</h3><p>«Я» смонтировано из осколков и ждёт признания; какое признание придёт — лотерея.</p></div>
+        <div class="mode b"><div class="mk">04 · Идеал</div><h3>Чёрный лебедь</h3><p>Совпасть с образом можно лишь целиком — то есть перестав быть телом.</p></div>
+      </div>
+    </div>
+    <p style="max-width:70ch;margin-top:16px">Половины съезжаются, как лица в «Персоне», — и складываются в одно правило: <strong>кино рассказывает про идентификацию, потому что само на ней работает</strong>. Осталось проверить правило на самом массовом примере.</p>
+    <div class="slide-foot"><span class="src">Четыре режима — четыре ответа на три вопроса зеркала.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 48 DIVIDER IV — ИДЕНТИФИКАЦИЯ -->
+  <section class="slide divider poster" data-phase="dream" data-toc="Кода: Джокер" data-act="IV">
+    <svg class="emblem blot" viewBox="0 0 120 170" aria-hidden="true">
+      <use href="#g-id" opacity=".14" transform="translate(9 7)"/>
+      <use href="#g-id" opacity=".9"/>
+    </svg>
+    <div class="poster-inner">
+      <div class="knum">IV</div>
+      <div class="word reflectword" style="font-size:clamp(40px,7.6vw,124px);color:var(--bone)">Идентификация<span class="refl" aria-hidden="true">Идентификация</span></div>
+      <div class="sub">Кода: сборка «я» выходит на стадион. Масскульт как большое зеркало.</div>
+    </div>
+    <div class="slide-foot"><span class="src">Кода-кейс: «Джокер», 2019.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 49 КОДА · ДЖОКЕР: ЗАСТАВКА -->
+  <section class="slide framefull" data-phase="dream">
+    <div class="shot s-jok" data-tmdb="Joker" data-year="2019" data-idx="0"><img alt="Кадр из «Джокера»" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <span class="fyear">2019</span>
+    <div class="fcap"><div class="fk">Кода-кейс · масскульт</div><h2>Джокер</h2>
+      <div class="kw"><span>Грим-маска</span><span>Лестница</span><span>Телевизор</span></div>
+      <p class="logline">Неудачливый комик собирает себе лицо из грима, походку из танца и имя из телеэфира. Город подхватывает образ — и возвращает его тысячей масок.</p>
+    </div>
+    <div class="slide-foot"><span class="src">«Joker» · реж. Тодд Филлипс · США, 2019 · Золотой лев Венеции</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 50 ДЖОКЕР · ГРИМ И ЛЕСТНИЦА -->
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-id"/></svg>Кода · сборка <span class="sep">/</span> <span class="tag">Грим, зеркало, танец</span></div>
+    <div class="cols-wide">
+      <div class="stack">
+        <h2>Лицо, нарисованное поверх</h2>
+        <p style="margin-top:12px">Фильм открывается зеркалом гримёрки: Артур растягивает себе улыбку пальцами — образ буквально наносится на тело, и тело сопротивляется (неуправляемый смех — симптом, идущий поперёк маски).</p>
+        <p>Танец на лестнице — переломная сцена сборки: походка забитого человека переписана в хореографию. Лестница, по которой Артур годами поднимался согнувшись, становится сценой спуска нового персонажа.</p>
+      </div>
+      <div class="framebox s-jok" data-tmdb="Joker" data-year="2019" data-idx="2"><img alt="Танец на лестнице" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i><div class="fbcap">Хоакин Феникс · лестница в Бронксе как сцена</div></div>
+    </div>
+    <div class="slide-foot"><span class="src">Рифма курса: грим-маска — прямая наследница маски Кристианы из кейса 01.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 51 ДЖОКЕР · ТВ КАК БОЛЬШОЙ ДРУГОЙ -->
+  <section class="slide framefull" data-phase="dream" data-haunt>
+    <div class="shot s-jok" data-tmdb="Joker" data-year="2019" data-idx="1"><img alt="Шоу Мюррея Франклина" loading="lazy" onload="this.closest('.shot,.framebox').classList.add('has-image')"><i class="gr g1"></i><i class="gr g2"></i></div>
+    <div class="fcap"><div class="fk">Сцена · эфир Мюррея Франклина</div><h2>Признание в прямом эфире</h2>
+      <p class="logline">Имя «Джокер» Артуру выдаёт телеведущий — в насмешку. Экран, перед которым он рос, фантазируя об отцовском объятии Мюррея, оказывается инстанцией признания: я-идеал с телевизионной заставкой. Де Ниро по ту сторону стола — ироничное зеркало «Таксиста».</p>
+    </div>
+    <div class="slide-foot"><span>Кода · сцена · Р. Де Ниро — рифма с кейсом 03</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 52 ДЖОКЕР · ПРОЧТЕНИЕ -->
+  <section class="slide" data-phase="dream">
+    <div class="eyebrow"><svg class="eg" aria-hidden="true"><use href="#g-id"/></svg>Кода · прочтение <span class="sep">/</span> <span class="tag">Зеркало размером с город</span></div>
+    <h2>Идентификация выходит на площадь</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Сборка напоказ</div><h3>Все ступени в одном фильме</h3><p>Утрата (таблетки отменены, биография матери рушится), сборка (грим и танец), признание (эфир, толпа в масках). Кода собирает режимы всех четырёх кейсов в один сюжет — потому фильм и сработал как учебник.</p></div>
+      <div class="card bord"><div class="k">Оговорка</div><h3>Границы коды</h3><p>Клиническая достоверность здесь не предмет разбора: «безумие на экране» — территория Лекции 09. Кода читает только механику образа: как масскульт превращает частную сборку «я» в тиражируемую маску.</p></div>
+    </div>
+    <p style="max-width:70ch;margin-top:18px"><strong>Образ:</strong> клоун, нарисованный поверх Артура · <strong>Признание:</strong> телеэфир и город в таких же масках · <strong>Трещина:</strong> смех, который телу не подчиняется.</p>
+    <div class="slide-foot"><span class="src">Венецианская премьера 2019 — спор о «опасном» фильме; маска Джокера ушла на реальные протесты — зеркало продолжило работать.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 53 СИЛА / ПРЕДЕЛ -->
+  <section class="slide" data-phase="wake">
+    <div class="eyebrow">Честный счёт <span class="sep">/</span> <span class="tag">Сила и предел</span></div>
+    <h2>Что метод даёт и где буксует</h2>
+    <div class="cols">
+      <div class="card"><div class="k">Сила</div><h3>Язык для главного фокуса кино</h3><p>Стадия зеркала объясняет, почему зритель «влипает» в экран, и даёт кейсам точный словарь: образ, признание, трещина. На этой схеме стоит вся теория 1970-х — Бодри, Метц, Малви.</p></div>
+      <div class="card bord"><div class="k">Предел</div><h3>Три поправки</h3><p>Эмпирия: психология развития не подтверждает «сцену» как одномоментное событие — это скорее миф основания. Метц сам признал: экран не возвращает тело зрителя. И главное — Копьец (1989): зеркало не экран, кинотеория взяла у Лакана лишь раннюю треть; ответ — в Лекции 12.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Copjec, «The Orthopsychic Subject», October, 1989.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 54 АКТУАЛЬНОСТЬ -->
+  <section class="slide" data-phase="wake">
+    <div class="eyebrow">Актуальность <span class="sep">/</span> <span class="tag">Зеркало в кармане</span></div>
+    <h2>Стадия зеркала — ежедневно</h2>
+    <div class="cols-wide">
+      <div class="stack">
+        <p class="lead">Фронтальная камера сделала зеркальную сцену бытовой практикой.</p>
+        <p>Селфи с фильтром — идеальное-я, изготовленное алгоритмом; лайк — признание большого Другого, поставленное на счётчик; аватар и дипфейк — образ, окончательно отделившийся от тела. Лекала Лакана ложатся на ленту соцсети без единой натяжки — тревожно точно.</p>
+      </div>
+      <div class="deflist" style="align-self:center">
+        <div class="def"><span class="term">Фильтр</span><p>Картинка снова «впереди» тела — и тело снова обязано догонять (индустрия коррекции под селфи).</p></div>
+        <div class="def"><span class="term">Счётчик</span><p>Признание стало числом: я-идеал с метрикой обновления.</p></div>
+        <div class="def"><span class="term">Дипфейк</span><p>Отражение без хозяина: чужое лицо, живущее собственной жизнью, — двойник Ранка в новом носителе.</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="src">Кросс: цифровой двойник — финал Лекции 01; экран, который смотрит и подстраивается, — Лекция 12.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 55 COURSEMAP -->
+  <section class="slide" data-phase="wake">
+    <div class="eyebrow">Маршрут <span class="sep">/</span> <span class="tag">Место лекции в курсе</span></div>
+    <h2>Карта курса</h2>
+    <div class="coursemap" style="margin-top:6px">
+      <div class="node"><span class="nn">01</span><span class="nt">Жуткое и двойник</span></div>
+      <div class="node"><span class="nn">02</span><span class="nt">Работа сновидения</span></div>
+      <div class="node"><span class="nn">03</span><span class="nt">Аппарат и шов</span></div>
+      <div class="node cur"><span class="nn">04</span><span class="nt">Зеркало и идентификация</span></div>
+      <div class="node"><span class="nn">05</span><span class="nt">Мужской и женский взгляд</span></div>
+      <div class="node"><span class="nn">06</span><span class="nt">Эдип и Электра</span></div>
+      <div class="node"><span class="nn">07</span><span class="nt">Фантазм и желание</span></div>
+      <div class="node"><span class="nn">08</span><span class="nt">Абъекция и чудовищное</span></div>
+      <div class="node"><span class="nn">09</span><span class="nt">Безумие на экране</span></div>
+      <div class="node"><span class="nn">10</span><span class="nt">Взгляд ребёнка</span></div>
+      <div class="node"><span class="nn">11</span><span class="nt">Тревога, страх и фобия</span></div>
+      <div class="node"><span class="nn">12</span><span class="nt">Экран смотрит в ответ</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Двенадцать лекций: от жуткого и двойника до экрана, который смотрит в ответ. Части: основания · зритель и взгляд · желание · безумие и современность.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 56 СЕМИНАР -->
+  <section class="slide" data-phase="wake" data-toc="К семинару">
+    <div class="eyebrow">Практика <span class="sep">/</span> <span class="tag">Задания</span></div>
+    <h2>К семинару</h2>
+    <div class="cols-3" style="margin-top:8px">
+      <div class="card"><div class="k">01 · Разбор — обязательно</div><h3>Сцена × три вопроса зеркала</h3><p>Одна зеркальная или «предзеркальная» сцена из фильмов лекции: какой образ собран, кто признаёт, где трещина. 300–400 слов, без пересказа фабулы.</p></div>
+      <div class="card"><div class="k">02 · Эссе — по выбору</div><h3>Один из двух вопросов</h3><p>«Селфи-камера как стадия зеркала: где аналогия работает, а где ломается?» либо «Чьё прочтение „Таксиста“ убедительнее: Кейл, Шрейдер, Вуд, Таубин?» 800–1000 слов.</p></div>
+      <div class="card bord"><div class="k">03 · К следующей встрече</div><h3>Просмотр</h3><p>«Головокружение» и «Гильда» — с вопросом на полях: кому в этих фильмах принадлежит взгляд камеры и что он делает с той, на кого направлен.</p></div>
+    </div>
+    <div class="slide-foot"><span class="src">Оформление ссылок — Chicago.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 57 К ПРОСМОТРУ -->
+  <section class="slide" data-phase="wake" data-toc="К просмотру и чтению">
+    <div class="eyebrow">Фильмы лекции <span class="sep">/</span> <span class="tag">Обязательное и дополнительное</span></div>
+    <h2>К просмотру</h2>
+    <div class="watchlist" style="margin-top:6px">
+      <div class="wfilm"><span class="wy">1960</span><span class="wt">Глаза без лица</span><span class="wd">Ж. Франжю · Франция</span><span class="wn">Утрата образа: «я» без отражения.</span></div>
+      <div class="wfilm"><span class="wy">1966</span><span class="wt">Персона</span><span class="wd">И. Бергман · Швеция</span><span class="wn">Слияние: идентификация без остатка.</span></div>
+      <div class="wfilm"><span class="wy">1976</span><span class="wt">Таксист</span><span class="wd">М. Скорсезе · США</span><span class="wn">Сборка «я» перед зеркалом и цена признания.</span></div>
+      <div class="wfilm"><span class="wy">2010</span><span class="wt">Чёрный лебедь</span><span class="wd">Д. Аронофски · США</span><span class="wn">Идеал, который догоняют ценой тела.</span></div>
+      <div class="wfilm"><span class="wy">2019</span><span class="wt">Джокер</span><span class="wd">Т. Филлипс · кода</span><span class="wn">Масскульт как большое зеркало.</span></div>
+      <div class="wfilm pro"><span class="wy">1947</span><span class="wt">Дама из Шанхая</span><span class="wd">О. Уэллс · пролог</span><span class="wn">Зеркальный лабиринт, расстрелянный за два года до Лакана.</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Подсказка для разбора: ищите сцену, где герой впервые видит себя со стороны.</span><span class="fpg"></span></div>
+  </section>
+
+  <!-- 58 К ЧТЕНИЮ -->
+  <section class="slide" data-phase="wake">
+    <div class="eyebrow">Аппарат <span class="sep">/</span> <span class="tag">Девять опор лекции</span></div>
+    <h2>К чтению</h2>
+    <div class="readlist" style="margin-top:6px">
+      <div class="r"><span class="n">01</span><span class="ttl"><b>Freud, S.</b> Massenpsychologie und Ich-Analyse. 1921. Гл. VII «Идентификация».</span><span class="typ">первоисточник</span></div>
+      <div class="r"><span class="n">02</span><span class="ttl"><b>Freud, S.</b> Das Ich und das Es. 1923.</span><span class="typ">первоисточник</span></div>
+      <div class="r"><span class="n">03</span><span class="ttl"><b>Wallon, H.</b> Comment se développe chez l'enfant la notion du corps propre. 1931.</span><span class="typ">источник Лакана</span></div>
+      <div class="r"><span class="n">04</span><span class="ttl"><b>Lacan, J.</b> Le stade du miroir… 1949 (Écrits, 1966).</span><span class="typ">первоисточник</span></div>
+      <div class="r"><span class="n">05</span><span class="ttl"><b>Lacan, J.</b> L'agressivité en psychanalyse. 1948.</span><span class="typ">первоисточник</span></div>
+      <div class="r"><span class="n">06</span><span class="ttl"><b>Baudry, J.-L.</b> Cinéma: effets idéologiques… 1970.</span><span class="typ">кросс Л03</span></div>
+      <div class="r"><span class="n">07</span><span class="ttl"><b>Metz, C.</b> Le signifiant imaginaire. 1975.</span><span class="typ">теория кино</span></div>
+      <div class="r"><span class="n">08</span><span class="ttl"><b>Copjec, J.</b> The Orthopsychic Subject. October, 1989.</span><span class="typ">мост Л12</span></div>
+      <div class="r"><span class="n">09</span><span class="ttl"><b>Elsaesser, T. &amp; Hagener, M.</b> Film Theory: An Introduction through the Senses. 2010. Гл. «Кино как зеркало и лицо».</span><span class="typ">обзор</span></div>
+    </div>
+    <div class="slide-foot"><span class="src">Следующая лекция — «Мужской и женский взгляд»: кому принадлежит взгляд камеры.</span><span class="fpg"></span></div>
+  </section>
+
+</main>
+
+<button class="zone left" id="zoneL" aria-label="Назад"></button>
+<button class="zone right" id="zoneR" aria-label="Вперёд"></button>
+<div class="cutfx" id="cutfx"></div>
+<div id="gatefx"></div>
+<div id="irisfx"></div>
+<div id="irisem" aria-hidden="true"><svg viewBox="0 0 220 130">
+  <path class="ilid" d="M14 65 Q110 -6 206 65"/>
+  <path class="ilid" d="M14 65 Q110 136 206 65"/>
+  <path class="ispir" d="M110 65 a5 5 0 0 1 5 -5 a10 10 0 0 1 10 10 a15 15 0 0 1 -15 15 a20 20 0 0 1 -20 -20 a25 25 0 0 1 25 -25 a30 30 0 0 1 30 30 a35 35 0 0 1 -35 35 a40 40 0 0 1 -40 -40"/>
+  <circle class="ipup" cx="110" cy="65" r="7" fill="currentColor"/>
+</svg></div>
+<div class="reeldot" id="reeldot"></div>
+<div class="nav">
+  <span class="counter"><span class="cur" id="cur">01</span> / <span id="tot">00</span></span>
+  <button class="nbtn" id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button class="nbtn" id="next" aria-label="Следующий слайд">›</button>
+</div>
+<button class="toc-btn" id="tocBtn">☰ Оглавление</button>
+<div class="toc-panel" id="tocPanel">
+  <div class="toc-inner">
+    <div class="toc-head"><span class="toc-title">Оглавление</span><span style="display:flex;gap:16px;align-items:baseline"><a class="toc-back" href="/lectures/">← Все лекции</a><a class="toc-back" id="tocClose" href="#">закрыть ✕</a></span></div>
+    <div class="toc-list" id="tocList"></div>
+  </div>
+</div>
+
+<script>
+const TMDB_API_KEY = ""; // вставьте свой ключ TMDB (v3) на сайте — кадры подтянутся автоматически
+async function loadTMDBStills(){
+  if(!TMDB_API_KEY) return;
+  const seen={};
+  const frames=document.querySelectorAll('.shot[data-tmdb], .framebox[data-tmdb]');
+  for(const f of frames){
+    try{
+      const key=f.dataset.tmdb;
+      if(!seen[key]){
+        const q=encodeURIComponent(key), yr=f.dataset.year||'';
+        const s=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${q}&year=${yr}`).then(r=>r.json());
+        const id=s.results&&s.results[0]&&s.results[0].id; if(!id){seen[key]=[];continue;}
+        const imgs=await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${TMDB_API_KEY}`).then(r=>r.json());
+        seen[key]=(imgs.backdrops&&imgs.backdrops.length?imgs.backdrops:imgs.stills)||[];
+      }
+      const arr=seen[key]; if(!arr.length) continue;
+      const idx=parseInt(f.dataset.idx||'0',10);
+      const back=arr[idx]||arr[arr.length-1];
+      const img=f.querySelector('img'); if(!img) continue;
+      img.onload=()=>f.classList.add('has-image');
+      img.src=`https://image.tmdb.org/t/p/w1280${back.file_path}`;
+    }catch(e){}
+  }
+}
+const slides=Array.from(document.querySelectorAll('.slide'));
+const total=slides.length; let i=0;
+const cur=document.getElementById('cur'),bar=document.getElementById('bar'),railFill=document.getElementById('railFill');
+const cover=document.getElementById('cover'),cutfx=document.getElementById('cutfx'),reeldot=document.getElementById('reeldot');
+const actEls=Array.from(document.querySelectorAll('.rail .a'));
+const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('tot').textContent=String(total).padStart(2,'0');
+slides.forEach((s,idx)=>{const e=s.querySelector('.fpg'); if(e) e.textContent=String(idx+1).padStart(2,'0')+' — '+String(total).padStart(2,'0');});
+function coverPlay(){if(!cover||reduce)return;cover.classList.remove('play');void cover.offsetWidth;cover.classList.add('play');}
+const gatefx=document.getElementById('gatefx'),irisfx=document.getElementById('irisfx'),irisem=document.getElementById('irisem');
+let pend=null;
+function apply(n){
+  i=n;
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  cur.textContent=String(i+1).padStart(2,'0');
+  const pct=(i/(total-1))*100; if(bar) bar.style.width=pct+'%'; if(railFill) railFill.style.height=pct+'%';
+  let act=null; for(let k=0;k<=i;k++){ if(slides[k].dataset.act) act=slides[k].dataset.act; }
+  actEls.forEach(a=>a.classList.toggle('cur',a.dataset.a===act));
+  document.body.dataset.phase=slides[i].dataset.phase||'real';
+  document.body.dataset.haunt=slides[i].hasAttribute('data-haunt')?'1':'0';
+  if(i===0) coverPlay();
+  if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+}
+function show(n){
+  n=Math.max(0,Math.min(total-1,n));
+  const t=slides[n];
+  if(pend){clearTimeout(pend);pend=null;}
+  if(reduce){apply(n);return;}
+  if(t.classList.contains('divider')){
+    irisfx.classList.remove('go');void irisfx.offsetWidth;irisfx.classList.add('go');
+    irisem.classList.remove('go');void irisem.offsetWidth;irisem.classList.add('go');
+    pend=setTimeout(()=>{apply(n);
+      if(t.dataset.act){reeldot.classList.remove('blink');void reeldot.offsetWidth;reeldot.classList.add('blink');}
+      pend=null;},1600);
+  } else if(t.classList.contains('framefull')){
+    cutfx.classList.remove('go');void cutfx.offsetWidth;cutfx.classList.add('go');
+    apply(n);
+  } else {
+    apply(n);
+  }
+}
+function nextS(){show(i+1)} function prevS(){show(i-1)}
+document.getElementById('next').addEventListener('click',nextS);
+document.getElementById('prev').addEventListener('click',prevS);
+document.getElementById('zoneR').addEventListener('click',nextS);
+document.getElementById('zoneL').addEventListener('click',prevS);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextS();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevS();}
+  else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(total-1);}
+});
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50){dx<0?nextS():prevS();}},{passive:true});
+(function(){
+  const btn=document.getElementById('tocBtn'), panel=document.getElementById('tocPanel'), list=document.getElementById('tocList'), close=document.getElementById('tocClose');
+  if(!btn||!panel||!list) return;
+  const items=[];
+  slides.forEach((s,idx)=>{
+    const t=s.getAttribute('data-toc'); if(!t) return;
+    const b=document.createElement('button'); b.className='toc-item'; b.dataset.idx=idx;
+    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t+'</span>';
+    b.addEventListener('click',()=>{ show(idx); shut(); });
+    list.appendChild(b); items.push(b);
+  });
+  function mark(){ items.forEach((b,k)=>{ const c=+b.dataset.idx, next=items[k+1]?+items[k+1].dataset.idx:Infinity; b.classList.toggle('cur', i>=c && i<next); }); }
+  function open(){ mark(); panel.classList.add('open'); }
+  function shut(){ panel.classList.remove('open'); }
+  btn.addEventListener('click',()=>panel.classList.contains('open')?shut():open());
+  if(close) close.addEventListener('click',e=>{e.preventDefault();shut();});
+  panel.addEventListener('click',e=>{ if(e.target===panel) shut(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') shut(); });
+})();
+document.body.classList.add('boot');
+const start=parseInt((location.hash||'').replace('#',''),10);
+show(Number.isInteger(start)&&start>=1?start-1:0);
+loadTMDBStills();
+</script>
+</body>
+</html>
