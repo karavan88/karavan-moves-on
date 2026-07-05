@@ -586,6 +586,16 @@
   .scrolly--stills .coll-body{max-width:780px}
   .scrolly--stills .coll-rank,
   .scrolly--stills .coll-entry:nth-of-type(even) .coll-rank{left:50%;right:auto;transform:translate(-50%,-50%)}
+  /* одиночная центрированная сцена: класс entry-hero на .coll-entry
+     (широкий кадр сверху, текст под ним — как stills, но для одной карточки) */
+  .scrolly .coll-entry.entry-hero{flex-direction:column;text-align:center;gap:30px}
+  .scrolly .coll-entry.entry-hero .coll-poster{width:min(640px,64vw);border-radius:14px}
+  .scrolly .coll-entry.entry-hero .coll-body{max-width:780px}
+  .scrolly .coll-entry.entry-hero .coll-rank{left:50%;right:auto;transform:translate(-50%,-50%)}
+  /* широкие кадры (16:9) в боковых сценах — единый размер у всех */
+  .scrolly .coll-poster.still-wide{width:clamp(300px,36vw,500px);aspect-ratio:16/9;object-fit:cover}
+  .scrolly .coll-entry.entry-hero .coll-poster.still-wide{width:min(640px,64vw)}
+  @media(max-width:700px){.scrolly .coll-poster.still-wide{width:min(86vw,400px)}}
   .scrolly .coll-body h3{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,46px);
     font-weight:800;color:#fff;line-height:1.06;margin:0}
   /* название фильма — прямо под именем героини */
