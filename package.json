@@ -8,7 +8,8 @@
     "resolve": "node tools/resolve-tmdb.mjs",
     "dev": "node build.mjs && cd dist && python3 -m http.server 8000",
     "serve": "cd dist && python3 -m http.server 8000",
-    "bake": "node tools/bake-images.mjs"
+    "bake": "node tools/bake-images.mjs",
+    "bake-films": "node tools/bake-films.mjs"
   },
   "repository": {
     "type": "git",

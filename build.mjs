@@ -21,7 +21,7 @@ import * as R from './assets/render.js';
 import { loadToken, resolveMissing } from './tools/resolve-tmdb.mjs';
 import { gatherTmdbUrls, localizeImages, applyMap } from './tools/localize-images.mjs';
 import { buildLectures } from './tools/build-lectures.mjs';
-import { coursesSummary, filmLectureMap, SUBJECTS } from './tools/courses-data.mjs';
+import { coursesSummary, filmLectureMap, filmLectureMapAll, SUBJECTS } from './tools/courses-data.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
@@ -188,6 +188,65 @@ async function main(){
   await writeFile(path.join(OUT,'reviews','manifest.json'), JSON.stringify(reviews, null, 2));
   await writeFile(path.join(OUT,'site-data.json'), JSON.stringify({courses, stats}, null, 2));
 
+  /* ---------- УКАЗАТЕЛЬ ФИЛЬМОВ: агрегатор рецензия + лекции-кейсы + подборки ---------- */
+  const lecAll = filmLectureMapAll();
+  const filmsMap = new Map();
+  const ensureFilm = (nameNoG)=>{
+    const key = (nameNoG||'').trim();
+    if(!key) return null;
+    if(!filmsMap.has(key)) filmsMap.set(key, {key, name:key, slug:R.tagSlug(key), poster:'', year:'', director:'', review:null, lectures:[], collections:[], press:[]});
+    return filmsMap.get(key);
+  };
+  for(const r of pubReviews){
+    const f = ensureFilm((r.film||r.title||'').replace(/[«»]/g,''));
+    if(!f) continue;
+    f.review = { slug:r.slug, ...(r.rating!==undefined&&r.rating!==''?{rating:r.rating}:{}) };
+    if(r.poster) f.poster = r.poster;
+    if(r.year) f.year = String(r.year);
+    if(r.director) f.director = r.director;
+  }
+  for(const cb of collBodies){          // kind:films — фильмы в <h3>«…»</h3>, постер из соседнего .coll-poster
+    const re = /class="coll-poster"[^>]*src="([^"]+)"[\s\S]*?<h3>\s*«([^»]+)»/g;
+    let m;
+    while((m = re.exec(cb.text))){
+      const f = ensureFilm(m[2]);
+      if(!f) continue;
+      if(!f.collections.some(c=>c.slug===cb.slug)) f.collections.push({slug:cb.slug, title:cb.title});
+      if(!f.poster) f.poster = m[1];
+    }
+  }
+  for(const p of pubPress){          // публикации в СМИ, привязанные к фильму (поле film)
+    if(!p.film) continue;
+    const f = ensureFilm(p.film.replace(/[«»]/g,''));
+    if(!f) continue;
+    f.press.push({ outlet:p.outlet, url:p.url, title:p.title });
+    if(!f.poster && p.thumb) f.poster = p.thumb;
+  }
+  for(const [name, lectures] of lecAll){
+    const f = ensureFilm(name);
+    if(f) f.lectures = lectures;
+  }
+  /* «запечённые» данные TMDB (npm run bake-films → films-meta.json, коммитится).
+     Netlify без токена ничего не тянет — просто читает готовый файл. */
+  let filmsMeta = {}; try { filmsMeta = JSON.parse(await readText('films-meta.json')); } catch {}
+  for(const f of filmsMap.values()){
+    const m = filmsMeta[f.key];
+    if(!m) continue;
+    if(m.poster)   f.poster   = m.poster;      // канонический постер TMDB
+    if(m.backdrop) f.backdrop = m.backdrop;
+    if(m.year)     f.year     = String(m.year);
+    if(m.original) f.original = m.original;
+    if(m.director) f.director = m.director;
+    if(m.cast&&m.cast.length) f.cast = m.cast;
+    if(m.genres)   f.genres   = m.genres;
+    if(m.country)  f.country  = m.country;
+    if(m.overview) f.overview = m.overview;
+    if(m.runtime)  f.runtime  = m.runtime;
+    if(m.tmdb)     f.tmdb     = m.tmdb;
+  }
+  const filmsIndex = [...filmsMap.values()].sort((a,b)=>a.name.localeCompare(b.name,'ru'));
+  await writeFile(path.join(OUT,'films.json'), JSON.stringify(filmsIndex, null, 2));
+
   const urls = []; // для sitemap
 
   /* HOME */
@@ -197,7 +256,7 @@ async function main(){
       description: 'Кино глазами социолога: рецензии, дневники фестивалей и лекционные курсы от марксизма до психоанализа. Авторский сайт Карена Аванесяна.',
       urlPath: '/',
     }),
-    appHtml: R.homeView({reviews,feed,festivals,collections,press,site,courses,stats}),
+    appHtml: R.homeView({reviews,feed,festivals,collections,press,site,courses,stats,films:filmsIndex}),
     view: {view:'home', nav:'home'},
   }));
   urls.push({loc:'/', priority:'1.0'});
@@ -342,6 +401,26 @@ async function main(){
       view: {view:'tag', nav:'reviews', slug},
     }));
     urls.push({loc:`/tag/${slug}`, priority:'0.3'});
+  }
+
+  /* УКАЗАТЕЛЬ ФИЛЬМОВ + хаб каждого фильма */
+  await emit('/films', renderPage({
+    meta: buildMeta({ title:'Все фильмы — указатель — Караван идёт', description:'Каждый фильм, о котором я писал или который разбираю в лекциях и подборках: рецензии, лекции-кейсы и подборки в одном месте.', urlPath:'/films' }),
+    appHtml: R.filmsIndexView(filmsIndex),
+    view: {view:'films', nav:'films'},
+  }));
+  urls.push({loc:'/films', priority:'0.6'});
+  for(const f of filmsIndex){
+    const where = [f.review?'рецензия':'', f.lectures.length?'лекции':'', f.collections.length?'подборки':''].filter(Boolean).join(', ') || 'упоминание';
+    const filmDesc = (f.overview && f.overview.trim())
+      ? f.overview.trim().slice(0,300)
+      : `«${f.name}» на «Караване»: ${where}.`;
+    await emit(`/film/${f.slug}`, renderPage({
+      meta: buildMeta({ title:`«${f.name}»${f.year?' ('+f.year+')':''} — Караван идёт`, description:filmDesc, urlPath:`/film/${f.slug}`, image:f.poster }),
+      appHtml: R.filmHubView(f),
+      view: {view:'film', nav:'films', slug:f.slug},
+    }));
+    urls.push({loc:`/film/${f.slug}`, priority:'0.4'});
   }
 
   /* 404 — отдаётся Netlify со статусом 404; SPA не перерисовывает */

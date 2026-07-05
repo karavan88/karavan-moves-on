@@ -7,7 +7,7 @@ director: Кейн Парсонс
 country: США
 rating: 7
 poster: https://image.tmdb.org/t/p/w500/rhGx6E3qRNMgj3i5su2oukNHwIQ.jpg
-tags: хоррор, драма, психоанализ, «Закулисье реальности»
+tags: хоррор, драма, психоанализ, прокат2026
 tmdb: 1083381
 ---
 

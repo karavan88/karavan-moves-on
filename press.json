@@ -6,7 +6,9 @@
     "date": "12 июня 2026",
     "note": "Стивен Спилберг",
     "thumb": "https://www.mirf.ru/backend/wp-content/uploads/2026/06/sGEKqRqy8gcsTHiVmyofJMDTn10ZB5fobPZkOgYC/x1200-y630.webp",
-    "url": "https://www.mirf.ru/kino/den-razoblacheniya-obzor"
+    "url": "https://www.mirf.ru/kino/den-razoblacheniya-obzor",
+    "film": "«День разоблачения»",
+    "prokat": true
   },
   {
     "rubric": "Рецензии с фестивалей",
@@ -26,7 +28,8 @@
     "date": "27 мая 2026",
     "note": "Канны 2026 · Ён Сан-хо",
     "thumb": "https://static.kinoafisha.info/k/reviews/1200/upload/reviews/175770487744.jpg",
-    "url": "https://www.kinoafisha.info/reviews/8330043/"
+    "url": "https://www.kinoafisha.info/reviews/8330043/",
+    "film": "«Колония»"
   },
   {
     "rubric": "Рецензии с фестивалей",
@@ -36,7 +39,9 @@
     "date": "31 мая 2026",
     "note": "Канны 2026",
     "thumb": "https://api.kinoart.ru/storage/post/3905/regular_detail_picture-de661214b9ea10052d4e02150b03353b.jpg",
-    "url": "https://kinoart.ru/reviews/nadezhda-glohnet-pervoy-nadezhda-na-hon-dzhina"
+    "url": "https://kinoart.ru/reviews/nadezhda-glohnet-pervoy-nadezhda-na-hon-dzhina",
+    "film": "«Надежда»",
+    "prokat": true
   },
   {
     "rubric": "Рецензии с фестивалей",
@@ -46,7 +51,8 @@
     "date": "21 мая 2026",
     "note": "Канны 2026 · Педро Альмодовар",
     "thumb": "https://static.kinoafisha.info/k/reviews/1200/upload/reviews/303158545792.jpg",
-    "url": "https://www.kinoafisha.info/reviews/8330036/"
+    "url": "https://www.kinoafisha.info/reviews/8330036/",
+    "film": "«Горькое Рождество»"
   },
   {
     "rubric": "Рецензии с фестивалей",
@@ -56,7 +62,9 @@
     "date": "Май 2026",
     "note": "Канны 2026 · Николас Виндинг Рефн",
     "thumb": "",
-    "url": "https://www.kinoafisha.info/reviews/8330035/"
+    "url": "https://www.kinoafisha.info/reviews/8330035/",
+    "film": "«Её личный ад»",
+    "prokat": true
   },
   {
     "rubric": "Рецензии с фестивалей",
@@ -66,7 +74,8 @@
     "date": "18 мая 2026",
     "note": "Канны 2026 · Джеймс Грэй",
     "thumb": "https://static.kinoafisha.info/k/reviews/1200/upload/reviews/304992015651.jpg",
-    "url": "https://www.kinoafisha.info/reviews/8330031/"
+    "url": "https://www.kinoafisha.info/reviews/8330031/",
+    "film": "«Бумажный тигр»"
   },
   {
     "rubric": "Тематические подборки",
@@ -102,6 +111,7 @@
     "date": "27 октября 2008",
     "note": "Джеймс Бонд",
     "thumb": "https://www.film.ru/sites/default/files/styles/thumb_og_800x420/public/articles/0810/mark_forster_interview_pic2.jpg",
-    "url": "https://www.film.ru/articles/demony-dzheymsa-bonda"
+    "url": "https://www.film.ru/articles/demony-dzheymsa-bonda",
+    "film": "«Квант милосердия»"
   }
 ]

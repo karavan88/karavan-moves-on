@@ -109,6 +109,20 @@ export function reviewCardHTML(r){
   </a>`;
 }
 
+/* Карточка «Прокат 2026» — постер + название, ведёт на хаб фильма. */
+export function prokatCardHTML(x){
+  const poster = x.poster
+    ? `<img src="${esc(x.poster)}" alt="«${esc(x.name)}»" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(x.name)}</div>'">`
+    : `<div class="ph">${esc(x.name)}</div>`;
+  return `<a class="card" href="/film/${esc(x.slug)}">
+    <div class="poster">${poster}${x.rating?`<div class="rating-badge">★ ${esc(x.rating)}</div>`:''}</div>
+    <div class="card-body">
+      <h3>«${esc(x.name)}»</h3>
+      <div class="card-meta">${esc(x.sub||'')}</div>
+    </div>
+  </a>`;
+}
+
 export function collectionCardHTML(c){
   const cover = c.cover
     ? `<img src="${esc(c.cover)}" alt="${esc(c.title)}" loading="lazy" decoding="async" onerror="this.outerHTML='<div class=&quot;ph&quot;>${esc(c.title)}</div>'">`
@@ -308,6 +322,7 @@ export function homeView(data){
   const festivals = published(data.festivals);
   const collections = published(data.collections);
   const press = published(data.press);
+  const films = data.films || [];
   const site = data.site || {};
 
   /* редакционная «шапка»: флагманский материал — «выбор автора» */
@@ -323,6 +338,16 @@ export function homeView(data){
 
   /* ряды разделов */
   let out='';
+  /* «Прокат 2026» — живой поток современного кино: и мои рецензии (тег «прокат2026»),
+     и публикации в СМИ (prokat:true). Карточки ведут на хаб фильма /film/<slug>. */
+  const filmBySlug = new Map(films.map(f=>[f.slug,f]));
+  const prokatPress = press.filter(p=>p.prokat && p.film).map(p=>({
+    name:p.film.replace(/[«»]/g,''), slug:filmSlug(p.film), poster:p.thumb, sub:'СМИ · '+(p.outlet||'')}));
+  const prokatRev = reviews.filter(r=>splitTags(r.tags).includes('прокат2026')).map(r=>({
+    name:(r.film||r.title||'').replace(/[«»]/g,''), slug:filmSlug(r.film||r.title), poster:r.poster, rating:r.rating,
+    sub:[r.year,r.director].filter(Boolean).join(' · ')}));
+  const prokat = [...prokatPress, ...prokatRev].map(x=>{ const f=filmBySlug.get(x.slug); return {...x, poster:(f&&f.poster)||x.poster, name:(f&&f.name)||x.name}; });
+  if(prokat.length) out+=`${homeLabel('Прокат 2026','/films')}<div class="grid">${prokat.slice(0,4).map(prokatCardHTML).join('')}</div>`;
   if(reviews.length) out+=`${homeLabel('Рецензии','/reviews')}<div class="grid">${reviews.slice(0,4).map(reviewCardHTML).join('')}</div>`;
   if(courses.length) out+=`${homeLabel('Лекции · авторские курсы','/lectures/')}<div class="courses-grid">${courses.map(courseCardHTML).join('')}</div>`;
   if(collections.length) out+=`${homeLabel('Подборки','/collections')}<div class="grid wide">${collections.slice(0,2).map(collectionCardHTML).join('')}</div>`;
@@ -629,6 +654,103 @@ export function searchView(){
     <input id="siteSearch" class="search" type="search" placeholder="Название, режиссёр, тема…" aria-label="Поиск по сайту" autofocus>
     <div id="sres"><div class="state">Начните вводить запрос.</div></div>
   </main>`;
+}
+
+/* ---------- УКАЗАТЕЛЬ ФИЛЬМОВ и хаб фильма ---------- */
+/* Каждый фильм = узел графа: где он фигурирует (рецензия, лекции-кейсы, подборки).
+   Данные собирает build.mjs (films.json); здесь только разметка. Название хранится
+   без «ёлочек», выводится в «…». */
+export function filmSlug(name){ return tagSlug((name||'').replace(/[«»]/g,'')); }
+
+export function filmRowHTML(f){
+  const thumb = f.poster
+    ? `<img src="${esc(f.poster)}" alt="" loading="lazy" decoding="async" onerror="this.style.visibility='hidden'">`
+    : '';
+  const meta = [f.year, f.director?'реж. '+f.director:'', f.country, f.runtime?f.runtime+' мин':'']
+    .filter(Boolean).map(esc).join(' · ');
+  const ann = (f.overview||'').trim();
+  const badges = [];
+  if(f.review) badges.push(`<span class="fb fb-rev">Рецензия${f.review.rating?` · ★ ${esc(f.review.rating)}`:''}</span>`);
+  (f.lectures||[]).forEach(l=>badges.push(`<span class="fb fb-lec">Лекция ${esc(l.n)} · ${esc(l.course)}</span>`));
+  (f.collections||[]).forEach(c=>badges.push(`<span class="fb fb-coll">Подборка «${esc(c.title)}»</span>`));
+  return `<a class="film-row${f.poster?'':' no-poster'}" href="/film/${esc(f.slug)}">
+    <div class="film-thumb">${thumb}</div>
+    <div class="film-main">
+      <h3>«${esc(f.name)}»</h3>
+      ${meta?`<div class="film-meta">${meta}</div>`:''}
+      ${ann?`<p class="film-ann">${esc(ann)}</p>`:''}
+      ${badges.length?`<div class="film-badges">${badges.join('')}</div>`:''}
+    </div>
+  </a>`;
+}
+
+export function filmsIndexView(films){
+  const list = films||[];
+  const body = list.length ? list.map(filmRowHTML).join('') : `<div class="state">Пока пусто.</div>`;
+  return `<main>
+    <div class="page-title">Все фильмы</div>
+    <div class="page-sub">Указатель: каждый фильм, о котором я писал или который разбираю в лекциях и подборках, — со всеми связями в одном месте.</div>
+    <input id="filmSearch" class="search" type="search" placeholder="Название фильма…" aria-label="Поиск по фильмам">
+    <div class="film-index" id="filmIndex">${body}</div>
+  </main>`;
+}
+
+export function filmHubView(f){
+  const poster = f.poster
+    ? `<img src="${esc(f.poster)}" alt="«${esc(f.name)}»" decoding="async" onerror="this.parentNode.innerHTML='<div class=&quot;ph&quot;>${esc(f.name)}</div>'">`
+    : `<div class="ph">${esc(f.name)}</div>`;
+  const sub = [f.year, f.country, f.runtime?f.runtime+' мин':''].filter(Boolean).map(esc).join(' · ');
+  const genres = (f.genres||'').split(',').map(s=>s.trim()).filter(Boolean);
+  /* Letterboxd: прямая ссылка через TMDB-id, иначе — поиск. Иконка — фирменная .lb. */
+  const lbHref = f.tmdb ? `https://letterboxd.com/tmdb/${esc(f.tmdb)}/` : `https://letterboxd.com/search/films/${encodeURIComponent(f.name)}/`;
+
+  /* кросс-материалы одним потоком карточек */
+  const cards = [];
+  if(f.review) cards.push(`<a class="hub-card hc-rev" href="/review/${esc(f.review.slug)}">
+      <span class="hc-kind">Рецензия</span>
+      <span class="hc-title">Читать разбор</span>
+      ${f.review.rating?`<span class="hc-note"><span class="rate">★ ${esc(f.review.rating)}/10</span></span>`:''}
+    </a>`);
+  (f.collections||[]).forEach(c=>cards.push(`<a class="hub-card hc-coll" href="/collection/${esc(c.slug)}">
+      <span class="hc-kind">Подборка</span>
+      <span class="hc-title">«${esc(c.title)}»</span>
+    </a>`));
+  (f.lectures||[]).forEach(l=>cards.push(`<a class="hub-card hc-lec" href="${esc(l.href)}">
+      <span class="hc-kind">Лекция · ${esc(l.course)}</span>
+      <span class="hc-title">«${esc(l.lecture)}»</span>
+      <span class="hc-note">лекция ${esc(l.n)}${l.ready?'':' · <span class="bridge-soon">готовится</span>'}</span>
+    </a>`));
+  (f.press||[]).forEach(p=>cards.push(`<a class="hub-card hc-press" href="${esc(p.url)}" target="_blank" rel="noopener">
+      <span class="hc-kind">СМИ · ${esc(p.outlet)}</span>
+      <span class="hc-title">${esc(p.title)} ↗</span>
+    </a>`));
+
+  const hub = cards.length
+    ? `<div class="hub-h2">Где на «Караване»</div><div class="hub-cards">${cards.join('')}</div>`
+    : `<div class="hub-cards"><div class="hub-empty">Пока только упоминание — материалы об этом фильме появятся здесь.</div></div>`;
+
+  return `<main><article class="review-wrap film-hub">
+    <a class="back" href="/films">← ко всем фильмам</a>
+    <div class="film-head-wrap">
+      ${f.backdrop?`<div class="film-backdrop" style="background-image:url('${esc(f.backdrop)}')" aria-hidden="true"></div>`:''}
+      <div class="review-head film-head">
+        <div class="poster-col">
+          <div class="poster">${poster}</div>
+          <a class="lb lb-under" href="${esc(lbHref)}" target="_blank" rel="noopener" aria-label="Letterboxd"></a>
+        </div>
+        <div class="info">
+          <h1>«${esc(f.name)}»</h1>
+          ${f.original?`<div class="film-orig">${esc(f.original)}</div>`:''}
+          ${genres.length?`<div class="film-genres">${genres.map(g=>`<span class="genre-pill">${esc(g)}</span>`).join('')}</div>`:''}
+          ${sub?`<div class="sub">${sub}</div>`:''}
+          ${f.director?`<div class="film-credit"><span class="cl">Режиссёр</span> ${esc(f.director)}</div>`:''}
+          ${(f.cast&&f.cast.length)?`<div class="film-credit"><span class="cl">В главных ролях</span> ${esc(f.cast.join(', '))}</div>`:''}
+          ${f.overview?`<p class="film-overview">${esc(f.overview)}</p>`:''}
+        </div>
+      </div>
+    </div>
+    ${hub}
+  </article></main>`;
 }
 
 /* ---------- состояние ошибки ---------- */

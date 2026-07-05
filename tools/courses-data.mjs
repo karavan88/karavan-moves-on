@@ -29,7 +29,7 @@ export const SUBJECTS = [
       { n:'07', file:'lecture-07-apparatus.html',          title:'Теория аппарата',           sub:'Киноаппарат как идеологическая машина', films:'«Молодой мистер Линкольн» · «Гильда» · «Жанна Дильман»', ready:false },
       { n:'08', file:'lecture-08-gramsci.html',            title:'Грамши и гегемония',        sub:'Культурная гегемония и согласие класса', films:'«Соль земли» · «Королевская битва»', ready:false },
       { n:'09', file:'lecture-09-jameson.html',            title:'Джеймисон: постмодерн',     sub:'Поздний капитализм и культура',         films:'«Волк с Уолл-стрит» · «Бойцовский клуб» · «Американский психопат»', ready:false },
-      { n:'10', file:'lecture-10-kinopraktika.html',       title:'Можно ли снять марксистский фильм?', sub:'Марксизм как кинопрактика: форма, содержание, практика', films:'«Октябрь» · «Двадцатый век» · «Час печей» · «Платформа»', ready:false },
+      { n:'10', file:'lecture-10-kinopraktika.html',       title:'Можно ли снять марксистский фильм?', sub:'Марксизм как кинопрактика: форма, содержание, практика', films:'«Октябрь» · «Перед революцией» · «Двадцатый век» · «Час печей» · «Платформа»', ready:false },
       { n:'11', file:'lecture-11-capitalism.html',         title:'Капитализм сегодня',        sub:'Тупик, конкуренция, разрыв',            films:'«Паразиты» · «Метод исключения» · «Сквозь снег»', ready:false },
       { n:'12', file:'lecture-12-politekonomiya.html',     title:'Политическая экономия кино',sub:'Индустрия, стриминг, внимание, ИИ',     films:'«Ирландец» · «Социальная дилемма» · «Игрок»', ready:false },
     ],
@@ -111,6 +111,27 @@ export function filmLectureMap(){
       for(const m of (l.films||'').matchAll(/«([^»]+)»/g)){
         const key = m[1].trim();
         if(!map.has(key)) map.set(key, {
+          course: s.title, courseSlug: s.slug, n: l.n, lecture: l.title,
+          ready: !!(l.ready && l.file),
+          href: (l.ready && l.file) ? `/lectures/${s.slug}/${l.file}` : `/lectures/#subj-${s.slug}`,
+        });
+      }
+    }
+  }
+  return map;
+}
+
+/* Карта «фильм → ВСЕ лекции», где он фигурирует (для указателя и хабов фильмов).
+   В отличие от filmLectureMap (первая лекция для «моста»), возвращает массив:
+   один фильм может разбираться в нескольких лекциях/курсах. */
+export function filmLectureMapAll(){
+  const map = new Map();
+  for(const s of SUBJECTS){
+    for(const l of (s.lectures||[])){
+      for(const m of (l.films||'').matchAll(/«([^»]+)»/g)){
+        const key = m[1].trim();
+        if(!map.has(key)) map.set(key, []);
+        map.get(key).push({
           course: s.title, courseSlug: s.slug, n: l.n, lecture: l.title,
           ready: !!(l.ready && l.file),
           href: (l.ready && l.file) ? `/lectures/${s.slug}/${l.file}` : `/lectures/#subj-${s.slug}`,
