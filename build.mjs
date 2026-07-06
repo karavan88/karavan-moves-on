@@ -191,8 +191,11 @@ async function main(){
   /* ---------- УКАЗАТЕЛЬ ФИЛЬМОВ: агрегатор рецензия + лекции-кейсы + подборки ---------- */
   const lecAll = filmLectureMapAll();
   const filmsMap = new Map();
+  /* алиасы: сокращённые названия в лекциях → каноническое имя фильма */
+  const FILM_ALIASES = { 'Калигари': 'Кабинет доктора Калигари' };
   const ensureFilm = (nameNoG)=>{
-    const key = (nameNoG||'').trim();
+    let key = (nameNoG||'').trim();
+    key = FILM_ALIASES[key] || key;
     if(!key) return null;
     if(!filmsMap.has(key)) filmsMap.set(key, {key, name:key, slug:R.tagSlug(key), poster:'', year:'', director:'', review:null, lectures:[], collections:[], press:[], feed:[]});
     return filmsMap.get(key);
@@ -213,6 +216,13 @@ async function main(){
       if(!f) continue;
       if(!f.collections.some(c=>c.slug===cb.slug)) f.collections.push({slug:cb.slug, title:cb.title});
       if(!f.poster) f.poster = m[1];
+    }
+    // kind:characters — в <h3> имя героини, название фильма — в .coll-film «…»
+    const reChar = /class="coll-film">\s*«([^»]+)»/g;
+    while((m = reChar.exec(cb.text))){
+      const f = ensureFilm(m[1]);
+      if(!f) continue;
+      if(!f.collections.some(c=>c.slug===cb.slug)) f.collections.push({slug:cb.slug, title:cb.title});
     }
   }
   for(const p of pubPress){          // публикации в СМИ: film — один фильм, films — список фильмов

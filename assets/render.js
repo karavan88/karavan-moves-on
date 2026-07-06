@@ -343,7 +343,8 @@ export function homeView(data){
      Карточки ведут на хаб фильма /film/<slug>. */
   const filmBySlug = new Map(films.map(f=>[f.slug,f]));
   const prokatSite = ((site&&site.prokat)||[]).map(n=>({
-    name:String(n).replace(/[«»]/g,''), slug:filmSlug(n), poster:'', sub:''}));
+    name:String(n).replace(/[«»]/g,''), slug:filmSlug(n), poster:'', sub:''}))
+    .filter(x=>filmBySlug.has(x.slug)); /* показываем, только когда фильм уже есть в указателе */
   const prokatPress = press.filter(p=>p.prokat && p.film).map(p=>({
     name:p.film.replace(/[«»]/g,''), slug:filmSlug(p.film), poster:p.thumb, sub:'СМИ · '+(p.outlet||'')}));
   const prokatRev = reviews.filter(r=>splitTags(r.tags).includes('прокат2026')).map(r=>({
