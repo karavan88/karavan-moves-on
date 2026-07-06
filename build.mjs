@@ -194,7 +194,7 @@ async function main(){
   const ensureFilm = (nameNoG)=>{
     const key = (nameNoG||'').trim();
     if(!key) return null;
-    if(!filmsMap.has(key)) filmsMap.set(key, {key, name:key, slug:R.tagSlug(key), poster:'', year:'', director:'', review:null, lectures:[], collections:[], press:[]});
+    if(!filmsMap.has(key)) filmsMap.set(key, {key, name:key, slug:R.tagSlug(key), poster:'', year:'', director:'', review:null, lectures:[], collections:[], press:[], feed:[]});
     return filmsMap.get(key);
   };
   for(const r of pubReviews){
@@ -215,12 +215,30 @@ async function main(){
       if(!f.poster) f.poster = m[1];
     }
   }
-  for(const p of pubPress){          // публикации в СМИ, привязанные к фильму (поле film)
-    if(!p.film) continue;
-    const f = ensureFilm(p.film.replace(/[«»]/g,''));
-    if(!f) continue;
-    f.press.push({ outlet:p.outlet, url:p.url, title:p.title });
-    if(!f.poster && p.thumb) f.poster = p.thumb;
+  for(const p of pubPress){          // публикации в СМИ: film — один фильм, films — список фильмов
+    const names = Array.isArray(p.films) ? p.films : (p.film ? [p.film] : []);
+    for(const nm of names){
+      const f = ensureFilm(String(nm).replace(/[«»]/g,''));
+      if(!f) continue;
+      f.press.push({ outlet:p.outlet, url:p.url, title:p.title });
+      if(!f.poster && p.thumb) f.poster = p.thumb;
+    }
+  }
+  {                                  // скролл-истории и заметки: фильмы по alt="… кадр из фильма «…»"
+    const pubFeedBodies = [];
+    for(const fe of pubFeed){
+      const parsedF = await readMd(`feed/${fe.slug}.md`);
+      if(parsedF) pubFeedBodies.push({ slug:fe.slug, title:fe.title||parsedF.meta.title||'', text:parsedF.body });
+    }
+    for(const fb of pubFeedBodies){
+      const re = /alt="[^"]*кадр из фильма «([^»]+)»/g;
+      let m;
+      while((m = re.exec(fb.text))){
+        const f = ensureFilm(m[1]);
+        if(!f) continue;
+        if(!f.feed.some(x=>x.slug===fb.slug)) f.feed.push({slug:fb.slug, title:fb.title});
+      }
+    }
   }
   for(const [name, lectures] of lecAll){
     const f = ensureFilm(name);

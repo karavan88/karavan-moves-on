@@ -430,6 +430,9 @@
   .fest-badge:hover{background:rgba(185,139,46,.18)}
   /* бейдж «открыть на Letterboxd» */
   .ext-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .film-hub-line{margin-top:14px;font-size:15px}
+  .film-hub-line a{color:var(--accent);font-weight:600;text-decoration:none}
+  .film-hub-line a:hover{text-decoration:underline}
   /* ссылка на Letterboxd — та же иконка из трёх точек, что и в подборках,
      только крупнее (отдельная ссылка на странице рецензии) */
   .ext-links .lb{width:52px;height:20px}
@@ -922,9 +925,7 @@
         <a class="head-ic" href="https://t.me/karavan_moves_on" target="_blank" rel="noopener" title="Telegram-канал" aria-label="Telegram-канал">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.3 3.6 3.2 10.7c-.9.4-.9 1.6.1 1.9l4.5 1.4 1.7 5.2c.3.9 1.4 1 2 .3l2.3-2.9 4.6 3.3c.8.5 1.8.1 2-.9l2.5-13c.2-1-.7-1.8-1.6-1.4Z"/><path d="m9.4 13.9 8.4-7.8"/></svg>
         </a>
-        <a class="head-ic" href="/rss.xml" target="_blank" title="RSS-лента" aria-label="RSS-лента">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 11.2a8.3 8.3 0 0 1 8.3 8.3"/><path d="M4.5 4.8A14.7 14.7 0 0 1 19.2 19.5"/><circle class="dot" cx="5.6" cy="18.4" r="1.5"/></svg>
-        </a>
+        <!-- RSS-иконка убрана из шапки (июль 2026); лента /rss.xml живёт, ссылка — в футере -->
       </div>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Светлая или тёмная тема" title="Светлая / тёмная тема">
         <svg class="ic ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><line x1="12" y1="1.7" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.3"/><line x1="1.7" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.3" y2="12"/><line x1="4.3" y1="4.3" x2="6" y2="6"/><line x1="18" y1="18" x2="19.7" y2="19.7"/><line x1="4.3" y1="19.7" x2="6" y2="18"/><line x1="18" y1="6" x2="19.7" y2="4.3"/></svg>

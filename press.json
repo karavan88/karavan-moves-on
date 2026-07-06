@@ -18,7 +18,13 @@
     "date": "28 мая 2026",
     "note": "обзор фестиваля",
     "thumb": "https://www.mirf.ru/backend/wp-content/uploads/2026/05/mVanzs4KzjMsv2f8K857Z1ePMUzWx8b4KLYTU1th/x1200-y630.webp",
-    "url": "https://www.mirf.ru/kino/kanny-2026-sci-fi"
+    "url": "https://www.mirf.ru/kino/kanny-2026-sci-fi",
+    "films": [
+      "«Её личный ад»",
+      "«Колония»",
+      "«Надежда»",
+      "«Барашек в ящике»"
+    ]
   },
   {
     "rubric": "Рецензии с фестивалей",

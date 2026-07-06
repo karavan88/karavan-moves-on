@@ -338,15 +338,22 @@ export function homeView(data){
 
   /* ряды разделов */
   let out='';
-  /* «Прокат 2026» — живой поток современного кино: и мои рецензии (тег «прокат2026»),
-     и публикации в СМИ (prokat:true). Карточки ведут на хаб фильма /film/<slug>. */
+  /* «Прокат 2026» — живой поток современного кино: мои рецензии (тег «прокат2026»),
+     публикации в СМИ (prokat:true) и ручной список site.json→prokat.
+     Карточки ведут на хаб фильма /film/<slug>. */
   const filmBySlug = new Map(films.map(f=>[f.slug,f]));
+  const prokatSite = ((site&&site.prokat)||[]).map(n=>({
+    name:String(n).replace(/[«»]/g,''), slug:filmSlug(n), poster:'', sub:''}));
   const prokatPress = press.filter(p=>p.prokat && p.film).map(p=>({
     name:p.film.replace(/[«»]/g,''), slug:filmSlug(p.film), poster:p.thumb, sub:'СМИ · '+(p.outlet||'')}));
   const prokatRev = reviews.filter(r=>splitTags(r.tags).includes('прокат2026')).map(r=>({
     name:(r.film||r.title||'').replace(/[«»]/g,''), slug:filmSlug(r.film||r.title), poster:r.poster, rating:r.rating,
     sub:[r.year,r.director].filter(Boolean).join(' · ')}));
-  const prokat = [...prokatPress, ...prokatRev].map(x=>{ const f=filmBySlug.get(x.slug); return {...x, poster:(f&&f.poster)||x.poster, name:(f&&f.name)||x.name}; });
+  const seenPk = new Set();
+  const prokat = [...prokatSite, ...prokatPress, ...prokatRev]
+    .filter(x=>!seenPk.has(x.slug) && seenPk.add(x.slug))
+    .map(x=>{ const f=filmBySlug.get(x.slug); return {...x, poster:(f&&f.poster)||x.poster, name:(f&&f.name)||x.name,
+      sub:x.sub||[f&&f.year,f&&f.director].filter(Boolean).join(' · ')}; });
   if(prokat.length) out+=`${homeLabel('Прокат 2026','/films')}<div class="grid">${prokat.slice(0,4).map(prokatCardHTML).join('')}</div>`;
   if(reviews.length) out+=`${homeLabel('Рецензии','/reviews')}<div class="grid">${reviews.slice(0,4).map(reviewCardHTML).join('')}</div>`;
   if(courses.length) out+=`${homeLabel('Лекции · авторские курсы','/lectures/')}<div class="courses-grid">${courses.map(courseCardHTML).join('')}</div>`;
@@ -443,6 +450,7 @@ export function reviewPageView(meta, bodyHtml, extras={}){
         <div class="sub">${[meta.year,meta.director?'реж. '+meta.director:'',meta.country].filter(Boolean).map(esc).join(' · ')}${(meta.rating||meta.rating===0)?` · <span class="rate">★ ${esc(meta.rating)}/10</span>`:''}</div>
         ${meta.festival?`<div><a class="fest-stamp" href="/festivals" title="Все материалы фестиваля">${esc(meta.festival)}</a></div>`:''}
         ${extLinkRow(meta)}
+        ${film?`<div class="film-hub-line"><a href="/film/${esc(filmSlug(film))}">Все материалы о фильме →</a></div>`:''}
         ${tagChips(meta.tags)}
       </div>
     </div>
@@ -723,6 +731,10 @@ export function filmHubView(f){
   (f.press||[]).forEach(p=>cards.push(`<a class="hub-card hc-press" href="${esc(p.url)}" target="_blank" rel="noopener">
       <span class="hc-kind">СМИ · ${esc(p.outlet)}</span>
       <span class="hc-title">${esc(p.title)} ↗</span>
+    </a>`));
+  (f.feed||[]).forEach(n=>cards.push(`<a class="hub-card hc-coll" href="/feed/${esc(n.slug)}">
+      <span class="hc-kind">Скролл-история</span>
+      <span class="hc-title">«${esc(n.title)}»</span>
     </a>`));
 
   const hub = cards.length
