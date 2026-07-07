@@ -499,7 +499,7 @@ export function collectionPageView(meta, bodyHtml){
    Браузерный «усилитель» (enhanceScrolly в index.html) добавляет фон, анимации
    и счётчик; без JS страница остаётся читаемой как обычный список. */
 export function scrollyView(meta, bodyHtml, backHref, backLabel){
-  const count = (bodyHtml.match(/class="coll-entry"/g) || []).length;
+  const count = (bodyHtml.match(/class="coll-entry\b/g) || []).length;
   const kicker = meta.kicker || '';
   const paged = meta.snap === 'page' || meta.snap === 'mandatory';
   const stills = meta.media === 'stills';  /* широкие кадры вместо постеров */
