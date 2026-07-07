@@ -599,6 +599,15 @@
   .scrolly .coll-poster.still-wide{width:clamp(300px,36vw,500px);aspect-ratio:16/9;object-fit:cover}
   .scrolly .coll-entry.entry-hero .coll-poster.still-wide{width:min(640px,64vw)}
   @media(max-width:700px){.scrolly .coll-poster.still-wide{width:min(86vw,400px)}}
+  /* ── фикс дёрганья снапа в мобильных webview (превью мессенджеров) ──
+     1) svh привязывает высоту сцены к «малому» вьюпорту, не скачущему от адресной
+        строки; на десктопе svh == vh — там без изменений.
+     2) overscroll-behavior гасит «резиновый» отскок у первой и последней сцены.
+     3) высокие сцены entry-hero (1 и 7) на мобильном привязываются по верху —
+        у снапа всегда есть стабильная точка. */
+  .scrolly .scene-intro,.scrolly .scene-note,.scrolly .coll-entry{min-height:100svh}
+  html.scrolly-lock{overscroll-behavior-y:contain}
+  @media(max-width:680px){ .scrolly .coll-entry.entry-hero{scroll-snap-align:start} }
   .scrolly .coll-body h3{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,46px);
     font-weight:800;color:#fff;line-height:1.06;margin:0}
   /* название фильма — прямо под именем героини */
