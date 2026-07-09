@@ -1,5 +1,5 @@
 ---
-title: Сладость жизни побеждает без боя
+title: Сладкая жизнь побеждает без боя
 film: «Перед революцией»
 original: Prima della rivoluzione
 year: 1964
