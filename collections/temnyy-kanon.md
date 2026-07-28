@@ -5,7 +5,7 @@ subtitle: Двенадцать моих любимых нуаров по год�
 kicker: 10 классиков и 2 еретика
 date: 28 июня 2026
 tag: Скролл-история
-image: https://image.tmdb.org/t/p/w780/rLLhOCgAjuvlKmjUqVb7P1UAbUI.jpg
+image: /assets/img/w780_rLLhOCgAjuvlKmjUqVb7P1UAbUI.jpg
 layout: scrolly
 kind: films
 snap: page
@@ -31,7 +31,7 @@ snap: page
 </section>
 <div class="coll-entry">
   <div class="coll-rank">01</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/rVNYZZgfhwqVMMWlBmxOfWqnwCj.jpg" alt="«Двойная страховка»">
+  <img class="coll-poster" src="/assets/img/w500_rVNYZZgfhwqVMMWlBmxOfWqnwCj.jpg" alt="«Двойная страховка»">
   <div class="coll-body">
     <h3>«Двойная страховка»</h3>
     <div class="coll-film">Double Indemnity</div>
@@ -41,7 +41,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">02</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/uXnuc6pW01s1MDwb6QwBWg2JQeX.jpg" alt="«Убийцы»">
+  <img class="coll-poster" src="/assets/img/w500_uXnuc6pW01s1MDwb6QwBWg2JQeX.jpg" alt="«Убийцы»">
   <div class="coll-body">
     <h3>«Убийцы»</h3>
     <div class="coll-film">The Killers</div>
@@ -51,7 +51,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">03</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/lnUK6Cg5ARM0qaq0B5SG20VAM0h.jpg" alt="«Из прошлого»">
+  <img class="coll-poster" src="/assets/img/w500_lnUK6Cg5ARM0qaq0B5SG20VAM0h.jpg" alt="«Из прошлого»">
   <div class="coll-body">
     <h3>«Из прошлого»</h3>
     <div class="coll-film">Out of the Past</div>
@@ -61,7 +61,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">04</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/whqdqWavNMSoeXTx1X3DauO1LG6.jpg" alt="«Леди из Шанхая»">
+  <img class="coll-poster" src="/assets/img/w500_whqdqWavNMSoeXTx1X3DauO1LG6.jpg" alt="«Леди из Шанхая»">
   <div class="coll-body">
     <h3>«Леди из Шанхая»</h3>
     <div class="coll-film">The Lady from Shanghai</div>
@@ -71,7 +71,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">05</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/rO2Fq0AZZx9obs52KJdx4mRE8p5.jpg" alt="«Третий человек»">
+  <img class="coll-poster" src="/assets/img/w500_rO2Fq0AZZx9obs52KJdx4mRE8p5.jpg" alt="«Третий человек»">
   <div class="coll-body">
     <h3>«Третий человек»</h3>
     <div class="coll-film">The Third Man</div>
@@ -81,7 +81,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">06</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/2NBmzm8z5fd283eWeECkPrkwta8.jpg" alt="«Ночь и город»">
+  <img class="coll-poster" src="/assets/img/w500_2NBmzm8z5fd283eWeECkPrkwta8.jpg" alt="«Ночь и город»">
   <div class="coll-body">
     <h3>«Ночь и город»</h3>
     <div class="coll-film">Night and the City</div>
@@ -91,7 +91,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">07</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/zt8aQ6ksqK6p1AopC5zVTDS9pKT.jpg" alt="«Сансет Бульвар»">
+  <img class="coll-poster" src="/assets/img/w500_zt8aQ6ksqK6p1AopC5zVTDS9pKT.jpg" alt="«Сансет Бульвар»">
   <div class="coll-body">
     <h3>«Сансет Бульвар»</h3>
     <div class="coll-film">Sunset Boulevard</div>
@@ -101,7 +101,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">08</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/ezt6fb4JbghGKmaMzzuMtxpz0Kb.jpg" alt="«Сильная жара»">
+  <img class="coll-poster" src="/assets/img/w500_ezt6fb4JbghGKmaMzzuMtxpz0Kb.jpg" alt="«Сильная жара»">
   <div class="coll-body">
     <h3>«Сильная жара»</h3>
     <div class="coll-film">The Big Heat</div>
@@ -111,7 +111,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">09</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/z7me91nrpWLHY1mZOB2v20cK0zY.jpg" alt="«Целуй меня насмерть»">
+  <img class="coll-poster" src="/assets/img/w500_z7me91nrpWLHY1mZOB2v20cK0zY.jpg" alt="«Целуй меня насмерть»">
   <div class="coll-body">
     <h3>«Целуй меня насмерть»</h3>
     <div class="coll-film">Kiss Me Deadly</div>
@@ -121,7 +121,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">10</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/A6VzUPcADZGYdGHlVdWvpMNDF5d.jpg" alt="«Убийство»">
+  <img class="coll-poster" src="/assets/img/w500_A6VzUPcADZGYdGHlVdWvpMNDF5d.jpg" alt="«Убийство»">
   <div class="coll-body">
     <h3>«Убийство»</h3>
     <div class="coll-film">The Killing</div>
@@ -131,7 +131,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">11</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/akzvV8JasNrgEl5iAP9K6zPHGJe.jpg" alt="«Сладкий запах успеха»">
+  <img class="coll-poster" src="/assets/img/w500_akzvV8JasNrgEl5iAP9K6zPHGJe.jpg" alt="«Сладкий запах успеха»">
   <div class="coll-body">
     <h3>«Сладкий запах успеха»</h3>
     <div class="coll-film">Sweet Smell of Success</div>
@@ -141,7 +141,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">12</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/1pvRgmfBaoMczIJBOi9gCOZ4FMC.jpg" alt="«Печать зла»">
+  <img class="coll-poster" src="/assets/img/w500_1pvRgmfBaoMczIJBOi9gCOZ4FMC.jpg" alt="«Печать зла»">
   <div class="coll-body">
     <h3>«Печать зла»</h3>
     <div class="coll-film">Touch of Evil</div>

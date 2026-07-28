@@ -1,7 +1,7 @@
 ---
 title: Молодёжь на распутье
 subtitle: Пять фильмов о молодёжи как коллективном акторе под давлением классовых и культурных противоречий — от японской новой волны до парижских окраин
-cover: https://image.tmdb.org/t/p/w1280/viGCwLxupyoaLsa6hrnu1gYrB0B.jpg
+cover: /assets/img/w1280_viGCwLxupyoaLsa6hrnu1gYrB0B.jpg
 kicker: 5 фильмов
 layout: scrolly
 kind: films
@@ -11,7 +11,7 @@ kind: films
 
 <div class="coll-entry">
   <div class="coll-rank">01</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w300/hLPbvJEGGnOEWCUl7IhNSETDXs9.jpg" alt="«Повесть о жестокой юности»">
+  <img class="coll-poster" src="/assets/img/w300_hLPbvJEGGnOEWCUl7IhNSETDXs9.jpg" alt="«Повесть о жестокой юности»">
   <div class="coll-body">
     <h3>«Повесть о жестокой юности»</h3>
     <div class="coll-film">Cruel Story of Youth</div>
@@ -23,7 +23,7 @@ kind: films
 
 <div class="coll-entry">
   <div class="coll-rank">02</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w300/nzCMu6D5q60i2bVrIQ0DxlRSgCZ.jpg" alt="«Вестсайдская история»">
+  <img class="coll-poster" src="/assets/img/w300_nzCMu6D5q60i2bVrIQ0DxlRSgCZ.jpg" alt="«Вестсайдская история»">
   <div class="coll-body">
     <h3>«Вестсайдская история»</h3>
     <div class="coll-film">West Side Story</div>
@@ -35,7 +35,7 @@ kind: films
 
 <div class="coll-entry">
   <div class="coll-rank">03</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/vwMfVhBwAcRT7K0xjFrNoNf9YRb.jpg" alt="«Бойцовая рыбка»">
+  <img class="coll-poster" src="/assets/img/w500_vwMfVhBwAcRT7K0xjFrNoNf9YRb.jpg" alt="«Бойцовая рыбка»">
   <div class="coll-body">
     <h3>«Бойцовая рыбка»</h3>
     <div class="coll-film">Rumble Fish</div>
@@ -47,7 +47,7 @@ kind: films
 
 <div class="coll-entry">
   <div class="coll-rank">04</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/Ai08NQNa4xB5b49Cm8hbll0He95.jpg" alt="«Яркий летний день»">
+  <img class="coll-poster" src="/assets/img/w500_Ai08NQNa4xB5b49Cm8hbll0He95.jpg" alt="«Яркий летний день»">
   <div class="coll-body">
     <h3>«Яркий летний день»</h3>
     <div class="coll-film">A Brighter Summer Day</div>
@@ -59,7 +59,7 @@ kind: films
 
 <div class="coll-entry">
   <div class="coll-rank">05</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/t5AvHxcbYHKVzLqL40Ro5k8C5d9.jpg" alt="«Ненависть»">
+  <img class="coll-poster" src="/assets/img/w500_t5AvHxcbYHKVzLqL40Ro5k8C5d9.jpg" alt="«Ненависть»">
   <div class="coll-body">
     <h3>«Ненависть»</h3>
     <div class="coll-film">La Haine</div>

@@ -6,7 +6,7 @@ year: 1988
 rating: 10
 date: 28 июня 2026
 tag: Скролл-история
-image: https://image.tmdb.org/t/p/w780/lyIhbqqCXpY5Qrgb3FAwza0wxIw.jpg
+image: /assets/img/w780_lyIhbqqCXpY5Qrgb3FAwza0wxIw.jpg
 layout: scrolly
 snap: page
 media: stills
@@ -14,7 +14,7 @@ letterboxd: https://letterboxd.com/tmdb/47795/
 ---
 <div class="coll-entry">
   <div class="coll-rank">1</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w1280/x3yugPXv54QLZcZsVk9qK3o1Gv4.jpg" alt="Заснеженная улица — кадр из фильма «Пейзаж в тумане»">
+  <img class="coll-poster" src="/assets/img/w1280_x3yugPXv54QLZcZsVk9qK3o1Gv4.jpg" alt="Заснеженная улица — кадр из фильма «Пейзаж в тумане»">
   <div class="coll-body">
     <h3>Дорогу проложил Гомер</h3>
     <p>На поверхности «Пейзаж в тумане» выглядит роуд-муви: брат и сестра уходят из дома, чтобы добраться до Германии и найти отца, которого, возможно, и нет. Скоро фильм сворачивает в историю взросления, где каждая остановка надламывает хрупкий детский мир.</p>
@@ -23,7 +23,7 @@ letterboxd: https://letterboxd.com/tmdb/47795/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">2</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w1280/ph1ZrasDmAW4Amdvw38npkZijo5.jpg" alt="Дети на ночном шоссе — кадр из фильма «Пейзаж в тумане»">
+  <img class="coll-poster" src="/assets/img/w1280_ph1ZrasDmAW4Amdvw38npkZijo5.jpg" alt="Дети на ночном шоссе — кадр из фильма «Пейзаж в тумане»">
   <div class="coll-body">
     <h3>Отец, которого нет</h3>
     <p>Дети верят, что отец ждёт их в Германии и встреча неизбежна. Но в пути их держит как раз его отсутствие. Пустот в фильме много: семья без главы, простор без тепла, движение без конечной точки. Эта призрачная фигура и гонит героев вперёд.</p>
@@ -32,7 +32,7 @@ letterboxd: https://letterboxd.com/tmdb/47795/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">3</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w1280/aU5eWmxfzuNIFJFOZZI0uwTUzDa.jpg" alt="Туманная дорога — кадр из фильма «Пейзаж в тумане»">
+  <img class="coll-poster" src="/assets/img/w1280_aU5eWmxfzuNIFJFOZZI0uwTUzDa.jpg" alt="Туманная дорога — кадр из фильма «Пейзаж в тумане»">
   <div class="coll-body">
     <h3>Сквозь туман вслепую</h3>
     <p>Солнечная туристическая Греция у Ангелопулоса выстужена и обезлюдела. Детство тут лишено всякой защиты: за порогом дома героев ждёт огромный мир, разглядеть который нечем. Туман над дорогой и есть образ этой слепоты.</p>
@@ -41,7 +41,7 @@ letterboxd: https://letterboxd.com/tmdb/47795/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">4</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w1280/zoy20agufmqnhY3DvRPvyAL3gXG.jpg" alt="Силуэты взрослых и детей — кадр из фильма «Пейзаж в тумане»">
+  <img class="coll-poster" src="/assets/img/w1280_zoy20agufmqnhY3DvRPvyAL3gXG.jpg" alt="Силуэты взрослых и детей — кадр из фильма «Пейзаж в тумане»">
   <div class="coll-body">
     <h3>Взрослые не уберегут</h3>
     <p>Старшие в фильме почти не оберегают, чаще ведут детей к боли. Ангелопулос их не демонизирует, он показывает другое: дать ребёнку нравственную опору и провести через мир взрослые не умеют. Каждый встречный открывает героям лишь меру всеобщего распада.</p>
@@ -50,7 +50,7 @@ letterboxd: https://letterboxd.com/tmdb/47795/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">5</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w1280/qkvMxoBBQwSXMvrGpPiTo8VyCPl.jpg" alt="Дети на пустынной горной дороге — кадр из фильма «Пейзаж в тумане»">
+  <img class="coll-poster" src="/assets/img/w1280_qkvMxoBBQwSXMvrGpPiTo8VyCPl.jpg" alt="Дети на пустынной горной дороге — кадр из фильма «Пейзаж в тумане»">
   <div class="coll-body">
     <h3>Насилие за кадром</h3>
     <p>Самый страшный эпизод фильма Ангелопулос прячет от зрителя. Грузовик съезжает с трассы, водитель загоняет Вулу в кузов и задёргивает брезент. Камера остаётся снаружи и долго держит этот глухой полог; мимо тормозят и снова уезжают чьи-то машины, никто не вмешивается. Несколько минут не видно и не слышно ничего.</p>
@@ -59,7 +59,7 @@ letterboxd: https://letterboxd.com/tmdb/47795/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">6</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w1280/lyIhbqqCXpY5Qrgb3FAwza0wxIw.jpg" alt="Вертолёт несёт мраморную руку — кадр из фильма «Пейзаж в тумане»">
+  <img class="coll-poster" src="/assets/img/w1280_lyIhbqqCXpY5Qrgb3FAwza0wxIw.jpg" alt="Вертолёт несёт мраморную руку — кадр из фильма «Пейзаж в тумане»">
   <div class="coll-body">
     <h3>Рука, которой не за что держаться</h3>
     <p>На зимнем пляже дети и Орест видят, как над водой поднимается огромная мраморная рука, и вертолёт уносит её куда-то вдаль. Один из самых загадочных кадров режиссёра держится сразу на нескольких уровнях — историческом, культурном, человеческом.</p>
@@ -68,7 +68,7 @@ letterboxd: https://letterboxd.com/tmdb/47795/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">7</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w1280/dCWcnThGN945JX8AIn8aRdpqEBd.jpg" alt="Маленькие фигуры в широком пейзаже — кадр из фильма «Пейзаж в тумане»">
+  <img class="coll-poster" src="/assets/img/w1280_dCWcnThGN945JX8AIn8aRdpqEBd.jpg" alt="Маленькие фигуры в широком пейзаже — кадр из фильма «Пейзаж в тумане»">
   <div class="coll-body">
     <h3>Маленькие в большом кадре</h3>
     <p>Снято всё длинными общими планами, и фильм буквально становится тем самым «пейзажем»: дети тонут в нём крошечными точками на огромном полотне. Маленькая фигура в широком кадре, мир вокруг непомерно велик — отсюда чувство полного одиночества на пустом, открытом пространстве.</p>
@@ -77,7 +77,7 @@ letterboxd: https://letterboxd.com/tmdb/47795/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">8</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w1280/r5q69TRKYFujk2ccad2fkmnXNyg.jpg" alt="Орест и дети — кадр из фильма «Пейзаж в тумане»">
+  <img class="coll-poster" src="/assets/img/w1280_r5q69TRKYFujk2ccad2fkmnXNyg.jpg" alt="Орест и дети — кадр из фильма «Пейзаж в тумане»">
   <div class="coll-body">
     <h3>Кадр на просвет</h3>
     <p>Орест подбирает на улице обрывок киноплёнки, поднимает его к фонарю на фоне белой стены и спрашивает детей, различают ли они что-нибудь. Кадр почти пуст, всмотреться надо изо всех сил, чтобы хоть что-то проступило. Сцена короткая, а весит много: весь фильм держится на таком же усилии, разглядеть изображение там, где его почти не видно.</p>
@@ -86,7 +86,7 @@ letterboxd: https://letterboxd.com/tmdb/47795/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">9</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w1280/5ChpWEXTEhIiwyRp8hPzAxpadzW.jpg" alt="Дети у дерева в тумане — кадр из фильма «Пейзаж в тумане»">
+  <img class="coll-poster" src="/assets/img/w1280_5ChpWEXTEhIiwyRp8hPzAxpadzW.jpg" alt="Дети у дерева в тумане — кадр из фильма «Пейзаж в тумане»">
   <div class="coll-body">
     <h3>Смысл придётся придумать</h3>
     <p>Опору героям не на чем построить: семья, прошлое и миф у Ангелопулоса распались и ушли в туман. Остаётся одно — рассказывать. Не случайно фильм открывается в темноте, где старшая шепчет младшему историю творения: вначале был хаос, потом свет.</p>

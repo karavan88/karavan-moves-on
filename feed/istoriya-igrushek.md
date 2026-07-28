@@ -3,13 +3,13 @@ title: Тридцать один год «Истории игрушек»
 subtitle: В 1995-м «История игрушек» доказала, что компьютер умеет рассказывать истории. Тридцать один год спустя франшиза рассказывает уже о том, как исчезает сама игра. Семь заметок об эволюции саги — от страха быть заменённым другим до страха быть заменённым цифровым гаджетом.
 date: 6 июля 2026
 tag: Скролл-история
-image: https://image.tmdb.org/t/p/w780/uAfhsySkr1UzQg1zdg3dZQRz9Fd.jpg
+image: /assets/img/w780_uAfhsySkr1UzQg1zdg3dZQRz9Fd.jpg
 layout: scrolly
 snap: page
 ---
 <div class="coll-entry entry-hero">
   <div class="coll-rank">1</div>
-  <img class="coll-poster still-wide" src="https://image.tmdb.org/t/p/w1280/3Rfvhy1Nl6sSGJwyjb0QiZzZYlB.jpg" alt="Базз и Вуди в комнате Энди — кадр из фильма «История игрушек»">
+  <img class="coll-poster still-wide" src="/assets/img/w1280_3Rfvhy1Nl6sSGJwyjb0QiZzZYlB.jpg" alt="Базз и Вуди в комнате Энди — кадр из фильма «История игрушек»">
   <div class="coll-body">
     <h3>Кино, собранное из пикселей</h3>
     <p>22 ноября 1995 года в американский прокат вышел первый в истории полнометражный фильм, целиком созданный на компьютере. За ним стояла студия, которую Голливуд всерьёз не воспринимал: Pixar начиналась как компьютерное подразделение Lucasfilm, купленное Стивом Джобсом, а режиссёра Джона Лассетера когда-то уволили из Disney — за слишком настойчивую веру в компьютерную анимацию.</p>
@@ -18,7 +18,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">2</div>
-  <img class="coll-poster still-wide" src="https://image.tmdb.org/t/p/w1280/lxD5ak7BOoinRNehOCA85CQ8ubr.jpg" alt="Вуди и Базз — кадр из фильма «История игрушек»">
+  <img class="coll-poster still-wide" src="/assets/img/w1280_lxD5ak7BOoinRNehOCA85CQ8ubr.jpg" alt="Вуди и Базз — кадр из фильма «История игрушек»">
   <div class="coll-body">
     <h3>Страх быть заменённым другим</h3>
     <div class="coll-meta">1995 · реж. Джон Лассетер · США <a class="lb" href="https://letterboxd.com/tmdb/862" target="_blank" rel="noopener" aria-label="Letterboxd"></a></div>
@@ -28,7 +28,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">3</div>
-  <img class="coll-poster still-wide" src="https://image.tmdb.org/t/p/w1280/7iUDfakacY1HpajP1DtHrCuDB95.jpg" alt="Вуди, Джесси и банда «Загона» — кадр из фильма «История игрушек 2»">
+  <img class="coll-poster still-wide" src="/assets/img/w1280_7iUDfakacY1HpajP1DtHrCuDB95.jpg" alt="Вуди, Джесси и банда «Загона» — кадр из фильма «История игрушек 2»">
   <div class="coll-body">
     <h3>Страх устареть</h3>
     <div class="coll-meta">1999 · реж. Джон Лассетер · США <a class="lb" href="https://letterboxd.com/tmdb/863" target="_blank" rel="noopener" aria-label="Letterboxd"></a></div>
@@ -38,7 +38,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">4</div>
-  <img class="coll-poster still-wide" src="https://image.tmdb.org/t/p/w1280/nMqheCzCIlELggYwSF1UPMxWjCs.jpg" alt="Энди с игрушками — кадр из фильма «История игрушек 3»">
+  <img class="coll-poster still-wide" src="/assets/img/w1280_nMqheCzCIlELggYwSF1UPMxWjCs.jpg" alt="Энди с игрушками — кадр из фильма «История игрушек 3»">
   <div class="coll-body">
     <h3>Прощание с миром детства</h3>
     <div class="coll-meta">2010 · реж. Ли Анкрич · США <a class="lb" href="https://letterboxd.com/tmdb/10193" target="_blank" rel="noopener" aria-label="Letterboxd"></a></div>
@@ -48,7 +48,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">5</div>
-  <img class="coll-poster still-wide" src="https://image.tmdb.org/t/p/w1280/fewucAjpfYTAU07N1ZWFmwb7QLl.jpg" alt="Форки и Вуди — кадр из фильма «История игрушек 4»">
+  <img class="coll-poster still-wide" src="/assets/img/w1280_fewucAjpfYTAU07N1ZWFmwb7QLl.jpg" alt="Форки и Вуди — кадр из фильма «История игрушек 4»">
   <div class="coll-body">
     <h3>Зачем жить, если ты пластиковая вилка</h3>
     <div class="coll-meta">2019 · реж. Джош Кули · США <a class="lb" href="https://letterboxd.com/tmdb/301528" target="_blank" rel="noopener" aria-label="Letterboxd"></a></div>
@@ -58,7 +58,7 @@ snap: page
 </div>
 <div class="coll-entry">
   <div class="coll-rank">6</div>
-  <img class="coll-poster still-wide" src="https://image.tmdb.org/t/p/w1280/qrx28gxdzCzfYvgCBZ9RNTveAa2.jpg" alt="Игрушки и планшет Лилипад — кадр из фильма «История игрушек 5»">
+  <img class="coll-poster still-wide" src="/assets/img/w1280_qrx28gxdzCzfYvgCBZ9RNTveAa2.jpg" alt="Игрушки и планшет Лилипад — кадр из фильма «История игрушек 5»">
   <div class="coll-body">
     <h3>Страх цифровизации</h3>
     <div class="coll-meta">2026 · реж. Эндрю Стэнтон · США <a class="lb" href="https://letterboxd.com/tmdb/1084244" target="_blank" rel="noopener" aria-label="Letterboxd"></a></div>
@@ -68,7 +68,7 @@ snap: page
 </div>
 <div class="coll-entry entry-hero">
   <div class="coll-rank">7</div>
-  <img class="coll-poster still-wide" src="https://image.tmdb.org/t/p/w1280/hBO2Np3jbw36R2jE302DTO0cI52.jpg" alt="Повзрослевший Энди — кадр из фильма «История игрушек 3»">
+  <img class="coll-poster still-wide" src="/assets/img/w1280_hBO2Np3jbw36R2jE302DTO0cI52.jpg" alt="Повзрослевший Энди — кадр из фильма «История игрушек 3»">
   <div class="coll-body">
     <h3>Сейсмограф детства</h3>
     <p>Выстроенные в ряд, пять фильмов читаются как одна кривая: страх быть заменённым другим (1995), страх устареть (1999), взросление ребёнка (2010), право уйти самому (2019), исчезновение самой игры (2026). Франшиза ни разу не сменила тему — она три с лишним десятилетия уточняла её, взрослея вместе с аудиторией: те, кто в 1995-м сидел в зале с попкорном, сегодня приводят на «Историю игрушек» собственных детей.</p>

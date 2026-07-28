@@ -1,7 +1,7 @@
 ---
 title: 10 самых вдохновляющих женских персонажей в истории кино
 subtitle: Авторская подборка героинь, которые меняют правила игры — от классики немого кино до современности
-cover: https://image.tmdb.org/t/p/w1280/9yepEBnQNcKzWWyHdUiX8Mnqc6U.jpg
+cover: /assets/img/w1280_9yepEBnQNcKzWWyHdUiX8Mnqc6U.jpg
 kicker: 10 героинь
 layout: scrolly
 kind: characters
@@ -11,7 +11,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">01</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w300/tAgV9yxY6AC1bsPt3qJJQpD4s8.jpg" alt="«Страсти Жанны д'Арк»">
+  <img class="coll-poster" src="/assets/img/w300_tAgV9yxY6AC1bsPt3qJJQpD4s8.jpg" alt="«Страсти Жанны д'Арк»">
   <div class="coll-body">
     <h3>Жанна д'Арк</h3>
     <div class="coll-film">«Страсти Жанны д'Арк»</div>
@@ -22,7 +22,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">02</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/2ZfER8a886RjuM63mq8YyTkZuGN.jpg" alt="«Всё о Еве»">
+  <img class="coll-poster" src="/assets/img/w500_2ZfER8a886RjuM63mq8YyTkZuGN.jpg" alt="«Всё о Еве»">
   <div class="coll-body">
     <h3>Марго Ченнинг</h3>
     <div class="coll-film">«Всё о Еве»</div>
@@ -33,7 +33,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">03</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w300/c7VHPq0FxlvDiwMCvb8VOxeg8ub.jpg" alt="«Золотая каска»">
+  <img class="coll-poster" src="/assets/img/w300_c7VHPq0FxlvDiwMCvb8VOxeg8ub.jpg" alt="«Золотая каска»">
   <div class="coll-body">
     <h3>Мари</h3>
     <div class="coll-film">«Золотая каска»</div>
@@ -44,7 +44,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">04</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w300/bap37yOCwcR9x4YDsNUaSo9nIp9.jpg" alt="«Джонни Гитара»">
+  <img class="coll-poster" src="/assets/img/w300_bap37yOCwcR9x4YDsNUaSo9nIp9.jpg" alt="«Джонни Гитара»">
   <div class="coll-body">
     <h3>Вьенна</h3>
     <div class="coll-film">«Джонни Гитара»</div>
@@ -55,7 +55,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">05</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w300/xF4oCG3PLNbcrtPZbqB3BtkIbKg.jpg" alt="«Ночи Кабирии»">
+  <img class="coll-poster" src="/assets/img/w300_xF4oCG3PLNbcrtPZbqB3BtkIbKg.jpg" alt="«Ночи Кабирии»">
   <div class="coll-body">
     <h3>Кабирия</h3>
     <div class="coll-film">«Ночи Кабирии»</div>
@@ -66,7 +66,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">06</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w300/uIlt1x2eBMzuQHwyU54CNPTSK6A.jpg" alt="«Звезда за облаком»">
+  <img class="coll-poster" src="/assets/img/w300_uIlt1x2eBMzuQHwyU54CNPTSK6A.jpg" alt="«Звезда за облаком»">
   <div class="coll-body">
     <h3>Нита</h3>
     <div class="coll-film">«Звезда за облаком»</div>
@@ -77,7 +77,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">07</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w300/A0BjScjASfMFgyGI5sU0CwfKh3l.jpg" alt="«Жить своей жизнью»">
+  <img class="coll-poster" src="/assets/img/w300_A0BjScjASfMFgyGI5sU0CwfKh3l.jpg" alt="«Жить своей жизнью»">
   <div class="coll-body">
     <h3>Нана</h3>
     <div class="coll-film">«Жить своей жизнью»</div>
@@ -88,7 +88,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">08</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/ax3z0rWwzbejgR7Mx6LhHfTOrX8.jpg" alt="«Подними красный фонарь»">
+  <img class="coll-poster" src="/assets/img/w500_ax3z0rWwzbejgR7Mx6LhHfTOrX8.jpg" alt="«Подними красный фонарь»">
   <div class="coll-body">
     <h3>Сунлянь</h3>
     <div class="coll-film">«Подними красный фонарь»</div>
@@ -99,7 +99,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">09</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/y0rUYDVsNDLSafQu0POpx5nfQVT.jpg" alt="«Тельма и Луиза»">
+  <img class="coll-poster" src="/assets/img/w500_y0rUYDVsNDLSafQu0POpx5nfQVT.jpg" alt="«Тельма и Луиза»">
   <div class="coll-body">
     <h3>Луиза</h3>
     <div class="coll-film">«Тельма и Луиза»</div>
@@ -110,7 +110,7 @@ kind: characters
 
 <div class="coll-entry">
   <div class="coll-rank">10</div>
-  <img class="coll-poster" src="https://image.tmdb.org/t/p/w500/2kF2Fuw3pykr7YGRjNihWNAL4ZS.jpg" alt="«Догвиль»">
+  <img class="coll-poster" src="/assets/img/w500_2kF2Fuw3pykr7YGRjNihWNAL4ZS.jpg" alt="«Догвиль»">
   <div class="coll-body">
     <h3>Грейс</h3>
     <div class="coll-film">«Догвиль»</div>
