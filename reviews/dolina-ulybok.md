@@ -5,7 +5,7 @@ original: La valle dei sorrisi
 year: 2025
 director: Паоло Стрипполи
 country: Италия, Словения
-rating: 7
+rating: 6
 poster: /assets/img/w500_wZWBXIsX3QBXf94vzCSUqlZDp57.jpg
 tags: хоррор, итальянское кино, фолк-хоррор
 tmdb: 1092936
