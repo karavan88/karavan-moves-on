@@ -446,7 +446,47 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .mono{ font-variant-numeric:tabular-nums; }
 
 /* Печать / экспорт в PDF: фиксированные высоты вместо vh, тёмный фон сохраняется */
+/* ====== Шапка сайта поверх дека + боковое оглавление ====== */
+:root{ --dh:52px; --toc:198px; }
+.deck-header{ position:fixed; top:0; left:0; right:0; height:var(--dh); z-index:70;
+  display:flex; align-items:center; justify-content:space-between; gap:18px; padding:0 18px;
+  background:#0b0c10; border-bottom:1px solid rgba(232,184,75,.22);
+  box-shadow:0 8px 26px -14px rgba(0,0,0,.85); }
+.dh-brand{ display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+.dh-logo{ width:34px; height:34px; border-radius:50%; display:grid; place-items:center;
+  background:linear-gradient(135deg,#c8a24a,#8a6f2e); color:#0b0c10; font-weight:800; font-size:17px;
+  box-shadow:0 0 0 1px #CDA14A; }
+.dh-name{ color:#F3E9CF; font-weight:600; font-size:15px; letter-spacing:.05em; line-height:1; white-space:nowrap; }
+.dh-sub{ display:block; color:var(--gold); font-size:7.5px; letter-spacing:.28em; margin-top:3px; }
+.dh-nav{ display:flex; gap:15px; align-items:center; overflow-x:auto; scrollbar-width:none; }
+.dh-nav::-webkit-scrollbar{ display:none; }
+.dh-nav a{ color:#e7e2d4; font-size:12.5px; font-weight:600; letter-spacing:.01em; white-space:nowrap;
+  text-decoration:none; opacity:.85; transition:opacity .2s,color .2s; }
+.dh-nav a:hover{ color:#fff; opacity:1; }
+.dh-nav a.dh-cta{ color:var(--accent); font-weight:700; opacity:1; }
+
+.deck-toc{ position:fixed; left:0; top:var(--dh); bottom:0; width:var(--toc); z-index:65;
+  background:#0a0a0e; border-right:1px solid rgba(232,184,75,.14); padding:14px 0; overflow-y:auto; }
+.deck-toc .toc-h{ font-variant:small-caps; letter-spacing:2px; color:var(--gold); font-size:10.5px; padding:0 16px 9px; }
+.deck-toc a{ display:flex; gap:8px; padding:6.5px 16px; color:#b9b1a0; font-size:12.5px; line-height:1.25;
+  text-decoration:none; border-left:2px solid transparent; transition:color .15s,background .15s; }
+.deck-toc a:hover{ color:#efe7d6; background:rgba(255,255,255,.03); }
+.deck-toc a.active{ color:var(--gold-soft); border-left-color:var(--gold); background:rgba(200,162,74,.09); }
+.deck-toc a .n{ color:var(--gold-empty); font-size:10.5px; min-width:14px; text-align:right; }
+
+/* сцену reveal сдвигаем под шапку и правее оглавления */
+.reveal{ position:fixed !important; top:var(--dh) !important; left:var(--toc) !important;
+  right:0 !important; bottom:0 !important; width:auto !important; height:auto !important; }
+
+@media (max-width: 900px){
+  :root{ --toc:0px; }
+  .deck-toc{ display:none; }
+  .dh-nav a:not(.dh-cta){ display:none; }
+}
+
 @media print {
+  .deck-header, .deck-toc{ display:none !important; }
+  .reveal{ position:static !important; top:0 !important; left:0 !important; }
   .reveal-viewport, .reveal, body, html { background:#0c0a07 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .chartbox{ height:520px !important; }
   .chartbox.sm{ height:500px !important; }
@@ -458,6 +498,29 @@ section.has-light-background, section.has-light-background h1, section.has-light
 </style>
 </head>
 <body>
+
+<!-- Шапка сайта — видна поверх каждого слайда -->
+<header class="deck-header">
+  <a class="dh-brand" href="https://karavancinema.netlify.app/" target="_blank" rel="noopener" aria-label="Караван идёт — на сайт">
+    <span class="dh-logo">К</span>
+    <span><span class="dh-name">КАРАВАН ИДЁТ</span><span class="dh-sub">КИНОЖУРНАЛ</span></span>
+  </a>
+  <nav class="dh-nav" aria-label="Разделы сайта">
+    <a href="https://karavancinema.netlify.app/reviews" target="_blank" rel="noopener">Рецензии</a>
+    <a href="https://karavancinema.netlify.app/films" target="_blank" rel="noopener">Фильмы</a>
+    <a href="https://karavancinema.netlify.app/lectures/" target="_blank" rel="noopener">Лекции</a>
+    <a href="https://karavancinema.netlify.app/collections" target="_blank" rel="noopener">Подборки</a>
+    <a href="https://karavancinema.netlify.app/festivals" target="_blank" rel="noopener">Кинофестивали</a>
+    <a href="https://karavancinema.netlify.app/feed" target="_blank" rel="noopener">Заметки</a>
+    <a href="https://karavancinema.netlify.app/" target="_blank" rel="noopener" class="dh-cta">На сайт →</a>
+  </nav>
+</header>
+
+<!-- Боковое оглавление презентации -->
+<nav class="deck-toc" id="deckToc" aria-label="Оглавление презентации">
+  <div class="toc-h">Оглавление</div>
+</nav>
+
 <div class="reveal"><div class="slides">
 
 <!-- 1 TITLE -->
@@ -482,7 +545,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
   <div class="two">
     <div>
       <ul>
-        <li><strong>25 000</strong> фильмов с личной оценкой по шкале <strong>0–10</strong> (шаг 0,5 — шкала тонкая, а не грубая).</li>
+        <li><strong>25 000</strong> фильмов, каждый с личной оценкой по <strong>10-балльной шкале</strong> (шаг 0,5).</li>
         <li>У каждого фильма — <em>год</em>, <em>десятилетие</em>, страна и режиссёр.</li>
         <li>Диапазон: от первых Люмьеров (1895) до релизов 2026&nbsp;года.</li>
       </ul>
@@ -518,7 +581,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
   <h2>Распределение всех 25 000 оценок</h2>
   <hr class="rule">
   <div class="chartbox"><canvas id="cDist"></canvas></div>
-  <div class="footer"><span>Пик — 6,0 и 6,5; «десятки» и «нули» одинаково редки</span><span>гистограмма частот</span></div>
+  <div class="footer"><span>Пик — 6,0 и 6,5; крайние оценки шкалы редки</span><span>гистограмма частот</span></div>
 </section>
 
 <!-- 5 THREE MEANS EXPLAINER -->
@@ -678,13 +741,15 @@ function buildAll(){
   // counts
   mk("cCount",{type:"bar",data:{labels:DECLAB,datasets:[{data:D.dec.map(d=>d.n),
     backgroundColor:GOLD+"cc",borderRadius:3}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{left:2,right:12}},plugins:{legend:{display:false}},
     scales:{x:{...noGrid,ticks:{maxRotation:60,minRotation:60,font:{size:11}}},y:gridY}}});
 
-  // distribution
-  mk("cDist",{type:"bar",data:{labels:D.distx.map(x=>x.toString().replace('.',',')),
-    datasets:[{data:D.disty,backgroundColor:D.distx.map(x=> x>=9?GOLDS: x<=3?BAD: GOLD+"aa"),borderRadius:3}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+  // distribution (без нулевой оценки — там фильмов практически нет)
+  const dx=D.distx.slice(1), dy=D.disty.slice(1);
+  mk("cDist",{type:"bar",data:{labels:dx.map(x=>x.toString().replace('.',',')),
+    datasets:[{data:dy,backgroundColor:dx.map(x=> x>=9?GOLDS: x<=3?BAD: GOLD+"aa"),borderRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{left:2,right:10}},
+      plugins:{legend:{display:false},
       tooltip:{callbacks:{title:i=>"Оценка "+i[0].label}}},
     scales:{x:{...noGrid,title:{display:true,text:"оценка",color:MUT}},
       y:{...gridY,title:{display:true,text:"число фильмов",color:MUT}}}}});
@@ -693,7 +758,7 @@ function buildAll(){
   mk("cTrend",{type:"line",data:{labels:DECLAB,datasets:[{data:D.dec.map(d=>d.mean),
     borderColor:GOLD,backgroundColor:"rgba(200,162,74,.12)",fill:true,tension:.35,
     pointBackgroundColor:GOLDS,pointRadius:5,borderWidth:3}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{left:2,right:14}},plugins:{legend:{display:false},
       tooltip:{callbacks:{label:c=>"Средняя: "+c.parsed.y.toFixed(2).replace('.',',')}}},
     scales:{x:{...noGrid,ticks:{maxRotation:60,minRotation:60,font:{size:12}}},
       y:{...gridY,min:4,max:8,title:{display:true,text:"средняя оценка",color:MUT}}}}});
@@ -703,7 +768,7 @@ function buildAll(){
     {label:"Среднее",data:D.dec.map(d=>d.mean),borderColor:GOLD,tension:.3,borderWidth:3,pointRadius:3},
     {label:"Медиана",data:D.dec.map(d=>d.median),borderColor:ACC,tension:.3,borderWidth:2,pointRadius:3,borderDash:[6,4]},
     {label:"Мода",data:D.dec.map(d=>d.mode),borderColor:MUT,tension:.3,borderWidth:2,pointRadius:3,borderDash:[2,4]}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:INK,usePointStyle:true}}},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{left:2,right:14}},plugins:{legend:{labels:{color:INK,usePointStyle:true}}},
     scales:{x:{...noGrid,ticks:{maxRotation:60,minRotation:60,font:{size:12}}},
       y:{...gridY,min:4,max:8}}}});
 
@@ -711,14 +776,15 @@ function buildAll(){
   mk("cMirror",{type:"line",data:{labels:DECLAB,datasets:[
     {label:"Шедевры (9–10), %",data:D.dec.map(d=>d.mp),borderColor:GOLDS,backgroundColor:"rgba(226,198,126,.12)",fill:true,tension:.35,borderWidth:3,pointRadius:3},
     {label:"Провалы (≤3), %",data:D.dec.map(d=>d.wk),borderColor:BAD,backgroundColor:"rgba(192,98,63,.12)",fill:true,tension:.35,borderWidth:3,pointRadius:3}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:INK,usePointStyle:true}}},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{left:2,right:14}},plugins:{legend:{labels:{color:INK,usePointStyle:true}}},
     scales:{x:{...noGrid,ticks:{maxRotation:60,minRotation:60,font:{size:12}}},
       y:{...gridY,title:{display:true,text:"% фильмов десятилетия",color:MUT}}}}});
 
   // sd
   mk("cSd",{type:"bar",data:{labels:DECLAB,datasets:[{data:D.dec.map(d=>d.sd),
     backgroundColor:D.dec.map(d=> d.sd>=1.5?BAD: GOLD+"bb"),borderRadius:3}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{left:2,right:14}},
+      plugins:{legend:{display:false},
       tooltip:{callbacks:{label:c=>"σ = "+c.parsed.y.toFixed(2).replace('.',',')}}},
     scales:{x:{...noGrid,ticks:{maxRotation:60,minRotation:60,font:{size:11}}},
       y:{...gridY,title:{display:true,text:"σ (разброс)",color:MUT}}}}});
@@ -727,7 +793,7 @@ function buildAll(){
   const g=[...D.countries].sort((a,b)=>a[1]-b[1]);
   mk("cGeo",{type:"bar",data:{labels:g.map(c=>c[0]),datasets:[{data:g.map(c=>c[1]),
     backgroundColor:g.map(c=> c[1]>=6.8?GOLDS: c[1]<5?BAD: GOLD+"bb"),borderRadius:3}]},
-    options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,layout:{padding:{right:14}},plugins:{legend:{display:false},
       tooltip:{callbacks:{label:c=>"Средняя "+c.parsed.x.toFixed(2).replace('.',',')+" · n="+g[c.dataIndex][2]}}},
     scales:{x:{...gridY,min:4,max:7.5,title:{display:true,text:"средняя оценка",color:MUT}},
       y:{...noGrid,ticks:{font:{size:12}}}}}});
@@ -743,19 +809,39 @@ function buildAll(){
 
 function resizeAll(){ charts.forEach(c=>{ try{ c.resize(); }catch(e){} }); }
 
+/* Боковое оглавление */
+var TOC=["Обзор","Данные","Общая картина","Распределение","Три средних",
+  "Тренд по десятилетиям","Золотой век","Среднее vs медиана","Шедевры vs провалы",
+  "Разброс оценок","География вкуса","Режиссёры","Выводы"];
+function buildTOC(){
+  var el=document.getElementById('deckToc'); if(!el || el.dataset.built) return; el.dataset.built='1';
+  TOC.forEach(function(t,i){
+    var a=document.createElement('a');
+    a.innerHTML='<span class="n">'+(i+1)+'</span><span>'+t+'</span>';
+    a.href='#/'+i;
+    a.addEventListener('click',function(e){ e.preventDefault(); if(Reveal&&Reveal.slide) Reveal.slide(i); });
+    el.appendChild(a);
+  });
+}
+function syncTOC(){
+  var i=(Reveal&&Reveal.getIndices)?Reveal.getIndices().h:0;
+  var links=document.querySelectorAll('#deckToc a');
+  for(var k=0;k<links.length;k++) links[k].classList.toggle('active', k===i);
+}
+
 Reveal.initialize({ hash:true, transition:"slide", backgroundTransition:"fade",
   center:false, width:1280, height:800, margin:0.04, controls:true, progress:true, slideNumber:"c/t",
   pdfMaxPagesPerSlide:1, pdfSeparateFragments:false });
 
 // buildAll идемпотентен: строим сразу и повторяем на 'ready' (когда reveal
 // закончил перестройку DOM) — так графики всегда садятся на ЖИВЫЕ canvas.
-buildAll();
+buildAll(); buildTOC();
 if(Reveal && Reveal.on){
   // reveal при показе слайда заново создаёт его DOM, поэтому график,
   // построенный заранее, «отвязывается». Пересобираем на каждом показе —
   // buildAll идемпотентен, targeting всегда живой canvas текущего слайда.
-  Reveal.on('ready',        function(){ buildAll(); setTimeout(resizeAll, 60); });
-  Reveal.on('slidechanged', function(){ buildAll(); setTimeout(resizeAll, 60); });
+  Reveal.on('ready',        function(){ buildAll(); buildTOC(); syncTOC(); setTimeout(resizeAll, 60); });
+  Reveal.on('slidechanged', function(){ buildAll(); syncTOC(); setTimeout(resizeAll, 60); });
   Reveal.on('resize',       function(){ setTimeout(resizeAll, 60); });
   Reveal.on('pdf-ready',    function(){ buildAll(); setTimeout(resizeAll, 80); });
 }
