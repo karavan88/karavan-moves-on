@@ -599,6 +599,23 @@
   .scrolly .coll-poster.still-wide{width:clamp(300px,36vw,500px);aspect-ratio:16/9;object-fit:cover}
   .scrolly .coll-entry.entry-hero .coll-poster.still-wide{width:min(640px,64vw)}
   @media(max-width:700px){.scrolly .coll-poster.still-wide{width:min(86vw,400px)}}
+  /* живопись и артефакты в боковых сценах (класс art на .coll-poster):
+     крупнее киношного постера, пропорции полотна сохраняются, без обрезки */
+  .scrolly .coll-poster.art{width:clamp(280px,36vw,520px);height:auto}
+  /* медиа-блок сцены: изображение и подпись единой колонкой */
+  .scrolly .coll-media{position:relative;z-index:1;display:flex;flex-direction:column;
+    align-items:center;flex-shrink:0;margin:0;min-width:0}
+  /* подпись под изображением — мелким курсивом */
+  .scrolly .coll-cap{margin:10px 0 0;font-size:12.5px;line-height:1.5;font-style:italic;
+    color:#b8b3a7;text-align:center;max-width:clamp(280px,36vw,520px)}
+  [data-theme="light"] .scrolly .coll-cap{color:#666b78}
+  .scrolly .coll-entry.entry-hero .coll-cap{max-width:min(640px,64vw)}
+  .scrolly .coll-entry .coll-cap{opacity:0;transition:opacity .9s ease .25s}
+  .scrolly .coll-entry.in .coll-cap{opacity:1}
+  @media(max-width:680px){
+    .scrolly .coll-poster.art{width:auto;max-width:78vw;max-height:32svh}
+    .scrolly .coll-cap{max-width:82vw}
+  }
   /* ── фикс дёрганья снапа в мобильных webview (превью мессенджеров) ──
      1) svh привязывает высоту сцены к «малому» вьюпорту, не скачущему от адресной
         строки; на десктопе svh == vh — там без изменений.

@@ -1,6 +1,7 @@
 ---
-title: Конь, который потопил цивилизацию
-subtitle: У троянского коня в фильме Нолана двойное дно: хитрость, выигравшая войну, оказывается преступлением против закона Зевса, а расплата — гибелью целого мира. Катастрофа не выдумана: около 1200 года до н.э. державы Средиземноморья рухнули разом, и главными обвиняемыми древние источники называют «народы моря» с подозрительно гомеровскими именами. Десять заметок о том, где в «Одиссее» археология, где литературные версии — от Гомера до Данте — и где собственные допущения режиссёра.
+title: Как троянский конь потопил бронзовый век
+kicker: Гомер, археология и Нолан: очная ставка
+subtitle: У троянского коня в «Одиссее» Кристофера Нолана двойное дно: хитрость, выигравшая войну, оказывается преступлением против закона Зевса, а расплата — гибелью целого мира. Катастрофа не выдумана: около 1200 года до н.э. державы Средиземноморья рухнули разом, и главными обвиняемыми древние источники называют «народы моря» с подозрительно гомеровскими именами. Десять заметок о том, где в фильме археология, где литературные версии — от Гомера до Данте — и где допущения режиссёра.
 director: Кристофер Нолан
 year: 2026
 rating: 7
@@ -9,12 +10,14 @@ tag: Скролл-история
 image: https://image.tmdb.org/t/p/w780/kGCOfQpITTI0rKzrVMRGOFteszf.jpg
 layout: scrolly
 snap: page
-media: stills
 letterboxd: https://letterboxd.com/tmdb/1368337/
 ---
-<div class="coll-entry">
+<div class="coll-entry entry-hero">
   <div class="coll-rank">1</div>
-  <img class="coll-poster" src="/assets/img/w1280_kGCOfQpITTI0rKzrVMRGOFteszf.jpg" alt="Деревянный конь в рассветном тумане — кадр из фильма «Одиссея»">
+  <figure class="coll-media">
+    <img class="coll-poster" src="/assets/img/w1280_kGCOfQpITTI0rKzrVMRGOFteszf.jpg" alt="Деревянный конь в рассветном тумане — кадр из фильма «Одиссея»">
+    <figcaption class="coll-cap">Кадр из фильма «Одиссея» (реж. Кристофер Нолан, 2026)</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Дар, который нельзя не принять</h3>
     <p>Пролог «Одиссеи» Нолан снимает как явление природы: деревянная громада выплывает из рассветного тумана во весь IMAX-кадр. Подношение богам, внутри которого спрятана засада; троянцы сами втащат в город свою гибель.</p>
@@ -23,7 +26,10 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">2</div>
-  <img class="coll-poster" src="https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt_van_Rijn%2C_Philemon_and_Baucis%2C_1658%2C_NGA_1204.jpg?width=1400" alt="Рембрандт, «Филемон и Бавкида»: переодетые боги в гостях у стариков, единственных, кто пустил их на порог">
+  <figure class="coll-media">
+    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt_van_Rijn%2C_Philemon_and_Baucis%2C_1658%2C_NGA_1204.jpg?width=1200" alt="Рембрандт, «Филемон и Бавкида»: переодетые боги в гостях у стариков, единственных, кто пустил их на порог">
+    <figcaption class="coll-cap">Рембрандт, «Филемон и Бавкида», 1658. Национальная галерея искусства, Вашингтон</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Закон Зевса, на котором стоял мир</h3>
     <p>Речь о ксении (ξενία) — священном гостеприимстве. Ксений, «Гостеприимец», — эпитет самого Зевса: верховный бог лично отвечает за каждого путника у чужого порога. У Гомера этот закон — несущая конструкция обеих поэм: циклоп Полифем страшен прежде всего тем, что пожирает гостей, а женихи Пенелопы, годами проедающие чужой дом, заплатят за это жизнью.</p>
@@ -32,7 +38,10 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">3</div>
-  <img class="coll-poster" src="https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Domenico_Tiepolo_-_The_Procession_of_the_Trojan_Horse_in_Troy_-_WGA22382.jpg?width=1400" alt="Джандоменико Тьеполо, «Шествие троянского коня в Трою»: город сам втаскивает свою гибель">
+  <figure class="coll-media">
+    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Domenico_Tiepolo_-_The_Procession_of_the_Trojan_Horse_in_Troy_-_WGA22382.jpg?width=1200" alt="Джандоменико Тьеполо, «Шествие троянского коня в Трою»: город сам втаскивает свою гибель">
+    <figcaption class="coll-cap">Джандоменико Тьеполо, «Шествие троянского коня в Трою», около 1760. Национальная галерея, Лондон</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Война открылась тем же преступлением</h3>
     <p>Парис, сын троянского царя Приама, гостил в Спарте у Менелая — и увёз из его дома жену и сокровища. Для грека это не любовная драма, а святотатство; «Илиада» ровно так объясняет обречённость Трои. Ахейцы — собирательное гомеровское имя греков — закрыли войну тем же способом: под видом дара богам в город въехала засада.</p>
@@ -41,7 +50,10 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">4</div>
-  <img class="coll-poster" src="https://commons.wikimedia.org/wiki/Special:FilePath/Linear_B_tablet%2C_Pylos%2C_13th_century_BC%2C_NAMA_An_657%2C_191137.jpg?width=1400" alt="Табличка линейного письма Б из сгоревшего дворца в Пилосе">
+  <figure class="coll-media">
+    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Linear_B_tablet%2C_Pylos%2C_13th_century_BC%2C_NAMA_An_657%2C_191138.jpg?width=1200" alt="Табличка линейного письма Б из сгоревшего дворца в Пилосе">
+    <figcaption class="coll-cap">Табличка линейного письма Б (An 657) из дворца в Пилосе, XIII век до н.э. Национальный археологический музей, Афины; фото — Wikimedia Commons</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Эпоха действительно закончилась</h3>
     <p>В финале фильм проговаривает это прямо: время героев подходит к концу. Археология подтверждает буквально: около 1200 года до н.э. разом рушатся микенские дворцы, Хеттская держава и города Леванта, народы приходят в движение, замолкает линейное письмо Б — слоговая запись греческого языка, которой писцы вели учёт зерна, скота и податей. Грамота уходит из Греции на четыре столетия; Эрик Клайн так и назвал книгу — «1177 год до н.э.: год, когда рухнула цивилизация».</p>
@@ -50,7 +62,10 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">5</div>
-  <img class="coll-poster" src="https://commons.wikimedia.org/wiki/Special:FilePath/Medinet_Habu_Ramses_III._Tempel_Nordostwand_Abzeichnung_01.jpg?width=1400" alt="Морская битва Рамсеса III с народами моря, прорисовка рельефа из Мединет-Абу">
+  <figure class="coll-media">
+    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Medinet_Habu_Ramses_III._Tempel_Nordostwand_Abzeichnung_01.jpg?width=1200" alt="Морская битва Рамсеса III с народами моря, прорисовка рельефа из Мединет-Абу">
+    <figcaption class="coll-cap">Морская битва Рамсеса III с народами моря. Прорисовка рельефа храма в Мединет-Абу, XII век до н.э.</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Народы моря: страх, звучащий весь фильм</h3>
     <p>У Нолана о них говорят постоянно: варварские племена, приходящие с моря, чужие всякому закону — Зевсову и любому другому. Ни порога, ни очага; к их берегу не постучишься гостем. Страх не выдуман: египетские хроники дважды, с разницей в тридцать лет, фиксируют нашествия и перечисляют пришельцев поимённо.</p>
@@ -59,7 +74,10 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">6</div>
-  <img class="coll-poster" src="https://commons.wikimedia.org/wiki/Special:FilePath/Large_Krater_with_Armored_Men_Departing_for_Battle%2C_Mycenae_acropolis%2C_12th_century_BC_%283402016857%29.jpg?width=1400" alt="«Ваза воинов» из Микен, ровесница катастрофы: отряд уходит, женщина поднимает руку вслед">
+  <figure class="coll-media">
+    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Large_Krater_with_Armored_Men_Departing_for_Battle%2C_Mycenae_acropolis%2C_12th_century_BC_%283402016857%29.jpg?width=1200" alt="«Ваза воинов» из Микен, ровесница катастрофы: отряд уходит, женщина поднимает руку вслед">
+    <figcaption class="coll-cap">«Ваза воинов» из Микен, около 1200 года до н.э. Национальный археологический музей, Афины; фото — Wikimedia Commons</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Допущение фильма: конь рождает народы моря</h3>
     <p>Здесь проходит граница между фактом и режиссёрской гипотезой. Факт: традиционная дата падения Трои, 1184 год до н.э. — её высчитал Эратосфен, глава Александрийской библиотеки, — ложится в самую гущу катастрофы, а имена из египетских списков звучат знакомо. «Экуэш» — почти «ахейцы»; «дануна» — данайцы из крылатого «бойтесь данайцев, дары приносящих», сказанного как раз о коне; народ пелесет осел в Ханаане, и его имя до сих пор слышно в слове «Палестина».</p>
@@ -68,7 +86,10 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">7</div>
-  <img class="coll-poster" src="https://commons.wikimedia.org/wiki/Special:FilePath/Attic_red-figure_skyphos%2C_Odysseus_slays_the_suitors_of_his_wife_Penelope%2C_from_Tarquinia_%28Italy%29%2C_around_440_BC%2C_Altes_Museum_Berlin_%2813718420225%29_glare-reduced_white-bg.png?width=1400" alt="Одиссей убивает женихов: краснофигурный скифос Пенелопы-вазописца">
+  <figure class="coll-media">
+    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Attic_red-figure_skyphos%2C_Odysseus_slays_the_suitors_of_his_wife_Penelope%2C_from_Tarquinia_%28Italy%29%2C_around_440_BC%2C_Altes_Museum_Berlin_%2813718420225%29_glare-reduced_white-bg.png?width=1200" alt="Одиссей убивает женихов: краснофигурный скифос Пенелопы-вазописца">
+    <figcaption class="coll-cap">Одиссей убивает женихов. Скифос Пенелопы-вазописца, около 440 года до н.э. Старый музей, Берлин; фото — Wikimedia Commons</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Хэппи-энд Гомера устроен богами вручную</h3>
     <p>Поэма не заканчивается избиением женихов: у убитых остаётся родня, и она берётся за оружие. Кровную месть обрывает Афина по воле Зевса, причём способом радикальным: родне стирают память о гибели сыновей и братьев, чтобы на Итаке снова царили мир и достаток. Счастливая развязка не вырастает из событий — её опускают на сцену, как бога на театральной машине.</p>
@@ -77,7 +98,10 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">8</div>
-  <img class="coll-poster" src="https://commons.wikimedia.org/wiki/Special:FilePath/Aeneas%27_Flight_from_Troy_by_Federico_Barocci.jpg?width=1400" alt="Федерико Бароччи, «Бегство Энея из Трои»: три поколения в одном движении">
+  <figure class="coll-media">
+    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Aeneas%27_Flight_from_Troy_by_Federico_Barocci.jpg?width=1200" alt="Федерико Бароччи, «Бегство Энея из Трои»: три поколения в одном движении">
+    <figcaption class="coll-cap">Федерико Бароччи, «Бегство Энея из Трои», 1598. Галерея Боргезе, Рим</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Эней, или одиссея побеждённых</h3>
     <p>Из горящей Трои уходит Эней, вынося на плечах старика-отца и ведя за руку сына. Вергилий в «Энеиде» отправляет его на запад зеркальным маршрутом Одиссея — бури, Дидона, сошествие к мёртвым, — только плывёт герой не к старому дому, а к ещё не построенному: от этого рода Рим выведет Ромула и Юлиев и назовёт себя наследником Трои.</p>
@@ -86,7 +110,10 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">9</div>
-  <img class="coll-poster" src="https://commons.wikimedia.org/wiki/Special:FilePath/JohnWilliamWaterhouse-PenelopeandtheSuitors%281912%29.jpg?width=1400" alt="Джон Уильям Уотерхаус, «Пенелопа и женихи»: она за станком, они с розами и лирой">
+  <figure class="coll-media">
+    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/JohnWilliamWaterhouse-PenelopeandtheSuitors%281912%29.jpg?width=1200" alt="Джон Уильям Уотерхаус, «Пенелопа и женихи»: она за станком, они с розами и лирой">
+    <figcaption class="coll-cap">Джон Уильям Уотерхаус, «Пенелопа и женихи», 1912. Художественная галерея Абердина</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Античность дописала возвращение без счастья</h3>
     <p>Продолжения «Одиссеи» одно мрачнее другого. Утраченная «Телегония» выводит Телегона, сына Одиссея от волшебницы Кирки, она же Цирцея: юноша ищет отца, не узнаёт и смертельно ранит копьём с шипом морского ската — сбывается пророчество Тиресия о гибели «от моря». Герою и здесь не сидится: до роковой встречи поэма успевает увести его с Итаки, в царство феспротов, к новой жене.</p>
@@ -95,7 +122,10 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 </div>
 <div class="coll-entry">
   <div class="coll-rank">10</div>
-  <img class="coll-poster" src="https://commons.wikimedia.org/wiki/Special:FilePath/Dante_Domenico_di_Michelino_Duomo_Florence.jpg?width=1400" alt="Доменико ди Микелино, «Данте и его поэма»: за спиной поэта — гора Чистилища">
+  <figure class="coll-media">
+    <img class="coll-poster art" src="https://irp.cdn-website.com/5d7cef92/dms3rep/multi/opt/Dante+and+Ulysses-1920w.jpg" alt="Бартоломео ди Фруозино: Данте и Вергилий встречают Улисса в восьмом круге ада">
+    <figcaption class="coll-cap">Бартоломео ди Фруозино, «Данте и Вергилий встречают Улисса». Миниатюра из рукописи «Ада», 1420–1430. Национальная библиотека Франции, л. 80r</figcaption>
+  </figure>
   <div class="coll-body">
     <h3>Два запада: кара у Данте, искупление у Нолана</h3>
     <p>Данте Гомера не читал: греческого он не знал, «Одиссея» дойдёт до латинского Запада поколением позже. Финал он сочинил сам — глазами наследников Энея, не простивших коня: восьмой круг ада, огонь лукавых советчиков, и никакого возвращения. От острова Цирцеи Улисс поворачивает не к дому: «безумный полёт» за Геркулесовы столпы — нынешний Гибралтар, — пять месяцев океана, гора Чистилища на горизонте и вихрь: «и море, хлынув, поглотило нас». Привычная версия, где герой сперва вернулся и заскучал, родится лишь в XIX веке, в «Улиссе» Альфреда Теннисона.</p>
