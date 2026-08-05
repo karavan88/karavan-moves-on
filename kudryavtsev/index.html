@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Сергей Кудрявцев — вкус в цифрах</title>
+<script>try{if(localStorage.getItem('km-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Oswald:wght@600&display=swap" rel="stylesheet">
 <style id="reveal-core">
 /*!
 * reveal.js 5.1.0
@@ -446,26 +450,75 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .mono{ font-variant-numeric:tabular-nums; }
 
 /* Печать / экспорт в PDF: фиксированные высоты вместо vh, тёмный фон сохраняется */
-/* ====== Шапка сайта поверх дека + боковое оглавление ====== */
-:root{ --dh:52px; --toc:198px; }
-.deck-header{ position:fixed; top:0; left:0; right:0; height:var(--dh); z-index:70;
-  display:flex; align-items:center; justify-content:space-between; gap:18px; padding:0 18px;
-  background:#0b0c10; border-bottom:1px solid rgba(232,184,75,.22);
-  box-shadow:0 8px 26px -14px rgba(0,0,0,.85); }
-.dh-brand{ display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
-.dh-logo{ width:34px; height:34px; border-radius:50%; display:grid; place-items:center;
-  background:linear-gradient(135deg,#c8a24a,#8a6f2e); color:#0b0c10; font-weight:800; font-size:17px;
-  box-shadow:0 0 0 1px #CDA14A; }
-.dh-name{ color:#F3E9CF; font-weight:600; font-size:15px; letter-spacing:.05em; line-height:1; white-space:nowrap; }
-.dh-sub{ display:block; color:var(--gold); font-size:7.5px; letter-spacing:.28em; margin-top:3px; }
-.dh-nav{ display:flex; gap:15px; align-items:center; overflow-x:auto; scrollbar-width:none; }
-.dh-nav::-webkit-scrollbar{ display:none; }
-.dh-nav a{ color:#e7e2d4; font-size:12.5px; font-weight:600; letter-spacing:.01em; white-space:nowrap;
-  text-decoration:none; opacity:.85; transition:opacity .2s,color .2s; }
-.dh-nav a:hover{ color:#fff; opacity:1; }
-.dh-nav a.dh-cta{ color:var(--accent); font-weight:700; opacity:1; }
+/* ====== Оригинальная шапка сайта поверх дека + боковое оглавление ====== */
+:root{ --dh:88px; --toc:198px; }
 
-.deck-toc{ position:fixed; left:0; top:var(--dh); bottom:0; width:var(--toc); z-index:65;
+/* Шапка — точная копия сайта (index.html). Свои переменные, чтобы не спорить с палитрой дека. */
+header.site{ --accent:#e8b84b; --accent-2:#c8423a; --border:#2c3247; --text:#ececf1;
+  position:fixed;top:0;left:0;right:0;z-index:80;backdrop-filter:blur(14px);
+  background:#0b0c10;border-bottom:1px solid transparent;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 12px 30px -12px rgba(0,0,0,.78)}
+header.site::after{content:"";position:absolute;left:0;right:0;top:100%;height:74px;pointer-events:none;z-index:-1;
+  background:
+    radial-gradient(42% 130% at 0% 0%, rgba(232,184,75,.10), transparent 70%),
+    radial-gradient(44% 130% at 100% 0%, rgba(232,184,75,.115), transparent 70%),
+    radial-gradient(60% 120% at 50% 0%, rgba(232,184,75,.08), transparent 73%)}
+header.site .nav{max-width:1320px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px}
+header.site .brand{display:flex;align-items:center;gap:13px;flex-shrink:0;text-decoration:none}
+header.site .brand .logo{width:60px;height:60px;display:block;border-radius:50%;object-fit:cover;
+  box-shadow:0 0 0 1px #CDA14A, 0 3px 12px rgba(0,0,0,.5)}
+header.site .brand .logo-fallback{width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:grid;place-items:center;font-weight:800;color:#0a0a0c;font-size:22px}
+header.site .brand-text{display:flex;flex-direction:column;justify-content:center}
+header.site .brand-name{font-family:"Playfair Display",serif;font-weight:600;font-size:23px;
+  letter-spacing:.03em;color:#F3E9CF;line-height:1;white-space:nowrap}
+header.site .brand-sub{font-family:"Manrope",sans-serif;font-weight:700;font-size:8.5px;
+  letter-spacing:.30em;color:#CDA14A;margin-top:5px;white-space:nowrap}
+header.site .menu{display:flex;gap:18px;flex-wrap:nowrap;align-items:center}
+header.site .menu a{color:#eef1f8;font-size:14px;font-weight:700;letter-spacing:.02em;white-space:nowrap;
+  transition:color .2s;position:relative;padding:2px 0;text-decoration:none}
+header.site .menu a:hover,header.site .menu a.active{color:#fff}
+header.site .menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
+header.site .nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:9px;
+  width:42px;height:38px;color:var(--text);cursor:pointer;font-size:18px;line-height:1}
+header.site .nav-right{display:flex;align-items:center;gap:16px}
+header.site .theme-toggle{background:none;border:1px solid var(--border);border-radius:50%;
+  width:38px;height:38px;display:grid;place-items:center;color:var(--text);cursor:pointer;
+  flex-shrink:0;transition:color .2s,border-color .2s}
+header.site .theme-toggle:hover{color:var(--accent);border-color:var(--accent)}
+header.site .theme-toggle .ic{width:18px;height:18px}
+header.site .theme-toggle .ic-sun{display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+header.site .theme-toggle .ic-moon{display:none;fill:currentColor;stroke:none}
+:root[data-theme="light"] header.site .theme-toggle .ic-sun{display:none}
+:root[data-theme="light"] header.site .theme-toggle .ic-moon{display:block}
+header.site .head-links{display:flex;align-items:center;gap:9px}
+header.site .head-ic{width:36px;height:36px;border:1px solid var(--border);border-radius:50%;
+  display:grid;place-items:center;color:var(--text);transition:color .2s,border-color .2s;flex-shrink:0}
+header.site .head-ic:hover{color:var(--accent);border-color:var(--accent)}
+header.site .head-ic svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+header.site .head-ic svg .dot{fill:currentColor;stroke:none}
+/* светлая тема шапки — как на сайте */
+:root[data-theme="light"] header.site{background:linear-gradient(180deg,#2ba7df,#1c87c4);border-bottom-color:rgba(255,255,255,.25)}
+:root[data-theme="light"] header.site .brand-name{color:#fff}
+:root[data-theme="light"] header.site .brand-sub{color:#ffe08a}
+:root[data-theme="light"] header.site .menu a{color:rgba(255,255,255,.85)}
+:root[data-theme="light"] header.site .menu a:hover,:root[data-theme="light"] header.site .menu a.active{color:#fff}
+:root[data-theme="light"] header.site .theme-toggle,:root[data-theme="light"] header.site .nav-toggle,:root[data-theme="light"] header.site .head-ic{border-color:rgba(255,255,255,.42);color:#fff}
+@media(max-width:1240px){
+  header.site .nav-toggle{display:block}
+  header.site .menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;
+    gap:0;background:rgba(12,12,16,.98);border-bottom:1px solid var(--border);padding:8px 0}
+  header.site .menu.open{display:flex}
+  header.site .menu a{padding:12px 24px;width:100%}
+  header.site .menu a.active::after{display:none}
+  header.site .nav{position:relative}
+}
+@media(max-width:560px){ header.site .nav{padding:12px 16px;gap:12px} }
+
+/* Боковое оглавление презентации */
+.deck-toc{ position:fixed; left:0; top:var(--dh); bottom:0; width:var(--toc); z-index:60;
   background:#0a0a0e; border-right:1px solid rgba(232,184,75,.14); padding:14px 0; overflow-y:auto; }
 .deck-toc .toc-h{ font-variant:small-caps; letter-spacing:2px; color:var(--gold); font-size:10.5px; padding:0 16px 9px; }
 .deck-toc a{ display:flex; gap:8px; padding:6.5px 16px; color:#b9b1a0; font-size:12.5px; line-height:1.25;
@@ -481,11 +534,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
 @media (max-width: 900px){
   :root{ --toc:0px; }
   .deck-toc{ display:none; }
-  .dh-nav a:not(.dh-cta){ display:none; }
 }
 
 @media print {
-  .deck-header, .deck-toc{ display:none !important; }
+  header.site, .deck-toc{ display:none !important; }
   .reveal{ position:static !important; top:0 !important; left:0 !important; }
   .reveal-viewport, .reveal, body, html { background:#0c0a07 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .chartbox{ height:520px !important; }
@@ -499,21 +551,43 @@ section.has-light-background, section.has-light-background h1, section.has-light
 </head>
 <body>
 
-<!-- Шапка сайта — видна поверх каждого слайда -->
-<header class="deck-header">
-  <a class="dh-brand" href="https://karavancinema.netlify.app/" target="_blank" rel="noopener" aria-label="Караван идёт — на сайт">
-    <span class="dh-logo">К</span>
-    <span><span class="dh-name">КАРАВАН ИДЁТ</span><span class="dh-sub">КИНОЖУРНАЛ</span></span>
-  </a>
-  <nav class="dh-nav" aria-label="Разделы сайта">
-    <a href="https://karavancinema.netlify.app/reviews" target="_blank" rel="noopener">Рецензии</a>
-    <a href="https://karavancinema.netlify.app/films" target="_blank" rel="noopener">Фильмы</a>
-    <a href="https://karavancinema.netlify.app/lectures/" target="_blank" rel="noopener">Лекции</a>
-    <a href="https://karavancinema.netlify.app/collections" target="_blank" rel="noopener">Подборки</a>
-    <a href="https://karavancinema.netlify.app/festivals" target="_blank" rel="noopener">Кинофестивали</a>
-    <a href="https://karavancinema.netlify.app/feed" target="_blank" rel="noopener">Заметки</a>
-    <a href="https://karavancinema.netlify.app/" target="_blank" rel="noopener" class="dh-cta">На сайт →</a>
-  </nav>
+<!-- Оригинальная шапка сайта — видна поверх каждого слайда -->
+<header class="site">
+  <div class="nav">
+    <a class="brand" href="https://karavancinema.netlify.app/" aria-label="Караван идёт — на главную">
+      <img class="logo" src="https://karavancinema.netlify.app/logo/karavan-avatar-notext.png" width="60" height="60" alt=""
+           onerror="this.outerHTML='<div class=&quot;logo-fallback&quot;>К</div>'">
+      <span class="brand-text">
+        <span class="brand-name">КАРАВАН ИДЁТ</span>
+        <span class="brand-sub">КИНОЖУРНАЛ</span>
+      </span>
+    </a>
+    <div class="nav-right">
+      <nav class="menu" id="menu" aria-label="Основное меню">
+        <a href="https://karavancinema.netlify.app/reviews">Рецензии</a>
+        <a href="https://karavancinema.netlify.app/films">Фильмы</a>
+        <a href="https://karavancinema.netlify.app/lectures/">Лекции</a>
+        <a href="https://karavancinema.netlify.app/collections">Подборки</a>
+        <a href="https://karavancinema.netlify.app/festivals">Кинофестивали</a>
+        <a href="https://karavancinema.netlify.app/press">Публикации в СМИ</a>
+        <a href="https://karavancinema.netlify.app/feed">Заметки</a>
+        <a href="https://karavancinema.netlify.app/about">Обо мне</a>
+      </nav>
+      <div class="head-links" aria-label="Поиск и связь">
+        <a class="head-ic" href="https://karavancinema.netlify.app/search" title="Поиск по сайту" aria-label="Поиск по сайту">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2"/><line x1="15.2" y1="15.2" x2="20.5" y2="20.5"/></svg>
+        </a>
+        <a class="head-ic" href="https://t.me/karavan_moves_on" target="_blank" rel="noopener" title="Telegram-канал" aria-label="Telegram-канал">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.3 3.6 3.2 10.7c-.9.4-.9 1.6.1 1.9l4.5 1.4 1.7 5.2c.3.9 1.4 1 2 .3l2.3-2.9 4.6 3.3c.8.5 1.8.1 2-.9l2.5-13c.2-1-.7-1.8-1.6-1.4Z"/><path d="m9.4 13.9 8.4-7.8"/></svg>
+        </a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Светлая или тёмная тема" title="Светлая / тёмная тема">
+        <svg class="ic ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><line x1="12" y1="1.7" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.3"/><line x1="1.7" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.3" y2="12"/><line x1="4.3" y1="4.3" x2="6" y2="6"/><line x1="18" y1="18" x2="19.7" y2="19.7"/><line x1="4.3" y1="19.7" x2="6" y2="18"/><line x1="18" y1="6" x2="19.7" y2="4.3"/></svg>
+        <svg class="ic ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    </div>
+  </div>
 </header>
 
 <!-- Боковое оглавление презентации -->
@@ -829,6 +903,20 @@ function syncTOC(){
   for(var k=0;k<links.length;k++) links[k].classList.toggle('active', k===i);
 }
 
+/* Шапка сайта: мобильное меню (бургер) + переключатель темы — как на сайте */
+(function(){
+  var menu=document.getElementById('menu'), navToggle=document.getElementById('navToggle'), themeToggle=document.getElementById('themeToggle');
+  if(navToggle && menu) navToggle.addEventListener('click', function(){
+    var open=menu.classList.toggle('open'); navToggle.setAttribute('aria-expanded', open?'true':'false');
+  });
+  if(themeToggle) themeToggle.addEventListener('click', function(){
+    var toLight=document.documentElement.getAttribute('data-theme')!=='light';
+    if(toLight) document.documentElement.setAttribute('data-theme','light');
+    else document.documentElement.removeAttribute('data-theme');
+    try{ localStorage.setItem('km-theme', toLight?'light':'dark'); }catch(e){}
+  });
+})();
+
 Reveal.initialize({ hash:true, transition:"slide", backgroundTransition:"fade",
   center:false, width:1280, height:800, margin:0.04, controls:true, progress:true, slideNumber:"c/t",
   pdfMaxPagesPerSlide:1, pdfSeparateFragments:false });
@@ -845,7 +933,11 @@ if(Reveal && Reveal.on){
   Reveal.on('resize',       function(){ setTimeout(resizeAll, 60); });
   Reveal.on('pdf-ready',    function(){ buildAll(); setTimeout(resizeAll, 80); });
 }
-setTimeout(function(){ resizeAll(); }, 600);
+setTimeout(function(){
+  // подстраховка: если reveal на старте не активировал слайд — принудительно первый
+  try{ if(!document.querySelector('.reveal .slides > section.present')) Reveal.slide(0,0); }catch(e){}
+  resizeAll();
+}, 400);
 if(PRINT){ setTimeout(function(){ buildAll(); setTimeout(resizeAll,60); }, 500); setTimeout(resizeAll, 1400); }
 
 // Поворот телефона/планшета и ресайз окна — подгоняем графики под новый экран
