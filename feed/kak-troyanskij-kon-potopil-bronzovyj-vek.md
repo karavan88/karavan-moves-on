@@ -27,7 +27,7 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 <div class="coll-entry">
   <div class="coll-rank">2</div>
   <figure class="coll-media">
-    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Rembrandt_van_Rijn%2C_Philemon_and_Baucis%2C_1658%2C_NGA_1204.jpg?width=1200" alt="Рембрандт, «Филемон и Бавкида»: переодетые боги в гостях у стариков, единственных, кто пустил их на порог">
+    <img class="coll-poster art" src="/assets/img/art_rembrandt_van_rijn_philemon_and_baucis_1658_ng.jpg" alt="Рембрандт, «Филемон и Бавкида»: переодетые боги в гостях у стариков, единственных, кто пустил их на порог">
     <figcaption class="coll-cap">Рембрандт, «Филемон и Бавкида», 1658. Национальная галерея искусства, Вашингтон</figcaption>
   </figure>
   <div class="coll-body">
@@ -39,7 +39,7 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 <div class="coll-entry">
   <div class="coll-rank">3</div>
   <figure class="coll-media">
-    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Giovanni_Domenico_Tiepolo_-_The_Procession_of_the_Trojan_Horse_in_Troy_-_WGA22382.jpg?width=1200" alt="Джандоменико Тьеполо, «Шествие троянского коня в Трою»: город сам втаскивает свою гибель">
+    <img class="coll-poster art" src="/assets/img/art_giovanni_domenico_tiepolo_the_procession_of_th.jpg" alt="Джандоменико Тьеполо, «Шествие троянского коня в Трою»: город сам втаскивает свою гибель">
     <figcaption class="coll-cap">Джандоменико Тьеполо, «Шествие троянского коня в Трою», около 1760. Национальная галерея, Лондон</figcaption>
   </figure>
   <div class="coll-body">
@@ -51,7 +51,7 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 <div class="coll-entry">
   <div class="coll-rank">4</div>
   <figure class="coll-media">
-    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Linear_B_tablet%2C_Pylos%2C_13th_century_BC%2C_NAMA_An_657%2C_191138.jpg?width=1200" alt="Табличка линейного письма Б из сгоревшего дворца в Пилосе">
+    <img class="coll-poster art" src="/assets/img/art_linear_b_tablet_pylos_13th_century_bc_nama_an_.jpg" alt="Табличка линейного письма Б из сгоревшего дворца в Пилосе">
     <figcaption class="coll-cap">Табличка линейного письма Б (An 657) из дворца в Пилосе, XIII век до н.э. Национальный археологический музей, Афины; фото — Wikimedia Commons</figcaption>
   </figure>
   <div class="coll-body">
@@ -63,7 +63,7 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 <div class="coll-entry">
   <div class="coll-rank">5</div>
   <figure class="coll-media">
-    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Medinet_Habu_Ramses_III._Tempel_Nordostwand_Abzeichnung_01.jpg?width=1200" alt="Морская битва Рамсеса III с народами моря, прорисовка рельефа из Мединет-Абу">
+    <img class="coll-poster art" src="/assets/img/art_medinet_habu_ramses_iii_tempel_nordostwand_abz.jpg" alt="Морская битва Рамсеса III с народами моря, прорисовка рельефа из Мединет-Абу">
     <figcaption class="coll-cap">Морская битва Рамсеса III с народами моря. Прорисовка рельефа храма в Мединет-Абу, XII век до н.э.</figcaption>
   </figure>
   <div class="coll-body">
@@ -75,7 +75,7 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 <div class="coll-entry">
   <div class="coll-rank">6</div>
   <figure class="coll-media">
-    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Large_Krater_with_Armored_Men_Departing_for_Battle%2C_Mycenae_acropolis%2C_12th_century_BC_%283402016857%29.jpg?width=1200" alt="«Ваза воинов» из Микен, ровесница катастрофы: отряд уходит, женщина поднимает руку вслед">
+    <img class="coll-poster art" src="/assets/img/art_large_krater_with_armored_men_departing_for_ba.jpg" alt="«Ваза воинов» из Микен, ровесница катастрофы: отряд уходит, женщина поднимает руку вслед">
     <figcaption class="coll-cap">«Ваза воинов» из Микен, около 1200 года до н.э. Национальный археологический музей, Афины; фото — Wikimedia Commons</figcaption>
   </figure>
   <div class="coll-body">
@@ -87,7 +87,7 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 <div class="coll-entry">
   <div class="coll-rank">7</div>
   <figure class="coll-media">
-    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Attic_red-figure_skyphos%2C_Odysseus_slays_the_suitors_of_his_wife_Penelope%2C_from_Tarquinia_%28Italy%29%2C_around_440_BC%2C_Altes_Museum_Berlin_%2813718420225%29_glare-reduced_white-bg.png?width=1200" alt="Одиссей убивает женихов: краснофигурный скифос Пенелопы-вазописца">
+    <img class="coll-poster art" src="/assets/img/art_attic_red_figure_skyphos_odysseus_slays_the_su.png" alt="Одиссей убивает женихов: краснофигурный скифос Пенелопы-вазописца">
     <figcaption class="coll-cap">Одиссей убивает женихов. Скифос Пенелопы-вазописца, около 440 года до н.э. Старый музей, Берлин; фото — Wikimedia Commons</figcaption>
   </figure>
   <div class="coll-body">
@@ -99,7 +99,7 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 <div class="coll-entry">
   <div class="coll-rank">8</div>
   <figure class="coll-media">
-    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/Aeneas%27_Flight_from_Troy_by_Federico_Barocci.jpg?width=1200" alt="Федерико Бароччи, «Бегство Энея из Трои»: три поколения в одном движении">
+    <img class="coll-poster art" src="/assets/img/art_aeneas_flight_from_troy_by_federico_barocci.jpg" alt="Федерико Бароччи, «Бегство Энея из Трои»: три поколения в одном движении">
     <figcaption class="coll-cap">Федерико Бароччи, «Бегство Энея из Трои», 1598. Галерея Боргезе, Рим</figcaption>
   </figure>
   <div class="coll-body">
@@ -111,7 +111,7 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 <div class="coll-entry">
   <div class="coll-rank">9</div>
   <figure class="coll-media">
-    <img class="coll-poster art" src="https://commons.wikimedia.org/wiki/Special:FilePath/JohnWilliamWaterhouse-PenelopeandtheSuitors%281912%29.jpg?width=1200" alt="Джон Уильям Уотерхаус, «Пенелопа и женихи»: она за станком, они с розами и лирой">
+    <img class="coll-poster art" src="/assets/img/art_johnwilliamwaterhouse_penelopeandthesuitors_19.jpg" alt="Джон Уильям Уотерхаус, «Пенелопа и женихи»: она за станком, они с розами и лирой">
     <figcaption class="coll-cap">Джон Уильям Уотерхаус, «Пенелопа и женихи», 1912. Художественная галерея Абердина</figcaption>
   </figure>
   <div class="coll-body">
@@ -123,7 +123,7 @@ letterboxd: https://letterboxd.com/tmdb/1368337/
 <div class="coll-entry">
   <div class="coll-rank">10</div>
   <figure class="coll-media">
-    <img class="coll-poster art" src="https://irp.cdn-website.com/5d7cef92/dms3rep/multi/opt/Dante+and+Ulysses-1920w.jpg" alt="Бартоломео ди Фруозино: Данте и Вергилий встречают Улисса в восьмом круге ада">
+    <img class="coll-poster art" src="/assets/img/art_dante_and_ulysses_1920w.jpg" alt="Бартоломео ди Фруозино: Данте и Вергилий встречают Улисса в восьмом круге ада">
     <figcaption class="coll-cap">Бартоломео ди Фруозино, «Данте и Вергилий встречают Улисса». Миниатюра из рукописи «Ада», 1420–1430. Национальная библиотека Франции, л. 80r</figcaption>
   </figure>
   <div class="coll-body">
