@@ -123,7 +123,7 @@ async function main(){
   await mkdir(OUT, { recursive: true });
 
   /* статика: всё, что нужно отдать как есть (включая .md и манифесты для SPA) */
-  for(const item of ['assets','logo','reviews','feed','festivals','collections','about.md','press.json','site.json']){
+  for(const item of ['assets','logo','reviews','feed','festivals','collections','about.md','press.json','site.json','kudryavtsev']){
     if(existsSync(path.join(ROOT,item))) await cp(path.join(ROOT,item), path.join(OUT,item), { recursive: true });
   }
 
