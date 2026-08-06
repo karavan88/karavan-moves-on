@@ -10,6 +10,7 @@ tag: Скролл-история
 image: https://image.tmdb.org/t/p/w780/kGCOfQpITTI0rKzrVMRGOFteszf.jpg
 layout: scrolly
 snap: page
+media: stills
 letterboxd: https://letterboxd.com/tmdb/1368337/
 ---
 <div class="coll-entry entry-hero">
