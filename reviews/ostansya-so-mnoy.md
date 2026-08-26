@@ -5,6 +5,7 @@ original: Stand by Me
 year: 1986
 director: Роб Райнер
 country: США
+rating: 9
 poster: /assets/img/w500_vz0w9BSehcqjDcJOjRaCk7fgJe7.jpg
 tags: драма, взросление, экранизация, Стивен Кинг
 tmdb: 235
