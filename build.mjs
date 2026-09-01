@@ -63,7 +63,7 @@ for (const rel of ['/assets/render.js', '/assets/marked.min.js']) {
 const SITE_NAME = 'Караван идёт';
 /* ogTitle — короткий заголовок для карточки-превью (Telegram/Twitter/WhatsApp):
    без хвоста «— Караван идёт», его роль играет og:site_name. По умолчанию = title. */
-function buildMeta({title, ogTitle, description, urlPath, image, type='website', jsonld, author, published}){
+function buildMeta({title, ogTitle, description, urlPath, image, type='website', jsonld, author, published, noindex}){
   const url = `${SITE}${urlPath}`;
   const img = absUrl(image);
   const desc = (description||'').replace(/\s+/g,' ').trim();
@@ -88,6 +88,7 @@ function buildMeta({title, ogTitle, description, urlPath, image, type='website',
     lines.push(`<meta property="article:author" content="${R.esc(author||SITE_NAME)}">`);
     if(published) lines.push(`<meta property="article:published_time" content="${R.esc(published)}">`);
   }
+  if(noindex) lines.push(`<meta name="robots" content="noindex, nofollow">`);
   if(jsonld) lines.push(`<script type="application/ld+json">${JSON.stringify(jsonld)}</script>`);
   return lines.join('\n');
 }
@@ -164,7 +165,9 @@ async function main(){
   const courses = coursesSummary();
   const lectureMap = filmLectureMap();
   const collBodies = [];
-  for(const c of pubCollections){
+  /* только «видимые» подборки: unlisted-историю не показываем ни на хабах
+     фильмов, ни строкой «в подборках» на страницах рецензий */
+  for(const c of R.listed(collections)){
     const parsedC = await readMd(`collections/${c.slug}.md`);
     if(parsedC) collBodies.push({ slug:c.slug, title:c.title||parsedC.meta.title||'',
       text:(parsedC.meta.title||'')+'\n'+parsedC.body });
@@ -345,11 +348,13 @@ async function main(){
         title: `${meta.title||c.title} — Подборки — Караван идёт`,
         description: c.excerpt || meta.subtitle || excerptFromBody(body),
         urlPath:`/collection/${c.slug}`, image: meta.cover||c.cover, type:'article',
+        noindex: !R.isListed(c),
       }),
       appHtml: R.collectionPageView(meta, md(body)),
       view: {view:'collection', nav:'collections', slug:c.slug},
     }));
-    urls.push({loc:`/collection/${c.slug}`, priority:'0.6'});
+    /* «скрытая ссылка» (unlisted): в sitemap не отдаём */
+    if(R.isListed(c)) urls.push({loc:`/collection/${c.slug}`, priority:'0.6'});
   }
 
   /* ПУБЛИКАЦИИ В СМИ */

@@ -45,6 +45,12 @@ export function ratingHTML(rating, mode='badge'){
 export function isPublished(x){ return !(x && (x.draft===true || x.draft==='true')); }
 export function published(list){ return (list||[]).filter(isPublished); }
 
+/* «скрытая ссылка» (unlisted: true): страница собирается и живёт по прямому
+   адресу, но её нет в списках, на главной, в хабах фильмов, в sitemap и в
+   поиске (noindex). Отдать ссылку можно вручную. */
+export function isListed(x){ return isPublished(x) && !(x && (x.unlisted===true || x.unlisted==='true')); }
+export function listed(list){ return (list||[]).filter(isListed); }
+
 /* ---------- даты, чтение, теги ---------- */
 const RU_MONTHS=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
 export function ruDate(iso){
@@ -130,7 +136,7 @@ export function collectionCardHTML(c){
   return `<a class="card" href="/collection/${esc(c.slug)}">
     <div class="poster cover">
       ${cover}
-      ${c.count?`<div class="count-badge">${esc(c.count)} фильмов</div>`:''}
+      ${c.count?`<div class="count-badge">${/^\d+$/.test(String(c.count)) ? esc(c.count)+' фильмов' : esc(c.count)}</div>`:''}
     </div>
     <div class="card-body">
       <h3>${c.overline?`<span class="card-prefix">${esc(c.overline)}: </span>`:''}${esc(c.title)}</h3>
@@ -320,7 +326,7 @@ export function homeView(data){
   const reviews = published(data.reviews);
   const feed = published(data.feed);
   const festivals = published(data.festivals);
-  const collections = published(data.collections);
+  const collections = listed(data.collections);
   const press = published(data.press);
   const films = data.films || [];
   const site = data.site || {};
@@ -472,7 +478,7 @@ export function reviewPageView(meta, bodyHtml, extras={}){
 }
 
 export function collectionsView(list){
-  const items = published(list);
+  const items = listed(list);
   const grid = items.length ? items.map(collectionCardHTML).join('') : `<div class="state">Пока нет подборок.</div>`;
   return `<main>
     <div class="page-title">Подборки</div>
@@ -498,6 +504,39 @@ export function collectionPageView(meta, bodyHtml){
    (каждый скролл — на следующую сцену, страница не застревает между фильмами).
    Браузерный «усилитель» (enhanceScrolly в index.html) добавляет фон, анимации
    и счётчик; без JS страница остаётся читаемой как обычный список. */
+/* Последнее слово прибивается неразрывным пробелом к предыдущему — чтобы
+   короткие названия («Львиная доля») не разваливались по строкам, а у длинных
+   не висел одинокий хвост. */
+export function noOrphan(s){
+  return esc(s || '').replace(/ (\S+)$/, '\u00A0$1');
+}
+
+/* Инициалы для плейсхолдера аватара: «Павел Пугачев» → «ПП». */
+export function initials(name){
+  return String(name||'').trim().split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+}
+
+/* Аватар критика: пока фото нет (или 404) — круглый плейсхолдер с инициалами.
+   Подмена через onerror — тот же приём, что у обложек подборок; как только
+   файл ляжет в assets/critics/, картинка появится сама. */
+export function avatarHTML(c, cls){
+  const ph = `<span class="${cls} ph" aria-hidden="true">${esc(initials(c.name))}</span>`;
+  if(!c.src) return ph;
+  return `<img class="${cls}" src="${esc(c.src)}" alt="${esc(c.name)}" loading="lazy" decoding="async"
+    onerror="this.outerHTML='${ph.replace(/"/g,'&quot;')}'">`;
+}
+
+/* Собирает авторов сцен (.coll-critic) из готового HTML истории: фото, имя и
+   якорь на «свою» сцену (#scene-N — id проставляет scrollyView по тому же
+   порядку). Аватары на титуле ведут к фильму, а не в телеграм: ссылка на канал
+   и так стоит внутри самой сцены. */
+export function collectCritics(bodyHtml){
+  return bodyHtml.split('<div class="coll-entry"').slice(1).map((chunk, i)=>{
+    const m = chunk.match(/<img class="critic-avatar" src="([^"]*)" alt="([^"]*)"/);
+    return m ? { src: m[1], name: m[2], href: `#scene-${i+1}` } : null;
+  }).filter(Boolean);
+}
+
 export function scrollyView(meta, bodyHtml, backHref, backLabel){
   const count = (bodyHtml.match(/class="coll-entry\b/g) || []).length;
   const kicker = meta.kicker || '';
@@ -512,23 +551,45 @@ export function scrollyView(meta, bodyHtml, backHref, backLabel){
   let fm = fmParts.join(' · ');
   if(meta.letterboxd) fm += (fm ? ' ' : '') + `<a class="lb" href="${esc(meta.letterboxd)}" target="_blank" rel="noopener" aria-label="Letterboxd"></a>`;
   const filmMeta = fm ? `<div class="scrolly-filmmeta">${fm}</div>` : '';
-  return `<main class="scrolly${paged ? ' scrolly--paged' : ''}${stills ? ' scrolly--stills' : ''}"${paged ? ' data-snap="mandatory"' : ''}>
+  /* мультиавторская история (authors: auto): ряд кликабельных аватаров на
+     первом слайде собирается из блоков .coll-critic самого текста — имена,
+     фото и каналы не дублируются во front-matter и не расходятся с ним.
+     authorsLabel — подпись под рядом (**жирное** становится латунным). */
+  const critics = meta.authors === 'auto' ? collectCritics(bodyHtml) : [];
+  /* сцены нумеруются (#scene-N) — на них ведут аватары с титульного слайда;
+     аватары в самих сценах получают тот же плейсхолдер-с-инициалами, поэтому
+     в markdown достаточно написать обычный <img class="critic-avatar"> */
+  let sceneNo = 0;
+  const body = bodyHtml
+    .replace(/<div class="coll-entry"/g, () => `<div id="scene-${++sceneNo}" class="coll-entry"`)
+    .replace(/<img class="critic-avatar" src="([^"]*)" alt="([^"]*)"[^>]*>/g,
+      (_, src, name) => avatarHTML({src, name}, 'critic-avatar'));
+  const authorBlock = critics.length
+    ? `<div class="scrolly-avatars">${critics.map(c=>
+        `<a href="${esc(c.href)}" title="${esc(c.name)}" aria-label="${esc(c.name)}">${avatarHTML(c, 'scrolly-avatar')}</a>`).join('')}</div>
+       <span>${esc(meta.authorsLabel || 'рассказывают несколько авторов').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}</span>`
+    : `<img class="scrolly-avatar" src="/assets/karen.jpg" alt="Карен Аванесян" decoding="async" onerror="this.style.display='none'">
+       <span>рассказывает <b>Карен Аванесян</b></span>`;
+  /* фоновая эмблема истории (например крылатый лев Венеции) */
+  const emblemCls = meta.emblem ? ' scrolly--emblem' : '';
+  const emblemStyle = meta.emblem ? ` style="--emblem:url('${esc(meta.emblem)}')"` : '';
+  return `<main class="scrolly${paged ? ' scrolly--paged' : ''}${stills ? ' scrolly--stills' : ''}${emblemCls}"${emblemStyle}${paged ? ' data-snap="mandatory"' : ''}>
     <a class="back scrolly-back" href="${backHref}">← ${esc(backLabel)}</a>
     <section class="scene scene-intro">
       <div class="scene-intro-inner">
+        ${meta.emblem ? `<div class="scrolly-emblem" aria-hidden="true"></div>` : ''}
         ${kicker ? `<div class="scrolly-kicker">${esc(kicker)}</div>` : ''}
-        <h1 class="scrolly-title">${meta.overline ? `<span class="title-noir">${esc(meta.overline)}: </span>` : ''}${esc(meta.title || '')}</h1>
+        <h1 class="scrolly-title">${meta.overline ? `<span class="title-noir">${esc(meta.overline)}: </span>` : ''}${noOrphan(meta.title)}</h1>
         ${filmMeta}
         ${meta.subtitle ? `<p class="scrolly-sub">${esc(meta.subtitle)}</p>` : ''}
         <div class="scrolly-author">
           <span class="scrolly-rubric">Скролл-история</span>
-          <img class="scrolly-avatar" src="/assets/karen.jpg" alt="Карен Аванесян" decoding="async" onerror="this.style.display='none'">
-          <span>рассказывает <b>Карен Аванесян</b></span>
+          ${authorBlock}
         </div>
         <div class="scroll-hint" aria-hidden="true"><span>прокрутите вниз</span><i></i></div>
       </div>
     </section>
-    <div class="prose scrolly-body">${bodyHtml}</div>
+    <div class="prose scrolly-body">${body}</div>
     ${count ? `<div class="scrolly-counter" aria-hidden="true"><b id="scNow">1</b><i>/ ${count}</i></div>` : ''}
   </main>`;
 }

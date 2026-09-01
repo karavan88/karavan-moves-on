@@ -7,7 +7,7 @@ year: 2026
 rating: 7
 date: 5 августа 2026
 tag: Скролл-история
-image: https://image.tmdb.org/t/p/w780/kGCOfQpITTI0rKzrVMRGOFteszf.jpg
+image: /assets/img/w780_kGCOfQpITTI0rKzrVMRGOFteszf.jpg
 layout: scrolly
 snap: page
 media: stills

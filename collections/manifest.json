@@ -1,5 +1,14 @@
 [
   {
+    "slug": "zolotye-lvy-venecii",
+    "title": "Львиная доля",
+    "cover": "/assets/img/w1280_tDn1dA52bQH9B85vilHeU7C83W1.jpg",
+    "count": "7 фильмов · 7 критиков",
+    "excerpt": "Лучшие лауреаты Венецианского МКФ — о каждом рассказывает свой критик.",
+    "overline": "Leone d’Oro",
+    "unlisted": true
+  },
+  {
     "slug": "temnyy-kanon",
     "title": "Тёмная дюжина",
     "cover": "/assets/img/w780_rLLhOCgAjuvlKmjUqVb7P1UAbUI.jpg",

@@ -539,6 +539,47 @@
   .scrolly-rubric{color:var(--gold);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
   .scrolly-avatar{width:104px;height:104px;border-radius:50%;object-fit:cover;border:none;
     box-shadow:0 0 0 1px rgba(232,184,75,.22), 0 0 20px 2px rgba(232,184,75,.22), 0 8px 24px rgba(0,0,0,.3)}
+  /* мультиавторская история (authors: auto): ряд кликабельных аватаров,
+     каждый ведёт в телеграм-канал своего критика */
+  .scrolly-avatars{display:flex;justify-content:center;align-items:center}
+  .scrolly-avatars a{display:block;margin-left:-14px;border-radius:50%;line-height:0;
+    transition:transform .2s ease,z-index 0s}
+  .scrolly-avatars a:first-child{margin-left:0}
+  .scrolly-avatars a:hover{transform:translateY(-4px) scale(1.06);z-index:2}
+  .scrolly-avatars .scrolly-avatar{width:56px;height:56px;
+    box-shadow:0 0 0 2px rgba(232,184,75,.45), 0 6px 18px rgba(0,0,0,.35)}
+  @media(max-width:560px){.scrolly-avatars .scrolly-avatar{width:46px;height:46px}
+    .scrolly-avatars a{margin-left:-12px}}
+  /* плейсхолдер аватара: круг с инициалами, пока фото не положили в assets/critics/ */
+  .scrolly-avatar.ph,.critic-avatar.ph{display:inline-flex;align-items:center;justify-content:center;
+    border-radius:50%;background:linear-gradient(150deg,#2a2a33,#16161c);color:var(--gold);
+    font-family:"Playfair Display",serif;font-weight:800;letter-spacing:.02em;line-height:1;
+    user-select:none;overflow:hidden}
+  .scrolly-avatar.ph{font-size:20px}
+  .critic-avatar.ph{width:46px;height:46px;font-size:16px}
+  [data-theme="light"] .scrolly-avatar.ph,[data-theme="light"] .critic-avatar.ph{
+    background:linear-gradient(150deg,#efeadc,#e2dccb)}
+  /* фоновая эмблема истории (front-matter emblem): маска красится латунью,
+     поэтому одинаково живёт в обеих темах.
+     Силуэт льва асимметричен — хвост тянет вправо, а масса сидит на 38.7%
+     ширины и 51.2% высоты. Поэтому центруем не рамку картинки, а её «центр
+     тяжести»: transform совмещает эту точку с серединой сцены/текста. */
+  /* Первый слайд: лев — не водяной знак, а знак истории над рубрикой. Силуэт
+     упирается во все четыре края картинки, поэтому «призрачной» заливкой он
+     читался бы прямоугольным пятном — здесь он в полную силу и мелкий. */
+  .scrolly-emblem{width:clamp(74px,7vw,104px);aspect-ratio:885/547;margin:0 auto 22px;
+    background:var(--gold);
+    -webkit-mask:var(--emblem) center/contain no-repeat;
+            mask:var(--emblem) center/contain no-repeat}
+  .scrolly--emblem .scene-intro-inner{position:relative;z-index:1}
+  /* на сценах фильмов — тот же лев фоном, прямо за колонкой текста */
+  .scrolly--emblem .coll-entry .coll-body::before{content:"";position:absolute;
+    top:50%;left:50%;transform:translate(-38.7%,-51.2%);aspect-ratio:885/547;
+    pointer-events:none;background:var(--gold);
+    z-index:-1;width:104%;opacity:.09;
+    -webkit-mask:var(--emblem) center/contain no-repeat;
+            mask:var(--emblem) center/contain no-repeat}
+  @media(max-width:680px){.scrolly--emblem .coll-entry .coll-body::before{width:118%}}
   .scroll-hint{margin-top:38px;color:var(--muted);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
     display:flex;flex-direction:column;align-items:center;gap:12px}
   .scroll-hint i{width:1px;height:46px;background:linear-gradient(var(--accent),transparent);animation:scrollPulse 1.9s ease-in-out infinite}
@@ -639,6 +680,41 @@
   /* пометка «вне канона» для фильмов второго ряда */
   .scrolly .coll-meta .oc{color:var(--gold);font-style:italic;border:1px solid rgba(185,139,46,.45);
     border-radius:20px;padding:1px 9px;font-size:.85em;white-space:nowrap}
+  /* блок автора сцены (мультиавторские подборки): отдельная колонка на краю,
+     противоположном постеру — крупный портрет, имя, ссылка на канал */
+  /* ширина колонки — по имени: оно набирается в одну строку (см. nowrap ниже),
+     поэтому не фиксируем width, а даём вилку min/max */
+  .scrolly .coll-critic{position:relative;z-index:1;flex-shrink:0;margin:0;
+    min-width:clamp(140px,13vw,170px);max-width:250px;display:flex;flex-direction:column;
+    align-items:center;text-align:center;gap:14px}
+  .critic-avatar{width:46px;height:46px;border-radius:50%;object-fit:cover;flex-shrink:0;
+    box-shadow:0 0 0 1px rgba(232,184,75,.35),0 0 14px rgba(232,184,75,.2)}
+  /* аватар живёт внутри .prose — перебиваем её общее правило для img,
+     иначе портрет становится прямоугольником со скруглением 12px и рамкой */
+  .scrolly .coll-critic .critic-avatar{width:clamp(104px,10vw,140px);height:clamp(104px,10vw,140px);
+    border-radius:50%;border:none;margin:0;display:block;
+    font-size:clamp(34px,3.2vw,46px);
+    box-shadow:0 0 0 2px rgba(232,184,75,.4), 0 0 26px rgba(232,184,75,.2), 0 14px 34px rgba(0,0,0,.45)}
+  .critic-id{display:flex;flex-direction:column;gap:2px;text-align:left}
+  .scrolly .coll-critic .critic-id{align-items:center;text-align:center;gap:7px}
+  /* «рассказывает» — тихой строкой, имя — отдельной и крупнее.
+     Строка ломается только здесь: имя и фамилия не разъезжаются (nowrap). */
+  .scrolly .coll-critic .critic-id span{font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+  .scrolly .coll-critic .critic-id b{display:block;margin-top:5px;font-size:17px;
+    line-height:1.25;letter-spacing:0;text-transform:none;white-space:nowrap}
+  .scrolly .coll-critic .critic-tg{font-size:12.5px;line-height:1.35;justify-content:center;
+    align-items:flex-start}
+  .scrolly .coll-critic .critic-tg::before{margin-top:2px}
+  .critic-id span{font-size:15px;color:var(--muted)}
+  .critic-id b{color:var(--gold);font-weight:700}
+  /* ссылка на канал критика — с фирменным «самолётиком» телеграма перед текстом */
+  .critic-tg{font-size:13px;color:var(--accent);display:inline-flex;align-items:center;gap:6px}
+  .critic-tg::before{content:"";width:15px;height:15px;flex-shrink:0;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='24' fill='%2300AEEF'/%3E%3Cpath fill='%23fff' d='M34.6 15.3 10.9 24.4c-1.3.5-1.3 1.5-.2 1.8l6 1.9 2.3 7c.3.8.2 1.1.9 1.1.6 0 .9-.3 1.2-.6l3-2.9 6.2 4.6c1.1.6 2 .3 2.3-1.1l4.2-19.7c.4-1.7-.7-2.5-2.2-1.8Zm-1.5 4.4L21.6 30.1l-.5 4.8-2.3-7.1 14.3-8.1Z'/%3E%3C/svg%3E") center/contain no-repeat}
+  @media(max-width:680px){.scrolly .coll-critic{width:auto;flex-direction:row;justify-content:center;
+    text-align:left;gap:14px;margin-top:6px}
+    .scrolly .coll-critic .critic-avatar{width:78px;height:78px;font-size:26px}
+    .scrolly .coll-critic .critic-id{align-items:flex-start;text-align:left}}
   .scrolly .coll-body p{color:#e4e4ea;font-size:clamp(15px,1.7vw,19px);line-height:1.66}
   .scrolly .coll-body p + p{margin-top:.85em}
   /* воздух между заголовком сцены и первым абзацем (иначе «прилеплен») */
@@ -654,10 +730,11 @@
   .scrolly .coll-entry:nth-of-type(even){flex-direction:row-reverse}
   .scrolly .coll-entry:nth-of-type(even) .coll-rank{left:auto;right:3vw}
   /* появление при прокрутке (класс .in ставит IntersectionObserver) */
-  .scrolly .coll-entry .coll-poster,.scrolly .coll-entry .coll-body{
+  .scrolly .coll-entry .coll-poster,.scrolly .coll-entry .coll-body,.scrolly .coll-entry .coll-critic{
     opacity:0;transform:translateY(46px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
   .scrolly .coll-entry.in .coll-poster{opacity:1;transform:none}
   .scrolly .coll-entry.in .coll-body{opacity:1;transform:none;transition-delay:.12s}
+  .scrolly .coll-entry.in .coll-critic{opacity:1;transform:none;transition-delay:.22s}
   /* счётчик сцен */
   .scrolly-counter{position:fixed;right:max(18px,4vw);bottom:30px;z-index:40;
     font-family:"Playfair Display",serif;color:#fff;background:rgba(12,12,16,.5);
@@ -673,7 +750,7 @@
     .scrolly .coll-body{max-width:none}
   }
   @media(prefers-reduced-motion:reduce){
-    .scrolly .coll-entry .coll-poster,.scrolly .coll-entry .coll-body{opacity:1;transform:none;transition:none}
+    .scrolly .coll-entry .coll-poster,.scrolly .coll-entry .coll-body,.scrolly .coll-entry .coll-critic{opacity:1;transform:none;transition:none}
     .scroll-hint i{animation:none}
     html.scrolly-lock{scroll-snap-type:none}
   }
@@ -1318,6 +1395,27 @@ function navTo(path){
 }
 
 /* перехват кликов по внутренним ссылкам → SPA-навигация */
+/* Прыжок к якорю. На скролл-историях включён scroll-snap: mandatory — плавный
+   scrollIntoView он перебивает и утягивает обратно к текущей сцене. Поэтому
+   там снап на время прыжка выключаем и возвращаем, когда страница доехала. */
+function scrollToAnchor(el){
+  const root = document.documentElement;
+  if(!root.classList.contains('scrolly-lock')) return el.scrollIntoView({behavior:'smooth'});
+  /* Прыжок мгновенный: mandatory-снап обрывает плавную анимацию на первом же
+     кадре и утягивает страницу обратно к текущей сцене. Для слайдшоу это и
+     естественнее — переход сразу к нужному фильму.
+     `behavior:'instant'` обязателен: при 'auto' сработал бы html{scroll-behavior:smooth}. */
+  const snap = root.style.scrollSnapType, beh = root.style.scrollBehavior;
+  root.style.scrollSnapType = 'none';
+  root.style.scrollBehavior = 'auto';
+  el.scrollIntoView({behavior:'instant', block:'start'});
+  let restored = false;
+  const restore = ()=>{ if(restored) return; restored = true;
+    root.style.scrollSnapType = snap; root.style.scrollBehavior = beh; };
+  requestAnimationFrame(restore);
+  setTimeout(restore, 60);   /* rAF не приходит в скрытой вкладке — страхуемся */
+}
+
 document.addEventListener('click', e=>{
   if(e.defaultPrevented || e.button!==0 || e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
   const a = e.target.closest('a');
@@ -1334,7 +1432,7 @@ document.addEventListener('click', e=>{
        а нативный переход по #хэшу её процент-кодирует и не находит элемент —
        поэтому скроллим сами по раскодированному id. */
     const el = document.getElementById(decodeURIComponent(href.slice(1)));
-    if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); history.replaceState({}, '', location.pathname + href); }
+    if(el){ e.preventDefault(); scrollToAnchor(el); history.replaceState({}, '', location.pathname + href); }
     return;
   }
   e.preventDefault();
