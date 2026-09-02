@@ -604,8 +604,11 @@
   .scrolly-body>p:first-child{min-height:90vh;display:grid;place-items:center;margin:0;
     padding:80px 6vw;text-align:center;font-family:"Playfair Display",serif;font-style:italic;
     color:#e7e2d6;font-size:clamp(20px,2.8vw,30px);line-height:1.5;scroll-snap-align:center}
+  /* поля сверху больше: сцена центрируется снапом, а верх ещё перекрывает
+     фиксированная шапка — иначе у длинных текстов срезает первую строку */
   .scrolly .coll-entry{position:relative;min-height:100vh;display:flex;align-items:center;
-    gap:clamp(24px,4vw,56px);padding:84px 5vw;border:none;overflow:hidden;scroll-snap-align:center}
+    gap:clamp(24px,4vw,56px);padding:clamp(72px,8.5vh,88px) 5vw clamp(52px,6.5vh,68px);
+    border:none;overflow:hidden;scroll-snap-align:center}
   /* размытый постер-фон (--bg ставит JS из src постера) */
   .scrolly .coll-entry::before{content:"";position:absolute;inset:0;z-index:0;
     background:var(--bg,#0d0d12) center/cover no-repeat;transform:scale(1.25);
@@ -715,7 +718,7 @@
     text-align:left;gap:14px;margin-top:6px}
     .scrolly .coll-critic .critic-avatar{width:78px;height:78px;font-size:26px}
     .scrolly .coll-critic .critic-id{align-items:flex-start;text-align:left}}
-  .scrolly .coll-body p{color:#e4e4ea;font-size:clamp(15px,1.7vw,19px);line-height:1.66}
+  .scrolly .coll-body p{color:#e4e4ea;font-size:clamp(15px,1.65vw,18px);line-height:1.6}
   .scrolly .coll-body p + p{margin-top:.85em}
   /* воздух между заголовком сцены и первым абзацем (иначе «прилеплен») */
   .scrolly .coll-body h3 + p{margin-top:clamp(11px,1.3vw,18px)}
