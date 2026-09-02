@@ -745,12 +745,70 @@
     display:flex;align-items:baseline;gap:5px;opacity:0;transition:opacity .3s ease}
   .scrolly-counter b{font-size:22px;font-weight:800;color:var(--gold)}
   .scrolly-counter i{font-style:normal;font-size:13px;color:var(--muted)}
+  /* ============ СКРОЛЛ-ИСТОРИЯ НА ТЕЛЕФОНЕ ============
+     На узком экране постер рядом с текстом мельчает и всё выглядит как список.
+     Поэтому кадр уходит в полноэкранный фон сцены, а текст ложится поверх него
+     по нижнему краю — как в сторис. Заодно освобождается вся высота под текст. */
   @media(max-width:680px){
-    .scrolly .coll-entry{flex-direction:column;text-align:center;justify-content:center;gap:22px;padding:90px 22px}
-    .scrolly .coll-entry:nth-of-type(even){flex-direction:column}
+    .scrolly .coll-entry,
+    .scrolly .coll-entry:nth-of-type(even){flex-direction:column;justify-content:flex-end;
+      align-items:stretch;text-align:left;gap:0;
+      padding:84px 20px calc(26px + env(safe-area-inset-bottom));
+      scroll-snap-align:start}
+    /* постер — фон сцены во всю площадь, поверх него градиент .coll-entry::after */
+    .scrolly .coll-entry .coll-poster,
+    .scrolly--stills .coll-entry .coll-poster,
+    .scrolly .coll-entry.entry-hero .coll-poster,
+    .scrolly .coll-poster.still-wide,
+    .scrolly .coll-poster.art{position:absolute;inset:0;z-index:0;
+      width:100%;height:100%;max-width:none;max-height:none;aspect-ratio:auto;
+      object-fit:cover;border-radius:0;border:none;box-shadow:none}
+    /* кадр не «выезжает», а мягко наезжает — киношнее и не дёргает вёрстку */
+    .scrolly .coll-entry .coll-poster{opacity:0;transform:scale(1.08);
+      transition:opacity 1.1s ease, transform 2.4s cubic-bezier(.2,.7,.2,1)}
+    .scrolly .coll-entry.in .coll-poster{opacity:1;transform:scale(1)}
+    /* кадр приглушаем, иначе текст поверх него не читается */
+    .scrolly .coll-entry .coll-poster{filter:brightness(.6) saturate(1.05)}
+    /* затемнение: сверху кадр ещё виден, снизу — глухая подложка под текст */
+    .scrolly .coll-entry::after{background:
+      linear-gradient(180deg,rgba(7,7,10,.34) 0%,rgba(7,7,10,.42) 22%,
+        rgba(7,7,10,.8) 52%,rgba(7,7,10,.95) 100%)}
+    [data-theme="light"] .scrolly .coll-entry .coll-poster{filter:brightness(1.06) saturate(.95)}
+    [data-theme="light"] .scrolly .coll-entry::after{background:
+      linear-gradient(180deg,rgba(251,250,247,.38) 0%,rgba(251,250,247,.52) 22%,
+        rgba(251,250,247,.9) 52%,rgba(251,250,247,.98) 100%)}
+    /* эмблема-лев за текстом на телефоне лишняя — кадр и так во весь экран */
+    .scrolly--emblem .coll-entry .coll-body::before{display:none}
+    /* блюр-подложка под кадром больше не нужна — кадр и так во весь экран */
+    .scrolly .coll-entry::before{filter:blur(46px) brightness(.22) saturate(1.1)}
+    .scrolly .coll-body{max-width:none;flex:0 0 auto}
+    .scrolly .coll-body h3{font-size:clamp(26px,7.4vw,34px);line-height:1.05}
+    .scrolly .coll-film{font-size:clamp(16px,4.4vw,19px);margin-top:7px}
+    .scrolly .coll-meta{font-size:14px;margin:9px 0 14px}
+    .scrolly .coll-body p{font-size:15px;line-height:1.52;
+      text-shadow:0 1px 10px rgba(0,0,0,.55)}
+    [data-theme="light"] .scrolly .coll-body p{text-shadow:0 1px 8px rgba(251,250,247,.8)}
+    .scrolly .coll-body h3,.scrolly .coll-film,.scrolly .coll-meta{
+      text-shadow:0 2px 14px rgba(0,0,0,.6)}
+    [data-theme="light"] .scrolly .coll-body h3,
+    [data-theme="light"] .scrolly .coll-film,
+    [data-theme="light"] .scrolly .coll-meta{text-shadow:0 1px 8px rgba(251,250,247,.85)}
+    .scrolly .coll-body p + p{margin-top:.7em}
+    .scrolly .coll-body h3 + p{margin-top:10px}
+    /* автор — компактной строкой под текстом, с латунной линейкой сверху */
+    .scrolly .coll-critic{width:auto;flex-direction:row;align-items:center;
+      justify-content:flex-start;text-align:left;gap:11px;margin-top:16px;padding-top:14px;
+      border-top:1px solid rgba(185,139,46,.28)}
+    .scrolly .coll-critic .critic-avatar{width:40px;height:40px;font-size:15px;
+      box-shadow:0 0 0 1px rgba(232,184,75,.45)}
+    .scrolly .coll-critic .critic-id{align-items:flex-start;text-align:left;gap:2px}
+    .scrolly .coll-critic .critic-id span{font-size:10.5px;letter-spacing:.14em}
+    .scrolly .coll-critic .critic-id b{display:inline;margin-top:0;font-size:14px}
+    .scrolly .coll-critic .critic-tg{font-size:12px}
     .scrolly .coll-rank{font-size:34vh;left:50%;right:auto;transform:translate(-50%,-50%)}
     .scrolly .coll-entry:nth-of-type(even) .coll-rank{left:50%;right:auto}
-    .scrolly .coll-body{max-width:none}
+    /* длинный текст выше экрана — снап становится мягким, сцену можно дочитать */
+    html.scrolly-lock.snap-mandatory{scroll-snap-type:y proximity}
   }
   @media(prefers-reduced-motion:reduce){
     .scrolly .coll-entry .coll-poster,.scrolly .coll-entry .coll-body,.scrolly .coll-entry .coll-critic{opacity:1;transform:none;transition:none}
