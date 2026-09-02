@@ -11,7 +11,7 @@ authors: auto
 authorsLabel: рассказывают **семь кинокритиков**
 ---
 <div class="coll-entry">
-  <img class="coll-poster" src="/assets/img/w500_gpYADlpkoFTChBLjIrZU7hxDKz1.jpg" alt="«Расёмон»">
+  <img class="coll-poster" src="/assets/img/w500_xhKch4lIHbXy4xRjWUITBVAhkiy.jpg" alt="«Расёмон»">
   <div class="coll-body">
     <h3>«Расёмон»</h3>
     <div class="coll-film">羅生門 / Rashomon</div>
