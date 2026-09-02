@@ -124,13 +124,13 @@ async function main(){
   await mkdir(OUT, { recursive: true });
 
   /* статика: всё, что нужно отдать как есть (включая .md и манифесты для SPA) */
-  for(const item of ['assets','logo','reviews','feed','festivals','collections','about.md','press.json','site.json','kudryavtsev']){
+  for(const item of ['assets','logo','reviews','feed','festivals','collections','diary','about.md','press.json','site.json','kudryavtsev']){
     if(existsSync(path.join(ROOT,item))) await cp(path.join(ROOT,item), path.join(OUT,item), { recursive: true });
   }
 
   /* картинки TMDB → локально (image.tmdb.org недоступен части аудитории) */
   const sourceData = [];
-  for(const d of ['reviews','feed','festivals','collections']){
+  for(const d of ['reviews','feed','festivals','collections','diary']){
     const dir = path.join(ROOT, d);
     if(existsSync(dir)) for(const f of await readdir(dir)) if(/\.(md|json)$/.test(f)) sourceData.push(path.join(d, f));
   }
@@ -151,6 +151,7 @@ async function main(){
   const reviews     = await readJSON('reviews/manifest.json');
   const feed        = await readJSON('feed/manifest.json');
   const festivals   = await readJSON('festivals/manifest.json');
+  const diaries     = await readJSON('diary/manifest.json');
   const collections = await readJSON('collections/manifest.json');
   const press       = await readJSON('press.json');
   let site = {}; try { site = JSON.parse(await readText('site.json')); } catch {}
@@ -189,7 +190,23 @@ async function main(){
   const stats = { reviews: pubReviews.length, press: pubPress.length, courses: courses.filter(c=>c.total>0).length };
   /* обогащённые данные — и клиентскому SPA (перекрываем копии в dist) */
   await writeFile(path.join(OUT,'reviews','manifest.json'), JSON.stringify(reviews, null, 2));
-  await writeFile(path.join(OUT,'site-data.json'), JSON.stringify({courses, stats}, null, 2));
+  /* ФЕСТИВАЛЬНЫЙ ДНЕВНИК: сводка последних дней для закрепа на главной.
+     Считаем из самого markdown, чтобы автору не нужно было дублировать дни
+     в манифесте; SPA берёт ту же сводку из site-data.json. */
+  let diaryPin = null;
+  for(const d of R.published(diaries)){
+    const parsed = await readMd(`diary/${d.slug}.md`);
+    if(!parsed) continue;
+    const { entries } = R.diaryEntries(md(parsed.body));
+    d.entries = entries;
+    if(d.pinned && !diaryPin){
+      diaryPin = { slug:d.slug, title:d.title||parsed.meta.title||'', excerpt:d.excerpt||parsed.meta.subtitle||'',
+        emblem: parsed.meta.emblem || '', live: d.pinned===true,
+        days: entries.slice(0,3).map(e=>({id:e.id, day:e.day, date:e.date, title:e.title})) };
+    }
+  }
+
+  await writeFile(path.join(OUT,'site-data.json'), JSON.stringify({courses, stats, diary:diaryPin}, null, 2));
 
   /* ---------- УКАЗАТЕЛЬ ФИЛЬМОВ: агрегатор рецензия + лекции-кейсы + подборки ---------- */
   const lecAll = filmLectureMapAll();
@@ -287,7 +304,7 @@ async function main(){
       description: 'Кино глазами социолога: рецензии, дневники фестивалей и лекционные курсы от марксизма до психоанализа. Авторский сайт Карена Аванесяна.',
       urlPath: '/',
     }),
-    appHtml: R.homeView({reviews,feed,festivals,collections,press,site,courses,stats,films:filmsIndex}),
+    appHtml: R.homeView({reviews,feed,festivals,collections,press,site,courses,stats,films:filmsIndex,diary:diaryPin}),
     view: {view:'home', nav:'home'},
   }));
   urls.push({loc:'/', priority:'1.0'});
@@ -355,6 +372,25 @@ async function main(){
     }));
     /* «скрытая ссылка» (unlisted): в sitemap не отдаём */
     if(R.isListed(c)) urls.push({loc:`/collection/${c.slug}`, priority:'0.6'});
+  }
+
+  /* ФЕСТИВАЛЬНЫЕ ДНЕВНИКИ — одна страница-лента на фестиваль */
+  for(const d of R.published(diaries)){
+    const parsed = await readMd(`diary/${d.slug}.md`);
+    if(!parsed) continue;
+    const { meta, body } = parsed;
+    await emit(`/diary/${d.slug}`, renderPage({
+      meta: buildMeta({
+        title: `${meta.title||d.title} — Караван идёт`,
+        ogTitle: meta.title||d.title,
+        description: d.excerpt || meta.subtitle || excerptFromBody(body),
+        urlPath:`/diary/${d.slug}`, image: meta.cover, type:'article',
+        author:'Карен Аванесян', noindex: !R.isListed(d),
+      }),
+      appHtml: R.diaryView(meta, md(body)),
+      view: {view:'diary', nav:'diary', slug:d.slug},
+    }));
+    if(R.isListed(d)) urls.push({loc:`/diary/${d.slug}`, priority:'0.8'});
   }
 
   /* ПУБЛИКАЦИИ В СМИ */

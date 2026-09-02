@@ -331,8 +331,8 @@ export function homeView(data){
   const films = data.films || [];
   const site = data.site || {};
 
-  /* редакционная «шапка»: флагманский материал — «выбор автора» */
-  let top='';
+  /* редакционная «шапка»: закреп фестивального дневника, затем «выбор автора» */
+  let top = diaryPinHTML(data.diary);
   const featured = site.featured ? reviews.find(r=>r.slug===site.featured) : null;
   if(featured) top += featuredReviewHTML(featured);
 
@@ -592,6 +592,80 @@ export function scrollyView(meta, bodyHtml, backHref, backLabel){
     <div class="prose scrolly-body">${body}</div>
     ${count ? `<div class="scrolly-counter" aria-hidden="true"><b id="scNow">1</b><i>/ ${count}</i></div>` : ''}
   </main>`;
+}
+
+/* ---------- ФЕСТИВАЛЬНЫЙ ДНЕВНИК (diary/) ---------- */
+/* Один файл = один фестиваль. День отчёта пишется в markdown двумя строками:
+     ## День 3 · 29 августа
+     ### Заголовок отчёта
+   Всё до следующего `##` — тело этого дня. Разбираем уже готовый HTML, чтобы
+   автору не приходилось руками расставлять разметку. */
+export function diaryEntries(bodyHtml){
+  const parts = (bodyHtml || '').split(/(?=<h2)/);
+  const intro = parts.length && !/^\s*<h2/.test(parts[0]) ? parts.shift() : '';
+  const entries = parts.map((chunk, i)=>{
+    const m = chunk.match(/^\s*<h2[^>]*>([\s\S]*?)<\/h2>/);
+    const label = m ? m[1].replace(/<[^>]*>/g,'').trim() : '';
+    const num = (label.match(/(\d+)/) || [])[1];
+    const [dayPart, ...restLabel] = label.split('·');
+    const html = chunk.replace(/^\s*<h2[^>]*>[\s\S]*?<\/h2>/, '');
+    const head = (html.match(/<h3[^>]*>([\s\S]*?)<\/h3>/) || [])[1];
+    return {
+      id: num ? `den-${num}` : `den-${i+1}`,
+      label,
+      day: dayPart.trim(),
+      date: restLabel.join('·').trim(),
+      title: head ? head.replace(/<[^>]*>/g,'').trim() : '',
+      html,
+    };
+  });
+  return { intro, entries };
+}
+
+/* Страница дневника: вертикальная лента, свежий день сверху.
+   У каждого дня свой якорь — строка-маркер сама является ссылкой на него. */
+export function diaryView(meta, bodyHtml){
+  const { intro, entries } = diaryEntries(bodyHtml);
+  const emblem = meta.emblem
+    ? ` style="--emblem:url('${esc(meta.emblem)}')"` : '';
+  const feed = entries.length
+    ? entries.map(e=>`<article class="day-entry" id="${esc(e.id)}">
+        <a class="day-mark" href="#${esc(e.id)}" title="Ссылка на этот день">
+          <b>${esc(e.day)}</b>${e.date?`<i>${esc(e.date)}</i>`:''}
+        </a>
+        <div class="day-body">${e.html}</div>
+      </article>`).join('')
+    : `<div class="state">Первый отчёт появится совсем скоро.</div>`;
+  return `<main class="diary${meta.emblem ? ' diary--emblem' : ''}"${emblem}>
+    <a class="back" href="/">← на главную</a>
+    <header class="diary-head">
+      ${meta.emblem ? `<div class="diary-emblem" aria-hidden="true"></div>` : ''}
+      ${meta.kicker ? `<div class="diary-kicker">${esc(meta.kicker)}</div>` : ''}
+      <h1 class="diary-title">${noOrphan(meta.title)}</h1>
+      ${meta.subtitle ? `<p class="diary-sub">${esc(meta.subtitle)}</p>` : ''}
+      ${entries.length ? `<div class="diary-count">${entries.length} ${plural(entries.length,['день','дня','дней'])} фестиваля</div>` : ''}
+    </header>
+    ${intro.trim() ? `<div class="prose diary-intro">${intro}</div>` : ''}
+    <div class="prose diary-feed">${feed}</div>
+  </main>`;
+}
+
+/* Закреп на главной: пока фестиваль идёт — первым блоком, до всех разделов. */
+export function diaryPinHTML(d){
+  if(!d || !d.slug) return '';
+  const days = (d.days || []).slice(0, 3).map(x=>
+    `<a class="pin-day" href="/diary/${esc(d.slug)}#${esc(x.id)}">
+      <b>${esc(x.day)}</b><span>${esc(x.title || x.date || '')}</span>
+    </a>`).join('');
+  return `<section class="diary-pin${d.emblem ? ' diary-pin--emblem' : ''}"${d.emblem ? ` style="--emblem:url('${esc(d.emblem)}')"` : ''}>
+    <a class="pin-head" href="/diary/${esc(d.slug)}">
+      ${d.emblem ? `<span class="pin-emblem" aria-hidden="true"></span>` : ''}
+      <span class="pin-kicker">${esc(d.title)}${d.live ? ' · идёт сейчас' : ''}</span>
+    </a>
+    ${d.excerpt ? `<p class="pin-sub">${esc(d.excerpt)}</p>` : ''}
+    ${days ? `<div class="pin-days">${days}</div>` : ''}
+    <a class="pin-all" href="/diary/${esc(d.slug)}">Все дни фестиваля →</a>
+  </section>`;
 }
 
 export function feedView(list){
