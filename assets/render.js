@@ -609,13 +609,16 @@ export function diaryEntries(bodyHtml){
     const num = (label.match(/(\d+)/) || [])[1];
     const [dayPart, ...restLabel] = label.split('·');
     const html = chunk.replace(/^\s*<h2[^>]*>[\s\S]*?<\/h2>/, '');
-    const head = (html.match(/<h3[^>]*>([\s\S]*?)<\/h3>/) || [])[1];
+    /* день может состоять из нескольких фильмов — каждый под своим ###;
+       для закрепа на главной склеиваем их заголовки через « · » */
+    const heads = [...html.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)].map(m=>m[1].replace(/<[^>]*>/g,'').trim());
+    const head = heads.join(' · ');
     return {
       id: num ? `den-${num}` : `den-${i+1}`,
       label,
       day: dayPart.trim(),
       date: restLabel.join('·').trim(),
-      title: head ? head.replace(/<[^>]*>/g,'').trim() : '',
+      title: head,
       html,
     };
   });

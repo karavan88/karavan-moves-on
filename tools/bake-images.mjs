@@ -26,7 +26,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 async function main(){
   /* те же источники, что видит build.mjs */
   const sourceData = [];
-  for(const d of ['reviews','feed','festivals','collections']){
+  for(const d of ['reviews','feed','festivals','collections','diary']){
     const dir = path.join(ROOT, d);
     if(existsSync(dir)) for(const f of await readdir(dir)) if(/\.(md|json)$/.test(f)) sourceData.push(path.join(d, f));
   }
