@@ -646,7 +646,6 @@ export function diaryView(meta, bodyHtml){
       ${meta.kicker ? `<div class="diary-kicker">${esc(meta.kicker)}</div>` : ''}
       <h1 class="diary-title">${noOrphan(meta.title)}</h1>
       ${meta.subtitle ? `<p class="diary-sub">${esc(meta.subtitle)}</p>` : ''}
-      ${entries.length ? `<div class="diary-count">${entries.length} ${plural(entries.length,['день','дня','дней'])} фестиваля</div>` : ''}
     </header>
     ${intro.trim() ? `<div class="prose diary-intro">${intro}</div>` : ''}
     <div class="prose diary-feed">${feed}</div>
