@@ -37,6 +37,12 @@ const readJSON = async (p) => { try { return JSON.parse(await readText(p)); } ca
 const readMd = async (p) => { try { return R.parseFrontMatter(await readText(p)); } catch { return null; } };
 
 /* plain-text выжимка из markdown для description (≈160 символов) */
+/* первый <img src> из готового HTML — для og:image дневника */
+function firstImage(html){
+  const m = /<img[^>]+src="([^"]+)"/.exec(html || '');
+  return m ? m[1] : '';
+}
+
 function excerptFromBody(body, limit=160){
   const t = (body||'')
     .replace(/!\[[^\]]*\]\([^)]*\)/g,' ')      // картинки
@@ -384,7 +390,9 @@ async function main(){
         title: `${meta.title||d.title} — Караван идёт`,
         ogTitle: meta.title||d.title,
         description: d.excerpt || meta.subtitle || excerptFromBody(body),
-        urlPath:`/diary/${d.slug}`, image: meta.cover, type:'article',
+        /* превью для соцсетей — первый кадр свежего дня (он сверху),
+           обложка из front-matter только как запасной вариант */
+        urlPath:`/diary/${d.slug}`, image: firstImage(md(body)) || meta.cover, type:'article',
         author:'Карен Аванесян', noindex: !R.isListed(d),
       }),
       appHtml: R.diaryView(meta, md(body)),
