@@ -816,6 +816,17 @@
     .scrolly .coll-entry:nth-of-type(even) .coll-rank{left:50%;right:auto}
     /* длинный текст выше экрана — снап становится мягким, сцену можно дочитать */
     html.scrolly-lock.snap-mandatory{scroll-snap-type:y proximity}
+    /* страница не должна уезжать вбок: горизонтальный оверфлоу режем, а у
+       истории разрешаем только вертикальные жесты (iOS панорамирует по X при
+       любом элементе шире экрана) */
+    html,body{overflow-x:clip}
+    main.scrolly{touch-action:pan-y pinch-zoom}
+    /* подсказки к листанию касанием */
+    .scroll-hint span{display:none}
+    .scroll-hint::before{content:"коснитесь, чтобы листать";font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+    .scrolly-counter{padding-right:12px}
+    .scrolly-counter::after{content:"›";font-family:"Playfair Display",serif;font-size:22px;line-height:1;
+      color:var(--gold);margin-left:6px;transform:translateY(-1px)}
   }
   @media(prefers-reduced-motion:reduce){
     .scrolly .coll-entry .coll-poster,.scrolly .coll-entry .coll-body,.scrolly .coll-entry .coll-critic{opacity:1;transform:none;transition:none}
@@ -1466,7 +1477,9 @@ async function wireSiteSearch(){
 
 /* ---------- скролл-история подборки ---------- */
 let scrollyIO = null, scrollyScroll = null;
+let scrollyTap = null;   /* листание касанием на телефоне */
 function teardownScrolly(){
+  if(scrollyTap){ document.removeEventListener('click', scrollyTap); scrollyTap = null; }
   document.documentElement.classList.remove('scrolly-lock','snap-mandatory');
   if(scrollyIO){ scrollyIO.disconnect(); scrollyIO = null; }
   if(scrollyScroll){ window.removeEventListener('scroll', scrollyScroll); scrollyScroll = null; }
@@ -1514,6 +1527,51 @@ function enhanceScrolly(){
   scrollyScroll = ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(updateCounter); } };
   window.addEventListener('scroll', scrollyScroll, {passive:true});
   updateCounter();
+
+  /* ТЕЛЕФОН: историю листают касанием, как сторис. Тап по правой части экрана —
+     следующий слайд, по левой четверти — предыдущий. Если сцена выше экрана
+     (длинный текст), тап сначала докручивает её, а не перескакивает дальше;
+     обычная прокрутка пальцем при этом работает как раньше. Ссылки, кнопки и
+     выделение текста тап не перехватывает. Переход мгновенный: плавную
+     прокрутку снап обрывает, а появление сцены и так анимировано. */
+  const slides = [root.querySelector('.scene-intro'), ...scenes].filter(Boolean);
+  const isPhone = ()=>window.matchMedia('(max-width:680px)').matches;
+  const jumpTo = (el, offset)=>{
+    const html = document.documentElement;
+    const snap = html.style.scrollSnapType, beh = html.style.scrollBehavior;
+    html.style.scrollSnapType = 'none'; html.style.scrollBehavior = 'auto';
+    if(el) el.scrollIntoView({behavior:'instant', block:'start'});
+    else window.scrollBy({top: offset, behavior:'instant'});
+    let done = false;
+    const restore = ()=>{ if(done) return; done = true; html.style.scrollSnapType = snap; html.style.scrollBehavior = beh; };
+    requestAnimationFrame(restore); setTimeout(restore, 60);
+  };
+  scrollyTap = (e)=>{
+    if(!isPhone() || e.button !== 0) return;
+    if(e.target.closest('a, button, input, textarea, header, footer')) return;
+    if(!root.contains(e.target)) return;
+    if(String(window.getSelection && window.getSelection()).length) return;
+    const vh = window.innerHeight, mid = vh/2;
+    let cur = slides.findIndex(sl=>{ const r = sl.getBoundingClientRect(); return r.top <= mid && r.bottom >= mid; });
+    if(cur < 0) cur = 0;
+    const r = slides[cur].getBoundingClientRect();
+    const back = e.clientX < window.innerWidth * 0.28;
+    e.preventDefault();
+    if(back){
+      if(r.top < -40) jumpTo(slides[cur]);                 /* к началу этой сцены */
+      else if(cur > 0) jumpTo(slides[cur-1]);              /* предыдущий слайд */
+      return;
+    }
+    /* титул всегда листается дальше: его «лишняя» высота — воздух, не текст */
+    /* докручиваем только если скрыто больше четверти экрана: сцены на пару
+       десятков пикселей выше вьюпорта не должны требовать двух касаний */
+    if(cur > 0 && r.bottom > vh * 1.25){
+      jumpTo(null, Math.min(vh * 0.8, r.bottom - vh));
+    } else if(cur < slides.length - 1){
+      jumpTo(slides[cur+1]);
+    }
+  };
+  document.addEventListener('click', scrollyTap);
 }
 
 /* ---------- роутер на реальных путях ---------- */
