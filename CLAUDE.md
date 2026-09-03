@@ -10,7 +10,8 @@
   браузером — поэтому функции в нём чистые, без обращения к DOM на верхнем уровне).
 - Сборка: `npm run build` → `build.mjs` пререндерит каждую страницу в `dist/`
   (плюс sitemap, rss, robots). `dist/` в `.gitignore` — **не коммитим**.
-- Деплой: Netlify собирает из `main` → https://karavancinema.netlify.app
+- Деплой: Netlify собирает из `main` → https://www.karavancinema.com (канонический
+  домен, `SITE` в `build.mjs`); https://karavancinema.netlify.app — техническое зеркало.
 - Контент: markdown + JSON-манифесты:
   `reviews/` (рецензии), `collections/` (подборки), `feed/` (заметки),
   `festivals/`, `press.json`. Картинки берутся с TMDB и «запекаются» локально

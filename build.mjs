@@ -26,7 +26,10 @@ import { coursesSummary, filmLectureMap, filmLectureMapAll, SUBJECTS } from './t
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
 const OUT = path.join(ROOT, 'dist');
-const SITE = (process.env.SITE_URL || 'https://karavancinema.netlify.app').replace(/\/$/,'');
+/* канонический адрес — собственный домен (apex 301 → www); netlify.app
+   остаётся техническим зеркалом. Иначе canonical, og:image и sitemap
+   уводят на поддомен Netlify. */
+const SITE = (process.env.SITE_URL || 'https://www.karavancinema.com').replace(/\/$/,'');
 const md = s => marked.parse(s || '');
 
 /* ---------- ввод/вывод ---------- */
