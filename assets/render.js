@@ -611,15 +611,25 @@ export function diaryEntries(bodyHtml){
     const html = chunk.replace(/^\s*<h2[^>]*>[\s\S]*?<\/h2>/, '');
     /* день может состоять из нескольких фильмов — каждый под своим ###;
        для закрепа на главной склеиваем их заголовки через « · » */
-    const heads = [...html.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)].map(m=>m[1].replace(/<[^>]*>/g,'').trim());
-    const head = heads.join(' · ');
+    const id = num ? `den-${num}` : `den-${i+1}`;
+    /* каждому фильму — свой якорь (#den-2-1), чтобы оглавление вело прямо к нему */
+    const films = [];
+    let k = 0;
+    const htmlWithIds = html.replace(/<h3[^>]*>([\s\S]*?)<\/h3>/g, (m, inner)=>{
+      k += 1;
+      const fid = `${id}-${k}`;
+      films.push({ id: fid, title: inner.replace(/<[^>]*>/g,'').trim() });
+      return `<h3 id="${fid}">${inner}</h3>`;
+    });
+    const head = films.map(f=>f.title).join(' · ');
     return {
-      id: num ? `den-${num}` : `den-${i+1}`,
+      id,
       label,
       day: dayPart.trim(),
       date: restLabel.join('·').trim(),
       title: head,
-      html,
+      films,
+      html: htmlWithIds,
     };
   });
   return { intro, entries };
@@ -639,7 +649,19 @@ export function diaryView(meta, bodyHtml){
         <div class="day-body">${e.html}</div>
       </article>`).join('')
     : `<div class="state">Первый отчёт появится совсем скоро.</div>`;
-  return `<main class="diary${meta.emblem ? ' diary--emblem' : ''}"${emblem}>
+  /* оглавление по фильмам: сбоку на широком экране, компактным списком под
+     шапкой на узком. Название фильма — до запятой (режиссёр в оглавлении лишний) */
+  const short = (t)=>t.replace(/,[^,]*$/, '');
+  const toc = entries.some(e=>e.films.length)
+    ? `<nav class="diary-toc" aria-label="Фильмы фестиваля">
+        <div class="toc-title">Фильмы</div>
+        ${entries.map(e=>`<div class="toc-day">
+          <a class="toc-daymark" href="#${esc(e.id)}">${esc(e.day)}${e.date?` · ${esc(e.date)}`:''}</a>
+          ${e.films.map(f=>`<a class="toc-film" href="#${esc(f.id)}">${esc(short(f.title))}</a>`).join('')}
+        </div>`).join('')}
+      </nav>`
+    : '';
+  return `<main class="diary${meta.emblem ? ' diary--emblem' : ''}${toc ? ' diary--toc' : ''}"${emblem}>
     <a class="back" href="/">← на главную</a>
     <header class="diary-head">
       ${meta.emblem ? `<div class="diary-emblem" aria-hidden="true"></div>` : ''}
@@ -647,6 +669,7 @@ export function diaryView(meta, bodyHtml){
       <h1 class="diary-title">${noOrphan(meta.title)}</h1>
       ${meta.subtitle ? `<p class="diary-sub">${esc(meta.subtitle)}</p>` : ''}
     </header>
+    ${toc}
     ${intro.trim() ? `<div class="prose diary-intro">${intro}</div>` : ''}
     <div class="prose diary-feed">${feed}</div>
   </main>`;

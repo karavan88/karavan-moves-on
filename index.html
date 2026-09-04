@@ -889,6 +889,31 @@
     .day-entry::before{left:-24px;width:9px;height:9px}
   }
 
+  /* ---- оглавление по фильмам ---- */
+  .diary-toc{margin:0 0 30px;padding:16px 18px;border:1px solid var(--border);border-radius:14px;
+    font-size:14px;line-height:1.35}
+  .diary-toc .toc-title{color:var(--gold);font-size:11px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+  .diary-toc .toc-day{margin-top:10px}
+  .diary-toc .toc-day:first-of-type{margin-top:0}
+  .diary-toc .toc-daymark{display:block;color:var(--gold);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;font-weight:800;margin-bottom:5px}
+  .diary-toc .toc-film{display:block;color:var(--text);padding:4px 0 4px 12px;
+    border-left:1px solid var(--border);margin-left:2px;transition:color .2s,border-color .2s}
+  .diary-toc .toc-film:hover{color:var(--accent);border-color:var(--accent)}
+  .diary-toc .toc-film.is-active{color:var(--accent);border-color:var(--gold)}
+  /* на широком экране — прилипающая колонка слева от ленты */
+  @media(min-width:1120px){
+    main.diary.diary--toc{max-width:1120px;display:grid;grid-template-columns:230px minmax(0,860px);
+      column-gap:30px;align-items:start}
+    main.diary.diary--toc>.back{grid-column:1/-1}
+    main.diary.diary--toc>.diary-head,
+    main.diary.diary--toc>.diary-intro,
+    main.diary.diary--toc>.diary-feed{grid-column:2}
+    main.diary.diary--toc>.diary-toc{grid-column:1;grid-row:2/span 3;position:sticky;top:88px;
+      margin:0;max-height:calc(100vh - 110px);overflow-y:auto;scrollbar-width:thin}
+  }
+  .day-body h3{scroll-margin-top:88px}
+
   /* ---- закреп дневника на главной: первый блок, до всех разделов ---- */
   .diary-pin{position:relative;overflow:hidden;margin:0 0 46px;padding:26px 28px 22px;
     border:1px solid rgba(185,139,46,.42);border-radius:16px;
