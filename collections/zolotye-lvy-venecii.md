@@ -1,14 +1,14 @@
 ---
 title: Львиная доля
 overline: Leone d’Oro
-subtitle: Крылатый страж Венеции тысячу лет глядел с колонн и знамён на лагуну, а в 1949-м обзавёлся золотым двойником ростом со статуэтку. На Лидо открылась 83-я Мостра, старейший киносмотр планеты, и по этому случаю Карен Аванесян позвал семерых коллег. Каждый из них унёс свою долю золота: один фильм, за который ручается лично.
+subtitle: Крылатый страж Венеции тысячу лет глядел с колонн и знамён на лагуну, а в 1949-м обзавёлся золотым двойником ростом со статуэтку. На Лидо открылась 83-я Мостра, старейший киносмотр планеты, и по этому случаю Карен Аванесян позвал шестерых коллег. Каждый из них унёс свою долю золота: один фильм, за который ручается лично.
 cover: /assets/img/w1280_tDn1dA52bQH9B85vilHeU7C83W1.jpg
 layout: scrolly
 kind: films
 snap: page
 emblem: /assets/lion.png
 authors: auto
-authorsLabel: рассказывают **восемь кинокритиков**
+authorsLabel: рассказывают **семь кинокритиков**
 ---
 <div class="coll-entry">
   <img class="coll-poster" src="/assets/img/w500_xhKch4lIHbXy4xRjWUITBVAhkiy.jpg" alt="«Расёмон»">
@@ -40,23 +40,6 @@ authorsLabel: рассказывают **восемь кинокритиков**
     <div class="critic-id">
       <span>рассказывает <b>Павел Пугачев</b></span>
       <a class="critic-tg" href="https://t.me/meandorsonwelles" target="_blank" rel="noopener">Я и Орсон Уэллс →</a>
-    </div>
-  </div>
-</div>
-<div class="coll-entry">
-  <img class="coll-poster" src="/assets/img/w500_aGPYM6Y8RtaL8DD8u6rfVsRvhD7.jpg" alt="«В прошлом году в Мариенбаде»">
-  <div class="coll-body">
-    <h3>«В прошлом году в Мариенбаде»</h3>
-    <div class="coll-film">L’Année dernière à Marienbad</div>
-    <div class="coll-meta">1961 · реж. Ален Рене · Франция <a class="lb" href="https://letterboxd.com/tmdb/4024" target="_blank" rel="noopener" aria-label="Letterboxd"></a></div>
-    <!-- ПЛЕЙСХОЛДЕР: аннотация, заменить текстом критика -->
-    <p>Барочный отель без времени и без выхода. Мужчина уверяет женщину, что год назад они встретились здесь — или в Мариенбаде, или где-то ещё, — и что она обещала уйти с ним. Она не помнит. Ален Рене и Ален Роб-Грийе строят фильм как спор памяти с самой собой, где ни одна версия прошлого не оказывается прочнее другой.</p>
-  </div>
-  <div class="coll-critic">
-    <img class="critic-avatar" src="/assets/critics/vilenkin.jpg" alt="Денис Виленкин">
-    <div class="critic-id">
-      <span>рассказывает <b>Денис Виленкин</b></span>
-      <!-- ЗАПОЛНИТЬ: ссылка на канал — <a class="critic-tg" href="https://t.me/…" target="_blank" rel="noopener">Название →</a> -->
     </div>
   </div>
 </div>

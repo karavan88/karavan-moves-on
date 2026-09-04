@@ -11,7 +11,6 @@
 | `bogdanov.jpg`  | Вадим Богданов   | @patersonsdiary         |
 | `hodova.jpg`    | Тамара Ходова    | @shortfilm_aboutlove    |
 | `artamonov.jpg` | Кирилл Артамонов | @KinemArt (Усы Никандера) |
-| `vilenkin.jpg`  | Денис Виленкин   | канал не указан         |
 
 Карен в мультиавторских историях — тоже логотипом канала: `avanesian.jpg`
 («Караван идёт»). Его фотография `/assets/karen.jpg` остаётся для сольных историй и «Обо мне».
