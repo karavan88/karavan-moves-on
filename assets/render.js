@@ -688,7 +688,7 @@ export function diaryView(meta, bodyHtml){
   const authorLine = meta.authorLine || 'Дневники Карена Аванесяна';
   const author = `<aside class="diary-author">
       <img class="diary-author-photo" src="/assets/karen.jpg" alt="Карен Аванесян" decoding="async" onerror="this.style.display='none'">
-      <div class="diary-author-name">${esc(authorLine)}</div>
+      <div class="diary-author-name">${noOrphan(authorLine)}</div>
       ${meta.authorNote ? `<div class="diary-author-note">${esc(meta.authorNote)}</div>` : ''}
       <a class="diary-author-link" href="/about">Об авторе →</a>
     </aside>`;
