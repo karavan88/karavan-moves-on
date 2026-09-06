@@ -209,7 +209,7 @@ async function main(){
     const { entries } = R.diaryEntries(md(parsed.body));
     d.entries = entries;
     if(d.pinned && !diaryPin){
-      diaryPin = { slug:d.slug, title:d.title||parsed.meta.title||'', excerpt:d.excerpt||parsed.meta.subtitle||'',
+      diaryPin = { slug:d.slug, title:d.title||parsed.meta.title||'', excerpt:d.excerpt||'',   /* подстрока в закрепе — только явная */
         emblem: parsed.meta.emblem || '', live: d.pinned===true,
         days: entries.slice(0,3).map(e=>({id:e.id, day:e.day, date:e.date, title:e.title})) };
     }
