@@ -398,10 +398,31 @@ async function main(){
         urlPath:`/diary/${d.slug}`, image: firstImage(md(body)) || meta.cover, type:'article',
         author:'Карен Аванесян', noindex: !R.isListed(d),
       }),
-      appHtml: R.diaryView(meta, md(body)),
+      appHtml: R.diaryView({...meta, slug:d.slug}, md(body)),
       view: {view:'diary', nav:'diary', slug:d.slug},
     }));
     if(R.isListed(d)) urls.push({loc:`/diary/${d.slug}`, priority:'0.8'});
+
+    /* отдельная страница на каждый фильм — со своим превью (кадр + название) */
+    const { entries } = R.diaryEntries(md(body));
+    const flat = entries.flatMap(e=>e.films.map(f=>({e, f})));
+    for(let i=0;i<flat.length;i++){
+      const {e, f} = flat[i];
+      const prev = flat[i-1] && flat[i-1].f, next = flat[i+1] && flat[i+1].f;
+      const filmTitle = f.title.replace(/\s*\(.*$/, '');
+      await emit(`/diary/${d.slug}/${f.slug}`, renderPage({
+        meta: buildMeta({
+          title: `${filmTitle} — ${meta.title||d.title} — Караван идёт`,
+          ogTitle: `${filmTitle} · ${meta.title||d.title}, ${e.day.toLowerCase()}`,
+          description: f.excerpt || d.excerpt || '',
+          urlPath:`/diary/${d.slug}/${f.slug}`, image: f.image || firstImage(md(body)), type:'article',
+          author:'Карен Аванесян', noindex: !R.isListed(d),
+        }),
+        appHtml: R.diaryFilmView(meta, d.slug, e, f, prev, next),
+        view: {view:'diary-film', nav:'diary', slug:d.slug, film:f.slug},
+      }));
+      if(R.isListed(d)) urls.push({loc:`/diary/${d.slug}/${f.slug}`, priority:'0.6'});
+    }
   }
 
   /* ПУБЛИКАЦИИ В СМИ */

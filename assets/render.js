@@ -612,14 +612,31 @@ export function diaryEntries(bodyHtml){
     /* день может состоять из нескольких фильмов — каждый под своим ###;
        для закрепа на главной склеиваем их заголовки через « · » */
     const id = num ? `den-${num}` : `den-${i+1}`;
-    /* каждому фильму — свой якорь (#den-2-1), чтобы оглавление вело прямо к нему */
+    /* каждому фильму — свой якорь (#den-2-1) для оглавления и свой слаг для
+       отдельной страницы (/diary/<фестиваль>/<slug>) — у неё собственное превью
+       с кадром этого фильма. Слаг — транслит русского названия. */
     const films = [];
     let k = 0;
     const htmlWithIds = html.replace(/<h3[^>]*>([\s\S]*?)<\/h3>/g, (m, inner)=>{
       k += 1;
       const fid = `${id}-${k}`;
-      films.push({ id: fid, title: inner.replace(/<[^>]*>/g,'').trim() });
+      const title = inner.replace(/<[^>]*>/g,'').trim();
+      /* русское название — то, что в «ёлочках»; без них — до скобки/запятой */
+      const q = title.match(/«([^»]+)»/);
+      const ruTitle = q ? q[1] : title.replace(/\s*\(.*$/, '').replace(/,[^,]*$/, '').trim();
+      films.push({ id: fid, title, slug: tagSlug(ruTitle) });
       return `<h3 id="${fid}">${inner}</h3>`;
+    });
+    /* тело каждого фильма — от его <h3> до следующего */
+    const pieces = htmlWithIds.split(/(?=<h3 id=")/).filter(x=>/^<h3 id="/.test(x));
+    pieces.forEach((piece, j)=>{
+      if(!films[j]) return;
+      films[j].html = piece;
+      films[j].image = (piece.match(/<img[^>]+src="([^"]+)"/) || [])[1] || '';
+      /* первый абзац с текстом (кадр marked тоже заворачивает в <p>) */
+      const paras = [...piece.matchAll(/<p>([\s\S]*?)<\/p>/g)]
+        .map(m=>m[1].replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim()).filter(Boolean);
+      films[j].excerpt = paras[0] || '';
     });
     const head = films.map(f=>f.title).join(' · ');
     return {
@@ -641,12 +658,17 @@ export function diaryView(meta, bodyHtml){
   const { intro, entries } = diaryEntries(bodyHtml);
   const emblem = meta.emblem
     ? ` style="--emblem:url('${esc(meta.emblem)}')"` : '';
+  const base = meta.slug ? `/diary/${esc(meta.slug)}` : '';
+  const linkFilms = (e)=> base
+    ? e.films.reduce((h, f)=> h.replace(`<h3 id="${f.id}">`, `<h3 id="${f.id}"><a class="film-link" href="${base}/${esc(f.slug)}" title="Отдельная страница фильма — со своим превью">`)
+        .replace(new RegExp(`(<h3 id="${f.id}">.*?)</h3>`, 's'), '$1</a></h3>'), e.html)
+    : e.html;
   const feed = entries.length
     ? entries.map(e=>`<article class="day-entry" id="${esc(e.id)}">
         <a class="day-mark" href="#${esc(e.id)}" title="Ссылка на этот день">
           <b>${esc(e.day)}</b>${e.date?`<i>${esc(e.date)}</i>`:''}
         </a>
-        <div class="day-body">${e.html}</div>
+        <div class="day-body">${linkFilms(e)}</div>
       </article>`).join('')
     : `<div class="state">Первый отчёт появится совсем скоро.</div>`;
   /* оглавление по фильмам: сбоку на широком экране, компактным списком под
@@ -661,6 +683,15 @@ export function diaryView(meta, bodyHtml){
         </div>`).join('')}
       </nav>`
     : '';
+  /* карточка автора: справа от ленты на широком экране, строкой под
+     оглавлением на узком. Подпись — front-matter authorLine. */
+  const authorLine = meta.authorLine || 'Дневники Карена Аванесяна';
+  const author = `<aside class="diary-author">
+      <img class="diary-author-photo" src="/assets/karen.jpg" alt="Карен Аванесян" decoding="async" onerror="this.style.display='none'">
+      <div class="diary-author-name">${esc(authorLine)}</div>
+      ${meta.authorNote ? `<div class="diary-author-note">${esc(meta.authorNote)}</div>` : ''}
+      <a class="diary-author-link" href="/about">Об авторе →</a>
+    </aside>`;
   return `<main class="diary${meta.emblem ? ' diary--emblem' : ''}${toc ? ' diary--toc' : ''}"${emblem}>
     <a class="back" href="/">← на главную</a>
     <header class="diary-head">
@@ -670,8 +701,32 @@ export function diaryView(meta, bodyHtml){
       ${meta.subtitle ? `<p class="diary-sub">${esc(meta.subtitle)}</p>` : ''}
     </header>
     ${toc}
+    ${author}
     ${intro.trim() ? `<div class="prose diary-intro">${intro}</div>` : ''}
     <div class="prose diary-feed">${feed}</div>
+  </main>`;
+}
+
+/* Отдельная страница фильма из дневника: тот же блок, что в ленте, плюс
+   ссылки на весь дневник и на соседние фильмы. Нужна ради собственного
+   превью в соцсетях — кадр и название именно этого фильма. */
+export function diaryFilmView(meta, slug, entry, film, prev, next){
+  const back = `/diary/${esc(slug)}`;
+  const nav = (prev || next) ? `<nav class="film-nav">
+      ${prev ? `<a class="film-prev" href="${back}/${esc(prev.slug)}"><span>← предыдущий</span><b>${esc(prev.title.replace(/\s*\(.*$/,''))}</b></a>` : '<span></span>'}
+      ${next ? `<a class="film-next" href="${back}/${esc(next.slug)}"><span>следующий →</span><b>${esc(next.title.replace(/\s*\(.*$/,''))}</b></a>` : ''}
+    </nav>` : '';
+  return `<main class="diary diary--film${meta.emblem ? ' diary--emblem' : ''}"${meta.emblem ? ` style="--emblem:url('${esc(meta.emblem)}')"` : ''}>
+    <a class="back" href="${back}">← ${esc(meta.title || 'Дневник')}: все дни</a>
+    <div class="prose diary-feed">
+      <article class="day-entry" id="${esc(entry.id)}">
+        <a class="day-mark" href="${back}#${esc(entry.id)}" title="Этот день в дневнике">
+          <b>${esc(entry.day)}</b>${entry.date?`<i>${esc(entry.date)}</i>`:''}
+        </a>
+        <div class="day-body">${film.html}</div>
+      </article>
+    </div>
+    ${nav}
   </main>`;
 }
 
