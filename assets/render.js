@@ -7,6 +7,8 @@
 
 /* ---------- утилиты ---------- */
 export function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* обратное к esc для текста, вынутого из готового HTML (заголовки дневника) */
+export function unesc(s){ return String(s??'').replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&'); }
 
 export function parseFrontMatter(text){
   const m = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
@@ -620,7 +622,10 @@ export function diaryEntries(bodyHtml){
     const htmlWithIds = html.replace(/<h3[^>]*>([\s\S]*?)<\/h3>/g, (m, inner)=>{
       k += 1;
       const fid = `${id}-${k}`;
-      const title = inner.replace(/<[^>]*>/g,'').trim();
+      /* текст заголовка берём как ПЛОСКИЙ текст: marked уже заэкранировал
+         апострофы и амперсанды (&#39;, &amp;), а дальше esc() экранирует ещё
+         раз — на главной и в оглавлении появлялось «L&#39;estranea» */
+      const title = unesc(inner.replace(/<[^>]*>/g,'').trim());
       /* русское название — то, что в «ёлочках»; без них — до скобки/запятой */
       const q = title.match(/«([^»]+)»/);
       const ruTitle = q ? q[1] : title.replace(/\s*\(.*$/, '').replace(/,[^,]*$/, '').trim();
@@ -635,7 +640,7 @@ export function diaryEntries(bodyHtml){
       films[j].image = (piece.match(/<img[^>]+src="([^"]+)"/) || [])[1] || '';
       /* первый абзац с текстом (кадр marked тоже заворачивает в <p>) */
       const paras = [...piece.matchAll(/<p>([\s\S]*?)<\/p>/g)]
-        .map(m=>m[1].replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim()).filter(Boolean);
+        .map(m=>unesc(m[1].replace(/<[^>]*>/g,'')).replace(/\s+/g,' ').trim()).filter(Boolean);
       films[j].excerpt = paras[0] || '';
     });
     const head = films.map(f=>f.title).join(' · ');
