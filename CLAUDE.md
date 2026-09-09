@@ -139,6 +139,11 @@ Front-matter: `title`, `subtitle`, `kicker`, `cover`, `layout: scrolly`,
   карточка автора `.diary-author`: фото `/assets/karen.jpg`, подпись из
   front-matter `authorLine` (по умолчанию «Дневники Карена Аванесяна»),
   опционально `authorNote`; на узком экране — строкой под оглавлением.
+  Оценка и Letterboxd у фильма дневника — строкой сразу под `###`:
+  `★ 7 · lb <tmdb-id>` (любая часть необязательна; вместо id — полная ссылка
+  letterboxd.com). `diaryEntries` превращает её в `.film-meta` — латунная
+  `★ N/10` + иконка `.lb`, как в подборках; оценка дублируется в оглавлении
+  (`.toc-rate`). Первым текстовым абзацем для превью она не считается.
   Превью для соцсетей (`og:image`) дневника — первый кадр свежего дня
   (`firstImage` в `build.mjs`), `cover` во front-matter не нужен.
   `pinned: true` в `diary/manifest.json` = блок-закреп первым на главной

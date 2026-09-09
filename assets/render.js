@@ -633,10 +633,27 @@ export function diaryEntries(bodyHtml){
       return `<h3 id="${fid}">${inner}</h3>`;
     });
     /* тело каждого фильма — от его <h3> до следующего */
-    const pieces = htmlWithIds.split(/(?=<h3 id=")/).filter(x=>/^<h3 id="/.test(x));
+    const parts = htmlWithIds.split(/(?=<h3 id=")/);
+    const prefix = parts.length && !/^<h3 id="/.test(parts[0]) ? parts.shift() : '';
+    const pieces = parts;
+    const outPieces = [];
     pieces.forEach((piece, j)=>{
-      if(!films[j]) return;
+      if(!films[j]){ outPieces.push(piece); return; }
+      /* строка сразу под заголовком фильма вида «★ 7 · lb 1733908» (оценка и/или
+         tmdb-id для Letterboxd; вместо id можно дать полную ссылку) →
+         латунная оценка + фирменные три точки, как в подборках */
+      const metaRe = /^([\s\S]*?<\/h3>\s*)<p>\s*(?:★\s*([\d.,]+))?\s*(?:·\s*)?(?:lb\s*(\d+)|(https?:\/\/letterboxd\.com\/\S+?))?\s*<\/p>/;
+      const mm = piece.match(metaRe);
+      if(mm && (mm[2] || mm[3] || mm[4])){
+        const rating = mm[2] ? mm[2].replace(',', '.') : '';
+        const lbHref = mm[3] ? `https://letterboxd.com/tmdb/${mm[3]}` : (mm[4] || '');
+        films[j].rating = rating;
+        films[j].letterboxd = lbHref;
+        const metaHtml = `<div class="film-meta">${rating ? `<span class="rate">★ ${esc(rating)}/10</span>` : ''}${lbHref ? `<a class="lb" href="${esc(lbHref)}" target="_blank" rel="noopener" aria-label="Letterboxd"></a>` : ''}</div>`;
+        piece = mm[1] + metaHtml + piece.slice(mm[0].length);
+      }
       films[j].html = piece;
+      outPieces.push(piece);
       films[j].image = (piece.match(/<img[^>]+src="([^"]+)"/) || [])[1] || '';
       /* первый абзац с текстом (кадр marked тоже заворачивает в <p>) */
       const paras = [...piece.matchAll(/<p>([\s\S]*?)<\/p>/g)]
@@ -651,7 +668,9 @@ export function diaryEntries(bodyHtml){
       date: restLabel.join('·').trim(),
       title: head,
       films,
-      html: htmlWithIds,
+      /* тело дня — из уже обработанных кусков (строка «★ · lb» превращена в
+         метаданные), чтобы лента и страница фильма показывали одно и то же */
+      html: prefix + outPieces.join(''),
     };
   });
   return { intro, entries };
@@ -684,7 +703,7 @@ export function diaryView(meta, bodyHtml){
         <div class="toc-title">Фильмы</div>
         ${entries.map(e=>`<div class="toc-day">
           <a class="toc-daymark" href="#${esc(e.id)}">${esc(e.day)}${e.date?` · ${esc(e.date)}`:''}</a>
-          ${e.films.map(f=>`<a class="toc-film" href="#${esc(f.id)}">${esc(short(f.title))}</a>`).join('')}
+          ${e.films.map(f=>`<a class="toc-film" href="#${esc(f.id)}">${esc(short(f.title))}${f.rating ? ` <b class="toc-rate">★ ${esc(f.rating)}</b>` : ''}</a>`).join('')}
         </div>`).join('')}
       </nav>`
     : '';
